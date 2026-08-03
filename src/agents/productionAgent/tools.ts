@@ -3,6 +3,7 @@ import { z } from "zod";
 import _ from "lodash";
 import ResTool from "@/socket/resTool";
 import u from "@/utils";
+import { startDerivativeAssetImageGeneration } from "@/utils/derivativeAssetImageGeneration";
 
 const deriveAssetSchema = z.object({
   id: z.number().describe("衍生资产ID,如果新增则为空"),
@@ -191,19 +192,28 @@ export default (toolCpnfig: ToolConfig) => {
       ),
       execute: async ({ ids }) => {
         const thinking = msg.thinking("正在生成衍生资产...");
-        new Promise((resolve) => socket.emit("generateDeriveAsset", { ids }, (res: any) => resolve(res)))
-          .then((res) => {
-            thinking.appendText(`已生成衍生资产，ID: ${JSON.stringify(res, null, 2)}\n`);
-            thinking.updateTitle("衍生资产开始完成");
-            thinking.complete();
-          })
-          .catch((e) => {
-            thinking.appendText("衍生资产生成失败:\n" + u.error(e).message);
-            thinking.updateTitle("衍生资产生成失败");
-            thinking.complete();
-          });
+        try {
+          const { projectId, scriptId } = resTool.data;
+          if (typeof projectId !== "number" || typeof scriptId !== "number") {
+            throw new Error("当前生产上下文缺少项目或剧本信息");
+          }
 
-        return "开始生成衍生资产";
+          const result = await startDerivativeAssetImageGeneration({
+            assetIds: ids,
+            projectId,
+            scriptId,
+          });
+          thinking.appendText(`已提交衍生资产图片生成任务:\n${JSON.stringify(result, null, 2)}\n`);
+          thinking.updateTitle("衍生资产生成任务已启动");
+          thinking.complete();
+          return `已启动 ${result.length} 个衍生资产图片生成任务，最终结果请以工作台状态为准。`;
+        } catch (error) {
+          const message = u.error(error).message;
+          thinking.appendText("衍生资产生成失败:\n" + message);
+          thinking.updateTitle("衍生资产生成失败");
+          thinking.complete();
+          return `衍生资产生成失败：${message}`;
+        }
       },
     }),
     generate_storyboard: tool({

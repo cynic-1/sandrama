@@ -6,6 +6,7 @@ import { success, error } from "@/lib/responseFormat";
 import { validateFields } from "@/middleware/middleware";
 import fs from "fs/promises";
 import path from "path";
+import { parseVideoMode, resolveVideoReferences } from "@/utils/videoReferenceResolver";
 const router = express.Router();
 
 export default router.post(
@@ -29,6 +30,7 @@ export default router.post(
   }),
   async (req, res) => {
     const { trackData, projectId, mode, model, concurrentCount = 5 } = req.body;
+    const parsedMode = parseVideoMode(mode);
     try {
       // 预加载公共数据
       const [id, modelData] = model.split(/:(.+)/);
@@ -100,9 +102,19 @@ export default router.post(
       const limit = pLimit(concurrentCount ?? 5);
       const tasks = trackData.map((track: { trackId: number; info: { id: number; sources: string }[] }) =>
         limit(async () => {
+          const videoTrack = await u.db("o_videoTrack").where({ id: track.trackId, projectId }).select("scriptId").first();
+          const automaticReferences = await resolveVideoReferences({
+            projectId,
+            scriptId: Number(videoTrack?.scriptId ?? 0),
+            trackId: track.trackId,
+            manualReferences: track.info,
+            mode: parsedMode,
+            includeAllAssets: true,
+          });
+          const referenceInfo = parsedMode === "text" ? track.info : automaticReferences.references.map(({ id, sources }) => ({ id, sources }));
           // 查询参数
           const images = await Promise.all(
-            track.info.map(async (item: { id: number; sources: string }) => {
+            referenceInfo.map(async (item: { id: number; sources: string }) => {
               if (item.sources === "storyboard") {
                 // 查询分镜主信息
                 const storyboard = await u

@@ -2,21 +2,11 @@ import express from "express";
 import u from "@/utils";
 import { z } from "zod";
 import { v4 as uuidv4 } from "uuid";
-import { success } from "@/lib/responseFormat";
+import { success, error } from "@/lib/responseFormat";
 import { validateFields } from "@/middleware/middleware";
 import { ReferenceList } from "@/utils/ai";
+import { parseVideoMode, resolveVideoReferences } from "@/utils/videoReferenceResolver";
 const router = express.Router();
-
-type Type = "imageReference" | "startImage" | "endImage" | "videoReference" | "audioReference";
-interface UploadItem {
-  fileType: "image" | "video" | "audio";
-  type: Type;
-  sources?: "assets" | "storyboard";
-  id?: number;
-  src?: string;
-  label?: string;
-  prompt?: string;
-}
 
 export default router.post(
   "/",
@@ -39,41 +29,28 @@ export default router.post(
   }),
   async (req, res) => {
     const { scriptId, projectId, prompt, uploadData, model, duration, resolution, audio, mode, trackId } = req.body;
-    let modeData = [];
-    if (Array.isArray(mode)) {
-    } else if (typeof mode === "string" && mode.startsWith('["') && mode.endsWith('"]')) {
-      try {
-        modeData = JSON.parse(mode);
-      } catch (e) {}
-    }
+    const modeData = parseVideoMode(mode);
     //获取生成视频比例
     const ratio = await u.db("o_project").select("videoRatio").where("id", projectId).first();
     const videoPath = `/${projectId}/video/${uuidv4()}.mp4`; //视频保存路径
-    //查询出图片数据
-    const images = await Promise.all(
-      uploadData.map(async (item: UploadItem) => {
-        if (item.sources === "storyboard") {
-          const filePath = await u.db("o_storyboard").where("id", item.id).select("filePath").first();
-          return { path: filePath?.filePath, sources: "storyBoard" };
-        }
-        if (item.sources === "assets") {
-          const filePath = await u
-            .db("o_assets")
-            .where("o_assets.id", item.id)
-            .leftJoin("o_image", "o_assets.imageId", "o_image.id")
-            .select("o_image.filePath", "o_image.type")
-            .first();
-          return { path: filePath?.filePath, sources: filePath.type };
-        }
-      }),
-    );
-    //把images里面的图片转成base64格式
+    // 后端自动补齐当前轨道的分镜图和关联资产，手动选择只作为额外参考。
+    const resolvedReferences = await resolveVideoReferences({
+      projectId,
+      scriptId,
+      trackId,
+      manualReferences: uploadData,
+      mode: modeData,
+    });
     const base64 = await Promise.all(
-      images.map(async (item) => {
-        if (!item) return null;
-        return { base64: await u.oss.getImageBase64(item.path), type: item.sources == "audio" ? "audio" : "image" };
-      }),
+      resolvedReferences.references.map(async (item) => ({
+        base64: await u.oss.getImageBase64(item.filePath),
+        type: item.type,
+        sourceType: "base64" as const,
+      })),
     );
+    if (modeData !== "text" && base64.length === 0) {
+      return res.status(400).send(error("当前分镜没有可用的参考媒体，请先生成分镜图"));
+    }
     //新增
     const [videoId] = await u.db("o_video").insert({
       filePath: videoPath,
@@ -95,8 +72,8 @@ export default router.post(
       .run(
         {
           prompt,
-          referenceList: base64.filter(Boolean) as ReferenceList[],
-          mode: modeData.length > 0 ? modeData : mode,
+          referenceList: base64 as ReferenceList[],
+          mode: modeData as any,
           duration,
           aspectRatio: (ratio?.videoRatio as "16:9" | "9:16") || "16:9",
           resolution,

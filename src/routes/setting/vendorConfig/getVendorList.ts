@@ -29,6 +29,10 @@ export default router.post("/", async (req, res) => {
     )
   ).filter((i) => Boolean(i));
 
-  list.sort((a, b) => (a!.id === "toonflow" ? -1 : b!.id === "toonflow" ? 1 : 0));
+  const priority: Record<string, number> = { openai: 0 };
+  list.sort(
+    (a, b) =>
+      (priority[a!.id!] ?? 10) - (priority[b!.id!] ?? 10),
+  );
   res.status(200).send(success(list));
 });

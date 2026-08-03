@@ -162,7 +162,9 @@ export default async (knex: Knex): Promise<void> => {
       fs.writeFileSync(path.join(rootDir, filename), code);
     }
   }
-  const defList = Object.keys(vendorData).map((filename) => filename.replace(/\.ts$/, ""));
+  const defList = Object.keys(vendorData)
+    .map((filename) => filename.replace(/\.ts$/, ""))
+    .filter((id) => id !== "toonflow");
   const existingIds = data.map((i: any) => i.id);
   for (const id of defList) {
     if (!existingIds.includes(id)) {
@@ -186,10 +188,7 @@ export default async (knex: Knex): Promise<void> => {
   if (Number(minimaxVer) < 2.1) {
     u.vendor.writeCode("minimax", vendorData["minimax.ts"]);
   }
-  const toonflowVer = await u.vendor.getVendor("toonflow").version;
-  if (Number(toonflowVer) < 3.2) {
-    u.vendor.writeCode("toonflow", vendorData["toonflow.ts"]);
-  }
+  await knex("o_vendorConfig").where("id", "toonflow").delete();
 };
 
 async function tempOnsert(tsCode: string) {

@@ -17,6 +17,7 @@ export default router.post(
     scriptId: z.number(),
     concurrentCount: z.number().min(1).optional(),
     compulsory: z.boolean().optional(),
+    imageModel: z.string().optional(),
   }),
   async (req, res) => {
     const {
@@ -25,12 +26,14 @@ export default router.post(
       scriptId,
       concurrentCount = 5,
       compulsory = false,
+      imageModel,
     }: {
       storyboardIds: number[];
       projectId: number;
       scriptId: number;
       concurrentCount: number;
       compulsory: boolean;
+      imageModel?: string;
     } = req.body;
     if (!storyboardIds || storyboardIds.length === 0) return res.status(400).send(error("storyboardIds不能为空"));
     // 当没有 storyboardIds 时，通过 AI 生成新的分镜面板数据
@@ -39,14 +42,21 @@ export default router.post(
     const storyboardData = await u.db("o_storyboard").where("scriptId", scriptId).where("projectId", projectId).whereIn("id", finalStoryboardIds);
     if (!storyboardData.length) return res.status(500).send(error("未查到分镜数据"));
     const storyIds = storyboardData.map((i) => i.id);
+
+    const projectSettingData = await u.db("o_project").where("id", projectId).select("imageModel", "imageQuality", "artStyle", "videoRatio").first();
+    const selectedImageModel = imageModel?.trim() || projectSettingData?.imageModel;
+    if (!selectedImageModel) return res.status(400).send(error("未配置图像模型"));
+
+    const [vendorId, modelName] = selectedImageModel.split(/:(.+)/);
+    const selectedModel = (await u.vendor.getModelList(vendorId)).find((model: any) => model.modelName === modelName && model.type === "image");
+    if (!selectedModel) return res.status(400).send(error("所选图像模型不可用，请重新选择"));
+
     if (compulsory) {
       await u.db("o_storyboard").whereIn("id", storyIds).where("scriptId", scriptId).update({ state: "生成中", shouldGenerateImage: 1 });
     } else {
       await u.db("o_storyboard").whereIn("id", storyIds).where("scriptId", scriptId).where("shouldGenerateImage", 0).update({ state: "未生成" });
       await u.db("o_storyboard").whereIn("id", storyIds).where("scriptId", scriptId).where("shouldGenerateImage", 1).update({ state: "生成中" });
     }
-
-    const projectSettingData = await u.db("o_project").where("id", projectId).select("imageModel", "imageQuality", "artStyle", "videoRatio").first();
 
     // 按 rowid 顺序查出每个 storyboard 关联的 assetId 有序列表
     const assets2StoryboardRows = await u
@@ -92,13 +102,30 @@ export default router.post(
     );
 
     const generateTask = async (item: (typeof storyboardData)[number]) => {
+      // 旧分镜可能只保存了 videoDesc，没有保存图片 prompt。不能把空字符串
+      // 传给 OpenAI/OpenSand 的图像编辑接口；优先使用正式 prompt，否则用
+      // 分镜画面描述兜底，并回写 prompt，避免下次批量生成再次触发同一个错误。
+      const prompt = typeof item.prompt === "string" ? item.prompt.trim() : "";
+      const fallbackPrompt = typeof item.videoDesc === "string" ? item.videoDesc.trim() : "";
+      const imagePrompt = prompt || fallbackPrompt;
+      if (!imagePrompt) {
+        await u.db("o_storyboard").where("id", item.id).update({
+          filePath: "",
+          reason: "分镜提示词和画面描述均为空，无法生成图片",
+          state: "生成失败",
+        });
+        return;
+      }
+      if (!prompt && fallbackPrompt) {
+        await u.db("o_storyboard").where("id", item.id).update({ prompt: fallbackPrompt });
+      }
       const repeloadObj = {
-        prompt: item.prompt!,
+        prompt: imagePrompt,
         size: projectSettingData?.imageQuality as "1K" | "2K" | "4K",
         aspectRatio: projectSettingData?.videoRatio as `${number}:${number}`,
       };
       try {
-        const imageCls = await u.Ai.Image(projectSettingData?.imageModel as `${string}:${string}`).run(
+        const imageCls = await u.Ai.Image(selectedImageModel as `${string}:${string}`).run(
           {
             referenceList: await getAssetsImageBase64(assetRecord[item.id!] || []),
             ...repeloadObj,

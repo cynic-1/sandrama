@@ -5,6 +5,7 @@ import { success, error } from "@/lib/responseFormat";
 import { validateFields } from "@/middleware/middleware";
 import fs from "fs/promises";
 import path from "path";
+import { parseVideoMode, resolveVideoReferences } from "@/utils/videoReferenceResolver";
 const router = express.Router();
 
 export default router.post(
@@ -23,12 +24,21 @@ export default router.post(
   }),
   async (req, res) => {
     const { trackId, projectId, info, model, mode } = req.body;
+    const automaticReferences = await resolveVideoReferences({
+      projectId,
+      scriptId: Number((await u.db("o_videoTrack").where({ id: trackId }).select("scriptId").first())?.scriptId ?? 0),
+      trackId,
+      manualReferences: info,
+      mode: parseVideoMode(mode),
+      includeAllAssets: true,
+    });
+    const referenceInfo = parseVideoMode(mode) === "text" ? info : automaticReferences.references.map(({ id, sources }) => ({ id, sources }));
     await u.db("o_videoTrack").where({ id: trackId }).update({
       state: "生成中",
     });
     //查询参数
     const images = await Promise.all(
-      info.map(async (item: { id: number; sources: string }) => {
+      referenceInfo.map(async (item: { id: number; sources: string }) => {
         if (item.sources === "storyboard") {
           // 查询分镜主信息
           const storyboard = await u
@@ -188,7 +198,21 @@ export default router.post(
         state: "已完成",
         prompt: text,
       });
-      res.status(200).send(success(text));
+      const displayReferences = await Promise.all(
+        automaticReferences.references.map(async (reference) => ({
+          id: reference.id,
+          sources: reference.sources,
+          src: reference.type === "image" ? await u.oss.getSmallImageUrl(reference.filePath) : await u.oss.getFileUrl(reference.filePath),
+          fileType: reference.type,
+          name: reference.name,
+        })),
+      );
+      res.status(200).send(
+        success({
+          text,
+          references: displayReferences,
+        }),
+      );
     } catch (e) {
       await u
         .db("o_videoTrack")

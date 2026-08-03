@@ -15826,13 +15826,13 @@ var require_type_is = __commonJS({
       }
       return true;
     }
-    function normalizeType(value) {
+    function normalizeType2(value) {
       var type = contentType.parse(value).type;
       return typer.test(type) ? type : null;
     }
     function tryNormalizeType(value) {
       try {
-        return value ? normalizeType(value) : null;
+        return value ? normalizeType2(value) : null;
       } catch (err) {
         return null;
       }
@@ -19008,7 +19008,7 @@ var require_finalhandler = __commonJS({
           } else {
             headers = getErrorHeaders(err);
           }
-          msg = getErrorMessage6(err, status, env2);
+          msg = getErrorMessage7(err, status, env2);
         } else {
           status = 404;
           msg = "Cannot " + req.method + " " + encodeUrl(getResourceName(req));
@@ -19033,7 +19033,7 @@ var require_finalhandler = __commonJS({
       }
       return { ...err.headers };
     }
-    function getErrorMessage6(err, status, env2) {
+    function getErrorMessage7(err, status, env2) {
       var msg;
       if (env2 !== "production") {
         msg = err.stack;
@@ -23389,7 +23389,7 @@ var require_response = __commonJS({
     var pathIsAbsolute = require("node:path").isAbsolute;
     var statuses = require_statuses();
     var sign = require_cookie_signature().sign;
-    var normalizeType = require_utils3().normalizeType;
+    var normalizeType2 = require_utils3().normalizeType;
     var normalizeTypes = require_utils3().normalizeTypes;
     var setCharset = require_utils3().setCharset;
     var cookie = require_cookie();
@@ -23617,7 +23617,7 @@ var require_response = __commonJS({
       var key = keys2.length > 0 ? req.accepts(keys2) : false;
       this.vary("Accept");
       if (key) {
-        this.set("Content-Type", normalizeType(key).value);
+        this.set("Content-Type", normalizeType2(key).value);
         obj[key](req, this, next);
       } else if (obj.default) {
         obj.default(req, this, next);
@@ -81667,12 +81667,6 @@ A medium tracking shot follows the woman from behind as she ascends and approach
           initData: async (knex4) => {
             await knex4("o_vendorConfig").insert([
               {
-                id: "toonflow",
-                inputValues: "{}",
-                models: "[]",
-                enable: 0
-              },
-              {
                 id: "deepseek",
                 inputValues: "{}",
                 models: "[]",
@@ -106617,7 +106611,7 @@ A medium tracking shot follows the woman from behind as she ascends and approach
           import_fs2.default.writeFileSync(import_path4.default.join(rootDir, filename), code);
         }
       }
-      const defList = Object.keys(vendorData).map((filename) => filename.replace(/\.ts$/, ""));
+      const defList = Object.keys(vendorData).map((filename) => filename.replace(/\.ts$/, "")).filter((id) => id !== "toonflow");
       const existingIds = data.map((i) => i.id);
       for (const id of defList) {
         if (!existingIds.includes(id)) {
@@ -106639,10 +106633,7 @@ A medium tracking shot follows the woman from behind as she ascends and approach
       if (Number(minimaxVer) < 2.1) {
         utils_default.vendor.writeCode("minimax", vendorData["minimax.ts"]);
       }
-      const toonflowVer = await utils_default.vendor.getVendor("toonflow").version;
-      if (Number(toonflowVer) < 3.2) {
-        utils_default.vendor.writeCode("toonflow", vendorData["toonflow.ts"]);
-      }
+      await knex3("o_vendorConfig").where("id", "toonflow").delete();
     };
   }
 });
@@ -175115,7 +175106,7 @@ var require_dist6 = __commonJS({
       TooManyEmbeddingValuesForCallError: () => TooManyEmbeddingValuesForCallError5,
       TypeValidationError: () => TypeValidationError5,
       UnsupportedFunctionalityError: () => UnsupportedFunctionalityError5,
-      getErrorMessage: () => getErrorMessage6,
+      getErrorMessage: () => getErrorMessage7,
       isJSONArray: () => isJSONArray,
       isJSONObject: () => isJSONObject,
       isJSONValue: () => isJSONValue
@@ -175207,7 +175198,7 @@ var require_dist6 = __commonJS({
         return AISDKError5.hasMarker(error73, marker37);
       }
     };
-    function getErrorMessage6(error73) {
+    function getErrorMessage7(error73) {
       if (error73 == null) {
         return "unknown error";
       }
@@ -175285,7 +175276,7 @@ var require_dist6 = __commonJS({
         super({
           name: name67,
           message: `JSON parsing failed: Text: ${text2}.
-Error message: ${getErrorMessage6(cause)}`,
+Error message: ${getErrorMessage7(cause)}`,
           cause
         });
         this[_a77] = true;
@@ -175414,7 +175405,7 @@ Error message: ${getErrorMessage6(cause)}`,
         super({
           name: name126,
           message: `${contextPrefix}: Value: ${JSON.stringify(value)}.
-Error message: ${getErrorMessage6(cause)}`,
+Error message: ${getErrorMessage7(cause)}`,
           cause
         });
         this[_a136] = true;
@@ -195913,7 +195904,7 @@ var require_dist8 = __commonJS({
       executeTool: () => executeTool2,
       extractResponseHeaders: () => extractResponseHeaders5,
       generateId: () => generateId6,
-      getErrorMessage: () => getErrorMessage6,
+      getErrorMessage: () => getErrorMessage7,
       getFromApi: () => getFromApi2,
       getRuntimeEnvironmentUserAgent: () => getRuntimeEnvironmentUserAgent5,
       injectJsonInstructionIntoMessages: () => injectJsonInstructionIntoMessages,
@@ -196369,7 +196360,7 @@ var require_dist8 = __commonJS({
       return () => `${prefix}${separator}${generator()}`;
     };
     var generateId6 = createIdGenerator5();
-    function getErrorMessage6(error73) {
+    function getErrorMessage7(error73) {
       if (error73 == null) {
         return "unknown error";
       }
@@ -237274,11 +237265,86 @@ var init_writeVersion = __esm({
 // src/utils/vendor.ts
 var vendor_exports = {};
 __export(vendor_exports, {
+  clearModelDiscoveryCache: () => clearModelDiscoveryCache,
   getCode: () => getCode,
   getModelList: () => getModelList,
   getVendor: () => getVendor,
   writeCode: () => writeCode
 });
+function modelIdOf(model) {
+  return String(model?.id ?? model?.model ?? model?.name ?? "").trim();
+}
+function modelTypeOf(model) {
+  const id = modelIdOf(model).toLowerCase();
+  const metadata = JSON.stringify(model ?? {}).toLowerCase();
+  if (/seedance|doubao-seedance|sora|veo|kling|vidu|hailuo|wan(?:2|[-_]?\d)|video/.test(`${id} ${metadata}`)) {
+    return "video";
+  }
+  if (/gpt-image|seedream|image|imagen|nano-banana|dall-e|flux|stable-diffusion|qwen-image/.test(`${id} ${metadata}`)) {
+    return "image";
+  }
+  return "text";
+}
+function discoveredModelConfig(model) {
+  const modelName = modelIdOf(model);
+  if (!modelName) return null;
+  const name28 = String(model?.name ?? modelName);
+  const type = modelTypeOf(model);
+  if (type === "image") {
+    const supportsReferences = /seedream|gpt-image|nano-banana|dall-e|flux/.test(modelName.toLowerCase());
+    return { name: name28, modelName, type, mode: supportsReferences ? ["text", "singleImage", "multiReference"] : ["text"] };
+  }
+  if (type === "video") {
+    return {
+      name: name28,
+      modelName,
+      type,
+      mode: ["text", "singleImage"],
+      audio: "optional",
+      durationResolutionMap: [{ duration: [2, 3, 4, 5, 6, 8, 10], resolution: ["480p", "720p", "1080p"] }]
+    };
+  }
+  return { name: name28, modelName, type, think: false };
+}
+async function discoverOpenAICompatibleModels(id) {
+  if (id !== "openai") return [];
+  const inputRow = await utils_default.db("o_vendorConfig").where("id", id).select("inputValues").first();
+  let inputValues = {};
+  try {
+    inputValues = JSON.parse(inputRow?.inputValues ?? "{}");
+  } catch {
+    return [];
+  }
+  const baseUrl = String(inputValues.baseUrl ?? "").replace(/\/+$/, "");
+  const apiKey = String(inputValues.apiKey ?? "").replace(/^Bearer\s+/i, "");
+  if (!baseUrl || !apiKey) return [];
+  const cached3 = discoveredModelCache.get(id);
+  if (cached3 && cached3.expiresAt > Date.now()) return cached3.models;
+  const controller = new AbortController();
+  const timeout = setTimeout(() => controller.abort(), 1e4);
+  try {
+    const response = await fetch(`${baseUrl}/models`, {
+      method: "GET",
+      headers: { Authorization: `Bearer ${apiKey}`, Accept: "application/json" },
+      signal: controller.signal
+    });
+    if (!response.ok) return [];
+    const payload = await response.json();
+    const rawModels = Array.isArray(payload) ? payload : payload?.data ?? payload?.models ?? [];
+    if (!Array.isArray(rawModels)) return [];
+    const models = rawModels.map(discoveredModelConfig).filter(Boolean);
+    discoveredModelCache.set(id, { expiresAt: Date.now() + 5 * 60 * 1e3, models });
+    return models;
+  } catch {
+    return [];
+  } finally {
+    clearTimeout(timeout);
+  }
+}
+function clearModelDiscoveryCache(id) {
+  if (id) discoveredModelCache.delete(id);
+  else discoveredModelCache.clear();
+}
 function writeCode(id, tsCode) {
   const rootDir = utils_default.getPath("vendor");
   import_fs6.default.mkdirSync(rootDir, { recursive: true });
@@ -237300,10 +237366,19 @@ async function getModelList(id) {
   const jsCode = (0, import_sucrase3.transform)(code, { transforms: ["typescript"] }).code;
   const vendorData2 = utils_default.vm(jsCode);
   if (!vendorData2 || !vendorData2.vendor || !vendorData2.vendor.models) return [];
-  const combined = [...JSON.parse(JSON.stringify(vendorData2.vendor.models)), ...JSON.parse(models?.models ?? "[]")];
+  const configuredModels = [...JSON.parse(JSON.stringify(vendorData2.vendor.models)), ...JSON.parse(models?.models ?? "[]")];
   const map3 = /* @__PURE__ */ new Map();
-  for (const m of combined) {
+  for (const m of configuredModels) {
     map3.set(m.modelName, m);
+  }
+  const discoveredModels = await discoverOpenAICompatibleModels(id);
+  if (discoveredModels.length > 0) {
+    const discoveredMap = new Map(discoveredModels.map((m) => [m.modelName, m]));
+    for (const [modelName, configured] of map3) {
+      if (discoveredMap.has(modelName)) discoveredMap.set(modelName, { ...discoveredMap.get(modelName), ...configured });
+    }
+    map3.clear();
+    for (const model of discoveredModels) map3.set(model.modelName, { ...model, ...discoveredMap.get(model.modelName) ?? {} });
   }
   return [...map3.values()];
 }
@@ -237313,7 +237388,7 @@ function getVendor(id) {
   const vendorData2 = utils_default.vm(jsCode);
   return vendorData2.vendor;
 }
-var import_sucrase3, import_fs6, import_path8;
+var import_sucrase3, import_fs6, import_path8, discoveredModelCache;
 var init_vendor2 = __esm({
   "src/utils/vendor.ts"() {
     "use strict";
@@ -237321,6 +237396,7 @@ var init_vendor2 = __esm({
     import_fs6 = __toESM(require("fs"));
     import_path8 = __toESM(require("path"));
     init_utils3();
+    discoveredModelCache = /* @__PURE__ */ new Map();
   }
 });
 
@@ -237361,6 +237437,352 @@ var init_utils3 = __esm({
       writeVersion: writeVersion_default,
       vendor: vendor_exports
     };
+  }
+});
+
+// node_modules/yocto-queue/index.js
+var Node, Queue;
+var init_yocto_queue = __esm({
+  "node_modules/yocto-queue/index.js"() {
+    "use strict";
+    Node = class {
+      value;
+      next;
+      constructor(value) {
+        this.value = value;
+      }
+    };
+    Queue = class {
+      #head;
+      #tail;
+      #size;
+      constructor() {
+        this.clear();
+      }
+      enqueue(value) {
+        const node = new Node(value);
+        if (this.#head) {
+          this.#tail.next = node;
+          this.#tail = node;
+        } else {
+          this.#head = node;
+          this.#tail = node;
+        }
+        this.#size++;
+      }
+      dequeue() {
+        const current = this.#head;
+        if (!current) {
+          return;
+        }
+        this.#head = this.#head.next;
+        this.#size--;
+        if (!this.#head) {
+          this.#tail = void 0;
+        }
+        return current.value;
+      }
+      peek() {
+        if (!this.#head) {
+          return;
+        }
+        return this.#head.value;
+      }
+      clear() {
+        this.#head = void 0;
+        this.#tail = void 0;
+        this.#size = 0;
+      }
+      get size() {
+        return this.#size;
+      }
+      *[Symbol.iterator]() {
+        let current = this.#head;
+        while (current) {
+          yield current.value;
+          current = current.next;
+        }
+      }
+      *drain() {
+        while (this.#head) {
+          yield this.dequeue();
+        }
+      }
+    };
+  }
+});
+
+// node_modules/p-limit/index.js
+function pLimit(concurrency) {
+  let rejectOnClear = false;
+  if (typeof concurrency === "object") {
+    ({ concurrency, rejectOnClear = false } = concurrency);
+  }
+  validateConcurrency(concurrency);
+  if (typeof rejectOnClear !== "boolean") {
+    throw new TypeError("Expected `rejectOnClear` to be a boolean");
+  }
+  const queue = new Queue();
+  let activeCount = 0;
+  const resumeNext = () => {
+    if (activeCount < concurrency && queue.size > 0) {
+      activeCount++;
+      queue.dequeue().run();
+    }
+  };
+  const next = () => {
+    activeCount--;
+    resumeNext();
+  };
+  const run = async (function_, resolve3, arguments_) => {
+    const result = (async () => function_(...arguments_))();
+    resolve3(result);
+    try {
+      await result;
+    } catch {
+    }
+    next();
+  };
+  const enqueue = (function_, resolve3, reject, arguments_) => {
+    const queueItem = { reject };
+    new Promise((internalResolve) => {
+      queueItem.run = internalResolve;
+      queue.enqueue(queueItem);
+    }).then(run.bind(void 0, function_, resolve3, arguments_));
+    if (activeCount < concurrency) {
+      resumeNext();
+    }
+  };
+  const generator = (function_, ...arguments_) => new Promise((resolve3, reject) => {
+    enqueue(function_, resolve3, reject, arguments_);
+  });
+  Object.defineProperties(generator, {
+    activeCount: {
+      get: () => activeCount
+    },
+    pendingCount: {
+      get: () => queue.size
+    },
+    clearQueue: {
+      value() {
+        if (!rejectOnClear) {
+          queue.clear();
+          return;
+        }
+        const abortError = AbortSignal.abort().reason;
+        while (queue.size > 0) {
+          queue.dequeue().reject(abortError);
+        }
+      }
+    },
+    concurrency: {
+      get: () => concurrency,
+      set(newConcurrency) {
+        validateConcurrency(newConcurrency);
+        concurrency = newConcurrency;
+        queueMicrotask(() => {
+          while (activeCount < concurrency && queue.size > 0) {
+            resumeNext();
+          }
+        });
+      }
+    },
+    map: {
+      async value(iterable, function_) {
+        const promises6 = Array.from(iterable, (value, index) => this(function_, value, index));
+        return Promise.all(promises6);
+      }
+    }
+  });
+  return generator;
+}
+function validateConcurrency(concurrency) {
+  if (!((Number.isInteger(concurrency) || concurrency === Number.POSITIVE_INFINITY) && concurrency > 0)) {
+    throw new TypeError("Expected `concurrency` to be a number from 1 and up");
+  }
+}
+var init_p_limit = __esm({
+  "node_modules/p-limit/index.js"() {
+    "use strict";
+    init_yocto_queue();
+  }
+});
+
+// src/utils/derivativeAssetImageGeneration.ts
+function getErrorMessage6(error73) {
+  return utils_default.error(error73).message || "\u884D\u751F\u8D44\u4EA7\u56FE\u7247\u751F\u6210\u5931\u8D25";
+}
+function getPromptRecord(artStyle) {
+  const style = artStyle || "";
+  return {
+    role: utils_default.getArtPrompt(style, "art_skills", "art_character_derivative"),
+    tool: utils_default.getArtPrompt(style, "art_skills", "art_prop_derivative"),
+    scene: utils_default.getArtPrompt(style, "art_skills", "art_scene_derivative")
+  };
+}
+async function markPendingImagesFailed(imageIds, reason) {
+  if (!imageIds.length) return;
+  try {
+    await utils_default.db("o_image").whereIn("id", imageIds).andWhere("state", "\u751F\u6210\u4E2D").update({
+      state: "\u751F\u6210\u5931\u8D25",
+      errorReason: reason
+    });
+  } catch (error73) {
+    console.error("[derivativeAssets] \u6807\u8BB0\u6279\u91CF\u5931\u8D25\u72B6\u6001\u5931\u8D25:", getErrorMessage6(error73));
+  }
+}
+async function generateSingleDerivativeAsset(item, imageId, settings, promptRecord, imageUrlRecord, projectId, scriptId) {
+  try {
+    const typePrompt = promptRecord[item.type] || promptRecord.role;
+    const { text: text2 } = await utils_default.Ai.Text("universalAi").invoke({
+      system: typePrompt,
+      messages: [
+        {
+          role: "user",
+          content: `
+            \u7236\u7EA7\u8D44\u4EA7\u63CF\u8FF0: ${item.parentDescribe || "\u65E0\u8BE6\u7EC6\u63CF\u8FF0"}
+            \u5F53\u524D\u8D44\u4EA7\u63CF\u8FF0: ${item.describe || "\u65E0\u8BE6\u7EC6\u63CF\u8FF0"}`
+        }
+      ]
+    });
+    const prompt = String(text2 || "").trim();
+    if (!prompt) throw new Error("universalAi \u672A\u8FD4\u56DE\u6709\u6548\u7684\u884D\u751F\u8D44\u4EA7\u63D0\u793A\u8BCD");
+    await utils_default.db("o_assets").where("id", item.id).update({ prompt });
+    const imageBase64 = imageUrlRecord[item.assetsId || -1] ? await utils_default.oss.getImageBase64(imageUrlRecord[item.assetsId || -1]) : null;
+    const imageConfig = {
+      prompt,
+      size: settings.imageQuality,
+      aspectRatio: "16:9"
+    };
+    const imageCls = await utils_default.Ai.Image(settings.imageModel).run(
+      {
+        referenceList: imageBase64 ? [{ type: "image", base64: imageBase64 }] : [],
+        ...imageConfig
+      },
+      {
+        taskClass: "\u751F\u6210\u56FE\u7247",
+        describe: "\u884D\u751F\u8D44\u4EA7\u56FE\u7247\u751F\u6210",
+        relatedObjects: JSON.stringify({ assetId: item.id, ...imageConfig }),
+        projectId
+      }
+    );
+    const savePath = `/${projectId}/assets/${scriptId}/${item.type}/${utils_default.uuid()}.jpg`;
+    await imageCls.save(savePath);
+    await utils_default.db("o_image").where({ id: imageId }).update({
+      state: "\u5DF2\u5B8C\u6210",
+      filePath: savePath,
+      errorReason: null
+    });
+    return {
+      id: item.id,
+      imageId,
+      state: "\u5DF2\u5B8C\u6210",
+      src: await utils_default.oss.getSmallImageUrl(savePath)
+    };
+  } catch (error73) {
+    const errorReason = getErrorMessage6(error73);
+    try {
+      await utils_default.db("o_image").where({ id: imageId }).update({
+        state: "\u751F\u6210\u5931\u8D25",
+        errorReason
+      });
+    } catch (updateError) {
+      console.error(`[derivativeAssets] \u8D44\u4EA7 ${item.id} \u66F4\u65B0\u5931\u8D25\u72B6\u6001\u5931\u8D25:`, getErrorMessage6(updateError));
+    }
+    console.error(`[derivativeAssets] \u8D44\u4EA7 ${item.id} \u751F\u6210\u5931\u8D25:`, errorReason);
+    return {
+      id: item.id,
+      imageId,
+      state: "\u751F\u6210\u5931\u8D25",
+      src: "",
+      errorReason
+    };
+  }
+}
+async function runDerivativeAssetGeneration(assets, imageIdMap, settings, promptRecord, imageUrlRecord, projectId, scriptId, concurrentCount) {
+  const limit = pLimit(concurrentCount);
+  await Promise.all(
+    assets.map(
+      (item) => limit(
+        () => generateSingleDerivativeAsset(
+          item,
+          imageIdMap[item.id],
+          settings,
+          promptRecord,
+          imageUrlRecord,
+          projectId,
+          scriptId
+        )
+      )
+    )
+  );
+}
+async function startDerivativeAssetImageGeneration(options) {
+  const { projectId, scriptId } = options;
+  const assetIds = [...new Set(options.assetIds)];
+  const concurrentCount = Math.max(1, Math.floor(options.concurrentCount ?? 5));
+  if (!assetIds.length) throw new Error("\u672A\u63D0\u4F9B\u9700\u8981\u751F\u6210\u7684\u884D\u751F\u8D44\u4EA7");
+  const settings = await utils_default.db("o_project").where("id", projectId).select("imageModel", "imageQuality", "artStyle").first();
+  if (!settings) throw new Error(`\u9879\u76EE\u4E0D\u5B58\u5728\uFF0CID: ${projectId}`);
+  if (!settings.imageModel) throw new Error("\u9879\u76EE\u672A\u914D\u7F6E\u56FE\u50CF\u6A21\u578B");
+  if (!settings.imageQuality || !imageQualityValues.has(settings.imageQuality)) {
+    throw new Error("\u9879\u76EE\u672A\u914D\u7F6E\u6709\u6548\u7684\u56FE\u50CF\u5206\u8FA8\u7387\uFF081K\u30012K \u6216 4K\uFF09");
+  }
+  const assets = await utils_default.db("o_assets").whereIn("id", assetIds).select("id", "describe", "name", "type", "assetsId");
+  const foundIds = new Set(assets.map((item) => item.id));
+  const missingIds = assetIds.filter((id) => !foundIds.has(id));
+  if (missingIds.length) throw new Error(`\u884D\u751F\u8D44\u4EA7\u4E0D\u5B58\u5728\uFF1A${missingIds.join(", ")}`);
+  const parentIds = [...new Set(assets.map((item) => item.assetsId).filter((id) => id !== null))];
+  const parentAssets = parentIds.length ? await utils_default.db("o_assets").leftJoin("o_image", "o_assets.imageId", "o_image.id").whereIn("o_assets.id", parentIds).select("o_assets.id", "o_image.filePath", "o_assets.describe") : [];
+  const parentById = new Map(parentAssets.map((item) => [item.id, item]));
+  const imageUrlRecord = {};
+  for (const parent of parentAssets) {
+    if (parent.filePath) imageUrlRecord[parent.id] = parent.filePath;
+  }
+  for (const item of assets) {
+    const parent = parentById.get(item.assetsId);
+    if (parent) item.parentDescribe = parent.describe;
+  }
+  const promptRecord = getPromptRecord(settings.artStyle);
+  const imageIdMap = {};
+  const accepted = [];
+  for (const item of assets) {
+    const [imageId] = await utils_default.db("o_image").insert({
+      assetsId: item.id,
+      type: item.type,
+      state: "\u751F\u6210\u4E2D",
+      resolution: settings.imageQuality,
+      model: settings.imageModel,
+      errorReason: null
+    });
+    imageIdMap[item.id] = imageId;
+    await utils_default.db("o_assets").where("id", item.id).update({ imageId });
+    accepted.push({ id: item.id, imageId, state: "\u751F\u6210\u4E2D", src: "" });
+  }
+  const imageIds = accepted.map((item) => item.imageId);
+  void runDerivativeAssetGeneration(
+    assets,
+    imageIdMap,
+    settings,
+    promptRecord,
+    imageUrlRecord,
+    projectId,
+    scriptId,
+    concurrentCount
+  ).catch(async (error73) => {
+    const errorReason = getErrorMessage6(error73);
+    console.error("[derivativeAssets] \u6279\u91CF\u751F\u6210\u5F02\u5E38:", errorReason);
+    await markPendingImagesFailed(imageIds, errorReason);
+  });
+  return accepted;
+}
+var imageQualityValues;
+var init_derivativeAssetImageGeneration = __esm({
+  "src/utils/derivativeAssetImageGeneration.ts"() {
+    "use strict";
+    init_p_limit();
+    init_utils3();
+    imageQualityValues = /* @__PURE__ */ new Set(["1K", "2K", "4K"]);
   }
 });
 
@@ -238355,174 +238777,6 @@ var init_uploadClip = __esm({
         res.status(200).send(success3("\u4E0A\u4F20\u6210\u529F"));
       }
     );
-  }
-});
-
-// node_modules/yocto-queue/index.js
-var Node, Queue;
-var init_yocto_queue = __esm({
-  "node_modules/yocto-queue/index.js"() {
-    "use strict";
-    Node = class {
-      value;
-      next;
-      constructor(value) {
-        this.value = value;
-      }
-    };
-    Queue = class {
-      #head;
-      #tail;
-      #size;
-      constructor() {
-        this.clear();
-      }
-      enqueue(value) {
-        const node = new Node(value);
-        if (this.#head) {
-          this.#tail.next = node;
-          this.#tail = node;
-        } else {
-          this.#head = node;
-          this.#tail = node;
-        }
-        this.#size++;
-      }
-      dequeue() {
-        const current = this.#head;
-        if (!current) {
-          return;
-        }
-        this.#head = this.#head.next;
-        this.#size--;
-        if (!this.#head) {
-          this.#tail = void 0;
-        }
-        return current.value;
-      }
-      peek() {
-        if (!this.#head) {
-          return;
-        }
-        return this.#head.value;
-      }
-      clear() {
-        this.#head = void 0;
-        this.#tail = void 0;
-        this.#size = 0;
-      }
-      get size() {
-        return this.#size;
-      }
-      *[Symbol.iterator]() {
-        let current = this.#head;
-        while (current) {
-          yield current.value;
-          current = current.next;
-        }
-      }
-      *drain() {
-        while (this.#head) {
-          yield this.dequeue();
-        }
-      }
-    };
-  }
-});
-
-// node_modules/p-limit/index.js
-function pLimit(concurrency) {
-  let rejectOnClear = false;
-  if (typeof concurrency === "object") {
-    ({ concurrency, rejectOnClear = false } = concurrency);
-  }
-  validateConcurrency(concurrency);
-  if (typeof rejectOnClear !== "boolean") {
-    throw new TypeError("Expected `rejectOnClear` to be a boolean");
-  }
-  const queue = new Queue();
-  let activeCount = 0;
-  const resumeNext = () => {
-    if (activeCount < concurrency && queue.size > 0) {
-      activeCount++;
-      queue.dequeue().run();
-    }
-  };
-  const next = () => {
-    activeCount--;
-    resumeNext();
-  };
-  const run = async (function_, resolve3, arguments_) => {
-    const result = (async () => function_(...arguments_))();
-    resolve3(result);
-    try {
-      await result;
-    } catch {
-    }
-    next();
-  };
-  const enqueue = (function_, resolve3, reject, arguments_) => {
-    const queueItem = { reject };
-    new Promise((internalResolve) => {
-      queueItem.run = internalResolve;
-      queue.enqueue(queueItem);
-    }).then(run.bind(void 0, function_, resolve3, arguments_));
-    if (activeCount < concurrency) {
-      resumeNext();
-    }
-  };
-  const generator = (function_, ...arguments_) => new Promise((resolve3, reject) => {
-    enqueue(function_, resolve3, reject, arguments_);
-  });
-  Object.defineProperties(generator, {
-    activeCount: {
-      get: () => activeCount
-    },
-    pendingCount: {
-      get: () => queue.size
-    },
-    clearQueue: {
-      value() {
-        if (!rejectOnClear) {
-          queue.clear();
-          return;
-        }
-        const abortError = AbortSignal.abort().reason;
-        while (queue.size > 0) {
-          queue.dequeue().reject(abortError);
-        }
-      }
-    },
-    concurrency: {
-      get: () => concurrency,
-      set(newConcurrency) {
-        validateConcurrency(newConcurrency);
-        concurrency = newConcurrency;
-        queueMicrotask(() => {
-          while (activeCount < concurrency && queue.size > 0) {
-            resumeNext();
-          }
-        });
-      }
-    },
-    map: {
-      async value(iterable, function_) {
-        const promises6 = Array.from(iterable, (value, index) => this(function_, value, index));
-        return Promise.all(promises6);
-      }
-    }
-  });
-  return generator;
-}
-function validateConcurrency(concurrency) {
-  if (!((Number.isInteger(concurrency) || concurrency === Number.POSITIVE_INFINITY) && concurrency > 0)) {
-    throw new TypeError("Expected `concurrency` to be a number from 1 and up");
-  }
-}
-var init_p_limit = __esm({
-  "node_modules/p-limit/index.js"() {
-    "use strict";
-    init_yocto_queue();
   }
 });
 
@@ -239885,10 +240139,10 @@ var init_batchGenerateAssetsImage = __esm({
   "src/routes/production/assets/batchGenerateAssetsImage.ts"() {
     "use strict";
     import_express52 = __toESM(require_express2());
-    init_utils3();
     init_zod();
     init_responseFormat();
     init_middleware();
+    init_derivativeAssetImageGeneration();
     router52 = import_express52.default.Router();
     batchGenerateAssetsImage_default = router52.post(
       "/",
@@ -239896,107 +240150,15 @@ var init_batchGenerateAssetsImage = __esm({
         assetIds: external_exports.array(external_exports.number()),
         projectId: external_exports.number(),
         scriptId: external_exports.number(),
-        concurrentCount: external_exports.number().min(1).optional()
+        concurrentCount: external_exports.number().int().min(1).optional()
       }),
       async (req, res) => {
-        const { assetIds, projectId, scriptId, concurrentCount = 5 } = req.body;
-        const projectSettingData = await utils_default.db("o_project").where("id", projectId).select("imageModel", "imageQuality", "artStyle").first();
-        const assetsDataArr = await utils_default.db("o_assets").whereIn("id", assetIds).select("id", "describe", "name", "type", "assetsId");
-        const parentIds = assetsDataArr.map((item) => item.assetsId).filter((id) => id !== null);
-        const parentAssetsData = await utils_default.db("o_assets").leftJoin("o_image", "o_assets.imageId", "o_image.id").whereIn("o_assets.id", parentIds).select("o_assets.id", "o_image.filePath", "o_assets.describe");
-        assetsDataArr.forEach((i) => {
-          const parent = parentAssetsData.find((item) => item.id === i.assetsId);
-          if (parent) {
-            i.parentDescribe = parent.describe;
-          }
-        });
-        const imageUrlRecord = {};
-        parentAssetsData.forEach((item) => {
-          if (item.filePath) imageUrlRecord[item.id] = item.filePath;
-        });
-        const rolePrompt = utils_default.getArtPrompt(projectSettingData.artStyle, "art_skills", "art_character_derivative");
-        const toolPrompt = utils_default.getArtPrompt(projectSettingData.artStyle, "art_skills", "art_prop_derivative");
-        const scenePrompt = utils_default.getArtPrompt(projectSettingData.artStyle, "art_skills", "art_scene_derivative");
-        const promptRecord = {
-          role: {
-            prompt: rolePrompt
-          },
-          tool: {
-            prompt: toolPrompt
-          },
-          scene: {
-            prompt: scenePrompt
-          }
-        };
-        const imageIdMap = {};
-        for (const item of assetsDataArr) {
-          const [imageId] = await utils_default.db("o_image").insert({
-            assetsId: item.id,
-            type: item.type,
-            state: "\u751F\u6210\u4E2D",
-            resolution: projectSettingData?.imageQuality,
-            model: projectSettingData?.imageModel
-          });
-          imageIdMap[item.id] = imageId;
-          await utils_default.db("o_assets").where("id", item.id).update({ imageId });
-        }
-        const imageData = [];
-        res.status(200).send(success3("\u5F00\u59CB\u751F\u6210\u8D44\u4EA7\u56FE\u7247"));
-        const generateSingleAsset = async (item) => {
-          const imageId = imageIdMap[item.id];
-          const typeConfig = promptRecord[item.type] || promptRecord["role"];
-          const { text: text2 } = await utils_default.Ai.Text("universalAi").invoke({
-            system: `${typeConfig.prompt}`,
-            messages: [
-              {
-                role: "user",
-                content: `
-            \u7236\u7EA7\u8D44\u4EA7\u63CF\u8FF0: ${item.parentDescribe || "\u65E0\u8BE6\u7EC6\u63CF\u8FF0"}
-            \u5F53\u524D\u8D44\u4EA7\u63CF\u8FF0: ${item.describe || "\u65E0\u8BE6\u7EC6\u63CF\u8FF0"}`
-              }
-            ]
-          });
-          await utils_default.db("o_assets").where("id", item.id).update({ prompt: text2 });
-          const imageBase64 = imageUrlRecord[item.assetsId] ? await utils_default.oss.getImageBase64(imageUrlRecord[item.assetsId]) : null;
-          try {
-            const repeloadObj = {
-              prompt: text2,
-              size: projectSettingData?.imageQuality,
-              aspectRatio: "16:9"
-            };
-            const imageCls = await utils_default.Ai.Image(projectSettingData?.imageModel).run(
-              {
-                referenceList: imageBase64 ? [{ type: "image", base64: imageBase64 }] : [],
-                ...repeloadObj
-              },
-              {
-                taskClass: "\u751F\u6210\u56FE\u7247",
-                describe: "\u8D44\u4EA7\u56FE\u7247\u751F\u6210",
-                relatedObjects: JSON.stringify(repeloadObj),
-                projectId
-              }
-            );
-            const savePath = `/${projectId}/assets/${scriptId}/${item.type}/${utils_default.uuid()}.jpg`;
-            await imageCls.save(savePath);
-            await utils_default.db("o_image").where({ id: imageId }).update({ state: "\u5DF2\u5B8C\u6210", filePath: savePath });
-            return {
-              id: item.id,
-              state: "\u5DF2\u5B8C\u6210",
-              src: await utils_default.oss.getSmallImageUrl(savePath)
-            };
-          } catch (e) {
-            await utils_default.db("o_image").where({ id: imageId }).update({ state: "\u751F\u6210\u5931\u8D25", errorReason: utils_default.error(e).message });
-            return {
-              id: item.id,
-              state: "\u751F\u6210\u5931\u8D25",
-              src: ""
-            };
-          }
-        };
-        for (let i = 0; i < assetsDataArr.length; i += concurrentCount) {
-          const batch = assetsDataArr.slice(i, i + concurrentCount);
-          const batchResults = await Promise.all(batch.map(generateSingleAsset));
-          imageData.push(...batchResults);
+        try {
+          const result = await startDerivativeAssetImageGeneration(req.body);
+          return res.status(200).send(success3(result, "\u5DF2\u5F00\u59CB\u751F\u6210\u8D44\u4EA7\u56FE\u7247"));
+        } catch (error73) {
+          const message = error73 instanceof Error ? error73.message : String(error73);
+          return res.status(400).send({ code: 400, data: null, message });
         }
       }
     );
@@ -240863,7 +241025,8 @@ var init_batchGenerateImage = __esm({
         projectId: external_exports.number(),
         scriptId: external_exports.number(),
         concurrentCount: external_exports.number().min(1).optional(),
-        compulsory: external_exports.boolean().optional()
+        compulsory: external_exports.boolean().optional(),
+        imageModel: external_exports.string().optional()
       }),
       async (req, res) => {
         const {
@@ -240871,20 +241034,26 @@ var init_batchGenerateImage = __esm({
           projectId,
           scriptId,
           concurrentCount = 5,
-          compulsory = false
+          compulsory = false,
+          imageModel
         } = req.body;
         if (!storyboardIds || storyboardIds.length === 0) return res.status(400).send(error50("storyboardIds\u4E0D\u80FD\u4E3A\u7A7A"));
         let finalStoryboardIds = storyboardIds || [];
         const storyboardData = await utils_default.db("o_storyboard").where("scriptId", scriptId).where("projectId", projectId).whereIn("id", finalStoryboardIds);
         if (!storyboardData.length) return res.status(500).send(error50("\u672A\u67E5\u5230\u5206\u955C\u6570\u636E"));
         const storyIds = storyboardData.map((i) => i.id);
+        const projectSettingData = await utils_default.db("o_project").where("id", projectId).select("imageModel", "imageQuality", "artStyle", "videoRatio").first();
+        const selectedImageModel = imageModel?.trim() || projectSettingData?.imageModel;
+        if (!selectedImageModel) return res.status(400).send(error50("\u672A\u914D\u7F6E\u56FE\u50CF\u6A21\u578B"));
+        const [vendorId, modelName] = selectedImageModel.split(/:(.+)/);
+        const selectedModel = (await utils_default.vendor.getModelList(vendorId)).find((model) => model.modelName === modelName && model.type === "image");
+        if (!selectedModel) return res.status(400).send(error50("\u6240\u9009\u56FE\u50CF\u6A21\u578B\u4E0D\u53EF\u7528\uFF0C\u8BF7\u91CD\u65B0\u9009\u62E9"));
         if (compulsory) {
           await utils_default.db("o_storyboard").whereIn("id", storyIds).where("scriptId", scriptId).update({ state: "\u751F\u6210\u4E2D", shouldGenerateImage: 1 });
         } else {
           await utils_default.db("o_storyboard").whereIn("id", storyIds).where("scriptId", scriptId).where("shouldGenerateImage", 0).update({ state: "\u672A\u751F\u6210" });
           await utils_default.db("o_storyboard").whereIn("id", storyIds).where("scriptId", scriptId).where("shouldGenerateImage", 1).update({ state: "\u751F\u6210\u4E2D" });
         }
-        const projectSettingData = await utils_default.db("o_project").where("id", projectId).select("imageModel", "imageQuality", "artStyle", "videoRatio").first();
         const assets2StoryboardRows = await utils_default.db("o_assets2Storyboard").whereIn("storyboardId", storyIds).orderBy("rowid").select("storyboardId", "assetId");
         const allAssetIds = [...new Set(assets2StoryboardRows.map((r) => r.assetId))];
         const assetImageMap = {};
@@ -240919,13 +241088,27 @@ var init_batchGenerateImage = __esm({
           )
         );
         const generateTask = async (item) => {
+          const prompt = typeof item.prompt === "string" ? item.prompt.trim() : "";
+          const fallbackPrompt = typeof item.videoDesc === "string" ? item.videoDesc.trim() : "";
+          const imagePrompt = prompt || fallbackPrompt;
+          if (!imagePrompt) {
+            await utils_default.db("o_storyboard").where("id", item.id).update({
+              filePath: "",
+              reason: "\u5206\u955C\u63D0\u793A\u8BCD\u548C\u753B\u9762\u63CF\u8FF0\u5747\u4E3A\u7A7A\uFF0C\u65E0\u6CD5\u751F\u6210\u56FE\u7247",
+              state: "\u751F\u6210\u5931\u8D25"
+            });
+            return;
+          }
+          if (!prompt && fallbackPrompt) {
+            await utils_default.db("o_storyboard").where("id", item.id).update({ prompt: fallbackPrompt });
+          }
           const repeloadObj = {
-            prompt: item.prompt,
+            prompt: imagePrompt,
             size: projectSettingData?.imageQuality,
             aspectRatio: projectSettingData?.videoRatio
           };
           try {
-            const imageCls = await utils_default.Ai.Image(projectSettingData?.imageModel).run(
+            const imageCls = await utils_default.Ai.Image(selectedImageModel).run(
               {
                 referenceList: await getAssetsImageBase64(assetRecord[item.id] || []),
                 ...repeloadObj
@@ -241378,6 +241561,169 @@ var init_addTrack = __esm({
   }
 });
 
+// src/utils/videoReferenceResolver.ts
+function normalizeSource(source) {
+  const normalized = String(source || "").toLowerCase();
+  if (normalized === "storyboard" || normalized === "storyboarditem") return "storyboard";
+  if (normalized === "assets" || normalized === "asset") return "assets";
+  return null;
+}
+function normalizeType(type) {
+  const normalized = String(type || "image").toLowerCase();
+  if (normalized.includes("audio") || normalized.includes("\u97F3\u9891")) return "audio";
+  if (normalized.includes("video") || normalized.includes("\u89C6\u9891")) return "video";
+  return "image";
+}
+function parseMode(mode) {
+  if (Array.isArray(mode)) {
+    return mode.flat(Infinity).filter((item) => typeof item === "string");
+  }
+  if (typeof mode === "string") {
+    const trimmed = mode.trim();
+    if (trimmed.startsWith("[") && trimmed.endsWith("]")) {
+      try {
+        const parsed = JSON.parse(trimmed);
+        if (Array.isArray(parsed)) {
+          return parsed.flat(Infinity).filter((item) => typeof item === "string");
+        }
+      } catch {
+      }
+    }
+    return trimmed;
+  }
+  return "";
+}
+function getReferenceLimit(mode, prefix) {
+  if (!Array.isArray(mode)) return void 0;
+  const item = mode.find((value) => value.toLowerCase().startsWith(`${prefix.toLowerCase()}:`));
+  if (!item) return void 0;
+  const count = Number(item.split(":")[1]);
+  return Number.isFinite(count) && count > 0 ? count : void 0;
+}
+function isTextMode(mode) {
+  return mode === "text";
+}
+function isSingleImageMode(mode) {
+  return mode === "singleImage";
+}
+function isFrameMode(mode) {
+  return mode === "startEndRequired" || mode === "endFrameOptional" || mode === "startFrameOptional";
+}
+function addUniqueReference(output, seen, reference) {
+  if (!reference || !reference.filePath) return;
+  const key = `${reference.sources}:${reference.id}`;
+  if (seen.has(key)) return;
+  seen.add(key);
+  output.push(reference);
+}
+function takeByType(references, type, limit) {
+  const candidates = references.filter((reference) => reference.type === type);
+  return typeof limit === "number" ? candidates.slice(0, limit) : candidates;
+}
+async function resolveVideoReferences(options) {
+  const mode = parseMode(options.mode);
+  if (isTextMode(mode)) return { references: [], storyboardIds: [] };
+  const manualReferences = (options.manualReferences ?? []).filter((item) => Number.isFinite(item.id));
+  const trackStoryboards = options.trackId ? await utils_default.db("o_storyboard").where({ projectId: options.projectId, scriptId: options.scriptId, trackId: options.trackId }).orderBy("index", "asc").select("id", "filePath", "index") : [];
+  const manualStoryboardIds = manualReferences.filter((item) => normalizeSource(item.sources) === "storyboard").map((item) => item.id);
+  const storyboardIds = [.../* @__PURE__ */ new Set([...trackStoryboards.map((item) => item.id), ...manualStoryboardIds])];
+  const storyboardRows = storyboardIds.length ? await utils_default.db("o_storyboard").whereIn("id", storyboardIds).select("id", "filePath", "index") : [];
+  const storyboardById = new Map(storyboardRows.map((row) => [row.id, row]));
+  const orderedStoryboards = [...trackStoryboards, ...storyboardRows.filter((row) => !trackStoryboards.some((item) => item.id === row.id))].sort(
+    (left, right) => Number(left.index ?? 0) - Number(right.index ?? 0)
+  );
+  const assetRows = storyboardIds.length ? await utils_default.db("o_assets2Storyboard").leftJoin("o_assets", "o_assets2Storyboard.assetId", "o_assets.id").leftJoin("o_image", "o_assets.imageId", "o_image.id").whereIn("o_assets2Storyboard.storyboardId", storyboardIds).select("o_assets.id", "o_assets.name", "o_assets.type", "o_image.filePath", "o_image.type as imageType", "o_assets2Storyboard.storyboardId").orderBy("o_assets2Storyboard.storyboardId", "asc").orderBy("o_assets.id", "asc") : [];
+  const manualAssetIds = manualReferences.filter((item) => normalizeSource(item.sources) === "assets").map((item) => item.id);
+  const manualAssetRows = manualAssetIds.length ? await utils_default.db("o_assets").leftJoin("o_image", "o_assets.imageId", "o_image.id").whereIn("o_assets.id", manualAssetIds).select("o_assets.id", "o_assets.name", "o_assets.type", "o_image.filePath", "o_image.type as imageType") : [];
+  const allManualAssetRows = [...assetRows, ...manualAssetRows.filter((row) => !assetRows.some((item) => item.id === row.id))];
+  const resolvedManual = [];
+  const resolvedAutomatic = [];
+  const seenManual = /* @__PURE__ */ new Set();
+  const seenAutomatic = /* @__PURE__ */ new Set();
+  for (const item of manualReferences) {
+    const source = normalizeSource(item.sources);
+    if (!source) continue;
+    if (source === "storyboard") {
+      const row2 = storyboardById.get(item.id);
+      addUniqueReference(resolvedManual, seenManual, row2?.filePath ? { id: row2.id, sources: source, type: "image", filePath: row2.filePath } : null);
+      continue;
+    }
+    const row = allManualAssetRows.find((asset) => asset.id === item.id);
+    addUniqueReference(
+      resolvedManual,
+      seenManual,
+      row?.filePath ? {
+        id: row.id,
+        sources: source,
+        type: normalizeType(row.imageType || row.type),
+        filePath: row.filePath,
+        storyboardId: row.storyboardId ?? void 0,
+        name: row.name ?? void 0
+      } : null
+    );
+  }
+  for (const row of orderedStoryboards) {
+    addUniqueReference(
+      resolvedAutomatic,
+      seenAutomatic,
+      row.filePath ? { id: row.id, sources: "storyboard", type: "image", filePath: row.filePath } : null
+    );
+  }
+  for (const row of assetRows) {
+    addUniqueReference(
+      resolvedAutomatic,
+      seenAutomatic,
+      row.filePath ? {
+        id: row.id,
+        sources: "assets",
+        type: normalizeType(row.imageType || row.type),
+        filePath: row.filePath,
+        storyboardId: row.storyboardId ?? void 0,
+        name: row.name ?? void 0
+      } : null
+    );
+  }
+  const allReferences = [];
+  const allSeen = /* @__PURE__ */ new Set();
+  for (const reference of [
+    ...resolvedAutomatic.filter((item) => item.sources === "storyboard"),
+    ...resolvedManual.filter((item) => item.sources === "storyboard"),
+    ...resolvedAutomatic.filter((item) => item.sources === "assets"),
+    ...resolvedManual.filter((item) => item.sources === "assets")
+  ]) {
+    addUniqueReference(allReferences, allSeen, reference);
+  }
+  if (options.includeAllAssets) {
+    return { references: allReferences, storyboardIds };
+  }
+  if (isSingleImageMode(mode)) {
+    return { references: takeByType(allReferences, "image", 1), storyboardIds };
+  }
+  if (isFrameMode(mode)) {
+    return { references: takeByType(allReferences, "image", 2), storyboardIds };
+  }
+  if (Array.isArray(mode)) {
+    return {
+      references: [
+        ...takeByType(allReferences, "image", getReferenceLimit(mode, "imageReference")),
+        ...takeByType(allReferences, "video", getReferenceLimit(mode, "videoReference")),
+        ...takeByType(allReferences, "audio", getReferenceLimit(mode, "audioReference"))
+      ],
+      storyboardIds
+    };
+  }
+  return { references: takeByType(allReferences, "image"), storyboardIds };
+}
+function parseVideoMode(mode) {
+  return parseMode(mode);
+}
+var init_videoReferenceResolver = __esm({
+  "src/utils/videoReferenceResolver.ts"() {
+    "use strict";
+    init_utils3();
+  }
+});
+
 // src/routes/production/workbench/batchGeneratePrompt.ts
 var import_express77, import_promises5, import_path12, router77, batchGeneratePrompt_default;
 var init_batchGeneratePrompt = __esm({
@@ -241391,6 +241737,7 @@ var init_batchGeneratePrompt = __esm({
     init_middleware();
     import_promises5 = __toESM(require("fs/promises"));
     import_path12 = __toESM(require("path"));
+    init_videoReferenceResolver();
     router77 = import_express77.default.Router();
     batchGeneratePrompt_default = router77.post(
       "/",
@@ -241414,6 +241761,7 @@ var init_batchGeneratePrompt = __esm({
       }),
       async (req, res) => {
         const { trackData, projectId, mode, model, concurrentCount = 5 } = req.body;
+        const parsedMode = parseVideoMode(mode);
         try {
           const [id, modelData] = model.split(/:(.+)/);
           const projectData = await utils_default.db("o_project").select("*").where({ id: projectId }).first();
@@ -241467,8 +241815,18 @@ var init_batchGeneratePrompt = __esm({
           const limit = pLimit(concurrentCount ?? 5);
           const tasks = trackData.map(
             (track) => limit(async () => {
+              const videoTrack = await utils_default.db("o_videoTrack").where({ id: track.trackId, projectId }).select("scriptId").first();
+              const automaticReferences = await resolveVideoReferences({
+                projectId,
+                scriptId: Number(videoTrack?.scriptId ?? 0),
+                trackId: track.trackId,
+                manualReferences: track.info,
+                mode: parsedMode,
+                includeAllAssets: true
+              });
+              const referenceInfo = parsedMode === "text" ? track.info : automaticReferences.references.map(({ id: id2, sources }) => ({ id: id2, sources }));
               const images = await Promise.all(
-                track.info.map(async (item) => {
+                referenceInfo.map(async (item) => {
                   if (item.sources === "storyboard") {
                     const storyboard2 = await utils_default.db("o_storyboard").where("o_storyboard.id", item.id).select("videoDesc", "prompt", "track", "duration", "shouldGenerateImage").first();
                     const assetRows = await utils_default.db("o_assets2Storyboard").where("storyboardId", item.id).orderBy("rowid").select("assetId");
@@ -241564,6 +241922,7 @@ var init_batchGenerateVideo = __esm({
     init_dist_node();
     init_responseFormat();
     init_middleware();
+    init_videoReferenceResolver();
     router78 = import_express78.default.Router();
     batchGenerateVideo_default = router78.post(
       "/",
@@ -241590,30 +241949,21 @@ var init_batchGenerateVideo = __esm({
       }),
       async (req, res) => {
         const { scriptId, projectId, trackData, model, resolution, audio, mode } = req.body;
-        let modeData = [];
-        if (Array.isArray(mode)) {
-        } else if (typeof mode === "string" && mode.startsWith('["') && mode.endsWith('"]')) {
-          try {
-            modeData = JSON.parse(mode);
-          } catch (e) {
-          }
-        }
+        const modeData = parseVideoMode(mode);
         const ratio = await utils_default.db("o_project").select("videoRatio").where("id", projectId).first();
         const tasks = await Promise.all(
           trackData.map(async (track) => {
             const { uploadData, trackId, prompt, duration: duration4 } = track;
-            const images = await Promise.all(
-              uploadData.map(async (item) => {
-                if (item.sources === "storyboard") {
-                  const filePath = await utils_default.db("o_storyboard").where("id", item.id).select("filePath").first();
-                  return { path: filePath?.filePath, sources: "storyBoard" };
-                }
-                if (item.sources === "assets") {
-                  const filePath = await utils_default.db("o_assets").where("o_assets.id", item.id).leftJoin("o_image", "o_assets.imageId", "o_image.id").select("o_image.filePath", "o_image.type").first();
-                  return { path: filePath?.filePath, sources: filePath.type };
-                }
-              })
-            );
+            const references = await resolveVideoReferences({
+              projectId,
+              scriptId,
+              trackId,
+              manualReferences: uploadData,
+              mode: modeData
+            });
+            if (modeData !== "text" && references.references.length === 0) {
+              throw new Error(`\u8F68\u9053 ${trackId} \u6CA1\u6709\u53EF\u7528\u7684\u53C2\u8003\u5A92\u4F53\uFF0C\u8BF7\u5148\u751F\u6210\u5206\u955C\u56FE`);
+            }
             const videoPath = `/${projectId}/video/${v4_default()}.mp4`;
             const [videoId] = await utils_default.db("o_video").insert({
               filePath: videoPath,
@@ -241623,24 +241973,25 @@ var init_batchGenerateVideo = __esm({
               projectId,
               videoTrackId: trackId
             });
-            return { videoId, videoPath, prompt, duration: duration4, images, trackId };
+            return { videoId, videoPath, prompt, duration: duration4, references: references.references, trackId };
           })
         );
         res.status(200).send(success3(tasks.map((t) => ({ videoId: t.videoId, trackId: t.trackId }))));
-        for (const { videoId, videoPath, prompt, duration: duration4, images } of tasks) {
+        for (const { videoId, videoPath, prompt, duration: duration4, references } of tasks) {
           const base644 = await Promise.all(
-            images.map(async (item) => {
-              if (!item) return null;
-              return { base64: await utils_default.oss.getImageBase64(item.path), type: item.sources == "audio" ? "audio" : "image" };
-            })
+            references.map(async (item) => ({
+              base64: await utils_default.oss.getImageBase64(item.filePath),
+              type: item.type,
+              sourceType: "base64"
+            }))
           );
           const relatedObjects = { projectId, videoId, scriptId, type: "\u89C6\u9891" };
           const aiVideo = utils_default.Ai.Video(model);
           aiVideo.run(
             {
               prompt,
-              referenceList: base644.filter(Boolean),
-              mode: modeData.length > 0 ? modeData : mode,
+              referenceList: base644,
+              mode: modeData,
               duration: duration4,
               aspectRatio: ratio?.videoRatio || "16:9",
               resolution,
@@ -241794,6 +242145,7 @@ var init_generateVideo = __esm({
     init_dist_node();
     init_responseFormat();
     init_middleware();
+    init_videoReferenceResolver();
     router83 = import_express83.default.Router();
     generateVideo_default = router83.post(
       "/",
@@ -241816,34 +242168,26 @@ var init_generateVideo = __esm({
       }),
       async (req, res) => {
         const { scriptId, projectId, prompt, uploadData, model, duration: duration4, resolution, audio, mode, trackId } = req.body;
-        let modeData = [];
-        if (Array.isArray(mode)) {
-        } else if (typeof mode === "string" && mode.startsWith('["') && mode.endsWith('"]')) {
-          try {
-            modeData = JSON.parse(mode);
-          } catch (e) {
-          }
-        }
+        const modeData = parseVideoMode(mode);
         const ratio = await utils_default.db("o_project").select("videoRatio").where("id", projectId).first();
         const videoPath = `/${projectId}/video/${v4_default()}.mp4`;
-        const images = await Promise.all(
-          uploadData.map(async (item) => {
-            if (item.sources === "storyboard") {
-              const filePath = await utils_default.db("o_storyboard").where("id", item.id).select("filePath").first();
-              return { path: filePath?.filePath, sources: "storyBoard" };
-            }
-            if (item.sources === "assets") {
-              const filePath = await utils_default.db("o_assets").where("o_assets.id", item.id).leftJoin("o_image", "o_assets.imageId", "o_image.id").select("o_image.filePath", "o_image.type").first();
-              return { path: filePath?.filePath, sources: filePath.type };
-            }
-          })
-        );
+        const resolvedReferences = await resolveVideoReferences({
+          projectId,
+          scriptId,
+          trackId,
+          manualReferences: uploadData,
+          mode: modeData
+        });
         const base644 = await Promise.all(
-          images.map(async (item) => {
-            if (!item) return null;
-            return { base64: await utils_default.oss.getImageBase64(item.path), type: item.sources == "audio" ? "audio" : "image" };
-          })
+          resolvedReferences.references.map(async (item) => ({
+            base64: await utils_default.oss.getImageBase64(item.filePath),
+            type: item.type,
+            sourceType: "base64"
+          }))
         );
+        if (modeData !== "text" && base644.length === 0) {
+          return res.status(400).send(error50("\u5F53\u524D\u5206\u955C\u6CA1\u6709\u53EF\u7528\u7684\u53C2\u8003\u5A92\u4F53\uFF0C\u8BF7\u5148\u751F\u6210\u5206\u955C\u56FE"));
+        }
         const [videoId] = await utils_default.db("o_video").insert({
           filePath: videoPath,
           time: Date.now(),
@@ -241863,8 +242207,8 @@ var init_generateVideo = __esm({
         aiVideo.run(
           {
             prompt,
-            referenceList: base644.filter(Boolean),
-            mode: modeData.length > 0 ? modeData : mode,
+            referenceList: base644,
+            mode: modeData,
             duration: duration4,
             aspectRatio: ratio?.videoRatio || "16:9",
             resolution,
@@ -241899,6 +242243,7 @@ var init_generateVideoPrompt = __esm({
     init_middleware();
     import_promises6 = __toESM(require("fs/promises"));
     import_path13 = __toESM(require("path"));
+    init_videoReferenceResolver();
     router84 = import_express84.default.Router();
     generateVideoPrompt_default = router84.post(
       "/",
@@ -241916,11 +242261,20 @@ var init_generateVideoPrompt = __esm({
       }),
       async (req, res) => {
         const { trackId, projectId, info, model, mode } = req.body;
+        const automaticReferences = await resolveVideoReferences({
+          projectId,
+          scriptId: Number((await utils_default.db("o_videoTrack").where({ id: trackId }).select("scriptId").first())?.scriptId ?? 0),
+          trackId,
+          manualReferences: info,
+          mode: parseVideoMode(mode),
+          includeAllAssets: true
+        });
+        const referenceInfo = parseVideoMode(mode) === "text" ? info : automaticReferences.references.map(({ id: id2, sources }) => ({ id: id2, sources }));
         await utils_default.db("o_videoTrack").where({ id: trackId }).update({
           state: "\u751F\u6210\u4E2D"
         });
         const images = await Promise.all(
-          info.map(async (item) => {
+          referenceInfo.map(async (item) => {
             if (item.sources === "storyboard") {
               const storyboard2 = await utils_default.db("o_storyboard").where("o_storyboard.id", item.id).select("videoDesc", "prompt", "track", "duration", "shouldGenerateImage").first();
               const assetRows = await utils_default.db("o_assets2Storyboard").where("storyboardId", item.id).orderBy("rowid").select("assetId");
@@ -242043,7 +242397,21 @@ var init_generateVideoPrompt = __esm({
             state: "\u5DF2\u5B8C\u6210",
             prompt: text2
           });
-          res.status(200).send(success3(text2));
+          const displayReferences = await Promise.all(
+            automaticReferences.references.map(async (reference) => ({
+              id: reference.id,
+              sources: reference.sources,
+              src: reference.type === "image" ? await utils_default.oss.getSmallImageUrl(reference.filePath) : await utils_default.oss.getFileUrl(reference.filePath),
+              fileType: reference.type,
+              name: reference.name
+            }))
+          );
+          res.status(200).send(
+            success3({
+              text: text2,
+              references: displayReferences
+            })
+          );
         } catch (e) {
           await utils_default.db("o_videoTrack").where({ id: trackId }).update({
             state: "\u751F\u6210\u5931\u8D25",
@@ -254088,7 +254456,14 @@ var init_setPlanData = __esm({
         agentType: external_exports.enum(["scriptAgent"]),
         data: external_exports.object({
           storySkeleton: external_exports.string(),
-          adaptationStrategy: external_exports.string()
+          adaptationStrategy: external_exports.string(),
+          script: external_exports.array(
+            external_exports.object({
+              id: external_exports.number().optional(),
+              name: external_exports.string(),
+              content: external_exports.string()
+            })
+          ).optional()
         })
       }),
       async (req, res) => {
@@ -254096,7 +254471,7 @@ var init_setPlanData = __esm({
         await utils_default.db("o_agentWorkData").where({ projectId, key: agentType }).update({
           data: JSON.stringify(data)
         });
-        const script = data.script;
+        const script = data.script ?? [];
         await Promise.all(
           script.map(async (s) => {
             const row = await utils_default.db("o_script").where({ projectId, name: s.name }).first();
@@ -255544,7 +255919,10 @@ var init_getVendorList = __esm({
           };
         })
       )).filter((i) => Boolean(i));
-      list2.sort((a, b) => a.id === "toonflow" ? -1 : b.id === "toonflow" ? 1 : 0);
+      const priority = { openai: 0 };
+      list2.sort(
+        (a, b) => (priority[a.id] ?? 10) - (priority[b.id] ?? 10)
+      );
       res.status(200).send(success3(list2));
     });
   }
@@ -255962,6 +256340,7 @@ var init_updateVendorInputs = __esm({
         await utils_default.db("o_vendorConfig").where("id", id).update({
           inputValues: JSON.stringify(inputValues)
         });
+        utils_default.vendor.clearModelDiscoveryCache(id);
         res.status(200).send(success3("\u66F4\u65B0\u6210\u529F"));
       }
     );
@@ -257004,6 +257383,7 @@ async function scanSkills(folderPath) {
 init_dist22();
 init_zod();
 init_utils3();
+init_derivativeAssetImageGeneration();
 var deriveAssetSchema = external_exports.object({
   id: external_exports.number().describe("\u884D\u751F\u8D44\u4EA7ID,\u5982\u679C\u65B0\u589E\u5219\u4E3A\u7A7A"),
   assetsId: external_exports.number().describe("\u5173\u8054\u7684\u8D44\u4EA7ID"),
@@ -257167,17 +257547,29 @@ var tools_default = (toolCpnfig) => {
       ),
       execute: async ({ ids }) => {
         const thinking = msg.thinking("\u6B63\u5728\u751F\u6210\u884D\u751F\u8D44\u4EA7...");
-        new Promise((resolve3) => socket.emit("generateDeriveAsset", { ids }, (res) => resolve3(res))).then((res) => {
-          thinking.appendText(`\u5DF2\u751F\u6210\u884D\u751F\u8D44\u4EA7\uFF0CID: ${JSON.stringify(res, null, 2)}
+        try {
+          const { projectId, scriptId } = resTool.data;
+          if (typeof projectId !== "number" || typeof scriptId !== "number") {
+            throw new Error("\u5F53\u524D\u751F\u4EA7\u4E0A\u4E0B\u6587\u7F3A\u5C11\u9879\u76EE\u6216\u5267\u672C\u4FE1\u606F");
+          }
+          const result = await startDerivativeAssetImageGeneration({
+            assetIds: ids,
+            projectId,
+            scriptId
+          });
+          thinking.appendText(`\u5DF2\u63D0\u4EA4\u884D\u751F\u8D44\u4EA7\u56FE\u7247\u751F\u6210\u4EFB\u52A1:
+${JSON.stringify(result, null, 2)}
 `);
-          thinking.updateTitle("\u884D\u751F\u8D44\u4EA7\u5F00\u59CB\u5B8C\u6210");
+          thinking.updateTitle("\u884D\u751F\u8D44\u4EA7\u751F\u6210\u4EFB\u52A1\u5DF2\u542F\u52A8");
           thinking.complete();
-        }).catch((e) => {
-          thinking.appendText("\u884D\u751F\u8D44\u4EA7\u751F\u6210\u5931\u8D25:\n" + utils_default.error(e).message);
+          return `\u5DF2\u542F\u52A8 ${result.length} \u4E2A\u884D\u751F\u8D44\u4EA7\u56FE\u7247\u751F\u6210\u4EFB\u52A1\uFF0C\u6700\u7EC8\u7ED3\u679C\u8BF7\u4EE5\u5DE5\u4F5C\u53F0\u72B6\u6001\u4E3A\u51C6\u3002`;
+        } catch (error73) {
+          const message = utils_default.error(error73).message;
+          thinking.appendText("\u884D\u751F\u8D44\u4EA7\u751F\u6210\u5931\u8D25:\n" + message);
           thinking.updateTitle("\u884D\u751F\u8D44\u4EA7\u751F\u6210\u5931\u8D25");
           thinking.complete();
-        });
-        return "\u5F00\u59CB\u751F\u6210\u884D\u751F\u8D44\u4EA7";
+          return `\u884D\u751F\u8D44\u4EA7\u751F\u6210\u5931\u8D25\uFF1A${message}`;
+        }
       }
     }),
     generate_storyboard: tool({
@@ -258562,9 +258954,27 @@ function createSubAgent2(parentCtx) {
       );
       const novelData = await utils_default.db("o_novel").where("projectId", resTool.data.projectId).select("chapterIndex");
       const formatPrompt = `
-\u4F60\u5FC5\u987B\u4F7F\u7528\u5982\u4E0BXML\u683C\u5F0F\u5199\u5165\u5DE5\u4F5C\u533A\uFF1A
-XML\u4E0D\u5F97\u6DFB\u52A0\u4EFB\u4F55\u989D\u5916\u6807\u7B7E<scriptItem name="\u5267\u672C\u540D\u79F0">\u5267\u672C\u5185\u5BB9</scriptItem><scriptItem name="\u5267\u672C\u540D\u79F0">\u5267\u672C\u5185\u5BB9</scriptItem><scriptItem name="\u5267\u672C\u540D\u79F0">\u5267\u672C\u5185\u5BB9</scriptItem>`;
-      return runAgent({
+\u4F60\u5FC5\u987B\u4F7F\u7528\u5982\u4E0BXML\u683C\u5F0F\u8F93\u51FA\u5267\u672C\uFF1A
+XML\u4E0D\u5F97\u6DFB\u52A0\u4EFB\u4F55\u989D\u5916\u6807\u7B7E<scriptItem name="\u5267\u672C\u540D\u79F0">\u5267\u672C\u5185\u5BB9</scriptItem><scriptItem name="\u5267\u672C\u540D\u79F0">\u5267\u672C\u5185\u5BB9</scriptItem><scriptItem name="\u5267\u672C\u540D\u79F0">\u5267\u672C\u5185\u5BB9</scriptItem>
+\u4F60\u8FD8\u5FC5\u987B\u8C03\u7528 save_script \u5DE5\u5177\u628A\u5B8C\u6574\u5267\u672C\u4FDD\u5B58\u5230\u5DE5\u4F5C\u53F0\uFF1B\u5DE5\u5177\u8C03\u7528\u6210\u529F\u540E\u624D\u53EF\u4EE5\u8FD4\u56DE\u786E\u8BA4\u3002\u7981\u6B62\u53EA\u56DE\u590D\u201C\u5DF2\u5199\u5165\u201D\u800C\u4E0D\u8F93\u51FA\u6B63\u6587\u6216\u8C03\u7528\u5DE5\u5177\u3002`;
+      const savedScripts = [];
+      const saveScriptTool = tool({
+        description: "\u4FDD\u5B58\u4E00\u96C6\u5B8C\u6574\u5267\u672C\u5230\u5DE5\u4F5C\u53F0\u3002\u5FC5\u987B\u5728\u751F\u6210\u5B8C\u6574\u5267\u672C\u540E\u8C03\u7528\uFF0C\u4E0D\u80FD\u7528\u786E\u8BA4\u6587\u5B57\u4EE3\u66FF\u3002",
+        inputSchema: jsonSchema(
+          external_exports.object({
+            name: external_exports.string().min(1).describe("\u5267\u672C\u540D\u79F0\uFF0C\u4F8B\u5982\u4F5C\u54C1\u540D EP08\uFF1A\u96C6\u6807\u9898"),
+            content: external_exports.string().min(1).describe("\u5B8C\u6574\u5267\u672C\u6B63\u6587\uFF0C\u4E0D\u80FD\u662F\u786E\u8BA4\u8BED\u53E5")
+          }).toJSONSchema()
+        ),
+        execute: async ({ name: name28, content }) => {
+          const script = { name: name28.trim(), content: content.trim() };
+          if (!script.name || !script.content) throw new Error("\u5267\u672C\u540D\u79F0\u548C\u6B63\u6587\u4E0D\u80FD\u4E3A\u7A7A");
+          await persistScriptItems(resTool.data.projectId, [script]);
+          savedScripts.push(script);
+          return `\u4FDD\u5B58\u6210\u529F\uFF1A${script.name}`;
+        }
+      });
+      const fullResponse = await runAgent({
         key: "scriptAgent:scriptAgent",
         prompt,
         system: systemPrompt + formatPrompt,
@@ -258573,8 +258983,18 @@ XML\u4E0D\u5F97\u6DFB\u52A0\u4EFB\u4F55\u989D\u5916\u6807\u7B7E<scriptItem name=
           { role: "user", content: prompt + formatPrompt }
         ],
         name: "\u7F16\u5267",
-        memoryKey: "assistant:execution:script"
+        memoryKey: "assistant:execution:script",
+        tools: { save_script: saveScriptTool }
       });
+      const scripts = extractScriptItems(fullResponse);
+      const persistedScripts = scripts.length ? scripts : savedScripts;
+      if (!persistedScripts.length) {
+        throw new Error("\u5267\u672C\u751F\u6210\u5931\u8D25\uFF1A\u6A21\u578B\u672A\u8FD4\u56DE\u6709\u6548\u7684 scriptItem \u5185\u5BB9\uFF0C\u672A\u5199\u5165\u5DE5\u4F5C\u53F0");
+      }
+      if (scripts.length && !savedScripts.length) {
+        await persistScriptItems(resTool.data.projectId, scripts);
+      }
+      return `\u5DF2\u5199\u5165${persistedScripts.length}\u96C6\u5267\u672C\uFF0C\u8BF7\u5728\u5DE5\u4F5C\u53F0\u67E5\u770B\u3002`;
     }
   });
   const run_supervision_agent = tool({
@@ -258648,6 +259068,27 @@ function removeAllXmlTags2(text2) {
   text2 = text2.replace(/<([a-zA-Z][\w-]*)(\s+[^>]*)?\/>/g, "");
   text2 = text2.replace(/<\/?[a-zA-Z][\w-]*(\s+[^>]*)?>/g, "");
   return text2.trim();
+}
+function extractScriptItems(text2) {
+  const items = [];
+  const pattern = /<scriptItem\b[^>]*\bname\s*=\s*(?:"([^"]*)"|'([^']*)')[^>]*>([\s\S]*?)<\/scriptItem\s*>/gi;
+  let match;
+  while ((match = pattern.exec(text2)) !== null) {
+    const name28 = (match[1] ?? match[2] ?? "").trim();
+    const content = match[3].trim();
+    if (name28 && content) items.push({ name: name28, content });
+  }
+  return items;
+}
+async function persistScriptItems(projectId, scripts) {
+  for (const script of scripts) {
+    const row = await utils_default.db("o_script").where({ projectId, name: script.name }).first();
+    if (row) {
+      await utils_default.db("o_script").where({ id: row.id }).update({ content: script.content });
+    } else {
+      await utils_default.db("o_script").insert({ projectId, name: script.name, content: script.content });
+    }
+  }
 }
 
 // src/socket/routes/scriptAgent.ts

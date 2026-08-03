@@ -192,9 +192,29 @@ function createSubAgent(parentCtx: AgentContext) {
 
       const novelData = await u.db("o_novel").where("projectId", resTool.data.projectId).select("chapterIndex");
 
-      const formatPrompt = `\n你必须使用如下XML格式写入工作区：\nXML不得添加任何额外标签<scriptItem name="剧本名称">剧本内容</scriptItem><scriptItem name="剧本名称">剧本内容</scriptItem><scriptItem name="剧本名称">剧本内容</scriptItem>`;
+      const formatPrompt = `\n你必须使用如下XML格式输出剧本：\nXML不得添加任何额外标签<scriptItem name="剧本名称">剧本内容</scriptItem><scriptItem name="剧本名称">剧本内容</scriptItem><scriptItem name="剧本名称">剧本内容</scriptItem>\n你还必须调用 save_script 工具把完整剧本保存到工作台；工具调用成功后才可以返回确认。禁止只回复“已写入”而不输出正文或调用工具。`;
 
-      return runAgent({
+      const savedScripts: ScriptItem[] = [];
+      const saveScriptTool = tool({
+        description: "保存一集完整剧本到工作台。必须在生成完整剧本后调用，不能用确认文字代替。",
+        inputSchema: jsonSchema<{ name: string; content: string }>(
+          z
+            .object({
+              name: z.string().min(1).describe("剧本名称，例如作品名 EP08：集标题"),
+              content: z.string().min(1).describe("完整剧本正文，不能是确认语句"),
+            })
+            .toJSONSchema(),
+        ),
+        execute: async ({ name, content }) => {
+          const script = { name: name.trim(), content: content.trim() };
+          if (!script.name || !script.content) throw new Error("剧本名称和正文不能为空");
+          await persistScriptItems(resTool.data.projectId, [script]);
+          savedScripts.push(script);
+          return `保存成功：${script.name}`;
+        },
+      });
+
+      const fullResponse = await runAgent({
         key: "scriptAgent:scriptAgent",
         prompt,
         system: systemPrompt + formatPrompt,
@@ -204,7 +224,19 @@ function createSubAgent(parentCtx: AgentContext) {
         ],
         name: "编剧",
         memoryKey: "assistant:execution:script",
+        tools: { save_script: saveScriptTool },
       });
+
+      const scripts = extractScriptItems(fullResponse);
+      const persistedScripts = scripts.length ? scripts : savedScripts;
+      if (!persistedScripts.length) {
+        throw new Error("剧本生成失败：模型未返回有效的 scriptItem 内容，未写入工作台");
+      }
+
+      if (scripts.length && !savedScripts.length) {
+        await persistScriptItems(resTool.data.projectId, scripts);
+      }
+      return `已写入${persistedScripts.length}集剧本，请在工作台查看。`;
     },
   });
 
@@ -289,4 +321,34 @@ function removeAllXmlTags(text: string): string {
   text = text.replace(/<([a-zA-Z][\w-]*)(\s+[^>]*)?\/>/g, "");
   text = text.replace(/<\/?[a-zA-Z][\w-]*(\s+[^>]*)?>/g, "");
   return text.trim();
+}
+
+interface ScriptItem {
+  name: string;
+  content: string;
+}
+
+function extractScriptItems(text: string): ScriptItem[] {
+  const items: ScriptItem[] = [];
+  const pattern = /<scriptItem\b[^>]*\bname\s*=\s*(?:"([^"]*)"|'([^']*)')[^>]*>([\s\S]*?)<\/scriptItem\s*>/gi;
+  let match: RegExpExecArray | null;
+
+  while ((match = pattern.exec(text)) !== null) {
+    const name = (match[1] ?? match[2] ?? "").trim();
+    const content = match[3].trim();
+    if (name && content) items.push({ name, content });
+  }
+
+  return items;
+}
+
+async function persistScriptItems(projectId: number, scripts: ScriptItem[]) {
+  for (const script of scripts) {
+    const row = await u.db("o_script").where({ projectId, name: script.name }).first();
+    if (row) {
+      await u.db("o_script").where({ id: row.id }).update({ content: script.content });
+    } else {
+      await u.db("o_script").insert({ projectId, name: script.name, content: script.content });
+    }
+  }
 }
