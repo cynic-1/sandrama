@@ -1,0 +1,16 @@
+services:
+  sandrama:
+    build:
+      context: .
+    image: sandrama:latest
+    container_name: sandrama
+    restart: unless-stopped
+    environment:
+      NODE_ENV: prod
+      PORT: 10588
+      ossURL: ${SANDRAMA_PUBLIC_URL:?Set SANDRAMA_PUBLIC_URL to a publicly reachable http(s) URL}
+    ports:
+      - "${SANDRAMA_PORT:-10588}:10588"
+    volumes:
+      - ./data:/app/data
+    command: ["yarn", "start"]
