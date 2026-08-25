@@ -143,7 +143,7 @@ Toonflow 是面向短剧生产的 AI 工作台，围绕“策划 → 编剧 → 
 
 ## 快速上手
 
-1. 启动应用并登录（默认账号：`admin` / `admin123`）。
+1. 启动应用并登录（默认账号：`admin` / `opensand@2026`）。
 2. 在设置中心完成模型供应商配置（文本/图像/视频模型）。
 3. 新建项目并导入原著，执行章节事件提取。
 4. 进入 ScriptAgent 生成故事骨架、改编策略与结构化剧本。
@@ -259,7 +259,9 @@ https://github.com/user-attachments/assets/2d9fddac-dfdf-4640-b030-b09d7f7287e9
 
 > ⚠️ **首次登录**  
 > 账号：`admin`  
-> 密码：`admin123`
+> 密码：`opensand@2026`
+
+> 服务器部署、数据迁移、公网图床和视频参考素材配置请参阅：[完整部署文档](./docs/DEPLOYMENT.md)
 
 ## Docker 部署
 
@@ -272,6 +274,8 @@ https://github.com/user-attachments/assets/2d9fddac-dfdf-4640-b030-b09d7f7287e9
 待完善，暂时使用本地构建。
 
 ### 方式二：本地构建
+
+服务器部署推荐使用仓库根目录中的 `docker-compose.yml`，完整步骤请参阅[完整部署文档](./docs/DEPLOYMENT.md)。
 
 使用本地已有的源码直接构建，适合开发者或已克隆仓库的用户，这需要你在本地安装 git：
 
@@ -399,7 +403,7 @@ pm2 monit             # 监控面板
 
 > ⚠️ **首次登录**  
 > 账号：`admin`  
-> 密码：`admin123`
+> 密码：`opensand@2026`
 
 ##### 6. 部署前端网站
 
@@ -434,7 +438,7 @@ pm2 monit             # 监控面板
 #### 二、配置 Toonflow、启动 ComfyUI 阶段教程
 
 1. 先配置调用 Agent 的模型：打开桌面上的 Toonflow - 模型服务 - OpenAI 标准接口 - 填入 API 密钥以及请求地址。
-   默认账号：`admin`　密码：`admin123`（建议登录后修改密码）
+   默认账号：`admin`　密码：`opensand@2026`（建议登录后修改密码）
    > 💡 这里直接使用智星云的 AI 大模型 Token 服务，官方接口，稳定安全，低至 6 折（小说转剧本调用一次，约花费 6.4 毛钱）。
    - 智星云调用模型 Token 请求地址：`https://token.ai-galaxy.com/v1`
    - 智星云 Token 充值步骤：Token 市场 - 账户概览 - 充值 - 将智星云账户余额或算力券充值到 Token 账户中。
