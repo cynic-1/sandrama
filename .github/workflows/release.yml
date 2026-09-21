@@ -174,7 +174,7 @@ jobs:
       - name: 创建 GitHub Release
         uses: softprops/action-gh-release@v2
         with:
-          name: ToonFlow ${{ github.ref_name }}
+          name: SandDrama ${{ github.ref_name }}
           draft: false
           prerelease: ${{ contains(github.ref_name, 'beta') || contains(github.ref_name, 'alpha') }}
           generate_release_notes: true
@@ -183,12 +183,12 @@ jobs:
 
             | 操作系统 | 架构 | 文件 | 说明 |
             |---------|------|------|------|
-            | 🪟 Windows | x64 | `ToonFlow-*-win-x64-setup.exe` | **推荐**，适用于大多数 Windows 电脑 |
-            | 🪟 Windows | ARM64 | `ToonFlow-*-win-arm64-setup.exe` | 适用于 ARM 架构 Windows 设备 |
-            | 🍎 macOS | Apple Silicon | `ToonFlow-*-mac-arm64.dmg` | 适用于 M1/M2/M3/M4 芯片的 Mac |
-            | 🍎 macOS | Intel | `ToonFlow-*-mac-x64.dmg` | 适用于 Intel 芯片的 Mac |
-            | 🐧 Linux | x64 | `ToonFlow-*-linux-x86_64.AppImage` | 适用于大多数 Linux 发行版 |
-            | 🐧 Linux | ARM64 | `ToonFlow-*-linux-arm64.AppImage` | 适用于 ARM 架构的 Linux 设备 |
+            | 🪟 Windows | x64 | `SandDrama-*-win-x64-setup.exe` | **推荐**，适用于大多数 Windows 电脑 |
+            | 🪟 Windows | ARM64 | `SandDrama-*-win-arm64-setup.exe` | 适用于 ARM 架构 Windows 设备 |
+            | 🍎 macOS | Apple Silicon | `SandDrama-*-mac-arm64.dmg` | 适用于 M1/M2/M3/M4 芯片的 Mac |
+            | 🍎 macOS | Intel | `SandDrama-*-mac-x64.dmg` | 适用于 Intel 芯片的 Mac |
+            | 🐧 Linux | x64 | `SandDrama-*-linux-x86_64.AppImage` | 适用于大多数 Linux 发行版 |
+            | 🐧 Linux | ARM64 | `SandDrama-*-linux-arm64.AppImage` | 适用于 ARM 架构的 Linux 设备 |
 
             > 💡 **不确定选哪个？** Windows 用户通常选 **win-x64-setup.exe**；Mac 用户查看「关于本机」：M 系列芯片选 **arm64.dmg**，Intel 选 **x64.dmg**。
 
@@ -196,7 +196,7 @@ jobs:
 
             - **Windows**：下载 `.exe` 文件，双击运行安装向导即可。如遇 DLL 缺失，请安装 [VC++ 运行库](https://aka.ms/vs/17/release/vc_redist.x64.exe)。
             - **macOS**：下载 `.dmg` 文件，打开后将应用拖入「应用程序」。首次打开如遇安全提示，前往「系统设置 → 隐私与安全性」允许运行。
-            - **Linux**：下载 `.AppImage`，执行 `chmod +x ToonFlow-*.AppImage` 后运行。
+            - **Linux**：下载 `.AppImage`，执行 `chmod +x SandDrama-*.AppImage` 后运行。
 
             ---
 

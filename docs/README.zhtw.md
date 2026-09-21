@@ -1,15 +1,15 @@
-<img src="https://capsule-render.vercel.app/api?type=waving&color=gradient&customColorList=6,11,20&height=200&section=header&text=Toonflow&fontSize=90&fontColor=ffffff&animation=fadeIn&fontAlignY=50" width="100%"/>
+<img src="https://capsule-render.vercel.app/api?type=waving&color=gradient&customColorList=6,11,20&height=200&section=header&text=SandDrama&fontSize=90&fontColor=ffffff&animation=fadeIn&fontAlignY=50" width="100%"/>
 
 <p>
-  <a href="https://github.com/HBAI-Ltd/Toonflow-app">
+  <a href="https://github.com/cynic-1/SandDrama-app">
     <img src="https://img.shields.io/badge/GitHub-181717?style=flat-square&logo=github&logoColor=white" alt="GitHub" />
   </a>
   &nbsp;|&nbsp;
-  <a href="https://gitee.com/HBAI-Ltd/Toonflow-app">
+  <a href="https://gitee.com/cynic-1/SandDrama-app">
     <img src="https://img.shields.io/badge/Gitee-C71D23?style=flat-square&logo=gitee&logoColor=white" alt="Gitee" />
   </a>
   &nbsp;|&nbsp;
-  <a href="https://gitcode.com/HBAI-Ltd/Toonflow-app">
+  <a href="https://gitcode.com/cynic-1/SandDrama-app">
     <img src="./atomgitLogo.svg" alt="Atomgit" style="height:20px"/>
   </a>
 </p>
@@ -26,34 +26,34 @@
 
 <div align="center">
   <p align="center">
-    <img src="./logo.png" alt="Toonflow Logo" height="120"/>
+    <img src="./logo.png" alt="SandDrama Logo" height="120"/>
   </p>
 
   <p align="center">
     <a href="https://git.io/typing-svg" target="_blank">
       <picture>
-        <source media="(prefers-color-scheme: dark)" srcset="https://readme-typing-svg.demolab.com?font=Fira+Code&size=40&duration=3000&pause=1000&color=FFFFFF&center=true&vCenter=true&width=600&lines=Toonflow;AI%E7%9F%AD%E5%89%A7%E5%B7%A5%E5%8E%82;%E5%8A%A8%E5%8A%A8%E6%89%8B%E6%8C%87%EF%BC%8C%E5%B0%8F%E8%AF%B4%E7%A7%92%E5%8F%98%E5%89%A7%E9%9B%86%EF%BC%81" />
-        <img alt="Typing SVG" src="https://readme-typing-svg.demolab.com?font=Fira+Code&size=40&duration=3000&pause=1000&color=000000&center=true&vCenter=true&width=600&lines=Toonflow;AI%E7%9F%AD%E5%89%A7%E5%B7%A5%E5%8E%82;%E5%8A%A8%E5%8A%A8%E6%89%8B%E6%8C%87%EF%BC%8C%E5%B0%8F%E8%AF%B4%E7%A7%92%E5%8F%98%E5%89%A7%E9%9B%86%EF%BC%81" />
+        <source media="(prefers-color-scheme: dark)" srcset="https://readme-typing-svg.demolab.com?font=Fira+Code&size=40&duration=3000&pause=1000&color=FFFFFF&center=true&vCenter=true&width=600&lines=SandDrama;AI%E7%9F%AD%E5%89%A7%E5%B7%A5%E5%8E%82;%E5%8A%A8%E5%8A%A8%E6%89%8B%E6%8C%87%EF%BC%8C%E5%B0%8F%E8%AF%B4%E7%A7%92%E5%8F%98%E5%89%A7%E9%9B%86%EF%BC%81" />
+        <img alt="Typing SVG" src="https://readme-typing-svg.demolab.com?font=Fira+Code&size=40&duration=3000&pause=1000&color=000000&center=true&vCenter=true&width=600&lines=SandDrama;AI%E7%9F%AD%E5%89%A7%E5%B7%A5%E5%8E%82;%E5%8A%A8%E5%8A%A8%E6%89%8B%E6%8C%87%EF%BC%8C%E5%B0%8F%E8%AF%B4%E7%A7%92%E5%8F%98%E5%89%A7%E9%9B%86%EF%BC%81" />
       </picture>
     </a>
   </p>
 
   <p align="center">
-    <a href="https://github.com/HBAI-Ltd/Toonflow-app/stargazers">
-      <img src="https://img.shields.io/github/stars/HBAI-Ltd/Toonflow-app?style=for-the-badge&logo=github" alt="Stars Badge" />
+    <a href="https://github.com/cynic-1/SandDrama-app/stargazers">
+      <img src="https://img.shields.io/github/stars/cynic-1/SandDrama-app?style=for-the-badge&logo=github" alt="Stars Badge" />
     </a>
     <a href="https://www.apache.org/licenses/LICENSE-2.0" target="_blank">
       <img src="https://img.shields.io/badge/License-Apache%202.0-blue.svg?style=for-the-badge" alt="Apache-2.0 License Badge" />
     </a>
-    <a href="https://github.com/HBAI-Ltd/Toonflow-app/releases">
-      <img alt="release" src="https://img.shields.io/github/v/release/HBAI-Ltd/Toonflow-app?style=for-the-badge" />
+    <a href="https://github.com/cynic-1/SandDrama-app/releases">
+      <img alt="release" src="https://img.shields.io/github/v/release/cynic-1/SandDrama-app?style=for-the-badge" />
     </a>
   </p>
   <p align="center">
-    <a href="https://github.com/HBAI-Ltd/Toonflow-app/network/members">
-      <img src="https://img.shields.io/github/forks/HBAI-Ltd/Toonflow-app?style=for-the-badge&logo=github&color=orange" alt="Forks Badge" />
+    <a href="https://github.com/cynic-1/SandDrama-app/network/members">
+      <img src="https://img.shields.io/github/forks/cynic-1/SandDrama-app?style=for-the-badge&logo=github&color=orange" alt="Forks Badge" />
     </a>
-    <a href="https://atomgit.com/HBAI-Ltd/Toonflow-app">
+    <a href="https://atomgit.com/cynic-1/SandDrama-app">
       <img src="https://img.shields.io/badge/AtomGit-G--Star%20No.540-FF6B35?style=for-the-badge&logo=git&logoColor=white" alt="AtomGit G-Star No.540" />
     </a>
     <a href="https://discord.gg/HEjKmpNpAZ">
@@ -61,14 +61,14 @@
     </a>
   </p>
   <p align="center">
-    <a href="https://github.com/HBAI-Ltd/Toonflow-app/issues">
-      <img src="https://img.shields.io/github/issues/HBAI-Ltd/Toonflow-app?style=for-the-badge&color=F48D73" alt="Issues" />
+    <a href="https://github.com/cynic-1/SandDrama-app/issues">
+      <img src="https://img.shields.io/github/issues/cynic-1/SandDrama-app?style=for-the-badge&color=F48D73" alt="Issues" />
     </a>
-    <a href="https://github.com/HBAI-Ltd/Toonflow-app/graphs/contributors">
-      <img src="https://img.shields.io/github/contributors/HBAI-Ltd/Toonflow-app?style=for-the-badge&color=2088FF" alt="Contributors" />
+    <a href="https://github.com/cynic-1/SandDrama-app/graphs/contributors">
+      <img src="https://img.shields.io/github/contributors/cynic-1/SandDrama-app?style=for-the-badge&color=2088FF" alt="Contributors" />
     </a>
-    <a href="https://github.com/HBAI-Ltd/Toonflow-app/commits">
-      <img src="https://img.shields.io/github/last-commit/HBAI-Ltd/Toonflow-app?style=for-the-badge&color=blueviolet" alt="Last Commit" />
+    <a href="https://github.com/cynic-1/SandDrama-app/commits">
+      <img src="https://img.shields.io/github/last-commit/cynic-1/SandDrama-app?style=for-the-badge&color=blueviolet" alt="Last Commit" />
     </a>
   </p>
   <p align="center">
@@ -102,7 +102,7 @@
 
 # 🌐 多語言支援
 
-Toonflow 支援以下語言介面：
+SandDrama 支援以下語言介面：
 
 | 語言       | Language              |
 | ---------- | --------------------- |
@@ -120,7 +120,7 @@ Toonflow 支援以下語言介面：
 
 # 🌟 主要功能
 
-Toonflow 是面向短劇生產的 AI 工作檯，圍繞「策劃 → 編劇 → 分鏡 → 出片」構建完整閉環，並支援本地化、可程式化、可持續迭代的生產流程。
+SandDrama 是面向短劇生產的 AI 工作檯，圍繞「策劃 → 編劇 → 分鏡 → 出片」構建完整閉環，並支援本地化、可程式化、可持續迭代的生產流程。
 
 - ✅ **無限畫布生產工作檯**  
   以類無限畫布形式組織劇本、角色、分鏡、素材與影片節點，支援自由編排、回溯與並行生產，不受線性步驟限制。
@@ -161,9 +161,9 @@ Toonflow 是面向短劇生產的 AI 工作檯，圍繞「策劃 → 編劇 → 
 ## 📺 影片教學
 
 https://www.bilibili.com/video/BV1oXD7BqEqJ
-[![Toonflow 12 分鐘快速上手 AI 影片](./videoCover.jpg)](https://www.bilibili.com/video/BV1oXD7BqEqJ)
+[![SandDrama 12 分鐘快速上手 AI 影片](./videoCover.jpg)](https://www.bilibili.com/video/BV1oXD7BqEqJ)
 
-**Toonflow 12 分鐘快速上手 AI 影片**
+**SandDrama 12 分鐘快速上手 AI 影片**
 👉 [點擊觀看](https://www.bilibili.com/video/BV1oXD7BqEqJ)
 
 📱 手機微信掃碼觀看
@@ -174,7 +174,7 @@ https://www.bilibili.com/video/BV1oXD7BqEqJ
 
 # 📸 示範截圖與影片
 
-以下截圖及影片來自使用 Toonflow 製作的一段 AI 短劇 Demo，全程約 2 小時完成，涵蓋劇本生成、分鏡製作及剪輯環節。
+以下截圖及影片來自使用 SandDrama 製作的一段 AI 短劇 Demo，全程約 2 小時完成，涵蓋劇本生成、分鏡製作及剪輯環節。
 
 <div align="center">
 <table>
@@ -250,9 +250,9 @@ https://github.com/user-attachments/assets/2d9fddac-dfdf-4640-b030-b09d7f7287e9
 
 | 作業系統 | GitHub                                                       | 說明           |
 | :------: | :----------------------------------------------------------- | :------------- |
-| Windows  | [Release](https://github.com/HBAI-Ltd/Toonflow-app/releases) | 官方發布安裝包 |
-|  Linux   | [Release](https://github.com/HBAI-Ltd/Toonflow-app/releases) | 官方發布安裝包 |
-|  macOS   | [Release](https://github.com/HBAI-Ltd/Toonflow-app/releases) | 官方發布安裝包 |
+| Windows  | [Release](https://github.com/cynic-1/SandDrama-app/releases) | 官方發布安裝包 |
+|  Linux   | [Release](https://github.com/cynic-1/SandDrama-app/releases) | 官方發布安裝包 |
+|  macOS   | [Release](https://github.com/cynic-1/SandDrama-app/releases) | 官方發布安裝包 |
 
 > [!CAUTION]
 > MacOS 系統請到 設定-隱私與安全性 配置安全性否則可能因憑證問題無法正常開啟
@@ -285,15 +285,15 @@ https://github.com/user-attachments/assets/2d9fddac-dfdf-4640-b030-b09d7f7287e9
 
 ```shell
 # 先克隆專案（如已有則跳過）
-git clone https://github.com/HBAI-Ltd/Toonflow-app.git
-cd Toonflow-app
+git clone https://github.com/cynic-1/SandDrama-app.git
+cd SandDrama-app
 
 # 使用 docker-compose 本地建置並啟動
 yarn docker:local
 
 # 或者手動建置
-docker build -t toonflow .
-docker run -d -p <本地埠>:10588 -v <本地資料路徑>:/app/data toonflow
+docker build -t sanddrama .
+docker run -d -p <本地埠>:10588 -v <本地資料路徑>:/app/data sanddrama
 
 # 此時在相應埠的 /index.html 路徑即可訪問頁面
 # 例如 http://localhost:10588/index.html
@@ -344,8 +344,8 @@ npm install -g yarn pm2
 
 ```bash
 cd /opt
-git clone https://github.com/HBAI-Ltd/Toonflow-app.git
-cd Toonflow-app
+git clone https://github.com/cynic-1/SandDrama-app.git
+cd SandDrama-app
 yarn install
 yarn build
 ```
@@ -354,8 +354,8 @@ yarn build
 
 ```bash
 cd /opt
-git clone https://gitee.com/HBAI-Ltd/Toonflow-app.git
-cd Toonflow-app
+git clone https://gitee.com/cynic-1/SandDrama-app.git
+cd SandDrama-app
 yarn install
 yarn build
 ```
@@ -366,7 +366,7 @@ yarn build
 
 ```json
 {
-  "name": "toonflow-app",
+  "name": "sanddrama-app",
   "script": "data/serve/app.js",
   "instances": "max",
   "exec_mode": "cluster",
@@ -400,7 +400,7 @@ pm2 save
 
 ```bash
 pm2 list              # 查看進程
-pm2 logs toonflow-app # 查看日誌
+pm2 logs sanddrama-app # 查看日誌
 pm2 restart all       # 重啟服務
 pm2 monit             # 監控面板
 ```
@@ -413,8 +413,8 @@ pm2 monit             # 監控面板
 
 如需單獨部署或定製前端介面，請參考前端倉庫：
 
-- **GitHub**：[Toonflow-web](https://github.com/HBAI-Ltd/Toonflow-web)
-- **Gitee**：[Toonflow-web](https://gitee.com/HBAI-Ltd/Toonflow-web)
+- **GitHub**：[SandDrama-web](https://github.com/cynic-1/SandDrama-web)
+- **Gitee**：[SandDrama-web](https://gitee.com/cynic-1/SandDrama-web)
 
 > 💡 **說明**：本倉庫已內建編譯好的前端資源，一般使用者無需單獨部署前端。前端倉庫僅供需要二次開發的開發者使用。
 
@@ -422,7 +422,7 @@ pm2 monit             # 監控面板
 
 > 🎉 **官方認證算力合作平台 —— 智星雲**
 >
-> **[智星雲](https://www.ai-galaxy.com/)** 是 **Toonflow 官方授權的商用鏡像服務商**，已合法搭載、分發並支援商用全套 Toonflow AI 短劇製作鏡像，**開箱即用，無需手動部署**。
+> **[智星雲](https://www.ai-galaxy.com/)** 是 **SandDrama 官方授權的商用鏡像服務商**，已合法搭載、分發並支援商用全套 SandDrama AI 短劇製作鏡像，**開箱即用，無需手動部署**。
 >
 > - 🌐 官網：[https://www.ai-galaxy.com](https://www.ai-galaxy.com)
 > - 📖 鏡像部署圖文教程：[點擊查看教程](https://mp.weixin.qq.com/s/lq9X1ovQ1_TKeXMOLgicKg?scene=1)
@@ -434,23 +434,23 @@ pm2 monit             # 監控面板
 
 1. 智星雲 - 算力市場 - 4090 / 4090 Plus，點擊「立即租用」進入租用詳情頁。
    > 💡 建議開啟「按小時自動續租」模式，防止正在跑影片時實例到期停工。
-2. 鏡像選擇：`windows10LTSCwin10_Toonflow` - 建立實例。
+2. 鏡像選擇：`windows10LTSCwin10_SandDrama` - 建立實例。
 3. 等待實例啟動 30s ~ 60s，查看連接方式 - RDP 登入檔案下載 - 點擊複製密碼 - 雙擊已下載好的雲端連接檔案。
 4. 將複製好的密碼貼上並登入，連接進入雲端桌面。
    > 💡 滑鼠移到雲端桌面頂端稍作停留，會顯示切換桌面操作欄，可點擊「──」切換回自己的電腦桌面，或點擊「□」縮小佈置到自己的電腦桌面作為操作視窗。
 
-#### 二、配置 Toonflow、啟動 ComfyUI 階段教程
+#### 二、配置 SandDrama、啟動 ComfyUI 階段教程
 
-1. 先配置調用 Agent 的模型：打開桌面上的 Toonflow - 模型服務 - OpenAI 標準介面 - 填入 API 金鑰以及請求位址。
+1. 先配置調用 Agent 的模型：打開桌面上的 SandDrama - 模型服務 - OpenAI 標準介面 - 填入 API 金鑰以及請求位址。
    預設帳號：`admin`　密碼：`admin123`（建議登入後修改密碼）
    > 💡 這裡直接使用智星雲的 AI 大模型 Token 服務，官方介面，穩定安全，低至 6 折（小說轉劇本調用一次，約花費 6.4 毛錢）。
    - 智星雲調用模型 Token 請求位址：`https://token.ai-galaxy.com/v1`
    - 智星雲 Token 充值步驟：Token 市場 - 帳戶概覽 - 充值 - 將智星雲帳戶餘額或算力券充值到 Token 帳戶中。
-   - 充值完成後進入「Key 管理」- 新建 API 管理，名稱填 `Toonflow` 或其他均可，點擊確定並複製 API 金鑰。
-2. 回到步驟 1，將生成的 API 金鑰和請求位址貼上到 Toonflow 模型服務中，填好後點擊空白處，系統會提示「供應商配置已更新」。
+   - 充值完成後進入「Key 管理」- 新建 API 管理，名稱填 `SandDrama` 或其他均可，點擊確定並複製 API 金鑰。
+2. 回到步驟 1，將生成的 API 金鑰和請求位址貼上到 SandDrama 模型服務中，填好後點擊空白處，系統會提示「供應商配置已更新」。
    點擊「手動添加」，回到智星雲 - Token 市場頁面，複製完整的模型名稱。
    > 💡 一個 Key 可以調用智星雲上的所有模型，選擇你想用的即可，推薦 `deepseek-v4-pro`。
-   將模型名稱完整複製貼上到 Toonflow 中並確認，完成模型配置。
+   將模型名稱完整複製貼上到 SandDrama 中並確認，完成模型配置。
 3. 配置完成後檢查兩處：
    - 模型服務中的三個模型調用開關是否已開啟
    - Agent 配置中調用的模型是否與你配置的一致（不一致時點擊選擇改正即可）
@@ -468,7 +468,7 @@ pm2 monit             # 監控面板
 >
 > ⛔ `master` 分支不接受任何 PR ｜ ✅ 請將 PR 提交到 `develop` 分支
 >
-> 歡迎開發者們共同參與 Toonflow 的共創。如有興趣加入，請在交流群內聯繫主持人 ACT
+> 歡迎開發者們共同參與 SandDrama 的共創。如有興趣加入，請在交流群內聯繫主持人 ACT
 
 ## 🛠️ 技術棧
 
@@ -497,15 +497,15 @@ pm2 monit             # 監控面板
    **從 GitHub 克隆：**
 
    ```bash
-   git clone https://github.com/HBAI-Ltd/Toonflow-app.git
-   cd Toonflow-app
+   git clone https://github.com/cynic-1/SandDrama-app.git
+   cd SandDrama-app
    ```
 
    **從 Gitee 克隆（國內推薦）：**
 
    ```bash
-   git clone https://gitee.com/HBAI-Ltd/Toonflow-app.git
-   cd Toonflow-app
+   git clone https://gitee.com/cynic-1/SandDrama-app.git
+   cd SandDrama-app
    ```
 
 2. **安裝依賴**
@@ -590,8 +590,8 @@ pm2 monit             # 監控面板
 
 如需修改前端介面，請前往前端倉庫進行開發：
 
-- **GitHub**：[Toonflow-web](https://github.com/HBAI-Ltd/Toonflow-web)
-- **Gitee**：[Toonflow-web](https://gitee.com/HBAI-Ltd/Toonflow-web)
+- **GitHub**：[SandDrama-web](https://github.com/cynic-1/SandDrama-web)
+- **Gitee**：[SandDrama-web](https://gitee.com/cynic-1/SandDrama-web)
 
 前端建置後，將 `dist` 目錄內容複製到本專案的 `data/web` 目錄即可整合。
 
@@ -658,10 +658,10 @@ pm2 monit             # 監控面板
 
 | 倉庫             | 說明                               | GitHub                                             | Gitee                                            |
 | ---------------- | ---------------------------------- | -------------------------------------------------- | ------------------------------------------------ |
-| **Toonflow-app** | 完整客戶端（本倉庫，推薦一般使用者） | [GitHub](https://github.com/HBAI-Ltd/Toonflow-app) | [Gitee](https://gitee.com/HBAI-Ltd/Toonflow-app) |
-| **Toonflow-web** | 前端原始碼（適合前端開發者）       | [GitHub](https://github.com/HBAI-Ltd/Toonflow-web) | [Gitee](https://gitee.com/HBAI-Ltd/Toonflow-web) |
+| **SandDrama-app** | 完整客戶端（本倉庫，推薦一般使用者） | [GitHub](https://github.com/cynic-1/SandDrama-app) | [Gitee](https://gitee.com/cynic-1/SandDrama-app) |
+| **SandDrama-web** | 前端原始碼（適合前端開發者）       | [GitHub](https://github.com/cynic-1/SandDrama-web) | [Gitee](https://gitee.com/cynic-1/SandDrama-web) |
 
-> 💡 **提示**：如果您只是想使用 Toonflow，直接下載本倉庫的客戶端即可。前端倉庫僅供需要二次開發或定製前端介面的開發者使用。
+> 💡 **提示**：如果您只是想使用 SandDrama，直接下載本倉庫的客戶端即可。前端倉庫僅供需要二次開發或定製前端介面的開發者使用。
 
 ---
 
@@ -669,7 +669,7 @@ pm2 monit             # 監控面板
 
 拉群小助手:
 
-<img src="./QR.png" alt="Toonflow QR" height="400"/>
+<img src="./QR.png" alt="SandDrama QR" height="400"/>
 
 也可以點擊圖示加入 Discord：
 
@@ -681,25 +681,25 @@ pm2 monit             # 監控面板
 
 # 💌 聯繫我們
 
-📧 信箱：[ltlctools@outlook.com](mailto:ltlctools@outlook.com?subject=Toonflow諮詢)
+📧 信箱：[ltlctools@outlook.com](mailto:ltlctools@outlook.com?subject=SandDrama諮詢)
 
 ---
 
 # 📜 許可證
 
-Toonflow 基於 Apache-2.0 協議開源發布，並附有補充商業協議。
+SandDrama 基於 Apache-2.0 協議開源發布，並附有補充商業協議。
 
 許可證詳情：https://www.apache.org/licenses/LICENSE-2.0
 
 ## 補充協議
 
-- 若將本軟體以產品形式分發給 **2 個及以上獨立第三方**使用，須取得 HBAI-Ltd **書面商業授權**。
+- 若將本軟體以產品形式分發給 **2 個及以上獨立第三方**使用，須取得 cynic-1 **書面商業授權**。
 - **≤ 5 個法人**聯合運營內部使用，不對外提供服務的，視為內部使用，**無需授權**。
-- 不得刪除或修改 Toonflow 中的標識或版權資訊。
+- 不得刪除或修改 SandDrama 中的標識或版權資訊。
 
 ## 永久免費場景
 
-- ✅ 用 Toonflow 製作內容並獲得平台分帳
+- ✅ 用 SandDrama 製作內容並獲得平台分帳
 - ✅ 二次開發供自己團隊內部使用
 - ✅ ≤ 5 個法人聯合運營內部使用
 - ✅ 個人學習、研究、非商業用途
@@ -722,16 +722,16 @@ Toonflow 基於 Apache-2.0 協議開源發布，並附有補充商業協議。
 
 # ⭐️ 星標歷史
 
-[![Star History Rank](https://api.star-history.com/badge?repo=HBAI-Ltd/Toonflow-app)](https://www.star-history.com/#HBAI-Ltd/Toonflow-app)
+[![Star History Rank](https://api.star-history.com/badge?repo=cynic-1/SandDrama-app)](https://www.star-history.com/#cynic-1/SandDrama-app)
 
-[![Star History Chart](https://api.star-history.com/svg?repos=HBAI-Ltd/Toonflow-app&type=timeline&legend=top-left)](https://www.star-history.com/#HBAI-Ltd/Toonflow-app&type=timeline&legend=top-left)
+[![Star History Chart](https://api.star-history.com/svg?repos=cynic-1/SandDrama-app&type=timeline&legend=top-left)](https://www.star-history.com/#cynic-1/SandDrama-app&type=timeline&legend=top-left)
 
 ---
 
 
 # 🙏 致謝
 
-感謝以下開源專案為 Toonflow 提供強大支援：
+感謝以下開源專案為 SandDrama 提供強大支援：
 
 - [Express](https://expressjs.com/) - 快速、開放、極簡的 Node.js Web 框架
 - [AI SDK](https://ai-sdk.dev/) - 面向 TypeScript 的 AI 工具包
@@ -743,7 +743,7 @@ Toonflow 基於 Apache-2.0 協議開源發布，並附有補充商業協議。
 - [Electron](https://www.electronjs.org/) - 跨平台桌面應用開發框架
 - [Hugging Face Transformers](https://huggingface.co/docs/transformers.js) - 本地 ML 推理庫
 
-感謝以下組織/單位/個人為 Toonflow 提供支援：
+感謝以下組織/單位/個人為 SandDrama 提供支援：
 
 <table>
   <thead>

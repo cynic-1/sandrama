@@ -164,7 +164,7 @@ export default async (knex: Knex): Promise<void> => {
   }
   const defList = Object.keys(vendorData)
     .map((filename) => filename.replace(/\.ts$/, ""))
-    .filter((id) => id !== "toonflow");
+    .filter((id) => id !== "sanddrama");
   const existingIds = data.map((i: any) => i.id);
   for (const id of defList) {
     if (!existingIds.includes(id)) {
@@ -188,7 +188,7 @@ export default async (knex: Knex): Promise<void> => {
   if (Number(minimaxVer) < 2.1) {
     u.vendor.writeCode("minimax", vendorData["minimax.ts"]);
   }
-  await knex("o_vendorConfig").where("id", "toonflow").delete();
+  await knex("o_vendorConfig").where("id", "sanddrama").delete();
 };
 
 async function tempOnsert(tsCode: string) {
@@ -201,7 +201,7 @@ async function tempOnsert(tsCode: string) {
     id: vendor.id,
     inputValues: JSON.stringify(vendor.inputValues ?? {}),
     models: JSON.stringify([]),
-    enable: vendor.id == "toonflow" ? 1 : 0,
+    enable: vendor.id == "sanddrama" ? 1 : 0,
   });
   u.vendor.writeCode(vendor.id, tsCode);
 }

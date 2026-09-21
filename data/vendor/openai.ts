@@ -43,7 +43,7 @@ interface VideoConfig {
 const vendor: VendorConfig = {
   id: "openai",
   version: "3.0",
-  author: "Toonflow",
+  author: "SandDrama",
   name: "OpenSand 全模态",
   description: "OpenSand 中转站的文本、图像和视频模型服务。",
   icon: "",
@@ -200,7 +200,7 @@ async function registerOpenSandAsset(publicUrl: string, modelName: string, asset
   const data = await jsonRequest("/sd/assets", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ URL: publicUrl, Name: "toonflow-reference", AssetType: assetType, model: modelName }),
+    body: JSON.stringify({ URL: publicUrl, Name: "sanddrama-reference", AssetType: assetType, model: modelName }),
   });
   const assetId = data?.data?.Id;
   if (!assetId) throw new Error("OpenSand素材登记未返回素材ID");
@@ -215,7 +215,7 @@ async function toOpenSandAsset(ref: { type: string; base64: string }, modelName:
     const form = new FormData();
     const kind = ref.type === "video" ? "video" : ref.type === "audio" ? "audio" : "image";
     form.append("file", Buffer.from(parts.data, "base64"), {
-      filename: "toonflow-reference-" + Date.now() + "." + fileExtension(parts.mime, kind),
+      filename: "sanddrama-reference-" + Date.now() + "." + fileExtension(parts.mime, kind),
       contentType: parts.mime,
     });
     let uploadData: any;
@@ -357,7 +357,7 @@ const videoRequest = async (config: VideoConfig, model: VideoModel): Promise<str
   const addVideo = async (ref: any, role = "reference_video") => content.push({ type: "video_url", video_url: { url: await toOpenSandAsset(ref, model.modelName) }, role });
   const addAudio = async (ref: any, role = "reference_audio") => content.push({ type: "audio_url", audio_url: { url: await toOpenSandAsset(ref, model.modelName) }, role });
 
-  // Toonflow 的 mode 会明确限制每类参考素材数量；不能把上传列表中的所有图片都提交给上游。
+  // SandDrama 的 mode 会明确限制每类参考素材数量；不能把上传列表中的所有图片都提交给上游。
   if (Array.isArray(config.mode)) {
     const imageRefs = refs.filter((ref) => ref.type === "image");
     const videoRefs = refs.filter((ref) => ref.type === "video");

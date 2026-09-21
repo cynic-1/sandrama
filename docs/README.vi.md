@@ -1,15 +1,15 @@
-<img src="https://capsule-render.vercel.app/api?type=waving&color=gradient&customColorList=6,11,20&height=200&section=header&text=Toonflow&fontSize=90&fontColor=ffffff&animation=fadeIn&fontAlignY=50" width="100%"/>
+<img src="https://capsule-render.vercel.app/api?type=waving&color=gradient&customColorList=6,11,20&height=200&section=header&text=SandDrama&fontSize=90&fontColor=ffffff&animation=fadeIn&fontAlignY=50" width="100%"/>
 
 <p>
-  <a href="https://github.com/HBAI-Ltd/Toonflow-app">
+  <a href="https://github.com/cynic-1/SandDrama-app">
     <img src="https://img.shields.io/badge/GitHub-181717?style=flat-square&logo=github&logoColor=white" alt="GitHub" />
   </a>
   &nbsp;|&nbsp;
-  <a href="https://gitee.com/HBAI-Ltd/Toonflow-app">
+  <a href="https://gitee.com/cynic-1/SandDrama-app">
     <img src="https://img.shields.io/badge/Gitee-C71D23?style=flat-square&logo=gitee&logoColor=white" alt="Gitee" />
   </a>
   &nbsp;|&nbsp;
-  <a href="https://gitcode.com/HBAI-Ltd/Toonflow-app">
+  <a href="https://gitcode.com/cynic-1/SandDrama-app">
     <img src="./atomgitLogo.svg" alt="Atomgit" style="height:20px"/>
   </a>
 </p>
@@ -26,34 +26,34 @@
 
 <div align="center">
   <p align="center">
-    <img src="./logo.png" alt="Toonflow Logo" height="120"/>
+    <img src="./logo.png" alt="SandDrama Logo" height="120"/>
   </p>
 
   <p align="center">
     <a href="https://git.io/typing-svg" target="_blank">
       <picture>
-        <source media="(prefers-color-scheme: dark)" srcset="https://readme-typing-svg.demolab.com?font=Fira+Code&size=40&duration=3000&pause=1000&color=FFFFFF&center=true&vCenter=true&width=600&lines=Toonflow;Nhà+máy+phim+ngắn+AI;Nhấc+ngón+tay%2C+tiểu+thuyết+thành+phim+trong+giây+lát!" />
-        <img alt="Typing SVG" src="https://readme-typing-svg.demolab.com?font=Fira+Code&size=40&duration=3000&pause=1000&color=000000&center=true&vCenter=true&width=600&lines=Toonflow;Nhà+máy+phim+ngắn+AI;Nhấc+ngón+tay%2C+tiểu+thuyết+thành+phim+trong+giây+lát!" />
+        <source media="(prefers-color-scheme: dark)" srcset="https://readme-typing-svg.demolab.com?font=Fira+Code&size=40&duration=3000&pause=1000&color=FFFFFF&center=true&vCenter=true&width=600&lines=SandDrama;Nhà+máy+phim+ngắn+AI;Nhấc+ngón+tay%2C+tiểu+thuyết+thành+phim+trong+giây+lát!" />
+        <img alt="Typing SVG" src="https://readme-typing-svg.demolab.com?font=Fira+Code&size=40&duration=3000&pause=1000&color=000000&center=true&vCenter=true&width=600&lines=SandDrama;Nhà+máy+phim+ngắn+AI;Nhấc+ngón+tay%2C+tiểu+thuyết+thành+phim+trong+giây+lát!" />
       </picture>
     </a>
   </p>
 
   <p align="center">
-    <a href="https://github.com/HBAI-Ltd/Toonflow-app/stargazers">
-      <img src="https://img.shields.io/github/stars/HBAI-Ltd/Toonflow-app?style=for-the-badge&logo=github" alt="Huy hiệu Sao" />
+    <a href="https://github.com/cynic-1/SandDrama-app/stargazers">
+      <img src="https://img.shields.io/github/stars/cynic-1/SandDrama-app?style=for-the-badge&logo=github" alt="Huy hiệu Sao" />
     </a>
     <a href="https://www.apache.org/licenses/LICENSE-2.0" target="_blank">
       <img src="https://img.shields.io/badge/Giấy phép-Apache%202.0-blue.svg?style=for-the-badge" alt="Huy hiệu Giấy phép Apache-2.0" />
     </a>
-    <a href="https://github.com/HBAI-Ltd/Toonflow-app/releases">
-      <img alt="release" src="https://img.shields.io/github/v/release/HBAI-Ltd/Toonflow-app?style=for-the-badge" />
+    <a href="https://github.com/cynic-1/SandDrama-app/releases">
+      <img alt="release" src="https://img.shields.io/github/v/release/cynic-1/SandDrama-app?style=for-the-badge" />
     </a>
   </p>
   <p align="center">
-    <a href="https://github.com/HBAI-Ltd/Toonflow-app/network/members">
-      <img src="https://img.shields.io/github/forks/HBAI-Ltd/Toonflow-app?style=for-the-badge&logo=github&color=orange" alt="Huy hiệu Fork" />
+    <a href="https://github.com/cynic-1/SandDrama-app/network/members">
+      <img src="https://img.shields.io/github/forks/cynic-1/SandDrama-app?style=for-the-badge&logo=github&color=orange" alt="Huy hiệu Fork" />
     </a>
-    <a href="https://atomgit.com/HBAI-Ltd/Toonflow-app">
+    <a href="https://atomgit.com/cynic-1/SandDrama-app">
       <img src="https://img.shields.io/badge/AtomGit-G--Star%20No.540-FF6B35?style=for-the-badge&logo=git&logoColor=white" alt="AtomGit G-Star Số 540" />
     </a>
     <a href="https://discord.gg/HEjKmpNpAZ">
@@ -61,14 +61,14 @@
     </a>
   </p>
   <p align="center">
-    <a href="https://github.com/HBAI-Ltd/Toonflow-app/issues">
-      <img src="https://img.shields.io/github/issues/HBAI-Ltd/Toonflow-app?style=for-the-badge&color=F48D73" alt="Vấn đề" />
+    <a href="https://github.com/cynic-1/SandDrama-app/issues">
+      <img src="https://img.shields.io/github/issues/cynic-1/SandDrama-app?style=for-the-badge&color=F48D73" alt="Vấn đề" />
     </a>
-    <a href="https://github.com/HBAI-Ltd/Toonflow-app/graphs/contributors">
-      <img src="https://img.shields.io/github/contributors/HBAI-Ltd/Toonflow-app?style=for-the-badge&color=2088FF" alt="Người đóng góp" />
+    <a href="https://github.com/cynic-1/SandDrama-app/graphs/contributors">
+      <img src="https://img.shields.io/github/contributors/cynic-1/SandDrama-app?style=for-the-badge&color=2088FF" alt="Người đóng góp" />
     </a>
-    <a href="https://github.com/HBAI-Ltd/Toonflow-app/commits">
-      <img src="https://img.shields.io/github/last-commit/HBAI-Ltd/Toonflow-app?style=for-the-badge&color=blueviolet" alt="Cam kết cuối" />
+    <a href="https://github.com/cynic-1/SandDrama-app/commits">
+      <img src="https://img.shields.io/github/last-commit/cynic-1/SandDrama-app?style=for-the-badge&color=blueviolet" alt="Cam kết cuối" />
     </a>
   </p>
   <p align="center">
@@ -102,7 +102,7 @@
 
 # 🌐 Hỗ trợ đa ngôn ngữ
 
-Toonflow hỗ trợ giao diện các ngôn ngữ sau:
+SandDrama hỗ trợ giao diện các ngôn ngữ sau:
 
 | Ngôn ngữ       | Ngôn ngữ              |
 | ---------- | --------------------- |
@@ -120,7 +120,7 @@ Toonflow hỗ trợ giao diện các ngôn ngữ sau:
 
 # 🌟 Chức năng chính
 
-Toonflow là một bàn làm việc AI dành cho sản xuất phim ngắn, xoay quanh quy trình "Lên kế hoạch → Viết kịch bản → Phân cảnh → Xuất phim" để tạo thành một vòng lặp hoàn chỉnh, đồng thời hỗ trợ quy trình sản xuất có thể bản địa hóa, có thể lập trình và liên tục cải tiến.
+SandDrama là một bàn làm việc AI dành cho sản xuất phim ngắn, xoay quanh quy trình "Lên kế hoạch → Viết kịch bản → Phân cảnh → Xuất phim" để tạo thành một vòng lặp hoàn chỉnh, đồng thời hỗ trợ quy trình sản xuất có thể bản địa hóa, có thể lập trình và liên tục cải tiến.
 
 - ✅ **Bàn làm việc sản xuất trên Canvas vô hạn**  
   Tổ chức kịch bản, nhân vật, phân cảnh, tài liệu và nút video dưới dạng canvas vô hạn, hỗ trợ sắp xếp tự do, quay lui và sản xuất song song, không bị giới hạn bởi các bước tuyến tính.
@@ -161,9 +161,9 @@ Toonflow là một bàn làm việc AI dành cho sản xuất phim ngắn, xoay 
 ## 📺 Hướng dẫn bằng video
 
 https://www.bilibili.com/video/BV1oXD7BqEqJ
-[![Toonflow 12 phút bắt đầu nhanh với AI Video](./videoCover.jpg)](https://www.bilibili.com/video/BV1oXD7BqEqJ)
+[![SandDrama 12 phút bắt đầu nhanh với AI Video](./videoCover.jpg)](https://www.bilibili.com/video/BV1oXD7BqEqJ)
 
-**Toonflow 12 phút bắt đầu nhanh với AI Video**
+**SandDrama 12 phút bắt đầu nhanh với AI Video**
 👉 [Nhấp để xem](https://www.bilibili.com/video/BV1oXD7BqEqJ)
 
 📱 Quét mã QR bằng WeChat để xem
@@ -174,7 +174,7 @@ https://www.bilibili.com/video/BV1oXD7BqEqJ
 
 # 📸 Ảnh chụp màn hình và video trình diễn
 
-Các ảnh chụp màn hình và video dưới đây đến từ một bản demo phim ngắn AI được tạo bằng Toonflow, toàn bộ quá trình hoàn thành trong khoảng 2 giờ, bao gồm tạo kịch bản, làm phân cảnh và chỉnh sửa.
+Các ảnh chụp màn hình và video dưới đây đến từ một bản demo phim ngắn AI được tạo bằng SandDrama, toàn bộ quá trình hoàn thành trong khoảng 2 giờ, bao gồm tạo kịch bản, làm phân cảnh và chỉnh sửa.
 
 <div align="center">
 <table>
@@ -250,9 +250,9 @@ Trước khi cài đặt và sử dụng phần mềm này, vui lòng chuẩn b�
 
 | Hệ điều hành | GitHub | Ghi chú |
 | :------: |:------------------------------------------------------------|:------------- |
-| Windows | [Release](https://github.com/HBAI-Ltd/Toonflow-app/releases) | Gói cài đặt chính thức |
-| Linux | [Release](https://github.com/HBAI-Ltd/Toonflow-app/releases) | Gói cài đặt chính thức |
-| macOS | [Release](https://github.com/HBAI-Ltd/Toonflow-app/releases) | Gói cài đặt chính thức |
+| Windows | [Release](https://github.com/cynic-1/SandDrama-app/releases) | Gói cài đặt chính thức |
+| Linux | [Release](https://github.com/cynic-1/SandDrama-app/releases) | Gói cài đặt chính thức |
+| macOS | [Release](https://github.com/cynic-1/SandDrama-app/releases) | Gói cài đặt chính thức |
 
 > [!CAUTION]
 > Hệ thống MacOS vui lòng vào Cài đặt-Quyền riêng tư & Bảo mật để cấu hình bảo mật, nếu không có thể không mở được do vấn đề chứng chỉ
@@ -285,15 +285,15 @@ Sử dụng mã nguồn có sẵn tại địa phương để xây dựng trực
 
 ```shell
 # Đầu tiên clone dự án (nếu đã có thì bỏ qua)
-git clone https://github.com/HBAI-Ltd/Toonflow-app.git
-cd Toonflow-app
+git clone https://github.com/cynic-1/SandDrama-app.git
+cd SandDrama-app
 
 # Sử dụng docker-compose để xây dựng và khởi động cục bộ
 yarn docker:local
 
 # Hoặc xây dựng thủ công
-docker build -t toonflow .
-docker run -d -p <cổng_local>:10588 -v <đường_dẫn_dữ_liệu_local>:/app/data toonflow
+docker build -t sanddrama .
+docker run -d -p <cổng_local>:10588 -v <đường_dẫn_dữ_liệu_local>:/app/data sanddrama
 
 # Lúc này, tại đường dẫn /index.html của cổng tương ứng có thể truy cập trang
 # Ví dụ http://localhost:10588/index.html
@@ -344,8 +344,8 @@ npm install -g yarn pm2
 
 ```bash
 cd /opt
-git clone https://github.com/HBAI-Ltd/Toonflow-app.git
-cd Toonflow-app
+git clone https://github.com/cynic-1/SandDrama-app.git
+cd SandDrama-app
 yarn install
 yarn build
 ```
@@ -354,8 +354,8 @@ yarn build
 
 ```bash
 cd /opt
-git clone https://gitee.com/HBAI-Ltd/Toonflow-app.git
-cd Toonflow-app
+git clone https://gitee.com/cynic-1/SandDrama-app.git
+cd SandDrama-app
 yarn install
 yarn build
 ```
@@ -366,7 +366,7 @@ Tạo tệp `pm2.json`:
 
 ```json
 {
-  "name": "toonflow-app",
+  "name": "sanddrama-app",
   "script": "data/serve/app.js",
   "instances": "max",
   "exec_mode": "cluster",
@@ -400,7 +400,7 @@ pm2 save
 
 ```bash
 pm2 list              # Xem tiến trình
-pm2 logs toonflow-app # Xem nhật ký
+pm2 logs sanddrama-app # Xem nhật ký
 pm2 restart all       # Khởi động lại dịch vụ
 pm2 monit             # Bảng điều khiển giám sát
 ```
@@ -413,8 +413,8 @@ pm2 monit             # Bảng điều khiển giám sát
 
 Nếu cần triển khai riêng lẻ hoặc tùy chỉnh giao diện frontend, vui lòng tham khảo kho lưu trữ frontend:
 
-- **GitHub**: [Toonflow-web](https://github.com/HBAI-Ltd/Toonflow-web)
-- **Gitee**: [Toonflow-web](https://gitee.com/HBAI-Ltd/Toonflow-web)
+- **GitHub**: [SandDrama-web](https://github.com/cynic-1/SandDrama-web)
+- **Gitee**: [SandDrama-web](https://gitee.com/cynic-1/SandDrama-web)
 
 > 💡 **Ghi chú**: Kho lưu trữ này đã được tích hợp sẵn tài nguyên frontend đã biên dịch, người dùng thông thường không cần triển khai riêng frontend. Kho lưu trữ frontend chỉ dành cho các nhà phát triển cần phát triển thứ cấp.
 
@@ -422,7 +422,7 @@ Nếu cần triển khai riêng lẻ hoặc tùy chỉnh giao diện frontend, v
 
 > 🎉 **Nền tảng đối tác tính toán được chứng nhận chính thức mới —— Zhixing Cloud (AI Galaxy)**
 >
-> **[Zhixing Cloud (AI Galaxy)](https://www.ai-galaxy.com/)** là **nhà cung cấp image thương mại được Toonflow chính thức ủy quyền**, đã hợp pháp cài đặt, phân phối và hỗ trợ sử dụng thương mại toàn bộ image sản xuất phim ngắn AI của Toonflow, **sẵn sàng sử dụng ngay, không cần triển khai thủ công**.
+> **[Zhixing Cloud (AI Galaxy)](https://www.ai-galaxy.com/)** là **nhà cung cấp image thương mại được SandDrama chính thức ủy quyền**, đã hợp pháp cài đặt, phân phối và hỗ trợ sử dụng thương mại toàn bộ image sản xuất phim ngắn AI của SandDrama, **sẵn sàng sử dụng ngay, không cần triển khai thủ công**.
 >
 > - 🌐 Trang chủ: [https://www.ai-galaxy.com](https://www.ai-galaxy.com)
 > - 📖 Hướng dẫn triển khai image chính thức: [Nhấp để xem](https://mp.weixin.qq.com/s/lq9X1ovQ1_TKeXMOLgicKg?scene=1)
@@ -434,23 +434,23 @@ Nếu cần triển khai riêng lẻ hoặc tùy chỉnh giao diện frontend, v
 
 1. Trên Zhixing Cloud - Chợ tính toán - 4090 / 4090 Plus, nhấp "Thuê ngay" để vào trang chi tiết thuê.
    > 💡 Nên bật chế độ "tự động gia hạn theo giờ" để tránh phiên bản hết hạn khi video đang render.
-2. Chọn image: `windows10LTSCwin10_Toonflow` - Tạo phiên bản (instance).
+2. Chọn image: `windows10LTSCwin10_SandDrama` - Tạo phiên bản (instance).
 3. Đợi phiên bản khởi động 30~60 giây, kiểm tra phương thức kết nối - tải file đăng nhập RDP - sao chép mật khẩu - nhấp đúp vào file kết nối đám mây đã tải xuống.
 4. Dán mật khẩu đã sao chép và đăng nhập, kết nối vào màn hình đám mây.
    > 💡 Di chuột đến đầu màn hình đám mây và dừng lại một chút, thanh công cụ chuyển đổi màn hình sẽ hiện ra, có thể nhấp "──" để chuyển về màn hình máy tính của bạn, hoặc "□" để thu nhỏ thành cửa sổ trên màn hình máy tính của bạn.
 
-#### II. Giai đoạn cấu hình Toonflow, khởi động ComfyUI
+#### II. Giai đoạn cấu hình SandDrama, khởi động ComfyUI
 
-1. Trước tiên cấu hình mô hình mà Agent gọi: mở Toonflow trên màn hình - Dịch vụ mô hình - Giao diện chuẩn OpenAI - điền khóa API và địa chỉ yêu cầu.
+1. Trước tiên cấu hình mô hình mà Agent gọi: mở SandDrama trên màn hình - Dịch vụ mô hình - Giao diện chuẩn OpenAI - điền khóa API và địa chỉ yêu cầu.
    Tài khoản mặc định: `admin`  Mật khẩu: `admin123` (nên đổi mật khẩu sau khi đăng nhập)
    > 💡 ửe đây trực tiếp sử dụng dịch vụ Token mô hình ngôn ngữ lớn AI của Zhixing Cloud, giao diện chính thức, ổn định và an toàn, giảm giá tới 40% (chuyển tiểu thuyết thành kịch bản chỉ tốn khoảng ¥0.64).
    - Địa chỉ yêu cầu Token gọi mô hình của Zhixing Cloud: `https://token.ai-galaxy.com/v1`
    - Các bước nạp Token của Zhixing Cloud: Chợ Token - Tổng quan tài khoản - Nạp tiền - nạp số dư tài khoản Zhixing Cloud hoặc phiếu tính toán vào tài khoản Token.
-   - Sau khi nạp tiền, vào "Quản lý Key" - Tạo API mới, đặt tên là `Toonflow` hoặc tên khác tùy ý, nhấp xác nhận và sao chép khóa API.
-2. Quay lại bước 1, dán khóa API và địa chỉ yêu cầu đã tạo vào Dịch vụ mô hình của Toonflow, điền xong nhấp vào chỗ trống, hệ thống sẽ hiển thị "Cấu hình nhà cung cấp đã được cập nhật".
+   - Sau khi nạp tiền, vào "Quản lý Key" - Tạo API mới, đặt tên là `SandDrama` hoặc tên khác tùy ý, nhấp xác nhận và sao chép khóa API.
+2. Quay lại bước 1, dán khóa API và địa chỉ yêu cầu đã tạo vào Dịch vụ mô hình của SandDrama, điền xong nhấp vào chỗ trống, hệ thống sẽ hiển thị "Cấu hình nhà cung cấp đã được cập nhật".
    Nhấp "Thêm thủ công", quay lại trang Chợ Token của Zhixing Cloud, sao chép đầy đủ tên mô hình.
    > 💡 Một Key có thể gọi tất cả các mô hình trên Zhixing Cloud, chọn mô hình bạn muốn dùng là được, khuyến nghị `deepseek-v4-pro`.
-   Dán tên mô hình đầy đủ vào Toonflow và xác nhận để hoàn tất cấu hình mô hình.
+   Dán tên mô hình đầy đủ vào SandDrama và xác nhận để hoàn tất cấu hình mô hình.
 3. Sau khi cấu hình xong, kiểm tra hai điểm:
    - Ba công tắc gọi mô hình trong Dịch vụ mô hình đã được bật hay chưa
    - Mô hình được gọi trong cấu hình Agent có khớp với cấu hình của bạn hay không (nếu không khớp, nhấp để sửa)
@@ -468,7 +468,7 @@ Nếu cần triển khai riêng lẻ hoặc tùy chỉnh giao diện frontend, v
 >
 > ⛔ Nhánh `master` không chấp nhận bất kỳ PR nào ｜ ✅ Vui lòng gửi PR đến nhánh `develop`
 >
-> Chào mừng các nhà phát triển cùng tham gia xây dựng Toonflow. Nếu có hứng thú tham gia, vui lòng liên hệ quản lý ACT trong nhóm trao đổi.
+> Chào mừng các nhà phát triển cùng tham gia xây dựng SandDrama. Nếu có hứng thú tham gia, vui lòng liên hệ quản lý ACT trong nhóm trao đổi.
 
 ## 🛠️ Tech Stack
 
@@ -497,15 +497,15 @@ Nếu cần triển khai riêng lẻ hoặc tùy chỉnh giao diện frontend, v
    **Clone từ GitHub:**
 
    ```bash
-   git clone https://github.com/HBAI-Ltd/Toonflow-app.git
-   cd Toonflow-app
+   git clone https://github.com/cynic-1/SandDrama-app.git
+   cd SandDrama-app
    ```
 
    **Clone từ Gitee (khuyến nghị cho nội địa Trung Quốc):**
 
    ```bash
-   git clone https://gitee.com/HBAI-Ltd/Toonflow-app.git
-   cd Toonflow-app
+   git clone https://gitee.com/cynic-1/SandDrama-app.git
+   cd SandDrama-app
    ```
 
 2. **Cài đặt phụ thuộc**
@@ -590,8 +590,8 @@ Nếu cần triển khai riêng lẻ hoặc tùy chỉnh giao diện frontend, v
 
 Nếu muốn sửa đổi giao diện frontend, vui lòng đến kho lưu trữ frontend để phát triển:
 
-- **GitHub**: [Toonflow-web](https://github.com/HBAI-Ltd/Toonflow-web)
-- **Gitee**: [Toonflow-web](https://gitee.com/HBAI-Ltd/Toonflow-web)
+- **GitHub**: [SandDrama-web](https://github.com/cynic-1/SandDrama-web)
+- **Gitee**: [SandDrama-web](https://gitee.com/cynic-1/SandDrama-web)
 
 Sau khi xây dựng frontend, sao chép nội dung thư mục `dist` vào thư mục `data/web` của dự án này để tích hợp.
 
@@ -658,10 +658,10 @@ Sau khi xây dựng frontend, sao chép nội dung thư mục `dist` vào thư m
 
 | Kho lưu trữ | Giải thích | GitHub | Gitee |
 | ---------------- | ---------------------------------- | -------------------------------------------------- | ------------------------------------------------ |
-| **Toonflow-app** | Ứng dụng đầy đủ (kho lưu trữ này, khuyến nghị cho người dùng thông thường) | [GitHub](https://github.com/HBAI-Ltd/Toonflow-app) | [Gitee](https://gitee.com/HBAI-Ltd/Toonflow-app) |
-| **Toonflow-web** | Mã nguồn frontend (phù hợp với nhà phát triển frontend) | [GitHub](https://github.com/HBAI-Ltd/Toonflow-web) | [Gitee](https://gitee.com/HBAI-Ltd/Toonflow-web) |
+| **SandDrama-app** | Ứng dụng đầy đủ (kho lưu trữ này, khuyến nghị cho người dùng thông thường) | [GitHub](https://github.com/cynic-1/SandDrama-app) | [Gitee](https://gitee.com/cynic-1/SandDrama-app) |
+| **SandDrama-web** | Mã nguồn frontend (phù hợp với nhà phát triển frontend) | [GitHub](https://github.com/cynic-1/SandDrama-web) | [Gitee](https://gitee.com/cynic-1/SandDrama-web) |
 
-> 💡 **Gợi ý**: Nếu bạn chỉ muốn sử dụng Toonflow, hãy tải trực tiếp ứng dụng từ kho lưu trữ này. Kho lưu trữ frontend chỉ dành cho các nhà phát triển cần phát triển thứ cấp hoặc tùy chỉnh giao diện frontend.
+> 💡 **Gợi ý**: Nếu bạn chỉ muốn sử dụng SandDrama, hãy tải trực tiếp ứng dụng từ kho lưu trữ này. Kho lưu trữ frontend chỉ dành cho các nhà phát triển cần phát triển thứ cấp hoặc tùy chỉnh giao diện frontend.
 
 ---
 
@@ -669,7 +669,7 @@ Sau khi xây dựng frontend, sao chép nội dung thư mục `dist` vào thư m
 
 Trợ lý thêm nhóm:
 
-<img src="./QR.png" alt="Toonflow QR" height="400"/>
+<img src="./QR.png" alt="SandDrama QR" height="400"/>
 
 Cũng có thể nhấp vào biểu tượng để tham gia Discord:
 
@@ -681,25 +681,25 @@ Hoặc nhấp vào liên kết mời: [https://discord.gg/HEjKmpNpAZ](https://di
 
 # 💌 Liên hệ với chúng tôi
 
-📧 Email: [ltlctools@outlook.com](mailto:ltlctools@outlook.com?subject=Toonflow咨询)
+📧 Email: [ltlctools@outlook.com](mailto:ltlctools@outlook.com?subject=SandDrama咨询)
 
 ---
 
 # 📜 Giấy phép
 
-Toonflow được phát hành dưới dạng mã nguồn mở dựa trên giấy phép Apache-2.0, kèm theo thỏa thuận thương mại bổ sung.
+SandDrama được phát hành dưới dạng mã nguồn mở dựa trên giấy phép Apache-2.0, kèm theo thỏa thuận thương mại bổ sung.
 
 Chi tiết giấy phép: https://www.apache.org/licenses/LICENSE-2.0
 
 ## Thỏa thuận bổ sung
 
-- Nếu phân phối phần mềm này dưới dạng sản phẩm cho **2 bên thứ ba độc lập trở lên** sử dụng, phải có **giấy phép thương mại bằng văn bản** từ HBAI-Ltd.
+- Nếu phân phối phần mềm này dưới dạng sản phẩm cho **2 bên thứ ba độc lập trở lên** sử dụng, phải có **giấy phép thương mại bằng văn bản** từ cynic-1.
 - **≤ 5 pháp nhân** đồng vận hành sử dụng nội bộ, không cung cấp dịch vụ ra bên ngoài, được coi là sử dụng nội bộ, **không cần cấp phép**.
-- Không được xóa hoặc sửa đổi nhãn hiệu hoặc thông tin bản quyền trong Toonflow.
+- Không được xóa hoặc sửa đổi nhãn hiệu hoặc thông tin bản quyền trong SandDrama.
 
 ## Kịch bản miễn phí vĩnh viễn
 
-- ✅ Sử dụng Toonflow để tạo nội dung và nhận chia sẻ doanh thu từ nền tảng
+- ✅ Sử dụng SandDrama để tạo nội dung và nhận chia sẻ doanh thu từ nền tảng
 - ✅ Phát triển thứ cấp cho nhóm của riêng bạn sử dụng nội bộ
 - ✅ ≤ 5 pháp nhân đồng vận hành sử dụng nội bộ
 - ✅ Học tập, nghiên cứu cá nhân, mục đích phi thương mại
@@ -722,16 +722,16 @@ Thỏa thuận đầy đủ xem trong tệp [LICENSE](./LICENSE).
 
 # ⭐️ Lịch sử Star
 
-[![Star History Rank](https://api.star-history.com/badge?repo=HBAI-Ltd/Toonflow-app)](https://www.star-history.com/#HBAI-Ltd/Toonflow-app)
+[![Star History Rank](https://api.star-history.com/badge?repo=cynic-1/SandDrama-app)](https://www.star-history.com/#cynic-1/SandDrama-app)
 
-[![Star History Chart](https://api.star-history.com/svg?repos=HBAI-Ltd/Toonflow-app&type=timeline&legend=top-left)](https://www.star-history.com/#HBAI-Ltd/Toonflow-app&type=timeline&legend=top-left)
+[![Star History Chart](https://api.star-history.com/svg?repos=cynic-1/SandDrama-app&type=timeline&legend=top-left)](https://www.star-history.com/#cynic-1/SandDrama-app&type=timeline&legend=top-left)
 
 ---
 
 
 # 🙏 Lời cảm ơn
 
-Cảm ơn các dự án mã nguồn mở sau đã cung cấp hỗ trợ mạnh mẽ cho Toonflow:
+Cảm ơn các dự án mã nguồn mở sau đã cung cấp hỗ trợ mạnh mẽ cho SandDrama:
 
 - [Express](https://expressjs.com/) - Framework Web Node.js nhanh, mở, tối giản
 - [AI SDK](https://ai-sdk.dev/) - Bộ công cụ AI dành cho TypeScript
@@ -743,7 +743,7 @@ Cảm ơn các dự án mã nguồn mở sau đã cung cấp hỗ trợ mạnh m
 - [Electron](https://www.electronjs.org/) - Framework phát triển ứng dụng desktop đa nền tảng
 - [Hugging Face Transformers](https://huggingface.co/docs/transformers.js) - Thư viện suy luận ML cục bộ
 
-Cảm ơn các tổ chức/đơn vị/cá nhân sau đã cung cấp hỗ trợ cho Toonflow:
+Cảm ơn các tổ chức/đơn vị/cá nhân sau đã cung cấp hỗ trợ cho SandDrama:
 
 <table>
   <thead>
