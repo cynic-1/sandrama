@@ -13,12 +13,7 @@ export default router.post(
   }),
   async (req, res) => {
     const { id } = req.body;
-    await u.db("o_vendorConfig").where("id", id).del();
-    await u.db("o_agentDeploy").where("vendorId", id).update({
-      model: null,
-      vendorId: null,
-    });
-    fs.rmSync(path.join(u.getPath("vendor"), `${id}.ts`), { recursive: true, force: true });
+    await u.userSettings.deleteVendorConfig(id);
     res.status(200).send(success("删除成功"));
   },
 );

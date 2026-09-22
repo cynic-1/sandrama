@@ -12,9 +12,7 @@ export default router.post(
   }),
   async (req, res) => {
     const { agentUseMode } = req.body;
-    await u.db("o_setting").where("key", "agentUseMode").update({
-      value: agentUseMode,
-    });
+    await u.userSettings.setSetting("agentUseMode", agentUseMode);
     res.status(200).send(success("保存设置成功"));
   },
 );

@@ -2,6 +2,7 @@ import { transform } from "sucrase";
 import fs from "fs";
 import path from "path";
 import u from "@/utils";
+import userSettings from "@/utils/userSettings";
 
 type DiscoveredModel = Record<string, any>;
 
@@ -52,7 +53,7 @@ async function discoverOpenAICompatibleModels(id: string): Promise<DiscoveredMod
   // existing static model declarations until they implement their own catalog.
   if (id !== "openai") return [];
 
-  const inputRow = await u.db("o_vendorConfig").where("id", id).select("inputValues").first();
+  const inputRow = await userSettings.getVendorConfig(id);
   let inputValues: Record<string, string> = {};
   try {
     inputValues = JSON.parse(inputRow?.inputValues ?? "{}");
@@ -74,7 +75,8 @@ async function discoverOpenAICompatibleModels(id: string): Promise<DiscoveredMod
   }
   if (!baseUrl || !apiKey) return [];
 
-  const cached = discoveredModelCache.get(id);
+  const cacheKey = `${userSettings.currentUserId() ?? 0}:${id}`;
+  const cached = discoveredModelCache.get(cacheKey);
   if (cached && cached.expiresAt > Date.now()) return cached.models;
 
   const controller = new AbortController();
@@ -90,7 +92,7 @@ async function discoverOpenAICompatibleModels(id: string): Promise<DiscoveredMod
     const rawModels = Array.isArray(payload) ? payload : payload?.data ?? payload?.models ?? [];
     if (!Array.isArray(rawModels)) return [];
     const models = rawModels.map(discoveredModelConfig).filter(Boolean) as DiscoveredModel[];
-    discoveredModelCache.set(id, { expiresAt: Date.now() + 5 * 60 * 1000, models });
+    discoveredModelCache.set(cacheKey, { expiresAt: Date.now() + 5 * 60 * 1000, models });
     return models;
   } catch {
     return [];
@@ -100,11 +102,14 @@ async function discoverOpenAICompatibleModels(id: string): Promise<DiscoveredMod
 }
 
 export function clearModelDiscoveryCache(id?: string) {
-  if (id) discoveredModelCache.delete(id);
-  else discoveredModelCache.clear();
+  if (!id) return discoveredModelCache.clear();
+  const prefix = `${userSettings.currentUserId() ?? 0}:${id}`;
+  discoveredModelCache.delete(prefix);
 }
 
 export function writeCode(id: string | number, tsCode: string) {
+  // 登录用户的供应商脚本保存在其账号设置中，不能覆盖其他账号的全局脚本。
+  if (userSettings.currentUserId() !== undefined) return;
   const rootDir = u.getPath("vendor")
   fs.mkdirSync(rootDir, { recursive: true })
   if (fs.existsSync(path.join(rootDir,  `${id}.ts`))) {
@@ -116,12 +121,11 @@ export function writeCode(id: string | number, tsCode: string) {
 export function getCode(id: string): string {
   const rootDir = u.getPath("vendor");
   const targetFile = path.join(rootDir, `${id}.ts`);
-  if (!fs.existsSync(targetFile)) return "";
-  return fs.readFileSync(targetFile, "utf-8");
+  return userSettings.getVendorCode(id, () => (fs.existsSync(targetFile) ? fs.readFileSync(targetFile, "utf-8") : ""));
 }
 
 export async function getModelList(id: string): Promise<Array<any>> {
-  const models = await u.db("o_vendorConfig").where("id", id).select("models").first();
+  const models = await userSettings.getVendorConfig(id);
   if (!models || !models.models) return [];
   const code = getCode(id);
   const jsCode = transform(code, { transforms: ["typescript"] }).code;

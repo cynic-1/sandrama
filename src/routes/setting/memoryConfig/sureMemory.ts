@@ -23,12 +23,7 @@ export default router.post(
       req.body;
 
     const upsert = async (key: string, value: string) => {
-      const exists = await u.db("o_setting").where("key", key).first();
-      if (exists) {
-        await u.db("o_setting").where("key", key).update({ value });
-      } else {
-        await u.db("o_setting").insert({ key, value });
-      }
+      await u.userSettings.setSetting(key, value);
     };
 
     await upsert("messagesPerSummary", messagesPerSummary);

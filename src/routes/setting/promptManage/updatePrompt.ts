@@ -12,9 +12,7 @@ export default router.post(
   }),
   async (req, res) => {
     const { id, data } = req.body;
-    await u.db("o_prompt").where("id", id).update({
-      useData: data,
-    });
+    await u.userSettings.updatePrompt(id, { useData: data });
     res.status(200).send(success(123));
   },
 );

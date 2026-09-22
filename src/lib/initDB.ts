@@ -21,6 +21,7 @@ export default async (knex: Knex, forceInit: boolean = false): Promise<void> => 
         table.string("role").notNullable().defaultTo("user");
         table.boolean("disabled").notNullable().defaultTo(false);
         table.integer("tokenVersion").notNullable().defaultTo(0);
+        table.text("settings");
         table.integer("createdAt");
         table.integer("updatedAt");
         table.integer("lastLoginAt");

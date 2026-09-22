@@ -12,7 +12,7 @@ export default router.post(
   }),
   async (req, res) => {
     const { type } = req.body;
-    const dataList = await u.db("o_vendorConfig").select("id").where("enable", 1);
+    const dataList = (await u.userSettings.getVendorConfigRows()).filter((item: any) => Number(item.enable) === 1);
     if (!dataList || dataList.length === 0) {
       return res.status(200).send(success([]));
     }

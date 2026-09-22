@@ -35,16 +35,16 @@ export default router.post(
       // 预加载公共数据
       const [id, modelData] = model.split(/:(.+)/);
       const projectData = await u.db("o_project").select("*").where({ id: projectId }).first();
-      const videoPrompt = await u.db("o_prompt").where("type", "videoPromptGeneration").first();
+      const videoPrompt = await u.userSettings.getPromptByType("videoPromptGeneration");
       let videoPromptGeneration = "" as string | undefined;
 
-      const modelPromptData = await u.db("o_modelPrompt").where("vendorId", id).where("model", modelData).first();
+      const modelPromptData = await u.userSettings.getModelPrompt(id, modelData);
       //查询到 有绑定对应视频提示词
       if (modelPromptData) {
         const modelPromptRoot = u.getPath(["modelPrompt"]);
         try {
           const fullPath = path.join(modelPromptRoot, modelPromptData?.path!);
-          const content = await fs.readFile(fullPath, "utf-8");
+          const content = await u.userSettings.getModelPromptFile(modelPromptData?.path!, () => fs.readFile(fullPath, "utf-8"));
           videoPromptGeneration = content ?? "";
         } catch {}
       }
@@ -73,7 +73,8 @@ export default router.post(
         if (fileName) {
           try {
             const fullPath = path.join(videoPromptDir, fileName);
-            videoPromptGeneration = await fs.readFile(fullPath, "utf-8");
+            const relativePath = path.relative(modelPromptRoot, fullPath).replace(/\\/g, "/");
+            videoPromptGeneration = await u.userSettings.getModelPromptFile(relativePath, () => fs.readFile(fullPath, "utf-8"));
           } catch {
             // 文件不存在则忽略，继续用备选
           }

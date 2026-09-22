@@ -3,7 +3,6 @@ import { error, success } from "@/lib/responseFormat";
 import u from "@/utils";
 import { z } from "zod";
 import { validateFields } from "@/middleware/middleware";
-import fs from "fs/promises";
 import path from "path";
 
 const router = express.Router();
@@ -20,11 +19,14 @@ export default router.post(
 
     const modelPromptRoot = u.getPath(["modelPrompt"]);
     const dir = path.join(modelPromptRoot, type);
-
-    await fs.mkdir(dir, { recursive: true });
-
     const filePath = path.join(dir, `${name}.md`);
-    await fs.writeFile(filePath, data, "utf-8");
+    const resolvedRoot = path.resolve(modelPromptRoot);
+    const resolvedFile = path.resolve(filePath);
+    if (!resolvedFile.startsWith(resolvedRoot + path.sep)) {
+      return res.status(400).send(error("非法路径"));
+    }
+    const relativePath = path.relative(modelPromptRoot, resolvedFile).replace(/\\/g, "/");
+    await u.userSettings.setModelPromptFile(relativePath, data);
 
     res.status(200).send(success("保存成功"));
   },

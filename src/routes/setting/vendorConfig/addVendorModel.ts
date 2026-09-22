@@ -45,16 +45,11 @@ export default router.post(
   async (req, res) => {
     const { id, model } = req.body;
 
-    const models = await u.db("o_vendorConfig").where("id", id).first("models");
+    const models = await u.userSettings.getVendorConfig(id);
     if (models?.models) {
       const existingModels = JSON.parse(models.models);
       existingModels.push(model);
-      await u
-        .db("o_vendorConfig")
-        .where("id", id)
-        .update({
-          models: JSON.stringify(existingModels),
-        });
+      await u.userSettings.updateVendorConfig(id, { models: JSON.stringify(existingModels) });
     }
     res.status(200).send(success("更新成功"));
   },

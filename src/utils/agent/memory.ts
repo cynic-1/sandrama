@@ -66,7 +66,7 @@ class Memory {
   }
   private async getConfigData<T extends Record<string, string | number>>(defaults: T): Promise<T> {
     const keys = Object.keys(defaults) as (keyof T & string)[];
-    const rows = await u.db("o_setting").whereIn("key", keys);
+    const rows = await u.userSettings.getSettings(keys);
 
     const dbMap: Record<string, string | null> = {};
     for (const row of rows) {

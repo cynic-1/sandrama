@@ -15,12 +15,7 @@ export default router.post(
   async (req, res) => {
     const { id, inputValues } = req.body;
 
-    await u
-      .db("o_vendorConfig")
-      .where("id", id)
-      .update({
-        inputValues: JSON.stringify(inputValues),
-      });
+    await u.userSettings.updateVendorConfig(id, { inputValues: JSON.stringify(inputValues) });
     u.vendor.clearModelDiscoveryCache(id);
     res.status(200).send(success("更新成功"));
   },

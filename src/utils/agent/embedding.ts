@@ -4,19 +4,21 @@ import path from "path";
 import fs from "fs";
 import getPath from "@/utils/getPath";
 import db from "@/utils/db";
+import userSettings from "@/utils/userSettings";
 
 // ── 模型配置 ──
 // const modelOnnxFile = ["all-MiniLM-L6-v2", "onnx", "model_fp16.onnx"]; // 模型文件路径
 // const modelDtype = "fp16" as const; // 量化类型：fp32
-let extractor: FeatureExtractionPipeline | null = null;
+const extractors = new Map<number, FeatureExtractionPipeline>();
 
 export async function initEmbedding(): Promise<void> {
-  if (extractor) return;
+  const userId = userSettings.currentUserId() ?? 0;
+  if (extractors.has(userId)) return;
 
-  const modelConfigData = await db("o_setting").whereIn("key", ["modelOnnxFile", "modelDtype"]);
+  const modelConfigData = await userSettings.getSettings(["modelOnnxFile", "modelDtype"]);
   const modelObj: Record<string, string> = {};
   Object.entries(modelConfigData).forEach(([key, value]) => {
-    modelObj[key] = value as string;
+    modelObj[key] = value as unknown as string;
   });
   let modelOnnxFile = modelObj?.modelOnnxFile ? JSON.parse(modelObj.modelOnnxFile) : ["all-MiniLM-L6-v2", "onnx", "model_fp16.onnx"]; // 模型文件路径
   let modelDtype = modelObj?.modelDtype ?? ("fp16" as const); // 量化类型：fp32
@@ -31,12 +33,14 @@ export async function initEmbedding(): Promise<void> {
 
   const modelFolder = modelOnnxFile[0];
   // @ts-ignore - pipeline 重载联合类型过于复杂
-  extractor = await pipeline("feature-extraction", modelFolder, { dtype: modelDtype });
+  const extractor = await pipeline("feature-extraction", modelFolder, { dtype: modelDtype });
+  extractors.set(userId, extractor);
 }
 
 export async function getEmbedding(text: string): Promise<number[]> {
-  if (!extractor) await initEmbedding();
-  const output = await extractor!(text, { pooling: "mean", normalize: true });
+  const userId = userSettings.currentUserId() ?? 0;
+  if (!extractors.has(userId)) await initEmbedding();
+  const output = await extractors.get(userId)!(text, { pooling: "mean", normalize: true });
   return Array.from(output.data as Float32Array);
 }
 
@@ -45,6 +49,6 @@ export function cosineSimilarity(a: number[], b: number[]): number {
 }
 
 export async function disposeEmbedding(): Promise<void> {
-  await extractor?.dispose?.();
-  extractor = null;
+  for (const extractor of extractors.values()) await extractor.dispose?.();
+  extractors.clear();
 }

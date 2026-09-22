@@ -5,6 +5,7 @@ import * as agent from "@/agents/productionAgent/index";
 import ResTool from "@/socket/resTool";
 import db from "@/utils/db";
 import { isAdmin } from "@/utils/auth";
+import { runWithUser } from "@/utils/userSettings";
 
 async function verifyToken(rawToken: string): Promise<Boolean> {
   const setting = await u.db("o_setting").where("key", "tokenKey").select("value").first();
@@ -48,7 +49,10 @@ export default (nsp: Namespace) => {
       thinlLevel: 0,
     };
 
-    socket.on("updateContext", async (data: { isolationKey: string; projectId: number; scriptId: number }, callback) => {
+    const onUserEvent = <T extends any[]>(event: string, handler: (...args: T) => any) =>
+      socket.on(event, (...args: T) => runWithUser(Number(socket.data.user?.id), () => handler(...args)));
+
+    onUserEvent("updateContext", async (data: { isolationKey: string; projectId: number; scriptId: number }, callback) => {
       const user = socket.data.user;
       const project = await db("o_project").where("id", Number(data.projectId)).select("userId").first();
       if (!project || (!isAdmin(user) && Number(project.userId ?? 1) !== Number(user?.id))) {
@@ -64,7 +68,7 @@ export default (nsp: Namespace) => {
       callback?.({ success: true });
     });
 
-    socket.on("chat", async (data: { content: string }) => {
+    onUserEvent("chat", async (data: { content: string }) => {
       const { content } = data;
       abortController?.abort();
       abortController = new AbortController();

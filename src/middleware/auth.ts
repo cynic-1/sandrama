@@ -3,6 +3,7 @@ import crypto from "node:crypto";
 import jwt from "jsonwebtoken";
 import db from "@/utils/db";
 import { AuthenticatedUser, isAdmin } from "@/utils/auth";
+import { runWithUser } from "@/utils/userSettings";
 
 export type TokenPayload = {
   id: number;
@@ -74,7 +75,7 @@ export async function authenticateRequest(req: Request, res: Response, next: Nex
       disabled: Boolean(user.disabled),
       tokenVersion: Number(user.tokenVersion ?? 0),
     };
-    return next();
+    return runWithUser(Number(user.id), () => next());
   } catch {
     return res.status(401).send({ message: "无效的token" });
   }
@@ -179,9 +180,9 @@ export async function enforceProjectAccess(req: Request, res: Response, next: Ne
   // Database/configuration changes are shared system resources. Some destructive
   // legacy endpoints use GET, so they must be explicitly protected as well.
   const destructiveSettingPath = /\/setting\/(dbConfig\/(clearData|clearTable|importData)|memoryConfig\/delAllMemory)/.test(req.path);
-  if (req.path.startsWith("/setting/") && (destructiveSettingPath || (req.method !== "GET" && !req.path.startsWith("/setting/loginConfig/")))) {
-    return requireAdmin(req, res, next);
-  }
+  // 普通设置属于当前账号，不再要求管理员权限；数据库、技能文件和本地目录操作仍是全局资源。
+  const globalSettingPath = /^\/setting\/(dbConfig|skillManagement|fileManagement)\//.test(req.path);
+  if (destructiveSettingPath || globalSettingPath) return requireAdmin(req, res, next);
   if (req.path.startsWith("/other/deleteAllData")) return requireAdmin(req, res, next);
   if (req.path.startsWith("/test/")) return requireAdmin(req, res, next);
 

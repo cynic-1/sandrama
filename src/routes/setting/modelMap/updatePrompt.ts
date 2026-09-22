@@ -3,7 +3,6 @@ import { error, success } from "@/lib/responseFormat";
 import u from "@/utils";
 import { z } from "zod";
 import { validateFields } from "@/middleware/middleware";
-import fs from "fs/promises";
 import path from "path";
 
 const router = express.Router();
@@ -28,14 +27,8 @@ export default router.post(
       return res.status(400).send(error("非法路径"));
     }
 
-    // 文件不存在则报错
-    try {
-      await fs.access(resolvedFile);
-    } catch {
-      return res.status(404).send(error("文件不存在"));
-    }
-
-    await fs.writeFile(resolvedFile, data, "utf-8");
+    const relativePath = path.relative(modelPromptRoot, resolvedFile).replace(/\\/g, "/");
+    await u.userSettings.setModelPromptFile(relativePath, data);
     res.status(200).send(success("更新成功"));
   },
 );

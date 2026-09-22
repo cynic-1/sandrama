@@ -3,6 +3,7 @@ import u from "@/utils";
 import { Namespace, Socket } from "socket.io";
 import * as agent from "@/agents/scriptAgent/index";
 import ResTool from "@/socket/resTool";
+import { runWithUser } from "@/utils/userSettings";
 
 async function verifyToken(rawToken: string): Promise<Boolean> {
   const setting = await u.db("o_setting").where("key", "tokenKey").select("value").first();
@@ -45,7 +46,10 @@ export default (nsp: Namespace) => {
       thinlLevel: 0,
     };
 
-    socket.on("chat", async (data: { content: string }) => {
+    const onUserEvent = <T extends any[]>(event: string, handler: (...args: T) => any) =>
+      socket.on(event, (...args: T) => runWithUser(Number(socket.data.user?.id), () => handler(...args)));
+
+    onUserEvent("chat", async (data: { content: string }) => {
       const { content } = data;
       abortController?.abort();
       abortController = new AbortController();

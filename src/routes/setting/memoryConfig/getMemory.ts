@@ -4,18 +4,16 @@ import u from "@/utils";
 const router = express.Router();
 
 export default router.get("/", async (req, res) => {
-  const settingData = await u
-    .db("o_setting")
-    .whereIn("key", [
-      "messagesPerSummary",
-      "shortTermLimit",
-      "summaryMaxLength",
-      "summaryLimit",
-      "ragLimit",
-      "deepRetrieveSummaryLimit",
-      "modelOnnxFile",
-      "modelDtype",
-    ]);
+  const settingData = await u.userSettings.getSettings([
+    "messagesPerSummary",
+    "shortTermLimit",
+    "summaryMaxLength",
+    "summaryLimit",
+    "ragLimit",
+    "deepRetrieveSummaryLimit",
+    "modelOnnxFile",
+    "modelDtype",
+  ]);
 
   if (!settingData) return res.status(400).send(error(`获取记忆配置失败`));
   const memoryObj: Record<string, number | string | string[]> = {};

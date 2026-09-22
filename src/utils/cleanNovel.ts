@@ -27,7 +27,7 @@ class CleanNovel {
   private async processChapter(novel: o_novel): Promise<EventType | null> {
     try {
       const prompt = await u.getPrompts("event");
-      const promptData = await u.db("o_prompt").where("type", "eventExtraction").first();
+      const promptData = await u.userSettings.getPromptByType("eventExtraction");
       let eventExtraction = "" as string | undefined;
       if (promptData && promptData.useData) {
         eventExtraction = promptData.useData;

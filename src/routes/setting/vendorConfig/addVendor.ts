@@ -99,15 +99,16 @@ export default router.post(
     }
 
     if ((vendor.id as string).includes(":")) return res.status(400).send(error("id不能包含英文冒号"));
-    const data = await u.db("o_vendorConfig").where("id", vendor.id).first();
+    const data = await u.userSettings.getVendorConfig(vendor.id);
     if (data) return res.status(500).send(error("供应商id已存在"));
-    const [id] = await u.db("o_vendorConfig").insert({
+    await u.userSettings.insertVendorConfig({
       id: vendor.id,
       inputValues: JSON.stringify(vendor.inputValues ?? {}),
       models: JSON.stringify([]),
       enable: vendor.id == "sanddrama" ? 1 : 0,
     });
     u.vendor.writeCode(vendor.id, tsCode);
+    await u.userSettings.setVendorCode(vendor.id, tsCode);
     res.status(200).send(success(result.data));
   },
 );

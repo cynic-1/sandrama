@@ -4,18 +4,19 @@ import u from "@/utils";
 const router = express.Router();
 
 export default router.post("/", async (req, res) => {
-  const data = await u.db("o_vendorConfig").select("*");
+  const data = await u.userSettings.getVendorConfigRows();
 
   const list = (
     await Promise.all(
       data.map(async (item) => {
         const vendor = u.vendor.getVendor(item.id!);
         if (!vendor) {
-          await u.db("o_vendorConfig").where("id", item.id).delete();
+          await u.userSettings.deleteVendorConfig(String(item.id));
           return null
         };
         return {
           ...item,
+          id: item.id,
           inputValues: JSON.parse(item.inputValues ?? "{}"),
           models: await u.vendor.getModelList(item.id!),
           code: u.vendor.getCode(item.id!),

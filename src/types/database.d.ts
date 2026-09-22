@@ -204,6 +204,7 @@ export interface o_user {
   'name'?: string | null;
   'password'?: string | null;
   'role'?: string | null;
+  'settings'?: string | null;
   'tokenVersion'?: number | null;
   'updatedAt'?: number | null;
 }

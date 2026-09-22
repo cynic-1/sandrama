@@ -36,6 +36,7 @@ export default async (knex: Knex): Promise<void> => {
   await addColumn("o_user", "role", "string");
   await addColumn("o_user", "disabled", "boolean");
   await addColumn("o_user", "tokenVersion", "integer");
+  await addColumn("o_user", "settings", "text");
   await addColumn("o_user", "createdAt", "integer");
   await addColumn("o_user", "updatedAt", "integer");
   await addColumn("o_user", "lastLoginAt", "integer");
