@@ -43,9 +43,11 @@ SANDRAMA_PORT=10588
 ```dotenv
 SANDRAMA_PUBLIC_URL=https://sandrama.example.com
 SANDRAMA_PORT=10588
+# 建议固定媒体签名密钥，避免重启后旧的媒体 URL 立即失效
+OSS_SIGNING_SECRET=使用 openssl rand -hex 32 生成
 ```
 
-`SANDRAMA_PUBLIC_URL` 必须能被外部 AI 服务直接访问，不能填写 `localhost`、`127.0.0.1` 或 Docker 内部地址。它会被用于生成 `/oss/...`、`/assets/...` 和 `/skills/...` 的绝对 URL。
+`SANDRAMA_PUBLIC_URL` 必须能被外部 AI 服务直接访问，不能填写 `localhost`、`127.0.0.1` 或 Docker 内部地址。系统生成的 `/oss/...` 和 `/assets/...` URL 会带 1 小时有效的签名参数，外部 AI 无需登录即可读取签名 URL；不要手工删除 URL 后面的 `sd_expires` 和 `sd_access` 参数。
 
 ## 4. 构建并启动
 
@@ -68,6 +70,8 @@ docker run -d \
   -e NODE_ENV=prod \
   -e PORT=10588 \
   -e ossURL="$SANDRAMA_PUBLIC_URL" \
+  -e SANDRAMA_ADMIN_PASSWORD="${SANDRAMA_ADMIN_PASSWORD:-}" \
+  -e OSS_SIGNING_SECRET="${OSS_SIGNING_SECRET:-}" \
   -p "${SANDRAMA_PORT:-10588}:10588" \
   -v "$PWD/data:/app/data" \
   sandrama:latest yarn start
@@ -79,14 +83,15 @@ docker run -d \
 http://你的公网IP:10588/
 ```
 
-首次创建数据库时，默认管理员账号为：
+首次创建数据库时，建议通过环境变量设置管理员密码：
 
-```text
-账号：admin
-密码：opensand@2026
+```dotenv
+SANDRAMA_ADMIN_PASSWORD=设置一个长度至少 8 位的随机密码
 ```
 
-登录后应立即修改管理员密码。已有 `data/db2.sqlite` 时，程序会继续使用数据库中的账号密码，不会用默认值覆盖已有用户。
+未设置时兼容旧版本使用 `admin / opensand@2026`，这只适合本地测试；正式上线必须设置 `SANDRAMA_ADMIN_PASSWORD`，并登录后立即修改密码。已有 `data/db2.sqlite` 时，程序会继续使用数据库中的账号密码，不会用默认值覆盖已有用户。
+
+管理员登录后可访问 `/user-management.html` 创建、禁用、重置和删除用户。普通用户只能访问自己名下的项目；删除用户时其项目会转交当前管理员。
 
 ## 5. 从旧服务器迁移数据
 
@@ -148,6 +153,18 @@ curl http://你的公网IP/health
 然后在 SandDrama 的“设置 → 供应商配置 → OpenSand 全模态”中填写：
 
 - `请求地址`：OpenSand API 地址。
+- `默认API密钥（兼容旧配置）`：单 Key 配置时填写；使用多 Key 时可留空。
+- `多API密钥配置（JSON）`：按模型类型分配不同 Key，例如：
+
+```json
+[
+  {"name":"文本图片","key":"TEXT_IMAGE_KEY","types":["text","image"]},
+  {"name":"视频","key":"VIDEO_KEY","types":["video"]}
+]
+```
+
+也可以用 `models` 精确绑定模型名，例如 `{"key":"VIDEO_KEY","models":["seedance-2-0-mini-hc"]}`。同一模型优先匹配 `models`，再匹配 `types`，最后回退到默认 API 密钥。
+
 - `参考图床上传地址`：`http://你的公网IP/upload`，或 HTTPS 域名对应的 `/upload`。
 - `参考图床上传Token`：Caddy `.env` 中的 `UPLOAD_TOKEN`。
 
@@ -163,11 +180,13 @@ curl -I http://你的公网IP:10588/
 
 检查图片公网访问：
 
+从项目接口返回的 `filePath` 中复制完整 URL（必须保留 `sd_expires`、`sd_access` 和 `size` 参数），然后执行：
+
 ```bash
-curl -I "http://你的公网IP:10588/oss/项目ID/role/文件名.jpg?size=20"
+curl -I "接口返回的完整签名图片URL"
 ```
 
-预期返回 `HTTP/1.1 200`，且 `Content-Type` 为图片类型。
+预期返回 `HTTP/1.1 200`，且 `Content-Type` 为图片类型。直接猜测 `/oss/项目ID/...` 路径会被拒绝，这是多用户隔离的一部分。
 
 检查容器：
 
@@ -197,6 +216,8 @@ http(s)://公网地址/upload
 ```
 
 同时确认 OpenSand 的上传地址和 Token 已填写，且服务器安全组放通了对应端口。
+
+如果不想单独部署 Caddy，本仓库也提供了轻量图床服务：`deploy/sandrama-upload.py` 和 `deploy/sandrama-upload.service`。它使用 `X-Upload-Token` 保护上传、公开读取 `/uploads/...`，可由 Nginx 反向代理 `/upload` 和 `/uploads/`；生产环境不要把上传 Token 写入 Git 或 Nginx 公共配置。
 
 ### 页面或图片越来越卡
 

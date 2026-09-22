@@ -3,7 +3,8 @@ import u from "@/utils";
 import { z } from "zod";
 import { success } from "@/lib/responseFormat";
 import { validateFields } from "@/middleware/middleware";
-import { id } from "zod/locales";
+import { currentUser } from "@/middleware/auth";
+import { isAdmin } from "@/utils/auth";
 const router = express.Router();
 
 export default router.post(
@@ -16,6 +17,20 @@ export default router.post(
     }),
     async (req, res) => {
         const { items } = req.body;
+        const user = currentUser(req)!;
+        if (!isAdmin(user)) {
+            const storyboardIds = items.filter((item: any) => item.sources == "storyboard").map((item: any) => item.id);
+            const assetsIds = items.filter((item: any) => item.sources == "assets").map((item: any) => item.id);
+            const [storyboards, assets] = await Promise.all([
+                storyboardIds.length ? u.db("o_storyboard").whereIn("id", storyboardIds).select("projectId") : [],
+                assetsIds.length ? u.db("o_assets").whereIn("id", assetsIds).select("projectId") : [],
+            ]);
+            // 逐项校验归属，避免通过资源 ID 读取其他用户的文件。
+            for (const row of [...storyboards, ...assets]) {
+                const project = await u.db("o_project").where("id", row.projectId).select("userId").first();
+                if (!project || Number(project.userId ?? 1) !== user.id) return res.status(403).send({ message: "无权访问文件" });
+            }
+        }
         const result: Record<string, string> = {};
         const storyboardIds = items.filter((item: any) => item.sources == "storyboard").map((item: any) => item.id)
         const totalFilePaths = []

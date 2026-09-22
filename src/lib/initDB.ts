@@ -1,6 +1,7 @@
 import { Knex } from "knex";
 import { v4 as uuid } from "uuid";
 import { getEmbedding } from "@/utils/agent/embedding";
+import { createTokenKey, hashPassword } from "@/utils/auth";
 
 interface TableSchema {
   name: string;
@@ -15,13 +16,35 @@ export default async (knex: Knex, forceInit: boolean = false): Promise<void> => 
       name: "o_user",
       builder: (table) => {
         table.integer("id").notNullable();
-        table.text("name");
-        table.text("password");
+        table.text("name").notNullable();
+        table.text("password").notNullable();
+        table.string("role").notNullable().defaultTo("user");
+        table.boolean("disabled").notNullable().defaultTo(false);
+        table.integer("tokenVersion").notNullable().defaultTo(0);
+        table.integer("createdAt");
+        table.integer("updatedAt");
+        table.integer("lastLoginAt");
         table.primary(["id"]);
         table.unique(["id"]);
       },
       initData: async (knex) => {
-        await knex("o_user").insert([{ id: 1, name: "admin", password: "opensand@2026" }]);
+        const now = Date.now();
+        const initialAdminPassword = process.env.SANDRAMA_ADMIN_PASSWORD || "opensand@2026";
+        if (!process.env.SANDRAMA_ADMIN_PASSWORD) {
+          console.warn("[安全提示] 当前使用默认管理员密码，请通过 SANDRAMA_ADMIN_PASSWORD 设置正式密码并重新初始化数据库。");
+        }
+        await knex("o_user").insert([
+          {
+            id: 1,
+            name: "admin",
+            password: await hashPassword(initialAdminPassword),
+            role: "admin",
+            disabled: false,
+            tokenVersion: 0,
+            createdAt: now,
+            updatedAt: now,
+          },
+        ]);
       },
     },
     //项目表
@@ -274,7 +297,7 @@ export default async (knex: Knex, forceInit: boolean = false): Promise<void> => 
         await knex("o_setting").insert([
           {
             key: "tokenKey",
-            value: uuid().slice(0, 8),
+            value: createTokenKey(),
           },
           {
             key: "messagesPerSummary",

@@ -9,6 +9,8 @@ services:
       NODE_ENV: prod
       PORT: 10588
       ossURL: ${SANDRAMA_PUBLIC_URL:?Set SANDRAMA_PUBLIC_URL to a publicly reachable http(s) URL}
+      SANDRAMA_ADMIN_PASSWORD: ${SANDRAMA_ADMIN_PASSWORD:-}
+      OSS_SIGNING_SECRET: ${OSS_SIGNING_SECRET:-}
     ports:
       - "${SANDRAMA_PORT:-10588}:10588"
     volumes:

@@ -3,6 +3,8 @@ import u from "@/utils";
 import { Namespace, Socket } from "socket.io";
 import * as agent from "@/agents/productionAgent/index";
 import ResTool from "@/socket/resTool";
+import db from "@/utils/db";
+import { isAdmin } from "@/utils/auth";
 
 async function verifyToken(rawToken: string): Promise<Boolean> {
   const setting = await u.db("o_setting").where("key", "tokenKey").select("value").first();
@@ -46,7 +48,13 @@ export default (nsp: Namespace) => {
       thinlLevel: 0,
     };
 
-    socket.on("updateContext", (data: { isolationKey: string; projectId: number; scriptId: number }, callback) => {
+    socket.on("updateContext", async (data: { isolationKey: string; projectId: number; scriptId: number }, callback) => {
+      const user = socket.data.user;
+      const project = await db("o_project").where("id", Number(data.projectId)).select("userId").first();
+      if (!project || (!isAdmin(user) && Number(project.userId ?? 1) !== Number(user?.id))) {
+        callback?.({ success: false, message: "无权访问该项目" });
+        return;
+      }
       isolationKey = data.isolationKey;
       resTool = new ResTool(socket, {
         projectId: data.projectId,

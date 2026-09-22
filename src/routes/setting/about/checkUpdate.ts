@@ -30,8 +30,20 @@ export default router.post(
 
     const getUrl = url ?? "https://sanddrama.oss-cn-beijing.aliyuncs.com/update.json";
 
-    const versionInfo = await fetch(getUrl).then((res) => res.json());
-    if (!versionInfo) return res.status(400).send(error("无法获取版本信息"));
+    let versionInfo: any;
+    try {
+      const upstream = await fetch(getUrl);
+      const body = await upstream.text();
+      if (!upstream.ok) return res.status(502).send(error(`版本服务响应异常（HTTP ${upstream.status}）`));
+      try {
+        versionInfo = JSON.parse(body);
+      } catch {
+        return res.status(502).send(error("版本服务暂时不可用"));
+      }
+    } catch {
+      return res.status(502).send(error("无法连接版本服务"));
+    }
+    if (!versionInfo) return res.status(502).send(error("无法获取版本信息"));
     const { version: tagger, time, data } = versionInfo;
 
     const sourceData = data[source];

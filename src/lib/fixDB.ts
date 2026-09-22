@@ -5,6 +5,7 @@ import { Knex } from "knex";
 import db from "@/utils/db";
 import { transform } from "sucrase";
 import rawVendorData from "./vendor.json";
+import { createTokenKey, hashPassword, isLegacyPassword } from "@/utils/auth";
 
 const vendorData = rawVendorData as Record<string, string>;
 
@@ -31,6 +32,34 @@ export default async (knex: Knex): Promise<void> => {
       });
     }
   };
+  // 用户表迁移：兼容旧版单用户数据库，同时为多用户和密码安全补齐字段。
+  await addColumn("o_user", "role", "string");
+  await addColumn("o_user", "disabled", "boolean");
+  await addColumn("o_user", "tokenVersion", "integer");
+  await addColumn("o_user", "createdAt", "integer");
+  await addColumn("o_user", "updatedAt", "integer");
+  await addColumn("o_user", "lastLoginAt", "integer");
+  const users = await knex("o_user").select("id", "password", "role", "disabled", "tokenVersion", "createdAt", "updatedAt");
+  const now = Date.now();
+  for (const user of users) {
+    const updates: Record<string, unknown> = {};
+    if (!user.role) updates.role = Number(user.id) === 1 ? "admin" : "user";
+    if (user.disabled === null || user.disabled === undefined) updates.disabled = false;
+    if (user.tokenVersion === null || user.tokenVersion === undefined) updates.tokenVersion = 0;
+    if (!user.createdAt) updates.createdAt = now;
+    if (!user.updatedAt) updates.updatedAt = now;
+    if (isLegacyPassword(user.password)) updates.password = await hashPassword(String(user.password));
+    if (Object.keys(updates).length) await knex("o_user").where("id", user.id).update(updates);
+  }
+  // 旧项目曾固定写入 userId=1，归属到管理员，避免升级后项目丢失。
+  await addColumn("o_project", "userId", "integer");
+  await knex("o_project").whereNull("userId").update({ userId: 1 });
+  const tokenSetting = await knex("o_setting").where("key", "tokenKey").first();
+  if (!tokenSetting || typeof tokenSetting.value !== "string" || tokenSetting.value.length < 32) {
+    if (tokenSetting) await knex("o_setting").where("key", "tokenKey").update({ value: createTokenKey() });
+    else await knex("o_setting").insert({ key: "tokenKey", value: createTokenKey() });
+  }
+
   //矫正因软件异常退出导致的状态不一致问题
   await db("o_novel").where("eventState", 0).update({
     eventState: -1,

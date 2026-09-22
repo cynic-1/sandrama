@@ -3,6 +3,8 @@ import u from "@/utils";
 import { z } from "zod";
 import { success } from "@/lib/responseFormat";
 import { validateFields } from "@/middleware/middleware";
+import { currentUser } from "@/middleware/auth";
+import { isAdmin } from "@/utils/auth";
 const router = express.Router();
 
 // 删除项目
@@ -13,6 +15,10 @@ export default router.post(
   }),
   async (req, res) => {
     const { id } = req.body;
+    const projectQuery = u.db("o_project").where("id", id);
+    if (!isAdmin(currentUser(req)!)) projectQuery.andWhere("userId", currentUser(req)!.id);
+    const project = await projectQuery.select("id").first();
+    if (!project) return res.status(404).send({ message: "项目不存在或无权访问" });
     //删除项目
     await u.db("o_project").where("id", id).delete();
     await u.db("o_agentWorkData").where("projectId", id).delete();

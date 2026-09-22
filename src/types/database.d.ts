@@ -197,9 +197,15 @@ export interface o_tasks {
   'taskClass'?: string | null;
 }
 export interface o_user {
+  'createdAt'?: number | null;
+  'disabled'?: boolean | null;
   'id'?: number;
+  'lastLoginAt'?: number | null;
   'name'?: string | null;
   'password'?: string | null;
+  'role'?: string | null;
+  'tokenVersion'?: number | null;
+  'updatedAt'?: number | null;
 }
 export interface o_vendorConfig {
   'enable'?: number | null;

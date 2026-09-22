@@ -3,6 +3,8 @@ import getPath, { isEletron } from "@/utils/getPath";
 import fs from "node:fs/promises";
 import path from "node:path";
 import sharp from "sharp";
+import crypto from "node:crypto";
+import db from "@/utils/db";
 
 // 规范化路径：去除前导斜杠，并将路径分隔符统一转换为系统分隔符
 function normalizeUserPath(userPath: string): string {
@@ -55,7 +57,11 @@ class OSS {
     const publicBaseUrl = process.env.ossURL || process.env.OSSURL;
     if (publicBaseUrl) url = publicBaseUrl.replace(/\/+$/, "") + `/${prefix}/`;
     if (isEletron()) url = `http://localhost:${process.env.PORT}/${prefix}/`;
-    return `${url}${safePath.split(path.sep).join("/")}`;
+    const publicPath = safePath.split(path.sep).join("/");
+    const expires = Math.floor(Date.now() / 1000) + 60 * 60;
+    const signingSecret = await this.getSigningSecret();
+    const signature = crypto.createHmac("sha256", signingSecret).update(`${prefix}:${publicPath}:${expires}`).digest("hex");
+    return `${url}${publicPath}?sd_expires=${expires}&sd_access=${signature}`;
   }
 
   /**
@@ -199,12 +205,19 @@ class OSS {
     //     .resize(512, 512, { fit: "inside", withoutEnlargement: true })
     //     .toFile(dstAbsPath);
     //   console.info(`[${dstAbsPath}]小图写入成功`);
-    return (await this.getFileUrl(userRelPath)) + "?size=20";
+    const url = await this.getFileUrl(userRelPath);
+    return `${url}&size=20`;
     // } catch (e) {
     //   // 生成失败返回原图
     //   console.warn("[OSS] 生成缩略图失败:", e);
     //   return originalUrl;
     // }
+  }
+
+  private async getSigningSecret(): Promise<string> {
+    if (process.env.OSS_SIGNING_SECRET) return process.env.OSS_SIGNING_SECRET;
+    const setting = await db("o_setting").where("key", "tokenKey").select("value").first();
+    return String(setting?.value || process.env.NODE_ENV || "sandrama");
   }
 }
 

@@ -48,12 +48,13 @@ const vendor: VendorConfig = {
   description: "OpenSand 中转站的文本、图像和视频模型服务。",
   icon: "",
   inputs: [
-    { key: "apiKey", label: "API密钥", type: "password", required: true },
+    { key: "apiKey", label: "默认API密钥（兼容旧配置）", type: "password", required: false },
+    { key: "apiKeys", label: "多API密钥配置（JSON）", type: "text", required: false, placeholder: '[{"name":"文本图片","key":"...","types":["text","image"]},{"name":"视频","key":"...","types":["video"]}]' },
     { key: "baseUrl", label: "请求地址", type: "url", required: true, placeholder: "https://api.opensand.ai/v1" },
     { key: "mediaUploadUrl", label: "参考图床上传地址", type: "url", required: false, placeholder: "http://公网服务器/upload" },
     { key: "mediaUploadToken", label: "参考图床上传Token", type: "password", required: false },
   ],
-  inputValues: { apiKey: "", baseUrl: "https://api.opensand.ai/v1", mediaUploadUrl: "", mediaUploadToken: "" },
+  inputValues: { apiKey: "", apiKeys: "", baseUrl: "https://api.opensand.ai/v1", mediaUploadUrl: "", mediaUploadToken: "" },
   models: [
     { name: "GPT 5.4", modelName: "gpt-5.4", type: "text", think: false },
     { name: "GPT 5.5", modelName: "gpt-5.5", type: "text", think: false },
@@ -149,13 +150,42 @@ const vendor: VendorConfig = {
 };
 
 function baseUrl(): string { return (vendor.inputValues.baseUrl || "https://api.opensand.ai/v1").replace(/\/+$/, ""); }
-function apiKey(): string {
-  const key = (vendor.inputValues.apiKey || "").replace(/^Bearer\s+/i, "");
+type ApiKeyConfig = { name?: string; key: string; types?: string[]; models?: string[]; enabled?: boolean };
+function configuredApiKeys(): ApiKeyConfig[] {
+  const raw = String(vendor.inputValues.apiKeys || "").trim();
+  if (!raw) return [];
+  try {
+    const parsed = JSON.parse(raw);
+    const list = Array.isArray(parsed) ? parsed : Object.entries(parsed || {}).map(([type, key]) => ({ type, key }));
+    return list
+      .map((item: any) => ({
+        name: String(item?.name || ""),
+        key: String(item?.key || item?.apiKey || "").replace(/^Bearer\s+/i, "").trim(),
+        types: Array.isArray(item?.types) ? item.types.map(String) : item?.type ? [String(item.type)] : [],
+        models: Array.isArray(item?.models) ? item.models.map(String) : item?.model ? [String(item.model)] : [],
+        enabled: item?.enabled !== false,
+      }))
+      .filter((item: ApiKeyConfig) => item.enabled !== false && item.key);
+  } catch {
+    throw new Error("多API密钥配置不是有效的JSON");
+  }
+}
+function modelType(modelName?: string): string {
+  if (!modelName) return "";
+  const model = vendor.models.find((item: any) => item.modelName === modelName) as any;
+  return model?.type || "";
+}
+function apiKey(modelName?: string): string {
+  const type = modelType(modelName);
+  const keys = configuredApiKeys();
+  const selected = keys.find((item) => item.models?.includes(String(modelName)))
+    || keys.find((item) => item.types?.includes(type));
+  const key = selected?.key || String(vendor.inputValues.apiKey || "").replace(/^Bearer\s+/i, "").trim();
   if (!key) throw new Error("缺少API Key");
   return key;
 }
-async function jsonRequest(path: string, init: any = {}): Promise<any> {
-  const headers = { ...(init.headers || {}), Authorization: "Bearer " + apiKey() };
+async function jsonRequest(path: string, init: any = {}, modelName?: string): Promise<any> {
+  const headers = { ...(init.headers || {}), Authorization: "Bearer " + apiKey(modelName) };
   const response = await fetch(baseUrl() + path, { ...init, headers });
   const text = await response.text();
   let data: any;
@@ -201,7 +231,7 @@ async function registerOpenSandAsset(publicUrl: string, modelName: string, asset
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({ URL: publicUrl, Name: "sanddrama-reference", AssetType: assetType, model: modelName }),
-  });
+  }, modelName);
   const assetId = data?.data?.Id;
   if (!assetId) throw new Error("OpenSand素材登记未返回素材ID");
   return "asset://" + assetId;
@@ -238,7 +268,7 @@ async function toOpenSandAsset(ref: { type: string; base64: string }, modelName:
   return registerOpenSandAsset(publicUrl, modelName, ref.type === "video" ? "Video" : ref.type === "audio" ? "Audio" : "Image");
 }
 
-const textRequest = (model: TextModel) => createOpenAI({ baseURL: baseUrl(), apiKey: apiKey() }).chat(model.modelName);
+const textRequest = (model: TextModel) => createOpenAI({ baseURL: baseUrl(), apiKey: apiKey(model.modelName) }).chat(model.modelName);
 
 function seedreamSize(size: ImageConfig["size"]): string {
   // Seedream 5 Pro supports 1K/2K. Keep the UI's 4K option usable by
@@ -251,7 +281,7 @@ function seedreamTaskId(data: any): string {
   return String(candidate || "").trim();
 }
 
-async function seedreamResult(data: any): Promise<string> {
+async function seedreamResult(data: any, modelName: string): Promise<string> {
   try {
     return outputUrl(data);
   } catch {
@@ -264,7 +294,7 @@ async function seedreamResult(data: any): Promise<string> {
   const result = await pollTask(async () => {
     const response = await fetch(`${baseUrl()}/images/generations/${encodeURIComponent(taskId)}`, {
       method: "GET",
-      headers: { Authorization: "Bearer " + apiKey(), Accept: "application/json" },
+      headers: { Authorization: "Bearer " + apiKey(modelName), Accept: "application/json" },
     });
     const text = await response.text();
     let payload: any;
@@ -306,8 +336,8 @@ async function seedreamImageRequest(config: ImageConfig, model: ImageModel): Pro
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(body),
-    });
-    return await seedreamResult(data);
+    }, model.modelName);
+    return await seedreamResult(data, model.modelName);
   } catch (error: any) {
     const detail = error?.message || "未知网络错误";
     throw new Error(`OpenSand Seedream图像请求失败: ${detail}`);
@@ -324,7 +354,7 @@ const imageRequest = async (config: ImageConfig, model: ImageModel): Promise<str
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ model: model.modelName, prompt: config.prompt, n: 1, size: imageSize(config.aspectRatio) }),
-    });
+    }, model.modelName);
     return outputUrl(data);
   }
   const form = new FormData();
@@ -338,7 +368,7 @@ const imageRequest = async (config: ImageConfig, model: ImageModel): Promise<str
   });
   try {
     const response = await axios.post(baseUrl() + "/images/edits", form, {
-      headers: { ...form.getHeaders(), Authorization: "Bearer " + apiKey() },
+      headers: { ...form.getHeaders(), Authorization: "Bearer " + apiKey(model.modelName) },
       maxContentLength: Infinity,
       maxBodyLength: Infinity,
       timeout: 180000,
@@ -392,11 +422,11 @@ const videoRequest = async (config: VideoConfig, model: VideoModel): Promise<str
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({ model: model.modelName, content, duration: config.duration, resolution: config.resolution, ratio: config.aspectRatio, generate_audio: config.audio !== false, watermark: false }),
-  });
+  }, model.modelName);
   const taskId = created?.task?.id || created?.id;
   if (!taskId) throw new Error("OpenSand未返回视频任务ID");
   const result = await pollTask(async () => {
-    const data = await jsonRequest("/video/tasks/" + encodeURIComponent(taskId));
+    const data = await jsonRequest("/video/tasks/" + encodeURIComponent(taskId), {}, model.modelName);
     const task = data?.task || data;
     const status = String(task?.status || "").toLowerCase();
     if (["completed", "success", "succeeded"].includes(status)) {

@@ -52,8 +52,11 @@ export default router.post(
           modeData = JSON.parse(mode);
         } catch (e) {}
       }
+      const configuredDuration = Number(selectedModel.durationResolutionMap?.[0]?.duration?.[0] ?? 4);
+      // Seedance 2.x 上游不接受 2 秒，最短时长为 4 秒。
+      const duration = modelName.toLowerCase().includes("seedance-2") ? Math.max(4, configuredDuration) : configuredDuration;
       const reqFn = await u.Ai.Video(`${id}:${modelName}`).run({
-        duration: selectedModel.durationResolutionMap[0].duration[0],
+        duration,
         resolution: selectedModel.durationResolutionMap[0].resolution[0],
         aspectRatio: "16:9",
         prompt: prompt,

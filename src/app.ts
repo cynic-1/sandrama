@@ -11,8 +11,9 @@ import buildRoute from "@/core";
 import path from "path";
 import fs from "fs";
 import u from "@/utils";
-import jwt from "jsonwebtoken";
 import socketInit from "@/socket/index";
+import { dbReady } from "@/utils/db";
+import { authenticateRequest, authenticateStaticRequest, enforceProjectAccess, enforceStaticProjectAccess } from "@/middleware/auth";
 import { isEletron } from "@/utils/getPath";
 import { ensureThumbnail, ThumbnailSize } from "@/utils/image";
 
@@ -45,6 +46,7 @@ async function checkPermissions() {
 
 export default async function startServe(randomPort: Boolean = false) {
   await checkPermissions();
+  await dbReady;
 
   await u.writeVersion();
   const io = new Server(server, { cors: { origin: "*" } });
@@ -67,6 +69,8 @@ export default async function startServe(randomPort: Boolean = false) {
   console.log("文件目录:", ossDir);
   app.use(
     "/oss",
+    authenticateStaticRequest,
+    enforceStaticProjectAccess,
     (req, res, next) => {
       // 如果传参 type=small，则返回小图
       if (req.query.size) {
@@ -138,7 +142,7 @@ export default async function startServe(randomPort: Boolean = false) {
     fs.mkdirSync(assetsDir, { recursive: true });
   }
   console.log("文件目录:", assetsDir);
-  app.use("/assets", express.static(assetsDir, { acceptRanges: false }));
+  app.use("/assets", authenticateStaticRequest, enforceStaticProjectAccess, express.static(assetsDir, { acceptRanges: false }));
 
   // data/web 静态网站
   const webDir = u.getPath("web");
@@ -149,25 +153,8 @@ export default async function startServe(randomPort: Boolean = false) {
     console.warn("静态网站目录不存在:", webDir);
   }
 
-  app.use(async (req, res, next) => {
-    const setting = await u.db("o_setting").where("key", "tokenKey").select("value").first();
-    if (!setting) return res.status(444).send({ message: "服务器秘钥未配置，请联系管理员" });
-    const { value: tokenKey } = setting;
-    // 从 header 或 query 参数获取 token
-    const rawToken = req.headers.authorization || (req.query.token as string) || "";
-    const token = rawToken.replace("Bearer ", "");
-    // 白名单路径
-    if (req.path === "/api/login/login") return next();
-
-    if (!token) return res.status(401).send({ message: "未提供token" });
-    try {
-      const decoded = jwt.verify(token, tokenKey as string);
-      (req as any).user = decoded;
-      next();
-    } catch (err) {
-      return res.status(401).send({ message: "无效的token" });
-    }
-  });
+  // API 统一鉴权并校验项目归属；登录接口在 authenticateRequest 中白名单放行。
+  app.use("/api", authenticateRequest, enforceProjectAccess);
 
   const router = await import("@/router");
   await router.default(app);

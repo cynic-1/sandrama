@@ -61,7 +61,17 @@ async function discoverOpenAICompatibleModels(id: string): Promise<DiscoveredMod
   }
 
   const baseUrl = String(inputValues.baseUrl ?? "").replace(/\/+$/, "");
-  const apiKey = String(inputValues.apiKey ?? "").replace(/^Bearer\s+/i, "");
+  let apiKey = String(inputValues.apiKey ?? "").replace(/^Bearer\s+/i, "");
+  if (!apiKey && inputValues.apiKeys) {
+    try {
+      const parsed = JSON.parse(String(inputValues.apiKeys));
+      const list = Array.isArray(parsed) ? parsed : Object.values(parsed ?? {}).map((key) => ({ key }));
+      const first = list.find((item: any) => item?.enabled !== false && (item?.key || item?.apiKey));
+      apiKey = String(first?.key || first?.apiKey || "").replace(/^Bearer\s+/i, "");
+    } catch {
+      return [];
+    }
+  }
   if (!baseUrl || !apiKey) return [];
 
   const cached = discoveredModelCache.get(id);

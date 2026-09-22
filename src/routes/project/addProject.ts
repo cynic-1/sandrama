@@ -3,6 +3,7 @@ import u from "@/utils";
 import { z } from "zod";
 import { success } from "@/lib/responseFormat";
 import { validateFields } from "@/middleware/middleware";
+import { currentUser } from "@/middleware/auth";
 const router = express.Router();
 
 // 新增项目
@@ -24,8 +25,10 @@ export default router.post(
   async (req, res) => {
     const { projectType, name, intro, type, directorManual, artStyle, videoRatio, imageModel, videoModel, imageQuality, mode } = req.body;
 
+    let projectId = Date.now();
+    while (await u.db("o_project").where("id", projectId).first()) projectId += 1;
     await u.db("o_project").insert({
-      id: Date.now(),
+      id: projectId,
       projectType,
       name,
       intro,
@@ -33,7 +36,7 @@ export default router.post(
       artStyle,
       videoRatio,
       directorManual,
-      userId: 1,
+      userId: currentUser(req)!.id,
       imageModel,
       videoModel,
       createTime: Date.now(),
@@ -41,6 +44,6 @@ export default router.post(
       mode,
     });
 
-    res.status(200).send(success({ message: "新增项目成功" }));
+    res.status(200).send(success({ message: "新增项目成功", projectId }));
   },
 );
