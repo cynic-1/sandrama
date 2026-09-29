@@ -114,7 +114,8 @@ async function projectIdFromReference(req: Request): Promise<number | undefined>
     else if (path.includes("/assets/")) table = path.includes("delImage") ? "o_image" : "o_assets";
     else if (path.includes("/workbench/")) table = path.includes("delVideo") || path.includes("selectVideo") ? "o_video" : "o_videoTrack";
     if (table) {
-      const row = await db(table as any).where("id", Number(id)).select("projectId", "assetsId").first();
+      const columns = table === "o_image" ? ["projectId", "assetsId"] : ["projectId"];
+      const row = await db(table as any).where("id", Number(id)).select(columns).first();
       if (row?.projectId !== undefined && row.projectId !== null) return Number(row.projectId);
       if (table === "o_image" && row?.assetsId) {
         const asset = await db("o_assets").where("id", Number(row.assetsId)).select("projectId").first();
@@ -137,7 +138,8 @@ async function projectIdFromReference(req: Request): Promise<number | undefined>
   for (const [key, table] of referenceMap) {
     const value = firstValue(body[key] ?? query[key]);
     if (value === undefined || value === null || value === "") continue;
-    const row = await db(table as any).where("id", Number(value)).select("projectId", "assetsId").first();
+    const columns = table === "o_image" ? ["projectId", "assetsId"] : ["projectId"];
+    const row = await db(table as any).where("id", Number(value)).select(columns).first();
     if (!row) return undefined;
     if (row.projectId !== undefined && row.projectId !== null) return Number(row.projectId);
     if (table === "o_image" && row.assetsId) {
@@ -161,7 +163,8 @@ async function projectIdFromReference(req: Request): Promise<number | undefined>
     else if (path.includes("/storyboard/")) table = "o_storyboard";
     else if (path.includes("/assets/")) table = path.includes("delImage") ? "o_image" : "o_assets";
     if (table) {
-      const row = await db(table as any).whereIn("id", values).select("projectId", "assetsId").first();
+      const columns = table === "o_image" ? ["projectId", "assetsId"] : ["projectId"];
+      const row = await db(table as any).whereIn("id", values).select(columns).first();
       if (row?.projectId !== undefined && row.projectId !== null) return Number(row.projectId);
       if (table === "o_image" && row?.assetsId) {
         const asset = await db("o_assets").where("id", Number(row.assetsId)).select("projectId").first();

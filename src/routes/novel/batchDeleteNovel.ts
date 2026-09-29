@@ -3,6 +3,7 @@ import u from "@/utils";
 import { z } from "zod";
 import { error, success } from "@/lib/responseFormat";
 import { validateFields } from "@/middleware/middleware";
+import renumberNovelChapters from "@/utils/renumberNovelChapters";
 const router = express.Router();
 
 export default router.post(
@@ -15,12 +16,15 @@ export default router.post(
     if (!ids.length) {
       return res.status(400).send(error("请先选择需要删除的内容"));
     }
+    const novels = await u.db("o_novel").whereIn("id", ids).select("id", "projectId");
+    const projectIds = [...new Set(novels.map((novel) => Number(novel.projectId)).filter(Number.isFinite))];
     const chapterData = await u.db("o_eventChapter").whereIn("novelId", ids);
     await u.db("o_eventChapter").whereIn("novelId", ids).delete();
-    const eventIds = chapterData.map((i) => i.id);
+    const eventIds = chapterData.map((i) => i.eventId).filter((eventId): eventId is number => eventId !== null && eventId !== undefined);
     if (eventIds.length) await u.db("o_event").whereIn("id", eventIds).delete();
 
     await u.db("o_novel").whereIn("id", ids).del();
+    for (const projectId of projectIds) await renumberNovelChapters(projectId);
 
     res.status(200).send(success({ message: "删除原文成功" }));
   },

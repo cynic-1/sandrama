@@ -270,10 +270,43 @@ async function toOpenSandAsset(ref: { type: string; base64: string }, modelName:
 
 const textRequest = (model: TextModel) => createOpenAI({ baseURL: baseUrl(), apiKey: apiKey(model.modelName) }).chat(model.modelName);
 
-function seedreamSize(size: ImageConfig["size"]): string {
-  // Seedream 5 Pro supports 1K/2K. Keep the UI's 4K option usable by
-  // automatically falling back to the provider's maximum supported tier.
-  return size === "1K" ? "1K" : "2K";
+function seedreamSize(size: ImageConfig["size"], aspectRatio: string, modelName: string): string {
+  // OpenSand 的 Seedream 只接受 2k/3k/4k 或明确的 WIDTHxHEIGHT，不能直接传 UI 的 1K/2K/4K。
+  // Seedream 5 的最低档是 2K，因此 UI 的 1K 自动提升到 2K，同时保留画面比例。
+  const tier = size === "4K" ? (modelName.toLowerCase().includes("5-0-lite") ? "3K" : "4K") : "2K";
+  const resolutions: Record<string, Record<string, string>> = {
+    "2K": {
+      "1:1": "2048x2048",
+      "4:3": "2304x1728",
+      "3:4": "1728x2304",
+      "16:9": "2848x1600",
+      "9:16": "1600x2848",
+      "3:2": "2496x1664",
+      "2:3": "1664x2496",
+      "21:9": "3136x1344",
+    },
+    "3K": {
+      "1:1": "3000x3000",
+      "4:3": "3464x2598",
+      "3:4": "2598x3464",
+      "16:9": "4000x2250",
+      "9:16": "2250x4000",
+      "3:2": "3674x2449",
+      "2:3": "2449x3674",
+      "21:9": "4400x1886",
+    },
+    "4K": {
+      "1:1": "4096x4096",
+      "4:3": "4704x3520",
+      "3:4": "3520x4704",
+      "16:9": "5504x3040",
+      "9:16": "3040x5504",
+      "3:2": "4992x3328",
+      "2:3": "3328x4992",
+      "21:9": "6240x2656",
+    },
+  };
+  return resolutions[tier][aspectRatio] || tier.toLowerCase();
 }
 
 function seedreamTaskId(data: any): string {
@@ -327,8 +360,8 @@ async function seedreamImageRequest(config: ImageConfig, model: ImageModel): Pro
   const body: Record<string, any> = {
     model: model.modelName,
     prompt: config.prompt,
-    size: seedreamSize(config.size),
-    ...(references.length ? { images: references } : {}),
+    size: seedreamSize(config.size, config.aspectRatio, model.modelName),
+    ...(references.length ? { image: references.length === 1 ? references[0] : references } : {}),
   };
 
   try {

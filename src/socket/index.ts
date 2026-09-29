@@ -16,7 +16,7 @@ export default (io: Server) => {
     nsp.use(async (socket, next) => {
       try {
         const setting = await db("o_setting").where("key", "tokenKey").select("value").first();
-        const rawToken = String(socket.handshake.auth?.token ?? "").replace(/^Bearer\\s+/i, "");
+        const rawToken = String(socket.handshake.auth?.token ?? "").replace(/^Bearer\s+/i, "");
         const decoded = setting?.value ? (jwt.verify(rawToken, String(setting.value)) as { id?: number; tokenVersion?: number }) : null;
         if (!decoded?.id) return next(new Error("未授权"));
         const user = await db("o_user").where("id", decoded.id).select("id", "role", "disabled", "tokenVersion").first();

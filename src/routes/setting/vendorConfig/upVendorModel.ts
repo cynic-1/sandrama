@@ -52,8 +52,9 @@ export default router.post(
       const modelIndex = existingModels.findIndex((m: any) => m.modelName === modelName);
       if (modelIndex === -1) {
         existingModels.push(model);
+      } else {
+        existingModels[modelIndex] = model;
       }
-      existingModels[modelIndex] = model;
       await u.userSettings.updateVendorConfig(id, { models: JSON.stringify(existingModels) });
     }
     res.status(200).send(success("更新成功"));

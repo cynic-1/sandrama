@@ -353,9 +353,10 @@ async function createSubAgent(parentCtx: AgentContext) {
     execute: async ({ prompt }) => {
       const skill = path.join(u.getPath("skills"), "production_agent_supervision.md");
       const systemPrompt = await fs.promises.readFile(skill, "utf-8");
+      const supervisionPrompt = `审核对象：分镜表（storyboard table）。\n请严格按照分镜表审核流程执行，不要重新猜测审核对象。\n${prompt}`;
       return runAgent({
         key: "productionAgent:supervisionAgent",
-        prompt,
+        prompt: supervisionPrompt,
         system: systemPrompt,
         name: "监制",
         memoryKey: "assistant:supervision",

@@ -221,8 +221,9 @@ class AiText {
 function referenceList2imageBase642(id: string, input: any) {
   const version = u.vendor.getVendor(id).version;
   if (!version || isNaN(parseFloat(version)) || parseFloat(version) < 2.0) {
-    input.imageBase64 = input.referenceList.map((item: any) => item.base64);
-    return input;
+    // 旧供应商仍读取 imageBase64；保留 referenceList，避免新适配器丢失统一参数。
+    // 没有参考图时 referenceList 可能未传入，必须按空数组处理。
+    input.imageBase64 = (input.referenceList ?? []).map((item: any) => item.base64);
   }
   return input;
 }

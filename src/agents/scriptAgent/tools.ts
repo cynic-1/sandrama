@@ -43,11 +43,17 @@ export default (toolCpnfig: ToolConfig) => {
       execute: async ({ chapterIndexs }) => {
         console.log("[tools] get_novel_events", chapterIndexs);
         const thinking = msg.thinking("正在查询章节事件...");
-        const data = await u
+        const requestedIndexes = [...new Set(chapterIndexs)].filter((index) => Number.isInteger(index) && index > 0);
+        const allNovels = await u
           .db("o_novel")
           .where("projectId", resTool.data.projectId)
           .select("id", "chapterIndex as index", "reel", "chapter", "chapterData", "event", "eventState")
-          .whereIn("chapterIndex", chapterIndexs);
+          .orderBy("chapterIndex", "asc")
+          .orderBy("id", "asc");
+        const byStoredIndex = new Map(allNovels.map((novel: any) => [Number(novel.index), novel]));
+        const data = requestedIndexes
+          .map((index) => byStoredIndex.get(index) ?? allNovels[index - 1])
+          .filter((novel, position, rows) => novel && rows.findIndex((item) => item?.id === novel.id) === position);
         thinking.appendText("正在查询章节编号: " + chapterIndexs.join(","));
         const eventString = data.map((i: any) => [`第${i.index}章，标题:${i.chapter}，事件:${i.event}`].join("\n")).join("\n");
         thinking.appendText("查询结果:\n" + eventString);
@@ -87,7 +93,20 @@ export default (toolCpnfig: ToolConfig) => {
       execute: async ({ chapterIndex }) => {
         console.log("[tools] get_novel_text", "[tools] get_novel_text", chapterIndex);
         const thinking = msg.thinking(`正在获取小说章节原文...`);
-        const data = await u.db("o_novel").where("projectId", resTool.data.projectId).where({ chapterIndex }).select("chapterData").first();
+        const requestedIndex = Number(String(chapterIndex).match(/\d+/)?.[0]);
+        let data = Number.isInteger(requestedIndex) && requestedIndex > 0
+          ? await u.db("o_novel").where("projectId", resTool.data.projectId).where("chapterIndex", requestedIndex).select("chapterData").first()
+          : undefined;
+        if (!data && Number.isInteger(requestedIndex) && requestedIndex > 0) {
+          data = await u
+            .db("o_novel")
+            .where("projectId", resTool.data.projectId)
+            .select("chapterData")
+            .orderBy("chapterIndex", "asc")
+            .orderBy("id", "asc")
+            .offset(requestedIndex - 1)
+            .first();
+        }
         const text = data && data?.chapterData ? data.chapterData : "";
         thinking.appendText(`获取到原文:\n` + text);
         thinking.updateTitle(`获取小说章节原文完成`);
