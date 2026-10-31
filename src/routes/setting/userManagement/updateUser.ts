@@ -13,24 +13,24 @@ export default router.post(
   requireAdmin,
   validateFields({
     id: z.number().int().positive(),
-    name: z.string().trim().min(1).max(64).optional(),
-    password: z.string().min(8).max(128).optional(),
+    name: z.string().trim().min(2).max(64).optional(),
+    password: z.string().min(6).max(128).optional(),
     role: z.enum(["admin", "user"]).optional(),
     disabled: z.boolean().optional(),
   }),
   async (req, res) => {
     const { id } = req.body;
     const target = await u.db("o_user").where("id", id).first();
-    if (!target) return res.status(404).send(error("用户不存在"));
+    if (!target) return res.status(404).send(error("User not found"));
     if (Number(id) === Number(currentUser(req)?.id) && req.body.disabled === true) {
-      return res.status(400).send(error("不能禁用当前登录账号"));
+      return res.status(400).send(error("Cannot disable the currently signed-in account"));
     }
 
     const updates: Record<string, unknown> = { updatedAt: Date.now() };
     if (req.body.name !== undefined) {
       const name = String(req.body.name).trim();
-      const duplicate = await u.db("o_user").where("name", name).whereNot("id", id).first();
-      if (duplicate) return res.status(409).send(error("用户名已存在"));
+      const duplicate = await u.db("o_user").whereRaw("lower(name) = lower(?)", [name]).whereNot("id", id).first();
+      if (duplicate) return res.status(409).send(error("Username already exists"));
       updates.name = name;
     }
     if (req.body.role !== undefined) updates.role = req.body.role;

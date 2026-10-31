@@ -41,10 +41,10 @@ export async function authenticateStaticRequest(req: Request, res: Response, nex
 }
 
 export async function authenticateRequest(req: Request, res: Response, next: NextFunction) {
-  if (req.path === "/login/login") return next();
+  if (req.path === "/login/login" || req.path === "/login/register") return next();
 
   const setting = await db("o_setting").where("key", "tokenKey").select("value").first();
-  if (!setting?.value) return res.status(503).send({ message: "服务器未完成初始化，请联系管理员" });
+  if (!setting?.value) return res.status(503).send({ message: "Server is not initialized. Please contact administrator." });
 
   const cookieToken = String(req.headers.cookie ?? "")
     .split(";")
@@ -53,19 +53,19 @@ export async function authenticateRequest(req: Request, res: Response, next: Nex
     ?.slice("sd_token=".length);
   const rawToken = req.headers.authorization || (req.query.token as string) || cookieToken || "";
   const token = rawToken.replace(/^Bearer\s+/i, "").trim();
-  if (!token) return res.status(401).send({ message: "未提供token" });
+  if (!token) return res.status(401).send({ message: "Authentication token required" });
 
   try {
     const decoded = jwt.verify(token, String(setting.value)) as TokenPayload;
-    if (!decoded?.id) return res.status(401).send({ message: "无效的token" });
+    if (!decoded?.id) return res.status(401).send({ message: "Invalid authentication token" });
 
     const user = await db("o_user")
       .where("id", decoded.id)
       .select("id", "name", "role", "disabled", "tokenVersion")
       .first();
-    if (!user || Number(user.disabled) === 1) return res.status(401).send({ message: "用户不存在或已被禁用" });
+    if (!user || Number(user.disabled) === 1) return res.status(401).send({ message: "Account not found or disabled" });
     if (decoded.tokenVersion !== undefined && Number(decoded.tokenVersion) !== Number(user.tokenVersion ?? 0)) {
-      return res.status(401).send({ message: "登录状态已失效，请重新登录" });
+      return res.status(401).send({ message: "Session expired. Please sign in again." });
     }
 
     (req as Request & { user?: AuthenticatedUser }).user = {
@@ -77,12 +77,12 @@ export async function authenticateRequest(req: Request, res: Response, next: Nex
     };
     return runWithUser(Number(user.id), () => next());
   } catch {
-    return res.status(401).send({ message: "无效的token" });
+    return res.status(401).send({ message: "Invalid authentication token" });
   }
 }
 
 export function requireAdmin(req: Request, res: Response, next: NextFunction) {
-  if (!isAdmin(currentUser(req))) return res.status(403).send({ message: "仅管理员可执行此操作" });
+  if (!isAdmin(currentUser(req))) return res.status(403).send({ message: "Administrator privileges required" });
   return next();
 }
 
@@ -178,7 +178,7 @@ async function projectIdFromReference(req: Request): Promise<number | undefined>
 /** Enforces tenant isolation for every request that identifies a project or project resource. */
 export async function enforceProjectAccess(req: Request, res: Response, next: NextFunction) {
   const user = currentUser(req);
-  if (!user || req.path === "/login/login") return next();
+  if (!user || req.path === "/login/login" || req.path === "/login/register") return next();
 
   // Database/configuration changes are shared system resources. Some destructive
   // legacy endpoints use GET, so they must be explicitly protected as well.
@@ -192,8 +192,8 @@ export async function enforceProjectAccess(req: Request, res: Response, next: Ne
   const projectId = await projectIdFromReference(req);
   if (projectId === undefined || !Number.isFinite(projectId)) return next();
   const project = await db("o_project").where("id", projectId).select("id", "userId").first();
-  if (!project) return res.status(404).send({ message: "项目不存在" });
-  if (!isAdmin(user) && Number(project.userId ?? 1) !== user.id) return res.status(403).send({ message: "无权访问该项目" });
+  if (!project) return res.status(404).send({ message: "Project not found" });
+  if (!isAdmin(user) && Number(project.userId ?? 1) !== user.id) return res.status(403).send({ message: "Access denied to this project" });
   return next();
 }
 

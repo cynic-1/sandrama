@@ -12,12 +12,12 @@ const LOGIN_WINDOW_MS = 10 * 60 * 1000;
 
 export function setToken(payload: string | object, expiresIn: string | number, secret: string): string {
   if (!payload || typeof secret !== "string" || !secret) {
-    throw new Error("参数不合法");
+    throw new Error("Invalid token parameters");
   }
   return (jwt.sign as any)(payload, secret, { expiresIn });
 }
 
-// 登录
+// Login
 export default router.post(
   "/",
   validateFields({
@@ -30,20 +30,20 @@ export default router.post(
     const attemptKey = `${req.ip}:${username.toLowerCase()}`;
     const attempt = failedAttempts.get(attemptKey);
     if (attempt && Date.now() - attempt.firstAttemptAt < LOGIN_WINDOW_MS && attempt.count >= MAX_LOGIN_ATTEMPTS) {
-      return res.status(429).send(error("登录失败次数过多，请 10 分钟后再试"));
+      return res.status(429).send(error("Too many failed login attempts. Please try again in 10 minutes."));
     }
     if (attempt && Date.now() - attempt.firstAttemptAt >= LOGIN_WINDOW_MS) failedAttempts.delete(attemptKey);
 
-    const data = await u.db("o_user").where("name", "=", username).first();
+    const data = await u.db("o_user").whereRaw("LOWER(name) = LOWER(?)", [username]).first();
     if (!data || Number(data.disabled) === 1) {
       registerFailedAttempt(attemptKey);
-      return res.status(400).send(error("用户名或密码错误"));
+      return res.status(400).send(error("Invalid username or password"));
     }
 
     if (await verifyPassword(password, String(data.password))) {
       failedAttempts.delete(attemptKey);
       const tokenData = await u.db("o_setting").where("key", "tokenKey").first();
-      if (!tokenData) return res.status(400).send(error("未找到tokenKey"));
+      if (!tokenData) return res.status(400).send(error("Server tokenKey not initialized"));
       const tokenVersion = Number(data.tokenVersion ?? 0);
       const token = setToken(
         {
@@ -66,11 +66,11 @@ export default router.post(
         maxAge: 12 * 60 * 60 * 1000,
       });
       return res.status(200).send(
-        success({ token: "Bearer " + token, name: data.name, id: data.id, role: data.role === "admin" ? "admin" : "user" }, "登录成功"),
+        success({ token: "Bearer " + token, name: data.name, id: data.id, role: data.role === "admin" ? "admin" : "user" }, "Login successful"),
       );
     } else {
       registerFailedAttempt(attemptKey);
-      return res.status(400).send(error("用户名或密码错误"));
+      return res.status(400).send(error("Invalid username or password"));
     }
   },
 );

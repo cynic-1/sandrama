@@ -13,17 +13,17 @@ export default router.post(
   validateFields({ id: z.number().int().positive() }),
   async (req, res) => {
     const { id } = req.body;
-    if (Number(id) === Number(currentUser(req)?.id)) return res.status(400).send(error("不能删除当前登录账号"));
+    if (Number(id) === Number(currentUser(req)?.id)) return res.status(400).send(error("Cannot delete the currently logged-in account"));
     const target = await u.db("o_user").where("id", id).first();
-    if (!target) return res.status(404).send(error("用户不存在"));
+    if (!target) return res.status(404).send(error("User not found"));
     if (target.role === "admin") {
       const admins = (await u.db("o_user").where("role", "admin").where("disabled", false).whereNot("id", id).count("id as total").first()) as any;
-      if (Number(admins?.total ?? 0) < 1) return res.status(400).send(error("系统至少需要保留一个启用的管理员"));
+      if (Number(admins?.total ?? 0) < 1) return res.status(400).send(error("At least one active administrator must remain in the system"));
     }
     await u.db("o_user").where("id", id).delete();
-    // 项目不删除，转交当前管理员，避免删除账号造成客户数据丢失。
+    // Reassign projects to current admin so deleting an account does not orphan project data.
     const adminId = currentUser(req)?.id;
     if (adminId) await u.db("o_project").where("userId", id).update({ userId: adminId });
-    res.status(200).send(success("删除用户成功"));
+    res.status(200).send(success("User deleted successfully"));
   },
 );
