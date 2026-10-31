@@ -183,7 +183,7 @@ export async function enforceProjectAccess(req: Request, res: Response, next: Ne
   // Database/configuration changes are shared system resources. Some destructive
   // legacy endpoints use GET, so they must be explicitly protected as well.
   const destructiveSettingPath = /\/setting\/(dbConfig\/(clearData|clearTable|importData)|memoryConfig\/delAllMemory)/.test(req.path);
-  // 普通设置属于当前账号，不再要求管理员权限；数据库、技能文件和本地目录操作仍是全局资源。
+  // General settings are account-specific and no longer require administrator privileges; database, skill file, and local directory operations remain global resources.
   const globalSettingPath = /^\/setting\/(dbConfig|skillManagement|fileManagement)\//.test(req.path);
   if (destructiveSettingPath || globalSettingPath) return requireAdmin(req, res, next);
   if (req.path.startsWith("/other/deleteAllData")) return requireAdmin(req, res, next);

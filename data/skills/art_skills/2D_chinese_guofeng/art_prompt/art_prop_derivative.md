@@ -1,133 +1,133 @@
 ---
 name: art_prop_derivative
-description: 道具衍生状态生成 · 约束手册
+description: Prop Derivative State Generation · Constraint Manual
 metaData: art_skills
 ---
 
-# 道具衍生状态生成 · 约束手册
+# Prop Derivative State Generation · Constraint Manual
 
 ---
 
-## 一、衍生原则
+## I. Derivation Principles
 
-1. **造型锚定** — 道具核心造型/轮廓在所有状态中可识别
-2. **状态可读** — 状态差异必须一目了然，观众能立即区分
-3. **叙事服务** — 每种状态变体服务于特定剧情节点
-4. **渐进退化** — 损伤/老化状态应有合理的物理逻辑
-5. **纯道具独立展示** — 画面中只能出现道具本身，严禁出现任何人物、手部、肢体，道具不可处于被持有/佩戴/握持状态，必须以静物陈列方式独立呈现
-
----
-
-## 二、状态类型
-
-### 2.1 使用状态
-
-| 状态 | 描述 | 适用道具 | 提示词 |
-|---|---|---|---|
-| 崭新 | 完好无损、光泽如新 | 所有道具 | 崭新、完好无损、光泽如新 |
-| 日常使用 | 微磨损、自然包浆 | 兵器/器物/饰品 | 日常使用痕迹、自然包浆 |
-| 陈旧 | 明显年代感、色泽暗淡 | 器物/信物/卷轴 | 古旧斑驳、年代感、色泽暗沉 |
-
-### 2.2 损伤状态
-
-| 状态 | 描述 | 适用道具 | 提示词 |
-|---|---|---|---|
-| 微损 | 小裂纹/小缺口/轻微磨损 | 瓷器/玉佩/兵器 | 细微裂纹、轻微缺口 |
-| 破损 | 明显裂缝/断裂/破碎 | 瓷器/饰品/兵器 | 裂缝明显、碎裂、断裂 |
-| 残片 | 仅剩部分/碎片 | 瓷器/玉佩/信物 | 残片、碎片、仅存半块 |
-
-### 2.3 特殊状态
-
-| 状态 | 描述 | 适用道具 | 提示词 |
-|---|---|---|---|
-| 染血 | 血迹附着 | 兵器/信物/卷轴 | 血迹斑驳、染血、二次元渲染 |
-| 浸水/湿润 | 水渍、湿润反光 | 卷轴/信物/纸张 | 浸水、纸张湿润、墨迹晕染 |
-| 燃烧/焦损 | 焦黑边缘、火烧痕迹 | 卷轴/信物/木质品 | 边缘焦黑、火烧痕迹、炭化 |
-| 发光/激活 | 内在能量、光芒四射 | 信物/法器/玉石 | 微微发光、内蕴光华、赛璐璐光效 |
-| 包裹/封存 | 用布/盒子包裹 | 信物/饰品/秘物 | 锦布包裹、木盒封存、古风包装 |
-
-### 2.4 环境适应状态（新增）
-
-| 状态 | 描述 | 适用道具 | 提示词 |
-|---|---|---|---|
-| 雪覆 | 积雪覆盖 | 兵器/器物/信物 | 雪花覆盖、积雪、冬日感 |
-| 雨湿 | 雨水湿润 | 纸张/布/木质品 | 雨水湿润、水渍、潮湿感 |
-| 风蚀 | 风沙磨损 | 户外器物/兵器 | 风沙痕迹、磨损、年代感 |
-| 锈蚀 | 金属氧化 | 兵器/金属饰品 | 锈迹斑斑、氧化、岁月感 |
+1. **Silhouette Anchoring** — The core shape/silhouette of the prop must be recognizable in all states
+2. **State Legibility** — State differences must be immediately obvious, allowing the audience to distinguish them instantly
+3. **Narrative Service** — Each state variant serves a specific plot point
+4. **Progressive Degradation** — Damage/aging states must follow reasonable physical logic
+5. **Pure Prop Independent Display** — Only the prop itself may appear in the frame. The presence of any character, hand, or limb is strictly prohibited. The prop must not be in a state of being held, worn, or gripped; it must be presented independently as a still life
 
 ---
 
-## 三、状态变体画面规范
+## II. State Types
 
-### 单状态图
+### 2.1 Usage States
 
-| 项目 | 约束 |
+| State | Description | Applicable Props | Prompt |
+|---|---|---|---|
+| Brand New | Intact, glossy as new | All props | Brand new, intact, glossy as new |
+| Daily Use | Minor wear, natural patina | Weapons/Artifacts/Ornaments | Signs of daily use, natural patina |
+| Aged | Obvious sense of age, dull color | Artifacts/Keepsakes/Scrolls | Ancient and mottled, sense of age, dull color |
+
+### 2.2 Damage States
+
+| State | Description | Applicable Props | Prompt |
+|---|---|---|---|
+| Minor Damage | Small cracks/chips/minor wear | Porcelain/Jade Pendants/Weapons | Fine cracks, minor chips |
+| Broken | Obvious cracks/fractures/shattering | Porcelain/Ornaments/Weapons | Obvious cracks, shattered, fractured |
+| Fragments | Only parts/fragments remaining | Porcelain/Jade Pendants/Keepsakes | Fragments, shards, only half remaining |
+
+### 2.3 Special States
+
+| State | Description | Applicable Props | Prompt |
+|---|---|---|---|
+| Bloodstained | Blood stains attached | Weapons/Keepsakes/Scrolls | Mottled bloodstains, bloodstained, anime rendering |
+| Waterlogged/Wet | Water stains, wet reflection | Scrolls/Keepsakes/Paper | Waterlogged, wet paper, ink bleeding |
+| Burnt/Charred | Charred edges, fire marks | Scrolls/Keepsakes/Wooden items | Charred edges, fire marks, carbonized |
+| Glowing/Activated | Inner energy, radiating light | Keepsakes/Magical artifacts/Jade | Faint glow, inner radiance, cel-shading light effect |
+| Wrapped/Sealed | Wrapped in cloth/box | Keepsakes/Ornaments/Secret items | Silk cloth wrapping, wooden box sealing, ancient-style packaging |
+
+### 2.4 Environmental Adaptation States (New)
+
+| State | Description | Applicable Props | Prompt |
+|---|---|---|---|
+| Snow-covered | Covered in snow | Weapons/Artifacts/Keepsakes | Snow-covered, snow accumulation, winter feel |
+| Rain-wet | Wet from rain | Paper/Cloth/Wooden items | Rain-wet, water stains, damp feel |
+| Wind-eroded | Worn by wind and sand | Outdoor artifacts/Weapons | Wind and sand marks, wear, sense of age |
+| Rusted | Metal oxidation | Weapons/Metal ornaments | Rusted spots, oxidation, sense of years |
+
+---
+
+## III. State Variant Image Specifications
+
+### Single State Image
+
+| Item | Constraint |
 |---|---|
-| 背景 | 月白纯色 #E8EAF5（与设定图一致） |
-| 光线 | 均匀照明，无硬阴影 |
-| 角度 | 与原设定图正面图一致 |
-| 比例 | 道具占画面主体 70%+ |
+| Background | Moon-white solid color #E8EAF5 (consistent with the design sheet) |
+| Lighting | Even lighting, no hard shadows |
+| Angle | Consistent with the front view of the original design sheet |
+| Ratio | Prop occupies 70%+ of the frame |
 
-### 状态对比图
+### State Comparison Image
 
-| 项目 | 约束 |
+| Item | Constraint |
 |---|---|
-| 布局 | 同一画面并排展示 2-3 种状态 |
-| 标注 | 每种状态下方标注状态名 |
-| 一致性 | 角度/光线/背景完全一致，仅状态不同 |
+| Layout | Display 2-3 states side-by-side in the same frame |
+| Labeling | Label the state name below each state |
+| Consistency | Angle/lighting/background must be identical; only the state differs |
 
 ---
 
-## 四、材质状态变化规则
+## IV. Material State Change Rules
 
-| 材质 | 崭新 → 日常 | 日常 → 陈旧 | 损伤表现 |
+| Material | Brand New → Daily | Daily → Aged | Damage Manifestation |
 |---|---|---|---|
-| 金属 | 亮光泽 → 微包浆 | 包浆 → 锈蚀斑点 | 缺口/卷刃/断裂 |
-| 玉石 | 通透温润 → 微磨损 | 磨损 → 表面微裂 | 裂纹/碎裂/缺角 |
-| 木质 | 新木纹理 → 自然包浆 | 包浆 → 色泽暗沉 | 开裂/断裂/虫蛀 |
-| 瓷器 | 釉面光泽 → 微划痕 | 划痕 → 釉面暗淡 | 裂纹/碎裂/缺口 |
-| 布/纸 | 崭新平整 → 微皱折 | 皱折 → 发黄变脆 | 撕裂/焦损/墨迹晕染 |
+| Metal | Bright gloss → Slight patina | Patina → Rust spots | Chips/Dulled edge/Fracture |
+| Jade | Translucent and warm → Minor wear | Wear → Surface micro-cracks | Cracks/Shattering/Chipped corner |
+| Wood | New wood grain → Natural patina | Patina → Dull color | Cracking/Fracture/Insect damage |
+| Porcelain | Glaze gloss → Minor scratches | Scratches → Dull glaze | Cracks/Shattering/Chips |
+| Cloth/Paper | Brand new and flat → Minor wrinkles | Wrinkles → Yellowing and brittleness | Tearing/Charring/Ink bleeding |
 
 ---
 
-## 五、提示词模板
+## V. Prompt Templates
 
-### 单状态变体
+### Single State Variant
 
-基于{道具名}设定图，国风二次元道具衍生状态，
-国风二次元，新国潮美学，日式动画渲染，赛璐璐平涂，细腻笔触，
-{道具类型}，{材质描述}，
-当前状态：{状态名}，{状态视觉描述}，
-{材质表面变化描述}，
-纯道具静物展示，道具独立陈列，无人持有，无人佩戴，
-同一画面四宫格（2×2）：左上正面图(front view)+右上侧面图(side view)+左下背面图(back view)+右下细节特写(detail closeup)，
-月白纯色背景，均匀柔光，无硬阴影，
-材质纹理超清晰，质感细腻，状态细节可辨，
-国风二次元高清渲染，高细节，细腻线条，赛璐璐平涂感，
-画面无字幕、无水印、无标题叠字，
-画面中不能出现任何人物、手部、手指、肢体，道具不可处于被握持或佩戴状态
+Based on the {Prop Name} design sheet, Chinese-style anime prop derivative state,
+Chinese-style anime, New Chinese Chic aesthetic, Japanese animation rendering, cel-shading flat color, delicate brushstrokes,
+{Prop Type}, {Material Description},
+Current state: {State Name}, {State Visual Description},
+{Material Surface Change Description},
+Pure prop still life display, prop displayed independently, no one holding, no one wearing,
+Four-panel grid (2×2) in the same frame: Top-left front view + Top-right side view + Bottom-left back view + Bottom-right detail closeup,
+Moon-white solid color background, even soft light, no hard shadows,
+Ultra-clear material texture, delicate quality, distinguishable state details,
+Chinese-style anime high-resolution rendering, high detail, delicate lines, cel-shading flat color feel,
+No subtitles, no watermarks, no title overlays in the frame,
+No characters, hands, fingers, or limbs may appear in the frame; the prop must not be in a state of being gripped or worn
 
 ---
 
-## 六、约束规则
+## VI. Constraint Rules
 
-### 必守
+### Mandatory
 
-| 编号 | 规则 |
+| ID | Rule |
 |---|---|
-| R1 | 道具核心造型/轮廓在所有状态中可识别 |
-| R2 | 状态变化须符合物理逻辑 |
-| R3 | 必须使用四宫格（2×2）布局：正面 + 侧面 + 背面 + 特写 |
-| R4 | 必须指定「月白纯色背景」，均匀柔光，无硬阴影 |
-| R5 | 必须包含「国风二次元 + 赛璐璐平涂」关键词 |
+| R1 | The core shape/silhouette of the prop must be recognizable in all states |
+| R2 | State changes must conform to physical logic |
+| R3 | Must use a four-panel grid (2×2) layout: Front + Side + Back + Closeup |
+| R4 | Must specify "Moon-white solid color background", even soft light, no hard shadows |
+| R5 | Must include the keywords "Chinese-style anime + cel-shading flat color" |
 
-### 严禁
+### Prohibited
 
-| 编号 | 严禁 |
+| ID | Prohibition |
 |---|---|
-| X1 | 状态变化后道具不可识别 |
-| X2 | 违反物理逻辑的损伤（玉石生锈等） |
-| X3 | 过度血腥/恐怖的损伤描绘 |
-| X4 | 出现任何人物形象，包括全身、半身、局部（手、手指、手臂等肢体） |
-| X5 | 道具处于被持有、握持、佩戴、使用中的状态 |
-| X6 | 出现暗示人物存在的元素（如手持痕迹、佩戴视角、使用姿态） |
+| X1 | Prop becomes unrecognizable after state change |
+| X2 | Damage violating physical logic (e.g., rust on jade) |
+| X3 | Excessively bloody or horrific damage depiction |
+| X4 | Appearance of any character figure, including full body, half body, or partial limbs (hands, fingers, arms, etc.) |
+| X5 | Prop in a state of being held, gripped, worn, or in use |
+| X6 | Appearance of elements implying the presence of a character (e.g., hand-holding marks, wearing perspective, usage posture) |

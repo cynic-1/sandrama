@@ -1,114 +1,114 @@
 ---
 name: director_planning_narrative
-description: 叙事手法技法 · 都市职场 — 定义都市职场类型在主题立意、博弈节奏、场景张力设计与声音方向上的叙事规划方法。适用于任何视觉风格。
+description: Narrative techniques and techniques · Urban workplace - defines the narrative planning method of urban workplace type in terms of theme conception, game rhythm, scene tension design and sound direction. Works with any visual style.
 metaData: director_skills
 ---
 
-# 叙事手法 · 都市职场 · 技法参考
+# Narrative Technique · Urban Workplace · Technical Reference
 
 ---
 
-## 一、主题立意与职场内核
+## 1. Theme concept and workplace core
 
-### 都市职场叙事要点
+### Key points of urban workplace narrative
 
-- **真实感是基石** — 职场叙事的第一要务是"可信"。观众会用自身经验验证每一个细节，任何失真都会导致出戏。场景、对话、人物行为都要经得起职场人的审视
-- **权力博弈的暗流** — 职场冲突不是街头打架，而是会议室里的话语权争夺、邮件抄送的政治学、一个眼神交换中的联盟与背叛。表面和气，暗流汹涌
-- **成长的代价** — 职场成长不是打怪升级，每一步向上都伴随代价：妥协原则、失去朋友、承受孤独、自我怀疑。成长弧线不是直线上升，而是螺旋前进
-- **离场感受建议方向** — 共鸣 / 反思 / 被激励 / 五味杂陈。避免"刺激""解压""爽"等与职场现实感不匹配的方向
-- **小人物的光** — 最动人的职场叙事不是"大佬翻手为云"，而是普通人在规则与压力之间，依然保持善良/专业/坚持的微小光芒
-
----
-
-## 二、叙事结构与博弈节奏
-
-### 都市职场叙事要点
-
-- **利益链驱动叙事** — 职场故事的推动力不是"感觉"而是"利益"。每个角色的行为都应有清晰的利益动机（升职、保位、资源、面子、安全感），动机越具体叙事越真实
-- **信息不对称制造张力** — 职场中"谁知道什么"决定权力格局。叙事应巧妙管理角色间和角色与观众间的信息差：观众知道背叛但主角不知 = 焦虑；观众和主角一起被蒙在鼓里 = 共情
-- **攻守转换** — 职场博弈的节奏是攻守转换：主角占上风→对手反击→主角被动→寻找突破口→翻盘。每次转换都应有明确的"转折事件"（一封邮件、一次泄密、一个决策）
-- **段落间用日常做呼吸** — 高强度博弈段落之间插入日常生活片段（通勤、吃饭、独处），让观众和角色一起"喘息"，同时展现职场人的真实生活质感
-- **阶段性胜负** — 不要等到最后才有结果。每个中间段落安排一次"小胜"或"小败"，让观众感受到进展与风险并存
-- **结尾留余味** — 职场叙事的结尾不宜太"圆满"。即使主角赢了，也应留下代价的痕迹（失去了谁、妥协了什么、回不去的关系），真实感来自"五味杂陈"
+- **Reality is the cornerstone** — The first priority of workplace narrative is "credibility". The audience will verify every detail with their own experience, and any distortion will lead to drama. Scenes, dialogues, and character behaviors must withstand the scrutiny of professionals
+- **The undercurrent of the power game** — Workplace conflicts are not street fights, but the struggle for the right to speak in the conference room, the politics of email copying, alliances and betrayals in an exchange of glances. Peaceful on the surface, but turbulent undercurrents
+- **The Price of Growth** — Career growth is not about fighting monsters and upgrading. Every step upward comes with a price: compromising principles, losing friends, enduring loneliness, and self-doubt. The growth arc is not a straight line, but a spiral.
+- **Suggested directions for leaving the scene** — Resonance/Reflection/Being Inspired/Mixed Feelings. Avoid "stimulation", "decompression", "refreshment" and other directions that do not match the reality of the workplace
+- **The Light of the Little People** — The most touching workplace narrative is not about "the big boss making up his mind", but about the tiny light of ordinary people who still maintain kindness/professionalism/persistence between rules and pressure.
 
 ---
 
-## 三、分场景张力设计
+## 2. Narrative structure and game rhythm
 
-### 都市职场叙事要点
+### Key points of urban workplace narrative
 
-- **张力用行为描述** — 不说"紧张"，说"笔帽被无意识地按了三下"。具象的行为细节比情绪标签更有说服力
-- **典型职场段落与设计** —
+- **Interest chain-driven narrative** — The driving force of workplace stories is not "feelings" but "interests". Each character's behavior should have a clear profit motive (promotion, job retention, resources, face, security). The more specific the motive, the more realistic the narrative.
+- **Information asymmetry creates tension** — "Who knows what" determines the power structure in the workplace. The narrative should skillfully manage information gaps between characters and between characters and the audience: audience knows about betrayal but protagonist does not = anxiety; audience and protagonist are both in the dark = empathy
+- **Offensive and defensive transition** — The rhythm of workplace games is the transition between offense and defense: the protagonist has the upper hand → the opponent counterattacks → the protagonist becomes passive → looks for a breakthrough → comeback. Every conversion should have a clear "turning event" (an email, a leak, a decision)
+- **Breathe with daily life between paragraphs** — Insert snippets of daily life (commuting, eating, being alone) between high-intensity game paragraphs, allowing the audience to "breathe" with the characters, while showing the real life quality of working people
+- **Step-by-step wins and losses** — Don’t wait until the end for the results. Arrange a "small victory" or "small defeat" in each middle paragraph to let the audience feel the coexistence of progress and risk.
+- **Leave a lasting impression at the end** — The ending of the workplace narrative should not be too "satisfactory". Even if the protagonist wins, there should still be traces of the price (who was lost, what was compromised, and the relationship that cannot be returned). The sense of reality comes from the "mixed flavors"
 
-| 段落类型 | 情绪方向 | 叙事手法 | 音乐建议 |
+---
+
+## 3. Scene tension design
+
+### Key points of urban workplace narrative
+
+- **Tension is described by behavior** — Instead of saying "tension", say "the pen cap was pressed three times unconsciously". Concrete behavioral details are more persuasive than emotional labels
+- **Typical workplace paragraphs and designs** —
+
+| Paragraph Types | Emotional Direction | Narrative Techniques | Music Suggestions |
 |---|---|---|---|
-| 日常工作 | 平淡 + 真实 | 通勤、开会、敲键盘的碎片化日常 | 极低音量城市白噪音或无配乐 |
-| 暗涌博弈 | 表面平静 + 暗流 | 会议上的眼神交锋、邮件往来的画外音 | 低频节奏性底噪，渐强 |
-| 冲突爆发 | 对抗 + 压迫 | 正面对峙、摊牌、被揭露 | 配乐骤停或冷峻弦乐 |
-| 独处/崩溃 | 疲惫 + 真实 | 下班后独自在车里坐着、深夜洗脸 | 纯环境音（水声/城市远景）|
-| 转机/突破 | 冷静 + 坚定 | 发现关键信息、做出决定、回击 | 简洁节奏性配乐渐起 |
-| 和解/代价 | 释然 + 复杂 | 握手言和但眼神保留距离、升职后的孤独 | 温暖但克制的器乐 |
+| Daily work | Ordinary + real | Fragmented daily life of commuting, meetings, and typing on the keyboard | Very low volume urban white noise or no soundtrack |
+| Undercurrent game | Surface calm + undercurrent | Eye contact at the meeting, voiceover of email exchanges | Low-frequency rhythmic background noise, crescendo |
+| Conflict breaks out | Confrontation + oppression | Face-to-face confrontation, showdown, exposure | The soundtrack suddenly stops or cold strings |
+| Solitude/Crash | Tiredness + Reality | Sitting alone in the car after get off work, washing my face late at night | Pure ambient sound (water sound/city vista) |
+| Turnaround/breakthrough | Calmness + determination | Discover key information, make decisions, fight back | Simple rhythmic soundtrack gradually rises |
+| Reconciliation/Price | Relief + Complexity | Shaking hands but maintaining distance in eyes, loneliness after promotion | Warm but restrained instrumental music |
 
-- **社交距离是权力表达** — 用人物间的物理距离映射权力关系：
-  - **上级**：可以随意靠近下属（入侵空间）；下属保持距离（恭敬/恐惧）
-  - **平级博弈**：对坐/对立，保持一桌之隔（博弈距离）
-  - **亲密同盟**：并排坐/并肩走（同一方向 = 同一阵营）
-- **空间即权力** — 善用办公空间传递权力关系。例如：独立办公室 vs 开放工位 = 权力等级；会议室座位位置 = 话语权；电梯里的站位 = 社交等级
-- **镜头意图写"权力关系"而非"拍谁"** — "用仰拍是为了让观众感受到上级此刻对主角的压制力"优于"用仰拍拍上级说话"
+- **Social distance is an expression of power** — Use physical distance between characters to map power relationships:
+  - **Superior**: can approach subordinates at will (invading space); subordinates keep distance (respect/fear)
+  - **Level Game**: Sitting/opposing, keeping one table apart (game distance)
+  - **Close Alliance**: Sitting side by side/walking side by side (same direction = same camp)
+- **Space is power** — Make good use of office space to convey power relationships. For example: independent office vs open workstation = power level; seating position in conference room = right to speak; standing position in elevator = social level
+- **The purpose of the shot is to write about "power relations" rather than "who is being photographed"** - "Using overhead shots is to make the audience feel the superior's suppression of the protagonist at this moment" is better than "Using overhead shots to film the superior talking"
 
 ---
 
-## 四、声音与音乐方向
+## 4. Sound and Music Direction
 
-### 都市职场叙事要点
+### Key points of urban workplace narrative
 
-- **都市白噪音是氛围底色** — 键盘敲击声、咖啡机、电梯嗡鸣、远处电话铃——这些声音构成职场的"气味"，让观众瞬间进入场景
-- **沉默是最高级的博弈** — 会议上突然的沉默、提问后的停顿、对视中的不说话——沉默在职场中是武器。关键博弈段落优先去掉配乐，只留环境音+沉默
-- **配乐极度克制** — 全片配乐覆盖率不超过 40%。职场叙事追求"真实感"，过多配乐会让画面显得像"励志广告"而非真实故事
-- **环境音区分场景** — 每个场景标注 1-2 个核心环境音，帮助区分空间：办公室（键盘+空调嗡鸣）、会议室（安静+翻纸声）、通勤路上（城市喧嚣）、深夜家中（冰箱嗡鸣+远处车声）
-- **音乐情绪模型** —
+- **Urban white noise is the background of the atmosphere** - keyboard tapping, coffee machine, elevator buzzing, distant telephone ringing - these sounds constitute the "smell" of the workplace, allowing the audience to instantly enter the scene
+- **Silence is the most advanced game** — Sudden silence in meetings, pauses after asking questions, and silence in the face of each other—silence is a weapon in the workplace. Priority is given to removing the soundtrack for key game passages, leaving only ambient sound + silence.
+- **The soundtrack is extremely restrained** — The soundtrack coverage of the entire film does not exceed 40%. Workplace narratives pursue "realism". Too much soundtrack will make the picture look like an "inspirational advertisement" rather than a real story.
+- **Environmental sound distinguishes scenes** — Each scene is marked with 1-2 core environmental sounds to help distinguish the space: office (keyboard + hum of air conditioner), conference room (quiet + sound of turning paper), commuting (city hustle and bustle), late at night at home (hum of refrigerator + distant car sound)
+- **Music Emotion Model** —
 
-| 情绪阶段 | 音乐策略 | 覆盖率 |
+| Emotional Stages | Music Strategy | Coverage |
 |---|---|---|
-| 日常工作 | 无配乐，纯环境音 | 无 |
-| 暗涌博弈 | 低频节奏底噪 | 低 |
-| 冲突对峙 | 冷峻弦乐或全寂 | 中 |
-| 独处真实 | 纯环境音或极低钢琴 | 极低 |
-| 转机突破 | 简洁节奏性配乐 | 中 |
-| 结局余味 | 克制温暖器乐 | 中低 |
+| Daily work | No soundtrack, pure ambient sound | None |
+| Undercurrent game | Low frequency rhythm noise | Low |
+| Conflict and confrontation | Cold string music or total silence | Medium |
+| Being alone and real | Pure ambient sound or very low piano | Very low |
+| Breakthrough | Simple rhythmic soundtrack | Medium |
+| Aftertaste of the ending | Restrained warm instrumental music | Mid-low |
 
-- **电话/消息提示音的叙事功能** — 手机震动声、消息通知音、电话铃声在职场叙事中可以是"命运转折"的触发器——一条消息改变整个局面。这类音效要给足辨识度
-
----
-
-## 五、构图与景别叙事
-
-### 都市职场叙事要点
-
-- **三大核心构图的叙事功能** —
-  - **权力对角线** — 将权力高位者置于画面上方/前方，弱势者下方/后方，对角线布局暗示不对等的权力关系
-  - **框架困局** — 门框/窗框/屏幕边框/格子间隔板框住人物，传递"被困在体制中"的压迫感
-  - **对称对坐** — 博弈双方对坐于画面两侧，对称构图暗示势均力敌的对峙（或表面平等暗藏杀机）
-- **中心构图的仪式感** — 中心构图留给关键"宣判"时刻：升职公告、裁员通知、最终决策。日常不用
-- **玻璃/反光的隔阂** — 职场充满玻璃（会议室、办公室门、电梯）。通过玻璃拍人物制造"看得见但触不到"的隔阂感，暗示职场人际的表面透明实则有壁
-- **竖向空间的压迫** — 高楼俯瞰、电梯升降、楼梯上下——纵向空间的移动在职场中直接映射"社会阶层的上下"
-- **景别即社交距离** —
-  - **远景/全景** — 空间全貌、人物在庞大机构中的渺小感
-  - **中景** — 正式社交距离，会议/对话的标准景别
-  - **近景** — 打破社交距离，压迫/亲密/对峙
-  - **特写** — 微表情捕捉：嘴角的克制微笑、眼神的闪躲、手指的不安
-- **大特写的心理功能** — 一支笔被折断、手机屏幕上的消息、签名时微颤的笔尖。大特写在职场中放大的是"压力的细节"
+- **Narrative function of phone/message alerts** — Cell phone vibration sounds, message notification sounds, and phone ringtones can be the triggers of "turning of fate" in workplace narratives—one message changes the entire situation. This type of sound effect should be sufficiently recognizable
 
 ---
 
-## 六、镜头运动与节奏
+## 5. Composition and scenery narrative
 
-### 都市职场叙事要点
+### Key points of urban workplace narrative
 
-- **冷静固定为主** — 65% 以上镜头应为三脚架固定机位，传递"冷静观察"的纪录片质感。职场叙事不需要华丽运镜，真实感来自克制
-- **纪实手持** — 跟随角色走动（走廊、通勤、急匆匆赶路）时用轻微手持，增加"身临其境"的真实感。晃动极度克制，几乎感觉不到
-- **缓推 = 压迫/审视** — 缓慢推向角色面部，模拟"被盯着看"的压迫感。适合被质问、被考验、做抉择的段落
-- **缓拉 = 孤立/全貌** — 从角色缓拉到全景，揭示角色在巨大办公空间中的渺小与孤独。适合独处、失败、深夜加班段落
-- **横移 = 扫视/并行** — 水平横移从一个角色移到另一个角色，建立空间关系。适合会议室扫视、开放办公区的群像
-- **运镜即叙事态度** — 静止 = 冷静观察；缓推 = 逼近/压迫；缓拉 = 抽离/反思；手持跟拍 = 真实参与；横移 = 扫描全局
-- **快切蒙太奇** — 职场叙事中快切仅用于"时间流逝蒙太奇"（日复一日的工作碎片、通宵赶项目的片段），不用于日常叙事
+- **Narrative function of three core compositions** —
+  - **Power Diagonal** — Place those with high power at the top/front of the screen and the weak below/behind. The diagonal layout implies unequal power relations.
+  - **Frame Dilemma** — Door frames/window frames/screen frames/lattice partitions frame the characters and convey the sense of oppression of being "trapped in the system"
+  - **Symmetrical confrontation** — The two sides of the game sit opposite each other on both sides of the screen. The symmetrical composition implies an evenly matched confrontation (or the apparent equality hides murderous intent)
+- **The ritual sense of the central composition** — The central composition is reserved for key "judgment" moments: promotion announcements, layoff notices, and final decisions. Not used daily
+- **Glass/Reflective Barrier** — The workplace is full of glass (meeting rooms, office doors, elevators). Photographing people through glass creates a sense of "visible but intangible" isolation, implying that the superficial transparency of interpersonal relationships in the workplace actually has walls.
+- **Oppression of vertical space** - overlooking high-rise buildings, going up and down in elevators, going up and down stairs - the movement of vertical space directly reflects the "up and down of social class" in the workplace
+- **Scene separation means social distance** —
+  - **Visual/Panorama** — the overall view of the space, the sense of insignificance of the characters within the huge organization
+  - **Medium shot** — Formal social distancing, standard shot of meetings/conversations
+  - **Closer shot** — Breaking social distance, oppression/intimacy/confrontation
+  - **Close-up** — Capturing micro-expressions: a restrained smile at the corner of the mouth, averting eyes, uneasy fingers
+- **The psychological function of close-ups** — a pen being broken, a message on a mobile phone screen, a pen tip shaking slightly when signing. Close-up magnifies "the details of pressure" in the workplace
+
+---
+
+## 6. Camera movement and rhythm
+
+### Key points of urban workplace narrative
+
+- **Calm and fixed** — More than 65% of the shots should be fixed on a tripod to convey the documentary quality of "calm observation". Workplace narrative does not require gorgeous camerawork, reality comes from restraint
+- **Documentary Handheld** — Use a slight handhold when following the character as they move (corridors, commuting, rushing) to increase the sense of "being there" realism. The shaking is extremely restrained and can hardly be felt.
+- **Slow push = oppression/examination** — Slowly push the character's face to simulate the oppressive feeling of "being stared at". Paragraphs suitable for being questioned, tested, and making choices
+- **Easy zoom = isolation/full view** — Easing from the character to the full view, revealing the character's insignificance and loneliness in the huge office space. Suitable for solitude, failure, and working overtime late at night.
+- **Traverse = Scan/Parallel** — Horizontally traverse from one character to another, establishing spatial relationships. Suitable for scanning in conference rooms and group portraits in open office areas
+- **Mirror movement is the narrative attitude** — still = calm observation; slow push = approach/oppression; slow pull = withdrawal/reflection; handheld tracking = real participation; lateral movement = scanning the whole situation
+- **Quick Cut Montage** — In workplace narratives, fast cuts are only used for "time lapse montages" (slices of work day after day, clips of working on projects overnight), and are not used in daily narratives.

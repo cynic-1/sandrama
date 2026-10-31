@@ -1,61 +1,61 @@
-# 热血少年 · 导演叙事手法技能包
+# Hot-Blooded Youth · Director's Narrative Techniques Skill Pack
 
-## 简介
+## Introduction
 
-本技能包为 **热血少年** 类型故事提供一套完整的导演叙事手法参考，涵盖从宏观叙事规划到微观分镜执行的全流程指导。适用于任何视觉风格。
+This skill pack provides a complete reference for directorial narrative techniques for **Hot-Blooded Youth** stories, covering the full process from macro-level narrative planning to micro-level storyboard execution. It is applicable to any visual style.
 
-## 核心理念
+## Core Concepts
 
-- **燃点递进** — 热血不是一直高燃，而是从低谷一步步攀升到爆发，落差越大燃感越强
-- **信念可视化** — 抽象的信念与意志要用具象的动作、眼神、伤痕来外化，让观众"看到"决心
-- **以弱胜强** — 核心魅力来自"明知不可为而为之"，困境越绝望、翻盘越燃
-- **伙伴共振** — 热血不是孤军奋战，伙伴的信任、牺牲与回归是最强催泪燃点
+- **Escalating Intensity** — The "hot-blooded" feeling is not constant high intensity; it climbs step by step from a low point to an explosion. The greater the gap, the stronger the impact.
+- **Visualizing Belief** — Abstract beliefs and willpower must be externalized through concrete actions, gazes, and scars, allowing the audience to "see" the determination.
+- **The Underdog Victory** — The core appeal comes from "doing the impossible despite knowing it cannot be done." The more desperate the predicament, the more exhilarating the turnaround.
+- **Companion Resonance** — Hot-blooded spirit is not a solo fight; the trust, sacrifice, and return of companions are the strongest tear-jerking and exhilarating moments.
 
-## 文件结构
+## File Structure
 
 ```
 Hot_blooded_action/
-├── README.md                                          ← 本文件
+├── README.md                                          ← This file
 └── driector_skills/
-    ├── director_planning_narrative.md                 ← 叙事规划手法
-    └── director_storyboard_table_narrative.md         ← 分镜表叙事手法
+    ├── director_planning_narrative.md                 ← Narrative planning techniques
+    └── director_storyboard_table_narrative.md         ← Storyboard table narrative techniques
 ```
 
-## 技能文件说明
+## Skill File Description
 
-### 1. 叙事规划手法 (`director_planning_narrative.md`)
+### 1. Narrative Planning Techniques (`director_planning_narrative.md`)
 
-导演在 **叙事规划阶段** 使用的技法参考，定义热血少年在主题立意、燃点节奏、场景情绪设计与声音方向上的整体规划方法。
+Technique references used by the director during the **narrative planning stage**, defining the overall planning methods for a hot-blooded young protagonist in terms of thematic intent, hype-point pacing, scene emotional design, and sound direction.
 
-| 章节 | 内容概要 |
+| Chapter | Content Overview |
 |---|---|
-| 主题立意与热血内核 | 信念外化、以弱胜强、伙伴羁绊、成长弧线 |
-| 叙事结构与燃点节奏 | 低谷→攀升→爆发循环、三段式燃点递进、情绪蓄力 |
-| 分场景情绪设计 | 六大典型热血段落设计、对抗升级叙事、空间战场化 |
-| 声音与音乐方向 | 鼓点递进、沉默蓄力、燃曲爆发时机、呐喊留白 |
-| 构图与景别叙事 | 仰拍英雄感/俯拍绝境感/对称对峙、景别的力量表达 |
-| 镜头运动与节奏 | 速度线运镜、冲击缓速、环绕升格、爆发快推 |
+| Thematic Intent and Hot-Blooded Core | Externalization of belief, overcoming the strong with the weak, bonds between companions, growth arc |
+| Narrative Structure and Hype-Point Pacing | Trough → Climb → Explosion cycle, three-stage hype-point progression, emotional buildup |
+| Scene-by-Scene Emotional Design | Design of six typical hot-blooded segments, escalating confrontation narrative, spatial battlefield-ization |
+| Sound and Music Direction | Drumbeat progression, silence for buildup, timing of hype-track explosion, pauses for shouts |
+| Composition and Shot Scale Narrative | Low-angle heroism / high-angle desperation / symmetrical confrontation, expression of power through shot scale |
+| Camera Movement and Rhythm | Speed-line camera work, impact slowdown, orbiting slow motion, explosive fast push |
 
-### 2. 分镜表叙事手法 (`director_storyboard_table_narrative.md`)
+### 2. Storyboard Table Narrative Techniques (`director_storyboard_table_narrative.md`)
 
-导演在 **分镜表制作阶段** 使用的技法参考，定义热血少年在分镜表中的景别策略、运镜节奏、时长把控、战斗分镜设计与转场手法。
+Technique references used by the director during the **storyboard table production stage**, defining shot scale strategy, camera movement rhythm, duration control, combat storyboard design, and transition techniques for a hot-blooded young protagonist in the storyboard table.
 
-| 章节 | 内容概要 |
+| Chapter | Content Overview |
 |---|---|
-| 分镜表定位 | 分镜表作为节奏引擎核心工具的定位说明 |
-| 景别选择 | 力量感景别、仰拍与俯拍的叙事功能、冲击特写 |
-| 运镜节奏 | 静蓄动爆、速度感运镜、环绕与跟拍 |
-| 时长把控 | 爆发前拉伸、冲击瞬间压缩、升格黄金时刻 |
-| 对抗镜头设计 | 攻防节奏、力量对比、一击定胜负的镜头语言 |
-| 伙伴叙事 | 并肩作战构图、信任传递镜头、牺牲与回归 |
-| 台词与呐喊 | 信念宣言时机、沉默的分量、战吼的克制使用 |
-| 转场设计 | 冲击波转场/速度线过渡/黑屏蓄力/闪白爆发 |
+| Storyboard Table Positioning | Explanation of the storyboard table's role as the core tool of the rhythm engine |
+| Shot Scale Selection | Power-oriented shot scales, narrative function of low-angle and high-angle shots, impact close-ups |
+| Camera Movement Rhythm | Static buildup to dynamic explosion, speed-sense camera work, orbiting and tracking shots |
+| Duration Control | Stretching before explosion, compressing impact moments, slow-motion golden moments |
+| Confrontation Shot Design | Offense-defense rhythm, power contrast, shot language for one-strike decisive outcomes |
+| Companion Narrative | Side-by-side combat composition, trust transmission shots, sacrifice and return |
+| Dialogue and Shouts | Timing of belief declarations, weight of silence, restrained use of battle cries |
+| Transition Design | Shockwave transitions / speed-line transitions / black screen buildup / flash white explosion |
 
-## 使用方式
+## Usage
 
-本技能包作为 SandDrama 导演 AI 的叙事手法参考，在故事创作流程中自动加载，指导：
+This skill pack serves as a narrative technique reference for the SandDrama Director AI. It is automatically loaded during the story creation process to guide:
 
-1. **叙事规划** — 确定热血内核、燃点节奏曲线、场景情绪与音乐爆发时机
-2. **分镜表生成** — 根据叙事规划输出具体的景别、运镜、时长与转场方案
+1. **Narrative Planning** — Determining the hot-blooded core, hype-point pacing curve, scene emotions, and music explosion timing
+2. **Storyboard Table Generation** — Outputting specific shot scale, camera movement, duration, and transition plans based on the narrative plan
 
-两个文件分工明确、逐层递进，从"为什么这样拍"到"具体怎么拍"形成完整闭环。
+The two files have clearly defined roles and progress layer by layer, forming a complete closed loop from "why shoot it this way" to "how exactly to shoot it."

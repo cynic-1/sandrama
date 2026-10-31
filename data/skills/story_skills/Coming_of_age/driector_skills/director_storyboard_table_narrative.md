@@ -1,88 +1,88 @@
 ---
 name: director_storyboard_table_narrative
-description: 分镜表叙事手法 · 青春成长 — 定义青春成长在分镜表中的景别情感映射、运镜活力感、时长把控、镜头合并与转场逻辑。适用于任何视觉风格。
+description: Storyboard narrative technique · Youth growth - Define the emotional mapping of youth growth in the storyboard, the dynamic sense of movement, duration control, shot merging and transition logic. Works with any visual style.
 metaData: director_skills
 ---
 
-# 分镜表叙事手法 · 青春成长 · 技法参考
+# Storyboard Narrative Technique · Youth Growth · Technical Reference
 
 ---
 
-## 一、分镜表定位
+## 1. Storyboard positioning
 
-分镜表是导演将剧本转化为镜头语言的核心工具。表单字段由导演根据项目需要自行设定（分镜号、景别、运镜、时长、人物、事件、台词、光影、情绪、转场等），以下仅提供青春成长叙事类型下的技法参考。
-
----
-
-## 二、景别选择
-
-- **群像景别优先** — 青春叙事的大量段落是群戏（课堂/课间/聚会/比赛）。全景和中景是群戏的主力，确保多人同框传递"在一起"的归属感
-- **特写捕捉微表情** — 青春中大量情感是通过微表情传递的（偷笑、眼眶泛红、紧张咽口水）。在关键情感节点安排特写，捕捉这些稍纵即逝的瞬间
-- **远景的自由与孤独** — 远景在青春叙事中有双重功能：操场奔跑的远景 = 自由/活力；放学后空街的远景 = 孤独/思考。根据情绪目标选择
-- **大特写要有青春感** — 大特写（红了的耳尖/紧攥的手/眨掉泪水的睫毛）用于捕捉青春中"嘴上没说但身体诚实"的瞬间
-- **定场用生活化镜头** — 青春叙事的定场不需要宏大空镜，一个贴着便利贴的课桌、挂着球衣的椅背、堆满试卷的角落就够了
+Storyboards are the core tool for directors to transform scripts into lens language. The form fields are set by the director according to the needs of the project (storyboard numbers, scenes, camera movements, duration, characters, events, lines, light and shadow, emotions, transitions, etc.). The following only provides technical reference for the youth growth narrative type.
 
 ---
 
-## 三、运镜节奏
+## 2. Scene selection
 
-- **动静交替** — 50% 静止机位 + 30% 跟拍/缓推 + 20% 手持微晃。青春叙事的运镜节奏本身就应该有"一会儿活蹦乱跳一会儿安静下来"的质感
-- **跟拍奔跑** — 追随角色跑动的跟拍是青春叙事的标志运镜。保持微微不稳，传递生命力。适合追人、赶路、比赛冲刺
-- **缓推 = 注意到/发现** — 观众（和角色）注意到某人/某事的心理暗示。适合暗恋发现、注意到朋友的异常、看到毕业栏
-- **缓拉 = 离开/放手** — 从角色/场景缓慢退开，适合告别、毕业、独自走开
-- **手持微晃 = 日常真实感** — 日常群戏段落用轻微手持晃动，增加"在场感"和"随手记录"的纪实质感
-
----
-
-## 四、时长把控
-
-- **日常碎片 2-3s** — 欢闹日常的碎片镜头节奏快，每个镜头 2-3s，用数量和节奏传递"每一天都飞快过去"
-- **情感段落拉长 4-5s** — 心动、争吵、和解等情感段落镜头时长应比日常多 50%，给情绪发酵的时间
-- **沉默镜头 3-4s** — 无台词的成长顿悟镜头（角色站在原地看着别人走远）需要足够时长让观众感受到"这一刻他/她长大了"
-- **远景/空镜 4-6s** — 季节空镜、校园空镜用于标记时间流逝，给足时长让观众"感受到时间在走"
-- **对话近景 3-4s** — 青春对话节奏偏快，但关键对白（表白/争吵/道歉）应适当放慢
-- **黄金法则：碎片堆出厚度** — 青春叙事的情感厚度不来自单个长镜头，而来自大量碎片的累积。宁可多几个 2-3s 的碎片，不要一个拖沓的长镜头
+- **Group portrait scenes are given priority** — A large number of passages in the youth narrative are group scenes (classroom/recess/party/game). Panoramic and medium shots are the mainstay of group scenes, ensuring that multiple people in the same frame convey a sense of belonging "together"
+- **Close-up capture of micro-expressions** — A large number of emotions in youth are conveyed through micro-expressions (smirking, red eyes, swallowing nervously). Arrange close-ups at key emotional nodes to capture these fleeting moments
+- **Freedom and Loneliness in Long Shots** — Long shots have a dual function in youth narratives: the long shot of running on the playground = freedom/energy; the long shot of an empty street after school = loneliness/thinking. Choose based on emotional goals
+- **Close-ups should have a sense of youth** — Close-ups (red tips of ears/clenched hands/eyelashes blinking away tears) are used to capture the moments of youth that are "unspoken but honest"
+- **Life-style shots are used to set the scene** - The setting of the youth narrative does not require a grand empty shot. A desk with sticky notes, a chair back with a jersey hanging on it, and a corner filled with test papers are enough.
 
 ---
 
-## 五、镜头合并策略（去 AI 感）
+## 3. Rhythm of camera movement
 
-- **日常碎片保留碎切** — 与其他类型不同，青春叙事中日常欢闹段落的碎切（快速切换的日常片段）本身就是叙事手法，不需要强行合并
-- **情感段落一镜完成** — 关键情感段落（告白/争吵/和解）应尽量用完整的长镜头而非碎切，给情绪连续发展的空间
-- **群戏一镜涵盖** — 多人同场的群戏能用一个带运镜的镜头涵盖的，不拆成逐个人物的碎切。保持"我们在一起"的整体感
-- **导演思维检验** — 写完分镜后自检：日常段落是否有碎片感（有 = 对）？情感段落是否有连续感（有 = 对）？两者节奏有反差（有 = 对）？
-
----
-
-## 六、一镜到底（长镜头合并）
-
-- **适用条件** — 角色在校园中穿行、追逐奔跑、从一个空间到另一个空间的心情转换。青春叙事中长镜头的价值是"跟着这个人经历这一刻"
-- **典型场景** — 角色穿越走廊跑向操场、追着公交车跑、走过毕业后空荡荡的教室、在人群中寻找某个人
-- **标注方式** — 在运镜字段写明完整路径（如"一镜到底：跟拍角色从教室冲出→穿过走廊→推开门到操场→落幅角色停住回头"），画面描述中交代起幅和落幅
-- **时长放宽** — 因持续跟随和信息更新，可突破单镜 6s 上限，但不超过 12s
-- **情绪连续性** — 长镜头内的情绪应有变化弧线（从着急到释然/从开心到失落），不要让长镜头成为情绪的平坦段
+- **Alternating motion and stillness** — 50% static camera position + 30% tracking/slow push + 20% handheld slight shaking. The rhythm of the camera movement of the youth narrative itself should have the texture of "sometimes lively and sometimes quiet"
+- **Following shot and running** — The tracking shot of following the character running is a hallmark of youth narrative. Stay slightly unsteady and convey life force. Suitable for chasing people, rushing, and sprinting in competitions
+- **Nudge = Notice/Discover** — The psychological cue that the audience (and characters) notice someone/something. Suitable for discovering a crush, noticing abnormalities in friends, and seeing the graduation column
+- **Slow pull = leave/let go** — Slowly retreat from a character/scene, suitable for saying goodbye, graduation, and walking away alone
+- **Handheld Slight Shaking = Everyday Reality** — Use slight handheld shaking in daily group scenes to increase the documentary quality of "sense of presence" and "random recording"
 
 ---
 
-## 七、人物互动设计
+## 4. Duration control
 
-- **群戏互动要有层次** — 多人嬉闹场景中每个人应有各自的小动作/小表情，不要所有人做同一个反应。层次感 = 真实感
-- **青春互动用笨拙** — 碰到手缩回来、想说话又闭嘴、故意走另一条路又偷看——青春的互动核心是"想靠近但不知道怎么办"
-- **身体距离即关系** — 分镜表中标注人物间的距离变化：陌生时隔着一个座位、熟悉后并肩而坐、吵架后各站一边、和好后又靠在一起
-
----
-
-## 八、台词与留白
-
-- **青春台词宜短宜碎** — 青春中的对话是碎片化的：半句话被打断、话说一半改口、嘴上说"没事"但表情出卖一切
-- **重要的话说不出口** — 青春叙事中最有力的台词往往是"没能说出口的话"。用沉默、转身、假装没事来替代直白表达
-- **群戏的叠音** — 青春群戏中多人同时说话、互相打断、七嘴八舌——不追求每句话都听清，混乱本身就是青春的声音
+- **Daily Fragments 2-3s** — The shots of hilarious daily fragments are fast-paced, each shot lasts 2-3s, conveying "every day flies by" with quantity and rhythm.
+- **Emotional paragraphs are lengthened to 4-5s** — The duration of emotional paragraphs such as heartbeat, quarrel, and reconciliation should be 50% longer than usual to give time for emotions to ferment.
+- **Silent shot 3-4s** — A growth epiphany shot without lines (the character stands still and watches others walk away) needs to be long enough to make the audience feel "he/she has grown up at this moment"
+- **Long Shot/Empty Shot 4-6s** — Seasonal empty shots and campus empty shots are used to mark the passage of time, giving the audience enough time to "feel the passage of time"
+- **Closer shot of dialogue 3-4s** — Youth dialogue is fast-paced, but key dialogues (confession/argument/apology) should be slowed down appropriately.
+- **Golden Rule: Fragments pile up to create thickness** — The emotional thickness of youth narratives does not come from a single long shot, but from the accumulation of a large number of fragments. I'd rather have a few more 2-3s fragments than one long, dragging shot
 
 ---
 
-## 九、转场设计
+## 5. Lens merging strategy (removing the sense of AI)
 
-- **日常段落用快切蒙太奇** — 表达"每一天都差不多但每一天都珍贵"的日常段落，用快速硬切的碎片蒙太奇：上课→课间→放学→上课→课间……
-- **情感转折用空镜过渡** — 情绪发生重大变化时，插入一个季节/校园空镜做情绪缓冲
-- **时间跨度用对比转场** — 同一个场景、同一个角度，但细节变了（黑板内容不同/座位上的人换了/树叶的颜色变了），用硬切的对比传递时间流逝
-- **默认硬切** — 同场戏内镜头间用硬切，保持青春的明快感
+- **Daily Fragments Retain Chopped** — Unlike other genres, the fragmentation of daily hilarious passages in youth narratives (quickly switched daily fragments) is itself a narrative technique and does not require forced merging.
+- **Emotional passages are completed in one shot** - Key emotional passages (confession/argument/reconciliation) should be used as complete long shots as possible rather than chopped up to give room for continuous emotional development.
+- **A group scene can be covered in one shot** - A group scene involving multiple people in the same scene can be covered by one camera with a moving camera, without breaking it into individual characters. Maintain a sense of "we are in this together" as a whole
+- **Director's Thought Test** — Self-examination after writing the storyboard: Are the daily paragraphs fragmented (yes = correct)? Does the emotional passage have a sense of continuity (yes = yes)? Is there a contrast between the two rhythms (yes = right)?
+
+---
+
+## 6. One shot to the end (long shot merge)
+
+- **Applicable Conditions** — The character walks through the campus, chases and runs, and changes mood from one space to another. The value of long shots in youth narratives is "follow this person through this moment"
+- **Typical Scenario** — The character runs through the corridor to the playground, chases the bus, walks through the empty classroom after graduation, and looks for someone in the crowd
+- **Annotation method** — Write the complete path in the camera movement field (such as "One shot to the end: follow the character rushing out of the classroom → walk through the corridor → open the door to the playground → the falling character stops and turns back"), and explain the starting and ending angles in the description of the scene
+- **Time Relaxation** — Due to continuous follow-up and information updates, the upper limit of 6s for a single lens can be exceeded, but not more than 12s
+- **Emotional Continuity** — The emotions within a long shot should have an arc of change (from anxiety to relief/from happiness to loss), do not let the long shot become a flat segment of emotion
+
+---
+
+## 7. Character interaction design
+
+- **Group play interaction must be hierarchical** — In a multi-player scene, everyone should have their own small movements/expressions, and everyone should not have the same reaction. Layer = Reality
+- **Clumsy use of youthful interactions** - retracting hands when touched, shutting up when trying to speak, deliberately walking another way and then peeking - the core of youthful interactions is "wanting to get closer but not knowing what to do"
+- **Physical distance is relationship** — Changes in the distance between the characters are marked in the storyboard: they were separated by a seat when they were strangers, they sat side by side after becoming familiar with each other, they stood on each side after an quarrel, and they were close to each other after they made up.
+
+---
+
+## 8. Lines and blank spaces
+
+- **Youth lines should be short and fragmented** — Dialogue in youth is fragmented: half a sentence is interrupted, half a sentence is changed, and the mouth says "It's okay" but the expression betrays everything
+- **Important words cannot be said** — The most powerful lines in youth narratives are often "the words that cannot be said." Use silence, turn around, and pretend nothing is wrong instead of direct expression
+- **Overlapping sounds in group plays** — In youth group plays, many people talk at the same time, interrupt each other, and talk nonsense—it is not necessary to hear every sentence clearly. Chaos itself is the voice of youth.
+
+---
+
+## 9. Transition design
+
+- **Quick-cut montage of daily paragraphs** — Daily paragraphs that express "every day is the same but every day is precious", using fast-cut fragment montage: class → break → school → class → break...
+- **Use an empty mirror to transition emotional transitions** — When a major change in mood occurs, insert a season/campus empty mirror as an emotional buffer
+- **Contrast transition for time span** — The same scene, the same angle, but the details have changed (the content on the blackboard is different/the people on the seats have changed/the color of the leaves has changed), using hard-cut contrast to convey the passage of time
+- **Default Hard Cut** — Use hard cuts between shots in the same scene to maintain the youthful brightness

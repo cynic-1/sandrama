@@ -1,5 +1,6 @@
 import express from "express";
 import u from "@/utils";
+import { db } from "@/utils/db";
 import { z } from "zod";
 import { success, error } from "@/lib/responseFormat";
 import { validateFields } from "@/middleware/middleware";
@@ -21,23 +22,26 @@ export default router.post(
       return res.status(403).send(error("You can only modify your own account"));
     }
     const nextName = req.body.name.trim();
-    const rawPassword = typeof req.body.password === "string" ? req.body.password.trim() : "";
+    const rawPassword = typeof req.body.password === "string" ? req.body.password : "";
     if (rawPassword && rawPassword.length < 6) {
       return res.status(400).send(error("Password must be at least 6 characters"));
     }
-    const duplicate = await u.db("o_user").whereRaw("lower(name) = lower(?)", [nextName]).whereNot("id", user.id).first();
-    if (duplicate) return res.status(409).send(error("Username already exists"));
-
-    const nextTokenVersion = rawPassword ? user.tokenVersion + 1 : user.tokenVersion;
-    const updates: Record<string, unknown> = {
-      name: nextName,
-      tokenVersion: nextTokenVersion,
-      updatedAt: Date.now(),
-    };
-    if (rawPassword) {
-      updates.password = await hashPassword(rawPassword);
-    }
-    await u.db("o_user").where("id", user.id).update(updates);
+    const passwordHash = rawPassword ? await hashPassword(rawPassword) : undefined;
+    const nextTokenVersion = await db.transaction(async (trx) => {
+      const duplicate = await trx("o_user").whereRaw("lower(name) = lower(?)", [nextName]).whereNot("id", user.id).first();
+      if (duplicate) return null;
+      const latest = await trx("o_user").where("id", user.id).first();
+      const version = Number(latest?.tokenVersion ?? 0) + (rawPassword ? 1 : 0);
+      const updates: Record<string, unknown> = {
+        name: nextName,
+        tokenVersion: version,
+        updatedAt: Date.now(),
+      };
+      if (passwordHash) updates.password = passwordHash;
+      await trx("o_user").where("id", user.id).update(updates);
+      return version;
+    });
+    if (nextTokenVersion === null) return res.status(409).send(error("Username already exists"));
 
     const tokenData = await u.db("o_setting").where("key", "tokenKey").first();
     let token: string | undefined;

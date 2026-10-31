@@ -25,18 +25,18 @@ export default (nsp: Namespace) => {
   nsp.on("connection", async (socket: Socket) => {
     const token = socket.handshake.auth.token;
     if (!token || !(await verifyToken(token))) {
-      console.log("[productionAgent] 连接失败，token无效");
+      console.log("[productionAgent] Connection failed, invalid token");
       socket.disconnect();
       return;
     }
     let isolationKey = socket.handshake.auth.isolationKey;
     if (!isolationKey) {
-      console.log("[productionAgent] 连接失败，缺少 isolationKey");
+      console.log("[productionAgent] Connection failed, missing isolationKey");
       socket.disconnect();
       return;
     }
 
-    console.log("[productionAgent] 已连接:", socket.id);
+    console.log("[productionAgent] Connected:", socket.id);
 
     let resTool = new ResTool(socket, {
       projectId: socket.handshake.auth.projectId,
@@ -56,7 +56,7 @@ export default (nsp: Namespace) => {
       const user = socket.data.user;
       const project = await db("o_project").where("id", Number(data.projectId)).select("userId").first();
       if (!project || (!isAdmin(user) && Number(project.userId ?? 1) !== Number(user?.id))) {
-        callback?.({ success: false, message: "无权访问该项目" });
+        callback?.({ success: false, message: "You do not have permission to access this project" });
         return;
       }
       isolationKey = data.isolationKey;
@@ -64,7 +64,7 @@ export default (nsp: Namespace) => {
         projectId: data.projectId,
         scriptId: data.scriptId,
       });
-      console.log("[productionAgent] 上下文已更新:", isolationKey);
+      console.log("[productionAgent] Context updated:", isolationKey);
       callback?.({ success: true });
     });
 
@@ -74,7 +74,7 @@ export default (nsp: Namespace) => {
       abortController = new AbortController();
       const currentController = abortController;
 
-      const msg = resTool.newMessage("assistant", "视频策划");
+      const msg = resTool.newMessage("assistant", "Video Planning");
       const ctx: agent.AgentContext = {
         socket,
         isolationKey,
@@ -102,7 +102,7 @@ export default (nsp: Namespace) => {
     socket.on("updateThinkConfig", (data: { think: boolean; thinlLevel: 0 | 1 | 2 | 3 }) => {
       thinkConfig.think = data.think;
       thinkConfig.thinlLevel = data.thinlLevel;
-      console.log("[productionAgent] 更新思考配置:", thinkConfig);
+      console.log("[productionAgent] Update thinking configuration:", thinkConfig);
     });
 
     socket.on("stop", () => {
@@ -111,6 +111,6 @@ export default (nsp: Namespace) => {
     });
   });
   nsp.on("disconnect", (socket: Socket) => {
-    console.log("[productionAgent] 已断开连接:", socket.id);
+    console.log("[productionAgent] Disconnected:", socket.id);
   });
 };

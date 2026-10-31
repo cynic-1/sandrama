@@ -1,85 +1,85 @@
 ---
 name: director_storyboard_table_narrative
-description: 分镜表叙事手法 · 甜宠言情 — 定义甜宠言情在分镜表中的景别递进、运镜节奏、时长把控、镜头合并、互动设计、台词留白与转场逻辑。适用于任何视觉风格。
+description: Storyboard narrative techniques · Sweet Pet Romance - Define the scene progression, camera movement rhythm, duration control, shot merging, interactive design, line blanking and transition logic of Sweet Pet Romance in the storyboard. Works with any visual style.
 metaData: director_skills
 ---
 
-# 分镜表叙事手法 · 甜宠言情 · 技法参考
+# Storyboard Narrative Technique · Sweet Pet Romance · Technical Reference
 
 ---
 
-## 一、分镜表定位
+## 1. Storyboard positioning
 
-分镜表是导演将剧本转化为镜头语言的核心工具。表单字段由导演根据项目需要自行设定（分镜号、景别、运镜、时长、人物、事件、台词、光影、情绪、转场等），以下仅提供甜宠言情叙事类型下的技法参考。
-
----
-
-## 二、景别选择
-
-- **甜宠戏的景别递进** — 同场戏内景别应随情感升温递进：半身→近景→特写→大特写。不要一上来就怼特写，留出情绪上升空间
-- **远景不是过场** — 远景镜头本身就有叙事价值（孤独感、空间压迫、季节氛围）。给远景足够时长（4-6s），别急着切走
-- **大特写要有理由** — 大特写（眼/唇/手）是情绪核弹，一集用 2-3 次足够。滥用会让观众疲劳
-- **定场镜头要精简** — 定场（建立镜头）最多 1-2 个镜头搞定，不要拆成 3 个以上碎片。典型做法：1 个大远景/远景定场 + 1 个全景引入主体，或直接 1 个带缓推的远景完成定场+引入。避免"先拍环境→再拍局部→再拍人物到达"的冗余三段式
+Storyboards are the core tool for directors to transform scripts into lens language. The form fields are set by the director according to the needs of the project (shot number, scene, camera movement, duration, characters, events, lines, light and shadow, emotions, transitions, etc.). The following only provides technical reference for the sweet pet romance narrative type.
 
 ---
 
-## 三、运镜节奏
+## 2. Scene selection
 
-- **默认静止** — 60% 以上镜头应为静止机位，让画面细节和情绪自己说话
-- **缓推 = 情绪递进** — "观众靠近角色"的心理暗示，适合心动、发现、窥视
-- **缓拉 = 情绪抽离** — "观众退开"的心理暗示，适合离别、孤独、揭示全貌
-- **运镜即情绪** — 镜头运动不是技术选择，是情绪选择。静止 = 沉稳/压抑；缓推 = 靠近/心动；缓拉 = 抽离/孤独；缓摇 = 展示/庄重
-- **甜宠"心跳运镜"** — 暧昧升温段落可用微幅缓推配合景别递进（半身→近景→特写），模拟心跳加速时"注意力收窄"的生理感受
-
----
-
-## 四、时长把控
-
-- **特写/表情镜头** — 2-3s，聚焦微表情变化
-- **对话近景** — 3-4s，稳定出词
-- **全身亮相** — 3-5s，展示全貌
-- **远景/空镜** — 4-6s，氛围渲染
-- **单镜头不超过 6s** — 超过 6s 观众注意力衰减，需要运镜或动态元素维持
-- **黄金 6 秒规则** — 无台词镜头累计超过 6s 未出现新信息（台词/动作/主体变化），观众注意力断裂。定场+过渡类镜头尤其注意，宁可合并压缩也不要拖沓
+- **Scenery progression in sweet pet scenes** — The scene progression within the same scene should progress as the emotion heats up: half-length → close-up → close-up → wide close-up. Don’t start off with close-ups, leave room for your emotions to rise.
+- **Long shot is not a cut scene** — Long shot itself has narrative value (sense of loneliness, spatial oppression, seasonal atmosphere). Give the vision enough time (4-6s), don’t rush away
+- **There must be a reason for close-ups** — Close-ups (eyes/lips/hands) are emotional bombs, 2-3 times in an episode is enough. Overuse fatigues the audience
+- **Establishing shots should be streamlined** — Establishing shots (establishing shots) should be done in 1-2 shots at most, and do not break it into more than 3 pieces. Typical approach: 1 large distant view/far shot to establish the scene + 1 panoramic view to introduce the subject, or directly 1 long shot with a gentle push to complete the scene + introduction. Avoid the redundant three-stage formula of "first shoot the environment → then shoot the local area → then shoot the arrival of the characters"
 
 ---
 
-## 五、镜头合并策略（去 AI 感）
+## 3. Rhythm of camera movement
 
-- **能一镜交代的不拆两镜** — 如果一个带运镜的镜头（如缓推从远景到全景）能同时完成定场+主体引入，就不要拆成"先空镜定场→再切主体入画"两个镜头
-- **连续同类信息合并** — 连续描述同一空间不同局部的镜头（院门→藤蔓→焦黑厢房）应合并为一个镜头，用画面描述涵盖多层空间信息
-- **叙事密度优先** — 每个镜头必须推进叙事或情绪，纯装饰性镜头（只为展示环境细节）应合并到有叙事功能的镜头中
-- **导演思维检验** — 写完分镜后自检：如果一个真人导演会把相邻 2-3 个镜头合成 1 个镜头拍，说明拆得过细，应合并
-
----
-
-## 六、一镜到底（长镜头合并）
-
-- **适用条件** — 相邻镜头之间存在动作连续变化、场景轻度变化（同场景内位移）、或拍摄角度渐变时，优先考虑用一镜到底替代碎切，画面和内容更流畅
-- **典型场景** — 角色行走穿越空间、跟随动作从A点到B点、环绕角色展示环境、定场缓推到主体特写
-- **标注方式** — 在运镜字段写明完整路径（如"一镜到底：缓推远景→跟移至院内→落幅全景"），画面描述中交代起幅和落幅
-- **时长放宽** — 因信息量持续更新，可突破单镜 6s 上限，但不超过 12s
-- **抽卡风险** — 一镜到底对画面生成的连续性要求高，抽卡难度提升。仅在叙事流畅性收益明显大于碎切时使用，全片不宜超过 2-3 处
+- **Default still** — More than 60% of the shots should be in a still position, allowing the details and emotions of the picture to speak for themselves
+- **Slow push = Emotional progression** — The psychological suggestion of "the audience is close to the character", suitable for heartbeat, discovery, and peeping
+- **Slow pull = Emotional withdrawal** - The psychological suggestion of "audience retreating", suitable for parting, loneliness, and revealing the whole picture
+- **Camera movement is emotion** — Camera movement is not a technical choice, it is an emotional choice. Still = calm/suppressed; Slow push = approach/heartbeat; Slow pull = pull away/solitude; Slow shake = display/dignity
+- **Sweet Pet "Heartbeat Movement Mirror"** - The ambiguous heating passage can be slightly pushed slowly and combined with the scene progression (half-body → close-up → close-up) to simulate the physiological feeling of "narrowing of attention" when the heartbeat accelerates.
 
 ---
 
-## 七、人物互动设计
+## 4. Duration control
 
-- **单镜头动作不超过两个** — "低头拈花 + 微笑"可以，"低头拈花 + 微笑 + 转身 + 抬手"会崩
-- **甜宠互动用暗示** — 手指差一点碰到、衣袂擦过、目光追随又移开。不要在分镜表里写"拥抱""接吻"等大幅度双人交互，拆成暗示性的局部镜头
-
----
-
-## 八、台词与留白
-
-- **台词少的镜头给长时长** — 无台词的情绪镜头往往比有台词的更需要时间。沉默 3 秒比一句台词更有张力
-- **一句台词对应一个镜头** — 避免在单镜头内塞多句对白，切换说话者时应切镜头
-- **旁白镜头用远景或空镜** — 内心独白配近景容易显得嘴唇不动很假，配远景或场景空镜更自然
+- **Close-up/expression shot** — 2-3s, focusing on micro-expression changes
+- **Closer shot of conversation** — 3-4s, stable word production
+- **Full body appearance** — 3-5s, showing the whole picture
+- **Long shot/empty shot** — 4-6s, atmosphere rendering
+- **Single shot should not exceed 6 seconds** — Over 6 seconds, the audience’s attention will fade and camera movement or dynamic elements are required to maintain it.
+- **Golden 6 Seconds Rule** — The total duration of scenes without lines exceeds 6 seconds and no new information (lines/actions/subject changes) appears, and the audience’s attention is broken. Pay special attention to establishing shots and transitional shots. It is better to merge and compress than to delay.
 
 ---
 
-## 九、转场设计
+## 5. Lens merging strategy (removing the sense of AI)
 
-- **默认硬切** — 同场戏内镜头间用硬切，干净利落
-- **场景切换用空镜过渡** — 不同场景间插入 1 个场景空镜（2-3s）做情绪缓冲
-- **段落切换可用叠化/淡入淡出** — 大段落间的情绪跳跃用柔性转场，避免观众出戏
+- **Don’t split two lenses if you can explain it in one shot** — If a lens with a moving lens (such as slowly zooming from a long shot to a panoramic view) can complete the setting + subject introduction at the same time, don’t split it into two shots of "first empty the lens to set the scene → then cut the subject into the frame"
+- **Continuous similar information merge** — Shots that continuously describe different parts of the same space (courtyard gate → vines → blackened wing) should be merged into one shot, and the picture description should cover multiple layers of spatial information
+- **Narrative density first** — every shot must advance the narrative or mood, purely decorative shots (just to show environmental details) should be merged into shots with narrative function
+- **Director’s Thought Test** — Self-examination after writing the storyboard: If a real director combines 2-3 adjacent shots into one shot, it means that the splits are too detailed and should be merged.
+
+---
+
+## 6. One shot to the end (long shot merge)
+
+- **Applicable conditions** — When there are continuous changes in action between adjacent shots, slight changes in the scene (displacement within the same scene), or gradual changes in shooting angles, priority is given to using one shot to the end instead of cutting, so that the picture and content are smoother
+- **Typical Scene** — The character walks through space, follows the action from point A to point B, displays the environment around the character, and slowly pushes the scene to a close-up of the subject
+- **Marking method** - Write the complete path in the movement field (such as "One shot to the end: Slowly push the distant view → Follow the movement into the courtyard → Landing panorama"), explain the starting and ending angles in the picture description
+- **Time Relaxation** — Due to the continuous update of the amount of information, the upper limit of 6s for a single lens can be exceeded, but not more than 12s
+- **Risk of card drawing** — One shot to the end requires high continuity of screen generation, and the difficulty of drawing cards increases. Only use it when the benefits of narrative fluency are significantly greater than chopped cuts. It should not exceed 2-3 places in the whole film.
+
+---
+
+## 7. Character interaction design
+
+- **No more than two actions per shot** — "Bow down and hold flowers + smile" is OK, "Bow down and hold flowers + smile + turn around + raise hand" will fail
+- **Suggestions for sweet pet interaction** — Fingers almost touched, clothes brushed against each other, eyes followed and then moved away. Do not write "hugging" or "kissing" and other large-scale interactions between two people in the storyboard, and split them into suggestive partial shots.
+
+---
+
+## 8. Lines and blank spaces
+
+- **Scenes with fewer lines are given longer duration** — Emotional scenes without lines often take longer than those with lines. Three seconds of silence is more powerful than a line of dialogue
+- **One line corresponds to one shot** — Avoid cramming multiple lines of dialogue into a single shot. Cut the camera when switching speakers.
+- **Use long shots or empty shots for narration shots** — Internal monologues with close shots tend to look fake if the lips are not moving, but long shots or empty shots of the scene are more natural.
+
+---
+
+## 9. Transition design
+
+- **Default Hard Cut** — Use hard cuts between shots in the same scene, clean and neat
+- **Empty lens transition for scene switching** — Insert a scene empty lens (2-3s) between different scenes as an emotional buffer
+- **Dissolve/fade is available for paragraph switching** — Use soft transitions for emotional jumps between large paragraphs to avoid the audience being upset

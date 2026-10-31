@@ -35,37 +35,37 @@ export default router.post(
       compulsory: boolean;
       imageModel?: string;
     } = req.body;
-    if (!storyboardIds || storyboardIds.length === 0) return res.status(400).send(error("storyboardIds不能为空"));
-    // 当没有 storyboardIds 时，通过 AI 生成新的分镜面板数据
+    if (!storyboardIds || storyboardIds.length === 0) return res.status(400).send(error("storyboardIds cannot be empty"));
+    // When there are no storyboardIds, generate new storyboard panel data using AI
     let finalStoryboardIds: number[] = storyboardIds || [];
-    // shouldGenerateImage === 0 的分镜标记为「未生成」，其余标记为「生成中」
+    // Mark the storyboard where shouldGenerateImage === 0 as "Not Generated", and mark the rest as "Generating".
     const storyboardData = await u.db("o_storyboard").where("scriptId", scriptId).where("projectId", projectId).whereIn("id", finalStoryboardIds);
-    if (!storyboardData.length) return res.status(500).send(error("未查到分镜数据"));
+    if (!storyboardData.length) return res.status(500).send(error("No storyboard data found"));
     const storyIds = storyboardData.map((i) => i.id);
 
     const projectSettingData = await u.db("o_project").where("id", projectId).select("imageModel", "imageQuality", "artStyle", "videoRatio").first();
     const selectedImageModel = imageModel?.trim() || projectSettingData?.imageModel;
-    if (!selectedImageModel) return res.status(400).send(error("未配置图像模型"));
+    if (!selectedImageModel) return res.status(400).send(error("Image model not configured"));
 
     const [vendorId, modelName] = selectedImageModel.split(/:(.+)/);
     const selectedModel = (await u.vendor.getModelList(vendorId)).find((model: any) => model.modelName === modelName && model.type === "image");
-    if (!selectedModel) return res.status(400).send(error("所选图像模型不可用，请重新选择"));
+    if (!selectedModel) return res.status(400).send(error("The selected image model is unavailable. Please select another one."));
 
     if (compulsory) {
-      await u.db("o_storyboard").whereIn("id", storyIds).where("scriptId", scriptId).update({ state: "生成中", shouldGenerateImage: 1 });
+      await u.db("o_storyboard").whereIn("id", storyIds).where("scriptId", scriptId).update({ state: "Generating", shouldGenerateImage: 1 });
     } else {
-      await u.db("o_storyboard").whereIn("id", storyIds).where("scriptId", scriptId).where("shouldGenerateImage", 0).update({ state: "未生成" });
-      await u.db("o_storyboard").whereIn("id", storyIds).where("scriptId", scriptId).where("shouldGenerateImage", 1).update({ state: "生成中" });
+      await u.db("o_storyboard").whereIn("id", storyIds).where("scriptId", scriptId).where("shouldGenerateImage", 0).update({ state: "Not generated" });
+      await u.db("o_storyboard").whereIn("id", storyIds).where("scriptId", scriptId).where("shouldGenerateImage", 1).update({ state: "Generating" });
     }
 
-    // 按 rowid 顺序查出每个 storyboard 关联的 assetId 有序列表
+    // Query the ordered list of assetIds associated with each storyboard in rowid order
     const assets2StoryboardRows = await u
       .db("o_assets2Storyboard")
       .whereIn("storyboardId", storyIds)
       .orderBy("rowid")
       .select("storyboardId", "assetId");
 
-    // 收集所有 assetId，批量查对应的 imageId
+    // Collect all assetIds and batch query the corresponding imageIds
     const allAssetIds = [...new Set(assets2StoryboardRows.map((r: any) => r.assetId))];
     const assetImageMap: Record<number, number> = {};
     if (allAssetIds.length > 0) {
@@ -75,7 +75,7 @@ export default router.post(
       });
     }
 
-    // 按 rowid 顺序重建 assetRecord，值为有序的 imageId 列表
+    // Rebuild assetRecord in rowid order, with values as an ordered list of imageIds
     const assetRecord: Record<number, number[]> = {};
     assets2StoryboardRows.forEach((item: any) => {
       if (!assetRecord[item.storyboardId]) {
@@ -102,17 +102,17 @@ export default router.post(
     );
 
     const generateTask = async (item: (typeof storyboardData)[number]) => {
-      // 旧分镜可能只保存了 videoDesc，没有保存图片 prompt。不能把空字符串
-      // 传给 OpenAI/OpenSand 的图像编辑接口；优先使用正式 prompt，否则用
-      // 分镜画面描述兜底，并回写 prompt，避免下次批量生成再次触发同一个错误。
+      // Old storyboards may have only saved videoDesc and not the image prompt. An empty string
+      // Passed to the OpenAI/OpenSand image editing interface; prioritize using the formal prompt, otherwise use
+      // Fallback for storyboard frame descriptions, and write back to the prompt to avoid triggering the same error in the next batch generation.
       const prompt = typeof item.prompt === "string" ? item.prompt.trim() : "";
       const fallbackPrompt = typeof item.videoDesc === "string" ? item.videoDesc.trim() : "";
       const imagePrompt = prompt || fallbackPrompt;
       if (!imagePrompt) {
         await u.db("o_storyboard").where("id", item.id).update({
           filePath: "",
-          reason: "分镜提示词和画面描述均为空，无法生成图片",
-          state: "生成失败",
+          reason: "The storyboard prompt and scene description are both empty, so the image cannot be generated.",
+          state: "Generation failed",
         });
         return;
       }
@@ -131,8 +131,8 @@ export default router.post(
             ...repeloadObj,
           },
           {
-            taskClass: "生成分镜图片",
-            describe: "分镜图片生成",
+            taskClass: "Generate storyboard images",
+            describe: "Storyboard image generation",
             relatedObjects: JSON.stringify(repeloadObj),
             projectId: projectId,
           },
@@ -141,7 +141,7 @@ export default router.post(
         await imageCls.save(savePath);
         await u.db("o_storyboard").where("id", item.id).update({
           filePath: savePath,
-          state: "已完成",
+          state: "Completed",
         });
       } catch (e) {
         u.db("o_storyboard")
@@ -149,11 +149,11 @@ export default router.post(
           .update({
             filePath: "",
             reason: u.error(e).message,
-            state: "生成失败",
+            state: "Generation failed",
           });
       }
     };
-    // 按 concurrentCount 控制并发数，分批执行；跳过 shouldGenerateImage === 0 的分镜
+    // Control concurrency by `concurrentCount` and execute in batches; skip shots where `shouldGenerateImage === 0`.
     let generateList = [];
     if (compulsory) {
       generateList = storyboardData;
@@ -171,13 +171,13 @@ async function getAssetsImageBase64(imageIds: number[]) {
 
   const imagePaths = await u.db("o_image").whereIn("o_image.id", imageIds).select("o_image.id", "o_image.filePath");
 
-  // 建立 id 到 filePath 的映射
+  // Build a mapping from id to filePath
   const id2Path = new Map<number, string>();
   for (const row of imagePaths) {
     id2Path.set(row.id, row.filePath);
   }
 
-  // 保证输出顺序与 imageIds 一致
+  // Ensure the output order matches imageIds
   const imageUrls = await Promise.all(
     imageIds.map(async (id) => {
       const filePath = id2Path.get(id);
@@ -191,6 +191,6 @@ async function getAssetsImageBase64(imageIds: number[]) {
       return null;
     }),
   );
-  // 保留顺序，并且过滤掉无效项
+  // Preserve order and filter out invalid items
   return (imageUrls.filter(Boolean) as string[]).map((url) => ({ type: "image" as const, base64: url }));
 }

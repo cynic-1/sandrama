@@ -1,84 +1,84 @@
 ---
 name: director_storyboard_table_narrative
-description: 分镜表叙事手法 · 热血少年 — 定义热血少年在分镜表中的景别策略、运镜节奏、时长把控、对抗镜头设计、伙伴叙事与转场手法。适用于任何视觉风格。
+description: Storyboard Narrative Techniques · Hot-Blooded Boys - Define the scene-setting strategies, camera movement rhythm, duration control, confrontation shot design, partner narrative and transition techniques of the hot-blooded boys in the storyboard. Works with any visual style.
 metaData: director_skills
 ---
 
-# 分镜表叙事手法 · 热血少年 · 技法参考
+# Storyboard narrative techniques · Hot-blooded boy · Technical reference
 
 ---
 
-## 一、分镜表定位
+## 1. Storyboard positioning
 
-分镜表是导演将剧本转化为镜头语言的核心工具。表单字段由导演根据项目需要自行设定（分镜号、景别、运镜、时长、人物、事件、台词、光影、情绪、转场等），以下仅提供热血少年叙事类型下的技法参考。
-
----
-
-## 二、景别选择
-
-- **景别即力量表达** — 热血分镜中景别的核心逻辑是"传递力量感和情绪强度"。低谷用俯拍远景（渺小感），爆发用仰拍特写（力量感）
-- **仰拍是核心武器** — 仰拍角度自带"高大/不可撼动"的心理暗示。主角站起来、宣言信念、最终出招时必须用仰拍
-- **俯拍制造绝境** — 俯拍让主体显得渺小无助。被击败倒地、面对压倒性强敌时用俯拍，与后续仰拍形成最大反差
-- **大特写留给临界瞬间** — 大特写（瞳孔/拳头/血滴）是情绪核弹，全段落用 1-2 次。放在爆发前的最后一刻，引爆情绪
-- **定场镜头要有压迫感** — 热血叙事的定场不只交代环境，要用空间传递压迫：巨大的竞技场、无尽的废墟、高耸的敌人身影。1-2 个镜头搞定，远景即可
+Storyboards are the core tool for directors to transform scripts into lens language. The form fields are set by the director according to the needs of the project (shot number, scene, camera movement, duration, characters, events, lines, light and shadow, emotions, transitions, etc.). The following only provides technical reference for the hot-blooded boy narrative type.
 
 ---
 
-## 三、运镜节奏
+## 2. Scene selection
 
-- **蓄力段落以静为主** — 爆发前的蓄力段落 70% 静止机位，让沉默和表情积蓄情绪
-- **爆发段落释放动能** — 出招/觉醒瞬间切换到快推、跟拍、横移等运动镜头，释放蓄积的动能
-- **快推 = 出击冲击** — 猛然推向主体，模拟力量释放。用于出招的第一帧、觉醒睁眼的瞬间
-- **环绕 = 英雄定格** — 缓速环绕主角，全片最多 1-2 次，给最燃的"英雄时刻"
-- **升格运镜 = 时间膨胀** — 关键一击用升格（慢动作），放大冲击瞬间的力量感与细节。升格镜头全段不超过 2 个
-- **运镜即力量方向** — 推 = 前进/攻击；拉 = 蓄力/后退；摇 = 扫视战场；跟 = 并肩同行；环绕 = 英雄凝视
-
----
-
-## 四、时长把控
-
-- **蓄力镜头拉长** — 爆发前的"站起来""握拳""睁眼"等镜头给 4-5s，甚至配合升格到 6s，让情绪充分积蓄
-- **冲击镜头压短** — 出招/碰撞/命中的瞬间压到 1-1.5s（闪切），速度感即冲击感
-- **升格黄金时刻** — 升格镜头（慢动作）可突破 6s 上限，但不超过 8s。信息量靠细节持续输出（飞散的碎屑、飘动的发丝、震动的地面）
-- **日常镜头正常节奏** — 温情/日常段落保持 2-4s 正常节奏，不要用战斗节奏，让观众松弛
-- **黄金 6 秒规则** — 非升格镜头不超过 6s。热血叙事的"力量感"不靠拖时长，靠节奏反差
-- **反差节奏公式** — 爆发前最后镜头（慢/长）→ 爆发第一镜头（快/短），极端的时长反差制造最大冲击
+- **Scenery is the expression of power** — The core logic of scene separation in the passionate storyboard is to "convey a sense of power and emotional intensity". Use overhead shots to take long shots during low points (a sense of insignificance), and use overhead shots to take close-ups during outbursts (a sense of power).
+- **Upward shooting is the core weapon** - The upward shooting angle has its own psychological implication of "tall/unshakable". When the protagonist stands up, declares his belief, and makes the final move, he must use the upward shot.
+- **Aerial shots create desperate situations** — Aerial shots make the subject appear small and helpless. When you are defeated and fall to the ground, or when facing an overwhelmingly powerful enemy, use a downward shot to form the greatest contrast with subsequent upward shots.
+- **Large close-ups are reserved for critical moments** — Large close-ups (pupils/fists/blood drops) are emotional nuclear bombs, used 1-2 times throughout the paragraph. Put it at the last moment before the explosion to detonate emotions
+- **The establishing shot must have a sense of oppression** — The setting of the passionate narrative not only explains the environment, but also uses space to convey oppression: a huge arena, endless ruins, and towering enemy figures. 1-2 shots are enough, just a long shot
 
 ---
 
-## 五、对抗镜头设计
+## 3. Rhythm of camera movement
 
-- **攻防节奏交替** — 战斗段落的分镜不能全是进攻：攻→防→退→再攻，有来有回才有张力。纯单方面碾压没有叙事性
-- **力量对比用景别** — 敌强我弱时：敌人用仰拍全景（巨大感），主角用俯拍中景（渺小感）。逆转时反过来
-- **一击定胜负** — 终极对决的最后一击给足仪式感：蓄力（升格特写）→出招（闪切快推）→命中（大特写+冲击留白）→结果（缓拉全景）。四拍完整呈现
-- **受伤即成长** — 主角的伤口在分镜中要有特写：血滴、裂痕、颤抖的手。伤痛是"代价"的可视化，代价越大胜利越有重量
-- **能一镜交代的不拆两镜** — 一个带运镜的长镜头（如跟拍主角从被击退到重新冲锋）比拆成碎镜头更有冲击力。战斗长镜头可突破 6s
-
----
-
-## 六、伙伴叙事
-
-- **并肩构图** — 伙伴同框时用横构图，两人处于画面同一水平线，暗示平等与信任
-- **信任传递镜头** — 一个眼神交换、一次无言的点头、一个交出后背的动作——信任不需要台词。用近景对切完成
-- **牺牲镜头的时长** — 伙伴挡在前面/倒下的镜头给足时长（4-5s），配合主角的表情特写反应。不要快速带过，这是催泪燃点
-- **回归镜头的仪式感** — 关键时刻伙伴赶到的镜头：先给主角绝望表情→背后传来声音/光影变化→缓拉揭示伙伴身影。分三拍完成，不要一步到位
+- **The charging section is mainly static** — The charging section before the explosion is 70% static, allowing silence and expressions to accumulate emotions
+- **Burst stage to release kinetic energy** — Switch to quick push, follow-up, lateral movement and other motion shots instantly after the move/awakening to release the accumulated kinetic energy
+- **Quick Push = Strike Impact** — Push toward the subject suddenly, simulating the release of force. Used for the first frame of the move and the moment of awakening and opening eyes.
+- **Surround = Hero Freeze** — Slowly surround the protagonist, up to 1-2 times in the entire film, giving you the most burning "heroic moment"
+- **Upgraded Mirror Movement = Time Dilation** — Upgrade (slow motion) a key strike to magnify the power and details of the moment of impact. No more than 2 upgraded shots in the entire segment
+- **Mirror movement is the direction of power** — push = move forward/attack; pull = charge/retreat; shake = scan the battlefield; follow = walk side by side; surround = hero gaze
 
 ---
 
-## 七、台词与呐喊
+## 4. Duration control
 
-- **信念宣言一句够** — 主角的信念宣言（"我要保护的人就在身后！"）全片精选 2-3 句，不要反复碎碎念。一句配仰拍近景，力量拉满
-- **沉默比宣言更有力** — 觉醒/站起来的段落用沉默+动作替代台词。观众能从行动中读出信念，不需要角色说出来
-- **战吼的克制** — 纯粹的"啊——！"式战吼全片最多 2 次，放在终极爆发瞬间。搭配快推+大特写
-- **对手的台词** — 对手的嘲讽/质疑是蓄力工具："你不可能赢""放弃吧"——这些台词是爆发前的燃料，用近景拍对手说完后，切主角沉默的特写
-- **旁白极少** — 热血叙事靠行动说话，旁白仅在必须补充内心独白时使用，配远景或空镜
+- **Extended charging shots** — The "stand up", "make fists" and "open eyes" shots before the explosion are given 4-5 seconds, and can even be upgraded to 6 seconds to fully accumulate emotions.
+- **Impact shot shortened** — The moment of move/collision/hit is shortened to 1-1.5s (flash cut), the sense of speed is the sense of impact
+- **Upgraded Golden Moment** — Upgraded shots (slow motion) can exceed the 6s upper limit, but not exceed 8s. The amount of information is continuously output based on details (flying debris, fluttering hair, shaking ground)
+- **Normal rhythm for daily scenes** — Keep the normal rhythm of 2-4 seconds for tenderness/daily scenes, do not use battle rhythm to make the audience relax
+- **Golden 6 Second Rule** — Non-upgraded footage should not exceed 6 seconds. The "sense of power" of passionate narratives does not rely on duration, but on rhythm contrast.
+- **Contrast Rhythm Formula** — The last shot before the explosion (slow/long) → The first shot before the explosion (fast/short), the extreme duration contrast creates the greatest impact
 
 ---
 
-## 八、转场设计
+## 5. Confrontation lens design
 
-- **同场战斗用硬切** — 战斗内部镜头间硬切，保持节奏紧凑
-- **冲击波转场** — 大招/爆发瞬间用闪白（0.3-0.5s）做转场，模拟冲击波的视觉效果
-- **蓄力用黑屏** — 爆发前可用短黑屏（0.5-1s）做"深呼吸"，接下来的画面是爆发第一帧
-- **段落间用空镜喘息** — 战斗段落与日常段落之间用 1-2 个环境空镜（天空、残阳、飘落的花瓣）做情绪过渡，给观众呼吸空间
-- **回忆闪回用闪切** — 爆发前主角脑海中闪过的信念画面（伙伴的笑脸、守护的约定），用 0.5-1s 的闪切快速插入，不打断节奏
+- **Alternating rhythm of attack and defense** — The storyboards of the battle segments cannot all be offensive: attack → defense → retreat → attack again. Only by going back and forth can there be tension. Purely unilateral crushing has no narrative value
+- **Scenery for power comparison** - When the enemy is strong and we are weak: the enemy uses a vertical shot of the panorama (a sense of hugeness), and the protagonist uses an overhead shot of a mid-range shot (a sense of insignificance). reverse when reversing
+- **One blow determines the outcome** — The final blow of the final showdown gives a full sense of ritual: charge (upgrade close-up) → move (flash and push) → hit (large close-up + impact blank) → result (slow panorama). Complete presentation of four shots
+- **Injury means growth** — The protagonist’s wounds should have close-ups in the storyboard: blood drops, cracks, trembling hands. Pain is the visualization of "price". The greater the price, the more weight the victory will have.
+- **Don’t split two shots if you can explain it in one shot** — A long shot with moving camera (such as following the protagonist from being repelled to charging again) is more impactful than a shot that is broken into pieces. The long shot of battle can break through 6s
+
+---
+
+## 6. Partner Narrative
+
+- **Side by Side Composition** — When partners are in the same frame, use a horizontal composition. The two people are on the same horizontal line in the picture, implying equality and trust.
+- **Trust transfer shot** - an exchange of eyes, a silent nod, an action of handing over the back - trust does not require lines. Finished with a close-up cut
+- **Sacrifice the duration of the shot** — The shot of the partner blocking the front/falling down is given a sufficient length (4-5s) to match the close-up reaction of the protagonist's expression. Don't pass by quickly, this is a tear-jerking point
+- **The ritual sense of the return shot** — The shot of the partner arriving at the critical moment: first give the protagonist a desperate expression → sound coming from behind/light and shadow changes → slow pull to reveal the figure of the partner. Complete it in three takes, don’t do it in one step
+
+---
+
+## 7. Lines and Screams
+
+- **One sentence is enough for the statement of belief** — The protagonist’s statement of belief ("The person I want to protect is behind me!") Select 2-3 sentences from the entire film, do not repeat them over and over again. This sentence is paired with a close-up shot, full of power.
+- **Silence is more powerful than declaration** — The awakening/standing up passage uses silence + action instead of lines. The audience can read the belief in the action without the character having to say it.
+- **War Cry Restraint** — A pure "Ah——!" battle cry can be used up to 2 times in the entire film, placed at the final moment of explosion. Paired with quick push + close-up
+- **Opponent's lines** - The opponent's taunts/questions are tools for accumulating power: "You can't win" and "Give up" - these lines are the fuel before the explosion. After the opponent has finished speaking, use a close-up shot and then cut to a close-up of the protagonist's silence.
+- **Very few narrations** — Passionate narratives rely on actions to speak. Narrations are only used when necessary to supplement inner monologues, with long shots or empty shots.
+
+---
+
+## 8. Transition design
+
+- **Hard cuts in the same battle** — Hard cuts between shots within the battle to keep the pace tight
+- **Shock Wave Transition** — Use flash white (0.3-0.5s) as a transition at the moment of the ultimate move/outbreak to simulate the visual effect of a shock wave
+- **Use black screen to charge up** — Before the explosion, you can use a short black screen (0.5-1s) to take a "deep breath", and the next picture is the first frame of the explosion.
+- **Use empty shots to breathe between paragraphs** — Use 1-2 environmental empty shots (sky, setting sun, falling petals) to make an emotional transition between battle paragraphs and daily paragraphs, giving the audience breathing space
+- **Use flash cuts for flashbacks** — The images of faith that flashed through the protagonist's mind before the outbreak (the smiling faces of partners, the promise to protect), are quickly inserted with 0.5-1s flash cuts without interrupting the rhythm.

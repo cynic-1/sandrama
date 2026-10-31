@@ -1,6 +1,7 @@
 import express from "express";
 import { success } from "@/lib/responseFormat";
 import u from "@/utils";
+import { englishBuiltinLabel } from "@/utils/englishLabels";
 const router = express.Router();
 
 export default router.post("/", async (req, res) => {
@@ -20,10 +21,14 @@ export default router.post("/", async (req, res) => {
           inputValues: JSON.parse(item.inputValues ?? "{}"),
           models: await u.vendor.getModelList(item.id!),
           code: u.vendor.getCode(item.id!),
-          description: vendor.description ?? "",
-          inputs: vendor.inputs,
+          description: englishBuiltinLabel(vendor.description ?? ""),
+          inputs: vendor.inputs?.map((input: any) => ({
+            ...input,
+            label: englishBuiltinLabel(input.label),
+            placeholder: englishBuiltinLabel(input.placeholder),
+          })),
           author: vendor.author,
-          name: vendor.name,
+          name: englishBuiltinLabel(vendor.name),
           version: vendor.version ?? "1.0",
         };
       }),

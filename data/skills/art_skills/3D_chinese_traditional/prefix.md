@@ -1,99 +1,99 @@
-# 全局美学基础 · 国风3D
+# Global Aesthetic Foundation · Chinese Style 3D
 
 ---
-必须严格、完整遵循下方全部风格约束与全局规则，并严格按提示词模板格式生成提示词；仅输出提示词正文，不得附加任何解释、说明、注释、标题或其他额外文本。
+Must strictly and completely follow all style constraints and global rules below, and generate prompts strictly according to the prompt template format; output only the prompt body, without adding any explanations, notes, comments, titles, or other extra text.
 
-## 一、风格基因
+## I. Style Genes
 
-| 维度 | 定义 |
+| Dimension | Definition |
 |---|---|
-| **一级风格** | 国风3D渲染（Chinese Style 3D） |
-| **二级风格** | 高精度3D建模 · 传统东方美学 |
-| **情感基调** | 典雅大气、意境深远、华丽精致 |
-| **质感锚词** | PBR材质渲染、体积光、环境光遮蔽 |
+| **Primary Style** | Chinese Style 3D Rendering |
+| **Secondary Style** | High-precision 3D modeling · Traditional Eastern aesthetics |
+| **Emotional Tone** | Elegant and grand, profound artistic conception, luxurious and exquisite |
+| **Texture Anchor Words** | PBR material rendering, volumetric light, ambient occlusion |
 
 ---
 
-## 二、全局色彩盘（风格基线）
+## II. Global Color Palette (Style Baseline)
 
-### 色彩使用层级
+### Color Usage Hierarchy
 
-| 层级 | 约束强度 | 说明 |
+| Level | Constraint Strength | Description |
 |---|---|---|
-| L1 硬约束 | 高 | 中国传统色基线、3D渲染色 |
-| L2 软约束 | 中 | 场景色、服饰色、点缀色可按剧情微调 |
-| L3 例外机制 | 低 | 特殊场景/节日可临时突破局部色彩 |
+| L1 Hard Constraint | High | Chinese traditional color baseline, 3D rendering colors |
+| L2 Soft Constraint | Medium | Scene colors, costume colors, and accent colors can be fine-tuned according to the plot |
+| L3 Exception Mechanism | Low | Special scenes/festivals may temporarily break local color constraints |
 
-### 核心色盘
+### Core Color Palette
 
-| 序号 | 色名 | 色值 | 用途 |
+| No. | Color Name | Hex Value | Usage |
 |---|---|---|---|
-| C1 | 月白 | #E0E8F0 | 天空、云雾、白衣底色 |
-| C2 | 青绿 | #4A8C7E | 山水、植被、青绿山水 |
-| C3 | 朱红 | #B22222 | 建筑、门窗、喜庆场景 |
-| C4 | 靛蓝 | #3B4B7C | 夜空、远山、冷色调 |
-| C5 | 金黄 | #D4AF37 | 装饰、纹样、高光 |
-| C6 | 墨黑 | #1C1C1C | 线条、轮廓、暗部 |
-| C7 | 胭脂 | #A94A5F | 人物肤色、唇色、腮红 |
-| C8 | 赭石 | #965E3E | 建筑木质、地面、暖调 |
-| C9 | 藤黄 | #F0E442 | 点缀、花饰、暖光 |
-| C10 | 素灰 | #B8B8B8 | 石材、过渡、中间调 |
+| C1 | Moon White | #E0E8F0 | Sky, clouds and mist, base color for white garments |
+| C2 | Blue-Green | #4A8C7E | Landscapes, vegetation, blue-green landscape painting |
+| C3 | Vermilion Red | #B22222 | Architecture, doors and windows, festive scenes |
+| C4 | Indigo Blue | #3B4B7C | Night sky, distant mountains, cool tones |
+| C5 | Golden Yellow | #D4AF37 | Decorations, patterns, highlights |
+| C6 | Ink Black | #1C1C1C | Lines, outlines, shadows |
+| C7 | Rouge | #A94A5F | Character skin tone, lip color, blush |
+| C8 | Ochre | #965E3E | Wooden architecture, ground, warm tones |
+| C9 | Gamboge Yellow | #F0E442 | Accents, floral decorations, warm light |
+| C10 | Plain Gray | #B8B8B8 | Stone, transitions, mid-tones |
 
-### 硬约束色（默认锁定）
+### Hard Constraint Colors (Default Locked)
 
-| 色项 | 对应色 | 规则 |
+| Color Item | Corresponding Color | Rule |
 |---|---|---|
-| 整体色调 | 中国传统色调为主 | 禁止高饱和荧光色 |
-| 材质质感 | PBR物理材质渲染 | 禁止塑料感/无质感 |
-| 光影方向 | 自然光 + 人工光结合 | 禁止单光源硬光 |
+| Overall Tone | Primarily Chinese traditional tones | High-saturation fluorescent colors are prohibited |
+| Material Texture | PBR physical material rendering | Plastic-like feel/lack of texture is prohibited |
+| Light and Shadow Direction | Combination of natural light + artificial light | Single-source hard light is prohibited |
 
-### 情绪色盘
+### Emotional Color Palette
 
-| 情绪场景 | 主色 | 辅色 | 光效与对比建议 | 画面关键词 |
+| Emotional Scene | Primary Color | Secondary Color | Light Effect and Contrast Suggestion | Visual Keywords |
 |---|---|---|---|---|
-| 宫廷华贵 | C3 朱红 + C5 金黄 | C1 月白 + C6 墨黑 | 暖光照明，高光强调，景深层次 | 华丽、庄严、气派 |
-| 山水意境 | C2 青绿 + C1 月白 | C4 靛蓝 + C10 素灰 | 柔和体积光，景深虚化，雾气氛围 | 诗意、悠远、空灵 |
-| 闺阁温婉 | C7 胭脂 + C1 月白 | C5 金黄 + C10 素灰 | 柔和暖光，局部高光，近景特写 | 柔美、细腻、温馨 |
-| 武侠肃杀 | C6 墨黑 + C4 靛蓝 | C8 赭石 + C10 素灰 | 冷调阴影，硬光对比，氛围压抑 | 冷峻、凌厉、肃杀 |
-| 节日喜庆 | C3 朱红 + C9 藤黄 | C5 金黄 + C7 胭脂 | 高饱和暖光，全局高亮，色彩丰富 | 热闹、欢快、盛大 |
-| 月夜清幽 | C4 靛蓝 + C1 月白 | C6 墨黑 + C5 金黄点缀 | 冷色调月光，局部暖光，明暗对比 | 宁静、清冷、唯美 |
+| Imperial Opulence | C3 Vermilion Red + C5 Golden Yellow | C1 Moon White + C6 Ink Black | Warm lighting, emphasized highlights, depth of field | Luxurious, solemn, majestic |
+| Landscape Artistic Conception | C2 Blue-Green + C1 Moon White | C4 Indigo Blue + C10 Plain Gray | Soft volumetric light, depth-of-field blur, misty atmosphere | Poetic, distant, ethereal |
+| Boudoir Gentleness | C7 Rouge + C1 Moon White | C5 Golden Yellow + C10 Plain Gray | Soft warm light, local highlights, close-up shots | Soft, delicate, cozy |
+| Wuxia Severity | C6 Ink Black + C4 Indigo Blue | C8 Ochre + C10 Plain Gray | Cool-toned shadows, hard light contrast, oppressive atmosphere | Cold, sharp, severe |
+| Festive Celebration | C3 Vermilion Red + C9 Gamboge Yellow | C5 Golden Yellow + C7 Rouge | High-saturation warm light, global high brightness, rich colors | Lively, cheerful, grand |
+| Moonlit Serenity | C4 Indigo Blue + C1 Moon White | C6 Ink Black + C5 Golden Yellow accents | Cool-toned moonlight, local warm light, light-dark contrast | Tranquil, cool, beautiful |
 
-### 色温约束
+### Color Temperature Constraints
 
-| 参数 | 值 | 说明 |
+| Parameter | Value | Description |
 |---|---|---|
-| 整体色温 | 偏中性 4800-5500K（推荐） | 自然光主基调 |
-| 对比度 | 中 45-65%（建议区间） | 丰富层次感 |
-| 饱和度 | 中高 55-75%（建议区间） | 传统色盘饱满 |
+| Overall Color Temperature | Neutral-leaning 4800-5500K (recommended) | Natural light as the main tone |
+| Contrast | Medium 45-65% (suggested range) | Rich sense of layers |
+| Saturation | Medium-High 55-75% (suggested range) | Full traditional color palette |
 
-### 容差与例外
+### Tolerance and Exceptions
 
-| 项目 | 建议容差 |
+| Item | Suggested Tolerance |
 |---|---|
-| 色相偏移 | ±8° |
-| 饱和度偏移 | ±10% |
-| 明度偏移 | ±12% |
+| Hue Shift | ±8° |
+| Saturation Shift | ±10% |
+| Lightness Shift | ±12% |
 
 ---
 
-## 三、全局约束规则
+## III. Global Constraint Rules
 
-### 必守规则（所有技能继承）
+### Mandatory Rules (Inherited by all skills)
 
-| 编号 | 规则 |
+| No. | Rule |
 |---|---|
-| R1 | 必须包含「3D渲染风格」风格锚定词 |
-| R2 | 必须声明「PBR材质 + 高精度建模」 |
-| R3 | 必须声明「中国传统色彩 + 东方美学」 |
-| R4 | 必须声明「电影级光影渲染」 |
-| R5 | 必须声明「国风3D美学」 |
+| R1 | Must include the "3D rendering style" style anchor word |
+| R2 | Must declare "PBR materials + high-precision modeling" |
+| R3 | Must declare "Chinese traditional colors + Eastern aesthetics" |
+| R4 | Must declare "cinematic light and shadow rendering" |
+| R5 | Must declare "Chinese Style 3D aesthetics" |
 
-### 严禁项（所有技能继承）
+### Prohibited Items (Inherited by all skills)
 
-| 编号 | 严禁内容 |
+| No. | Prohibited Content |
 |---|---|
-| X1 | 严禁「写实摄影/照片级真实感」 |
-| X2 | 严禁「高饱和荧光色/霓虹色/数码感强」 |
-| X3 | 严禁「西方奇幻/赛博朋克/现代元素」 |
-| X4 | 严禁「低精度建模/粗糙贴图/塑料质感」 |
-| X5 | 严禁「色彩混乱/光影错误/透视错误」 |
+| X1 | "Realistic photography/photo-grade realism" is strictly prohibited |
+| X2 | "High-saturation fluorescent colors/neon colors/strong digital feel" is strictly prohibited |
+| X3 | "Western fantasy/cyberpunk/modern elements" is strictly prohibited |
+| X4 | "Low-precision modeling/rough textures/plastic texture" is strictly prohibited |
+| X5 | "Color chaos/lighting errors/perspective errors" is strictly prohibited |

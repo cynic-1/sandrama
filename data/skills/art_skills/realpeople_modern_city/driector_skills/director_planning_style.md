@@ -1,221 +1,219 @@
 ---
 name: director_planning_liveaction_urban
-description: 真人都市约束 — 定义真人都市风格在色调体系、光影方案、质感方向、场景空间元素、配乐选择与环境音上的全局约束，并针对Seedance 2.0做深度适配。适用于任何叙事类型。
+description: Live-action urban constraints — Defines global constraints for the live-action urban style in color grading, lighting schemes, texture direction, scene spatial elements, music selection, and ambient sound, with deep adaptation for Seedance 2.0. Applicable to any narrative type.
 metaData: director_skills, seedance2.0_adapted
 ---
 
-# 真人都市约束 · 真人实拍都市 · 技法参考
+# Live-Action Urban Constraints · Live-Action Urban Filmmaking · Technique Reference
 
 ---
 
-## 一、色调体系与画面基调
+## I. Color Grading System and Visual Tone
 
-- **色调基底** — 全片以都市白（#F5F2EC）、雾灰（#9EA2A8）、藏青（#2D3A4A）为基底色。整体色温分日间中性偏暖（5000-5800K）、夜间冷暖共存（暖街灯2800-3200K + 冷环境6000-8000K）。饱和度中低（35-55%），呈现"电影感但不滤镜感"的克制都市色调——色彩来自实际光源，不来自后期调色
-- **光源即色盘** — 不以"主色/辅色"配对，而是以光源的色温和方向来驱动画面色彩。晨光3500-4500K（暖白）、正午5500-6500K（冷白清透）、金色时刻2800-3500K（暖金）、蓝调时刻8000-10000K（深蓝紫）、钠灯街灯2000-2200K（暖橙黄）、便利店荧光灯4000-5000K（冷白）
-- **冷暖叙事对照** — 暖光（晨光/夕照/台灯/街灯钠灯）用于温情、治愈、亲密、烟火段落；冷光（正午天光/阴天漫射/蓝调时刻/荧光灯）用于克制、疏离、孤独、悬疑段落。关键转场可通过光源色温切换来暗示情绪转向
-- **光源先行原则** — 段落规划先确定"光从哪儿来、什么色温"，再确定画面色调。避免"这个镜头颜色好看但光源说不通"
-- **禁用色域** — 高饱和荧光色、廉价滤镜调色（如青橙预设/茶色预设）、CG霓虹溢色、非真实光源产生的异常色偏
+- **Color Base** — The entire film uses Urban White (#F5F2EC), Misty Gray (#9EA2A8), and Navy Blue (#2D3A4A) as base colors. Overall color temperature is neutral-to-warm during the day (5000-5800K) and a mix of warm and cool at night (warm streetlights 2800-3200K + cool environment 6000-8000K). Saturation is medium-low (35-55%), presenting a restrained urban color palette that feels "cinematic but not filtered"—colors derive from actual light sources, not post-production grading.
+- **Light Source as Color Palette** — Instead of pairing "primary/secondary colors," the visual color is driven by the color temperature and direction of the light sources. Morning light 3500-4500K (warm white), noon 5500-6500K (cool white, clear), golden hour 2800-3500K (warm gold), blue hour 8000-10000K (deep blue-purple), sodium streetlights 2000-2200K (warm orange-yellow), convenience store fluorescent lights 4000-5000K (cool white).
+- **Warm/Cool Narrative Contrast** — Warm light (morning light/sunset/desk lamps/sodium streetlights) is used for warmth, healing, intimacy, and everyday life segments; cool light (noon daylight/overcast diffuse light/blue hour/fluorescent lights) is used for restraint, alienation, loneliness, and suspense segments. Key transitions can imply emotional shifts by switching the color temperature of the light source.
+- **Light Source First Principle** — Segment planning must first determine "where the light comes from and its color temperature," then determine the visual color tone. Avoid "this shot looks good in color but the light source doesn't make sense."
+- **Forbidden Color Ranges** — High-saturation fluorescent colors, cheap filter grading (e.g., teal-orange presets/sepia presets), CG neon oversaturation, and abnormal color casts not produced by real light sources.
 
 ---
 
-## 二、光影方案体系
+## II. Lighting Scheme System
 
-- **光影即叙事** — 7 套光影方案对应不同情绪段落。导演规划阶段在段落层面确定光影基调方向，而非逐镜指定。每套方案必须指定"光的来源 + 色温 + 光比"，确保可被 Seedance 2.0 物理模拟
-- **实拍摄影光影特征** — 自然光窗口调度、实用光源（台灯/街灯/屏幕/霓虹/车灯）、环境反射（湿地面/玻璃幕墙/水面）、手持摄影的微晃呼吸感、景深变化引导注意力——为真人都市风格的核心光影手段
+- **Lighting as Narrative** — 7 lighting schemes correspond to different emotional segments. During the director's planning phase, the lighting tone direction is determined at the segment level, not specified shot-by-shot. Each scheme must specify "light source + color temperature + light ratio" to ensure it can be physically simulated by Seedance 2.0.
+- **Live-Action Cinematography Lighting Characteristics** — Natural light window scheduling, practical light sources (desk lamps/streetlights/screens/neon/car lights), environmental reflections (wet surfaces/glass curtain walls/water surfaces), the subtle breathing feel of handheld camera shake, and depth-of-field changes to guide attention—these are the core lighting techniques for the live-action urban style.
 
-| 方案 | 方案名 | 光源配方 | 光比 | 适用情绪 |
+| Scheme | Scheme Name | Light Source Recipe | Light Ratio | Applicable Emotion |
 |---|---|---|---|---|
-| A | 都市鎏金 | 夕照窗光45°侧入（3000-3500K）+ 环境补光（天空反射5500K） | 1:3 中等反差 | 高光时刻、精英场合、温情回忆、重要会面 |
-| B | 日间清透 | 大面积窗光/天光漫射（5000-5500K），无硬阴影，窗帘柔化 | 1:1.5 低反差 | 日常松弛、都市漫步、治愈清新、办公室日间 |
-| C | 烟火暖光 | 台灯/吊灯/街灯钠灯暖调主光（2800-3200K），暗部保留细节 | 1:4 暖调包裹 | 居家日常、市井烟火、温情节拍、深夜私密 |
-| D | 冷调锐影 | 侧方硬光（窗光冷白5000K或街灯冷调）+ 深阴影 | 1:8 大光比 | 都市悬疑、对峙冲突、冷峻压抑、高压时刻 |
-| E | 室内漫射 | 窗光自然漫射（4500-5500K）+ 室内顶灯/屏幕冷光补面，阴影柔和 | 1:2 柔和过渡 | 室内日间、职场办公、独处静思、治愈静谧 |
-| F | 雨夜清辉 | 湿地面反射街灯（暖2800K光斑 + 冷6000K环境），窗玻璃雨痕散射光 | 1:6 冷暖共存 | 雨夜独行、思念独处、文艺感伤、悬疑铺垫 |
-| G | 蓝调诗篇 | 日落后20分钟天空漫射（8000-10000K深蓝紫）+ 初亮的人工暖光点 | 1:5 冷主暖点 | 过渡时刻、内心独白、诗意留白、尾声收束 |
+| A | Urban Gilded | Sunset window light entering at 45° side angle (3000-3500K) + environmental fill light (sky reflection 5500K) | 1:3 Medium Contrast | Highlight moments, elite settings, warm memories, important meetings |
+| B | Daytime Clarity | Large-area window light/sky diffuse light (5000-5500K), no hard shadows, softened by curtains | 1:1.5 Low Contrast | Daily relaxation, urban strolls, healing freshness, daytime office |
+| C | Warmth of Everyday Life | Desk lamp/pendant light/sodium streetlight warm-toned key light (2800-3200K), shadows retain detail | 1:4 Warm Tone Wrap | Home daily life, street life, warm scenes, late-night privacy |
+| D | Cool Sharp Shadows | Side hard light (window light cool white 5000K or cool-toned streetlight) + deep shadows | 1:8 High Contrast | Urban suspense, confrontation conflict, cold oppression, high-pressure moments |
+| E | Indoor Diffusion | Window light natural diffusion (4500-5500K) + indoor ceiling light/screen cool light fill, soft shadows | 1:2 Soft Transition | Indoor daytime, workplace office, solitary contemplation, healing stillness |
+| F | Rainy Night Clarity | Wet road surface reflecting streetlights (warm 2800K light spots + cool 6000K environment), rain streaks on window glass scattering light | 1:6 Warm/Cool Coexistence | Rainy night solitude, longing in isolation, artistic melancholy, suspense setup |
+| G | Blue Hour Poem | Sky diffusion 20 minutes after sunset (8000-10000K deep blue-purple) + initial artificial warm light points | 1:5 Cool Key, Warm Points | Transitional moments, inner monologue, poetic blank space, ending closure |
 
-- **冷暖光分配** — 暖色光（晨光/夕照/台灯/钠灯街灯）适用于温情治愈、精英高光、市井烟火段落；冷色光（正午天光/阴天漫射/蓝调/荧光灯）适用于克制疏离、悬疑对峙、清冷独处段落。冷暖切换点即叙事转折点
-- **氛围方向映射** — 每场戏的氛围方向应能映射到上述光影方案（A-G）的某一方向。如叙事需要混合方案（如F+G），需明确主导光源
-- **Seedance 2.0 光影适配要点**：光源名称可被AI理解（"夕照窗光"优于"暖色体积光"）。光比数字帮助模型建立明暗意识。多光源场景须明确主光+辅光+环境光的层级
-
----
-
-## 三、质感方向——摄影机前的真实世界
-
-> 真人都市质感的唯一标尺：摄影机拍到的材质行为，不是渲染引擎生成的材质参数。
-
-- **皮肤质感** — 毛孔可见、T区自然出油反光、颧骨处自然泛红、眼周微暗——真实皮肤的"活着"的证据。Seedance 2.0 提示词用"visible skin pores, natural skin texture, not airbrushed，真实皮肤质感"替代 3D 项目的"次表面散射/SSS"
-- **发丝质感** — 碎发自然散落额前和颈后、发缕有自然的聚合与分离、逆光下头发边缘呈半透明暖色轮廓、被风吹或被打湿的自然状态。Seedance 2.0 用"flyaway hair strands, natural hair movement, backlit hair rim light"替代"物理级发丝模拟"
-- **衣料质感** — 棉质的柔软微皱、牛仔的斜纹肌理和落色、针织的线圈纹理、皮革的使用包浆和弯折痕。衣服有"被穿过"的证据——衣摆自然微皱、袖口有穿脱痕迹。Seedance 2.0 用"fabric texture with subtle wear, natural fabric drape, lived-in clothing"
-- **建筑材质** — 水泥墙面的水渍与微裂、玻璃幕墙的反射与手印、金属扶手的磨损包浆、瓷砖地面的细微划痕、木质表面的使用痕迹。Seedance 2.0 用"weathered building materials, real urban surfaces, not showroom clean"
-- **岁月质感至上** — 材质不可过于干净完美。生活痕迹（桌面日常杂物、墙面贴纸残留、地板磨损）不是缺陷，是空间叙事的基础。禁止"全新样板间"和"无痕效果图"
-- **Seedance 2.0 质感适配要点**：避免 "PBR材质""物理级渲染""8K贴图" 等CG术语。改用 "real texture, natural material surface, visible wear and use marks, not CGI"。当描述轻微瑕疵时用 "subtle" 而非 "micro-detail" 等建模术语
+- **Warm/Cool Light Allocation** — Warm light (morning light/sunset/desk lamps/sodium streetlights) is suitable for warm healing, elite highlights, and street life segments; cool light (noon daylight/overcast diffusion/blue hour/fluorescent lights) is suitable for restrained alienation, suspense confrontation, and cold solitude segments. The warm/cool switching point is the narrative turning point.
+- **Atmosphere Direction Mapping** — The atmosphere direction of each scene should map to one of the lighting schemes (A-G) above. If the narrative requires a mixed scheme (e.g., F+G), the dominant light source must be specified.
+- **Seedance 2.0 Lighting Adaptation Points**: Light source names should be understandable by AI ("sunset window light" is better than "warm volumetric light"). Light ratio numbers help the model establish light/dark awareness. In multi-light-source scenes, the hierarchy of key light + fill light + ambient light must be clear.
 
 ---
 
-## 四、真人都市场景空间元素
+## III. Texture Direction — The Real World Before the Camera
 
-当代中国都市特有的场景元素及其在 Seedance 2.0 视频中的视觉叙事功能：
+> The sole standard for live-action urban texture: the material behavior captured by the camera, not material parameters generated by a rendering engine.
 
-- **窗/落地窗/玻璃隔断** — 真人都市最核心的构图与光影道具。窗即光源入口——窗光的方向和色温决定整个室内的光影逻辑。玻璃隔断制造"隔与透"的多层空间（前景→玻璃→中景→玻璃→后景）。Seedance 2.0 中重点描述"light entering through window at specific angle"以帮助模型理解光源方向
-- **街道/行道树/斑马线/车流** — 室外场景的空间骨架。空荡长街 = 孤寂，车水马龙 = 都市疏离，雨后湿路面反射街灯 = 情绪浓度。Seedance 2.0 中街道场景必须明确"wet road surface reflecting streetlights"或"dry pavement with long afternoon shadows"等可被模型执行的光学描述
-- **街灯/窗光/屏幕光/车灯** — 都市世界的核心光源叙事载体。街灯暖黄（2000-2200K钠灯或3000K LED）= 夜晚的体温；便利店的荧光灯冷白（4000-5000K）= 深夜城市的安全屋孤岛；手机屏幕冷蓝映在人脸上 = 独处时刻的孤独陪伴
-- **老城区巷弄/高层公寓/写字楼/地铁站** — 都市建筑的四种叙事容器。老城区的斑驳墙面和架空电线 = 市井烟火记忆；高层落地窗俯瞰城市 = 精英的孤独或掌控感；写字楼玻璃隔断的层层反射 = 职场的秩序与疏离；地铁站日光灯冷光+隧道黑暗 = 都市流动中的暂停
-- **段落间用场景空镜过渡** — 空镜为情绪缓冲，不用硬切。同一空间在不同时段/天气的空镜（如雨中街道→晴日街道）可暗示时间流逝。Seedance 2.0 中空镜需指定光源逻辑，空镜也有情绪
-- **转折点用视觉而非台词** — 光影突变（窗光被云遮住→空间突然变暗）、景别跳切（中景→大特写）、空间转场（室内→窗外街景）、焦点漂移——由摄影机完成叙事
+- **Skin Texture** — Visible pores, natural oily sheen on the T-zone, natural redness on the cheekbones, slight darkness around the eyes—evidence of "living" real skin. Seedance 2.0 prompts should use "visible skin pores, natural skin texture, not airbrushed, real skin texture" instead of "subsurface scattering/SSS" used in 3D projects.
+- **Hair Texture** — Loose strands naturally falling on the forehead and back of the neck, hair strands with natural clumping and separation, hair edges forming a translucent warm-colored outline in backlight, natural state when blown by wind or wet. Seedance 2.0 uses "flyaway hair strands, natural hair movement, backlit hair rim light" instead of "physically accurate hair simulation."
+- **Fabric Texture** — Soft, slightly wrinkled cotton, diagonal twill texture and fading of denim, loop texture of knitwear, patina and crease marks on leather. Clothes have evidence of "being worn"—hems naturally slightly wrinkled, cuffs showing signs of putting on and taking off. Seedance 2.0 uses "fabric texture with subtle wear, natural fabric drape, lived-in clothing."
+- **Building Materials** — Water stains and micro-cracks on concrete walls, reflections and handprints on glass curtain walls, worn patina on metal handrails, fine scratches on tiled floors, usage marks on wooden surfaces. Seedance 2.0 uses "weathered building materials, real urban surfaces, not showroom clean."
+- **Aging Texture Supreme** — Materials cannot be too clean or perfect. Life traces (daily clutter on desks, residual stickers on walls, floor wear) are not defects but the foundation of spatial narrative. "Brand-new model rooms" and "flawless renderings" are prohibited.
+- **Seedance 2.0 Texture Adaptation Points**: Avoid CG terms like "PBR materials," "physically accurate rendering," and "8K textures." Use "real texture, natural material surface, visible wear and use marks, not CGI" instead. When describing minor flaws, use "subtle" rather than modeling terms like "micro-detail."
 
 ---
 
-## 五、真人都市配乐与环境音
+## IV. Live-Action Urban Scene Spatial Elements
 
-### 5.1 配乐乐器选择
+Scene elements unique to contemporary Chinese urban environments and their visual narrative function in Seedance 2.0 video:
 
-真人都市配乐以原声乐器为主、电子元素克制为辅，追求"不抢戏的存在感"：
+- **Windows/Floor-to-ceiling Windows/Glass Partitions** — The most core compositional and lighting prop in live-action urban filmmaking. Windows are the entry point for light—the direction and color temperature of window light determine the entire indoor lighting logic. Glass partitions create multi-layered spaces of "separation and transparency" (foreground → glass → midground → glass → background). In Seedance 2.0, focus on describing "light entering through window at specific angle" to help the model understand the light source direction.
+- **Streets/Street Trees/Crosswalks/Traffic Flow** — The spatial skeleton of outdoor scenes. Empty long street = loneliness, heavy traffic = urban alienation, wet road surface after rain reflecting streetlights = emotional intensity. In Seedance 2.0, street scenes must specify optical descriptions executable by the model, such as "wet road surface reflecting streetlights" or "dry pavement with long afternoon shadows."
+- **Streetlights/Window Light/Screen Light/Car Lights** — The core light source narrative carriers of the urban world. Warm yellow streetlights (2000-2200K sodium or 3000K LED) = the body temperature of the night; cool white fluorescent lights in convenience stores (4000-5000K) = an island of safety in the late-night city; cold blue phone screen light reflecting on a face = lonely companionship in moments of solitude.
+- **Old City Alleys/High-rise Apartments/Office Buildings/Subway Stations** — Four narrative containers of urban architecture. Mottled walls and overhead wires in old cities = memory of street life; overlooking the city from high-rise floor-to-ceiling windows = elite loneliness or sense of control; layered reflections of office building glass partitions = workplace order and alienation; subway station fluorescent cool light + tunnel darkness = a pause in urban flow.
+- **Use Empty Shots for Transitions Between Segments** — Empty shots serve as emotional buffers; do not use hard cuts. Empty shots of the same space at different times/weather (e.g., rainy street → sunny street) can imply the passage of time. In Seedance 2.0, empty shots must specify the light source logic; empty shots also have emotion.
+- **Use Visuals Instead of Dialogue for Turning Points** — Sudden lighting changes (window light blocked by clouds → space suddenly becomes dark), shot size jump cuts (medium shot → extreme close-up), spatial transitions (indoor → street view outside window), focus drift—narrative is completed by the camera.
 
-- **钢琴** — 清冷独处、温情细腻段落的核心乐器。单音重复或稀疏和弦的最佳状态——音符之间的沉默和音符本身同样重要
-- **弦乐组** — 情感积蓄与释放段落的推动力。中低音区铺底（温暖但不压迫），高音区用于情绪高点的轻触即收
-- **木吉他** — 日常松弛、治愈、都市漫步段落的底色。指弹或轻扫和弦的质感，自带"下午阳光"的温度
-- **电吉他（清音/微过载）** — 都市夜场、独行街头、轻度忧郁段落的情绪放大器。单音旋律线或氛围琶音，慎用失真
-- **电子氛围 Pad** — 都市悬疑、夜场过渡、时间流逝段落的低频铺底。作为"可以被忽略但拿走就不对"的底层存在
-- **口琴/手风琴** — 市井烟火、怀旧记忆段落的点睛乐器。不宜通篇使用，局部出现即叙事信号
-- **轻量电子节拍** — 都市节奏感段落（通勤蒙太奇、城市夜景快切）的节奏基底。碎拍或简约电子鼓，不超过80BPM
-- 慎用：大型管弦乐团全奏、重金属失真、高能电子舞曲——这些会让真人都市变成"配乐在演戏"
+---
 
-### 5.2 配乐组合策略
+## V. Live-Action Urban Music and Ambient Sound
 
-| 情绪阶段 | 乐器组合 |
+### 5.1 Music Instrument Selection
+
+Live-action urban music is primarily acoustic instruments with restrained electronic elements, pursuing a "presence that doesn't steal the show":
+
+- **Piano** — Core instrument for clear, cold solitude and delicate, warm segments. The best state is single-note repetition or sparse chords—the silence between notes is as important as the notes themselves.
+- **String Ensemble** — Driving force for emotional accumulation and release segments. Low-to-mid range padding (warm but not oppressive), high range used for light touches at emotional peaks.
+- **Acoustic Guitar** — Base tone for daily relaxation, healing, and urban stroll segments. Texture of fingerpicking or light chord strumming, inherently carrying the warmth of "afternoon sunlight."
+- **Electric Guitar (Clean/Mild Overdrive)** — Emotional amplifier for urban nightlife, solitary street walks, and mild melancholy segments. Single-note melodic lines or ambient arpeggios; use distortion cautiously.
+- **Electronic Ambient Pad** — Low-frequency padding for urban suspense, nightlife transitions, and time passage segments. A foundational presence that "can be ignored but feels wrong if removed."
+- **Harmonica/Accordion** — Accent instruments for street life and nostalgic memory segments. Should not be used throughout; local appearances serve as narrative signals.
+- **Light Electronic Beat** — Rhythmic base for urban rhythm segments (commute montages, fast cuts of city night scenes). Breakbeats or simple electronic drums, not exceeding 80 BPM.
+- Use with caution: Full orchestral tutti, heavy metal distortion, high-energy electronic dance music—these will turn live-action urban into "the music acting."
+
+### 5.2 Music Combination Strategy
+
+| Emotional Stage | Instrument Combination |
 |---|---|
-| 平稳开场/日常叙事 | 钢琴独奏 或 钢琴 + 极轻电子Pad |
-| 温情治愈/松弛日常 | 木吉他 + 钢琴 + 轻弦乐铺底 |
-| 职场精英/高光时刻 | 钢琴 + 弦乐中高音区 + 轻量电子节拍 |
-| 孤独独处/思念 | 钢琴稀疏单音 或 钢琴 + 口琴点缀 |
-| 情绪转折/命运时刻 | 弦乐组渐强 + 钢琴收束 |
-| 悬疑铺垫/都市夜 | 电子氛围Pad + 轻量电子节拍 + 电吉他清音单音 |
-| 市井烟火/怀旧 | 木吉他 + 手风琴/口琴点缀 + 极轻弦乐 |
-| 结尾/余韵 | 钢琴单音渐疏 → 环境音独奏 |
+| Steady Opening/Daily Narrative | Piano solo or Piano + very light Electronic Pad |
+| Warm Healing/Relaxed Daily | Acoustic Guitar + Piano + light String padding |
+| Workplace Elite/Highlight Moment | Piano + String mid-to-high range + light Electronic Beat |
+| Lonely Solitude/Longing | Piano sparse single notes or Piano + Harmonica accent |
+| Emotional Turn/Fateful Moment | String ensemble crescendo + Piano closure |
+| Suspense Setup/Urban Night | Electronic Ambient Pad + light Electronic Beat + Electric Guitar clean single notes |
+| Street Life/Nostalgia | Acoustic Guitar + Accordion/Harmonica accent + very light Strings |
+| Ending/Aftertaste | Piano single notes gradually sparse → Ambient sound solo |
 
-### 5.3 真人都市环境音
+### 5.3 Live-Action Urban Ambient Sound
 
-> 环境音是真人都市场景的"听觉材质"，决定了空间的沉浸感。每场戏标注 1-2 个核心环境音。
+> Ambient sound is the "auditory material" of live-action urban scenes, determining the immersion of the space. Label 1-2 core ambient sounds for each scene.
 
-**核心环境音层次：**
-- **室内环境音**：空调低鸣/键盘敲击/电梯提示音/水龙头滴水/冰箱压缩机运转/窗帘被风轻吹/时钟走动
-- **室外环境音**：车流胎噪/远处人声/风过楼宇/行道树叶簌簌/鸟鸣/雨打车窗和路面/施工闷响/共享单车锁车声
-- **过渡环境音**：地铁进站广播和刹车声/商场背景音乐和人流声/电梯运行和开门提示/走廊脚步声由远及近
-- **静默也是一种环境音**：深夜公寓只有冰箱的低频嗡鸣、清晨5点街道连车流声都没有——这种"声音的缺失"本身就是叙事
+**Core Ambient Sound Layers:**
+- **Indoor Ambient Sound**: Low hum of air conditioning/keyboard typing/elevator chime/dripping faucet/refrigerator compressor running/curtains lightly blown by wind/clock ticking
+- **Outdoor Ambient Sound**: Tire noise of traffic/distant voices/wind passing through buildings/rustling of street tree leaves/birdsong/rain hitting car windows and road surface/muffled construction sounds/bike-share locking sounds
+- **Transitional Ambient Sound**: Subway arrival broadcast and braking sounds/mall background music and crowd noise/elevator operation and door opening chime/corridor footsteps from far to near
+- **Silence is also an Ambient Sound**: Late-night apartment with only the low-frequency hum of the refrigerator, 5 AM street with no traffic sounds—this "absence of sound" is itself narrative.
 
-音效设计哲学：
-- 环境音不是贴上去的，是场景自带的声音
-- 关键时刻"抽掉"环境音比"加入"特效更能制造情绪冲击
-- 环境音的变化可以暗示空间转换——从嘈杂街道走进安静的便利店，声音突然"变干净了"
+Sound Design Philosophy:
+- Ambient sound is not pasted on; it is the sound inherent to the scene.
+- "Removing" ambient sound at key moments creates more emotional impact than "adding" effects.
+- Changes in ambient sound can imply spatial transitions—walking from a noisy street into a quiet convenience store, the sound suddenly "becomes clean."
 
----
+---## VI. Seedance 2.0 Specific Adaptation
 
-## 六、Seedance 2.0 专项适配
+### 6.1 Core Adaptation Principles
 
-### 6.1 核心适配原则
+> Seedance 2.0 is a video model that prioritizes realistic physical simulation. The live-action urban style is naturally compatible with Seedance 2.0—but "cinematography terminology" must be translated into "physical instructions" that the model can execute.
 
-> Seedance 2.0 是真实感物理模拟优先的视频模型。真人都市风格与 Seedance 2.0 天然亲和——但需要把"摄影术语"翻译为模型能执行的"物理指令"。
-
-| 适配维度 | 通用提示词写法 | Seedance 2.0 优化写法 |
+| Adaptation Dimension | Generic Prompt Wording | Seedance 2.0 Optimized Wording |
 |---|---|---|
-| 光源描述 | 温暖窗光 | 午后阳光从画面右侧窗户45°斜入，色温约4500K暖白，在地面投射出拉长的窗框阴影 |
-| 表情 | 神情温柔 | 嘴角自然微扬，眼尾出现细微笑纹，注视对方时眼中有自然光点 |
-| 动作 | 转身 | 向右缓慢旋转约90度，重心从左脚移至右脚，全程约1.5秒，转身时衣摆自然摆动 |
-| 材质 | 真实皮肤质感 | 面颊毛孔隐约可见，T区有自然出油的微反光，非磨皮非硅胶质感 |
-| 天气 | 下雨的街道 | 细雨，湿路面反射街灯暖黄色光斑，窗玻璃有雨痕让窗外街景轻微模糊 |
+| Light Source Description | Warm window light | Afternoon sunlight enters at a 45° angle from the window on the right side of the frame, color temperature approx. 4500K warm white, casting elongated window frame shadows on the ground |
+| Expression | Gentle expression | Corners of the mouth naturally lift slightly, fine smile lines appear at the outer corners of the eyes, natural light points visible in the eyes when looking at the other person |
+| Action | Turn around | Slowly rotate approximately 90 degrees to the right, center of gravity shifts from the left foot to the right foot, total duration approx. 1.5 seconds, hem of the garment sways naturally during the turn |
+| Material | Realistic skin texture | Pores on the cheeks faintly visible, natural oily micro-reflection in the T-zone, not retouched or silicone-like texture |
+| Weather | Rainy street | Light rain, wet road surface reflects warm yellow light spots from street lamps, rain streaks on window glass slightly blur the street scene outside |
 
-### 6.2 画质底座（Seedance 2.0 真人都市专属）
-1080p，真人实拍电影质感，真实皮肤纹理，自然光影，24fps电影帧率，手持呼吸感或稳定器流动，真实颗粒结构，非CG非渲染
-### 6.3 光效指令（Seedance 2.0 真人都市专属，按光影方案选择）
+### 6.2 Image Quality Baseline (Seedance 2.0 Live-Action Urban Exclusive)
+1080p, live-action film quality, realistic skin texture, natural light and shadow, 24fps film frame rate, handheld breathing feel or stabilizer flow, realistic grain structure, not CG, not rendered
+### 6.3 Light Effect Instructions (Seedance 2.0 Live-Action Urban Exclusive, select based on lighting scheme)
 
-| 光影方案 | Seedance 2.0 光效指令 |
+| Lighting Scheme | Seedance 2.0 Light Effect Instruction |
 |---|---|
-| A 都市鎏金 | 夕照自然光45°侧入，色温约3000-3500K暖金，天空环境光5500K作为暗部补光，光比约1:3 |
-| B 日间清透 | 大面积窗光漫射，色温约5000-5500K中性冷白，窗帘柔化光线，无硬阴影，光比约1:1.5低反差 |
-| C 烟火暖光 | 台灯暖光主光源，色温2800-3200K，暗部保留物体轮廓细节，光比约1:4暖调包裹 |
-| D 冷调锐影 | 侧方硬窗光，冷白5000K主光，暗部深但有细节，光比约1:8大光比 |
-| E 室内漫射 | 窗光自然漫射4500-5500K为主光，室内顶灯中性补光，阴影柔软过渡，光比约1:2 |
-| F 雨夜清辉 | 湿地面反射街灯暖调光斑2800K，环境冷调6000K，窗玻璃雨痕散射光，光比约1:6冷暖共存 |
-| G 蓝调诗篇 | 日落后天空深蓝紫漫射约8000-10000K，地面人工暖光点初亮2800K，光比约1:5冷主暖点 |
+| A Urban Gilded | Sunset natural light entering at 45° side angle, color temperature approx. 3000-3500K warm gold, sky ambient light 5500K as shadow fill, light ratio approx. 1:3 |
+| B Daytime Clear | Large-area window light diffusion, color temperature approx. 5000-5500K neutral cool white, curtains soften the light, no hard shadows, light ratio approx. 1:1.5 low contrast |
+| C Warm Hearth Light | Desk lamp warm light as main source, color temperature 2800-3200K, shadow areas retain object contour details, light ratio approx. 1:4 warm tone wrap |
+| D Cool Sharp Shadow | Side hard window light, cool white 5000K main light, deep shadows with details, light ratio approx. 1:8 high contrast |
+| E Indoor Diffusion | Window light natural diffusion 4500-5500K as main light, indoor ceiling light neutral fill, soft shadow transitions, light ratio approx. 1:2 |
+| F Rainy Night Clear Glow | Wet ground reflects warm-toned light spots from street lamps 2800K, ambient cool tone 6000K, rain streaks on window glass scatter light, light ratio approx. 1:6 coexistence of cool and warm |
+| G Blue-Toned Poem | Post-sunset sky deep blue-purple diffusion approx. 8000-10000K, artificial warm light points on the ground just lighting up 2800K, light ratio approx. 1:5 cool main warm points |
 
-### 6.4 物理逻辑具象化（真人都市专属）
+### 6.4 Physical Logic Concretization (Live-Action Urban Exclusive)
 
-> Seedance 2.0 能理解现实世界的物理规律。所有动作须用具体数值和物理表现描述，禁止"随之""然后""适当"。
+> Seedance 2.0 can understand the physical laws of the real world. All actions must be described using specific numerical values and physical manifestations. Words like "then," "subsequently," or "appropriately" are prohibited.
 
-| 场景 | 抽象写法（禁止） | Seedance 2.0 具象写法 |
+| Scene | Abstract Wording (Prohibited) | Seedance 2.0 Concrete Wording |
 |---|---|---|
-| 起身离开 | 然后站起来 | 双手撑住椅子扶手，膝盖向前移动，0.5秒后身体重心前移至双脚，再1秒后站直——全程约2秒，站直后停顿0.5秒 |
-| 转头 | 转头看向窗外 | 头缓慢向右旋转约45度，视线从桌面的咖啡杯移至窗外城市天际线，旋转过程约1秒，到位后目光停留在远处 |
-| 接咖啡 | 倒了杯咖啡 | 右手持咖啡壶手柄，壶嘴倾斜约30度，深褐色咖啡液注入白色陶瓷杯，液面从杯底上升至杯身三分之二处，全程约3秒，蒸汽从杯口缓缓升起 |
-| 雨中行走 | 雨中独行 | 在湿路面缓步行走，步速约每秒一步，每步踩下时鞋底与水面接触产生细微涟漪，街灯暖黄光在湿路面形成拉长的倒影，雨丝在路灯下可见 |
+| Rising to leave | Then stands up | Hands press on the chair armrests, knees move forward, after 0.5 seconds the body's center of gravity shifts forward to both feet, after another 1 second stands straight—total duration approx. 2 seconds, pause for 0.5 seconds after standing straight |
+| Turning head | Turns head to look out the window | Head slowly rotates approximately 45 degrees to the right, gaze moves from the coffee cup on the desk to the city skyline outside the window, rotation process approx. 1 second, gaze remains fixed in the distance after reaching position |
+| Pouring coffee | Poured a cup of coffee | Right hand holds the coffee pot handle, spout tilted approx. 30 degrees, dark brown coffee liquid pours into a white ceramic cup, liquid level rises from the bottom of the cup to two-thirds of the cup body, total duration approx. 3 seconds, steam slowly rises from the cup rim |
+| Walking in rain | Walking alone in the rain | Walking slowly on the wet road surface, pace approx. one step per second, each step creates fine ripples where the sole contacts the water surface, warm yellow light from street lamps forms elongated reflections on the wet road surface, rain streaks visible under street lamps |
 
-### 6.5 空间逻辑具象化（真人都市专属）
+### 6.5 Spatial Logic Concretization (Live-Action Urban Exclusive)
 
-**空间坐标定义标准：**
-- **水平位置**：画面左侧三分之一处 / 画面中央 / 画面右侧，或相对于场景固定物（"距落地窗1米"）
-- **纵深位置**：前景（距镜头1-2米）/ 中景（距镜头3-5米）/ 背景 / 窗外远景
-- **人物之间**：相对距离与朝向（"A与B面对面，相距约0.8米，A略偏左，B略偏右"）
-- **人与空间关系**：相对于场景固定物的距离和方向
+**Spatial Coordinate Definition Standard:**
+- **Horizontal Position**: Left third of the frame / Center of the frame / Right side of the frame, or relative to fixed scene objects ("1 meter from the floor-to-ceiling window")
+- **Depth Position**: Foreground (1-2 meters from camera) / Midground (3-5 meters from camera) / Background / Distant view outside the window
+- **Between Characters**: Relative distance and orientation ("A and B face each other, approx. 0.8 meters apart, A slightly to the left, B slightly to the right")
+- **Person-Space Relationship**: Distance and direction relative to fixed scene objects
 
-**站位衔接示例：**
-【片段A尾部】
-A站在落地窗前，距窗户约0.5米，面向窗外，位于画面中央偏右。
-身体微微右转约20度，右手抬起将咖啡杯放在右侧边桌上。
+**Position Continuity Example:**
+[End of Clip A]
+A stands in front of the floor-to-ceiling window, approx. 0.5 meters from the window, facing outside, positioned slightly right of center in the frame.
+Body slightly rotates right approx. 20 degrees, right hand lifts to place the coffee cup on the side table to the right.
 
-【片段B开头】
-A的右手刚从杯子上移开，杯子在边桌上。A仍站在落地窗前，位置未变。
-窗外天空已从黄昏转为蓝调时刻，室内台灯已亮起。
-### 6.6 @reference 强制锚定语法
+[Start of Clip B]
+A's right hand has just moved away from the cup, the cup is on the side table. A still stands in front of the floor-to-ceiling window, position unchanged.
+The sky outside the window has shifted from dusk to the blue hour, the indoor desk lamp is now on.
+### 6.6 @reference Mandatory Anchoring Syntax
 
-> Seedance 2.0 的角色/场景/道具一致性依赖 @reference 语法。
-角色锚定：必须引用 @ImageX，指定用途
-例：@Image1_职场女性_通勤西装作为角色外观参考，@Image2_写字楼_落地窗办公室作为场景环境参考
+> Seedance 2.0 character/scene/prop consistency relies on the @reference syntax.
+Character Anchoring: Must reference @ImageX, specifying the usage
+Example: @Image1_Workplace_Woman_Commuting_Suit as character appearance reference, @Image2_Office_Building_Floor-to-ceiling_Window_Office as scene environment reference
 
-场景锚定：必须引用对应场景资产的 @ImageX
-道具锚定：若有手持或核心道具，引用对应的 @ImageX
+Scene Anchoring: Must reference the corresponding scene asset's @ImageX
+Prop Anchoring: If there are handheld or core props, reference the corresponding @ImageX
 
-### 6.7 多镜头序列最佳实践（Seedance 2.0 真人都市）
+### 6.7 Multi-Shot Sequence Best Practices (Seedance 2.0 Live-Action Urban)
 
-> Seedance 2.0 单片段建议 2-3 个镜头，总时长 4-12 秒。
-[Shot 1: 中景 · 固定] 办公室落地窗前，A侧身持咖啡杯望向窗外。
-午后窗光从右侧45°斜入（约4500K），在地面投下窗框长影。
-A位于画面中央偏右，距镜头约3米。时长约4秒。
+> Seedance 2.0 recommends 2-3 shots per clip, total duration 4-12 seconds.
+[Shot 1: Medium Shot · Static] In front of the office floor-to-ceiling window, A holds a coffee cup in profile looking outside.
+Afternoon window light enters at 45° from the right (approx. 4500K), casting long window frame shadows on the ground.
+A is positioned slightly right of center in the frame, approx. 3 meters from the camera. Duration approx. 4 seconds.
 
 [Cut to]
-[Shot 2: 近景 · 缓推] A的面部从侧45°缓慢转向镜头方向。
-嘴角微扬，眼神从窗外收回，眼中有窗光的自然高光点。
-面部毛孔和皮肤纹理可见，非磨皮。时长约3秒。
+[Shot 2: Close-Up · Slow Push] A's face slowly turns from a 45° side angle toward the camera direction.
+Corners of the mouth lift slightly, gaze retracts from outside the window, natural highlight points from window light visible in the eyes.
+Facial pores and skin texture visible, not retouched. Duration approx. 3 seconds.
 
 [Cut to]
-[Shot 3: 特写 · 固定] A的手将咖啡杯放在边桌上，杯底与木质桌面接触发出轻响。
-窗光在杯口镀上一层暖金轮廓光。时长约2秒。
+[Shot 3: Extreme Close-Up · Static] A's hand places the coffee cup on the side table, the bottom of the cup makes a light sound upon contact with the wooden table surface.
+Window light gilds the cup rim with a warm gold rim light. Duration approx. 2 seconds.
 
-### 6.8 真人都市 Seedance 2.0 负面词（不超过7个）
-3D渲染, CG动画, 塑料假面, 磨皮皮肤, 非真人质感, 悬浮物品, 画面闪烁
-
----
-
-## 七、全局叙事约束
-
-- **空镜即情绪** — 每个叙事段落之间建议用场景空镜（同一空间在不同光线下）做情绪缓冲。空镜不是"没东西拍"，是"让观众喘口气"
-- **光的连续性与变化** — 同一空间内在日间段落的窗光角度应随时间连续变化。如果一场对话戏跨越了半小时，窗光的位置应该移动了一些——Seedance 2.0 能理解这种"合理的不完全一致"
-- **人物光源一致性** — 同一镜头内所有人物的面部光源方向必须统一。如果主光从左侧来，所有人的左脸都应该是亮面
-- **避免"过度导演"** — 真人都市追求"被摄影机捕获的生活"，不是"被编剧安排的情节"。允许画面中有不可控的日常细节（风吹动窗帘、一只路过的猫、咖啡杯里的轻微晃动）
-- **静默的价值** — 不必每个镜头都填满动作和台词。一个3秒的静止特写——人物只是呼吸、眨眼、存在——往往比任何台词都更有力
+### 6.8 Live-Action Urban Seedance 2.0 Negative Prompts (No more than 7)
+3D rendering, CG animation, plastic fake face, retouched skin, non-live-action texture, floating objects, screen flicker
 
 ---
 
-## 八、快速决策卡
+## VII. Global Narrative Constraints
 
-### 情绪 → 光影方案 + 配乐速查
+- **Empty Shots as Emotion** — It is recommended to use scene empty shots (the same space under different lighting) as emotional buffers between narrative segments. An empty shot is not "nothing to shoot," but "letting the audience catch their breath"
+- **Continuity and Change of Light** — Within the same space, the angle of window light during daytime segments should change continuously with time. If a dialogue scene spans thirty minutes, the position of the window light should have shifted somewhat—Seedance 2.0 can understand this "reasonable inconsistency"
+- **Character Light Source Consistency** — The direction of facial light sources for all characters within the same shot must be unified. If the main light comes from the left, the left side of everyone's face should be the lit side
+- **Avoid "Over-Directing"** — Live-action urban seeks "life captured by the camera," not "plot arranged by the screenwriter." Allow uncontrollable daily details in the frame (wind blowing curtains, a passing cat, slight movement in the coffee cup)
+- **The Value of Silence** — Not every shot needs to be filled with action and dialogue. A 3-second static close-up—where the character simply breathes, blinks, and exists—is often more powerful than any line of dialogue
 
-| 情绪 | 光影方案 | 配乐方向 |
+---
+
+## VIII. Quick Decision Card
+
+### Emotion → Lighting Scheme + Music Quick Reference
+
+| Emotion | Lighting Scheme | Music Direction |
 |---|---|---|
-| 温情日常 | C 烟火暖光 或 E 室内漫射 | 木吉他 + 钢琴 |
-| 职场克制 | E 室内漫射 或 B 日间清透 | 钢琴 + 轻弦乐 |
-| 孤独思念 | F 雨夜清辉 或 G 蓝调诗篇 | 钢琴稀疏单音 |
-| 高光时刻 | A 都市鎏金 | 钢琴 + 弦乐组 |
-| 悬疑紧张 | D 冷调锐影 | 电子Pad + 轻节拍 |
-| 治愈新生 | B 日间清透 | 木吉他 + 钢琴 |
-| 市井烟火 | C 烟火暖光 | 木吉他 + 手风琴 |
-| 诗意留白 | G 蓝调诗篇 | 钢琴到环境音独奏 |
+| Warm Daily Life | C Warm Hearth Light or E Indoor Diffusion | Acoustic Guitar + Piano |
+| Workplace Restraint | E Indoor Diffusion or B Daytime Clear | Piano + Light Strings |
+| Lonely Longing | F Rainy Night Clear Glow or G Blue-Toned Poem | Sparse Piano Single Notes |
+| Highlight Moment | A Urban Gilded | Piano + String Ensemble |
+| Suspense Tension | D Cool Sharp Shadow | Electronic Pad + Light Beat |
+| Healing Rebirth | B Daytime Clear | Acoustic Guitar + Piano |
+| Urban Hearth | C Warm Hearth Light | Acoustic Guitar + Accordion |
+| Poetic White Space | G Blue-Toned Poem | Piano to Ambient Solo |

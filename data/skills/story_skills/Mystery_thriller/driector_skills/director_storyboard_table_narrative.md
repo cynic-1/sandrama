@@ -1,92 +1,92 @@
 ---
 name: director_storyboard_table_narrative
-description: 分镜表叙事手法 · 悬疑推理 — 定义悬疑推理在分镜表中的景别策略、运镜逻辑、时长操控、线索镜头设计、信息揭示策略与转场手法。适用于任何视觉风格。
+description: Storyboard Narrative Techniques · Suspense Reasoning - Define the scene separation strategy, camera movement logic, duration control, clue shot design, information disclosure strategy and transition techniques in the storyboard. Works with any visual style.
 metaData: director_skills
 ---
 
-# 分镜表叙事手法 · 悬疑推理 · 技法参考
+# Storyboard Narrative Techniques · Suspense Reasoning · Technical Reference
 
 ---
 
-## 一、分镜表定位
+## 1. Storyboard positioning
 
-分镜表是导演将剧本转化为镜头语言的核心工具。表单字段由导演根据项目需要自行设定（分镜号、景别、运镜、时长、人物、事件、台词、光影、情绪、转场等），以下仅提供悬疑推理叙事类型下的技法参考。
-
----
-
-## 二、景别选择
-
-- **景别即信息量** — 悬疑分镜中景别的核心逻辑是"让观众看到多少信息"。每个镜头先问：这里要让观众知道什么？要隐藏什么？
-- **选择性特写** — 用特写强制引导观众关注某个细节（一把钥匙、一个表情、一行字），但要警惕：过于明显的特写等于直接"画箭头"，观众会猜到是线索。最好的线索特写是"有理由的"（角色在看/在用）
-- **遮蔽性中景** — 中景在悬疑中的核心价值是"展示够多但藏住关键"。人物中景交代了动作但看不清微表情；空间中景展示了房间但遮住了角落
-- **反转全景** — 全景是悬疑中最有力的反转工具：从局部切到全景，突然揭示"房间里还有别人""地上有血迹""窗户是开着的"。全景的信息量爆炸适合放在反转瞬间
-- **定场镜头的悬念植入** — 定场不只是交代环境，要在定场镜头中植入一个"不对"的细节（远处窗户有人影、院子里多了一把椅子）。最多 1-2 个镜头完成定场+悬念种子
+Storyboards are the core tool for directors to transform scripts into lens language. The form fields are set by the director according to the needs of the project (storyboard numbers, scenes, camera movements, duration, characters, events, lines, light and shadow, emotions, transitions, etc.). The following only provides technical reference for the suspense reasoning narrative type.
 
 ---
 
-## 三、运镜节奏
+## 2. Scene selection
 
-- **默认稳定但不死板** — 50% 镜头静止机位，但关键段落可引入轻微不稳定感（微幅手持、极缓横移）暗示"有什么不对"
-- **缓推 = 发现/逼近** — 缓慢推向某个物体或人物，暗示"观众即将看到重要的东西"。缓推速度越慢，悬念越强
-- **缓拉 = 揭示/全貌** — 从局部缓拉到全景，揭示被遮蔽的信息。是悬疑中最经典的"反转运镜"
-- **横移 = 扫描/搜索** — 缓慢横移模拟"扫视空间"，适合调查场景。观众跟随镜头一起"搜索"，参与感增强
-- **突然静止 = 发现冲击** — 运动中的镜头突然停下来，制造"冻结"感。用于主角突然看到了不该看到的东西
-- **窥视运镜** — 从遮挡物后方缓推，前景保留遮挡物边缘，模拟"有人在暗处观察"的第三视角
-
----
-
-## 四、时长把控
-
-- **悬念镜头拉长** — 悬疑中关键的"发现"镜头可比正常时长多 1-2s，给观众"意识到"的时间。角色盯着某物 3s 比 1s 更令人不安
-- **日常镜头正常** — 日常/假象段落的镜头时长保持正常（2-4s），不要用异常时长打破伪装
-- **反转前的拉伸** — 反转镜头前的最后一个镜头应适当拉长（4-5s），制造"暴风雨前的寂静"
-- **反转瞬间极短或极长** — 反转揭示镜头要么极短（1-1.5s 闪切，冲击感）要么极长（5-6s 缓揭，恐惧蔓延感），不要用中间值
-- **黄金 6 秒规则依然适用** — 除非有运镜或新信息持续输入，单镜头不超过 6s。悬疑的"慢"不是镜头长，是段落节奏的起伏
-- **沉默倒计时** — 无台词无动作的纯静默镜头在悬疑中是强力工具，但不超过 4s，否则观众会以为是技术故障
+- **Scenery is the amount of information** — The core logic of scene separation in suspense storyboards is "how much information the audience can see." Start each shot by asking: What do you want the audience to know here? What to hide?
+- **Selective Close-up** — Use close-ups to force the audience to pay attention to a certain detail (a key, an expression, a line of text), but be wary: too obvious a close-up is equivalent to "drawing an arrow" directly, and the audience will guess it is a clue. The best clue close-ups are "for a reason" (the character is watching/using)
+- **Occluded mid-shot** — The core value of mid-shot in suspense is "show enough but hide the key." The mid-shot of the character explains the movements but cannot see the micro-expressions; the mid-shot of the space shows the room but covers the corners.
+- **Reversal Panorama** — Panorama is the most powerful reversal tool in suspense: cut from part to panorama, suddenly revealing "there are others in the room", "there are blood stains on the ground", and "the window is open". The explosion of panoramic information is suitable for the moment of reversal
+- **Suspense implantation in the establishing shot** — Establishing the scene is not just about explaining the environment, but also implanting an "wrong" detail in the establishing shot (a figure in the distant window, an extra chair in the yard). 1-2 shots at most to complete the setting + suspense seeds
 
 ---
 
-## 五、线索镜头设计
+## 3. Rhythm of camera movement
 
-- **伏笔镜头不加标注** — 埋设线索的镜头在分镜表中不要用特殊标记（避免"注意！这是线索！"的AI感），让线索镜头看起来和普通镜头一样自然
-- **线索出现三原则** — ①有叙事理由出现（角色在用/在看/在经过）；②不在画面正中（放边缘或前景）；③不给异常时长（正常节奏带过）
-- **重要线索至少出现两次** — 第一次"无意经过"，第二次"被发现意义"。两次之间间隔足够远，让观众第一次忽略
-- **闪回镜头要变质感** — 回忆/闪回镜头在分镜中需标注与当下叙事的视觉区分（不同色温、不同景别倾向、不同运镜速度），让观众一眼辨别时间线
-- **道具连续性** — 悬疑分镜中道具位置的变化本身是叙事：杯子换了位置、花瓶被移动过、照片少了一张。在分镜描述中精确交代关键道具的状态
-
----
-
-## 六、信息揭示策略
-
-- **小揭示用对白，大揭示用画面** — 次要信息可以通过角色对话交代，但核心反转必须用镜头语言（全景揭示、特写聚焦、闪回拼接）完成
-- **揭示节奏：先给角色后给观众** — 反转镜头的经典节奏：先拍角色表情变化（震惊/恐惧）→再切到角色所见（观众才知道原因）。角色的反应为观众"预热"情绪
-- **或反过来：先给观众后给角色** — 观众先看到真相（背后有人），角色浑然不知——制造"快回头啊！"的焦虑感。这种手法的分镜需要用全景或过肩镜头让观众看到角色视线之外的信息
-- **反转后给回看时间** — 大反转之后不要立刻推进叙事，留 1-2 个镜头给观众消化（角色怔住、空镜、沉默），让信息量沉淀
+- **Stable but not rigid by default** — 50% camera still position, but a slight sense of instability can be introduced in key passages (slight hand-holding, extremely slow panning) to hint "something is wrong"
+- **Push = Discovery/Approach** — Slowly push toward an object or character to suggest that "the audience is about to see something important." The slower the push speed, the stronger the suspense
+- **Easy pull = reveal/full picture** — Ease from partial to full view to reveal obscured information. It is the most classic "reverse mirror" in suspense
+- **Traverse = Scan/Search** — Slow traverse simulates "scanning the space", suitable for investigation scenarios. The audience follows the camera to "search" together, increasing their sense of participation.
+- **Sudden stillness = Discovery of impact** — A moving camera suddenly stops, creating a "frozen" feeling. Used when the protagonist suddenly sees something he shouldn't have seen
+- **Peeping Mirror** — Push slowly from behind the obstruction, keeping the edge of the obstruction in the foreground, simulating the third perspective of "someone observing in the dark"
 
 ---
 
-## 七、人物行为设计
+## 4. Duration control
 
-- **可疑行为要有日常外衣** — 角色的可疑行为在分镜中不能太明显。"反复看手表"比"鬼鬼祟祟张望"更好——前者可能无辜，后者太刻意
-- **微表情是核心线索载体** — 悬疑中人物的微表情（瞳孔微缩、嘴角一闪而过的变化、手指轻扣桌面）比大幅度表演更有价值。分镜中涉及线索性表情时用近景/特写捕捉
-- **多义性动作** — 设计的人物动作应允许多种解读：角色擦手可能是洗完手、也可能是擦去什么痕迹。分镜不要通过额外信息"解释"动作含义，让观众自己判断
-- **单镜头动作不超过两个** — "低头看信 + 迅速折起"可以，"低头看信 + 折起 + 塞进口袋 + 环顾四周"会使关键动作淹没在信息中
-
----
-
-## 八、台词与留白
-
-- **未说完的话是最好的悬念** — "其实那天晚上……算了。"角色欲言又止比说出来更令人不安。分镜中给这类台词配近景+沉默留白（2-3s）
-- **一句台词对应一个镜头** — 避免单镜头内多句对白，尤其是包含关键信息的对白。切换说话者时切镜头
-- **歧义台词用表情辅助** — 有双重含义的台词（明面正常、暗面可疑）配合角色微妙表情，分镜中用近景确保观众能捕捉到表情细节
-- **旁白/内心独白要克制** — 悬疑叙事优先用画面叙事，旁白只在必须交代内心推理过程时使用。旁白镜头配中远景或空镜，避免近景嘴不动的违和感
+- **Extended suspense shots** — The key "discovery" shots in suspense can be 1-2 seconds longer than normal to give the audience time to "realize". 3s of a character staring at something are more disturbing than 1s
+- **Daily shots are normal** — The shot duration of daily/fake scenes should remain normal (2-4s), do not use abnormal duration to break the disguise
+- **Stretch before reversal** — The last shot before the reversal shot should be appropriately stretched (4-5s) to create "the silence before the storm"
+- **The reversal moment is extremely short or extremely long** — The reversal reveal shot is either extremely short (1-1.5s flash cut, sense of impact) or extremely long (5-6s slow reveal, sense of spreading fear), do not use the middle value
+- **The golden 6-second rule still applies** — Unless there is camera movement or new information is continuously input, a single shot should not exceed 6 seconds. The "slowness" of suspense is not the length of the shot, but the ups and downs of the rhythm of the paragraphs.
+- **Silent Countdown** — A pure silent shot with no lines and no action is a powerful tool in suspense, but it should not exceed 4 seconds, otherwise the audience will think it is a technical failure.
 
 ---
 
-## 九、转场设计
+## 5. Clues lens design
 
-- **同场景内用硬切** — 同一场景内镜头间硬切，保持紧凑
-- **场景切换用黑屏/闪白** — 悬疑中场景转换用短黑屏（0.5-1s）制造"中断感"，比空镜过渡更符合悬疑节奏
-- **闪回用匹配剪辑** — 当下画面与回忆画面用相似构图/动作做匹配剪辑切入，强化因果联系（当下看到一把刀→闪回到那把刀出现的场景）
-- **时间跳跃用字幕标注** — 打乱时间线的叙事在转场时需要明确的时间标记（"三天前""同一时刻"），避免观众迷失
-- **段落间用"悬念尾钩"** — 每个段落结尾留一个未解悬念镜头再转场，保持跨段落的牵引力
+- **Foreshadowing shots are not marked** — Do not use special marks in the storyboard for shots that bury clues (to avoid the AI sense of "Attention! This is a clue!"), so that the clue shots look as natural as ordinary shots.
+- **Three principles for the appearance of clues** — ① There is a narrative reason to appear (the character is using/looking at/passing by); ② Not in the center of the picture (put it on the edge or foreground); ③ Do not give it an abnormal length of time (pass it at a normal pace)
+- **Important clues appear at least twice** - the first time "passed by accidentally", the second time "the meaning was discovered". The distance between the two times is far enough for the audience to ignore it the first time
+- **Flashback shots need to be textured** — Memory/flashback shots need to be visually differentiated from the current narrative in the storyboard (different color temperatures, different scene recognition tendencies, different camera movement speeds), allowing the audience to identify the timeline at a glance
+- **Prop Continuity** — The change in the position of the props in the suspense storyboard is itself a narrative: the cup has changed its position, the vase has been moved, and there is one missing photo. Accurately explain the status of key props in the storyboard description
+
+---
+
+## 6. Information disclosure strategy
+
+- **Use dialogue for small reveals, and images for big reveals** — Secondary information can be conveyed through character dialogue, but the core reversal must be completed using lens language (panoramic reveal, close-up focus, flashback splicing)
+- **Rhythm of reveal: first to the character, then to the audience** — The classic rhythm of the reverse shot: first shoot the change in the character's expression (shock/fear) → then cut to what the character sees (the audience knows the reason). The character's reaction "warms up" the audience's emotions
+- **Or the other way around: give it to the audience first and then the characters** - The audience sees the truth first (there is someone behind it), and the characters don't know it - creating a sense of anxiety of "turn back!" This style of storyboarding requires the use of panoramic or over-the-shoulder shots to allow the audience to see information beyond the character's sight.
+- **Give review time after the reversal** — Don’t advance the narrative immediately after the big reversal. Leave 1-2 shots for the audience to digest (characters are stunned, empty shots, silent) to allow the amount of information to settle.
+
+---
+
+## 7. Character behavior design
+
+- **Suspicious behavior must have a daily appearance** — The character's suspicious behavior should not be too obvious in the storyboard. "Looking at the watch repeatedly" is better than "looking furtively" - the former may be innocent, the latter is too deliberate
+- **Micro-expressions are the core clue carrier** - The micro-expressions of characters in suspense (micro-expressions of pupils, fleeting changes in the corners of the mouth, fingers tapping the table) are more valuable than large-scale performances. Use close-ups/close-ups to capture clues in the storyboard
+- **Ambiguous Actions** — The designed character actions should allow for multiple interpretations: the character may wipe his hands after washing his hands, or he may wipe off some traces. Storyboards should not "explain" the meaning of actions through additional information, let the audience make their own judgments
+- **No more than two actions in a single shot** — "Look down at the letter + quickly fold it up" is OK, "Look down at the letter + fold it up + stuff it into your pocket + look around" will make the key actions submerged in the information
+
+---
+
+## 8. Lines and blank spaces
+
+- **Unfinished words are the best suspense** — "Actually, that night... forget it." The character's hesitation to say something is more disturbing than saying it. In the storyboard, add close-up shots + silent blanks (2-3s) for these lines.
+- **One line corresponds to one shot** — Avoid multiple lines of dialogue within a single shot, especially dialogue that contains key information. Cut camera when switching speakers
+- **Emotional assistance for ambiguous lines** — Lines with double meanings (normal on the bright side, suspicious on the dark side) are matched with the subtle expressions of the characters, and close shots are used in the storyboards to ensure that the audience can capture the details of the expressions
+- **Restraint in narration/internal monologue** — Suspense narratives give priority to using pictures to narrate, and narration is only used when it is necessary to explain the inner reasoning process. The narration lens is equipped with a medium long shot or an empty shot to avoid the inconsistency of the mouth not moving in the close shot.
+
+---
+
+## 9. Transition design
+
+- **Hard cuts within the same scene** — Hard cuts between shots within the same scene to keep it compact
+- **Use black screen/flash white for scene transitions** — Use short black screens (0.5-1s) for scene transitions in suspense to create a "sense of interruption", which is more in line with the suspense rhythm than empty shot transitions
+- **Matching editing for flashbacks** — Matching editing is used between the current scene and the memory scene with similar compositions/actions to strengthen the causal connection (seeing a knife now → flashing back to the scene where the knife appeared)
+- **Time jumps are marked with subtitles** — Narratives that disrupt the timeline require clear time markers ("three days ago" and "the same moment") when transitioning to avoid the audience being lost.
+- **Use "suspense tail hook" between paragraphs** - leave an unresolved suspense shot at the end of each paragraph before transitioning to maintain traction across paragraphs

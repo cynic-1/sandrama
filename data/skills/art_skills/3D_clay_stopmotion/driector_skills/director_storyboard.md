@@ -1,156 +1,156 @@
 ---
 name: director_storyboard
-description: 导演分镜提示词技法 · 定格动画黏土质感
+description: Director Storyboard Prompt Techniques · Stop-Motion Clay Texture
 metaData: director_skills
 ---
 
-# 分镜提示词 · 定格动画黏土 · 风格专属技法
+# Storyboard Prompts · Stop-Motion Clay · Style-Specific Techniques
 
 ---
 
-## 适用范围
+## Scope
 
-本 Skill 专用于**定格动画黏土质感**风格的分镜提示词生成。
+This Skill is exclusively for generating storyboard prompts in the **Stop-Motion Clay Texture** style.
 
 ---
 
-## 情绪 → 面容/眼神词映射
+## Emotion → Facial Expression/Eye Gaze Mapping
 
-| 情绪输入 | 面容词 | 眼神词 | 微表情补充 |
+| Emotion Input | Facial Terms | Eye Gaze Terms | Micro-Expression Supplements |
 |----------|--------|--------|-----------|
-| 心动 / 欣喜 | 脸颊微红，表情含蓄 | 眼神明亮，目光温柔 | 嘴角轻扬，黏土压痕 |
-| 悲伤 / 失落 | 神情低落，表情柔和 | 眼神黯淡，目光游离 | 眉毛微蹙，表情内敛 |
-| 惊讶 / 好奇 | 眼睛放大，表情生动 | 眼神集中，目光好奇 | 嘴巴微张，动作自然 |
-| 温柔 / 深情 | 神情柔和，眉眼温润 | 眼神专注，目光深情 | 嘴角微扬，表情克制温暖 |
-| 坚定 / 勇敢 | 神情严肃，眼神坚定 | 目光清澈，眼神专注 | 表情坚定，气质清亮 |
-| 害羞 / 羞涩 | 脸颊泛红，表情自然 | 目光低垂，不敢直视 | 手捏黏土衣角，动作轻柔 |
-| 温暖 / 感动 | 表情柔和，眼角带笑 | 眼神温暖，目光柔和 | 嘴角上扬，表情真诚 |
-| 孤独 / 怀念 | 神情安静，眼神悠远 | 目光放空，若有所思 | 表情平静，气质安静 |
-| 快乐 / 雀跃 | 笑容灿烂，眼睛明亮 | 眼神灵动，表情生动 | 身体前倾，动作轻快 |
-| 紧张 / 不安 | 表情略显僵硬，眉头微皱 | 眼神游离，目光不确定 | 手指捏紧，动作紧张 |
+| Heart-flutter / Delight | Slightly blushing cheeks, restrained expression | Bright eyes, gentle gaze | Slight upturn of mouth corners, clay indentation marks |
+| Sadness / Loss | Downcast expression, soft demeanor | Dim eyes, wandering gaze | Slightly furrowed brows, introverted expression |
+| Surprise / Curiosity | Widened eyes, lively expression | Focused eyes, curious gaze | Slightly open mouth, natural movement |
+| Tenderness / Deep Affection | Soft expression, warm brows and eyes | Focused eyes, affectionate gaze | Slight upturn of mouth corners, restrained warmth |
+| Determination / Courage | Serious expression, determined eyes | Clear gaze, focused eyes | Resolute expression, clear aura |
+| Shyness / Bashfulness | Blushing cheeks, natural expression | Downcast gaze, avoiding direct eye contact | Fingers pinching the edge of clay clothing, gentle movement |
+| Warmth / Moved | Soft expression, smiling eyes | Warm eyes, gentle gaze | Upturned mouth corners, sincere expression |
+| Loneliness / Nostalgia | Quiet expression, distant eyes | Blank gaze, pensive look | Calm expression, quiet aura |
+| Joy / Excitement | Radiant smile, bright eyes | Lively eyes, vibrant expression | Leaning forward, light and quick movements |
+| Tension / Anxiety | Slightly stiff expression, furrowed brows | Wandering eyes, uncertain gaze | Fingers clenched, tense movement |
 
 ---
 
-## 光影氛围词库（定格动画黏土）
+## Lighting and Atmosphere Vocabulary (Stop-Motion Clay)
 
-### 时间段光线
+### Time-of-Day Lighting
 
-| 时间段 | 主光词 | 色调词 | 气氛词 |
+| Time of Day | Key Light Terms | Color Tone Terms | Atmosphere Terms |
 |--------|--------|--------|---------|
-| 清晨 | 柔和晨光，散射光线 | 暖黄调 + 淡蓝点缀 | 清新感，光线透过窗户 |
-| 午后 | 柔和斜侧光，漫射光线 | 暖调为主 | 光影斑驳，温暖感 |
-| 黄昏/日落 | 逆光暖调，橙色余晖 | 琥珀暖 + 粉色点缀 | 长影拉伸，怀旧感 |
-| 夜间 | 月光冷调，局部暖光 | 淡蓝主调 + 暖色点缀 | 静谧感，光影层次 |
-| 室内日常 | 暖调侧光，均匀柔和 | 暖黄为主 | 温馨感，家庭氛围 |
-| 奇幻/魔法 | 奇幻光效，魔法光点 | 彩色光斑，柔焦效果 | 梦幻感，魔法氛围 |
+| Early Morning | Soft morning light, diffused light | Warm yellow tones + light blue accents | Fresh feel, light filtering through windows |
+| Afternoon | Soft oblique side light, diffused light | Predominantly warm tones | Dappled light and shadow, warm feel |
+| Dusk/Sunset | Backlit warm tones, orange afterglow | Amber warmth + pink accents | Stretched long shadows, nostalgic feel |
+| Night | Cold moonlight tones, localized warm light | Predominantly light blue tones + warm accents | Serene feel, layered light and shadow |
+| Indoor Daily Life | Warm side light, even and soft | Predominantly warm yellow | Cozy feel, domestic atmosphere |
+| Fantasy/Magic | Fantasy light effects, magical light points | Colorful light spots, soft-focus effect | Dreamy feel, magical atmosphere |
 
-### 情绪光影
+### Emotional Lighting
 
-| 情绪基调 | 光线类型 | 补充约束 |
+| Emotional Tone | Light Type | Supplementary Constraints |
 |----------|----------|---------|
-| 心动/温情 | 柔和侧光，暖调漫射 | 浅景深，背景轻微虚化 |
-| 悲伤/失落 | 冷调侧光，低调打光 | 面部局部暗部留存 |
-| 奇幻/梦幻 | 魔法光效，彩色光点 | 光晕控制，边缘光柔和 |
-| 怀旧/回忆 | 柔焦暖光，雾化效果 | 边缘轻微模糊，整体柔和 |
-| 日常/温馨 | 均匀漫射光，中性暖调 | 光线柔和，无明显阴影 |
-| 夜晚/静谧 | 月光冷调，局部暖光 | 明暗对比，层次清晰 |
+| Heart-flutter/Tenderness | Soft side light, warm diffused light | Shallow depth of field, slight background blur |
+| Sadness/Loss | Cold side light, low-key lighting | Retain local shadows on the face |
+| Fantasy/Dreamy | Magical light effects, colorful light points | Control halos, soft edge lighting |
+| Nostalgia/Memory | Soft-focus warm light, misty effect | Slight edge blur, overall softness |
+| Daily/Cozy | Even diffused light, neutral warm tones | Soft light, no distinct shadows |
+| Night/Serene | Cold moonlight tones, localized warm light | Clear contrast between light and dark, distinct layers |
 
 ---
 
-## 场景质感约束词（按场景类型）
+## Scene Texture Constraint Terms (By Scene Type)
 
-| 场景类型 | 必加约束词 |
+| Scene Type | Mandatory Constraint Terms |
 |----------|-----------|
-| 复古木屋 | 木质纹理清晰，黏土砖墙，暖色灯光，复古家具 |
-| 奇幻森林 | 树木黏土质感，光斑效果，魔法光点，自然地面 |
-| 室内日常 | 墙壁黏土肌理，家具细节，暖色灯光，生活杂物 |
-| 街道广场 | 石板路面黏土质感，复古建筑，路灯暖光，人群黏土 |
-| 咖啡馆/餐厅 | 木质桌椅黏土质感，暖色灯光，窗外街景虚化 |
-| 花园/庭院 | 花草黏土造型，泥土质感，阳光斑驳，长椅细节 |
-| 洞穴/地下 | 岩石黏土纹理，洞穴灯光，阴影层次，神秘氛围 |
-| 城堡/宫殿 | 石砖黏土质感，华丽装饰，暖色灯光，宏大空间 |
+| Retro Wooden House | Clear wood grain, clay brick walls, warm lighting, retro furniture |
+| Fantasy Forest | Clay-textured trees, light spot effects, magical light points, natural ground |
+| Indoor Daily Life | Clay-textured walls, furniture details, warm lighting, household clutter |
+| Street Plaza | Clay-textured cobblestone roads, retro architecture, warm streetlights, clay crowd |
+| Café/Restaurant | Clay-textured wooden tables and chairs, warm lighting, blurred street view outside window |
+| Garden/Courtyard | Clay-shaped flowers and plants, soil texture, dappled sunlight, bench details |
+| Cave/Underground | Clay-textured rocks, cave lighting, shadow layers, mysterious atmosphere |
+| Castle/Palace | Clay-textured stone bricks, ornate decorations, warm lighting, grand space |
 
 ---
 
-## 固定风格锚定词（所有输出必须包含）
+## Fixed Style Anchoring Terms (Must be included in all outputs)
 
-**定格动画锚定（必选）：**
+**Stop-Motion Anchoring (Mandatory):**
 
-定格动画风格，黏土质感，手指压痕可见，黏土肌理材质，暖调光影
+Stop-motion style, clay texture, visible finger indentations, clay texture material, warm-toned lighting
 
-**黏土质感（所有输出必选）：**
+**Clay Texture (Mandatory for all outputs):**
 
-黏土肌理清晰，手指压痕可见，材质颗粒感明显，手工痕迹保留
+Clear clay texture, visible finger indentations, distinct material grain, preserved handmade marks
 
-**角色材质（含角色镜头时必选）：**
+**Character Material (Mandatory when character shots are included):**
 
-3D卡通角色，奇幻风格，柔和浅景深，黏土材质细节清晰
+3D cartoon characters, fantasy style, soft shallow depth of field, clear clay material details
 
-**光影层次（含光影场景时必选）：**
+**Lighting Layers (Mandatory when lighting scenes are included):**
 
-电影感光影层次，明暗对比清晰，光效柔和自然，暖色调主导
+Cinematic lighting layers, clear light-dark contrast, soft and natural light effects, warm tones dominant
 
-**氛围锚定（必选）：**
+**Atmosphere Anchoring (Mandatory):**
 
-治愈怀旧氛围，定格动画美学，温馨情感表达，手工质感
+Healing nostalgic atmosphere, stop-motion aesthetics, warm emotional expression, handmade texture
 
-**画质锁定词（所有输出必须包含，置于风格收尾之后）：**
+**Image Quality Locking Terms (Must be included in all outputs, placed after the style closing):**
 
-模式A（中文）——默认：
-高清画质，黏土肌理清晰，色彩柔和，画面无杂色无噪点，浅景深效果
+Mode A (Chinese) — Default:
+High-definition quality, clear clay texture, soft colors, no noise or artifacts in the image, shallow depth of field effect
 
-模式A（中文）——画内文字场景（画面描述中含招牌/标识等道具文字时）：
-高清画质，黏土肌理清晰，色彩柔和，画面无杂色无噪点，浅景深效果，招牌/标识等道具文字清晰可读
+Mode A (Chinese) — In-Frame Text Scenes (when the scene description includes prop text such as signs/labels):
+High-definition quality, clear clay texture, soft colors, no noise or artifacts in the image, shallow depth of field effect, legible text on props and signs
 
-模式B（英文）——默认：
+Mode B (English) — Default:
 high-quality stop-motion animation, clear clay texture, warm lighting, soft shallow depth of field, no digital artifacts, no plastic look
 
-模式B（英文）——画内文字场景：
+Mode B (English) — In-Frame Text Scenes:
 high-quality stop-motion animation, clear clay texture, warm lighting, soft shallow depth of field, no digital artifacts, no plastic look, legible text on props and signs
 
-**负向词模板（模式B 必须包含，置于提示词末尾）：**
+**Negative Prompt Template (Must be included in Mode B, placed at the end of the prompt):**
 
-> ⚠️ Seedream（模式A）**不支持负向提示词**，负向词仅适用于模式B。模式A 通过正向词中的质感锚定和画质锁定来保证画面质量。
+> ⚠️ Seedream (Mode A) **does not support negative prompts**; negative terms apply only to Mode B. Mode A ensures image quality through texture anchoring and image quality locking in the positive prompt.
 
-模式B（英文）：
+Mode B (English):
 no modern digital 3D, no CGI rendering, no smooth plastic, no oversaturated colors, no neon colors, no cyberpunk, no sci-fi elements, no sharp edges, no clean lines, no vector art, no cartoon flat coloring, no cel-shading
 
 ---
 
-## 美学禁止项（生成时严格规避）
+## Aesthetic Prohibitions (Strictly Avoid During Generation)
 
-以下词汇/风格不得出现于输出提示词中：
+The following terms/styles must not appear in the output prompt:
 
-- ❌ 现代3D动画风格（皮克斯/迪士尼后期风格）
-- ❌ 光滑塑料/现代CG渲染相关词
-- ❌ 高饱和荧光色/霓虹色系
-- ❌ 现代场景/现代建筑元素
-- ❌ 重阴影/过度对比/暗调风格
-- ❌ 卡通比例、大眼睛、Q版等变形描述
-- ❌ 赛博朋克/蒸汽朋克/架空西幻元素
-- ❌ 画外叠加文字（字幕、水印、标题卡、旁白叠字等 UI 层文字，画面必须为纯视觉画面）
+- ❌ Modern 3D animation style (Pixar/Disney late-era style)
+- ❌ Smooth plastic/modern CG rendering related terms
+- ❌ High-saturation fluorescent colors/neon color schemes
+- ❌ Modern scenes/modern architectural elements
+- ❌ Heavy shadows/excessive contrast/dark tone style
+- ❌ Cartoon proportions, big eyes, chibi-style deformation descriptions
+- ❌ Cyberpunk/Steampunk/fantasy Western elements
+- ❌ Overlaid off-screen text (subtitles, watermarks, title cards, voiceover overlays, etc. UI-layer text; the frame must be a pure visual image)
 
-> 💡 **例外**：故事世界内的道具文字（招牌、路牌、标识、书籍等场景中自然存在的文字）**不属于禁止范围**。当分镜画面描述中包含此类内容时，应如实描写其存在并要求文字清晰。
+> 💡 **Exception**: Prop text within the story world (signs, road signs, labels, books, etc. text naturally present in the scene) is **not prohibited**. When the storyboard frame description includes such content, describe its presence accurately and require the text to be clear.
 
 ---
 
-## 完整生成示例
+## Complete Generation Example
 
-> 以下为同一输入分别使用模式A和模式B的对照展示，实际使用时**仅输出其中一种**。
+> The following shows a comparison of the same input using Mode A and Mode B. In actual use, **only one of them should be output**.
 
-### 输入（分镜表行数据）
+### Input (Storyboard Table Row Data)
 
-| 序号 | 画面描述 | 场景 | 关联资产名称 | 时长 | 景别 | 运镜 | 角色动作 | 情绪 | 光影氛围 |
+| No. | Frame Description | Scene | Related Asset Name | Duration | Shot Size | Camera Movement | Character Action | Emotion | Lighting Atmosphere |
 |------|---------|------|-------------|------|------|------|---------|------|----------|
-| 1 | 复古木屋内，暖光下两个黏土小人对视微笑 | 木屋 | 主角A/B | 5s | 中景 | 缓推 | 相对而坐，双手轻触，温柔微笑 | 心动 / 甜蜜 | 暖调侧光 + 柔和浅景深 |
+| 1 | Inside a retro wooden house, two clay figures gaze at each other and smile under warm light | Wooden House | Protagonist A/B | 5s | Medium Shot | Slow Push | Sitting opposite each other, hands lightly touching, tender smile | Heart-flutter / Sweet | Warm side light + soft shallow depth of field |
 
-### 示例输出A（模式A · Seedream）
+### Example Output A (Mode A · Seedream)
 
 [Prompt]
-定格动画风格，黏土质感，手指压痕可见，黏土肌理材质，暖调光影，中景构图，两个黏土小人半身入镜，黏土肌理清晰，手指压痕可见，材质颗粒感明显，手工痕迹保留，3D卡通角色，奇幻风格，柔和浅景深，黏土材质细节清晰，复古木屋内，暖光下两个黏土小人相对而坐，双手轻触，温柔微笑，眼神心动又甜蜜，暖调侧光，柔和浅景深，木质纹理清晰，黏土砖墙质感，电影感光影层次，明暗对比清晰，光效柔和自然，治愈怀旧氛围，定格动画美学，温馨情感表达，高清画质，黏土肌理清晰，色彩柔和，画面无杂色无噪点，浅景深效果。
-Based on the reference image of 主角A/B, maintain consistent: face features, hairstyle, costume details. Generate a new scene: two clay characters sitting across from each other inside a retro wooden room at warm light, touching hands gently, smiling tenderly. Keep character appearance identical to reference.
+Stop-motion style, clay texture, visible finger indentations, clay texture material, warm-toned lighting, medium shot composition, two clay figures in a half-body shot, clear clay texture, visible finger indentations, distinct material grain, preserved handmade marks, 3D cartoon characters, fantasy style, soft shallow depth of field, clear clay material details, inside a retro wooden house, two clay figures sitting opposite each other under warm light, hands lightly touching, tender smile, eyes full of heart-flutter and sweetness, warm side light, soft shallow depth of field, clear wood grain, clay brick wall texture, cinematic lighting layers, clear light-dark contrast, soft and natural light effects, healing nostalgic atmosphere, stop-motion aesthetics, warm emotional expression, high-definition quality, clear clay texture, soft colors, no noise or artifacts in the image, shallow depth of field effect.
+Based on the reference image of Protagonist A/B, maintain consistent: face features, hairstyle, costume details. Generate a new scene: two clay characters sitting across from each other inside a retro wooden room at warm light, touching hands gently, smiling tenderly. Keep character appearance identical to reference.
 
-### 示例输出B（模式B · Nanobanana）
+### Example Output B (Mode B · Nanobanana)
 
 ```xml
 <role>
@@ -158,7 +158,7 @@ You are a stop-motion claymation director.
 Maintain strict visual continuity across all shots.
 </role>
 <character_reference>
-Image [1]: 主角A/B — clay figurines, soft rounded features, warm earthy tones, small cute proportions
+Image [1]: Protagonist A/B — clay figurines, soft rounded features, warm earthy tones, small cute proportions
 </character_reference>
 <continuity_rules>
 - Same clay texture, color palette, face features across ALL shots
@@ -174,19 +174,19 @@ no modern digital 3D, no CGI rendering, no smooth plastic, no oversaturated colo
 </negative>
 ```
 
-## 快速参考卡
+## Quick Reference Card
 
-### 情绪 → 画面词速查
+### Emotion → Visual Keyword Quick Lookup
 
-| 情绪 | 面容关键词 | 光线匹配 |
+| Emotion | Facial Keywords | Lighting Match |
 |------|-----------|---------|
-| 心动 | 脸颊微红，黏土压痕 | 柔和侧光暖调 |
-| 悲伤 | 神情低落，表情柔和 | 冷调侧光低调 |
-| 温柔 | 神情柔和，眉眼温润 | 均匀漫射暖光 |
-| 奇幻 | 眼睛放大，彩色光点 | 奇幻光效光晕 |
-| 感动 | 眼角带笑，表情真诚 | 暖调侧光柔和 |
-| 孤独 | 神情安静，目光放空 | 冷调侧光暗部 |
-| 快乐 | 笑容灿烂，眼睛明亮 | 暖调漫射光 |
+| Infatuation | Slight blush on cheeks, clay indentations | Soft side light, warm tone |
+| Sadness | Downcast expression, soft features | Cool-toned side light, low key |
+| Tenderness | Gentle expression, warm eyes and brows | Even diffused warm light |
+| Fantasy | Enlarged eyes, colored light spots | Fantasy light effects, halos |
+| Moved | Smiling at the corners of the eyes, sincere expression | Warm-toned side light, soft |
+| Loneliness | Quiet expression, vacant gaze | Cool-toned side light, shadows |
+| Joy | Bright smile, bright eyes | Warm-toned diffused light |
 
 
 

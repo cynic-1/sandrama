@@ -1,114 +1,114 @@
 ---
 name: director_planning_narrative
-description: 叙事手法技法 · 热血少年 — 定义热血少年类型在主题立意、燃点节奏、场景情绪设计与声音方向上的叙事规划方法。适用于任何视觉风格。
+description: Narrative techniques and techniques · Hot-blooded boy - defines the narrative planning method of the hot-blooded boy type in terms of theme conception, lighting rhythm, scene emotional design and sound direction. Works with any visual style.
 metaData: director_skills
 ---
 
-# 叙事手法 · 热血少年 · 技法参考
+# Narrative Technique · Hot-Blooded Boy · Technical Reference
 
 ---
 
-## 一、主题立意与热血内核
+## 1. Theme concept and passionate core
 
-### 热血少年叙事要点
+### Key points of the narrative of the passionate boy
 
-- **信念是燃料** — 热血叙事的核心不是打斗，而是"为什么而战"。主角的信念必须在故事前半段就被清晰建立，后半段的每次爆发都是信念的兑现
-- **以弱胜强的浪漫** — 热血的最大魅力是"不可能的胜利"。主角必须处于绝对劣势，困境越绝望、实力差距越大，翻盘时的燃感越强
-- **成长弧线可视化** — 成长不是台词说"我变强了"，而是让观众"看到"变化：从被打倒爬不起来到被打倒依然站起来、从躲闪到正面迎击、从颤抖到目光坚定
-- **离场感受建议方向** — 热泪盈眶 / 热血沸腾 / 拍案叫好 / 心潮澎湃。避免"轻松""安静""淡雅"等与热血气质不匹配的方向
-- **伙伴羁绊是第二引擎** — 个人战斗燃，伙伴托举更燃。"我替你挡一刀""你先走我断后""我相信你"是热血叙事中仅次于主角爆发的第二燃点
-
----
-
-## 二、叙事结构与燃点节奏
-
-### 热血少年叙事要点
-
-- **低谷是燃点的前提** — 没有低谷就没有爆发。热血叙事必须先把主角推入绝境（失败、背叛、丧失、绝望），再让其凭信念攀升。低谷越深，爆发越高
-- **三段式燃点递进** — 每个大段落遵循"蓄力→临界→爆发"三拍：长时间的蓄力积蓄情绪→临界点（最后一击/最后一句话/最后一个眼神）→爆发释放
-- **情绪蓄力用"慢"** — 爆发前的段落应刻意放慢节奏：升格动作、拉长的沉默、缓慢站起的身影。越慢越蓄力，爆发时的"快"才有冲击力
-- **段落间给喘息** — 连续高燃会让观众疲劳。燃点段落之间用日常/温情/幽默做情绪缓冲，让观众"呼吸"一下再迎接下一波
-- **高潮段落的叠加燃点** — 最终高潮不是单一爆发，而是叠加：主角站起来（燃）→伙伴赶到（更燃）→信念回响（最燃）。叠加次数不超过 3 次，否则边际递减
-- **失败也是叙事** — 热血不等于永远赢。中段安排一次"真正的失败"（不是假败），让主角承受代价、反思成长，为最终胜利赋予重量
+- **Faith is Fuel** — The core of the passionate narrative is not the fighting, but "why you fight". The protagonist's belief must be clearly established in the first half of the story, and every outburst in the second half is a fulfillment of the belief.
+- **The romance of David defeating the strong** — The greatest charm of passion is "impossible victory". The protagonist must be at an absolute disadvantage. The more desperate the predicament and the greater the gap in strength, the stronger the sense of urgency when making a comeback.
+- **Growth Arc Visualization** — Growth is not about lines saying "I have become stronger", but about letting the audience "see" changes: from being knocked down and unable to get up to being knocked down and still standing up, from dodging to facing forward, from trembling to firm eyes.
+- **Suggested directions for leaving the venue** — Tears in eyes/Blood boiling/Applause/Excitement in the heart. Avoid "relaxed", "quiet", "elegant" and other directions that do not match your passionate temperament
+- **Partner bond is the second engine** - Personal battle is igniting, and partner support is even more igniting. "I'll block the knife for you", "You go first and I'll stop you later" and "I believe in you" are the second ignition point in the passionate narrative after the protagonist's explosion.
 
 ---
 
-## 三、分场景情绪设计
+## 2. Narrative structure and Randian rhythm
 
-### 热血少年叙事要点
+### Key points of the narrative of the passionate boy
 
-- **情绪用力量感描述** — 不说"激动"，说"攥紧拳头到指节发白"。具象的力量感描述能更好地指导动作设计和镜头选择
-- **典型热血段落与设计** —
+- **Troughs are the prerequisite for Randian** — Without troughs, there will be no explosion. A passionate narrative must first push the protagonist into a desperate situation (failure, betrayal, loss, despair), and then let him climb up by faith. The deeper the trough, the higher the outburst
+- **Three-stage ignition progression** — Each large paragraph follows the three beats of "accumulation → critical → explosion": long-term accumulation of energy → critical point (last blow/last sentence/last look) → explosive release
+- **Use "slow" for emotional accumulation** - The passage before the explosion should be deliberately slowed down: escalating movements, prolonged silence, and figures standing up slowly. The slower you go, the more energy you accumulate. Only the "fast" when you explode has the impact.
+- **Breath between paragraphs** — Continuous high-burning will make the audience tired. Use daily life/warmth/humor as an emotional buffer between Randian paragraphs, allowing the audience to "breathe" before welcoming the next wave.
+- **Superimposed ignition point of the climax passage** — The final climax is not a single explosion, but a superposition: the protagonist stands up (burning) → partners arrive (burning more) → faith echoes (most burning). The number of superpositions should not exceed 3 times, otherwise the margin will decrease
+- **Failure is also a narrative** — Passion does not mean always winning. Arrange a "real failure" (not a fake defeat) in the middle, allowing the protagonist to bear the cost, reflect on growth, and give weight to the final victory.
 
-| 段落类型 | 情绪方向 | 叙事手法 | 音乐建议 |
+---
+
+## 3. Scene emotional design
+
+### Key points of the narrative of the passionate boy
+
+- **Emotions are described with a sense of power** — Instead of saying "excited", say "clenching your fists until your knuckles turn white." A concrete description of the sense of power can better guide action design and lens selection
+- **Typical passionate paragraphs and designs** —
+
+| Paragraph Types | Emotional Direction | Narrative Techniques | Music Suggestions |
 |---|---|---|---|
-| 日常/友情 | 温暖 + 轻松 | 伙伴间的插科打诨、笨拙的善意 | 轻快器乐，节奏明朗 |
-| 危机降临 | 震惊 + 紧迫 | 突发事件打破平静，强敌出现 | 配乐骤停后低频压迫 |
-| 绝境/低谷 | 绝望 + 不甘 | 被击败倒地、失去重要之物/之人 | 低沉悲壮器乐，或纯环境音 |
-| 觉醒/站起 | 决意 + 燃烧 | 沉默中站起来、眼神从涣散到坚定 | 从沉默到鼓点渐起 |
-| 爆发/对决 | 热血 + 痛快 | 全力出击、招式对撞、信念碰撞 | 燃曲全开，鼓点与旋律齐飞 |
-| 胜利/传承 | 释然 + 自豪 | 胜利后的疲惫微笑、伙伴相视 | 壮阔器乐渐收为温暖旋律 |
+| Daily/Friendship | Warmth + Relaxation | Gags between partners, clumsy kindness | Light instrumental music, bright rhythm |
+| Crisis is coming | Shock + urgency | Unexpected events break the calm, powerful enemies appear | Low-frequency oppression after the soundtrack suddenly stops |
+| Desperate situation/trough | Despair + unwillingness | Being defeated and falling to the ground, losing important things/people | Low and tragic instrumental music, or pure ambient sound |
+| Awakening/Standing up | Determination + Burning | Standing up in silence, eyes from slack to firm | From silence to drumbeat gradually rising |
+| Explosion/Duel | Passionate + Happy | Full attack, collision of moves, collision of beliefs | Full blast of music, drum beats and melody flying together |
+| Victory/Inheritance | Relief + Pride | Tired smiles after victory, partners looking at each other | The majestic instrumental music gradually faded into a warm melody |
 
-- **对抗升级是叙事核心** — 用战斗强度的递进映射成长进度：
-  - **初期**：勉强应对小敌，狼狈但侥幸获胜
-  - **中期**：面对强敌，付出惨痛代价才能过关
-  - **后期**：与终极强敌正面对决，实力旗鼓相当，信念成为胜负手
-- **空间即战场** — 善用场景元素强化战斗叙事。例如：悬崖边的对峙 = 无路可退；废墟中站起 = 从毁灭中重生；暴雨中挥拳 = 意志与天抗争
-- **镜头意图写"力量感"而非"动作"** — "用仰拍是为了让观众感受到他此刻不可撼动的意志"优于"用仰拍拍他站起来"。意图清晰了，分镜自然选对角度
+- **Escalation of confrontation is the core of the narrative** — Use the progression of combat intensity to map growth progress:
+  - **Early Stage**: Reluctantly dealing with small enemies, embarrassed but lucky to win
+  - **Mid stage**: Facing powerful enemies, you have to pay a heavy price to pass the level.
+  - **Later period**: Face to face with the ultimate powerful enemy, the strength is evenly matched, and faith becomes the winner.
+- **Space is the battlefield** — Make good use of scene elements to enhance the battle narrative. For example: Confrontation on the edge of the cliff = no way out; standing up from the ruins = rebirth from destruction; punching in the rain = will fight against the sky
+- **The purpose of the shot is to write "a sense of power" rather than "action"** - "Using an overhead shot is to make the audience feel his unshakable will at this moment" is better than "Using an overhead shot to shoot him standing up". The intention is clear, and the storyboard naturally chooses the right angle.
 
 ---
 
-## 四、声音与音乐方向
+## 4. Sound and Music Direction
 
-### 热血少年叙事要点
+### Key points of the narrative of the passionate boy
 
-- **沉默是最好的蓄力** — 爆发前的最后 3-5 秒应去掉所有声音（配乐、环境音），只留角色的一声呼吸或心跳。沉默后的爆发是音量的极端反差，冲击力最大化
-- **鼓点即心跳** — 热血段落的节奏骨架是鼓点。从低频慢鼓→中频鼓点→高频密鼓，映射战斗从蓄力到爆发的全过程
-- **燃曲的精确爆发点** — 主题燃曲不能提前放，必须在"临界点"精确切入（主角站起来的瞬间、出招的一刻、伙伴赶到的一幕）。提前 1 秒嫌早，晚 1 秒嫌迟
-- **环境音强化力量感** — 战斗场景标注核心环境音：拳头破风声、脚步震地声、衣袂烈风声、碎石崩落声。力量感的 50% 来自音效
-- **音乐情绪模型** —
+- **Silence is the best charge** — The last 3-5 seconds before the explosion should remove all sounds (soundtrack, environmental sounds), leaving only the character's breath or heartbeat. The explosion after silence is an extreme contrast in volume, maximizing the impact.
+- **The drumbeat is the heartbeat** — The rhythmic skeleton of the passionate passage is the drumbeat. From low-frequency slow drum → mid-frequency drum → high-frequency dense drum, it reflects the whole process of battle from accumulation to explosion.
+- **The precise breaking point of the burning song** - The theme burning song cannot be played in advance, and must be accurately cut at the "critical point" (the moment when the protagonist stands up, the moment when the move is made, the scene when the partner arrives). 1 second too early is too early, 1 second too late is too late
+- **Environmental sounds enhance the sense of power** — Battle scenes are marked with core environmental sounds: the sound of fists breaking through the wind, the sound of footsteps shaking the ground, the sound of clothes in the wind, and the sound of falling gravel. 50% of the power comes from sound effects
+- **Music Emotion Model** —
 
-| 情绪阶段 | 音乐策略 | 覆盖率 |
+| Emotional Stages | Music Strategy | Coverage |
 |---|---|---|
-| 日常/温情 | 轻快明朗器乐 | 中 |
-| 危机降临 | 骤停→低频压迫 | 低 |
-| 绝境低谷 | 悲壮独奏或全静默 | 中低 |
-| 蓄力觉醒 | 鼓点从无到有渐起 | 渐增 |
-| 爆发对决 | 燃曲全开，鼓点旋律齐飞 | 满 |
-| 胜利余韵 | 壮阔渐收为温暖 | 中高→中 |
+| Daily/Warmth | Light and bright instrumental music | Medium |
+| Crisis is coming | Sudden stop → low frequency compression | Low |
+| Desperate Lows | Tragic Solo or Total Silence | Mid-Low |
+| Awakening of energy | The drumbeat starts from scratch | Gradually increases |
+| A duel breaks out | The songs are all turned on, the drums and melodies are flying together | Full |
+| The aftertaste of victory | The grandeur gradually turns to warmth | Medium to high→medium |
 
-- **呐喊的克制使用** — 角色战吼/呐喊全片不超过 2-3 次，留给真正的临界爆发瞬间。滥用呐喊会让观众脱敏
-
----
-
-## 五、构图与景别叙事
-
-### 热血少年叙事要点
-
-- **三大核心构图的叙事功能** —
-  - **仰拍构图** — 英雄感/不可撼动/崛起，用于主角站起来、觉醒、宣言信念的瞬间
-  - **俯拍构图** — 渺小/绝境/被压制，用于主角被击败、陷入绝望、面对强敌的段落
-  - **对称对峙构图** — 势均力敌/正面交锋/信念碰撞，用于终极对决的核心对视
-- **中心构图的仪式感** — 中心构图留给"英雄时刻"：最终觉醒、胜利宣言、传承时刻。日常不用，否则削弱仪式感
-- **斜线构图制造动势** — 动作段落用对角线构图，人物沿对角线运动方向布局，增强速度感与冲击力
-- **从俯拍到仰拍的转换** — 同场戏内从俯拍（被压制）渐变到仰拍（站起来）是热血叙事最经典的构图转换，映射从绝境到崛起的情绪弧线
-- **景别即力量对比** —
-  - **远景** — 展示力量差距（渺小的主角 vs 巨大的敌人/灾难）或胜利后的壮阔
-  - **全景** — 战斗全貌、双方对峙站位
-  - **中景/近景** — 攻防动作、表情变化
-  - **特写** — 眼神坚定/拳头握紧/伤口流血，情绪聚焦
-- **大特写的爆发功能** — 大特写在热血中是"情绪引爆器"：瞳孔中映出对手、血从嘴角滑落、手指最后一次握紧。全片 3-4 次，全给爆发临界瞬间
+- **Restrained use of shouts** — The character's battle cry/scream should not exceed 2-3 times in the entire film, leaving only the real critical bursting moments. Overuse of shouting can desensitize the audience
 
 ---
 
-## 六、镜头运动与节奏
+## 5. Composition and scenery narrative
 
-### 热血少年叙事要点
+### Key points of the narrative of the passionate boy
 
-- **静蓄动爆** — 蓄力段落用 70% 静止机位，让情绪自行积蓄；爆发段落切换到运动镜头（快推、跟拍、环绕），释放动能
-- **快推 = 冲击/出击** — 猛然推向主体，模拟"冲拳"的力量感。适合出招瞬间、觉醒瞬间
-- **环绕升格 = 英雄时刻** — 缓慢环绕 + 升格（慢动作），360° 展示主角的英雄姿态。全片仅用 1-2 次，给最燃的瞬间
-- **速度线运镜** — 快速横移/推移制造速度线效果，适合追击、奔跑、高速战斗段落
-- **反差节奏** — 爆发前最后一个镜头用极慢（升格），爆发第一个镜头用极快（闪切/快推），慢→快的极端反差制造最大冲击
-- **运镜即力量** — 镜头运动的核心逻辑是"传递力量方向"：推 = 前进/攻击；拉 = 后退/蓄力；摇 = 扫视战场；跟 = 并肩作战；环绕 = 英雄定格
-- **手持跟拍的战场感** — 近身战斗段落可用手持跟拍，增强"身临其境"的混乱感与紧迫感。但晃动幅度要可控，不能让观众头晕
+- **Narrative function of three core compositions** —
+  - **Upward shot composition** — Heroic/unshakable/rising, used for the moment when the protagonist stands up, awakens, and declares his belief
+  - **Overhead shot composition** — small/desperate situation/suppressed, used for passages where the protagonist is defeated, falls into despair, and faces a powerful enemy
+  - **Symmetrical confrontation composition** — Evenly matched/head-to-head confrontation/collision of beliefs, used for the core confrontation of the ultimate showdown
+- **The ritual sense of the central composition** — The central composition is reserved for the "heroic moment": the final awakening, the declaration of victory, the moment of inheritance. Do not use it daily, otherwise it will weaken the sense of ritual.
+- **Diagonal composition creates momentum** — Use diagonal composition for action paragraphs, and the characters are arranged along the diagonal movement direction to enhance the sense of speed and impact.
+- **Transition from overhead shot to overhead shot** — The gradual change from overhead shot (being suppressed) to overhead shot (standing up) in the same scene is the most classic composition transition in passionate narratives, mapping the emotional arc from desperation to rise.
+- **Scenery is the comparison of strength** —
+  - **Visions** — show power disparity (tiny protagonist vs huge enemy/catastrophe) or grandeur after victory
+  - **Panorama** — full view of the battle, confrontation positions of both sides
+  - **Medium shot/close shot** — offensive and defensive movements, expression changes
+  - **Close-up** — firm eyes/clenched fists/wounds bleeding, emotional focus
+- **The explosive function of close-up** — Close-up is an "emotional detonator" in hot blood: the opponent is reflected in the pupils, blood slips from the corner of the mouth, and the fingers are clenched for the last time. 3-4 times in the whole film, all critical moments
+
+---
+
+## 6. Camera movement and rhythm
+
+### Key points of the narrative of the passionate boy
+
+- **Static Accumulation and Dynamic Explosion** — Use a 70% static camera position during the accumulating phase to allow emotions to accumulate on their own; switch to a moving lens (quick push, follow shot, surround) during the explosive phase to release kinetic energy
+- **Quick Push = Impact/Punch** — Push towards the subject suddenly, simulating the feeling of power of "punching". Suitable for the moment of attack and awakening
+- **Surround promotion = Heroic moment** — Slow surround + promotion (slow motion), 360° showing the protagonist's heroic posture. Only used 1-2 times in the entire film to give you the most burning moments
+- **Speed Line Mirroring** — Rapid traverse/advance to create a speed line effect, suitable for pursuit, running, and high-speed combat sequences
+- **Contrast Rhythm** — Use extremely slow (upgrade) for the last shot before the explosion, use extremely fast (flash cut/fast forward) for the first shot before the explosion, and the extreme contrast from slow to fast creates the greatest impact
+- **Mirror movement is power** — The core logic of camera movement is "transmitting the direction of power": push = move forward/attack; pull = retreat/charge; shake = scan the battlefield; follow = fight side by side; surround = freeze frame of the hero
+- **Battlefield feeling with handheld tracking** — Handheld tracking can be used in close combat segments to enhance the "immersive" sense of chaos and urgency. However, the shaking amplitude should be controllable and should not make the audience dizzy.

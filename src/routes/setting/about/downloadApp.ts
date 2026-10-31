@@ -18,7 +18,7 @@ export default router.post(
   async (req, res) => {
     const { reinstall, url, version } = req.body;
     if (reinstall) {
-      res.status(200).send(success("请在浏览器中手动下载并安装最新版本"));
+      res.status(200).send(success("Please manually download and install the latest version in your browser"));
     } else {
       const rootDir = u.getPath(["temp"]);
       fs.mkdirSync(rootDir, { recursive: true });
@@ -28,7 +28,7 @@ export default router.post(
       const dataDir = u.getPath();
       fs.cpSync(rootDir, dataDir, { recursive: true, force: true });
       fs.rmSync(rootDir, { recursive: true, force: true });
-      res.status(200).send(success(`更新${version}成功，5秒后重启`));
+      res.status(200).send(success(`Update${version}Success, restarting in 5 seconds`));
     }
   },
 );

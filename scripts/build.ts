@@ -72,10 +72,22 @@ const mainBuildConfig: esbuild.BuildOptions = {
   try {
     console.log("🔨 开始构建...\n");
 
+    // The frontend is a checked-in bundle; backend compilation alone cannot catch broken UI patches.
+    const webDir = path.resolve("data/web");
+    for (const page of ["index.html", "user-management.html"]) {
+      const html = fs.readFileSync(path.join(webDir, page), "utf8");
+      for (const match of html.matchAll(/<script\b([^>]*)>([\s\S]*?)<\/script>/g)) {
+        const src = match[1].match(/src="\.\/([^"]+)"/);
+        const sourcefile = src ? path.join(webDir, src[1]) : `${page} inline script`;
+        await esbuild.transform(src ? fs.readFileSync(sourcefile, "utf8") : match[2], { loader: "js", sourcefile });
+      }
+    }
+    console.log("✅ 前端脚本语法检查通过");
+
     // 并行构建
     await Promise.all([esbuild.build(appBuildConfig), esbuild.build(mainBuildConfig)]);
 
-    console.log("✅ 后端服务构建完成: build/app.js");
+    console.log("✅ 后端服务构建完成: data/serve/app.js");
     console.log("✅ Electron主进程构建完成: build/main.js");
     console.log("\n🎉 所有构建任务完成!\n");
   } catch (err) {

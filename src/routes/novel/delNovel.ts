@@ -6,7 +6,7 @@ import { validateFields } from "@/middleware/middleware";
 import renumberNovelChapters from "@/utils/renumberNovelChapters";
 const router = express.Router();
 
-// 删除原文
+// Delete the original text
 export default router.post(
   "/",
   validateFields({
@@ -16,7 +16,7 @@ export default router.post(
     const { id } = req.body;
     const novel = await u.db("o_novel").where("id", id).select("projectId").first();
     if (!novel) {
-      return res.status(404).send({ code: 404, data: null, message: "原文不存在" });
+      return res.status(404).send({ code: 404, data: null, message: "The original text does not exist" });
     }
 
     const chapterData = await u.db("o_eventChapter").where("novelId", id);
@@ -26,6 +26,6 @@ export default router.post(
     await u.db("o_novel").where("id", id).del();
     await renumberNovelChapters(Number(novel.projectId));
 
-    res.status(200).send(success({ message: "删除原文成功" }));
+    res.status(200).send(success({ message: "The original text was successfully deleted" }));
   },
 );

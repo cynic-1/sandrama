@@ -6,21 +6,21 @@ import sharp from "sharp";
 import crypto from "node:crypto";
 import db from "@/utils/db";
 
-// 规范化路径：去除前导斜杠，并将路径分隔符统一转换为系统分隔符
+// Normalize the path: remove leading slashes and convert path separators to the system separator
 function normalizeUserPath(userPath: string): string {
-  // 去除前导的 / 或 \
+  // Remove leading / or \
   const trimmedPath = userPath.replace(/^[/\\]+/, "");
-  // 将所有 / 替换为系统路径分隔符（path.sep）
-  // 这样在 Windows 上会转为 \，在 Unix 上保持 /
+  // Replace all / with the system path separator (path.sep)
+  // This converts to \ on Windows and remains / on Unix
   return trimmedPath.split("/").join(path.sep);
 }
 
-// 校验路径
+// Validate the path
 function resolveSafeLocalPath(userPath: string, rootDir: string): string {
   const safePath = normalizeUserPath(userPath);
   const absPath = path.join(rootDir, safePath);
   if (!isPathInside(absPath, rootDir)) {
-    throw new Error(`${userPath} 不在 OSS 根目录内`);
+    throw new Error(`${userPath}Not in the OSS root directory`);
   }
   return absPath;
 }
@@ -31,12 +31,12 @@ class OSS {
 
   constructor() {
     this.rootDir = getPath("oss");
-    // 初始化时自动创建根目录
+    // Automatically create the root directory during initialization
     this.initPromise = fs.mkdir(this.rootDir, { recursive: true }).then(() => {});
   }
 
   /**
-   * 等待根目录初始化完成。用于保证所有文件操作在目录已创建后执行。
+   * Wait for the root directory initialization to complete. Ensures all file operations are executed after the directory has been created.
    * @private
    */
   private async ensureInit() {
@@ -44,15 +44,15 @@ class OSS {
   }
 
   /**
-   * 获取指定相对路径文件的访问 URL。
-   * @param userRelPath 用户传入的相对文件路径（使用 / 作为分隔符）
-   * @returns 文件的 http 链接（本地服务地址）
+   * Get the access URL for a file at the specified relative path.
+   * @param userRelPath Relative file path provided by the user (using / as the separator)
+   * @returns The HTTP link of the file (local service address)
    */
   async getFileUrl(userRelPath: string, prefix?: string): Promise<string> {
     if (!prefix) prefix = "oss";
     await this.ensureInit();
     const safePath = normalizeUserPath(userRelPath);
-    // URL 始终使用 /，所以这里需要将系统分隔符转回 /
+    // URLs always use `/`, so the system separator needs to be converted back to `/` here.
     let url = `/${prefix}/`;
     const publicBaseUrl = process.env.ossURL || process.env.OSSURL;
     if (publicBaseUrl) url = publicBaseUrl.replace(/\/+$/, "") + `/${prefix}/`;
@@ -65,10 +65,10 @@ class OSS {
   }
 
   /**
-   * 读取指定路径的文件内容为 Buffer。
-   * @param userRelPath 用户传入的相对文件路径（使用 / 作为分隔符）
-   * @returns 文件内容的 Buffer
-   * @throws 路径不在 OSS 根目录内、文件不存在等错误
+   * Read the file content at the specified path into a Buffer.
+   * @param userRelPath Relative file path provided by the user (using / as the separator)
+   * @returns Buffer of the file content
+   * @throws Errors such as the path not being within the OSS root directory, or the file not existing.
    */
   async getFile(userRelPath: string): Promise<Buffer> {
     await this.ensureInit();
@@ -76,22 +76,22 @@ class OSS {
   }
 
   /**
-   * 读取图片文件并转换为 base64 编码的 Data URL。
-   * @param userRelPath 用户传入的相对文件路径（使用 / 作为分隔符）
-   * @returns base64 编码的 Data URL (例如: data:image/png;base64,iVBORw0KGgo...)
-   * @throws 路径不在 OSS 根目录内、文件不存在、不是图片文件等错误
+   * Read the image file and convert it to a base64-encoded Data URL.
+   * @param userRelPath Relative file path provided by the user (using / as the separator)
+   * @returns A base64-encoded Data URL (e.g., data:image/png;base64,iVBORw0KGgo...)
+   * @throws Errors such as the path not being within the OSS root directory, the file not existing, or the file not being an image
    */
   async getImageBase64(userRelPath: string): Promise<string> {
     await this.ensureInit();
     const absPath = resolveSafeLocalPath(userRelPath, this.rootDir);
 
-    // 检查文件是否存在且为文件
+    // Check if the file exists and is a file
     const stat = await fs.stat(absPath);
     if (!stat.isFile()) {
-      throw new Error(`${userRelPath} 不是文件`);
+      throw new Error(`${userRelPath}Not a file`);
     }
 
-    // 获取文件扩展名并确定 MIME 类型
+    // Get the file extension and determine the MIME type
     const ext = path.extname(userRelPath).toLowerCase();
     const mimeTypes: Record<string, string> = {
       ".jpg": "image/jpeg",
@@ -110,19 +110,19 @@ class OSS {
 
     const mimeType = mimeTypes[ext];
     if (!mimeType) {
-      throw new Error(`不支持的图片格式: ${ext}。支持的格式: ${Object.keys(mimeTypes).join(", ")}`);
+      throw new Error(`Unsupported image format:${ext}Supported formats:{Object.keys(mimeTypes).join(", ")}`);
     }
 
-    // 读取文件并转换为 base64
+    // Read the file and convert it to base64
     const data = await fs.readFile(absPath);
     const base64 = data.toString("base64");
-    // 返回完整的 Data URL
+    // Return the complete Data URL
     return `data:${mimeType};base64,${base64}`;
   }
   /**
-   * 删除指定路径的文件。
-   * @param userRelPath 用户传入的相对文件路径（使用 / 作为分隔符）
-   * @throws 路径不在 OSS 根目录内、文件不存在等错误
+   * Delete the file at the specified path.
+   * @param userRelPath Relative file path provided by the user (using / as the separator)
+   * @throws Errors such as the path not being within the OSS root directory, or the file not existing.
    */
   async deleteFile(userRelPath: string): Promise<void> {
     await this.ensureInit();
@@ -130,41 +130,41 @@ class OSS {
   }
 
   /**
-   * 删除指定路径的文件夹及其所有内容。
-   * @param userRelPath 用户传入的相对文件夹路径（使用 / 作为分隔符）
-   * @throws 路径不在 OSS 根目录内、文件夹不存在、目标是文件而非文件夹等错误
+   * Delete the specified folder and all its contents.
+   * @param userRelPath Relative folder path provided by the user (using / as the separator)
+   * @throws Errors such as the path not being within the OSS root directory, the folder not existing, or the target being a file instead of a folder
    */
   async deleteDirectory(userRelPath: string): Promise<void> {
     await this.ensureInit();
     const absPath = resolveSafeLocalPath(userRelPath, this.rootDir);
     const stat = await fs.stat(absPath);
     if (!stat.isDirectory()) {
-      throw new Error(`${userRelPath} 不是文件夹`);
+      throw new Error(`${userRelPath}Not a folder`);
     }
     await fs.rm(absPath, { recursive: true, force: true });
   }
 
   /**
-   * 将数据写入指定路径的新文件或覆盖已有文件。
-   * 写入前自动创建所需的父文件夹。
-   * @param userRelPath 用户传入的相对文件路径（使用 / 作为分隔符）
-   * @param data 要写入的数据，可以为 Buffer 或字符串
-   * @throws 路径不在 OSS 根目录内等错误
+   * Write data to a new file at the specified path or overwrite an existing file.
+   * Automatically create required parent folders before writing.
+   * @param userRelPath Relative file path provided by the user (using / as the separator)
+   * @param data The data to write, which can be a Buffer or a string
+   * @throws Errors such as the path not being within the OSS root directory
    */
   async writeFile(userRelPath: string, data: Buffer | string): Promise<void> {
     await this.ensureInit();
     const absPath = resolveSafeLocalPath(userRelPath, this.rootDir);
     await fs.mkdir(path.dirname(absPath), { recursive: true });
-    // 如果 data 是 string，则视为 base64 编码，先解码再写入
-    // 自动去除可能存在的 Data URL 前缀（如 "data:image/png;base64,"）
+    // If `data` is a string, treat it as base64-encoded: decode it first, then write.
+    // Automatically strip any possible Data URL prefix (e.g., "data:image/png;base64,")
     const buffer = typeof data === "string" ? Buffer.from(data.replace(/^data:[^;]+;base64,/, ""), "base64") : data;
     await fs.writeFile(absPath, buffer);
   }
 
   /**
-   * 检查指定路径文件是否存在。
-   * @param userRelPath 用户传入的相对文件路径（使用 / 作为分隔符）
-   * @returns 文件存在返回 true，否则 false
+   * Check whether the file at the specified path exists.
+   * @param userRelPath Relative file path provided by the user (using / as the separator)
+   * @returns true if the file exists, otherwise false
    */
   async fileExists(userRelPath: string): Promise<boolean> {
     await this.ensureInit();
@@ -177,23 +177,23 @@ class OSS {
   }
 
   /**
-   * 获取图片的缩略图 URL（最长边不超过 512px，等比缩放）。
-   * 缩略图保存在原路径同目录下的 smallImage 子文件夹中。
-   * 若缩略图已存在则直接返回其 URL；若不存在则同步生成并保存后返回缩略图 URL，
-   * 生成失败时返回原图 URL。
-   * @param userRelPath 用户传入的相对文件路径（使用 / 作为分隔符）
-   * @returns 缩略图 URL（已存在或生成成功）或原图 URL（生成失败时）
+   * Get the thumbnail URL of the image (longest side ≤ 512px, scaled proportionally).
+   * Thumbnails are saved in the `smallImage` subfolder within the same directory as the original path.
+   * If the thumbnail already exists, return its URL directly; otherwise, generate and save it synchronously, then return the thumbnail URL.
+   * Return the original image URL when generation fails.
+   * @param userRelPath Relative file path provided by the user (using / as the separator)
+   * @returns Thumbnail URL (if it already exists or was generated successfully) or the original image URL (if generation failed)
    */
   async getSmallImageUrl(userRelPath: string): Promise<string> {
-    // 构造缩略图相对路径：在原路径的目录层级前插入 smallImage 目录
-    // 例如：123/abc.jpg => smallImage/123/abc.jpg
+    // Construct the thumbnail relative path by inserting the `smallImage` directory before the directory hierarchy of the original path.
+    // For example: 123/abc.jpg => smallImage/123/abc.jpg
     // const smallImageRelPath = `smallImage/${userRelPath.replace(/^[/\\]+/, "")}`;
 
     // if (await this.fileExists(smallImageRelPath)) {
     //   return this.getFileUrl(smallImageRelPath);
     // }
 
-    // // 缩略图不存在：同步生成，生成失败则返回原图 URL
+    // // Thumbnail not found: generate synchronously; return the original image URL if generation fails
     // const originalUrl = await this.getFileUrl(userRelPath);
 
     // try {
@@ -204,12 +204,12 @@ class OSS {
     //   await sharp(srcAbsPath)
     //     .resize(512, 512, { fit: "inside", withoutEnlargement: true })
     //     .toFile(dstAbsPath);
-    //   console.info(`[${dstAbsPath}]小图写入成功`);
+    // console.info(`[${dstAbsPath}] Small image written successfully`);
     const url = await this.getFileUrl(userRelPath);
     return `${url}&size=20`;
     // } catch (e) {
-    //   // 生成失败返回原图
-    //   console.warn("[OSS] 生成缩略图失败:", e);
+    // // Return the original image if generation fails
+    // console.warn("[OSS] Failed to generate thumbnail:", e);
     //   return originalUrl;
     // }
   }

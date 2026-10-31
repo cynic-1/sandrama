@@ -17,6 +17,6 @@ export default router.post(
 
     await u.userSettings.updateVendorConfig(id, { inputValues: JSON.stringify(inputValues) });
     u.vendor.clearModelDiscoveryCache(id);
-    res.status(200).send(success("更新成功"));
+    res.status(200).send(success("Update successful"));
   },
 );

@@ -6,7 +6,7 @@ import { validateFields } from "@/middleware/middleware";
 import { tool, jsonSchema } from "ai";
 const router = express.Router();
 
-// 获取资产
+// Get assets
 export default router.post(
   "/",
   validateFields({
@@ -25,30 +25,30 @@ export default router.post(
       .andWhere("projectId", projectId)
       .select("id", "name", "describe");
 
-    if (!audioData.length) return res.status(400).send(error("暂无设置音频，请先前往资产中心上传音频"));
+    if (!audioData.length) return res.status(400).send(error("No audio has been configured yet. Please go to the Asset Center to upload an audio file first."));
 
     const batchSize = concurrentCount ?? 1;
 
     async function processAsset(asset: (typeof assetsData)[number]) {
       try {
         const resultTool = tool({
-          description: "匹配完成后必须调用此工具提交结果",
+          description: "After matching is complete, you must call this tool to submit the results",
           inputSchema: jsonSchema<{ id: number; audioId: number }>(
             z
               .object({
-                audioId: z.number().nullable().optional().describe("与该资产匹配的音频ID列表，若无合适匹配则返回空数组"),
+                audioId: z.number().nullable().optional().describe("List of audio IDs matching the asset; return an empty array if no suitable match is found"),
               })
               .toJSONSchema(),
           ),
           execute: async (result) => {
             await u.db("o_assetsRole2Audio").where("assetsRoleId", asset.id).delete();
             if (result?.audioId) await u.db("o_assetsRole2Audio").insert({ assetsRoleId: asset.id, assetsAudioId: result.audioId });
-            await u.db("o_assets").where("id", asset.id).update("audioBindState", "已完成");
-            return "无需回复用户任何内容";
+            await u.db("o_assets").where("id", asset.id).update("audioBindState", "Completed");
+            return "No need to reply to the user with any content";
           },
         });
 
-        const audioList = audioData.map((i) => `- ID:${i.id} | 名称:${i.name} | 描述:${i.describe ?? "无"}`).join("\n");
+        const audioList = audioData.map((i) => `- ID:${i.id}| Name:{i.name}| Description:{i.describe ?? "None"}`).join("\n");
         const promptData = await u.userSettings.getPromptByType("audioBindPrompt");
         let audioBindPrompt = "" as string | undefined;
         if (promptData && promptData.useData) {
@@ -66,20 +66,15 @@ export default router.post(
             },
             {
               role: "user",
-              content: `
-                ## 候选音频列表
-                ${audioList}
-                ## 待匹配资产
-                - ID:${asset.id} | 名称:${asset.name} | 描述:${asset.describe ?? "无"} | 类型：${asset.type}
-                请从候选音频列表中为该资产选出来一个最符合该角色设定的音色，并调用 resultTool 提交结果。
-           `,
+              content: `## Candidate Audio List${audioList}## Assets to be matched
+                - ID:{asset.id}| Name:{asset.name}| Description:{asset.describe ?? "None"}| Type:{asset.type}Please select the most suitable voice from the candidate audio list that matches the character's setting for this asset, and call resultTool to submit the result.`,
             },
           ],
           tools: { resultTool },
         });
       } catch (e) {
-        await u.db("o_assets").where("id", asset.id).update("audioBindState", "生成失败");
-        console.error(`[bindAudio] 资产 ${asset.id} 处理失败:`, e);
+        await u.db("o_assets").where("id", asset.id).update("audioBindState", "Generation failed");
+        console.error(`[bindAudio] Asset${asset.id}Processing failed:`, e);
       }
     }
 
@@ -96,7 +91,7 @@ export default router.post(
         "id",
         assetsData.map((i) => i.id),
       )
-      .update("audioBindState", "生成中");
+      .update("audioBindState", "Generating");
     runWithConcurrency();
     res.status(200).send(success());
   },

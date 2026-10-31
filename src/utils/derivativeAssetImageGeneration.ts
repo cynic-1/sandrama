@@ -1,7 +1,7 @@
 import pLimit from "p-limit";
 import u from "@/utils";
 
-export type DerivativeAssetGenerationState = "生成中" | "已完成" | "生成失败";
+export type DerivativeAssetGenerationState = "Generating" | "Completed" | "Generation failed";
 
 export interface DerivativeAssetGenerationItem {
   id: number;
@@ -36,7 +36,7 @@ interface StartDerivativeAssetGenerationOptions {
 const imageQualityValues = new Set(["1K", "2K", "4K"]);
 
 function getErrorMessage(error: unknown): string {
-  return u.error(error).message || "衍生资产图片生成失败";
+  return u.error(error).message || "Failed to generate the derivative asset image";
 }
 
 function getPromptRecord(artStyle: string | null | undefined) {
@@ -51,12 +51,12 @@ function getPromptRecord(artStyle: string | null | undefined) {
 async function markPendingImagesFailed(imageIds: number[], reason: string) {
   if (!imageIds.length) return;
   try {
-    await u.db("o_image").whereIn("id", imageIds).andWhere("state", "生成中").update({
-      state: "生成失败",
+    await u.db("o_image").whereIn("id", imageIds).andWhere("state", "Generating").update({
+      state: "Generation failed",
       errorReason: reason,
     });
   } catch (error) {
-    console.error("[derivativeAssets] 标记批量失败状态失败:", getErrorMessage(error));
+    console.error("[derivativeAssets] Marking batch failure status failed:", getErrorMessage(error));
   }
 }
 
@@ -76,15 +76,13 @@ async function generateSingleDerivativeAsset(
       messages: [
         {
           role: "user",
-          content: `
-            父级资产描述: ${item.parentDescribe || "无详细描述"}
-            当前资产描述: ${item.describe || "无详细描述"}`,
+          content: `Parent asset description:${item.parentDescribe || "No detailed description"}Current asset description:{item.describe || "No detailed description"}`,
         },
       ],
     });
 
     const prompt = String(text || "").trim();
-    if (!prompt) throw new Error("universalAi 未返回有效的衍生资产提示词");
+    if (!prompt) throw new Error("universalAi did not return a valid derivative asset prompt");
 
     await u.db("o_assets").where("id", item.id).update({ prompt });
 
@@ -102,8 +100,8 @@ async function generateSingleDerivativeAsset(
         ...imageConfig,
       },
       {
-        taskClass: "生成图片",
-        describe: "衍生资产图片生成",
+        taskClass: "Generate image",
+        describe: "Derivative Asset Image Generation",
         relatedObjects: JSON.stringify({ assetId: item.id, ...imageConfig }),
         projectId,
       },
@@ -112,7 +110,7 @@ async function generateSingleDerivativeAsset(
     const savePath = `/${projectId}/assets/${scriptId}/${item.type}/${u.uuid()}.jpg`;
     await imageCls.save(savePath);
     await u.db("o_image").where({ id: imageId }).update({
-      state: "已完成",
+      state: "Completed",
       filePath: savePath,
       errorReason: null,
     });
@@ -120,24 +118,24 @@ async function generateSingleDerivativeAsset(
     return {
       id: item.id,
       imageId,
-      state: "已完成",
+      state: "Completed",
       src: await u.oss.getSmallImageUrl(savePath),
     };
   } catch (error) {
     const errorReason = getErrorMessage(error);
     try {
       await u.db("o_image").where({ id: imageId }).update({
-        state: "生成失败",
+        state: "Generation failed",
         errorReason,
       });
     } catch (updateError) {
-      console.error(`[derivativeAssets] 资产 ${item.id} 更新失败状态失败:`, getErrorMessage(updateError));
+      console.error(`[derivativeAssets] Assets${item.id}Failed to update the failure status:`, getErrorMessage(updateError));
     }
-    console.error(`[derivativeAssets] 资产 ${item.id} 生成失败:`, errorReason);
+    console.error(`[derivativeAssets] Assets${item.id}Generation failed:`, errorReason);
     return {
       id: item.id,
       imageId,
-      state: "生成失败",
+      state: "Generation failed",
       src: "",
       errorReason,
     };
@@ -179,7 +177,7 @@ export async function startDerivativeAssetImageGeneration(
   const assetIds = [...new Set(options.assetIds)];
   const concurrentCount = Math.max(1, Math.floor(options.concurrentCount ?? 5));
 
-  if (!assetIds.length) throw new Error("未提供需要生成的衍生资产");
+  if (!assetIds.length) throw new Error("No derivative asset to be generated was provided");
 
   const settings = await u
     .db("o_project")
@@ -187,10 +185,10 @@ export async function startDerivativeAssetImageGeneration(
     .select("imageModel", "imageQuality", "artStyle")
     .first() as ProjectImageSettings | undefined;
 
-  if (!settings) throw new Error(`项目不存在，ID: ${projectId}`);
-  if (!settings.imageModel) throw new Error("项目未配置图像模型");
+  if (!settings) throw new Error(`Project does not exist, ID:${projectId}`);
+  if (!settings.imageModel) throw new Error("The project is not configured with an image model");
   if (!settings.imageQuality || !imageQualityValues.has(settings.imageQuality)) {
-    throw new Error("项目未配置有效的图像分辨率（1K、2K 或 4K）");
+    throw new Error("The project is not configured with a valid image resolution (1K, 2K, or 4K).");
   }
 
   const assets = (await u
@@ -199,7 +197,7 @@ export async function startDerivativeAssetImageGeneration(
     .select("id", "describe", "name", "type", "assetsId")) as GenerationAssetRow[];
   const foundIds = new Set(assets.map((item) => item.id));
   const missingIds = assetIds.filter((id) => !foundIds.has(id));
-  if (missingIds.length) throw new Error(`衍生资产不存在：${missingIds.join(", ")}`);
+  if (missingIds.length) throw new Error(`Derived asset does not exist:${missingIds.join(", ")}`);
 
   const parentIds = [...new Set(assets.map((item) => item.assetsId).filter((id): id is number => id !== null))];
   const parentAssets = parentIds.length
@@ -227,14 +225,14 @@ export async function startDerivativeAssetImageGeneration(
     const [imageId] = await u.db("o_image").insert({
       assetsId: item.id,
       type: item.type,
-      state: "生成中",
+      state: "Generating",
       resolution: settings.imageQuality,
       model: settings.imageModel,
       errorReason: null,
     });
     imageIdMap[item.id] = imageId;
     await u.db("o_assets").where("id", item.id).update({ imageId });
-    accepted.push({ id: item.id, imageId, state: "生成中", src: "" });
+    accepted.push({ id: item.id, imageId, state: "Generating", src: "" });
   }
 
   const imageIds = accepted.map((item) => item.imageId);
@@ -249,7 +247,7 @@ export async function startDerivativeAssetImageGeneration(
     concurrentCount,
   ).catch(async (error) => {
     const errorReason = getErrorMessage(error);
-    console.error("[derivativeAssets] 批量生成异常:", errorReason);
+    console.error("[derivativeAssets] Batch generation error:", errorReason);
     await markPendingImagesFailed(imageIds, errorReason);
   });
 

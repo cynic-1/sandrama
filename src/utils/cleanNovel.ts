@@ -7,16 +7,16 @@ export interface EventType {
   event: string;
 }
 
-/*  文本数据清洗
- * @param textData 需要清洗的文本
- * @param windowSize 每组数量 默认5
- * @param overlap 交叠数量 默认1
- * @returns {totalCharacter:所有人物角色卡,totalEvent:所有事件}
+/*  Text data cleaning
+ * @param textData The text that needs to be cleaned
+ * @param windowSize Number of items per group, default 5
+ * @param overlap Number of overlaps, default 1
+ * @returns {totalCharacter:all character cards,totalEvent:all events}
  */
 
 class CleanNovel {
   emitter: EventEmitter;
-  /** 最大并发数 */
+  /** Maximum concurrency*/
   concurrency: number;
 
   constructor(concurrency: number = 5) {
@@ -40,13 +40,13 @@ class CleanNovel {
           {
             role: "user",
             content:
-              "请根据以下小说章节数：" +
+              "Please provide the following novel chapter numbers:" +
               novel.chapterIndex +
-              "小说章节券：" +
+              "Novel chapter coupon:" +
               novel.reel +
-              "小说章节名称：" +
+              "Novel chapter title:" +
               novel.chapter +
-              "、小说章节内容生成事件摘要：\n" +
+              "Novel chapter content generation event summary:" +
               novel.chapterData!,
           },
         ],
@@ -63,7 +63,7 @@ class CleanNovel {
   async start(allChapters: o_novel[], projectId: number): Promise<EventType[]> {
     const totalEvent: EventType[] = [];
 
-    // 并发控制：通过信号量限制同时执行的任务数
+    // Concurrency control: Limit the number of tasks running simultaneously using semaphores
     let running = 0;
     let index = 0;
     const results: Promise<void>[] = [];
@@ -80,7 +80,7 @@ class CleanNovel {
       });
     };
 
-    // 启动最多 concurrency 个并发任务
+    // Start up to {concurrency} concurrent tasks
     const workers = Array.from({ length: Math.min(this.concurrency, allChapters.length) }, () => runNext());
 
     await Promise.all(workers);

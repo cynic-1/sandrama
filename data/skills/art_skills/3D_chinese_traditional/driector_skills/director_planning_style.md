@@ -1,93 +1,93 @@
 ---
 name: director_planning_style
-description: 国风3D约束 — 定义国风3D风格在色调体系、光影方案、质感方向、场景空间元素、乐器选择与环境音上的全局约束。适用于任何叙事类型。
+description: Chinese-Style 3D Constraints — Defines global constraints for the Chinese-Style 3D aesthetic regarding color systems, lighting schemes, texture directions, scene spatial elements, instrument selection, and environmental sound. Applicable to any narrative type.
 metaData: director_skills
 ---
 
-# 国风3D约束 · 国风3D · 技法参考
+# Chinese-Style 3D Constraints · Chinese-Style 3D · Technique Reference
 
 ---
 
-## 一、色调体系与画面基调
+## I. Color System and Visual Tone
 
-- **色调基底** — 全片以月白（C1）、青绿（C2）、靛蓝（C4）为基底色，整体色温偏中性（4800-5500K），饱和度中高（55-75%），呈现传统东方美学的典雅大气色调
-- **情绪色盘驱动** — 六套情绪色盘（宫廷华贵/山水意境/闺阁温婉/武侠肃杀/节日喜庆/月夜清幽）对应不同叙事段落，色盘切换应与故事弧线同步
-- **冷暖叙事对比** — 暖色（朱红 C3、金黄 C5、胭脂 C7、藤黄 C9）作为叙事转折的视觉信号，用于情感升温与喜庆段落；冷色（靛蓝 C4、墨黑 C6）用于肃杀、忧郁、清幽段落
-- **色盘先行原则** — 段落规划需先绑定情绪场景（宫廷华贵/山水意境/闺阁温婉/武侠肃杀/节日喜庆/月夜清幽等），再确定主色+辅色与光影方案，避免"剧情对了但情绪不对色"
-- **禁用色域** — 高饱和荧光色、霓虹色、现代数码色彩体系均与本风格不兼容
+- **Color Base** — The entire film uses Moon White (C1), Cyan-Green (C2), and Indigo (C4) as base colors. The overall color temperature is neutral (4800-5500K), with medium-to-high saturation (55-75%), presenting the elegant and grand color palette of traditional Eastern aesthetics.
+- **Emotional Palette Drivers** — Six emotional palettes (Palatial Opulence / Landscape Imagery / Boudoir Gentleness / Wuxia Severity / Festive Joy / Moonlit Serenity) correspond to different narrative segments. Palette switching should be synchronized with the story arc.
+- **Warm-Cool Narrative Contrast** — Warm colors (Vermilion C3, Golden Yellow C5, Rouge C7, Turmeric C9) serve as visual signals for narrative turning points, used for emotional escalation and festive segments; cool colors (Indigo C4, Ink Black C6) are used for severe, melancholic, and serene segments.
+- **Palette-First Principle** — Segment planning must first bind emotional scenes (Palatial Opulence / Landscape Imagery / Boudoir Gentleness / Wuxia Severity / Festive Joy / Moonlit Serenity, etc.), then determine the primary + secondary colors and lighting scheme, avoiding "the plot is right but the emotional color is wrong."
+- **Prohibited Color Domains** — High-saturation fluorescent colors, neon colors, and modern digital color systems are incompatible with this style.
 
 ---
 
-## 二、光影方案体系
+## II. Lighting Scheme System
 
-- **光影即叙事** — 7 套光影方案对应不同情绪段落，导演规划阶段应在段落层面确定光影基调方向，而非逐镜指定
-- **3D渲染光影特征** — 体积光、环境光遮蔽（AO）、景深虚化为国风3D风格的核心光影手段，所有光影方案均须体现PBR物理材质渲染质感
+- **Lighting as Narrative** — Seven lighting schemes correspond to different emotional segments. During the director's planning phase, the lighting tonal direction should be determined at the segment level, rather than specified shot-by-shot.
+- **3D Rendering Lighting Characteristics** — Volumetric light, Ambient Occlusion (AO), and depth-of-field blur are the core lighting techniques for the Chinese-Style 3D aesthetic. All lighting schemes must reflect the texture of PBR physical material rendering.
 
-| 光影方案 | 方案名 | 色调倾向 | 适用情绪 |
+| Lighting Scheme | Scheme Name | Color Tendency | Applicable Emotion |
 |---|---|---|---|
-| A | 暖光华彩 | 朱红 + 金黄高光 + 月白底 | 宫廷华贵、庄严气派、喜庆盛大 |
-| B | 青绿意境 | 青绿 + 月白雾气 + 体积光漫射 | 山水意境、诗意悠远、空灵飘逸 |
-| C | 柔光暖影 | 胭脂暖调 + 金黄点缀 + 柔和阴影 | 闺阁温婉、柔美细腻、日常温馨 |
-| D | 冷调肃杀 | 墨黑 + 靛蓝 + 硬光对比 | 武侠肃杀、冷峻凌厉、氛围压抑 |
-| E | 窗纱漫射 | 月白底 + 自然侧光 + 环境光遮蔽 | 室内日间、日常起居、幽静雅致 |
-| F | 月夜清辉 | 靛蓝 + 月白冷光 + 金黄暖光点缀 | 月夜清幽、宁静唯美、思念独处 |
-| G | 节庆暖光 | 朱红 + 藤黄 + 高饱和暖光 | 节日庆典、热闹欢快、色彩丰富 |
+| A | Warm Radiance | Vermilion + Golden Yellow highlights + Moon White base | Palatial Opulence, Solemn Grandeur, Festive Splendor |
+| B | Cyan-Green Imagery | Cyan-Green + Moon White mist + Volumetric light diffusion | Landscape Imagery, Poetic Distance, Ethereal Grace |
+| C | Soft Warm Shadow | Rouge warm tone + Golden Yellow accents + Soft shadows | Boudoir Gentleness, Soft Delicacy, Daily Warmth |
+| D | Cool Severity | Ink Black + Indigo + Hard light contrast | Wuxia Severity, Cold Sharpness, Oppressive Atmosphere |
+| E | Window Sheer Diffusion | Moon White base + Natural side light + Ambient Occlusion | Indoor Daytime, Daily Life, Quiet Elegance |
+| F | Moonlit Clear Light | Indigo + Moon White cool light + Golden Yellow warm light accents | Moonlit Serenity, Quiet Beauty, Solitary Longing |
+| G | Festive Warm Light | Vermilion + Turmeric + High-saturation warm light | Festival Celebration, Lively Cheer, Rich Colors |
 
-- **冷暖光分配** — 暖色光（朱红/金黄/藤黄）适用于华贵、温婉、喜庆段落；冷色光（靛蓝/墨黑）适用于肃杀、忧郁、清幽段落。导演可根据叙事需要调整冷暖切换点
-- **氛围方向映射** — 每场戏的氛围方向应能映射到上述光影方案（A-G）的某一方向，确保视觉一致性
-
----
-
-## 三、质感方向
-
-- **3D渲染为锚** — 国风3D的核心：高精度建模、PBR材质渲染、体积光、环境光遮蔽、景深虚化，呈现电影级3D渲染画面
-- **PBR材质至上** — 所有服化道的材质必须通过PBR物理渲染可信：丝绸的光泽与垂感、木质的纹理与包浆、金属的反光与质感、玉石的通透与温润、瓷器的釉面光泽
-- **体积光与景深** — 体积光是国风3D画面的灵魂：室外场景必须有空气透视与体积光散射，室内场景通过窗光/烛光制造体积光效果；景深虚化强化空间纵深
-- **岁月质感** — 材质不可过于干净完美：木面有使用痕迹、石面有风化纹与青苔、布料有自然褶皱、瓦片有苔痕残缺。禁止"塑料感"和全新无瑕的"CG感"
-- **3D不等于冰冷** — 国风3D强调东方美学的温度感，通过材质质感、光影层次、色彩搭配传达情感，而非依赖奇观特效
+- **Warm-Cool Light Allocation** — Warm light (Vermilion/Golden Yellow/Turmeric) is suitable for opulent, gentle, and festive segments; cool light (Indigo/Ink Black) is suitable for severe, melancholic, and serene segments. Directors can adjust the warm-cool switching points based on narrative needs.
+- **Atmosphere Direction Mapping** — The atmosphere direction of each scene should be mappable to one of the above lighting schemes (A-G) to ensure visual consistency.
 
 ---
 
-## 四、古风场景空间元素
+## III. Texture Direction
 
-古风世界观特有的场景元素及其视觉叙事功能：
-
-- **纱帘/屏风/门框** — 天然的框架式构图道具，制造"看不透"的层次感与空间纵深。3D渲染中纱帘的半透明材质与光线穿透效果是画面亮点
-- **庭院/花树/雨幕** — 留白构图的天然载体，景即情：满庭花开 = 释然、独坐雨中 = 孤寂、落叶纷飞 = 离愁。3D场景中植被的体积感与光影交互尤为重要
-- **烛火/月色/窗光** — 古风世界的光源载体，烛光 = 暖/私密（方案C）、月色 = 冷/清幽（方案F）、窗光 = 日常/静谧（方案E）。3D渲染中光源的体积光效果与PBR材质反射是关键
-- **飞檐/斗拱/青瓦** — 古风建筑的标志性元素，3D建模需体现雕梁画栋的精致细节，材质需有岁月感
-- **段落间用场景空镜过渡** — 本风格有丰富的场景资产（不同时段/天候/季节变体），段落衔接建议用场景空镜做情绪缓冲，不要硬切
-- **转折点用视觉而非台词** — 优先使用画面手段（光影突变、景别跳切、空镜隐喻）而非依赖对白解释
+- **3D Rendering as Anchor** — The core of Chinese-Style 3D: high-precision modeling, PBR material rendering, volumetric light, ambient occlusion, and depth-of-field blur, presenting cinematic 3D rendered visuals.
+- **PBR Material Supremacy** — All costume, makeup, and prop materials must be credible through PBR physical rendering: the sheen and drape of silk, the texture and patina of wood, the reflection and quality of metal, the transparency and warmth of jade, and the glaze sheen of porcelain.
+- **Volumetric Light and Depth of Field** — Volumetric light is the soul of Chinese-Style 3D visuals: outdoor scenes must have aerial perspective and volumetric light scattering; indoor scenes create volumetric light effects through window light/candlelight; depth-of-field blur enhances spatial depth.
+- **Aged Texture** — Materials must not be too clean or perfect: wood surfaces have usage marks, stone surfaces have weathering patterns and moss, fabrics have natural wrinkles, and tiles have moss stains and imperfections. "Plastic feel" and flawless "CG feel" are prohibited.
+- **3D Does Not Equal Cold** — Chinese-Style 3D emphasizes the warmth of Eastern aesthetics, conveying emotion through material texture, lighting layers, and color coordination, rather than relying on spectacular effects.
 
 ---
 
-## 五、古风乐器与环境音
+## IV. Ancient-Style Scene Spatial Elements
 
-古风世界观下的声音元素约束：
+Scene elements unique to the ancient-style worldview and their visual narrative functions:
 
-### 乐器选择
+- **Sheer Curtains / Screens / Doorframes** — Natural framing composition props, creating a "see-through" sense of layering and spatial depth. In 3D rendering, the semi-transparent material of sheer curtains and the light penetration effect are visual highlights.
+- **Courtyards / Flower Trees / Rain Curtains** — Natural carriers for negative space composition; the scene is the emotion: a courtyard full of blooming flowers = relief, sitting alone in the rain = loneliness, falling leaves swirling = parting sorrow. In 3D scenes, the volumetric feel of vegetation and light interaction are particularly important.
+- **Candlelight / Moonlight / Window Light** — Light source carriers in the ancient-style world: candlelight = warm/intimate (Scheme C), moonlight = cool/serene (Scheme F), window light = daily/quiet (Scheme E). In 3D rendering, the volumetric light effect of light sources and PBR material reflections are key.
+- **Flying Eaves / Dougong / Green Tiles** — Iconic elements of ancient-style architecture. 3D modeling must reflect the exquisite details of carved beams and painted pillars, and materials must have an aged feel.
+- **Use Scene Empty Shots for Transitions Between Segments** — This style has rich scene assets (different time periods/weather/season variants). It is recommended to use scene empty shots for emotional buffering during segment connections, avoiding hard cuts.
+- **Use Visuals Rather Than Dialogue for Turning Points** — Prioritize visual means (lighting shifts, shot size jump cuts, empty shot metaphors) rather than relying on dialogue for explanation.
 
-- **箫** — 凄凉、孤寂、悲戚段落的核心乐器，最能表现冷清哀婉
-- **二胡** — 情感激荡、悲痛、思念段落，拉弦的哭腔感适合情绪爆发
-- **唢呐** — 情感波动剧烈段落（大悲大喜、命运转折、高潮），慎用但一用即核弹
-- **古琴** — 开场定调 / 平稳段落，与箫搭配使用，体现山水意境
-- **琵琶** — 紧张、急促段落的点缀，武侠肃杀场景适用
-- **古筝** — 宫廷华贵、节庆喜庆段落的氛围乐器，华丽优雅
-- 弦乐铺底可增加电影感但不宜喧宾夺主
+---
 
-### 乐器组合策略
+## V. Ancient-Style Instruments and Environmental Sound
 
-| 情绪阶段 | 乐器组合 |
+Sound element constraints under the ancient-style worldview:
+
+### Instrument Selection
+
+- **Xiao (Flute)** — The core instrument for desolate, lonely, and sorrowful segments; best expresses cold and mournful tones.
+- **Erhu** — For emotionally intense, painful, and longing segments; the crying tone of the strings is suitable for emotional outbursts.
+- **Suona** — For segments with intense emotional fluctuation (great sorrow/joy, fate turning points, climaxes); use with caution, but once used, it is a nuclear bomb.
+- **Guqin** — For opening tone-setting / steady segments; used in combination with the Xiao to reflect landscape imagery.
+- **Pipa** — Accents for tense, urgent segments; suitable for Wuxia severity scenes.
+- **Guzheng** — Atmospheric instrument for palatial opulence and festive joy segments; gorgeous and elegant.
+- String music underlay can increase the cinematic feel but should not overshadow the main theme.
+
+### Instrument Combination Strategy
+
+| Emotional Stage | Instrument Combination |
 |---|---|
-| 平稳/开场/收尾 | 古琴独奏 或 古琴 + 箫 |
-| 山水意境/空灵 | 箫 + 古琴 + 笛 |
-| 宫廷华贵/喜庆 | 古筝 + 编钟 + 弦乐 |
-| 悲戚渐浓 | 箫 + 二胡 |
-| 情绪爆发/命运转折 | 唢呐独奏 或 唢呐 + 二胡 |
-| 武侠肃杀/紧张 | 琵琶点缀 + 弦乐衬底 |
-| 温婉日常 | 古琴 + 笛 + 轻弦乐 |
+| Steady / Opening / Closing | Guqin solo or Guqin + Xiao |
+| Landscape Imagery / Ethereal | Xiao + Guqin + Di (Flute) |
+| Palatial Opulence / Festive | Guzheng + Bianzhong (Chime Bells) + Strings |
+| Sorrow Deepening | Xiao + Erhu |
+| Emotional Outburst / Fate Turning Point | Suona solo or Suona + Erhu |
+| Wuxia Severity / Tension | Pipa accents + String underlay |
+| Gentle Daily Life | Guqin + Di + Light Strings |
 
-### 古风环境音
+### Ancient-Style Environmental Sound
 
-- **典型环境音层次** — 蝉鸣虫唱 / 溪水潺潺 / 风过竹林 / 市井叫卖 / 夜雨滴檐 / 衣料摩擦 / 风铃轻响 / 鸟鸣啁啾 / 落花簌簌
-- **每场戏标注 1-2 个核心环境音**，帮助后续音效设计。环境音层次越丰富，古风场景越有沉浸感
+- **Typical Environmental Sound Layers** — Cicadas and insects / Trickling streams / Wind through bamboo groves / Market hawking / Night rain dripping on eaves / Fabric friction / Wind chimes / Bird chirping / Falling leaves rustling
+- **Label 1-2 core environmental sounds for each scene** to assist subsequent sound design. The richer the environmental sound layers, the more immersive the ancient-style scene becomes.

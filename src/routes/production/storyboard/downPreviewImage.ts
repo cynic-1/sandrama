@@ -14,15 +14,15 @@ export default router.post(
     const { storyboardIds } = req.body;
     const storyboardImage = await u.db("o_storyboard").whereIn("id", storyboardIds).select("id", "filePath");
 
-    // 按 storyboardIds 顺序构建 filePath 映射
+    // Build the filePath mapping in the order of storyboardIds
     const filePathMap: Record<number, string> = {};
     storyboardImage.forEach((i) => {
       filePathMap[i.id!] = i.filePath || "";
     });
     const orderedFilePaths = storyboardIds.map((id: number) => filePathMap[id]);
 
-    // 读取所有图片 buffer 并获取元数据
-    // sharp 底层 libvips 在 composite 时会将所有 input 解码为内存像素再合成，无需预转格式
+    // Read all image buffers and retrieve metadata
+    // Sharp's underlying libvips decodes all inputs into in-memory pixels during compositing, so no pre-conversion of formats is required.
     const loaded = await Promise.all(
       orderedFilePaths.map(async (filePath: string) => {
         if (!filePath) return null;
@@ -32,14 +32,14 @@ export default router.post(
       }),
     );
 
-    // 过滤掉无效图片
+    // Filter out invalid images
     const validImages = loaded.filter((img): img is NonNullable<typeof img> => img !== null && img.width > 0 && img.height > 0);
     if (validImages.length === 0) {
       res.status(204).end();
       return;
     }
 
-    // 计算网格布局
+    // Calculate the grid layout
     const cols = Math.min(5, validImages.length);
     const rows = Math.ceil(validImages.length / cols);
 
@@ -55,7 +55,7 @@ export default router.post(
     const canvasWidth = colWidths.reduce((a, b) => a + b, 0);
     const canvasHeight = rowHeights.reduce((a, b) => a + b, 0);
 
-    // 为每张图片生成带标号的合成层
+    // Generate a composite layer with a label for each image
     const compositeInputs: sharp.OverlayOptions[] = [];
 
     for (let i = 0; i < validImages.length; i++) {
@@ -65,14 +65,14 @@ export default router.post(
       const x = colWidths.slice(0, c).reduce((a, b) => a + b, 0);
       const y = rowHeights.slice(0, r).reduce((a, b) => a + b, 0);
 
-      // 添加图片层
+      // Add image layer
       compositeInputs.push({
         input: img.buffer,
         left: x,
         top: y,
       });
 
-      // 生成标号标签 SVG
+      // Generate numbered label SVG
       const label = `S${String(i + 1).padStart(2, "0")}`;
       const fontSize = Math.max(14, Math.min(img.width, img.height) * 0.06);
       const padding = Math.round(fontSize * 0.4);
@@ -94,7 +94,7 @@ export default router.post(
       });
     }
 
-    // 使用 sharp 创建画布并合成，输出 PNG 无损格式避免压缩损耗
+    // Use sharp to create a canvas and composite, outputting in lossless PNG format to avoid compression artifacts.
     const resultBuffer = await sharp({
       create: {
         width: canvasWidth,
@@ -107,7 +107,7 @@ export default router.post(
       .png({ compressionLevel: 3 })
       .toBuffer();
 
-    // 以文件下载形式返回
+    // Return as a file download
     res.setHeader("Content-Type", "image/png");
     res.setHeader("Content-Disposition", "attachment; filename=storyboard-preview.png");
     res.setHeader("Content-Length", resultBuffer.length);

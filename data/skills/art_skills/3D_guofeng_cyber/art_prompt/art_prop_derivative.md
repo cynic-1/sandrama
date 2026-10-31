@@ -1,145 +1,145 @@
 ---
 name: art_prop_derivative
-description: 道具衍生状态生成 · 约束手册
+description: Prop Derivative State Generation · Constraint Manual
 metaData: art_skills
 ---
-# 道具衍生状态生成 · 约束手册
+# Prop Derivative State Generation · Constraint Manual
 
 ---
 
-## 一、衍生原则
+## I. Derivation Principles
 
-1. **造型锚定** — 道具核心造型/轮廓、中式核心形制元素、赛博机能核心结构，在所有状态中必须清晰可识别，国风纹样与赛博结构的融合关系不可变更
-2. **状态可读** — 状态差异必须一目了然，观众能立即区分，国风元素与赛博机能的状态变化需同步呼应，无逻辑冲突
-3. **叙事服务** — 每种状态变体服务于国风赛博世界观下的特定剧情节点（如古物觉醒、机能改装、能量过载、灵能耗尽等）
-4. **渐进退化** — 损伤/老化/机能损耗状态应有合理的物理逻辑与赛博世界观逻辑，材质变化符合对应材料的属性规则
-5. **纯道具独立展示** — 画面中只能出现道具本身，严禁出现任何人物、手部、肢体，道具不可处于被持有/佩戴/握持/挂载状态，必须以静物陈列方式独立呈现，无任何场景附属物
+1. **Form Anchoring** — The core form/silhouette of the prop, core Chinese-style formal elements, and core cybernetic functional structures must remain clearly identifiable in all states. The fusion relationship between Chinese-style patterns and cybernetic structures must not be altered.
+2. **State Readability** — State differences must be immediately obvious, allowing the audience to distinguish them instantly. State changes in Chinese-style elements and cybernetic functions must respond synchronously without logical conflicts.
+3. **Narrative Service** — Each state variant serves a specific plot node within the Chinese-style cyberpunk worldview (e.g., awakening of ancient artifacts, functional modification, energy overload, spiritual energy depletion, etc.).
+4. **Progressive Degradation** — Damage/aging/functional wear states must follow reasonable physical logic and cyberpunk worldview logic. Material changes must conform to the property rules of the corresponding materials.
+5. **Pure Prop Independent Display** — Only the prop itself may appear in the frame. The appearance of any characters, hands, or limbs is strictly prohibited. The prop must not be in a state of being held, worn, gripped, or mounted. It must be presented independently as a still-life display, with no scene accessories.
 
 ---
 
-## 二、状态类型
+## II. State Types
 
-### 2.1 使用状态
+### 2.1 Usage States
 
-| 状态 | 描述 | 适用道具 | 提示词 |
+| State | Description | Applicable Props | Prompt |
 |---|---|---|---|
-| 崭新 | 完好无损、光泽如新 | 所有道具 | 崭新、完好无损、光泽如新 |
-| 日常使用 | 微磨损、自然包浆 | 兵器/器物/饰品 | 日常使用痕迹、自然包浆 |
-| 陈旧 | 明显年代感、色泽暗淡 | 器物/信物/卷轴 | 古旧斑驳、年代感、色泽暗沉 |
-| 赛博制式全新 | 原厂镀层完整、电路无损耗、中式纹样清晰、机能接口全新 | 中式赛博兵器/灵能法器/机能组件/数据信物 | 赛博制式全新、镀层完整无划痕、电路通路完好、中式纹样清晰锐利、机能接口无磨损 |
-| 机能活化 | 日常机能运行、低功耗灵能流转、部件无损耗 | 灵能法器/赛博信物/能量组件 | 低功耗机能活化、灵能微光流转、电路稳定运行、部件无损耗 |
-| 古物赛博改装 | 中式古物基底完整、赛博改装结构贴合、改装件无损耗 | 改装兵器/改装法器/古物信物 | 中式古物基底完好、赛博改装结构贴合、改装组件全新、传统形制与机能结构融合统一 |
+| Brand New | Intact, glossy as new | All props | Brand new, intact, glossy as new |
+| Daily Use | Minor wear, natural patina | Weapons/Artifacts/Ornaments | Daily use marks, natural patina |
+| Aged | Obvious sense of age, dull color | Artifacts/Keepsakes/Scrolls | Ancient and mottled, sense of age, darkened color |
+| Cyber-Standard Brand New | Original plating intact, no circuit wear, clear Chinese patterns, brand-new functional interfaces | Chinese-style cyber weapons/Spiritual energy artifacts/Functional components/Data keepsakes | Cyber-standard brand new, plating intact without scratches, circuit pathways intact, Chinese patterns clear and sharp, functional interfaces unworn |
+| Functional Activation | Daily functional operation, low-power spiritual energy flow, no component wear | Spiritual energy artifacts/Cyber keepsakes/Energy components | Low-power functional activation, spiritual energy faint light flow, stable circuit operation, no component wear |
+| Ancient Cyber Modification | Intact Chinese ancient artifact base, fitted cyber modification structure, no wear on modified parts | Modified weapons/Modified artifacts/Ancient keepsakes | Intact Chinese ancient artifact base, fitted cyber modification structure, brand-new modified components, unified fusion of traditional form and functional structure |
 
-### 2.2 损伤状态
+### 2.2 Damage States
 
-| 状态 | 描述 | 适用道具 | 提示词 |
+| State | Description | Applicable Props | Prompt |
 |---|---|---|---|
-| 微损 | 小裂纹/小缺口/轻微磨损 | 瓷器/玉佩/兵器 | 细微裂纹、轻微缺口 |
-| 破损 | 明显裂缝/断裂/破碎 | 瓷器/饰品/兵器 | 裂缝明显、碎裂、断裂 |
-| 残片 | 仅剩部分/碎片 | 瓷器/玉佩/信物 | 残片、碎片、仅存半块 |
-| 机能微损 | 电路轻微氧化、接口微磨损、灵能通路微损耗、外观无明显破损 | 赛博兵器/机能组件/灵能法器 | 电路轻微氧化、接口细微磨损、灵能通路微损耗、外观结构完整 |
-| 机能破损 | 电路断裂、镀层脱落、接口崩裂、灵能泄露、结构出现明显破损 | 赛博兵器/机能组件/灵能法器/数据信物 | 电路断裂、镀层大面积脱落、接口崩裂、灵能微光泄露、结构明显破损 |
-| 机能报废残片 | 核心结构碎裂、电路完全损毁、仅存部分机能残片、中式形制仍可识别 | 所有国风赛博道具 | 机能完全报废、核心结构碎裂、电路彻底损毁、仅存残片、中式核心形制可识别 |
+| Minor Damage | Small cracks/Small notches/Mild wear | Porcelain/Jade pendants/Weapons | Fine cracks, minor notches |
+| Broken | Obvious cracks/Fractures/Shattering | Porcelain/Ornaments/Weapons | Obvious cracks, shattering, fracture |
+| Fragments | Only parts/fragments remaining | Porcelain/Jade pendants/Keepsakes | Fragments, shards, only half remaining |
+| Functional Minor Damage | Slight circuit oxidation, minor interface wear, slight spiritual energy pathway loss, no obvious external damage | Cyber weapons/Functional components/Spiritual energy artifacts | Slight circuit oxidation, minor interface wear, slight spiritual energy pathway loss, intact external structure |
+| Functional Damage | Circuit breakage, plating peeling, interface shattering, spiritual energy leakage, obvious structural damage | Cyber weapons/Functional components/Spiritual energy artifacts/Data keepsakes | Circuit breakage, large-scale plating peeling, interface shattering, spiritual energy faint light leakage, obvious structural damage |
+| Functional Scrap Fragments | Core structure shattered, circuits completely destroyed, only partial functional fragments remaining, Chinese form still identifiable | All Chinese-style cyber props | Complete functional scrap, core structure shattered, circuits thoroughly destroyed, only fragments remaining, Chinese core form identifiable |
 
-### 2.3 特殊状态
+### 2.3 Special States
 
-| 状态 | 描述 | 适用道具 | 提示词 |
+| State | Description | Applicable Props | Prompt |
 |---|---|---|---|
-| 染血 | 血迹附着 | 兵器/衣物/信物 | 血迹斑驳、染血 |
-| 浸水/湿润 | 水渍、湿润反光 | 卷轴/信物/衣物 | 浸水、纸张湿润、墨迹晕染 |
-| 燃烧/焦损 | 焦黑边缘、火烧痕迹 | 卷轴/信物/木质品 | 边缘焦黑、火烧痕迹 |
-| 发光/激活 | 内在能量、光芒四射 | 信物/法器/玉石 | 微微发光、内蕴光华 |
-| 包裹/封存 | 用布/盒子包裹 | 信物/饰品/秘物 | 锦布包裹、木盒封存 |
-| 符文激活/满功率运行 | 中式符文全亮、灵能拉满、赛博电路满负荷运行、光芒内敛且有层次 | 灵能法器/赛博信物/能量兵器 | 中式符文全量激活、灵能光华内蕴外溢、赛博电路满功率运行、能量光效层次分明 |
-| 能量过载/灼烧 | 电路过载焦黑、符文过载崩裂、边缘高温灼烧痕迹、残留过载能量光晕 | 灵能法器/赛博兵器/机能组件 | 能量过载、电路焦黑熔断、符文崩裂、高温灼烧痕迹、残留过载能量光晕 |
-| 数据化/量子虚影 | 道具实体完整、边缘伴随数据化粒子特效、中式纹样转化为数据流、赛博结构半透明化 | 数据卷轴/量子信物/赛博秘物 | 数据化粒子特效、中式纹样数据流化、赛博结构半透明量子虚影、实体核心完整 |
-| 真空封存/赛博锁止 | 道具置于赛博真空封存舱内、中式锁止符文生效、机能完全锁止、外观完整无损耗 | 秘物/信物/高价值法器 | 赛博真空封存、中式锁止符文生效、机能完全锁止、透明封存舱、道具完整陈列 |
-| 灵能耗尽/宕机 | 符文完全熄灭、电路彻底断电、道具外观完整但无任何能量反应、色泽暗沉 | 灵能法器/赛博组件/能量信物 | 灵能耗尽、电路彻底宕机、符文熄灭无光、色泽暗沉、机能完全停止 |
+| Bloodstained | Blood traces attached | Weapons/Clothing/Keepsakes | Mottled bloodstains, bloodstained |
+| Soaked/Wet | Water stains, wet reflection | Scrolls/Keepsakes/Clothing | Soaked, wet paper, ink bleeding |
+| Burnt/Scorched | Charred edges, fire burn marks | Scrolls/Keepsakes/Wooden items | Charred edges, fire burn marks |
+| Glowing/Activated | Internal energy, radiating light | Keepsakes/Artifacts/Jade | Faint glow, inner radiance |
+| Wrapped/Sealed | Wrapped in cloth/box | Keepsakes/Ornaments/Secret items | Brocade cloth wrapping, wooden box sealing |
+| Rune Activation/Full Power Operation | Chinese runes fully lit, spiritual energy maxed out, cyber circuits running at full load, light effect restrained and layered | Spiritual energy artifacts/Cyber keepsakes/Energy weapons | Chinese runes fully activated, spiritual energy radiance contained and overflowing, cyber circuits at full power, distinct layers of energy light effects |
+| Energy Overload/Burning | Circuit overload charring, rune overload shattering, high-temperature burn marks on edges, residual overload energy halo | Spiritual energy artifacts/Cyber weapons/Functional components | Energy overload, circuit charring and melting, rune shattering, high-temperature burn marks, residual overload energy halo |
+| Datafication/Quantum Hologram | Prop entity intact, edges accompanied by data particle effects, Chinese patterns converted to data streams, cyber structure semi-transparent | Data scrolls/Quantum keepsakes/Cyber secret items | Data particle effects, Chinese patterns data-streamed, cyber structure semi-transparent quantum hologram, intact core entity |
+| Vacuum Sealing/Cyber Locking | Prop placed in a cyber vacuum sealing chamber, Chinese locking runes active, functions completely locked, appearance intact without wear | Secret items/Keepsakes/High-value artifacts | Cyber vacuum sealing, Chinese locking runes active, functions completely locked, transparent sealing chamber, prop displayed intact |
+| Spiritual Energy Depletion/Shutdown | Runes completely extinguished, circuits completely powered off, prop appearance intact but no energy response, dull color | Spiritual energy artifacts/Cyber components/Energy keepsakes | Spiritual energy depleted, circuits completely shut down, runes extinguished with no light, dull color, functions completely stopped |
 
 ---
 
-## 三、状态变体画面规范
+## III. State Variant Image Specifications
 
-### 单状态图
+### Single State Image
 
-| 项目 | 约束 |
+| Item | Constraint |
 |---|---|
-| 背景 | 素灰纯色 #B8B8B8（与设定图一致），无任何多余纹理与装饰，确保国风赛博道具主体突出 |
-| 光线 | 均匀柔光照明，无硬阴影，精准还原PBR材质质感，保留国风赛博道具自发光/能量光效的层次，不出现过曝 |
-| 角度 | 与原设定图正面图一致，确保中式核心纹样、赛博机能结构、核心接口在所有视图中完整呈现，无遮挡 |
-| 比例 | 道具占画面主体 70%+，核心结构与纹样无裁切，细节完整可辨 |
+| Background | Plain gray solid color #B8B8B8 (consistent with the design sheet), no extra textures or decorations, ensuring the Chinese-style cyber prop subject stands out |
+| Lighting | Even soft lighting, no hard shadows, precise restoration of PBR material texture, preserving the layers of self-illumination/energy light effects of the Chinese-style cyber prop, no overexposure |
+| Angle | Consistent with the front view of the original design sheet, ensuring Chinese core patterns, cyber functional structures, and core interfaces are fully presented in all views, no occlusion |
+| Ratio | Prop occupies 70%+ of the frame, core structures and patterns not cropped, details fully discernible |
 
-### 状态对比图
+### State Comparison Image
 
-| 项目 | 约束 |
+| Item | Constraint |
 |---|---|
-| 布局 | 同一画面并排展示 2-3 种状态，单状态占比均匀，无变形拉伸 |
-| 标注 | 每种状态下方标注状态名，字体不遮挡道具主体 |
-| 一致性 | 角度/光线/背景/比例完全一致，仅道具状态不同，国风元素与赛博结构的呈现方式完全统一 |
+| Layout | Display 2-3 states side-by-side in the same frame, even proportion for each state, no distortion or stretching |
+| Labels | Label the state name below each state, font must not obscure the prop subject |
+| Consistency | Angle/lighting/background/ratio completely consistent, only the prop state differs, presentation of Chinese elements and cyber structures completely unified |
 
 ---
 
-## 四、材质状态变化规则
+## IV. Material State Change Rules
 
-| 材质 | 崭新 → 日常 | 日常 → 陈旧 | 损伤表现 |
+| Material | Brand New → Daily | Daily → Aged | Damage Manifestation |
 |---|---|---|---|
-| 金属 | 亮光泽 → 微包浆 | 包浆 → 锈蚀斑点 | 缺口/卷刃/断裂 |
-| 玉石 | 通透温润 → 微磨损 | 磨损 → 表面微裂 | 裂纹/碎裂/缺角 |
-| 木质 | 新木纹理 → 自然包浆 | 包浆 → 色泽暗沉 | 开裂/断裂/虫蛀 |
-| 瓷器 | 釉面光泽 → 微划痕 | 划痕 → 釉面暗淡 | 裂纹/碎裂/缺口 |
-| 布/纸 | 崭新平整 → 微皱折 | 皱折 → 发黄变脆 | 撕裂/焦损/墨迹晕染 |
-| 国风赛博复合金属 | 亮面电镀+中式纹样蚀刻完整 → 镀层微磨损+接口氧化+纹样边缘微糊 | 镀层大面积脱落+电路锈蚀+纹样磨损模糊 | 刃口卷边/接口崩裂/电路断裂/结构变形 |
-| 灵能晶玉（赛博玉） | 通透温润+内嵌灵能电路完整+光泽均匀 | 表面微划痕+内电路微损耗+光泽减弱 | 表面磨损→内电路微裂 | 裂纹/碎裂/缺角/内电路彻底断裂/灵能泄露 |
-| 碳纤木纹复合材 | 新木纹理清晰+碳纤层完整无损伤 | 木纹自然包浆+碳纤层微磨损 | 木纹色泽暗沉+碳纤层划痕明显 | 开裂/断裂/碳纤层分层/纤维外露 |
-| 国风光釉陶瓷 | 釉面光泽拉满+中式纹样釉下彩清晰+赛博光感层完整 | 釉面微划痕+纹样微糊+光感层微损耗 | 釉面暗淡+纹样磨损+光感层失效 | 裂纹/碎裂/缺口/釉面大面积脱落 |
-| 纳米纤维织物/数据纸 | 崭新平整+纳米涂层完整+数据纹样清晰 | 微皱折+涂层微磨损+数据纹样边缘微糊 | 皱折明显+涂层脱落+纸张/织物发黄变脆+数据纹样模糊 | 撕裂/焦损/墨迹晕染/数据层损毁/纤维断裂 |
+| Metal | Bright gloss → Slight patina | Patina → Rust spots | Notches/Chipping/Fracture |
+| Jade | Transparent and warm → Minor wear | Wear → Surface micro-cracks | Cracks/Shattering/Chipped corners |
+| Wood | New wood grain → Natural patina | Patina → Darkened color | Cracking/Fracture/Insect damage |
+| Porcelain | Glaze gloss → Minor scratches | Scratches → Dull glaze | Cracks/Shattering/Notches |
+| Cloth/Paper | Brand new and flat → Minor wrinkles | Wrinkles → Yellowing and brittleness | Tearing/Scorching/Ink bleeding |
+| Chinese-style Cyber Composite Metal | Bright electroplating + Intact Chinese pattern etching → Slight plating wear + Interface oxidation + Slight blurring of pattern edges | Large-scale plating peeling + Circuit rust + Pattern wear and blurring | Blade edge curling/Interface shattering/Circuit breakage/Structural deformation |
+| Spiritual Energy Crystal Jade (Cyber Jade) | Transparent and warm + Intact embedded spiritual energy circuits + Even gloss | Surface micro-scratches + Internal circuit micro-loss + Reduced gloss | Surface wear → Internal circuit micro-cracks | Cracks/Shattering/Chipped corners/Complete internal circuit breakage/Spiritual energy leakage |
+| Carbon Fiber Wood Composite | Clear new wood grain + Intact carbon fiber layer without damage | Natural wood grain patina + Carbon fiber layer minor wear | Darkened wood grain color + Obvious carbon fiber layer scratches | Cracking/Fracture/Carbon fiber layer delamination/Fiber exposure |
+| Chinese-style Glazed Ceramic | Full glaze gloss + Clear Chinese underglaze patterns + Intact cyber light layer | Minor glaze scratches + Slight pattern blurring + Light layer micro-loss | Dull glaze + Pattern wear + Light layer failure | Cracks/Shattering/Notches/Large-scale glaze peeling |
+| Nano-fiber Fabric/Data Paper | Brand new and flat + Intact nano-coating + Clear data patterns | Minor wrinkles + Coating minor wear + Slight blurring of data pattern edges | Obvious wrinkles + Coating peeling + Paper/fabric yellowing and brittleness + Blurred data patterns | Tearing/Scorching/Ink bleeding/Data layer destruction/Fiber breakage |
 
 ---
 
-## 五、提示词模板
+## V. Prompt Templates
 
-### 单状态变体
+### Single State Variant
 
-基于{国风赛博道具名}设定图，Unreal Engine 5渲染，超高清8K，高精度3D建模，PBR物理材质，国风赛博朋克风格，中式传统形制与赛博机能结构完美融合，电影级光影，OC渲染，超写实质感，
-{道具类型：中式赛博兵器/灵能法器/数据信物/机能组件/改装器物等}，{核心材质描述}，{中式核心纹样/赛博核心结构描述}，
-当前状态：{状态名}，{状态视觉描述}，
-{材质表面变化描述}，{国风元素状态变化描述}，{赛博机能状态变化描述}，
-纯道具静物展示，道具独立陈列，无人持有，无人佩戴，无人握持，无任何人物肢体，
-同一画面四宫格（2×2）固定布局：左上正面图(front view)+右上侧面图(side view)+左下背面图(back view)+右下细节特写(detail closeup)，
-素灰纯色#B8B8B8背景，均匀柔光，无硬阴影，无多余场景元素，
-材质纹理超清晰，PBR材质精准还原，状态细节拉满，国风纹样与赛博结构细节可辨，
-图中不要有任何文字、标注、水印，
-画面中绝对不能出现任何人物、手部、手指、肢体、躯干，道具不可处于被握持、佩戴、挂载、使用中的状态，无任何暗示人物存在的元素
+Based on the design sheet of {Chinese-style Cyber Prop Name}, Unreal Engine 5 rendering, ultra-high definition 8K, high-precision 3D modeling, PBR physical materials, Chinese-style cyberpunk style, perfect fusion of traditional Chinese form and cyber functional structure, cinematic lighting, OC rendering, hyper-realistic texture,
+{Prop Type: Chinese-style cyber weapon/Spiritual energy artifact/Data keepsake/Functional component/Modified artifact, etc.}, {Core Material Description}, {Chinese Core Pattern/Cyber Core Structure Description},
+Current State: {State Name}, {State Visual Description},
+{Material Surface Change Description}, {Chinese Element State Change Description}, {Cyber Function State Change Description},
+Pure prop still-life display, prop displayed independently, not held by anyone, not worn by anyone, not gripped by anyone, no human limbs,
+Fixed 2x2 grid layout in the same frame: Top-left front view + Top-right side view + Bottom-left back view + Bottom-right detail closeup,
+Plain gray solid color #B8B8B8 background, even soft light, no hard shadows, no extra scene elements,
+Ultra-clear material textures, precise PBR material restoration, full state details, discernible Chinese patterns and cyber structure details,
+No text, labels, or watermarks in the image,
+Absolutely no characters, hands, fingers, limbs, or torsos in the frame, prop must not be in a state of being held, worn, mounted, or in use, no elements implying the presence of a person
 
 ---
 
-## 六、约束规则
+## VI. Constraint Rules
 
-### 必守
+### Mandatory
 
-| 编号 | 规则 |
+| ID | Rule |
 |---|---|
-| R1 | 道具核心造型/轮廓在所有状态中可识别 |
-| R2 | 状态变化须符合物理逻辑 |
-| R3 | 必须使用四宫格（2×2）布局：左上正面图+右上侧面图+左下背面图+右下细节特写 |
-| R4 | 必须指定「素灰纯色背景」，均匀柔光，无硬阴影 |
-| R5 | 必须保留中式核心形制、纹样、文化元素与赛博机能结构的融合统一性，所有状态下二者不可割裂、不可错位 |
-| R6 | 赛博机能结构、能量光效、符文特效必须服务于状态表达，不可遮挡道具核心造型与状态细节 |
-| R7 | 所有新增的国风赛博专属状态，必须符合世界观逻辑，材质变化与状态表现一一对应 |
-| R8 | 四宫格所有视图中，必须完整呈现道具的中式核心元素与赛博核心结构，无裁切、无遮挡 |
+| R1 | Prop core form/silhouette must be identifiable in all states |
+| R2 | State changes must conform to physical logic |
+| R3 | Must use 2x2 grid layout: Top-left front view + Top-right side view + Bottom-left back view + Bottom-right detail closeup |
+| R4 | Must specify "plain gray solid background", even soft light, no hard shadows |
+| R5 | Must preserve the unified fusion of Chinese core form, patterns, cultural elements, and cyber functional structures; the two must not be separated or misaligned in any state |
+| R6 | Cyber functional structures, energy light effects, and rune effects must serve state expression; they must not obscure the prop's core form and state details |
+| R7 | All newly added Chinese-style cyber-specific states must conform to worldview logic; material changes and state manifestations must correspond one-to-one |
+| R8 | In all views of the 2x2 grid, the prop's Chinese core elements and cyber core structures must be fully presented, no cropping, no occlusion |
 
-### 严禁
+### Prohibited
 
-| 编号 | 严禁 |
+| ID | Prohibition |
 |---|---|
-| X1 | 状态变化后道具不可识别 |
-| X2 | 违反物理逻辑的损伤（玉石生锈等） |
-| X3 | 过度血腥/恐怖的损伤描绘 |
-| X4 | 出现任何人物形象，包括全身、半身、局部（手、手指、手臂等肢体） |
-| X5 | 道具处于被持有、握持、佩戴、使用中的状态 |
-| X6 | 出现暗示人物存在的元素（如手持痕迹、佩戴视角、使用姿态） |
-| X7 | 严禁中式元素与赛博结构违和拼接，出现不符合国风赛博世界观的杂乱元素 |
-| X8 | 严禁光效过度溢出、过曝，遮挡道具核心造型、纹样与状态细节 |
-| X9 | 严禁出现不符合国风赛博材质逻辑的状态变化（如灵能晶玉虫蛀、复合金属纸张式撕裂等） |
-| X10 | 严禁修改四宫格固定布局，严禁裁切道具核心结构与纹样 |
-| X11 | 严禁在背景中添加任何多余元素、纹理、场景，必须保持素灰纯色背景 |
+| X1 | Prop becomes unidentifiable after state change |
+| X2 | Damage violating physical logic (e.g., jade rusting) |
+| X3 | Excessive bloody/horror damage depiction |
+| X4 | Appearance of any character image, including full body, half body, or partial (hands, fingers, arms, etc.) |
+| X5 | Prop in a state of being held, gripped, worn, or in use |
+| X6 | Appearance of elements implying the presence of a person (e.g., hand-held marks, wearing perspective, usage posture) |
+| X7 | Strictly prohibited awkward splicing of Chinese elements and cyber structures, appearance of chaotic elements not conforming to the Chinese-style cyber worldview |
+| X8 | Strictly prohibited excessive light effect overflow/overexposure, obscuring the prop's core form, patterns, and state details |
+| X9 | Strictly prohibited state changes not conforming to Chinese-style cyber material logic (e.g., insect damage to spiritual energy crystal jade, paper-like tearing of composite metal) |
+| X10 | Strictly prohibited modification of the fixed 2x2 grid layout, strictly prohibited cropping of the prop's core structures and patterns |
+| X11 | Strictly prohibited adding any extra elements, textures, or scenes to the background; must maintain a plain gray solid background |

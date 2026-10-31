@@ -51,6 +51,6 @@ export default router.post(
       existingModels.push(model);
       await u.userSettings.updateVendorConfig(id, { models: JSON.stringify(existingModels) });
     }
-    res.status(200).send(success("更新成功"));
+    res.status(200).send(success("Update successful"));
   },
 );

@@ -1,127 +1,127 @@
-# 90年代复古日系动画风格 - 道具图像生成 · 约束手册
+# 90s Retro Japanese Animation Style - Prop Image Generation · Constraint Manual
 
 ---
 
-## 一、道具设计原则
+## I. Prop Design Principles
 
-1. **功能可读** — 道具用途一目了然，造型服务于功能
-2. **质感极致** — 材质纹理必须清晰可辨（金属/玉石/木/布/纸）
-3. **年代风格** — 所有道具符合90年代世界观，风格统一
-4. **尺度明确** — 通过参照物或标注暗示道具真实尺寸
-5. **纯道具独立展示** — 画面中只能出现道具本身，严禁出现任何人物、手部、肢体，道具不可处于被持有/佩戴/握持状态，必须以静物陈列方式独立呈现
-
----
-
-## 二、道具分类与美学约束
-
-### 2.1 兵器类
-
-| 项目 | 约束 | 提示词 |
-|---|---|---|
-| 类型 | 剑/刀/弓/长枪/镰刀 | {兵器类型}，90年代兵器 |
-| 材质 | 金属+宝石装饰+丝带 | 金属光泽、宝石装饰 |
-| 装饰 | 雕花、流苏、复古纹样 | 雕花精致、复古纹样 |
-| 光泽 | 金属光泽、宝石反光 | 金属光泽、宝石璀璨 |
-| 提示词 | 90年代{兵器}，金属锻造，宝石装饰 | — |
-
-### 2.2 饰品类
-
-| 项目 | 约束 | 提示词 |
-|---|---|---|
-| 类型 | 发饰/项链/手镯/戒指 | {饰品类型}，90年代首饰 |
-| 材质 | 金属/宝石/丝带/珍珠 | 金属光泽、宝石透明 |
-| 工艺 | 手绘质感、复古风格 | 精细工艺、90年代风格 |
-| 光泽 | 宝石光泽/金属光泽 | 宝石璀璨、金属光泽 |
-| 提示词 | 90年代{饰品}，{材质}，精细工艺 | — |
-
-### 2.3 生活器物类
-
-| 项目 | 约束 | 提示词 |
-|---|---|---|
-| 类型 | 茶具/书本/乐器/文具 | {器物类型}，90年代器物 |
-| 材质 | 金属/木/纸/陶瓷 | 材质质感清晰 |
-| 质感 | 线条流畅、色彩柔和 | 线条流畅、质感清晰 |
-| 风格 | 简约/华丽按场景切换 | 简约精致 / 华丽精致 |
-| 提示词 | 90年代{器物}，{材质}质感，线条流畅 | — |
-
-### 2.4 信物/关键道具类
-
-| 项目 | 约束 | 提示词 |
-|---|---|---|
-| 类型 | 信物/令牌/卷轴/药瓶/魔法道具 | {道具类型}，90年代道具 |
-| 特殊性 | 需有辨识度、叙事象征意义 | 独特造型、象征意义 |
-| 状态 | 可按剧情需要添加使用感 | 古旧 / 崭新 |
-| 提示词 | 90年代{道具}，{材质}，{状态}，独特造型 | — |
+1. **Functional Readability** — The purpose of the prop is immediately clear; its form serves its function
+2. **Ultimate Texture** — Material textures must be clearly distinguishable (metal/jade/wood/cloth/paper)
+3. **Era Style** — All props must fit the 90s worldview with a unified style
+4. **Clear Scale** — The real size of the prop is implied through reference objects or annotations
+5. **Pure Prop Independent Display** — Only the prop itself may appear in the frame. Any characters, hands, or limbs are strictly prohibited. Props must not be in a held/worn/gripped state; they must be presented independently in a still-life display manner
 
 ---
 
-## 三、多角度设定图规范
+## II. Prop Categories and Aesthetic Constraints
 
-### 视图定义
+### 2.1 Weapons
 
-| 位置 | 视图 | 角度 | 要求 | 提示词 |
+| Item | Constraint | Prompt |
+|---|---|---|
+| Type | Sword/blade/bow/spear/scythe | {weapon type}, 90s weapon |
+| Material | Metal + gem decoration + ribbon | Metal luster, gem decoration |
+| Decoration | Carvings, tassels, retro patterns | Intricate carvings, retro patterns |
+| Luster | Metal luster, gem reflection | Metal luster, brilliant gems |
+| Prompt | 90s {weapon}, metal forging, gem decoration | — |
+
+### 2.2 Accessories
+
+| Item | Constraint | Prompt |
+|---|---|---|
+| Type | Hair ornament/necklace/bracelet/ring | {accessory type}, 90s jewelry |
+| Material | Metal/gem/ribbon/pearl | Metal luster, transparent gems |
+| Craftsmanship | Hand-drawn texture, retro style | Fine craftsmanship, 90s style |
+| Luster | Gem luster/metal luster | Brilliant gems, metal luster |
+| Prompt | 90s {accessory}, {material}, fine craftsmanship | — |
+
+### 2.3 Daily Objects
+
+| Item | Constraint | Prompt |
+|---|---|---|
+| Type | Tea set/books/instruments/stationery | {object type}, 90s object |
+| Material | Metal/wood/paper/ceramic | Clear material texture |
+| Texture | Smooth lines, soft colors | Smooth lines, clear texture |
+| Style | Simple/luxurious depending on scene | Simple and refined / Luxurious and refined |
+| Prompt | 90s {object}, {material} texture, smooth lines | — |
+
+### 2.4 Tokens / Key Props
+
+| Item | Constraint | Prompt |
+|---|---|---|
+| Type | Token/talisman/scroll/potion bottle/magical prop | {prop type}, 90s prop |
+| Uniqueness | Must have recognizability and narrative symbolic meaning | Unique design, symbolic meaning |
+| Condition | Usage wear can be added as needed for the plot | Aged / Brand new |
+| Prompt | 90s {prop}, {material}, {condition}, unique design | — |
+
+---
+
+## III. Multi-Angle Setup Diagram Standards
+
+### View Definitions
+
+| Position | View | Angle | Requirement | Prompt |
 |---|---|---|---|---|
-| 左上 | 正面图 | 正面 0° | 道具完整正面形态 | front view |
-| 右上 | 侧面图 | 侧面 90° | 厚度/轮廓/结构清晰 | side view |
-| 左下 | 背面图 | 背面 180° | 道具背部结构/装饰 | back view |
-| 右下 | 细节特写 | 局部放大 | 材质纹理/工艺细节 | detail closeup |
+| Top Left | Front View | Front 0° | Complete front form of the prop | front view |
+| Top Right | Side View | Side 90° | Clear thickness/outline/structure | side view |
+| Bottom Left | Back View | Back 180° | Back structure/decoration of the prop | back view |
+| Bottom Right | Detail Close-up | Local magnification | Material texture/craftsmanship details | detail closeup |
 
-### 画面规范
+### Frame Standards
 
-| 项目 | 约束 |
+| Item | Constraint |
 |---|---|
-| 布局 | 同一画面四宫格（2×2），上下左右四视角 |
-| 背景 | 暖调米白 #F8F4E8 |
-| 光线 | 柔和电影光，均匀柔光，无硬阴影 |
-| 比例 | 每格道具占格内主体 70%+ |
-| 投影 | 允许自然地面微投影 |
-| 画面比例 | 建议 1:1 |
+| Layout | Four-quadrant grid (2×2) in the same frame, four views: top, bottom, left, right |
+| Background | Warm beige #F8F4E8 |
+| Lighting | Soft cinematic light, even soft light, no hard shadows |
+| Ratio | Prop occupies 70%+ of the subject area within each grid |
+| Shadow | Natural subtle ground shadow allowed |
+| Aspect Ratio | 1:1 recommended |
 
 ---
 
-## 四、材质渲染约束
+## IV. Material Rendering Constraints
 
-| 材质 | 渲染要求 | 提示词 |
+| Material | Rendering Requirement | Prompt |
 |---|---|---|
-| 金属 | 光泽清晰、线条分明 | 金属质感、光泽清晰 |
-| 玉石 | 透明感、温润感 | 玉质通透、温润 |
-| 木质 | 纹理清晰、线条分明 | 木纹清晰、质感自然 |
-| 陶瓷 | 光滑表面、光泽均匀 | 陶瓷光泽、表面光滑 |
-| 布/纸 | 纤维质感、边缘清晰 | 布料纹理、纸质清晰 |
-| 宝石 | 透明感、折射感 | 宝石透明、折射感 |
+| Metal | Clear luster, distinct lines | Metal texture, clear luster |
+| Jade | Transparency, warm feel | Translucent jade, warm feel |
+| Wood | Clear grain, distinct lines | Clear wood grain, natural texture |
+| Ceramic | Smooth surface, even luster | Ceramic luster, smooth surface |
+| Cloth/Paper | Fiber texture, clear edges | Cloth texture, clear paper texture |
+| Gem | Transparency, refraction | Transparent gem, refraction |
 
 ---
 
-## 五、提示词模板
+## V. Prompt Templates
 ```
-90年代复古日系动画风格道具设定图，手绘平涂上色，柔和暖色调，精细流畅线条，电影感光影，
-{道具类型}，{材质描述}，{工艺/装饰描述}，{状态描述}，
-纯道具静物展示，道具独立陈列，无人持有，无人佩戴，
-同一画面四宫格（2×2）：左上正面图+右上侧面图+左下背面图+右下细节特写，
-暖调米白背景，柔和电影光，均匀柔光，无硬阴影，
-材质纹理超清晰，手绘质感，{材质光泽描述}
-图中不要有任何文字，
-画面中不能出现任何人物、手部、手指、肢体，道具不可处于被握持或佩戴状态
+90s retro Japanese anime style prop design sheet, hand-drawn flat coloring, soft warm tones, fine and smooth lines, cinematic lighting,
+{prop type}, {material description}, {craftsmanship/decoration description}, {condition description},
+Pure prop still life display, prop displayed independently, not held by anyone, not worn by anyone,
+Four-panel grid in the same frame (2×2): top-left front view + top-right side view + bottom-left back view + bottom-right detail close-up,
+Warm beige-white background, soft cinematic light, even soft light, no hard shadows,
+Ultra-clear material texture, hand-drawn texture, {material gloss description}
+No text of any kind in the image,
+No people, hands, fingers, or limbs may appear in the frame, the prop must not be in a state of being held or worn
 ```
 
 ---
 
-## 六、约束规则
+## VI. Constraint Rules
 
-### 必守
+### Mandatory
 
-| 编号 | 规则 |
+| ID | Rule |
 |---|---|
-| R1 | 必须指定「暖调米白背景 #F8F4E8」 |
-| R2 | 必须明确道具材质与工艺 |
-| R3 | 道具造型必须符合90年代世界观风格 |
+| R1 | Must specify a "warm-toned off-white background #F8F4E8" |
+| R2 | Must clearly define the material and craftsmanship of the props |
+| R3 | The prop design must conform to the 1990s worldview style |
 
-### 严禁
+### Strictly Prohibited
 
-| 编号 | 严禁 |
+| ID | Prohibition |
 |---|---|
-| X1 | 复杂场景背景 |
-| X2 | 道具与人物同画面 |
-| X3 | 出现任何人物形象 |
-| X4 | 道具处于被持有、握持、佩戴、使用中的状态 |
-| X5 | 出现暗示人物存在的元素 |
+| X1 | Complex scene backgrounds |
+| X2 | Props and characters in the same frame |
+| X3 | Any depiction of characters |
+| X4 | Props in a state of being held, gripped, worn, or in use |
+| X5 | Elements implying the presence of characters |

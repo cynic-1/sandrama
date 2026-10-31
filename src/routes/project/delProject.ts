@@ -7,7 +7,7 @@ import { currentUser } from "@/middleware/auth";
 import { isAdmin } from "@/utils/auth";
 const router = express.Router();
 
-// 删除项目
+// Delete project
 export default router.post(
   "/",
   validateFields({
@@ -18,52 +18,52 @@ export default router.post(
     const projectQuery = u.db("o_project").where("id", id);
     if (!isAdmin(currentUser(req)!)) projectQuery.andWhere("userId", currentUser(req)!.id);
     const project = await projectQuery.select("id").first();
-    if (!project) return res.status(404).send({ message: "项目不存在或无权访问" });
-    //删除项目
+    if (!project) return res.status(404).send({ message: "The project does not exist or you do not have access permission" });
+    // Delete project
     await u.db("o_project").where("id", id).delete();
     await u.db("o_agentWorkData").where("projectId", id).delete();
-    //删除项目下的原文
+    // Delete the original text under the project
     await u.db("o_novel").where("projectId", id).delete();
-    // 删除项目下的剧本信息
+    // Delete the script information under the project
     const scriptData = await u.db("o_script").where("projectId", id).select("id");
     const scriptIds = scriptData.map((item: any) => item.id);
     if (scriptIds && scriptIds.length > 0) {
       await u.db("o_scriptAssets").whereIn("scriptId", scriptIds).delete();
     }
     await u.db("o_script").where("projectId", id).delete();
-    // 删除项目下的任务
+    // Delete tasks under the project
     await u.db("o_tasks").where("projectId", id).delete();
-    // 删除项目下的分镜
+    // Delete the storyboard under the project
     const storyboardData = await u.db("o_storyboard").where("projectId", id).select("id");
     const storyboardIds = storyboardData.map((item: any) => item.id);
     if (storyboardIds.length > 0) {
       await u.db("o_assets2Storyboard").whereIn("storyboardId", storyboardIds).delete();
     }
     await u.db("o_storyboard").where("projectId", id).delete();
-    //删除需要删除资产的归属图片
+    // Delete the ownership images of the assets that need to be deleted
     const assetsData = await u.db("o_assets").where("projectId", id).select("id");
     const assetsIds = assetsData.map((item: any) => item.id);
     if (assetsIds && assetsIds.length > 0) {
-      // 先将 o_assets.imageId 置空，解除对 o_image 的外键引用
+      // First, set o_assets.imageId to null to remove the foreign key reference to o_image
       await u.db("o_assets").whereIn("id", assetsIds).update({ imageId: null });
       await u.db("o_image").whereIn("assetsId", assetsIds).delete();
     }
-    // 删除项目下的资产
+    // Delete assets under the project
     await u.db("o_assets").where("projectId", id).delete();
-    //删除项目下的视频轨道和视频
+    // Delete the video tracks and videos under the project
     await u.db("o_videoTrack").where("projectId", id).delete();
     await u.db("o_video").where("projectId", id).delete();
-    //删除项目下的资源
+    // Delete resources under the project
 
     await u.db("memories").where("isolationKey", "like", `${id}:%`).delete();
 
     try {
       await u.oss.deleteDirectory(`${id}/`);
-      console.log(`项目 ${id} 的OSS文件夹删除成功`);
+      console.log(`Project${id}The OSS folder was deleted successfully`);
     } catch (error: any) {
-      console.log(`项目 ${id} 没有对应的OSS文件夹，跳过删除`);
+      console.log(`Project${id}No corresponding OSS folder, skipping deletion`);
     }
 
-    res.status(200).send(success({ message: "删除项目成功" }));
+    res.status(200).send(success({ message: "Project deleted successfully" }));
   },
 );

@@ -1,108 +1,108 @@
 ---
 name: director_planning_narrative
-description: 叙事手法技法 · 历史史诗 — 定义历史史诗类型在主题立意、情感节奏、场景情绪设计与声音方向上的叙事规划方法。适用于任何视觉风格。
+description: Narrative techniques and techniques · Historical epic - defines the narrative planning method of the historical epic type in terms of theme conception, emotional rhythm, scene mood design and sound direction. Works with any visual style.
 metaData: director_skills
 ---
 
-# 叙事手法 · 历史史诗 · 技法参考
+# Narrative Technique · Historical Epic · Technical Reference
 
 ---
 
-## 一、主题立意与情感内核
+## 1. Theme conception and emotional core
 
-### 历史史诗叙事要点
+### Key points of historical epic narrative
 
-- **大时代小人物** — 史诗叙事的核心不是再现历史事件，而是展现时代洪流中个体的命运。主题立意应聚焦于"一个人的选择如何折射一个时代"
-- **命运的不可抗力** — 历史叙事的张力来自"个人意志与时代洪流的碰撞"。角色越努力抗争，越显出命运的残酷与人性的伟大
-- **仪式感即重量** — 关键历史节点（登基、盟誓、决战、诀别、殉道）必须赋予仪式感。仪式感不是场面大，而是每个动作、每句话都有"不可逆转"的庄重
-- **离场感受建议方向** — 苍凉 / 壮美 / 唏嘘 / 敬畏。避免"爽""解气"等轻浮方向
-- **历史的回响** — 好的史诗叙事让观众感受到"这件事不只发生在那个时代"。用古今相通的人性困境（忠与义的矛盾、个人与集体的冲突）制造跨时代的共鸣
-
----
-
-## 二、叙事结构与节奏规划
-
-### 历史史诗叙事要点
-
-- **宏微交织是基本功** — 史诗叙事需要在"宏观全景"与"微观个体"之间不断切换。纯宏观会空洞，纯微观会失去史诗感。每个宏大段落都要有个体的情感锚点
-- **史诗节奏弧** — 史诗的节奏不是匀速前进，而是"积蓄→爆发→沉淀"的大波浪。长时间的铺垫与积蓄，换来一次震撼人心的爆发，然后用沉默消化余震
-- **群像叙事** — 史诗通常涉及多条人物线。每条线应有独立的情感弧线，在关键节点交汇。交汇点就是史诗高潮
-- **时间跨度处理** — 历史叙事常跨越数年甚至数十年。用"时间标记事件"而非"日期字幕"来传达时间流逝：白发、废墟上的新草、孩子长大
-- **转折点用沉默而非演说** — 历史转折的处理应优先考虑沉默手段（对视、独坐、凝望远方），而非慷慨陈词。真正的历史抉择往往在沉默中做出
-- **"最后一次"模型** — 史诗叙事的催泪点往往是"最后一次"：最后一次回望故城、最后一次举杯、最后一次并肩作战。在叙事规划中标注每个角色的"最后一次"节点
+- **Little People in Big Times** — The core of epic narrative is not to reproduce historical events, but to show the fate of individuals in the torrent of the times. The theme concept should focus on "how one person's choices reflect an era"
+- **Force Majeure of Fate** — The tension of historical narrative comes from "the collision of personal will and the current of the times." The harder the characters fight, the more they reveal the cruelty of fate and the greatness of human nature.
+- **The sense of ritual is weight** — Key historical nodes (enthronement, oath of alliance, decisive battle, farewell, martyrdom) must be given a sense of ritual. The sense of ceremony is not that the scene is grand, but that every action and every word has an "irreversible" solemnity
+- **Suggested direction for leaving the scene** — desolation/magnificence/sadness/awe. Avoid frivolous directions such as "refreshing" and "relieving one's anger"
+- **Echoes of History** — A good epic narrative makes the audience feel that "this event did not only happen in that era". Use the common human dilemmas of ancient and modern times (the conflict between loyalty and righteousness, the conflict between individual and collective) to create cross-era resonance.
 
 ---
 
-## 三、分场景情绪设计
+## 2. Narrative structure and rhythm planning
 
-### 历史史诗叙事要点
+### Key points of historical epic narrative
 
-- **情绪目标用史诗性词汇** — 不说"悲伤"，说"目送一个时代落幕的苍凉"。史诗的情绪需要跳出个人层面，具有时代感与命运感
-- **典型情绪段落与设计** —
+- **Interweaving of macro and micro is the basic skill** — Epic narrative requires constant switching between "macro panorama" and "micro individual". A purely macroscopic view will be empty, and a purely microscopic view will lose its sense of epicness. Every grand paragraph must have an individual emotional anchor
+- **Epic Rhythm Arc** — The rhythm of the epic is not a uniform advance, but a big wave of "accumulation→explosion→precipitation". A long period of preparation and accumulation resulted in a shocking explosion, and then the aftershocks were digested with silence.
+- **Group Narrative** — Epics usually involve multiple character lines. Each line should have an independent emotional arc that intersects at key nodes. The intersection is the epic climax
+- **Time Span Processing** — Historical narratives often span years or even decades. Use "time stamp events" rather than "date subtitles" to convey the passage of time: gray hair, new grass on ruins, children growing up
+- **Use silence rather than speech at turning points** — The handling of historical turning points should give priority to silent means (looking at each other, sitting alone, staring into the distance) rather than impassioned speeches. Real historical choices are often made in silence
+- **"Last Time" Model** — The tear-jerking point of epic narratives is often the "last time": the last time to look back at the old city, the last time to toast, the last time to fight side by side. Mark the "last time" node for each character in the narrative plan
 
-| 段落类型 | 情绪方向 | 叙事手法 | 音乐建议 |
+---
+
+## 3. Scene emotional design
+
+### Key points of historical epic narrative
+
+- **Use epic words for emotional goals** — Don’t say “sadness”, say “the desolation of watching the end of an era.” The emotions of the epic need to jump out of the personal level and have a sense of the times and destiny.
+- **Typical emotional passages and designs** —
+
+| Paragraph Types | Emotional Direction | Narrative Techniques | Music Suggestions |
 |---|---|---|---|
-| 太平盛世 | 繁荣 + 暗流 | 展示秩序与繁华，同时埋入将要崩塌的伏笔 | 庄重器乐，底层暗流涌动 |
-| 风云突变 | 震惊 + 无力 | 秩序崩塌的连锁反应，个体被裹挟 | 突然静默后低频压迫 |
-| 困境抉择 | 煎熬 + 坚定 | 角色在忠与义、生与死之间挣扎，最终做出选择 | 单一乐器独奏，极简 |
-| 决战/对峙 | 壮烈 + 悲怆 | 明知不可为而为之，用行动而非台词表达决心 | 从沉默到器乐渐满 |
-| 代价/牺牲 | 痛 + 敬畏 | 胜利的代价、牺牲者的最后时刻 | 人声合唱或纯环境音 |
-| 尘埃落定 | 苍凉 + 释然 | 一切结束后的沉默，幸存者的回望 | 极简器乐或风声 |
+| Peace and prosperity | Prosperity + undercurrent | Show order and prosperity, while burying the foreshadowing of collapse | Solemn instrumental music, undercurrent surging |
+| The sudden change of the situation | Shock + powerlessness | The chain reaction of the collapse of order, the individual is trapped | Low-frequency oppression after sudden silence |
+| Dilemma and choice | Suffering + determination | The character struggles between loyalty and righteousness, life and death, and finally makes a choice | Single instrument solo, minimalist |
+| Decisive battle/confrontation | Heroic + pathos | Doing something even though you know you can't do it, expressing your determination with actions instead of lines | From silence to instrumental music |
+| Price/Sacrifice | Pain + Awe | The price of victory, the last moments of the victim | Vocal chorus or pure ambient sound |
+| The dust has settled | Desolation + relief | The silence after everything is over, the survivor's look back | Minimalist instrumental music or wind sound |
 
-- **"权力空间"是叙事核心工具** — 用空间关系映射权力关系和命运处境：
-  - **高处**：俯视 = 掌权/审判，适合帝王、决策者
-  - **低处**：仰视 = 臣服/渺小，适合受命运摆布的个体
-  - **平视**：对等/对峙，适合势均力敌的关键对话
-- **空间即时代** — 用空间的变化传递时代变迁：曾经繁华的大殿变成废墟、曾经的战场长满野草、空荡的王座。空间自身就是最有力的时代叙事
-- **仪式场景的叙事要求** — 仪式段落（加冕/盟誓/诀别）每个动作都必须有叙事意义：跪下 = 臣服与牺牲；举杯 = 生死之约；转身 = 不可回头。不要流于形式的排场
+- **"Power space" is the core tool of narrative** — Use spatial relationships to map power relationships and fateful situations:
+  - **Heights**: Looking down = power/judgment, suitable for emperors and decision-makers
+  - **Lower**: looking up = surrender/insignificance, suitable for individuals who are at the mercy of fate
+  - **Heads-up**: Equivalence/confrontation, suitable for key conversations between evenly matched opponents
+- **Space is the era** — Use the changes in space to convey the changes of the times: the once prosperous hall has turned into ruins, the former battlefield is overgrown with weeds, and the throne is empty. Space itself is the most powerful narrative of the times
+- **Narrative requirements for ritual scenes** — Every action in the ritual passage (coronation/pledge/farewell) must have a narrative meaning: Kneel down = surrender and sacrifice; raise a glass = agreement between life and death; turn around = no turning back. Don't be a mere formality
 
 ---
 
-## 四、声音与音乐方向
+## 4. Sound and Music Direction
 
-### 历史史诗叙事要点
+### Key points of historical epic narrative
 
-- **厚重低音是史诗底色** — 史诗配乐的基底是低音区的厚重感（大提琴、定音鼓、低音号角）。高音区留给关键情感爆发点，日常段落靠低音撑住"历史的重量"
-- **人声的力量** — 史诗叙事中人声（合唱、吟唱、号子）有特殊的叙事功能：军队出征的战歌、送别的挽歌、胜利后的沉默合唱。人声比器乐更能传递"群体的命运"
-- **沉默的庄严** — 关键历史瞬间（王座上的最后决定、行刑前的对视、战场上枪声停止后）应去掉所有配乐，只留环境音或纯静默。沉默赋予这些瞬间"历史正在发生"的重量
-- **环境音承载时代质感** — 每场戏应标注核心环境音来传递时代氛围：铁蹄声、旗帜的猎猎声、远处的号角、市井的喧嚣、废墟中的风声
-- **音乐情绪递进模型** —
+- **Thick bass is the foundation of the epic** — The foundation of the epic score is the thickness of the bass area (cello, timpani, bass horn). The high-pitched area is reserved for key emotional explosion points, and the daily passages rely on the bass to support the "weight of history"
+- **The power of the human voice** — The human voice (chorus, chants, chants) has special narrative functions in epic narratives: war songs for armies going out for battle, farewell elegy, and silent choruses after victory. The human voice can convey the "destiny of the group" better than instrumental music
+- **The Solemnity of Silence** — Key historical moments (the final decision on the throne, the exchange of glances before the execution, after the gunfire stops on the battlefield) should have all soundtracks removed, leaving only ambient sounds or pure silence. Silence gives these moments the weight of "history is happening"
+- **Environmental sounds carry the texture of the times** — Each scene should be marked with core environmental sounds to convey the atmosphere of the times: the sound of iron hooves, the hunting sound of flags, the distant horn, the hustle and bustle of the market, the sound of wind in the ruins
+- **Music Emotion Progressive Model** —
 
-| 情绪阶段 | 音乐策略 | 覆盖率 |
+| Emotional Stages | Music Strategy | Coverage |
 |---|---|---|
-| 铺垫/日常 | 低音器乐衬底，庄重但克制 | 中低 |
-| 暗涌/积蓄 | 鼓点渐入，节奏暗示命运逼近 | 中 |
-| 爆发/决战 | 器乐全奏或突然全场静默 | 极端 |
-| 牺牲/代价 | 人声合唱或单一乐器哀鸣 | 中高 |
-| 尘埃落定 | 极简器乐或纯环境音（风声） | 低 |
+| Foreshadowing/Daily | Bass instrumental background, solemn but restrained | Mid-low |
+| Undercurrent/accumulation | The drum beat gradually enters, and the rhythm hints that fate is approaching | Middle |
+| Outbreak/Decisive Battle | Full instrumental music or sudden silence | Extreme |
+| Sacrifice/cost | Vocal chorus or single instrument wailing | Medium high |
+| The dust has settled | Minimalist instrumental music or pure ambient sound (wind sound) | Low |
 
-- **战场不是噪音** — 战斗段落的音效设计不应是嘈杂的混战噪音，而是有层次的音景：近处的呼吸与兵器碰撞、中景的喊杀、远处的号角与马蹄。层次即叙事
-
----
-
-## 五、构图与景别叙事
-
-### 历史史诗叙事要点
-
-- **三大核心构图的叙事功能** —
-  - **对称构图** — 庄重/权力/仪式/不可违抗的秩序，适合朝堂、殿堂、对峙场景
-  - **三分法** — 日常/行军/对话，稳定均衡，适合叙事推进段落
-  - **大面积留白** — 苍凉/渺小/命运的空旷感，个体在天地间的孤独
-- **宏观远景的史诗价值** — 远景和大远景是史诗叙事的主力景别。远景不是过场，而是"让观众感受到时代的广阔与个体的渺小"。给远景充足的时长
-- **特写是人性锚点** — 在宏大的远景之后切入一个人的眼神特写，是"从时代回到个人"的核心手法。远景 → 特写的反差越大，情感冲击越强
-- **空间纵深即权力** — 画面纵深中的位置关系暗示权力关系：站在最远处的人是最有权力的（背对镜头更强）；跪在近景的人是最卑微的
-- **群像构图** — 史诗常需要在一个画面中容纳多个角色。群像构图的核心是"在群体中凸显个体"——通过位置、姿态、动静对比让主要角色在人群中被辨识
-- **孤独个体与宏大空间** — 一个人站在空旷的战场/废墟/大殿中，人物在画面中的比例越小，孤独感与历史重量越大
+- **The battlefield is not noise** — The sound effect design of the battle sequence should not be a noisy melee noise, but a layered soundscape: the breathing and the collision of weapons in the near range, the killing cry in the middle shot, and the horns and horse hooves in the distance. Layers are narratives
 
 ---
 
-## 六、镜头运动与节奏
+## 5. Composition and scenery narrative
 
-### 历史史诗叙事要点
+### Key points of historical epic narrative
 
-- **庄重缓移为主** — 史诗叙事的镜头运动应以极缓的速度进行，传达"历史的沉重脚步"。急推、快切等急促手法与史诗气质不兼容
-- **俯瞰 = 命运视角** — 高角度俯瞰是史诗的标志性运镜，暗示"命运/历史在俯视众生"。适合战场全景、城池陷落、人潮迁徙
-- **仰拍 = 崇敬/压迫** — 低角度仰拍适合英雄的最后一站、纪念碑、城墙。仰拍角度越大，庄重感或压迫感越强
-- **凝视不动** — 关键历史瞬间（诀别/登基/最后一战前），镜头应绝对静止，像一个历史的见证者在凝视。任何运镜都会破坏这种"时间凝固"的庄严
-- **缓摇 = 展示全貌/时代画卷** — 慢速横摇适合展示大场面：军队集结、城池全貌、战后废墟。缓摇的速度应让观众有时间"阅读"画面中的每个细节
-- **运镜即叙事视角** — 俯瞰 = 命运视角（冷静、全知）；平移跟随 = 与角色同行（共情）；缓推 = 聚焦关键（强调）；缓拉 = 揭示全局（震撼）
+- **Narrative function of three core compositions** —
+  - **Symmetrical composition** — solemnity/power/ritual/irresistible order, suitable for court, palace, and confrontation scenes
+  - **Rule of Thirds** — daily/march/conversation, stable and balanced, suitable for narrative advancement paragraphs
+  - **Large area of blank space** — desolation/insignificance/emptiness of fate, individual loneliness between heaven and earth
+- **Epic Value of Macroscopic Vision** — Longshot and grand vision are the main scenes of epic narrative. Vision is not a cutscene, but "allows the audience to feel the vastness of the times and the insignificance of individuals." Give the vision enough time
+- **Close-up is the anchor point of human nature** — Cutting into a close-up of a person's eyes after a grand vision is the core technique of "returning from the era to the individual". Long shot → The greater the contrast in the close-up, the stronger the emotional impact
+- **Depth of space is power** — The positional relationship in the depth of the picture implies a power relationship: the person standing farthest away is the most powerful (with his back to the camera being stronger); the person kneeling in the close shot is the humblest
+- **Group composition** — Epics often need to accommodate multiple characters in one frame. The core of group portrait composition is to "highlight the individual in the group" - making the main character identifiable in the crowd through position, posture, and contrast between movement and stillness.
+- **Lonely Individual and Grand Space** — A person stands in an empty battlefield/ruins/hall. The smaller the proportion of the figure in the picture, the greater the sense of loneliness and the weight of history.
+
+---
+
+## 6. Camera movement and rhythm
+
+### Key points of historical epic narrative
+
+- **Significant and slow movement is the main priority** — The camera movement of the epic narrative should be carried out at an extremely slow speed to convey the "heavy steps of history". Urgent techniques such as quick thrusts and quick cuts are incompatible with the epic temperament
+- **Overlook = Perspective of Destiny** — High-angle overlooking is the iconic mirror movement of epics, implying that "fate/history is looking down on all living beings." Suitable for panoramic views of battlefields, city collapse, and migration of people
+- **Upward shot = Reverence/Oppression** — A low-angle overhead shot is suitable for the hero's last stand, monuments, and city walls. The larger the angle when shooting from above, the stronger the sense of solemnity or oppression.
+- **Staring motionless** — At key historical moments (farewell/ascension to the throne/before the final battle), the camera should be absolutely still, staring like a witness to history. Any movement of the mirror will destroy the solemnity of this "time-freezing"
+- **Slow pan = Show the whole picture/Scroll of the times** — Slow pan is suitable for showing big scenes: army gathering, city panorama, and post-war ruins. The slow pan speed should give the audience time to "read" every detail in the picture
+- **Mirror movement is the narrative perspective** — Overlooking = perspective of fate (calm, omniscient); panning to follow = walking with the character (empathy); slow push = focus on key points (emphasis); slow pull = reveal the overall situation (shock)

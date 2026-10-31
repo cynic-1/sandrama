@@ -1,163 +1,163 @@
 ---
 name: art_prop
-description:  3D国风赛博道具图像生成 · 约束手册
+description: 3D Chinese-Style Cyber Prop Image Generation · Constraint Manual
 metaData: art_skills
 ---
 
-# 3D国风赛博道具图像生成 · 约束手册
-## （古风仙侠+新中式都市双场景全适配）
+# 3D Chinese-Style Cyber Prop Image Generation · Constraint Manual
+## (Fully Adapted for Dual Scenarios: Ancient Xianxia + New-Chinese Urban)
 
 ---
 
-## 一、核心设计原则（双场景必守）
-1.  **功能可读** — 道具用途一目了然，造型100%服务于核心功能；古典功能与赛博机能可视化统一，能量接口、功能回路、智能模组等赛博元素需直观体现道具用途，无意义元素零容忍
-2.  **质感极致** — 材质纹理必须适配8K 3D渲染精度，全覆盖**古典基础材质**（金属/玉石/木/布/纸/瓷/铜）与**赛博专属材质**（液态金属/光导纤维/能量晶体/碳纤维/全息介质/微晶玻璃），PBR物理材质属性完整
-3.  **双场景兼容** — 所有道具必须同时具备「古风仙侠场景适配性」和「新中式都市赛博场景适配性」，以东方古典形制/新中式设计为核心骨架，赛博机能为功能延伸，禁止无国风内核的纯西方赛博元素，禁止无赛博融合的纯古风/纯现代元素
-4.  **尺度明确** — 3D建模比例零畸变，通过结构比例精准暗示道具真实尺寸，可通过配套标准件参照物辅助体现尺度，适配古风场景陈设/都市场景日常使用的真实比例
-5.  **纯道具独立展示** — 画面中只能出现道具本身，严禁出现任何人物、手部、肢体，道具不可处于被持有/佩戴/握持/使用状态，必须以静物陈列方式独立呈现
-6.  **3D制作合规** — 所有造型必须符合次世代3D建模规范，无穿模、无三角面超标、无透视畸变，可直接对接3D建模全流程
+## I. Core Design Principles (Mandatory for Both Scenarios)
+1.  **Functional Legibility** — The prop's purpose must be immediately clear; the form 100% serves the core function. Classical functions and cyber mechanics must be visually unified. Cyber elements such as energy interfaces, functional circuits, and smart modules must intuitively reflect the prop's purpose. Zero tolerance for meaningless elements.
+2.  **Ultimate Texture** — Material textures must be suitable for 8K 3D rendering precision, fully covering **Classical Base Materials** (metal/jade/wood/cloth/paper/porcelain/copper) and **Cyber-Specific Materials** (liquid metal/optical fiber/energy crystal/carbon fiber/holographic medium/microcrystalline glass), with complete PBR physical material properties.
+3.  **Dual-Scenario Compatibility** — All props must simultaneously possess "Ancient Xianxia Scenario Adaptability" and "New-Chinese Urban Cyber Scenario Adaptability." The core skeleton must be Eastern classical form/New-Chinese design, with cyber mechanics as functional extensions. Pure Western cyber elements without a Chinese-style core are prohibited. Pure ancient or pure modern elements without cyber fusion are prohibited.
+4.  **Clear Scale** — Zero distortion in 3D modeling proportions. The true size of the prop must be precisely implied through structural proportions. Scale can be assisted by accompanying standard reference objects. Must adapt to the real proportions of ancient scenario furnishings and daily urban usage.
+5.  **Pure Prop Independent Display** — Only the prop itself may appear in the frame. Any characters, hands, or limbs are strictly prohibited. The prop must not be in a state of being held/worn/gripped/used. It must be presented independently in a still-life display manner.
+6.  **3D Production Compliance** — All forms must comply with next-generation 3D modeling standards: no mesh clipping, no triangle count exceedance, no perspective distortion. Must be directly compatible with the full 3D modeling workflow.
 
 ---
 
-## 二、道具分类与双场景美学约束
+## II. Prop Categories and Dual-Scenario Aesthetic Constraints
 
-### 2.1 兵器类
-| 项目 | 通用约束 | 古风场景适配约束 | 都市赛博场景适配约束 | 标准化提示词 |
+### 2.1 Weapons
+| Item | General Constraints | Ancient Scenario Adaptation Constraints | Urban Cyber Scenario Adaptation Constraints | Standardized Prompt |
 |---|---|---|---|---|
-| 类型 | 剑/刀/弓/枪/扇/短刃，兼容国风赛博衍生款，形制核心不脱离东方冷兵器骨架 | 仙侠向能量刃/符文弓/玄铁枪/机关扇，适配古风世界观武力体系 | 都市合规防卫款：折叠能量刃/防身短棍/赛博折扇/脉冲防暴器，适配都市日常携带场景 | {兵器类型}，国风赛博兵器，东方古典形制为核心 |
-| 材质 | 基础金属+机能材质+装饰镶嵌，材质属性符合PBR渲染标准 | 精钢/玄铁/青铜 + 能量核心/玉石镶嵌 + 丝绸剑穗/流苏 | 钛合金/碳纤维/液态金属 + 智能芯片/纳米晶体 + 光导纤维流苏 | 精钢锻造/钛合金加固，{核心材质}，{镶嵌元素} |
-| 装饰 | 东方传统纹样为核心，赛博元素服务于功能，无冗余堆砌 | 剑鞘/刀柄传统雕花、篆体符文、流苏垂坠、蚀刻能量回路、全息符文投影 | 阳极氧化纹样、极简新中式雕花、磁悬浮构件、NFC识别模组、线性发光标识 | 雕花精致、纹样工整，{机能装饰元素}，{发光效果} |
-| 光泽 | 金属物理反光精准，自发光效果自然，无过曝、无死黑 | 金属冷光泽、刃口反光、低饱和暖光自发光、能量核心柔和辉光 | 哑光金属质感、阳极氧化光泽、高饱和线性霓虹光、智能模组状态灯效 | 冷光泽/哑光质感，金属物理质感，自然自发光，无过曝 |
-| 标准化提示词 | — | — | — | 国风赛博{兵器}，{材质描述}，{工艺/装饰描述}，{场景适配标签}，{发光效果描述} |
+| Type | Swords/daggers/bows/spears/fans/short blades, compatible with Chinese-style cyber derivatives; core form must not deviate from the Eastern cold weapon skeleton | Xianxia-oriented energy blades/rune bows/dark iron spears/mechanical fans, adapted to the ancient worldview martial system | Urban compliant defense items: folding energy blades/self-defense short sticks/cyber folding fans/pulse riot suppressors, adapted to daily urban carrying scenarios | {Weapon Type}, Chinese-style cyber weapon, Eastern classical form as core |
+| Material | Base metal + functional material + decorative inlay; material properties must meet PBR rendering standards | Fine steel/dark iron/bronze + energy core/jade inlay + silk sword tassel/tassel | Titanium alloy/carbon fiber/liquid metal + smart chip/nano crystal + optical fiber tassel | Forged fine steel/titanium alloy reinforcement, {Core Material}, {Inlay Elements} |
+| Decoration | Eastern traditional patterns as core; cyber elements serve function; no redundant stacking | Traditional carving on scabbards/hilts, seal script runes, hanging tassels, etched energy circuits, holographic rune projection | Anodized patterns, minimalist New-Chinese carving, magnetic levitation components, NFC recognition modules, linear glowing identifiers | Exquisite carving, orderly patterns, {Functional Decoration Elements}, {Glowing Effects} |
+| Sheen | Precise physical metal reflection, natural self-illumination, no overexposure, no dead blacks | Cold metal sheen, blade edge reflection, low-saturation warm self-illumination, soft glow from energy core | Matte metal texture, anodized sheen, high-saturation linear neon light, smart module status light effects | Cold sheen/matte texture, physical metal quality, natural self-illumination, no overexposure |
+| Standardized Prompt | — | — | — | Chinese-style cyber {Weapon}, {Material Description}, {Craftsmanship/Decoration Description}, {Scenario Adaptation Tag}, {Glowing Effect Description} |
 
-### 2.2 饰品类
-| 项目 | 通用约束 | 古风场景适配约束 | 都市赛博场景适配约束 | 标准化提示词 |
+### 2.2 Accessories
+| Item | General Constraints | Ancient Scenario Adaptation Constraints | Urban Cyber Scenario Adaptation Constraints | Standardized Prompt |
 |---|---|---|---|---|
-| 类型 | 簪/钗/璎珞/玉佩/手镯/耳坠/戒指，兼容国风赛博衍生款，形制核心不脱离东方首饰审美 | 古风发簪/步摇/玉佩/璎珞，适配古装穿搭体系 | 新中式吊坠/手镯/耳饰/智能配饰，适配都市日常穿搭、职场、休闲全场景 | {饰品类型}，国风赛博首饰，东方古典/新中式形制为核心 |
-| 材质 | 贵金属/天然宝玉石+机能材质，质感写实，符合物理属性 | 金/银/和田玉/翡翠/珍珠 + 能量水晶/光导纤维/全息介质 | 18K金/钛钢/莫桑石/玉髓 + 液态金属/智能芯片/无线充电模组/光导纤维 | 金丝编织/钛钢塑形，玉质通透/珠光莹润，{核心材质} |
-| 工艺 | 极致精细，传统工艺与赛博工艺融合，细节适配8K渲染 | 花丝/掐丝/镶嵌/玉雕/錾刻 + 纳米能量回路蚀刻/微型全息模组 | 极简精雕/CNC精铣/微镶 + 磁悬浮结构/生物识别模组/微型发光元件 | 工艺精细、精雕细琢，{传统工艺}，{机能工艺} |
-| 光泽 | 珠光/玉润/金属光泽自然，自发光不破坏主体质感 | 温润柔光、低饱和渐变自发光、玉质次表面散射效果 | 金属冷光泽、珠光莹润、线性可控霓虹光、状态灯柔光过渡 | 珠光莹润、玉质通透、金属质感，自然自发光，无过曝 |
-| 标准化提示词 | — | — | — | 国风赛博{饰品}，{材质描述}，{工艺描述}，{场景适配标签}，{发光效果描述} |
+| Type | Hairpins/hairpins/necklaces/jade pendants/bracelets/earrings/rings, compatible with Chinese-style cyber derivatives; core form must not deviate from Eastern jewelry aesthetics | Ancient hairpins/step-shake/jade pendants/necklaces, adapted to ancient costume styling system | New-Chinese pendants/bracelets/earrings/smart accessories, adapted to all urban daily, workplace, and casual scenarios | {Accessory Type}, Chinese-style cyber jewelry, Eastern classical/New-Chinese form as core |
+| Material | Precious metals/natural gemstones + functional materials; realistic texture, conforming to physical properties | Gold/silver/Hetian jade/jadeite/pearl + energy crystal/optical fiber/holographic medium | 18K gold/titanium steel/moissanite/chalcedony + liquid metal/smart chip/wireless charging module/optical fiber | Gold wire weaving/titanium steel shaping, translucent jade quality/lustrous pearl, {Core Material} |
+| Craftsmanship | Ultimate precision; fusion of traditional and cyber craftsmanship; details adapted for 8K rendering | Filigree/enamel/inlay/jade carving/chasing + nano energy circuit etching/micro holographic module | Minimalist precision carving/CNC precision milling/micro-inlay + magnetic levitation structure/biometric recognition module/micro glowing element | Fine craftsmanship, meticulous carving, {Traditional Craftsmanship}, {Functional Craftsmanship} |
+| Sheen | Natural pearl luster/jade sheen/metal sheen; self-illumination must not compromise main texture | Warm soft light, low-saturation gradient self-illumination, jade subsurface scattering effect | Cold metal sheen, lustrous pearl, linear controllable neon light, soft light transition for status lights | Lustrous pearl, translucent jade, metal quality, natural self-illumination, no overexposure |
+| Standardized Prompt | — | — | — | Chinese-style cyber {Accessory}, {Material Description}, {Craftsmanship Description}, {Scenario Adaptation Tag}, {Glowing Effect Description} |
 
-### 2.3 生活器物类
-| 项目 | 通用约束 | 古风场景适配约束 | 都市赛博场景适配约束 | 标准化提示词 |
+### 2.3 Household Items
+| Item | General Constraints | Ancient Scenario Adaptation Constraints | Urban Cyber Scenario Adaptation Constraints | Standardized Prompt |
 |---|---|---|---|---|
-| 类型 | 茶具/酒具/香炉/棋盘/书卷/灯笼，兼容国风赛博衍生款，形制核心不脱离东方器物美学 | 古风陈设/文房/茶酒器具，适配古风宅院/书房/茶室场景 | 新中式居家/办公/出行器具：智能茶具/赛博香炉/全息棋盘/电子文房/无线充电座/国风智能灯具，适配都市居家、职场、出行全场景 | {器物类型}，国风赛博器物，东方古典/新中式形制为核心 |
-| 材质 | 传统器物材质+机能材质，纹理清晰，质感写实 | 瓷/铜/竹/木/纸/紫砂 + 半透明玉质/能量介质/光导纤维 | 微晶玻璃/碳纤维/阳极氧化铝/实木/陶瓷 + 触控面板/智能模组/全息介质 | 青瓷温润/紫铜古朴/木纹清晰，{核心材质}，{机能材质} |
-| 质感 | 纹理极致清晰，符合物理材质属性，适配PBR渲染 | 釉面光泽/木纹/竹节/宣纸纤维清晰，做旧质感自然 | 釉面质感/金属哑光/玻璃通透/触控面板细腻，全新质感写实 | 纹理超清晰，质感写实，{材质质感描述} |
-| 风格 | 素雅/华贵按场景切换，东方美学为核心，赛博元素为功能服务 | 素雅古朴/华贵精致，适配古风场景审美 | 极简机能新中式/轻奢国风赛博，适配都市场景审美 | 素雅古朴/华贵精致/极简机能/轻奢国风，{风格标签} |
-| 标准化提示词 | — | — | — | 国风赛博{器物}，{材质描述}，{质感描述}，{场景适配标签}，{风格标签} |
+| Type | Tea sets/wine sets/incense burners/chess boards/scrolls/lanterns, compatible with Chinese-style cyber derivatives; core form must not deviate from Eastern object aesthetics | Ancient furnishings/study tools/tea and wine vessels, adapted to ancient residence/study/tea room scenarios | New-Chinese home/office/travel items: smart tea sets/cyber incense burners/holographic chess boards/electronic study tools/wireless charging stands/Chinese-style smart lighting, adapted to all urban home, workplace, and travel scenarios | {Object Type}, Chinese-style cyber object, Eastern classical/New-Chinese form as core |
+| Material | Traditional object materials + functional materials; clear textures, realistic quality | Porcelain/copper/bamboo/wood/paper/zisha + translucent jade quality/energy medium/optical fiber | Microcrystalline glass/carbon fiber/anodized aluminum/solid wood/ceramic + touch panel/smart module/holographic medium | Warm celadon/ancient purple copper/clear wood grain, {Core Material}, {Functional Material} |
+| Texture | Ultimate clear textures, conforming to physical material properties, adapted for PBR rendering | Clear glaze sheen/wood grain/bamboo nodes/xuan paper fibers, natural aged quality | Glaze texture/metal matte/glass transparency/fine touch panel, realistic new quality | Ultra-clear texture, realistic quality, {Material Texture Description} |
+| Style | Elegant/Luxurious switched by scenario; Eastern aesthetics as core; cyber elements serve function | Elegant and ancient/Luxurious and exquisite, adapted to ancient scenario aesthetics | Minimalist functional New-Chinese/Luxury Chinese-style cyber, adapted to urban scenario aesthetics | Elegant and ancient/Luxurious and exquisite/Minimalist functional/Luxury Chinese-style, {Style Tag} |
+| Standardized Prompt | — | — | — | Chinese-style cyber {Object}, {Material Description}, {Texture Description}, {Scenario Adaptation Tag}, {Style Tag} |
 
-### 2.4 信物/关键道具类
-| 项目 | 通用约束 | 古风场景适配约束 | 都市赛博场景适配约束 | 标准化提示词 |
+### 2.4 Tokens/Key Props
+| Item | General Constraints | Ancient Scenario Adaptation Constraints | Urban Cyber Scenario Adaptation Constraints | Standardized Prompt |
 |---|---|---|---|---|
-| 类型 | 信物/令牌/卷轴/药瓶/玉印/密钥，兼容国风赛博衍生款，具备强辨识度与叙事性 | 古风宗门令牌/传国玉玺/加密卷轴/丹药瓶/修仙信物，适配古风世界观叙事 | 新中式身份令牌/加密U盘/智能药瓶/权限印章/数字信物，适配都市赛博世界观叙事 | {道具类型}，国风赛博关键道具，东方形制为核心，叙事性拉满 |
-| 特殊性 | 具备高辨识度、强叙事象征意义，赛博元素100%服务于道具核心叙事，无冗余设计 | 独特造型、东方寓意拉满，赛博元素适配修仙/武侠世界观（如封印、传音、全息传讯） | 独特造型、新中式设计拉满，赛博元素适配都市世界观（如加密、识别、权限、数据存储） | 独特造型、寓意深远、叙事性强，{机能叙事元素} |
-| 状态质感 | 可按剧情需要调整新旧程度，质感写实，符合物理逻辑 | 古旧斑驳/崭新精致，适配古风年代感，如氧化、磨损、包浆 | 全新精密/复古做旧/电子老化，适配都市使用场景，如氧化、划痕、元件老化 | 古旧斑驳/崭新精致/赛博老化质感，{状态描述} |
-| 标准化提示词 | — | — | — | 国风赛博{道具}，{材质描述}，{状态描述}，{叙事元素描述}，{场景适配标签} |
+| Type | Tokens/permits/scrolls/pill bottles/jade seals/keys, compatible with Chinese-style cyber derivatives; must possess high recognizability and narrativity | Ancient sect tokens/imperial jade seals/encrypted scrolls/pill bottles/cultivation tokens, adapted to ancient worldview narrative | New-Chinese identity tokens/encrypted USB drives/smart pill bottles/permission seals/digital tokens, adapted to urban cyber worldview narrative | {Prop Type}, Chinese-style cyber key prop, Eastern form as core, maximized narrativity |
+| Uniqueness | High recognizability, strong narrative symbolic meaning; cyber elements 100% serve the prop's core narrative; no redundant design | Unique form, maximized Eastern symbolism; cyber elements adapted to cultivation/wuxia worldview (e.g., sealing, voice transmission, holographic communication) | Unique form, maximized New-Chinese design; cyber elements adapted to urban worldview (e.g., encryption, recognition, permissions, data storage) | Unique form, profound symbolism, strong narrativity, {Functional Narrative Elements} |
+| State Texture | New/old degree adjustable per plot needs; realistic quality, conforming to physical logic | Ancient and mottled/Brand new and exquisite, adapted to ancient era feel, e.g., oxidation, wear, patina | Brand new and precise/Retro aged/Electronic aging, adapted to urban usage scenarios, e.g., oxidation, scratches, component aging | Ancient and mottled/Brand new and exquisite/Cyber aged texture, {State Description} |
+| Standardized Prompt | — | — | — | Chinese-style cyber {Prop}, {Material Description}, {State Description}, {Narrative Element Description}, {Scenario Adaptation Tag} |
 
 ---
 
-## 三、3D多角度设定图规范（双场景通用）
+## III. 3D Multi-Angle Setup Diagram Standards (Common to Both Scenarios)
 
-### 视图定义（次世代3D正交视图标准）
-| 位置 | 视图 | 角度 | 核心要求 | 标准化提示词 |
+### View Definitions (Next-Generation 3D Orthographic View Standards)
+| Position | View | Angle | Core Requirements | Standardized Prompt |
 |---|---|---|---|---|
-| 左上 | 正面图 | 正面 0° 正交视图 | 道具完整正面形态，3D建模结构无透视畸变，所有核心结构、装饰、功能件完整呈现 | front view, orthographic view, 3D modeling, no perspective distortion |
-| 右上 | 侧面图 | 侧面 90° 正交视图 | 道具厚度、轮廓、内部结构、侧部装饰清晰，3D建模比例精准，机能构件完整呈现 | side view, orthographic view, 3D modeling, no perspective distortion |
-| 左下 | 背面图 | 背面 180° 正交视图 | 道具背部结构、装饰、机能接口、固定结构完整呈现，3D建模无遗漏 | back view, orthographic view, 3D modeling, no perspective distortion |
-| 右下 | 细节特写 | 局部放大正交视图 | 材质纹理、工艺细节、能量回路、机能构件、芯片接口极致清晰，8K级精度 | detail closeup, orthographic view, ultra high detail, 8K precision |
+| Top Left | Front View | Front 0° Orthographic View | Complete front form of the prop; 3D modeling structure with no perspective distortion; all core structures, decorations, and functional parts fully presented | front view, orthographic view, 3D modeling, no perspective distortion |
+| Top Right | Side View | Side 90° Orthographic View | Clear prop thickness, outline, internal structure, and side decorations; precise 3D modeling proportions; functional components fully presented | side view, orthographic view, 3D modeling, no perspective distortion |
+| Bottom Left | Back View | Back 180° Orthographic View | Complete presentation of prop back structure, decorations, functional interfaces, and fixing structures; no omissions in 3D modeling | back view, orthographic view, 3D modeling, no perspective distortion |
+| Bottom Right | Detail Closeup | Local Magnified Orthographic View | Ultimate clarity of material textures, craftsmanship details, energy circuits, functional components, and chip interfaces; 8K-level precision | detail closeup, orthographic view, ultra high detail, 8K precision |
 
-### 画面规范（双场景通用，3D渲染标准）
-| 项目 | 强制约束 | 古风场景适配选项 | 都市赛博场景适配选项 |
+### Frame Standards (Common to Both Scenarios, 3D Rendering Standards)
+| Item | Mandatory Constraints | Ancient Scenario Adaptation Options | Urban Cyber Scenario Adaptation Options |
 |---|---|---|---|
-| 布局 | 同一画面四宫格（2×2），上下左右四视角严格对应视图定义，无错位、无裁切、无比例失衡 | 同通用约束 | 同通用约束 |
-| 背景 | 素灰纯色 #B8B8B8，无任何多余纹理、图案、场景元素，禁止复杂背景 | 可选项：浅宣纸纹理纯色背景 | 可选项：哑光深灰纯色背景 #333333 |
-| 光线 | 均匀柔光，全局光照，无硬阴影，保留道具自发光元素的柔和过渡，无局部过曝、无死黑 | 东方水墨柔光，低对比，暖光为主，无强烈反光 | 光线追踪全局光照，冷光为主，保留金属/玻璃材质的物理反射，霓虹光效自然过渡 |
-| 比例 | 每格道具占格内主体 70%+，3D建模居中对齐，四格内道具比例完全统一，无大小畸变 | 同通用约束 | 同通用约束 |
-| 投影 | 允许自然地面微投影，投影柔和不突兀，无硬边、无重影 | 同通用约束 | 同通用约束 |
-| 画面比例 | 强制 1:1 正方形画幅 | 同通用约束 | 同通用约束 |
-| 渲染标准 | 8K超高清，次世代3D渲染，PBR物理材质，光线追踪，全局光照，无噪点、无锯齿、无穿模 | 同通用约束，可增加国风水墨质感渲染 | 同通用约束，可增加赛博朋克ACES色调映射 |
+| Layout | Four-grid (2×2) in the same frame; top, bottom, left, and right four views strictly correspond to view definitions; no misalignment, no cropping, no proportion imbalance | Same as general constraints | Same as general constraints |
+| Background | Plain gray solid color #B8B8B8; no extra textures, patterns, or scene elements; complex backgrounds prohibited | Optional: Light xuan paper texture solid color background | Optional: Matte dark gray solid color background #333333 |
+| Lighting | Uniform soft light, global illumination, no hard shadows; retain soft transitions of prop self-illumination elements; no local overexposure, no dead blacks | Eastern ink wash soft light, low contrast, warm light dominant, no strong reflections | Ray tracing global illumination, cold light dominant, retain physical reflections of metal/glass materials, natural transition of neon light effects |
+| Proportion | Prop occupies 70%+ of the main subject in each grid; 3D modeling centered and aligned; prop proportions completely unified across four grids; no size distortion | Same as general constraints | Same as general constraints |
+| Shadow | Natural ground micro-shadow allowed; shadow soft and not abrupt; no hard edges, no double shadows | Same as general constraints | Same as general constraints |
+| Frame Ratio | Mandatory 1:1 square aspect ratio | Same as general constraints | Same as general constraints |
+| Rendering Standard | 8K ultra-high definition, next-generation 3D rendering, PBR physical materials, ray tracing, global illumination, no noise, no aliasing, no mesh clipping | Same as general constraints, may add Chinese-style ink wash texture rendering | Same as general constraints, may add cyberpunk ACES tone mapping |
 
 ---
 
-## 四、材质渲染约束（双场景全适配，PBR标准）
-| 材质分类 | 通用渲染要求（PBR标准） | 古风场景渲染标准 | 都市赛博场景渲染标准 | 标准化提示词 |
+## IV. Material Rendering Constraints (Fully Adapted for Dual Scenarios, PBR Standards)
+| Material Category | General Rendering Requirements (PBR Standards) | Ancient Scenario Rendering Standards | Urban Cyber Scenario Rendering Standards | Standardized Prompt |
 |---|---|---|---|---|
-| 传统金属 | 反光/高光/冷光泽精准，划痕/磨损/包浆微可见，金属度/粗糙度参数符合物理属性 | 青铜/玄铁/精钢/黄金，哑光质感为主，低反光，古旧磨损自然 | 钛钢/阳极氧化铝/18K金，金属度拉满，高反光/哑光可选，精密质感 | 金属质感，物理级反光，{金属类型}，{质感描述} |
-| 玉石/宝石 | 次表面散射精准，内透光、温润、微通透，切面/纹理清晰，色散效果自然 | 和田玉/翡翠/玛瑙，低饱和，强次表面散射，温润如脂，内藏能量回路 | 莫桑石/水晶/玉髓，高通透，强色散，切面清晰，内藏发光芯片/光导纤维 | 玉质通透，温润如脂，次表面散射，宝石璀璨，光芒折射 |
-| 木质/竹质 | 木纹/年轮/竹节清晰，肌理写实，粗糙度符合物理属性，无模糊纹理 | 檀木/楠木/竹材，做旧质感，木纹清晰，温润哑光，适配古风陈设 | 黑胡桃/白蜡木/碳化竹，全新质感，木纹细腻，哑光/漆面光泽可选，适配都市居家 | 木纹清晰，年轮可见，肌理写实，质感温润 |
-| 陶瓷/瓷器 | 釉面光泽/开片纹理清晰，色泽均匀，反光/粗糙度符合物理属性 | 青瓷/白瓷/紫砂，温润釉面，开片自然，低反光，古旧质感 | 骨瓷/微晶陶瓷，高光泽釉面，极简纯色，高反光，精密质感 | 釉面光泽，瓷质温润，开片纹理清晰，反光自然 |
-| 布/纸 | 纤维质感清晰，边缘自然，编织纹理细腻，粗糙度符合物理属性 | 宣纸/丝绸/亚麻，纤维纹理清晰，古朴质感，低饱和 | 帆布/特种纸/光导纤维布，编织纹理细腻，哑光质感，可集成发光元件 | 布料纹理，纸质古朴，纤维质感清晰，编织纹理细腻 |
-| 赛博机能金属 | 流体/镜面质感，反光精准，蚀刻纹理清晰，金属度拉满 | 液态金属/纳米合金，低饱和，蚀刻符文回路，适配古风修仙设定 | 钛合金/碳纤维/液态金属，高反光，蚀刻电路纹理，阳极氧化赛博配色 | 液态金属质感，镜面反光，碳纤维编织纹理，蚀刻电路/符文 |
-| 发光机能材质 | 自发光效果自然，柔光过渡，无过曝，光线溢出符合物理逻辑 | 能量晶体/光导纤维/全息介质，低饱和暖光，柔和辉光，次表面散射 | 霓虹发光元件/LED模组/全息介质，高饱和线性霓虹光，渐变光效，光线追踪 | 自发光核心，柔光过渡，霓虹光效，能量辉光，无过曝 |
-| 透明机能材质 | 通透度精准，反光/折射符合物理属性，无畸变、无模糊 | 半透明玉质/水晶，低通透，强次表面散射，内藏能量回路 | 微晶玻璃/亚克力/全息介质，高通透，强折射，光线追踪，内藏智能芯片 | 通透质感，物理级折射/反光，次表面散射，无畸变 |
+| Traditional Metal | Precise reflection/highlight/cold sheen; scratches/wear/patina micro-visible; metalness/roughness parameters conform to physical properties | Bronze/dark iron/fine steel/gold; matte texture dominant, low reflection, natural ancient wear | Titanium steel/anodized aluminum/18K gold; maximized metalness, high reflection/matte optional, precise texture | Metal texture, physical-level reflection, {Metal Type}, {Texture Description} |
+| Jade/Gemstone | Precise subsurface scattering; internal light transmission, warmth, micro-transparency; clear facets/textures; natural dispersion effect | Hetian jade/jadeite/agate; low saturation, strong subsurface scattering, warm like fat, internal energy circuits | Moissanite/crystal/chalcedony; high transparency, strong dispersion, clear facets, internal glowing chips/optical fibers | Translucent jade, warm like fat, subsurface scattering, brilliant gemstone, light refraction |
+| Wood/Bamboo | Clear wood grain/annual rings/bamboo nodes; realistic texture; roughness conforms to physical properties; no blurred textures | Sandalwood/phoenix bamboo/bamboo material; aged texture, clear wood grain, warm matte, adapted to ancient furnishings | Black walnut/ash wood/carbonized bamboo; new texture, fine wood grain, matte/lacquer sheen optional, adapted to urban home | Clear wood grain, visible annual rings, realistic texture, warm quality |
+| Ceramic/Porcelain | Clear glaze sheen/crazing texture; uniform color; reflection/roughness conforms to physical properties | Celadon/white porcelain/zisha; warm glaze, natural crazing, low reflection, ancient texture | Bone china/microcrystalline ceramic; high-gloss glaze, minimalist solid color, high reflection, precise texture | Glaze sheen, warm porcelain quality, clear crazing texture, natural reflection |
+| Cloth/Paper | Clear fiber texture; natural edges; fine weaving texture; roughness conforms to physical properties | Xuan paper/silk/linen; clear fiber texture, ancient quality, low saturation | Canvas/special paper/optical fiber cloth; fine weaving texture, matte quality, can integrate glowing elements | Cloth texture, ancient paper quality, clear fiber texture, fine weaving texture |
+| Cyber Functional Metal | Fluid/mirror texture; precise reflection; clear etched textures; maximized metalness | Liquid metal/nano alloy; low saturation, etched rune circuits, adapted to ancient cultivation settings | Titanium alloy/carbon fiber/liquid metal; high reflection, etched circuit textures, anodized cyber color scheme | Liquid metal texture, mirror reflection, carbon fiber weaving texture, etched circuits/runes |
+| Glowing Functional Material | Natural self-illumination effect; soft light transition; no overexposure; light spill conforms to physical logic | Energy crystal/optical fiber/holographic medium; low-saturation warm light, soft glow, subsurface scattering | Neon glowing elements/LED modules/holographic medium; high-saturation linear neon light, gradient light effects, ray tracing | Self-illumination core, soft light transition, neon light effects, energy glow, no overexposure |
+| Transparent Functional Material | Precise transparency; reflection/refraction conforms to physical properties; no distortion, no blur | Translucent jade quality/crystal; low transparency, strong subsurface scattering, internal energy circuits | Microcrystalline glass/acrylic/holographic medium; high transparency, strong refraction, ray tracing, internal smart chips | Transparent texture, physical-level refraction/reflection, subsurface scattering, no distortion |
 
 ---
 
-## 五、标准化提示词模板（双场景全适配，直接复用）
-### 【通用模板】古风+都市双场景兼容
+## V. Standardized Prompt Templates (Fully Adapted for Dual Scenarios, Directly Reusable)
+### [General Template] Ancient + Urban Dual-Scenario Compatible
 ```
-国风赛博朋克道具设定图，8K超高清，次世代高精度3D建模，PBR物理材质，光线追踪，全局光照，3D国风赛博风格，东方古典形制融合赛博机能美学，电影级光影，
-{道具类型}，{材质描述}，{工艺/装饰描述}，{机能元素描述}，{状态描述}，{发光效果描述}，
-纯道具静物展示，道具独立陈列，无人持有，无人佩戴，无人使用，
-同一画面四宫格（2×2）：左上正面正交视图+右上侧面正交视图+左下背面正交视图+右下细节特写，
-素灰纯色#B8B8B8背景，均匀柔光，全局光照，无硬阴影，无过曝，无死黑，
-材质纹理超清晰，PBR物理材质渲染，{材质光泽描述}，纹理细节极致清晰，
-图中不要有任何文字、标注、刻度线、水印，
-画面中不能出现任何人物、手部、手指、肢体，道具不可处于被握持、佩戴、使用状态
-```
-
-### 【古风赛博专属模板】仙侠/武侠世界观专用
-```
-古风赛博朋克道具设定图，8K超高清，次世代高精度3D建模，PBR物理材质，光线追踪，全局光照，3D国风仙侠赛博风格，东方古典形制为核心，赛博机能元素为点缀，东方水墨电影级光影，
-{道具类型}，{材质描述}，{传统工艺描述}，{符文/能量回路描述}，{状态描述}，{柔和发光效果描述}，
-纯道具静物展示，道具独立陈列，无人持有，无人佩戴，无人使用，
-同一画面四宫格（2×2）：左上正面正交视图+右上侧面正交视图+左下背面正交视图+右下细节特写，
-素灰纯色#B8B8B8背景，东方水墨柔光，低对比，无硬阴影，无过曝，
-材质纹理超清晰，PBR物理材质渲染，{材质光泽描述}，细节极致写实，
-图中不要有任何文字、标注、刻度线、水印，
-画面中不能出现任何人物、手部、手指、肢体，道具不可处于被握持、佩戴、使用状态
+National-style cyberpunk prop design sheet, 8K ultra-high definition, next-generation high-precision 3D modeling, PBR physical materials, ray tracing, global illumination, 3D national-style cyber style, fusion of Eastern classical forms with cyber-functional aesthetics, cinematic lighting and shadow,
+{Prop Type}, {Material Description}, {Craftsmanship/Decoration Description}, {Functional Element Description}, {Condition Description}, {Glow Effect Description},
+Pure prop still-life display, props displayed independently, not held, not worn, not used by anyone,
+Four-panel grid (2×2) of the same frame: top-left front orthographic view + top-right side orthographic view + bottom-left back orthographic view + bottom-right detail close-up,
+Solid gray #B8B8B8 background, even soft lighting, global illumination, no hard shadows, no overexposure, no crushed blacks,
+Ultra-clear material textures, PBR physical material rendering, {material gloss description}, extremely clear texture details,
+The image must not contain any text, labels, tick marks, or watermarks.
+No characters, hands, fingers, or limbs may appear in the frame; props must not be in a state of being held, worn, or in use.
 ```
 
-### 【都市国风赛博专属模板】近未来新中式都市专用
+### [Ancient-Style Cyber Exclusive Template] Dedicated to Xianxia/Wuxia Worldview
 ```
-新中式都市赛博朋克道具设定图，8K超高清，次世代高精度3D建模，PBR物理材质，光线追踪，全局光照，3D都市国风赛博风格，极简新中式设计为核心，赛博机能为功能载体，赛博朋克电影级光影，
-{道具类型}，{材质描述}，{工艺描述}，{智能机能元素描述}，{状态描述}，{霓虹发光效果描述}，
-纯道具静物展示，道具独立陈列，无人持有，无人佩戴，无人使用，
-同一画面四宫格（2×2）：左上正面正交视图+右上侧面正交视图+左下背面正交视图+右下细节特写，
-素灰纯色#B8B8B8背景，全局光照，均匀柔光，物理级反射，无硬阴影，无过曝，
-材质纹理超清晰，PBR物理材质渲染，{材质光泽描述}，精密细节极致写实，
-图中不要有任何文字、标注、刻度线、水印，
-画面中不能出现任何人物、手部、手指、肢体，道具不可处于被握持、佩戴、使用状态
+Ancient-style cyberpunk prop concept art, 8K ultra-high definition, next-generation high-precision 3D modeling, PBR physical materials, ray tracing, global illumination, 3D Chinese-style xianxia cyber style, Eastern classical form as the core, cyber functional elements as accents, Eastern ink-wash cinematic lighting,
+{Prop Type}, {Material Description}, {Traditional Craft Description}, {Rune/Energy Circuit Description}, {State Description}, {Soft Glow Effect Description},
+Pure prop still life display, prop displayed independently, no one holding, no one wearing, no one using,
+Four-panel grid in the same frame (2×2): top-left front orthographic view + top-right side orthographic view + bottom-left back orthographic view + bottom-right detail close-up,
+Plain gray solid color #B8B8B8 background, Eastern ink-wash soft light, low contrast, no hard shadows, no overexposure,
+Ultra-clear material textures, PBR physical material rendering, {Material Gloss Description}, extreme realistic details,
+No text, labels, scale lines, or watermarks in the image,
+No people, hands, fingers, or limbs may appear in the frame, the prop must not be in a state of being held, worn, or used
+```
+
+### [Urban Chinese-Style Cyber Exclusive Template] Dedicated to Near-Future Neo-Chinese Urban
+```
+New Chinese urban cyberpunk prop concept art, 8K ultra-high definition, next-generation high-precision 3D modeling, PBR physical materials, ray tracing, global illumination, 3D urban national style cyber style, minimalist new Chinese design as the core, cyber mecha as the functional carrier, cyberpunk movie-level lighting and shadows,
+{prop type}, {material description}, {craftsmanship description}, {smart function element description}, {state description}, {neon glow effect description},
+Pure prop still life display, prop displayed independently, no one holding, no one wearing, no one using,
+Four-panel grid in the same frame (2×2): top-left front orthographic view + top-right side orthographic view + bottom-left back orthographic view + bottom-right detail close-up,
+Plain gray solid color #B8B8B8 background, global illumination, uniform soft light, physical-level reflection, no hard shadows, no overexposure,
+Ultra-clear material textures, PBR physical material rendering, {material gloss description}, precise details extremely realistic,
+No text, labels, scale lines, or watermarks in the image,
+No people, hands, fingers, or limbs may appear in the frame, the prop must not be in a state of being held, worn, or used
 ```
 
 ---
 
-## 六、约束规则（双场景必守+严禁红线）
-### 必守规则（违反即不合格）
-| 编号 | 强制规则 |
+## VI. Constraint Rules (Mandatory for Both Scenarios + Strict Red Lines)
+### Mandatory Rules (Violation Results in Non-Compliance)
+| ID | Mandatory Rule |
 |---|---|
-| R1 | 必须指定「素灰纯色#B8B8B8背景」，禁止任何多余背景元素，可选适配场景的合规背景 |
-| R2 | 必须明确道具材质与工艺，传统材质与赛博材质标注清晰，PBR属性完整，渲染标准统一 |
-| R3 | 道具造型必须以东方古典形制/新中式设计为核心骨架，禁止无国风内核的纯西方赛博/纯现代设计 |
-| R4 | 必须使用正交视图呈现四宫格多角度内容，3D建模比例精准，无透视畸变、无穿模、无比例失衡 |
-| R5 | 必须遵循双场景兼容准则，所有道具设计必须同时具备古风场景和都市场景的适配空间，禁止单一场景绑定 |
-| R6 | 所有赛博机能元素必须服务于道具核心功能与叙事，禁止无意义的特效堆砌、元素堆砌 |
-| R7 | 必须遵循8K超高清、次世代3D渲染、PBR物理材质的核心渲染标准，无噪点、无锯齿、无模糊 |
+| R1 | Must specify a "plain gray solid color #B8B8B8 background"; any extraneous background elements are prohibited. Compliant backgrounds adapted to the scene are optional. |
+| R2 | Must clearly define prop materials and craftsmanship. Traditional and cyber materials must be clearly labeled, PBR attributes must be complete, and rendering standards must be unified. |
+| R3 | Prop design must be based on Eastern classical forms or New Chinese design as the core framework. Pure Western cyber or purely modern designs lacking a Chinese-style core are prohibited. |
+| R4 | Must use orthographic views to present four-grid multi-angle content. 3D modeling proportions must be precise, with no perspective distortion, no clipping, and no proportion imbalance. |
+| R5 | Must adhere to the dual-scenario compatibility guideline. All prop designs must possess adaptability for both ancient-style and urban scenes. Single-scenario binding is prohibited. |
+| R6 | All cyber functional elements must serve the core function and narrative of the prop. Meaningless stacking of effects or elements is prohibited. |
+| R7 | Must follow the core rendering standards of 8K ultra-high definition, next-generation 3D rendering, and PBR physical materials. No noise, no aliasing, and no blurriness are allowed. |
 
-### 严禁红线（触碰即作废）
-| 编号 | 严禁内容 |
+### Strict Red Lines (Violation Results in Invalidity)
+| ID | Prohibited Content |
 |---|---|
-| X1 | 复杂场景背景、带环境的场景化画面，禁止任何非合规纯色的背景元素 |
-| X2 | 道具与人物同画面，本手册为纯道具设定图规范，禁止任何人物相关元素 |
-| X3 | 出现任何人物形象，包括全身、半身、局部（手、手指、手臂等所有肢体部位） |
-| X4 | 道具处于被持有、握持、佩戴、使用中的状态，禁止任何暗示使用场景的姿态 |
-| X5 | 出现暗示人物存在的元素（如手持痕迹、佩戴视角、使用姿态、人体工学握持造型） |
-| X6 | 无国风内核的纯西方赛博朋克设计，禁止与国风赛博世界观不符的违和元素 |
-| X7 | 古风场景出现过度未来化的违和元素（如都市智能硬件、枪械、西方赛博符号） |
-| X8 | 都市场景出现脱离新中式内核的违和元素（如纯古代冷兵器、仙侠玄幻无逻辑元素） |
-| X9 | 过度曝光的光效，发光元素必须自然柔和，不破坏整体材质质感与画面光影平衡 |
-| X10 | 画面中出现任何文字、标注、刻度线、水印、logo等多余元素 |
-| X11 | 透视畸变的3D建模，四宫格视图必须使用正交视角，确保道具结构比例精准统一 |
-| X12 | 无功能逻辑的赛博元素堆砌，所有机能部件必须有合理的功能对应，禁止无效设计 |
+| X1 | Complex scene backgrounds or scene-based images with environments. Any non-compliant solid-color background elements are prohibited. |
+| X2 | Props and characters in the same frame. This manual is a specification for pure prop design sheets; any character-related elements are prohibited. |
+| X3 | Any character imagery, including full body, half body, or partial views (hands, fingers, arms, and all other body parts). |
+| X4 | Props in a state of being held, gripped, worn, or in use. Any posture implying a usage scenario is prohibited. |
+| X5 | Elements implying the presence of a character (e.g., hand-holding marks, wearing perspective, usage posture, ergonomic gripping shapes). |
+| X6 | Pure Western cyberpunk designs lacking a Chinese-style core. Elements inconsistent with the Chinese-style cyber worldview are prohibited. |
+| X7 | Overly futuristic incongruous elements in ancient-style scenes (e.g., urban smart hardware, firearms, Western cyber symbols). |
+| X8 | Incongruous elements in urban scenes that deviate from the New Chinese core (e.g., pure ancient cold weapons, illogical xianxia/fantasy elements). |
+| X9 | Overexposed light effects. Glowing elements must be natural and soft, without disrupting the overall material texture and lighting balance of the image. |
+| X10 | Any text, labels, scale lines, watermarks, logos, or other extraneous elements appearing in the image. |
+| X11 | 3D modeling with perspective distortion. Four-grid views must use orthographic perspectives to ensure precise and unified prop structural proportions. |
+| X12 | Stacking of cyber elements without functional logic. All functional components must have a reasonable functional correspondence; invalid designs are prohibited.

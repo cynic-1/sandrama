@@ -1,33 +1,33 @@
-# 90年代日式动画风格说明
+# 1990s Japanese Animation Style Guide
 
-本风格专为"90年代日式动画质感"题材打造，所有美术提示词、规范和生成内容均严格限定于：
+This style is specifically designed for the "1990s Japanese Animation Aesthetic." All art prompts, specifications, and generated content are strictly limited to:
 
-- **90年代动画世界观**：以90年代日式生活为背景，涵盖学校、车站、街道、咖啡馆、住宅等，体现日式生活气息。
-- **手绘平涂质感**：所有角色、场景、道具均以90年代手绘动画为标准，强调线条清晰度、上色均匀度、光影层次感。
-- **怀旧治愈美学**：在平涂基础上追求电影感氛围，画面色调柔和温暖，细节丰富，整体氛围温暖治愈、怀旧感人。
-- **情感表达**：适合展现温柔、治愈、浪漫的日式恋爱故事，强调东方美学下的情感表达。
+- **1990s Animation Worldview**: Set against the backdrop of 1990s Japanese daily life, encompassing schools, train stations, streets, cafes, and residences, reflecting the atmosphere of Japanese living.
+- **Hand-drawn Flat Color Texture**: All characters, scenes, and props adhere to the standards of 1990s hand-drawn animation, emphasizing line clarity, uniform coloring, and layered lighting and shadow.
+- **Nostalgic Healing Aesthetics**: Pursuing a cinematic atmosphere on the foundation of flat coloring, with soft and warm color tones, rich details, and an overall warm, healing, and nostalgically moving vibe.
+- **Emotional Expression**: Suited for depicting gentle, healing, and romantic Japanese love stories, emphasizing emotional expression under Eastern aesthetics.
 
-## 适用范围
+## Scope of Application
 
-- 90年代日式动画题材的AI美术生成（角色、场景、道具、分镜等）
-- 需要极致手绘质感、细腻线条、温馨治愈氛围的视觉创作
+- AI art generation for 1990s Japanese animation themes (characters, scenes, props, storyboards, etc.)
+- Visual creations requiring ultimate hand-drawn texture, delicate lines, and a warm, healing atmosphere
 
-## 严禁内容
+## Strictly Prohibited Content
 
-- 现代日系动画风格、3D渲染、CG动画
-- 现代元素、现代建筑、现代服饰
-- 高饱和荧光色、霓虹色
-- 过度阴影、黑暗暴力、成人向内容
+- Modern Japanese animation styles, 3D rendering, CG animation
+- Modern elements, modern architecture, modern clothing
+- High-saturation fluorescent colors, neon colors
+- Excessive shading, dark violence, adult-oriented content
 
-## 风格体验
+## Style Experience
 
-在本风格下，您将体验到：
+Under this style, you will experience:
 
-- 角色面容精致、气质温柔或清亮，服饰、妆容、发型均为90年代日式动画风格
-- 场景空间层次丰富，线条清晰流畅，氛围真实且富有诗意
-- 道具、日常物品、环境细节均为日式造型，工艺精细，质感细腻
-- 分镜与画面均以手绘平涂为基础，强调叙事与情感表达
+- Characters with refined features and a gentle or clear-cut demeanor, with clothing, makeup, and hairstyles all in the 1990s Japanese animation style
+- Scenes with rich spatial depth, clear and flowing lines, and an atmosphere that is both realistic and poetic
+- Props, everyday items, and environmental details all in Japanese design, with fine craftsmanship and delicate texture
+- Storyboards and visuals based on hand-drawn flat coloring, emphasizing narrative and emotional expression
 
 ---
 
-本风格仅适用于"90年代日式动画"相关项目。如需其他风格（如现代动画、CG、插画、现代等），请勿使用本套提示词。
+This style is applicable only to projects related to "1990s Japanese Animation." If you require other styles (such as modern animation, CG, illustration, or contemporary themes), please do not use this set of prompts.

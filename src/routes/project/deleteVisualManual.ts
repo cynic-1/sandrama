@@ -6,7 +6,7 @@ import { error, success } from "@/lib/responseFormat";
 import { validateFields } from "@/middleware/middleware";
 const router = express.Router();
 
-// 删除视觉手册
+// Delete the visual manual
 export default router.post(
   "/",
   validateFields({
@@ -16,9 +16,9 @@ export default router.post(
     try {
       const { name } = req.body as { name: string };
 
-      // 安全校验：不允许包含路径分隔符、纯数字，防止越级删除或误删项目目录
+      // Security check: Path separators and purely numeric values are not allowed, to prevent cross-level deletion or accidental deletion of project directories.
       if (name.includes("/") || name.includes("\\") || name === "." || name === ".." || /^\d+$/.test(name)) {
-        res.status(400).send(error("名称不能包含路径分隔符或为纯数字"));
+        res.status(400).send(error("The name cannot contain path separators or be purely numeric"));
         return;
       }
 
@@ -27,15 +27,15 @@ export default router.post(
       try {
         const stat = await fs.stat(artPromptsDir);
         if (!stat.isDirectory()) {
-          throw new Error(`${artPromptsDir} 不是文件夹`);
+          throw new Error(`${artPromptsDir}Not a folder`);
         }
         await fs.rm(artPromptsDir, { recursive: true, force: true });
       } catch (e) {
-        console.error("[删除视觉手册] 删除失败:", artPromptsDir, e);
+        console.error("[Delete Visual Manual] Deletion failed:", artPromptsDir, e);
       }
-      res.status(200).send(success({ message: "删除成功" }));
+      res.status(200).send(success({ message: "Deletion successful" }));
     } catch (err) {
-      res.status(500).send(error(u.error(err).message || "删除失败"));
+      res.status(500).send(error(u.error(err).message || "Deletion failed"));
     }
   },
 );

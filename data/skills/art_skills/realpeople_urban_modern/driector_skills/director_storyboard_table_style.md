@@ -1,47 +1,47 @@
 ---
 name: director_storyboard_table_style
-description: 分镜表都市约束 — 定义真人都市写实在分镜表中的光影氛围规范、光源角度、动作节奏、环境动态、运镜禁忌与转场禁忌。适用于任何叙事类型。
+description: Storyboard Table Urban Constraints — Defines the lighting and atmosphere standards, light source angles, action rhythm, environmental dynamics, camera movement prohibitions, and transition prohibitions for live-action urban realism in the storyboard table. Applicable to any narrative type.
 metaData: director_skills
 ---
 
-# 分镜表都市约束 · 真人都市写实 · 技法参考
+# Storyboard Table Urban Constraints · Live-Action Urban Realism · Technique Reference
 
 ---
 
-## 一、分镜表定位
+## I. Storyboard Table Positioning
 
-分镜表是导演将剧本转化为镜头语言的核心工具。以下仅提供真人都市写实风格在分镜表层面的约束规范。
-
----
-
-## 二、光影与氛围
-
-- **同场戏光影统一** — 一场戏内不应出现两种以上光影方案，除非有明确的叙事转折（如关台灯→月光冷辉）
-- **情绪色盘绑定** — 每场戏至少绑定 1 个情绪场景（如相遇心动/工作争执/约会甜蜜），并在镜头组内保持主色+辅色连续性
-- **光源角度规范** — 正给镜头光源默认 30° 斜射（较柔和），侧给镜头根据画面需要调整。描述光影时须区分正给/侧给的角度差异
-- **冷暖色调与叙事阶段匹配** — 工作/独处/冲突段落保持中性/冷调，暖色调（暖橙+冷蓝背景对比）在情感升温后使用
-- **光影转场是高级手段** — 从自然光（A）渐变到室内暖光（B）= 日转夜的时间流逝。在分镜表中标注光影变化点
+The storyboard table is the core tool for the director to translate the script into camera language. The following provides only the constraint standards for the live-action urban realism style at the storyboard table level.
 
 ---
 
-## 三、环境动态
+## II. Lighting and Atmosphere
 
-- **环境动态增加画面呼吸感** — 窗外车灯流动、电脑屏幕闪烁、咖啡杯热气、手机屏幕亮起。每 3-4 个镜头至少安排一个有环境动态的镜头，避免画面"死"掉
-- **都市环境元素优先** — 环境动态应选用都市世界观内的元素：车灯流动、雨滴划窗、咖啡热气、手机屏幕亮灭、窗帘微动、电梯数字跳动，禁止出现与现代都市不兼容的元素
-
----
-
-## 四、都市动作节奏
-
-- **都市动作要自然** — 所有人物动作默认自然节奏。起身、转身、抬手都应标注"自然"或"随意"
-- **道具互动** — 都市场景中手机、咖啡杯、文件、车钥匙等道具的使用是天然的动态资产，可在画面描述中加入道具互动细节，增加生活质感
-- **肢体语言现代化** — 都市人物举止应符合现代都市气质：自信的步态、随性的倚靠、不经意的小动作（拨头发、看手表、咬唇）
+- **Unified Lighting Within a Scene** — No more than two lighting schemes should appear within a single scene, unless there is a clear narrative turn (e.g., turning off a desk lamp → cold moonlight)
+- **Emotional Color Palette Binding** — Each scene must be bound to at least one emotional context (e.g., first meeting spark / work dispute / sweet date), and maintain continuity of the primary and secondary colors within the shot group
+- **Light Source Angle Standards** — For frontal camera angles, the default light source is a 30° oblique angle (softer); for side camera angles, adjust according to the visual needs. When describing lighting, distinguish between the angle differences of frontal and side lighting
+- **Warm/Cool Tones Match Narrative Stages** — Maintain neutral/cool tones for work/loneliness/conflict segments; use warm tones (warm orange + cool blue background contrast) after emotional intensity rises
+- **Lighting Transitions are Advanced Techniques** — Gradual shift from natural light (A) to indoor warm light (B) = passage of time from day to night. Mark the lighting change points in the storyboard table
 
 ---
 
-## 五、运镜禁忌
+## III. Environmental Dynamics
 
-- **禁用快速运镜** — 甩镜、急推、手持晃动与真人都市写实的气质冲突（除非是动作/追逐场景）
-- **禁用花式转场** — 划屏、旋转、百叶窗等与本风格不兼容
+- **Environmental Dynamics Add Breath to the Frame** — Flowing car lights outside the window, flickering computer screens, steam from coffee cups, phone screens lighting up. Arrange at least one shot with environmental dynamics every 3-4 shots to avoid the frame feeling "dead"
+- **Urban Environmental Elements Priority** — Environmental dynamics should use elements within the urban worldview: flowing car lights, raindrops streaking the window, coffee steam, phone screens turning on/off, slight curtain movement, elevator numbers changing. Elements incompatible with the modern urban setting are prohibited
+
+---
+
+## IV. Urban Action Rhythm
+
+- **Urban Actions Must Be Natural** — All character actions default to a natural rhythm. Standing up, turning around, and raising a hand should be marked as "natural" or "casual"
+- **Prop Interaction** — The use of props such as phones, coffee cups, documents, and car keys in urban scenes is a natural dynamic asset. Prop interaction details can be added to the visual description to enhance the texture of life
+- **Modernized Body Language** — The demeanor of urban characters should reflect a modern urban temperament: confident gait, casual leaning, and incidental small movements (brushing hair, checking a watch, biting lips)
+
+---
+
+## V. Camera Movement Prohibitions
+
+- **No Fast Camera Movements** — Whip pans, rapid pushes, and handheld shake conflict with the temperament of live-action urban realism (unless it is an action/chase scene)
+- **No Fancy Transitions** — Wipes, rotations, venetian blinds, etc., are incompatible with this style
 
 ---

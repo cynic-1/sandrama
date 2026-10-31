@@ -21,9 +21,9 @@ export default router.post(
       .update({
         filePath: u.replaceUrl(url),
         flowId,
-        state: "已完成",
+        state: "Completed",
         shouldGenerateImage:url ? 1 : 0
       });
-    res.status(200).send(success({ message: "更新分镜成功" }));
+    res.status(200).send(success({ message: "Storyboard updated successfully" }));
   },
 );

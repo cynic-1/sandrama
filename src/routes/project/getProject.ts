@@ -5,7 +5,7 @@ import { currentUser } from "@/middleware/auth";
 import { isAdmin } from "@/utils/auth";
 const router = express.Router();
 
-// 获取项目
+// Get the project
 export default router.post("/", async (req, res) => {
   const user = currentUser(req)!;
   const query = u.db("o_project").select("*");

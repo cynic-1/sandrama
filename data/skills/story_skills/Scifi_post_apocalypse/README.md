@@ -1,61 +1,61 @@
-# 科幻末世 · 导演叙事手法技能包
+# Sci-Fi Apocalypse · Director's Narrative Techniques Skill Pack
 
-## 简介
+## Introduction
 
-本技能包为 **科幻末世** 类型故事提供一套完整的导演叙事手法参考，涵盖从宏观叙事规划到微观分镜执行的全流程指导。适用于任何视觉风格。
+This skill pack provides a comprehensive reference for directorial narrative techniques for **Sci-Fi Apocalypse** stories, covering the full workflow from macro-level narrative planning to micro-level storyboard execution. It is applicable to any visual style.
 
-## 核心理念
+## Core Concepts
 
-- **废墟美学** — 文明的残骸本身就是最有力的叙事，一栋坍塌的大楼比千言万语更能说明"发生了什么"
-- **生存即主题** — 末世叙事的底层驱动力是"活下去"，所有抉择、道德、人性都在生存压力下被放大
-- **人性实验室** — 末世是极端环境下的人性测试：谁会背叛、谁会牺牲、谁在绝望中仍保有善良
-- **希望的重量** — 越是黑暗的世界，一丝光亮越珍贵。废墟中的一朵花比花园中的百亩花田更有叙事力
+- **Ruins Aesthetics** — The remnants of civilization are themselves the most powerful narrative; a collapsed building speaks more about "what happened" than a thousand words.
+- **Survival as Theme** — The underlying driving force of apocalyptic narratives is "staying alive." All choices, morality, and humanity are amplified under the pressure of survival.
+- **Humanity Laboratory** — The apocalypse is a test of human nature in extreme conditions: who will betray, who will sacrifice, and who retains kindness even in despair.
+- **The Weight of Hope** — The darker the world, the more precious a single ray of light. A single flower in the ruins carries more narrative power than a hundred acres of flowers in a garden.
 
-## 文件结构
+## File Structure
 
 ```
 Scifi_post_apocalypse/
-├── README.md                                          ← 本文件
+├── README.md                                          ← This file
 └── driector_skills/
-    ├── director_planning_narrative.md                 ← 叙事规划手法
-    └── director_storyboard_table_narrative.md         ← 分镜表叙事手法
+    ├── director_planning_narrative.md                 ← Narrative planning techniques
+    └── director_storyboard_table_narrative.md         ← Storyboard table narrative techniques
 ```
 
-## 技能文件说明
+## Skill File Description
 
-### 1. 叙事规划手法 (`director_planning_narrative.md`)
+### 1. Narrative Planning Techniques (`director_planning_narrative.md`)
 
-导演在 **叙事规划阶段** 使用的技法参考，定义科幻末世在主题立意、生存节奏、场景废墟设计与声音方向上的整体规划方法。
+Technique reference used by the director during the **narrative planning stage**, defining the overall planning methods for sci-fi post-apocalyptic themes in terms of thematic intent, survival pacing, scene ruin design, and sound direction.
 
-| 章节 | 内容概要 |
+| Chapter | Content Overview |
 |---|---|
-| 主题立意与末世内核 | 生存压力、人性极限、文明遗迹叙事、希望与绝望的辩证 |
-| 叙事结构与生存节奏 | 危机驱动、资源博弈、信任考验、希望曲线 |
-| 分场景氛围设计 | 六大典型末世段落设计、空间衰败叙事、环境危机隐喻 |
-| 声音与音乐方向 | 工业废噪、寂静荒原、警报音叙事、电子余韵 |
-| 构图与景别叙事 | 废墟全景/生存特写/压迫空间、景别的生存表达 |
-| 镜头运动与节奏 | 求生手持、废墟漫游、危机快推、荒原缓拉 |
+| Thematic Intent and Post-Apocalyptic Core | Survival pressure, human limits, narrative of civilizational ruins, dialectic of hope and despair |
+| Narrative Structure and Survival Pacing | Crisis-driven, resource conflict, tests of trust, hope curve |
+| Scene Atmosphere Design | Design of six typical post-apocalyptic segments, spatial decay narrative, environmental crisis metaphors |
+| Sound and Music Direction | Industrial waste noise, silent wastelands, alarm sound narrative, electronic echoes |
+| Composition and Shot Scale Narrative | Ruin panoramas / survival close-ups / oppressive spaces, survival expression through shot scale |
+| Camera Movement and Rhythm | Survival handheld, ruin roaming, crisis quick push, wasteland slow pull |
 
-### 2. 分镜表叙事手法 (`director_storyboard_table_narrative.md`)
+### 2. Storyboard Table Narrative Techniques (`director_storyboard_table_narrative.md`)
 
-导演在 **分镜表制作阶段** 使用的技法参考，定义科幻末世在分镜表中的景别策略、运镜节奏、时长把控、生存行动分镜与转场手法。
+Technique reference used by the director during the **storyboard table production stage**, defining shot scale strategy, camera movement rhythm, duration control, survival action storyboarding, and transition techniques for sci-fi post-apocalyptic narratives in the storyboard table.
 
-| 章节 | 内容概要 |
+| Chapter | Content Overview |
 |---|---|
-| 分镜表定位 | 分镜表作为生存叙事核心工具的定位说明 |
-| 景别选择 | 废墟远景价值、生存特写、科技遗迹景别 |
-| 运镜节奏 | 手持求生感、荒原稳定、危机加速、探索缓移 |
-| 时长把控 | 废墟凝视时长、危机压缩、沉默荒原的留白 |
-| 生存行动设计 | 搜索/战斗/逃亡的分镜逻辑、资源争夺镜头语言 |
-| 人性抉择叙事 | 道德困境镜头、信任与背叛、牺牲的仪式感 |
-| 台词与留白 | 惜字如金、环境叙事替代对白、回忆碎片 |
-| 转场设计 | 废墟蒙太奇/信号干扰/时间衰变/闪回文明 |
+| Storyboard Table Positioning | Explanation of the storyboard table's positioning as the core tool for survival narrative |
+| Shot Scale Selection | Value of ruin wide shots, survival close-ups, tech ruin shot scales |
+| Camera Movement Rhythm | Handheld survival feel, wasteland stability, crisis acceleration, exploration slow movement |
+| Duration Control | Ruin gaze duration, crisis compression, negative space of the silent wasteland |
+| Survival Action Design | Storyboard logic for search/combat/escape, camera language for resource conflict |
+| Human Choice Narrative | Moral dilemma shots, trust and betrayal, ritual of sacrifice |
+| Dialogue and Negative Space | Economy of words, environmental narrative replacing dialogue, memory fragments |
+| Transition Design | Ruin montage / signal interference / time decay / flashback to civilization |
 
-## 使用方式
+## Usage
 
-本技能包作为 SandDrama 导演 AI 的叙事手法参考，在故事创作流程中自动加载，指导：
+This skill pack serves as a narrative technique reference for the SandDrama Director AI. It is automatically loaded during the story creation process to guide:
 
-1. **叙事规划** — 确定末世内核、生存节奏曲线、场景废墟氛围与音效方向
-2. **分镜表生成** — 根据叙事规划输出具体的景别、运镜、时长与转场方案
+1. **Narrative Planning** — Determining the post-apocalyptic core, survival pacing curve, scene ruin atmosphere, and sound direction
+2. **Storyboard Table Generation** — Outputting specific shot scale, camera movement, duration, and transition plans based on the narrative planning
 
-两个文件分工明确、逐层递进，从"为什么这样拍"到"具体怎么拍"形成完整闭环。
+The two files have clearly defined roles and progress layer by layer, forming a complete closed loop from "why shoot it this way" to "how exactly to shoot it."

@@ -1,61 +1,61 @@
-# 喜剧搞笑 · 导演叙事手法技能包
+# Comedy & Humor · Directorial Narrative Techniques Skill Pack
 
-## 简介
+## Overview
 
-本技能包为 **喜剧搞笑** 类型故事提供一套完整的导演叙事手法参考，涵盖从宏观叙事规划到微观分镜执行的全流程指导。适用于任何视觉风格。
+This skill pack provides a complete reference for directorial narrative techniques for **Comedy & Humor** stories, covering the full workflow from macro-level narrative planning to micro-level storyboard execution. It is applicable to any visual style.
 
-## 核心理念
+## Core Concepts
 
-- **预期违背** — 笑点的本质是"观众以为会这样，结果不是这样"，落差越大笑点越强
-- **节奏即喜感** — 同一个笑话，节奏对了是爆笑，节奏错了是尴尬。时机就是一切
-- **角色先于段子** — 最高级的喜剧不是抖机灵，而是角色性格碰撞自然产生的荒谬
-- **笑中带泪** — 纯搞笑容易疲劳，在荒诞中埋入真实情感，让笑着笑着突然被打动
+- **Subverting Expectations** — The essence of a joke is "the audience expects X, but Y happens instead." The greater the gap, the stronger the laugh.
+- **Rhythm is Comedy** — The same joke is hilarious if the timing is right, and awkward if it isn't. Timing is everything.
+- **Character Before Gags** — The highest form of comedy isn't clever one-liners, but the absurdity that naturally arises from clashing character personalities.
+- **Laughter with Tears** — Pure comedy can become fatiguing. Embed genuine emotion within the absurdity so the audience is suddenly moved while laughing.
 
-## 文件结构
+## File Structure
 
 ```
 Comedy_humor/
-├── README.md                                          ← 本文件
+├── README.md                                          ← This file
 └── driector_skills/
-    ├── director_planning_narrative.md                 ← 叙事规划手法
-    └── director_storyboard_table_narrative.md         ← 分镜表叙事手法
+    ├── director_planning_narrative.md                 ← Narrative planning techniques
+    └── director_storyboard_table_narrative.md         ← Storyboard table narrative techniques
 ```
 
-## 技能文件说明
+## Skill File Description
 
-### 1. 叙事规划手法 (`director_planning_narrative.md`)
+### 1. Narrative Planning Techniques (`director_planning_narrative.md`)
 
-导演在 **叙事规划阶段** 使用的技法参考，定义喜剧搞笑在主题立意、笑点节奏、场景喜感设计与声音方向上的整体规划方法。
+Technique reference used by the director during the **narrative planning stage**, defining the overall planning methods for comedy and humor in terms of thematic intent, joke pacing, scene-based comedic design, and sound direction.
 
-| 章节 | 内容概要 |
+| Chapter | Content Overview |
 |---|---|
-| 主题立意与喜剧内核 | 预期违背、角色碰撞喜感、荒诞与真实、笑中带泪 |
-| 叙事结构与笑点节奏 | 铺垫→抖包袱循环、三遍法则、递进式荒谬、情绪节拍 |
-| 分场景喜感设计 | 六大典型喜剧段落设计、误会链叙事、尴尬升级 |
-| 声音与音乐方向 | 反差配乐、沉默喜感、音效辅助笑点、突然静默 |
-| 构图与景别叙事 | 反应镜头/全景喜感/错位构图、景别的喜剧时机 |
-| 镜头运动与节奏 | 急推反应、稳定vs混乱、冷静旁观、突然甩镜 |
+| Thematic Intent and Comedy Core | Subverted expectations, character collision humor, absurdity vs. realism, laughter with tears |
+| Narrative Structure and Joke Pacing | Setup → Punchline loop, Rule of Three, escalating absurdity, emotional beats |
+| Scene-Based Comedic Design | Design of six typical comedy segments, misunderstanding chain narrative, escalating awkwardness |
+| Sound and Music Direction | Contrast scoring, comedic silence, sound effects to support jokes, sudden silence |
+| Composition and Shot Scale Narrative | Reaction shots / wide shot humor / misaligned composition, comedic timing of shot scales |
+| Camera Movement and Rhythm | Quick push-in reactions, stability vs. chaos, calm observation, sudden whip pans |
 
-### 2. 分镜表叙事手法 (`director_storyboard_table_narrative.md`)
+### 2. Storyboard Table Narrative Techniques (`director_storyboard_table_narrative.md`)
 
-导演在 **分镜表制作阶段** 使用的技法参考，定义喜剧搞笑在分镜表中的景别策略、运镜节奏、时长把控、笑点分镜设计与转场手法。
+Technique reference used by the director during the **storyboard table production stage**, defining comedy and humor strategies in the storyboard table, including shot scale strategy, camera movement rhythm, duration control, joke storyboard design, and transition techniques.
 
-| 章节 | 内容概要 |
+| Chapter | Content Overview |
 |---|---|
-| 分镜表定位 | 分镜表作为喜剧节奏核心工具的定位说明 |
-| 景别选择 | 反应镜头景别、全景荒谬、错位特写 |
-| 运镜节奏 | 冷静固定vs急推反应、甩镜笑点、跟拍失控 |
-| 时长把控 | 铺垫时长、包袱节拍、留白笑点、冷场救急 |
-| 笑点分镜设计 | 铺垫→抖落镜头语言、视觉笑点、信息差笑点 |
-| 多人喜剧调度 | 群戏反应链、角色碰撞构图、旁观者视角 |
-| 台词与节奏 | 台词节拍、吐槽时机、沉默的喜感、重复的力量 |
-| 转场设计 | 荒谬对比切/硬切笑点/反差蒙太奇/假正经转场 |
+| Storyboard Table Positioning | Explanation of the storyboard table's role as the core tool for comedy rhythm |
+| Shot Scale Selection | Reaction shot scales, wide shot absurdity, misaligned close-ups |
+| Camera Movement Rhythm | Calm static vs. quick push-in reactions, whip pan jokes, follow-shot loss of control |
+| Duration Control | Setup duration, punchline beats, comedic white space, dead-air rescue |
+| Joke Storyboard Design | Setup → punchline camera language, visual jokes, information-gap jokes |
+| Multi-Character Comedy Direction | Ensemble reaction chains, character collision composition, bystander perspective |
+| Dialogue and Rhythm | Dialogue beats, snark timing, comedic silence, the power of repetition |
+| Transition Design | Absurd contrast cuts / hard cut jokes / contrast montage / faux-serious transitions |
 
-## 使用方式
+## Usage
 
-本技能包作为 SandDrama 导演 AI 的叙事手法参考，在故事创作流程中自动加载，指导：
+This skill pack serves as a narrative technique reference for the SandDrama Director AI. It is automatically loaded during the story creation workflow to guide:
 
-1. **叙事规划** — 确定喜剧内核、笑点节奏曲线、场景喜感与音效时机
-2. **分镜表生成** — 根据叙事规划输出具体的景别、运镜、时长与转场方案
+1. **Narrative Planning** — Determining the comedy core, joke pacing curve, scene-based humor, and sound effect timing
+2. **Storyboard Table Generation** — Outputting specific shot scales, camera movements, durations, and transition plans based on the narrative plan
 
-两个文件分工明确、逐层递进，从"为什么这样拍"到"具体怎么拍"形成完整闭环。
+The two files have clearly defined roles and progress layer by layer, forming a complete closed loop from "why shoot it this way" to "how exactly to shoot it."

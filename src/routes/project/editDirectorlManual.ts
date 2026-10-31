@@ -7,7 +7,7 @@ import { validateFields } from "@/middleware/middleware";
 import { z } from "zod";
 const router = express.Router();
 
-// 编辑导演手册
+// Edit the Director's Handbook
 export default router.post(
   "/",
   validateFields({
@@ -31,26 +31,26 @@ export default router.post(
         data: { label: string; value: string; data: string }[];
       };
 
-      // 安全校验：不允许包含路径分隔符、纯数字，防止越级删除或误删项目目录
+      // Security check: Path separators and purely numeric values are not allowed, to prevent cross-level deletion or accidental deletion of project directories.
       if (name.includes("/") || name.includes("\\") || name === "." || name === ".." || /^\d+$/.test(name)) {
-        res.status(400).send(error("名称不能包含路径分隔符或为纯数字"));
+        res.status(400).send(error("The name cannot contain path separators or be purely numeric"));
         return;
       }
 
       const mainPath = u.getPath(["skills", "story_skills", directorManual]);
       if (!fs.existsSync(mainPath)) {
-        return res.status(400).send(error("导演手册不存在"));
+        return res.status(400).send(error("The director's manual does not exist"));
       }
-      // 字段映射表（与 getVisualManual 保持一致）
+      // Field Mapping Table (consistent with getVisualManual)
       const DATA_MAP: { value: string; subDir?: string }[] = [
         { value: "README" },
         { value: "director_planning_narrative", subDir: "driector_skills" },
         { value: "director_storyboard_table_narrative", subDir: "driector_skills" },
       ];
-      // 根据 DATA_MAP 构建 value -> subDir 的映射
+      // Build a value -> subDir mapping based on DATA_MAP
       const SUB_DIR_MAP = new Map(DATA_MAP.map(({ value, subDir }) => [value, subDir ?? ""]));
 
-      // 合法的 value 值集合，用于校验
+      // A set of valid values used for validation
       const VALID_KEYS = new Set(DATA_MAP.map(({ value }) => value));
 
       for (const item of data) {
@@ -61,7 +61,7 @@ export default router.post(
         const filePath = u.getPath([...dirArr, `${item.value}.md`]);
 
         const fileDir = path.dirname(filePath);
-        // 目录不存在时递归创建
+        // Recursively create the directory if it does not exist
         if (!fs.existsSync(fileDir)) {
           fs.mkdirSync(fileDir, { recursive: true });
         }

@@ -67,11 +67,11 @@ export default router.post(
     const { tsCode } = req.body;
     const jsCode = transform(tsCode, { transforms: ["typescript"] }).code;
     const exports = u.vm(jsCode);
-    if (!exports) return res.status(400).send(success("脚本文件必须导出对象"));
-    if (!exports.textRequest) return res.status(400).send(success("脚本文件必须导出文本请求对象"));
-    if (!exports.imageRequest) return res.status(400).send(success("脚本文件必须导出图像请求对象"));
-    if (!exports.videoRequest) return res.status(400).send(success("脚本文件必须导出视频请求对象"));
-    if (!exports.vendor) return res.status(400).send(success("脚本文件必须导出vendor对象"));
+    if (!exports) return res.status(400).send(success("The script file must export an object"));
+    if (!exports.textRequest) return res.status(400).send(success("The script file must export a text request object"));
+    if (!exports.imageRequest) return res.status(400).send(success("The script file must export the image request object"));
+    if (!exports.videoRequest) return res.status(400).send(success("The script file must export the video request object"));
+    if (!exports.vendor) return res.status(400).send(success("The script file must export the vendor object"));
     const vendor = exports.vendor;
     const result = vendorConfigSchema.safeParse(vendor);
     if (!result.success) {
@@ -95,12 +95,12 @@ export default router.post(
         return `${index + 1}. ${path}: ${detail}`;
       });
 
-      return res.status(400).send(error(`vendor配置校验失败，共 ${issueLines.length} 处:\n${issueLines.join("\n")}`));
+      return res.status(400).send(error(`Vendor configuration validation failed (${issueLines.length} issue(s)):\n${issueLines.join("\n")}`));
     }
 
-    if ((vendor.id as string).includes(":")) return res.status(400).send(error("id不能包含英文冒号"));
+    if ((vendor.id as string).includes(":")) return res.status(400).send(error("The id cannot contain English colons"));
     const data = await u.userSettings.getVendorConfig(vendor.id);
-    if (data) return res.status(500).send(error("供应商id已存在"));
+    if (data) return res.status(500).send(error("Supplier ID already exists"));
     await u.userSettings.insertVendorConfig({
       id: vendor.id,
       inputValues: JSON.stringify(vendor.inputValues ?? {}),

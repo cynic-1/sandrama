@@ -6,7 +6,7 @@ import { z } from "zod";
 import { tool, jsonSchema } from "ai";
 const router = express.Router();
 
-// 检查语言模型
+// Check the language model
 export default router.post(
   "/",
   validateFields({
@@ -25,8 +25,8 @@ export default router.post(
     try {
       const vendorConfigData = await u.userSettings.getVendorConfig(id);
 
-      if (!vendorConfigData) return res.status(500).send(error("未找到该供应商配置"));
-      if (!vendorConfigData.models) return res.status(500).send(error("未找到模型列表"));
+      if (!vendorConfigData) return res.status(500).send(error("Supplier configuration not found"));
+      if (!vendorConfigData.models) return res.status(500).send(error("Model list not found"));
 
       const modelList = await u.vendor.getModelList(vendorConfigData.id!);
 
@@ -52,7 +52,7 @@ export default router.post(
         tools: { getWeatherTool },
       });
       console.log("%c Line:46 🍐 data", "background:#6ec1c2", data);
-      if (!data) return res.status(500).send(error("模型未返回结果"));
+      if (!data) return res.status(500).send(error("The model did not return a result"));
       res.status(200).send(success({ thinking: data.reasoningText, content: data.text }));
     } catch (err) {
       console.error(err);

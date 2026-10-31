@@ -34,29 +34,29 @@ export default router.post(
     });
     const referenceInfo = parseVideoMode(mode) === "text" ? info : automaticReferences.references.map(({ id, sources }) => ({ id, sources }));
     await u.db("o_videoTrack").where({ id: trackId }).update({
-      state: "生成中",
+      state: "Generating",
     });
-    //查询参数
+    // Query parameters
     const images = await Promise.all(
       referenceInfo.map(async (item: { id: number; sources: string }) => {
         if (item.sources === "storyboard") {
-          // 查询分镜主信息
+          // Query storyboard main information
           const storyboard = await u
             .db("o_storyboard")
             .where("o_storyboard.id", item.id)
             .select("videoDesc", "prompt", "track", "duration", "shouldGenerateImage")
             .first();
-          // 查询分镜关联的资产ID
+          // Query the asset IDs associated with the storyboard
           const assetRows = await u.db("o_assets2Storyboard").where("storyboardId", item.id).orderBy("rowid").select("assetId");
           const associateAssetsIds = assetRows.map((row: any) => row.assetId);
           return {
             ...storyboard,
             associateAssetsIds,
-            _type: "storyboard", // 标记类型，便于后续区分
+            _type: "storyboard", // Mark the type for easier distinction later
           };
         }
         if (item.sources === "assets") {
-          // 查询素材
+          // Query materials
           const assetsData = await u
             .db("o_assets")
             .leftJoin("o_image", "o_image.id", "o_assets.imageId")
@@ -65,17 +65,17 @@ export default router.post(
             .first();
           return {
             ...assetsData,
-            _type: "assets", // 标记类型
+            _type: "assets", // Marker type
           };
         }
       }),
     );
 
-    // 拆分 assets 和 storyboard
+    // Split assets and storyboard
     const assets: any[] = [];
     const storyboard: any[] = [];
     for (const item of images) {
-      if (!item) continue; // 忽略空
+      if (!item) continue; // Ignore empty
       if (item._type === "assets")
         assets.push({
           id: item.id,
@@ -112,7 +112,7 @@ export default router.post(
     let videoPromptGeneration = "" as string | undefined;
 
     const modelPromptData = await u.userSettings.getModelPrompt(id, modelData);
-    //查询到 有绑定对应视频提示词
+    // Query found: there is a bound corresponding video prompt
     if (modelPromptData) {
       const modelPromptRoot = u.getPath(["modelPrompt"]);
       try {
@@ -122,7 +122,7 @@ export default router.post(
       } catch {}
     }
 
-    // 未查询到绑定，根据模型名称 + mode 自动匹配 modelPrompt/video/ 下的文件
+    // No binding found. Automatically match files under modelPrompt/video/ based on the model name + mode.
     if (!videoPromptGeneration) {
       const modelPromptRoot = u.getPath(["modelPrompt"]);
       const videoPromptDir = path.join(modelPromptRoot, "video");
@@ -131,16 +131,16 @@ export default router.post(
       let fileName: string | null = null;
 
       if (modelLower.includes("wan") && modelLower.includes("2.6")) {
-        // wan2.6 系列 => 单图首尾帧模式
+        // wan2.6 series => Single-image first-and-last-frame mode
         fileName = "wan2.6Single-imageFirstFrameMode.md";
       } else if (/seedance.*2[.\-]0/i.test(modelData)) {
-        // seedance 2.0 / 2-0 系列
+        // seedance 2.0 / 2-0 series
         fileName = "seedance2Multi-parameterMode.md";
       } else if (mode === "startEndRequired" || mode === "endFrameOptional" || mode === "startFrameOptional") {
-        // body.mode 为首尾帧相关 => 通用首尾帧模式
+        // body.mode is related to first and last frames => generic first and last frame mode
         fileName = "universalFirstAndLastFrameMode.md";
       } else if (typeof mode === "string" && mode.startsWith('["') && mode.endsWith('"]')) {
-        // 其他 => 通用多参模式
+        // Other => General multi-parameter mode
         fileName = "universalMulti-parameterMode.md";
       }
       if (fileName) {
@@ -149,12 +149,12 @@ export default router.post(
           const relativePath = path.relative(modelPromptRoot, fullPath).replace(/\\/g, "/");
           videoPromptGeneration = await u.userSettings.getModelPromptFile(relativePath, () => fs.readFile(fullPath, "utf-8"));
         } catch {
-          // 文件不存在则忽略，继续用备选
+          // If the file does not exist, ignore it and continue using the fallback.
         }
       }
     }
 
-    //备选
+    // Alternative
     if (!videoPromptGeneration) {
       if (videoPrompt && videoPrompt.useData) {
         videoPromptGeneration = videoPrompt.useData;
@@ -163,17 +163,17 @@ export default router.post(
       }
     }
 
-    const artStyle = projectData?.artStyle || "无";
+    const artStyle = projectData?.artStyle || "None";
 
     const visualManual = u.getArtPrompt(artStyle, "art_skills", "art_storyboard_video");
     const content = `
-          **模型名称**：${modelData},
+          **Model Name**：${modelData},
 
-          **资产信息**（角色、场景、道具、音频):${assets
+          **Asset information** (character, scene, prop, audio): ${assets
             .filter((i) => i.filePath)
             .map((i) => `[${i.id},${i.type},${i.name} ${assetsAudioRecord[i.id] ? `audio:${assetsAudioRecord[i.id]}` : ""} ] `)
-            .join("，")},
-          **分镜信息**：${storyboard.map(
+            .join(", ")},
+          **Storyboard information**: ${storyboard.map(
             (i) => `<storyboardItem
   videoDesc='${i.videoDesc}'
   duration='${i.duration}'
@@ -196,7 +196,7 @@ export default router.post(
         ],
       });
       await u.db("o_videoTrack").where({ id: trackId }).update({
-        state: "已完成",
+        state: "Completed",
         prompt: text,
       });
       const displayReferences = await Promise.all(
@@ -219,7 +219,7 @@ export default router.post(
         .db("o_videoTrack")
         .where({ id: trackId })
         .update({
-          state: "生成失败",
+          state: "Generation failed",
           reason: u.error(e).message,
         });
       res.status(400).send(error(u.error(e).message));

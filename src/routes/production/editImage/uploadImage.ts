@@ -6,7 +6,7 @@ import { z } from "zod";
 import { v4 as uuid } from "uuid";
 const router = express.Router();
 
-// 文件上传（支持图片、音频、视频）
+// File upload (supports images, audio, and video)
 export default router.post(
   "/",
   validateFields({
@@ -19,15 +19,15 @@ export default router.post(
     function getExtFromBase64(base64Data: string): string {
       const mime = base64Data.match(/^data:([^;]+);base64,/)?.[1] ?? "";
       const mimeMap: Record<string, string> = {
-        // 图片
+        // Image
         "image/jpeg": "jpeg",
         "image/jpg": "jpg",
         "image/png": "png",
-        // 音频
+        // Audio
         "audio/mpeg": "mp3",
         "audio/mp3": "mp3",
         "audio/wav": "wav",
-        // 视频
+        // Video
         "video/mp4": "mp4",
         "video/webm": "webm",
       };
@@ -35,7 +35,7 @@ export default router.post(
     }
     const ext = getExtFromBase64(base64Data);
     if (!["jpeg", "jpg", "png"].includes(ext)) {
-      return res.status(400).send(error("不支持的文件类型"));
+      return res.status(400).send(error("Unsupported file type"));
     }
     const savePath = `/${projectId}/imageFlow/${scriptId}/${uuid()}.${ext}`;
 

@@ -1,155 +1,155 @@
 ---
 name: director_storyboard
-description: 导演分镜提示词技法 · 2D扁平风（Flat Design）
+description: Director Storyboard Prompt Techniques · 2D Flat Style (Flat Design)
 metaData: director_skills
 ---
 
-# 分镜提示词 · 2D扁平风 · 风格专属技法
+# Storyboard Prompts · 2D Flat Style · Style-Specific Techniques
 
 ---
 
-## 适用范围
+## Scope of Application
 
-本 Skill 专用于**2D扁平风（Flat Design）**风格的分镜提示词生成。
+This Skill is exclusively for generating storyboard prompts in the **2D Flat Style (Flat Design)**.
 
 ---
 
-## 情绪 → 面容/眼神词映射
+## Emotion → Facial/Eye Word Mapping
 
-| 情绪输入 | 面容词 | 眼神词 | 微表情补充 |
+| Emotion Input | Facial Words | Eye Words | Micro-expression Supplement |
 |----------|--------|--------|-----------|
-| 心动 / 欣喜 | 简洁线条，橙色色块 | 圆形眼睛，眼神明亮 | 简单笑脸，扁平化 |
-| 悲伤 / 失落 | 简洁线条，冷色色调 | 椭圆形眼睛，眼神柔和 | 嘴角下弯，扁平化 |
-| 惊讶 / 好奇 | 圆形眼睛，放大表情 | 眼神集中，目光好奇 | 嘴巴O型，扁平化 |
-| 温柔 / 深情 | 柔和线条，暖色色调 | 眼神专注，目光柔和 | 嘴角上弯，扁平化 |
-| 坚定 / 勇敢 | 直线线条，冷色色调 | 眼神坚定，目光集中 | 表情明确，扁平化 |
-| 害羞 / 羞涩 | 粉色色块，圆润线条 | 眼睛向下，不敢直视 | 脸颊红晕，扁平化 |
-| 温暖 / 感动 | 暖色线条，柔和表情 | 眼神温暖，目光柔和 | 嘴角上扬，扁平化 |
-| 孤独 / 怀念 | 冷色线条，简洁表情 | 眼神放空，若有所思 | 表情平静，扁平化 |
-| 快乐 / 雀跃 | 圆形线条，明亮表情 | 眼睛弯月，表情生动 | 动作轻快，扁平化 |
-| 紧张 / 不安 | 线条变细，眉头符号 | 眼睛变小，目光不确定 | 手位紧张，扁平化 |
+| Infatuation / Joy | Simple lines, orange color blocks | Round eyes, bright gaze | Simple smile, flattened |
+| Sadness / Loss | Simple lines, cool color tones | Oval eyes, soft gaze | Downward mouth corners, flattened |
+| Surprise / Curiosity | Round eyes, enlarged expression | Focused gaze, curious look | O-shaped mouth, flattened |
+| Tenderness / Deep Affection | Soft lines, warm color tones | Focused gaze, soft look | Upward mouth corners, flattened |
+| Determination / Courage | Straight lines, cool color tones | Determined gaze, focused look | Clear expression, flattened |
+| Shyness / Embarrassment | Pink color blocks, rounded lines | Eyes down, avoiding direct eye contact | Blushing cheeks, flattened |
+| Warmth / Moving | Warm lines, soft expression | Warm gaze, soft look | Upturned mouth corners, flattened |
+| Loneliness / Nostalgia | Cool lines, simple expression | Blank gaze, pensive look | Calm expression, flattened |
+| Happiness / Excitement | Round lines, bright expression | Crescent-shaped eyes, lively expression | Light and quick movements, flattened |
+| Tension / Anxiety | Thinner lines, frown symbol | Smaller eyes, uncertain gaze | Tense hand position, flattened |
 
 ---
 
-## 色彩氛围词库（扁平风）
+## Color Atmosphere Vocabulary (Flat Style)
 
-### 色相使用
+### Hue Usage
 
-| 场景类型 | 主色词 | 辅色词 | 氛围词 |
+| Scene Type | Primary Color Words | Secondary Color Words | Atmosphere Words |
 |--------|--------|--------|---------|
-| 日常生活 | 明快蓝 + 米白 | 暖橙点缀 | 简洁感，现代感 |
-| 办公空间 | 冷灰 + 冷蓝 | 白色 + 浅灰 | 理性，高效感 |
-| 休闲空间 | 暖橙 + 暖粉 | 米白 + 浅黄 | 放松，舒适感 |
-| 浪漫场景 | 暖粉 + 暖橙 | 米白 + 浅紫 | 温馨，甜蜜感 |
-| 夜晚场景 | 深蓝 + 紫色 | 暖黄点缀 | 静谧，神秘感 |
-| 回忆场景 | 浅黄 + 浅灰 | 暖粉点缀 | 怀旧，柔和感 |
+| Daily Life | Bright blue + off-white | Warm orange accents | Clean feel, modern feel |
+| Office Space | Cool gray + cool blue | White + light gray | Rational, efficient feel |
+| Leisure Space | Warm orange + warm pink | Off-white + light yellow | Relaxed, comfortable feel |
+| Romantic Scene | Warm pink + warm orange | Off-white + light purple | Cozy, sweet feel |
+| Night Scene | Deep blue + purple | Warm yellow accents | Serene, mysterious feel |
+| Memory Scene | Light yellow + light gray | Warm pink accents | Nostalgic, soft feel |
 
-### 情绪色块
+### Emotion Color Blocks
 
-| 情绪基调 | 色块类型 | 补充约束 |
+| Emotional Tone | Color Block Type | Supplementary Constraints |
 |----------|----------|---------|
-| 心动/温情 | 暖色对比色块 | 留白较多，主色突出 |
-| 悲伤/失落 | 冷色单色块 | 饱和度降低，留白更大 |
-| 快乐/活力 | 多色对比色块 | 饱和度高，色彩丰富 |
-| 怀旧/回忆 | 低饱和单色块 | 色调统一，留白更多 |
-| 日常/温馨 | 暖色主色块 | 柔和对比，适度留白 |
-| 夜晚/静谧 | 冷色主色块 | 暖色点缀，层次清晰 |
+| Infatuation / Warmth | Warm contrasting color blocks | More white space, prominent primary color |
+| Sadness / Loss | Cool monochromatic blocks | Lower saturation, larger white space |
+| Happiness / Vitality | Multi-color contrasting blocks | High saturation, rich colors |
+| Nostalgia / Memory | Low-saturation monochromatic blocks | Unified tone, more white space |
+| Daily / Cozy | Warm primary color blocks | Soft contrast, moderate white space |
+| Night / Serene | Cool primary color blocks | Warm accents, clear layers |
 
 ---
 
-## 场景质感约束词（按场景类型）
+## Scene Texture Constraint Words (By Scene Type)
 
-| 场景类型 | 必加约束词 |
+| Scene Type | Mandatory Constraint Words |
 |----------|-----------|
-| 扁平人物 | 几何造型，简洁线条，无阴影无渐变，纯色色块填充 |
-| 扁平场景 | 纯色背景，几何形状，简单结构，无纹理无细节 |
-| 办公空间 | 简洁家具，几何形状，冷色调，现代设计感 |
-| 居家空间 | 简约家具，暖色调，几何线条，温馨氛围 |
-| 城市景观 | 简化建筑，几何形状，冷色调，现代都市感 |
-| 自然环境 | 几何树木，纯色草地，简单形状，扁平化自然 |
-| 交通场景 | 简化车辆，几何形状，冷色调，现代交通感 |
-| 室内空间 | 简洁隔断，纯色墙面，几何门窗，现代简约 |
+| Flat Characters | Geometric shapes, simple lines, no shadows no gradients, solid color block fill |
+| Flat Scenes | Solid color background, geometric shapes, simple structure, no textures no details |
+| Office Space | Simple furniture, geometric shapes, cool tones, modern design feel |
+| Home Space | Minimalist furniture, warm tones, geometric lines, cozy atmosphere |
+| Cityscape | Simplified buildings, geometric shapes, cool tones, modern urban feel |
+| Natural Environment | Geometric trees, solid color grass, simple shapes, flattened nature |
+| Traffic Scene | Simplified vehicles, geometric shapes, cool tones, modern traffic feel |
+| Indoor Space | Simple partitions, solid color walls, geometric doors/windows, modern minimalist |
 
 ---
 
-## 固定风格锚定词（所有输出必须包含）
+## Fixed Style Anchoring Words (Must be included in all outputs)
 
-**扁平风格锚定（必选）：**
+**Flat Style Anchoring (Mandatory):**
 
-2D扁平风，Flat Design，无阴影无渐变，纯色色块，简洁线条
+2D Flat Style, Flat Design, no shadows no gradients, solid color blocks, simple lines
 
-**色块质感（所有输出必选）：**
+**Color Block Texture (Mandatory for all outputs):**
 
-纯色填充，无纹理无渐变，几何造型，扁平化设计
+Solid color fill, no textures no gradients, geometric shapes, flattened design
 
-**轮廓线条（所有输出必选）：**
+**Outline Lines (Mandatory for all outputs):**
 
-清晰轮廓线，线条均匀一致，无断线无粗糙边缘
+Clear outline lines, uniform and consistent lines, no broken lines no rough edges
 
-**色彩层次（所有输出必选）：**
+**Color Layers (Mandatory for all outputs):**
 
-色彩饱和适中，色块对比清晰，无复杂光影层次
+Moderate color saturation, clear color block contrast, no complex light and shadow layers
 
-**氛围锚定（必选）：**
+**Atmosphere Anchoring (Mandatory):**
 
-简约现代氛围，扁平设计美学，清晰情感表达，现代感视觉
+Minimalist modern atmosphere, flat design aesthetics, clear emotional expression, modern visual feel
 
-**画质锁定词（所有输出必须包含，置于风格收尾之后）：**
+**Image Quality Locking Words (Must be included in all outputs, placed after the style closing):**
 
-模式A（中文）——默认：
-高清画质，线条清晰，色彩纯净，画面无杂色无噪点，无阴影无渐变
+Mode A (Chinese) — Default:
+High-definition quality, clear lines, pure colors, no stray colors or noise in the frame, no shadows no gradients
 
-模式A（中文）——画内文字场景（画面描述中含招牌/标识等道具文字时）：
-高清画质，线条清晰，色彩纯净，画面无杂色无噪点，无阴影无渐变，招牌/标识等道具文字清晰可读
+Mode A (Chinese) — In-frame Text Scene (when the scene description contains prop text such as signs/labels):
+High-definition quality, clear lines, pure colors, no stray colors or noise in the frame, no shadows no gradients, text on signs/labels and other props is clear and legible
 
-模式B（英文）——默认：
+Mode B (English) — Default:
 high-quality 2D flat design, clean lines, pure colors, no shadows, no gradients, no noise, no artifacts
 
-模式B（英文）——画内文字场景：
+Mode B (English) — In-frame Text Scene:
 high-quality 2D flat design, clean lines, pure colors, no shadows, no gradients, no noise, no artifacts, legible text on signs and props
 
-**负向词模板（模式B 必须包含，置于提示词末尾）：**
+**Negative Prompt Template (Must be included in Mode B, placed at the end of the prompt):**
 
-> ⚠️ Seedream（模式A）**不支持负向提示词**，负向词仅适用于模式B。模式A 通过正向词中的质感锚定和画质锁定来保证画面质量。
+> ⚠️ Seedream (Mode A) **does not support negative prompts**; negative prompts are only applicable to Mode B. Mode A ensures image quality through texture anchoring and image quality locking in the positive prompt.
 
-模式B（英文）：
+Mode B (English):
 no 3D rendering, no photorealism, no shadows, no gradients, no textures, no realistic lighting, no realistic materials, no complex details, no detailed backgrounds, no realistic faces, no realistic hair, no realistic clothing
 
 ---
 
-## 美学禁止项（生成时严格规避）
+## Aesthetic Prohibitions (Strictly avoid during generation)
 
-以下词汇/风格不得出现于输出提示词中：
+The following words/styles must not appear in the output prompt:
 
-- ❌ 写实渲染/照片级真实感风格
-- ❌ 阴影/渐变/纹理相关词
-- ❌ 高饱和荧光色/过度对比色系
-- ❌ 复杂细节/精细纹理描述
-- ❌ 3D透视/深度感描述
-- ❌ 写实人物/写实服装/写实建筑
-- ❌ 画外叠加文字（字幕、水印、标题卡、旁白叠字等 UI 层文字，画面必须为纯视觉画面）
+- ❌ Realistic rendering / photo-realistic style
+- ❌ Shadow / gradient / texture-related words
+- ❌ High-saturation fluorescent colors / over-contrasted color schemes
+- ❌ Complex details / fine texture descriptions
+- ❌ 3D perspective / depth descriptions
+- ❌ Realistic characters / realistic clothing / realistic buildings
+- ❌ Overlaid text outside the frame (subtitles, watermarks, title cards, voiceover overlays, and other UI-layer text; the frame must be a pure visual image)
 
-> 💡 **例外**：故事世界内的道具文字（招牌、路牌、标识、书籍等场景中自然存在的文字）**不属于禁止范围**。当分镜画面描述中包含此类内容时，应如实描写其存在并要求文字清晰。
+> 💡 **Exception**: Prop text within the story world (signs, road signs, labels, books, and other text naturally present in the scene) is **not prohibited**. When the storyboard frame description includes such content, its existence should be described truthfully and the text should be required to be clear.
 
 ---
 
-## 完整生成示例
+## Complete Generation Example
 
-> 以下为同一输入分别使用模式A和模式B的对照展示，实际使用时**仅输出其中一种**。
+> The following shows a comparison of the same input using Mode A and Mode B respectively. In actual use, **only one of them should be output**.
 
-### 输入（分镜表行数据）
+### Input (Storyboard Table Row Data)
 
-| 序号 | 画面描述 | 场景 | 关联资产名称 | 时长 | 景别 | 运镜 | 角色动作 | 情绪 | 光影氛围 |
+| No. | Frame Description | Scene | Related Asset Name | Duration | Shot Size | Camera Movement | Character Action | Emotion | Light & Atmosphere |
 |------|---------|------|-------------|------|------|------|---------|------|----------|
-| 1 | 扁平风格两人相遇，橙色与蓝色色块对比，简洁背景 | 城市 | 角色A/B | 5s | 中景 | 静止 | 对视微笑，简洁线条 | 心动 / 温暖 | 暖色对比 + 留白 |
+| 1 | Flat style two people meeting, orange and blue color block contrast, simple background | City | Character A/B | 5s | Medium Shot | Static | Smiling eye contact, simple lines | Infatuation / Warmth | Warm contrast + white space |
 
-### 示例输出A（模式A · Seedream）
+### Example Output A (Mode A · Seedream)
 
 [Prompt]
-2D扁平风，Flat Design，无阴影无渐变，纯色色块，简洁线条，中景构图，两个扁平角色半身入镜，纯色填充，无纹理无渐变，几何造型，扁平化设计，清晰轮廓线，线条均匀一致，无断线无粗糙边缘，色彩饱和适中，色块对比清晰，无复杂光影层次，扁平风格两人相遇，橙色与蓝色色块对比，简洁背景，对视微笑，线条简洁，眼神明亮，暖色对比，留白较多，简约现代氛围，扁平设计美学，清晰情感表达，现代感视觉，高清画质，线条清晰，色彩纯净，画面无杂色无噪点，无阴影无渐变。
-Based on the reference image of 角色A/B, maintain consistent: face features, hairstyle, costume details. Generate a new scene: two flat characters meeting in city, orange and blue color block contrast, simple background, smiling and looking at each other. Keep character appearance identical to reference.
+2D Flat Style, Flat Design, no shadows no gradients, solid color blocks, simple lines, medium shot composition, two flat characters half-body in frame, solid color fill, no textures no gradients, geometric shapes, flattened design, clear outline lines, uniform and consistent lines, no broken lines no rough edges, moderate color saturation, clear color block contrast, no complex light and shadow layers, flat style two people meeting, orange and blue color block contrast, simple background, smiling eye contact, simple lines, bright gaze, warm contrast, more white space, minimalist modern atmosphere, flat design aesthetics, clear emotional expression, modern visual feel, high-definition quality, clear lines, pure colors, no stray colors or noise in the frame, no shadows no gradients.
+Based on the reference image of Character A/B, maintain consistent: face features, hairstyle, costume details. Generate a new scene: two flat characters meeting in city, orange and blue color block contrast, simple background, smiling and looking at each other. Keep character appearance identical to reference.
 
-### 示例输出B（模式B · Nanobanana）
+### Example Output B (Mode B · Nanobanana)
 
 ```xml
 <role>
@@ -157,7 +157,7 @@ You are a 2D flat design storyboard artist.
 Maintain strict visual continuity across all shots.
 </role>
 <character_reference>
-Image [1]: 角色A/B — flat design characters, geometric shapes, simple lines, pure colors
+Image [1]: Character A/B — flat design characters, geometric shapes, simple lines, pure colors
 </character_reference>
 <continuity_rules>
 - Same color palette, face features, hairstyle across ALL shots
@@ -173,17 +173,17 @@ no 3D rendering, no photorealism, no shadows, no gradients, no textures, no real
 </negative>
 ```
 
-## 快速参考卡
+## Quick Reference Card
 
-### 情绪 → 画面词速查
+### Emotion → Visual Keyword Quick Lookup
 
-| 情绪 | 面容关键词 | 色彩匹配 |
+| Emotion | Facial Keywords | Color Match |
 |------|-----------|---------|
-| 心动 | 圆润线条，橙色色块 | 暖粉 + 暖橙对比 |
-| 悲伤 | 直线线条，冷色色调 | 冷蓝 + 灰色单色 |
-| 温柔 | 柔和线条，暖色色调 | 暖黄 + 米白柔和 |
-| 浪漫 | 曲线线条，粉色色调 | 暖粉 + 暖橙对比 |
-| 感动 | 上扬线条，暖色色调 | 暖橙 + 暖黄主色 |
-| 孤独 | 冷色线条，简洁表情 | 冷蓝 + 紫色单色 |
-| 快乐 | 圆形线条，明亮表情 | 暖橙 + 黄色对比 |
+| Infatuation | Rounded lines, orange color blocks | Warm pink + warm orange contrast |
+| Sadness | Straight lines, cool color tones | Cool blue + gray monochrome |
+| Tenderness | Soft lines, warm color tones | Warm yellow + cream white softness |
+| Romance | Curved lines, pink tones | Warm pink + warm orange contrast |
+| Moved | Upward lines, warm color tones | Warm orange + warm yellow primary colors |
+| Loneliness | Cool color lines, simple expression | Cool blue + purple monochrome |
+| Joy | Circular lines, bright expression | Warm orange + yellow contrast |
 

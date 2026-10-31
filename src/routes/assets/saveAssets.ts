@@ -7,7 +7,7 @@ import { validateFields } from "@/middleware/middleware";
 import { stat } from "original-fs";
 const router = express.Router();
 
-// 保存资产图片
+// Save asset images
 export default router.post(
   "/",
   validateFields({
@@ -21,21 +21,21 @@ export default router.post(
   async (req, res) => {
     const { id, base64, type, prompt, projectId, imageId } = req.body;
     if (base64) {
-      //自定义上传选择的图片
+      // Custom upload selected images
       const matches = base64.match(/^data:image\/\w+;base64,(.+)$/);
       const realBase64 = matches ? matches[1] : base64;
-      // 生成新的图片路径
+      // Generate a new image path
       const savePath = `/${projectId}/${type}/${uuidv4()}.png`;
-      // 写入文件
+      // Write to file
       await u.oss.writeFile(savePath, Buffer.from(realBase64, "base64"));
-      // 插入图片表
+      // Insert image table
       const [idData] = await u.db("o_image").insert({
         assetsId: id,
         filePath: savePath,
         type: type,
-        state: "已完成",
+        state: "Completed",
       });
-      // 更新资产表图片为新图片
+      // Update the asset table image to the new image
       await u
         .db("o_assets")
         .where("id", id)
@@ -52,6 +52,6 @@ export default router.post(
           imageId: imageId,
         });
     }
-    res.status(200).send(success({ message: "保存资产图片成功" }));
+    res.status(200).send(success({ message: "Asset image saved successfully" }));
   },
 );

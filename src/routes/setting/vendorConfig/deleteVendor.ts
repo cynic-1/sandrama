@@ -14,6 +14,6 @@ export default router.post(
   async (req, res) => {
     const { id } = req.body;
     await u.userSettings.deleteVendorConfig(id);
-    res.status(200).send(success("删除成功"));
+    res.status(200).send(success("Deletion successful"));
   },
 );

@@ -1,167 +1,167 @@
-# 场景衍生资产生成 · 都市写实约束手册
+# Scene Derivative Asset Generation · Urban Realism Constraint Manual
 
 ---
 
-## 一、衍生原则
+## I. Derivation Principles
 
-1. **空间一致** — 建筑结构/布局/材质在所有变体中保持一致
-2. **景别驱动** — 同一场景通过不同景别展示不同叙事功能
-3. **时段切换** — 同一空间在不同时间段呈现不同光影氛围
-4. **天候变化** — 同一空间在不同天气下呈现不同情绪
-5. **实拍为锚** — 所有变体必须保持真实摄影质感，拒绝 3D 渲染/CG 动画感；保留镜头光学特征与物理光照
+1. **Spatial Consistency** — Architectural structure, layout, and materials must remain consistent across all variants.
+2. **Shot-Size Driven** — The same scene demonstrates different narrative functions through different shot sizes.
+3. **Time-of-Day Switching** — The same space presents different lighting and atmosphere at different times of day.
+4. **Weather Variation** — The same space presents different moods under different weather conditions.
+5. **Live-Action Anchor** — All variants must maintain a realistic photographic texture, rejecting 3D rendering/CG animation aesthetics; preserve lens optical characteristics and physical lighting.
 
 ---
 
-## 二、景别变体
+## II. Shot-Size Variants
 
-### 景别定义
+### Shot-Size Definitions
 
-| 景别 | 范围 | 叙事功能 | 提示词 |
+| Shot Size | Scope | Narrative Function | Prompt |
 |---|---|---|---|
-| 大全景 | 场景全貌 + 周围环境 | 建立空间感、定位 | extreme wide shot、大全景 |
-| 全景 | 场景完整呈现 | 展示空间结构 | wide shot、全景 |
-| 中景 | 场景局部区域 | 聚焦功能区 | medium shot、中景 |
-| 近景 | 场景细部 | 材质/氛围道具特写 | close shot、近景 |
-| 特写 | 极局部细节 | 材质纹理/关键道具 | extreme closeup、特写 |
+| Extreme Wide | Full scene + surrounding environment | Establish spatial sense, location | extreme wide shot, extreme wide |
+| Wide | Complete scene presentation | Show spatial structure | wide shot, wide |
+| Medium | Local area of the scene | Focus on functional zones | medium shot, medium |
+| Close | Scene details | Material/atmosphere prop close-up | close shot, close |
+| Extreme Closeup | Extremely local details | Material texture/key props | extreme closeup, extreme closeup |
 
-### 景别衍生规范
+### Shot-Size Derivation Standards
 
-| 从基准图衍生 | 保持不变 | 允许变化 |
+| Derive from Base Image | Keep Unchanged | Allowed Changes |
 |---|---|---|
-| 大全景 → 全景 | 建筑外观、整体布局 | 视角收窄、前景增加 |
-| 全景 → 中景 | 材质、色调、光线 | 裁切聚焦、景深变化 |
-| 中景 → 近景 | 材质、色调 | 景深浅、背景虚化 |
-| 近景 → 特写 | 材质纹理 | 极浅景深、微距感 |
+| Extreme Wide → Wide | Building exterior, overall layout | Narrower perspective, added foreground |
+| Wide → Medium | Materials, color tone, lighting | Cropped focus, depth-of-field change |
+| Medium → Close | Materials, color tone | Shallow depth of field, background blur |
+| Close → Extreme Closeup | Material texture | Extremely shallow depth of field, macro feel |
 
 ---
 
-## 三、时段变体
+## III. Time-of-Day Variants
 
-### 时段定义
+### Time-of-Day Definitions
 
-| 时段 | 视觉特征 | 提示词 |
+| Time of Day | Visual Characteristics | Prompt |
 |---|---|---|
-| 清晨 | 薄雾柔光、色调偏冷暖交织 | 晨光微熹、清晨薄雾 |
-| 正午 | 明亮、阴影短、色彩鲜明 | 正午阳光、光线明亮 |
-| 黄昏 | 金色色调、长影、天空渐变 | 暮色金辉、golden hour |
-| 夜间（月光） | 冷蓝色调、幽静清冷 | 月光清辉、moonlight |
-| 夜间（灯火） | 暖黄点缀、明暗对比 | 灯火阑珊、城市夜景 |
+| Early Morning | Thin mist, soft light, mixed warm/cool tones | faint morning light, early morning mist |
+| Noon | Bright, short shadows, vivid colors | noon sunlight, bright light |
+| Dusk | Golden tones, long shadows, sky gradient | dusk golden glow, golden hour |
+| Night (Moonlight) | Cool blue tones, quiet and cold | moonlight glow, moonlight |
+| Night (Lights) | Warm yellow accents, contrast between light and dark | fading lights, city night scene |
 
-### 时段衍生规范
+### Time-of-Day Derivation Standards
 
-| 从基准时段衍生 | 保持不变 | 变化项 |
+| Derive from Base Time | Keep Unchanged | Changes |
 |---|---|---|
-| 日间 → 黄昏 | 建筑/布局/材质 | 天空色调暖化、影子拉长 |
-| 日间 → 夜间 | 建筑/布局/材质 | 整体变暗、增加灯火/月色氛围 |
-| 室内日间 → 室内夜间 | 空间结构、家具 | 整体色调暖化、增加台灯/落地灯元素 |
+| Daytime → Dusk | Building/layout/materials | Warmer sky tones, elongated shadows |
+| Daytime → Night | Building/layout/materials | Overall darkening, added lights/moonlight atmosphere |
+| Indoor Daytime → Indoor Night | Spatial structure, furniture | Warmer overall tones, added table lamp/floor lamp elements |
 
 ---
 
-## 四、天候变体
+## IV. Weather Variants
 
-### 天候定义
+### Weather Definitions
 
-| 天候 | 视觉特征 | 提示词 |
+| Weather | Visual Characteristics | Prompt |
 |---|---|---|
-| 晴天 | 明亮、阴影清晰 | 晴空万里、阳光明媚 |
-| 阴天 | 光线均匀、无硬影 | 阴天柔光、overcast |
-| 薄雾 | 能见度降低、空气朦胧 | 薄雾弥漫、雾气缭绕 |
-| 细雨 | 水珠、湿润反光、雨丝 | 细雨如丝、雨幕轻纱 |
-| 飞雪 | 白色覆盖、雪花飘落 | 飞雪纷纷、银装素裹 |
+| Sunny | Bright, clear shadows | clear skies, sunny |
+| Overcast | Even light, no hard shadows | overcast soft light, overcast |
+| Thin Mist | Reduced visibility, hazy air | thin mist, misty |
+| Light Rain | Water droplets, wet reflections, rain streaks | light rain, rain curtain |
+| Snowfall | White coverage, falling snowflakes | snowfall, snow-covered |
 
-### 天候衍生规范
+### Weather Derivation Standards
 
-| 从基准天候衍生 | 保持不变 | 变化项 |
+| Derive from Base Weather | Keep Unchanged | Changes |
 |---|---|---|
-| 晴 → 薄雾 | 建筑/布局 | 增加雾气层、远景模糊、饱和度降低 |
-| 晴 → 细雨 | 建筑/布局 | 增加雨丝、地面反光、色调偏冷 |
-| 晴 → 飞雪 | 建筑/布局 | 增加积雪、雪花、色调偏白 |
-| 植被需随天候逻辑适配 | — | 雨中花瓣湿润、雪中枯枝挂霜 |
+| Sunny → Thin Mist | Building/layout | Added mist layer, blurred distant view, reduced saturation |
+| Sunny → Light Rain | Building/layout | Added rain streaks, ground reflections, cooler tones |
+| Sunny → Snowfall | Building/layout | Added snow accumulation, snowflakes, whiter tones |
+| Vegetation must adapt to weather logic | — | Wet petals in rain, frost on bare branches in snow |
 
 ---
 
-## 五、角度变体
+## V. Angle Variants
 
-### 角度定义
+### Angle Definitions
 
-> 衍生图相对参考图，可在以下角度维度上进行切换。调用方会传入参考图 + 目标角度描述，本文件只定义角度语汇与一致性约束。
+> Derivative images, relative to the reference image, can switch along the following angle dimensions. The caller will pass the reference image + target angle description; this file only defines the angle vocabulary and consistency constraints.
 
-| 角度 | 描述 | 提示词 |
+| Angle | Description | Prompt |
 |---|---|---|
-| 正面/前视 | 与参考图相比，视线朝向场景正面 | front view、eye level |
-| 侧面（左/右） | 朝场景左/右侧 90° 平视 | left side view / right side view |
-| 背面/后视 | 朝场景背面 180° | back view |
-| 俯视 | 高位俯瞰，呈现整体布局 | high angle、bird's eye view |
-| 仰视 | 低位仰望，强调高大主体 | low angle、worm's eye view |
-| 近景推进 | 同方向但镜头推进，聚焦局部 | push-in、closer angle |
-| 自由角度 | 调用方自定义的任意角度描述 | 按 `{目标角度}` 注入 |
+| Front/Front View | Compared to the reference image, the line of sight faces the front of the scene | front view, eye level |
+| Side (Left/Right) | 90° level view facing the left/right side of the scene | left side view / right side view |
+| Back/Rear View | 180° facing the back of the scene | back view |
+| High Angle | High-position overlook, showing overall layout | high angle, bird's eye view |
+| Low Angle | Low-position upward view, emphasizing tall subjects | low angle, worm's eye view |
+| Push-In | Same direction but camera pushes in, focusing on a local area | push-in, closer angle |
+| Free Angle | Any custom angle description defined by the caller | Inject as `{target angle}` |
 
-### 角度衍生规范
+### Angle Derivation Standards
 
-| 项目 | 约束 |
+| Item | Constraint |
 |---|---|
-| 参考一致性 | 建筑结构/布局/材质/色调/光线/季节/天候必须与参考图一致 |
-| 视点 | 同一场景中心点，仅角度切换；视线高度可随角度调整 |
-| 光照逻辑 | 参考图光源方向不变，角度切换后光影投射方向需同步重算（保持物理合理） |
-| 布局 | 单画面（非拼图、非多视图、非分屏） |
-| 人物 | **严禁出现任何人物、人影、人体轮廓** |
-| 画面比例 | 默认 16:9（或按调用方设定） |
+| Reference Consistency | Architectural structure/layout/materials/color tone/lighting/season/weather must be consistent with the reference image |
+| Viewpoint | Same scene center point, only angle switching; eye height can be adjusted according to the angle |
+| Lighting Logic | The light source direction in the reference image remains unchanged; after angle switching, the direction of light and shadow projection must be recalculated synchronously (maintaining physical plausibility) |
+| Layout | Single frame (no collage, no multi-view, no split screen) |
+| People | **Strictly prohibited from showing any people, human shadows, or human silhouettes** |
+| Aspect Ratio | Default 16:9 (or as set by the caller) |
 
 ---
 
-## 六、提示词模板
+## VI. Prompt Templates
 
 ```
-现代都市衍生场景图，基于参考图，
-real photography，photorealistic，shot on ARRI Alexa，35mm film grain，
-RAW photo，ultra realistic，hyper detailed，
-shallow depth of field，natural lens vignette，subtle chromatic aberration，bokeh，
-真实摄影质感，胶片颗粒感，自然光照，物理光影，
-scene derivative design sheet，environment concept art，no people，no characters，no human figures，
-保持场景空间结构一致，
-{目标角度（如有）}，{景别视角（如有）}，{时段描述（如有）}，{天候描述（如有）}，
-{前景}，{中景}，{后景}，
-{色调描述}，{景深描述（如有）}，{天空色调变化（如有）}，{氛围调整（如有）}，
-{天候视觉特征（如有）}，{材质表面变化（如有）}，{植被适配描述（如有）}，
-材质自然磨损痕迹，使用痕迹，墙面剥落，金属氧化，
-自然光漫射，体积光，丁达尔效应，焦散投影，
-空气透视，纹理细节超清晰，
-单画面构图，与参考图保持建筑结构/材质/色调/光线一致，仅按目标角度切换视点，
-画面中无任何人物
-图中不要有任何文字
+Modern urban derivative scene image, based on the reference image,
+real photography, photorealistic, shot on ARRI Alexa, 35mm film grain,
+RAW photo, ultra realistic, hyper detailed,
+shallow depth of field, natural lens vignette, subtle chromatic aberration, bokeh,
+real photography texture, film grain, natural lighting, physical light and shadow,
+scene derivative design sheet, environment concept art, no people, no characters, no human figures,
+maintain consistent scene spatial structure,
+{target angle (if any)}, {shot type perspective (if any)}, {time of day description (if any)}, {weather description (if any)},
+{foreground}, {midground}, {background},
+{color tone description}, {depth of field description (if any)}, {sky color change (if any)}, {atmosphere adjustment (if any)},
+{weather visual features (if any)}, {material surface changes (if any)}, {vegetation adaptation description (if any)},
+natural material wear marks, usage traces, wall peeling, metal oxidation,
+natural light diffusion, volumetric light, Tyndall effect, caustic projection,
+aerial perspective, ultra-clear texture details,
+single frame composition, maintain consistency with the reference image in building structure/material/color tone/lighting, only switch the viewpoint according to the target angle,
+no people in the image
+no text in the image
 ```
 
 
-> **使用说明**：根据用户提供的信息自行判断需要应用的变化维度（角度/景别/时段/天候），未提及的维度对应字段留空省略即可。无需为每种变体单独生成模板。
+> **Usage Instructions**: Determine the applicable variation dimensions (angle/shot scale/time of day/weather) based on the information provided by the user. Leave fields for unmentioned dimensions blank and omit them. There is no need to generate separate templates for each variant.
 
 ---
 
-## 七、约束规则
+## VII. Constraint Rules
 
-### 必守
+### Mandatory
 
-| 编号 | 规则 |
+| No. | Rule |
 |---|---|
-| R1 | 场景空间结构在所有变体中保持一致 |
-| R2 | 时段变体必须调整天空色调与氛围 |
-| R3 | 天候变体必须适配植被/材质表面 |
-| R4 | 衍生图必须为「单画面」，不得拼接多视图/网格/分屏 |
-| R5 | 衍生图必须与参考图保持建筑结构/材质/色调/光线一致，仅按指定角度切换视点 |
-| R6 | 场景图中**严禁出现任何人物** |
-| R7 | 根据用户提供的信息自行判断变化维度（角度/景别/时段/天候），未提及维度留空省略 |
-| R8 | 必须包含实拍摄影关键词（real photography / photorealistic / RAW photo） |
-| R9 | 必须包含镜头光学特征（shallow depth of field / lens vignette / bokeh 至少一项） |
-| R10 | 材质必须带有自然磨损/使用痕迹，禁止全新无瑕的"CG 感" |
+| R1 | The spatial structure of the scene must remain consistent across all variants |
+| R2 | Time-of-day variants must adjust the sky tone and atmosphere |
+| R3 | Weather variants must adapt vegetation/material surfaces |
+| R4 | Derived images must be a "single frame"; do not stitch together multiple views/grids/split screens |
+| R5 | Derived images must maintain consistency with the reference image in terms of architectural structure/materials/color tone/lighting, switching the viewpoint only according to the specified angle |
+| R6 | **No people of any kind are allowed** in scene images |
+| R7 | Determine the variation dimensions (angle/shot scale/time of day/weather) based on the information provided by the user; leave unmentioned dimensions blank and omit them |
+| R8 | Must include live-action photography keywords (real photography / photorealistic / RAW photo) |
+| R9 | Must include lens optical characteristics (at least one of: shallow depth of field / lens vignette / bokeh) |
+| R10 | Materials must show natural wear/usage traces; brand-new, flawless "CG look" is prohibited |
 
-### 严禁
+### Prohibited
 
-| 编号 | 严禁 |
+| No. | Prohibited |
 |---|---|
-| X1 | 变体间建筑结构/布局不一致 |
-| X2 | 天候与季节矛盾（夏天飞雪等） |
-| X3 | 变体间材质/风格突变 |
-| X4 | 出现任何人物、人影、人体剪影或人体轮廓 |
-| X5 | 画面被拼接成多视图/网格/分屏布局 |
-| X6 | 3D 渲染/CG 动画/卡通/游戏引擎质感（禁用 3D render、CGI、Unreal Engine、Unity 等词） |
-| X7 | 材质过于干净完美、无任何使用痕迹与岁月感（避免"塑料感"） |
-| X8 | 光照过于均匀平坦、无景深虚化、无镜头光学特征 |
+| X1 | Inconsistent architectural structure/layout between variants |
+| X2 | Contradictions between weather and season (e.g., snow in summer) |
+| X3 | Sudden changes in materials/style between variants |
+| X4 | Appearance of any people, human shadows, human silhouettes, or human outlines |
+| X5 | Frames stitched into multi-view/grid/split-screen layouts |
+| X6 | 3D rendering/CG animation/cartoon/game engine aesthetics (do not use terms such as 3D render, CGI, Unreal Engine, Unity, etc.) |
+| X7 | Materials that are too clean and perfect, with no usage traces or sense of age (avoid a "plastic look") |
+| X8 | Lighting that is too uniform and flat, with no depth-of-field blur and no lens optical characteristics |

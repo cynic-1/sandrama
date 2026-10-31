@@ -1,152 +1,152 @@
 ---
 name: director_storyboard
-description: 导演分镜提示词技法 · 国风3D
+description: Director Storyboard Prompt Techniques · Chinese Style 3D
 metaData: director_skills
 ---
 
-# 分镜提示词 · 国风3D · 风格专属技法
+# Storyboard Prompts · Chinese Style 3D · Style-Specific Techniques
 
 ---
 
-## 适用范围
+## Scope
 
-本 Skill 专用于**国风3D**风格的分镜提示词生成。
+This Skill is exclusively for generating storyboard prompts in the **Chinese Style 3D** aesthetic.
 
 ---
 
-## 情绪 → 面容/眼神词映射
+## Emotion → Facial Expression/Eye Gaze Mapping
 
-| 情绪输入 | 面容词 | 眼神词 | 微表情补充 |
+| Emotion Input | Facial Expression Terms | Eye Gaze Terms | Micro-Expression Supplements |
 |----------|--------|--------|-----------|
-| 端庄 / 优雅 | 神情端庄，目光平静 | 眼神清亮，目光沉稳 | 嘴角微扬，表情典雅 |
-| 忧伤 / 哀婉 | 神情哀婉，眼神黯淡 | 眼神含泪，目光低垂 | 嘴角下沉，表情哀伤 |
-| 温柔 / 深情 | 神情温柔，眉目含情 | 眼神专注柔和，目光温暖 | 嘴角微扬，表情治愈 |
-| 凌厉 / 肃杀 | 神情冷峻，目光如刀 | 眼神锐利，目光坚定 | 下颌收紧，表情威严 |
-| 惊讶 / 欣喜 | 眼睛微睁，表情生动 | 眼神明亮，目光聚焦 | 嘴角上扬，表情惊喜 |
-| 沉思 / 内省 | 神情淡淡，目光悠远 | 眼神放空，目光失焦 | 表情平静，气质内敛 |
-| 喜悦 / 欢快 | 表情灿烂，眼睛弯月 | 眼神明亮，目光灵动 | 脸颊微红，表情生动 |
-| 疲惫 / 倦怠 | 眼神朦胧，表情柔和 | 目光略显疲惫，眼神柔和 | 微微打哈欠，表情慵懒 |
-| 期待 / 盼望 | 眼神发光，表情鲜活 | 眼神期待，目光闪烁 | 嘴角上扬，表情生动 |
-| 决绝 / 坚定 | 神情认真，目光清亮 | 眼神坚定，目光向前 | 下巴微抬，表情果敢 |
+| Dignified / Elegant | Dignified expression, calm gaze | Clear eyes, steady gaze | Slight upturn of lips, elegant demeanor |
+| Sorrowful / Melancholic | Melancholic expression, dim eyes | Tear-filled eyes, downcast gaze | Downturned lips, sorrowful expression |
+| Gentle / Deeply Affectionate | Gentle expression, affectionate brows and eyes | Focused, soft gaze, warm look | Slight upturn of lips, healing expression |
+| Sharp / Grim | Stern expression, gaze like a blade | Sharp eyes, resolute gaze | Tightened jaw, authoritative expression |
+| Surprised / Delighted | Slightly widened eyes, lively expression | Bright eyes, focused gaze | Upturned lips, surprised expression |
+| Contemplative / Introspective | Faint expression, distant gaze | Blank stare, unfocused gaze | Calm expression, reserved demeanor |
+| Joyful / Cheerful | Radiant expression, crescent-shaped eyes | Bright eyes, lively gaze | Slightly flushed cheeks, vivid expression |
+| Fatigued / Weary | Hazy eyes, soft expression | Slightly tired gaze, soft eyes | Slight yawn, languid expression |
+| Expectant / Hopeful | Glowing eyes, vibrant expression | Expectant eyes, sparkling gaze | Upturned lips, lively expression |
+| Resolute / Firm | Serious expression, clear gaze | Resolute eyes, forward-looking gaze | Slight chin lift, decisive expression |
 
 ---
 
-## 光影氛围词库（国风3D）
+## Lighting and Atmosphere Vocabulary (Chinese Style 3D)
 
-### 时间段光线
+### Time-of-Day Lighting
 
-| 时间段 | 主光词 | 色调词 | 气氛词 |
+| Time of Day | Key Light Terms | Color Tone Terms | Atmosphere Terms |
 |--------|--------|--------|--------|
-| 清晨 | 柔和晨光，暖色侧射 | 月白 + 青绿 | 薄雾弥漫，空气清新 |
-| 正午 | 明亮阳光，直射柔光 | 朱红 + 金黄高光 | 光影清晰，色彩鲜明 |
-| 傍晚/黄昏 | 逆光剪影，暖色渐变 | 朱红 + 靛蓝渐变 | 夕阳余晖，轮廓光 |
-| 夜间 | 冷色背景 + 暖光点缀 | 靛蓝主调 + 暖黄光点 | 宁静温馨，灯光柔和 |
-| 雨天 | 漫射冷光，无主光源 | 青绿 + 月白 | 空气湿润，低对比 |
+| Early Morning | Soft morning light, warm side lighting | Moon white + Cyan-green | Thin mist, fresh air |
+| Noon | Bright sunlight, direct soft light | Vermilion + Golden highlights | Clear light and shadow, vivid colors |
+| Evening / Dusk | Backlit silhouette, warm gradient | Vermilion + Indigo gradient | Sunset afterglow, rim light |
+| Night | Cool background + warm light accents | Indigo dominant + Warm yellow light points | Serene and cozy, soft lighting |
+| Rainy Day | Diffused cool light, no key light source | Cyan-green + Moon white | Humid air, low contrast |
 
-### 情绪光影
+### Emotional Lighting
 
-| 情绪基调 | 光线类型 | 补充约束 |
+| Emotional Tone | Light Type | Supplementary Constraints |
 |----------|----------|----------|
-| 宫廷华贵 | 暖光照明，局部高光 | PBR材质反射，景深层次 |
-| 山水意境 | 体积光漫射，雾气氛围 | 青绿色调，景深虚化 |
-| 闺阁温婉 | 局部柔光，柔和阴影 | 胭脂色调，近景特写 |
-| 武侠肃杀 | 冷调阴影，硬光对比 | 靛蓝 + 墨黑，低饱和度 |
-| 月夜清幽 | 月光照明，冷暖对比 | 靛蓝背景，暖光点缀 |
+| Imperial Opulence | Warm lighting, localized highlights | PBR material reflections, depth of field layers |
+| Landscape Aesthetics | Volumetric light diffusion, misty atmosphere | Cyan-green tones, depth of field blur |
+| Boudoir Gentleness | Localized soft light, soft shadows | Rouge tones, close-up shots |
+| Wuxia Grimness | Cool-toned shadows, hard light contrast | Indigo + Ink black, low saturation |
+| Moonlit Serenity | Moonlight illumination, warm-cool contrast | Indigo background, warm light accents |
 
 ---
 
-## 场景质感约束词（按场景类型）
+## Scene Texture Constraints (By Scene Type)
 
-| 场景类型 | 必加约束词 |
+| Scene Type | Mandatory Constraint Terms |
 |----------|-----------|
-| 宫廷建筑 | 朱红宫墙、金顶琉璃、雕梁画栋、汉白玉栏杆 |
-| 山水园林 | 青绿山水、飞檐亭台、曲径通幽、假山池沼 |
-| 闺阁室内 | 屏风格扇、雕花窗棂、纱幔帐帘、古典家具 |
-| 武侠场景 | 竹林/雪地/山崖、冷色调、氛围压抑、线条凌厉 |
-| 节日庆典 | 灯笼/彩带/烟花、高饱和暖色、氛围热闹、人群熙攘 |
-| 夜晚街景 | 灯笼/街灯/店铺、暖光点缀、冷色背景、倒影反射 |
+| Imperial Architecture | Vermilion palace walls, glazed gold roofs, carved beams and painted pillars, white marble railings |
+| Landscape Gardens | Cyan-green landscapes, upturned eaves and pavilions, winding paths, rockeries and ponds |
+| Boudoir Interior | Screen-style fans, carved window lattices, gauze curtains and drapes, classical furniture |
+| Wuxia Scenes | Bamboo groves / Snowfields / Cliff edges, cool tones, oppressive atmosphere, sharp lines |
+| Festivals | Lanterns / Ribbons / Fireworks, high-saturation warm colors, lively atmosphere, bustling crowds |
+| Night Street Scenes | Lanterns / Street lamps / Shops, warm light accents, cool background, reflection highlights |
 
 ---
 
-## 固定风格锚定词（所有输出必须包含）
+## Fixed Style Anchoring Terms (Must be included in all outputs)
 
-**3D渲染锚定（必选）：**
+**3D Rendering Anchoring (Mandatory):**
 
-3D渲染风格，高精度建模，PBR材质，国风3D，电影级光影
+3D rendering style, high-precision modeling, PBR materials, Chinese Style 3D, cinematic lighting
 
-**人物质感（含人物镜头时必选）：**
+**Character Texture (Mandatory for shots containing characters):**
 
-3D古风建模，高精贴图，服饰纹理清晰，发丝细腻渲染，光影层次丰富
+3D ancient-style modeling, high-resolution textures, clear costume textures, fine hair rendering, rich light and shadow layers
 
-**场景质感（含场景镜头时必选）：**
+**Scene Texture (Mandatory for shots containing scenes):**
 
-3D场景渲染，建筑细节丰富，材质质感真实，景深虚化，体积光
+3D scene rendering, rich architectural details, realistic material textures, depth of field blur, volumetric light
 
-**一致性锚定（参考图模式必选）：**
+**Consistency Anchoring (Mandatory for Reference Image Mode):**
 
-保持人物造型与参考图一致，保持场景风格与参考图一致，保持光影色彩基调统一
+Maintain character design consistent with the reference image, maintain scene style consistent with the reference image, maintain unified lighting and color tone
 
-**风格收尾（固定）：**
+**Style Closing (Fixed):**
 
-国风3D渲染，东方美学，PBR材质，电影级渲染
+Chinese Style 3D rendering, Eastern aesthetics, PBR materials, cinematic rendering
 
-**画质锁定词（所有输出必须包含，置于风格收尾之后）：**
+**Image Quality Locking Terms (Must be included in all outputs, placed after the Style Closing):**
 
-模式A（中文）——默认（画面无画内文字需求时）：
-3D高清渲染，高细节，高精度建模，PBR材质，画面无字幕、无水印、无标题叠字
+Mode A (Chinese) — Default (when no in-frame text is required):
+3D high-definition rendering, high detail, high-precision modeling, PBR materials, no subtitles, no watermarks, no title overlays in the frame
 
-模式A（中文）——画内文字场景（画面描述中含牌匾/对联/书籍等道具文字时）：
-3D高清渲染，高细节，高精度建模，PBR材质，画面无字幕、无水印、无标题叠字，牌匾/对联等场景道具上的文字清晰可辨
+Mode A (Chinese) — In-frame Text Scenario (when the scene description includes props with text such as plaques/couplets/books):
+3D high-definition rendering, high detail, high-precision modeling, PBR materials, no subtitles, no watermarks, no title overlays in the frame, text on scene props such as plaques and couplets is clearly legible
 
-模式B（英文）——默认：
+Mode B (English) — Default:
 3D rendered style, high-poly modeling, PBR materials, Chinese style, cinematic lighting, high detail, no subtitles, no captions, no watermark, no title overlay
 
-模式B（英文）——画内文字场景：
+Mode B (English) — In-frame Text Scenario:
 3D rendered style, high-poly modeling, PBR materials, Chinese style, cinematic lighting, high detail, no subtitles, no captions, no watermark, no title overlay, legible text on in-scene props such as plaques and couplets
 
-**负向词模板（模式B 必须包含，置于提示词末尾）：**
+**Negative Prompt Template (Must be included in Mode B, placed at the end of the prompt):**
 
-> ⚠️ Seedream（模式A）**不支持负向提示词**，负向词仅适用于模式B。模式A 通过正向词中的质感锚定和画质锁定来保证画面质量。
+> ⚠️ Seedream (Mode A) **does not support negative prompts**. Negative prompts are only applicable to Mode B. Mode A ensures image quality through texture anchoring and image quality locking in the positive prompt.
 
-模式B（英文）：
+Mode B (English):
 no photorealistic, no realistic photography, no low-poly, no rough modeling, no plastic texture, no harsh lines, no cartoon style, no anime style, no western fantasy, no cyberpunk, no sci-fi, no modern elements, no subtitles, no captions, no watermark, no title overlay, no UI text
 
 ---
 
-## 美学禁止项（生成时严格规避）
+## Aesthetic Prohibitions (Strictly avoid during generation)
 
-以下词汇/风格不得出现于输出提示词中：
+The following terms/styles must not appear in the output prompt:
 
-- ❌ 写实摄影/照片级真实感词（如：photorealistic, realistic photography）
-- ❌ 高饱和荧光色/霓虹色/数码感强
-- ❌ 西方奇幻/赛博朋克/现代元素
-- ❌ 低精度建模/粗糙贴图/塑料质感
-- ❌ 卡通/动漫/二次元风格
-- ❌ 扁平设计/无3D纵深感
-- ❌ 色彩混乱/光影错误/透视错误
-- ❌ 现代建筑/现代服饰元素
+- ❌ Photorealistic/Photo-grade realism terms (e.g., photorealistic, realistic photography)
+- ❌ High-saturation fluorescent colors/Neon colors/Strong digital feel
+- ❌ Western fantasy/Cyberpunk/Modern elements
+- ❌ Low-precision modeling/Rough textures/Plastic texture
+- ❌ Cartoon/Anime/2D style
+- ❌ Flat design/Lack of 3D depth
+- ❌ Color chaos/Lighting errors/Perspective errors
+- ❌ Modern architecture/Modern clothing elements
 
-> 💡 **例外**：某些现代3D渲染技术（如光线追踪、体积光）可以合理使用，但应保持国风美学基调。
+> 💡 **Exception**: Certain modern 3D rendering techniques (such as ray tracing, volumetric light) can be reasonably used, but the Chinese aesthetic tone must be maintained.
 
 ---
 
-## 完整生成示例
+## Complete Generation Example
 
-> 以下为同一输入分别使用模式A和模式B的对照展示，实际使用时**仅输出其中一种**。
+> The following shows a comparison of the same input using Mode A and Mode B. In actual use, **only one of them should be output**.
 
-### 输入（分镜表行数据）
+### Input (Storyboard Table Row Data)
 
-| 序号 | 画面描述 | 场景 | 关联资产名称 | 时长 | 景别 | 运镜 | 角色动作 | 情绪 | 光影氛围 |
+| No. | Frame Description | Scene | Related Asset Name | Duration | Shot Size | Camera Movement | Character Action | Emotion | Lighting Atmosphere |
 |------|---------|------|-------------|------|------|------|---------|------|----------|
-| 1 | 女子身着华服站在宫殿前，手持宫灯 | 宫殿 | 女子 | 6s | 中景 | 缓推 | 侧身持灯，眼神温柔 | 温婉 / 典雅 | 暖光照明 |
+| 1 | Woman in elaborate attire standing in front of the palace, holding a palace lantern | Palace | Woman | 6s | Medium Shot | Slow Push | Standing sideways holding lantern, gentle gaze | Gentle / Elegant | Warm lighting |
 
-### 示例输出A（模式A · Seedream）
+### Example Output A (Mode A · Seedream)
 
 [Prompt]
-3D渲染风格，高精度建模，PBR材质，国风3D，电影级光影，3D古风建模，高精贴图，服饰纹理清晰，发丝细腻渲染，光影层次丰富，中景构图，女子身着华服站在宫殿前，手持宫灯侧身而立，神情温婉，眼神温柔，朱红宫墙背景，金黄高光点缀，体积光氛围，景深虚化，国风3D渲染，东方美学，PBR材质，3D高清渲染，高细节，高精度建模，PBR材质，画面无字幕、无水印、无标题叠字。
-Based on the reference image of 女子，maintain consistent: face features, hairstyle, costume details. Generate a new scene: standing in front of palace at dusk, holding lantern. Keep visual style identical to reference.
+3D rendering style, high-precision modeling, PBR materials, Chinese Style 3D, cinematic lighting, 3D ancient-style modeling, high-resolution textures, clear costume textures, fine hair rendering, rich light and shadow layers, medium shot composition, woman in elaborate attire standing in front of the palace, standing sideways holding a palace lantern, gentle expression, gentle gaze, vermilion palace wall background, golden highlight accents, volumetric light atmosphere, depth of field blur, Chinese Style 3D rendering, Eastern aesthetics, PBR materials, 3D high-definition rendering, high detail, high-precision modeling, PBR materials, no subtitles, no watermarks, no title overlays in the frame.
+Based on the reference image of the Woman, maintain consistent: face features, hairstyle, costume details. Generate a new scene: standing in front of the palace at dusk, holding a lantern. Keep visual style identical to the reference.
 
-### 示例输出B（模式B · Nanobanana）
+### Example Output B (Mode B · Nanobanana)
 
 ```xml
 <role>
@@ -154,7 +154,7 @@ You are a 3D storyboard artist.
 Maintain strict visual continuity across all shots.
 </role>
 <character_reference>
-Image [1]: 女子 — 3D古风造型，典雅服饰，国风3D风格
+Image [1]: Woman — 3D ancient-style design, elegant attire, Chinese Style 3D aesthetic
 </character_reference>
 <continuity_rules>
 - Same outfit, hairstyle, face features across ALL shots
@@ -169,18 +169,19 @@ Medium shot, woman in elegant traditional Chinese attire standing before palace,
 no photorealistic, no realistic photography, no low-poly, no rough modeling, no plastic texture, no harsh lines, no cartoon style, no anime style, no western fantasy, no cyberpunk, no sci-fi, no modern elements, no subtitles, no captions, no watermark, no title overlay, no UI text
 </negative>
 
+---
 
-## 快速参考卡
+## Quick Reference Card
 
-### 情绪 → 画面词速查
+### Emotion → Visual Terms Quick Lookup
 
-| 情绪 | 面容关键词 | 光线匹配 |
+| Emotion | Facial Keywords | Lighting Match |
 |------|-----------|---------|
-| 端庄 | 神情端庄，目光沉稳 | 暖光照明 + 高光 |
-| 忧伤 | 神情哀婉，眼神黯淡 | 冷调阴影 + 低对比 |
-| 温柔 | 神情温柔，眼神专注 | 局部柔光 + 柔焦 |
-| 凌厉 | 神情冷峻，目光如刀 | 冷调阴影 + 硬光 |
-| 喜悦 | 表情灿烂，眼睛弯月 | 暖光照明 + 高饱和 |
-| 沉思 | 神情淡淡，目光悠远 | 体积光 + 雾气 |
-| 疲惫 | 眼神朦胧，表情柔和 | 柔和光线 + 低对比 |
-| 坚定 | 神情认真，目光清亮 | 暖光侧射 + 清晰轮廓 |
+| Dignified | Dignified expression, steady gaze | Warm lighting + Highlights |
+| Sorrowful | Melancholic expression, dim eyes | Cool-toned shadows + Low contrast |
+| Gentle | Gentle expression, focused eyes | Localized soft light + Soft focus |
+| Sharp | Stern expression, gaze like a blade | Cool-toned shadows + Hard light |
+| Joyful | Radiant expression, crescent-shaped eyes | Warm lighting + High saturation |
+| Contemplative | Faint expression, distant gaze | Volumetric light + Mist |
+| Fatigued | Hazy eyes, soft expression | Soft lighting + Low contrast |
+| Resolute | Serious expression, clear gaze | Warm side lighting + Clear contours |

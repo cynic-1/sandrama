@@ -17,14 +17,14 @@ export default router.post(
 
     const modelPromptRoot = u.getPath(["modelPrompt"]);
 
-    // 路径隧穿检测
+    // Path tunneling detection
     const resolvedRoot = path.resolve(modelPromptRoot);
     const resolvedFile = path.resolve(modelPromptRoot, filePath);
     if (!resolvedFile.startsWith(resolvedRoot + path.sep)) {
-      return res.status(400).send(error("非法路径"));
+      return res.status(400).send(error("Invalid path"));
     }
 
     await u.userSettings.deleteModelPromptFile(filePath);
-    res.status(200).send(success("删除成功"));
+    res.status(200).send(success("Deletion successful"));
   },
 );

@@ -15,14 +15,14 @@ export default router.post(
     const { storyboardIds } = req.body;
     const storyboardImage = await u.db("o_storyboard").whereIn("id", storyboardIds).select("id", "filePath");
 
-    // 按 storyboardIds 顺序构建 filePath 映射
+    // Build the filePath mapping in the order of storyboardIds
     const filePathMap: Record<number, string> = {};
     storyboardImage.forEach((i) => {
       filePathMap[i.id!] = i.filePath || "";
     });
     const orderedFilePaths = storyboardIds.map((id: number) => filePathMap[id]);
 
-    // 读取所有图片 buffer 并获取元数据
+    // Read all image buffers and retrieve metadata
     const loaded = await Promise.all(
       orderedFilePaths.map(async (filePath: string) => {
         if (!filePath) return null;
@@ -32,13 +32,13 @@ export default router.post(
       }),
     );
 
-    // 过滤掉无效图片
+    // Filter out invalid images
     const validImages = loaded.filter((img): img is NonNullable<typeof img> => img !== null && img.width > 0 && img.height > 0);
     if (validImages.length === 0) {
       return res.status(200).send(success(null));
     }
 
-    // 将每张图片缩放到合理尺寸，单张最大宽度 512px
+    // Scale each image to a reasonable size, with a maximum width of 512px per image
     const maxThumbWidth = 512;
     const resizedImages = await Promise.all(
       validImages.map(async (img) => {
@@ -53,7 +53,7 @@ export default router.post(
       }),
     );
 
-    // 计算网格布局
+    // Calculate the grid layout
     const cols = Math.min(5, resizedImages.length);
     const rows = Math.ceil(resizedImages.length / cols);
 
@@ -69,7 +69,7 @@ export default router.post(
     const canvasWidth = colWidths.reduce((a, b) => a + b, 0);
     const canvasHeight = rowHeights.reduce((a, b) => a + b, 0);
 
-    // 为每张图片生成带标号的合成层
+    // Generate a composite layer with a label for each image
     const compositeInputs: sharp.OverlayOptions[] = [];
 
     for (let i = 0; i < resizedImages.length; i++) {
@@ -79,18 +79,18 @@ export default router.post(
       const x = colWidths.slice(0, c).reduce((a, b) => a + b, 0);
       const y = rowHeights.slice(0, r).reduce((a, b) => a + b, 0);
 
-      // 添加图片层
+      // Add image layer
       compositeInputs.push({
         input: img.buffer,
         left: x,
         top: y,
       });
 
-      // 生成标号标签 SVG
+      // Generate numbered label SVG
       const label = `S${String(i + 1).padStart(2, "0")}`;
       const fontSize = Math.max(14, Math.min(img.width, img.height) * 0.06);
       const padding = Math.round(fontSize * 0.4);
-      // 估算文字宽度（等宽近似）
+      // Estimate text width (monospace approximation)
       const textWidth = Math.round(label.length * fontSize * 0.65);
       const bgW = textWidth + padding * 2;
       const bgH = Math.round(fontSize) + padding * 2;
@@ -109,7 +109,7 @@ export default router.post(
       });
     }
 
-    // 使用 sharp 创建画布并合成
+    // Create a canvas and composite using sharp
     const resultBuffer = await sharp({
       create: {
         width: canvasWidth,

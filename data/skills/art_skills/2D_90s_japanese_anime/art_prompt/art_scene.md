@@ -1,149 +1,149 @@
-# 90年代复古日系动画风格 - 场景图生成 · 约束手册
+# 90s Retro Japanese Animation Style - Scene Image Generation · Constraint Manual
 
 ---
 
-## 一、场景美学原则
+## I. Scene Aesthetic Principles
 
-1. **空间叙事** — 场景承载情绪与叙事功能，不是纯背景板
-2. **层次纵深** — 所有场景必须具备前/中/后景，杜绝扁平
-3. **质感至上** — 线条/色彩/光影等材质表现必须清晰
-4. **90年代为锚** — 一切画面以90年代复古日系动画为标准，拒绝现代CG/3D渲染；追求手绘线条特征（流畅线条、块面阴影）与电影感光影（柔和暖光、体积光）
+1. **Spatial Narrative** — Scenes carry emotional and narrative functions; they are not mere background boards.
+2. **Layered Depth** — All scenes must have foreground/midground/background layers; flatness is prohibited.
+3. **Texture First** — Material expression of lines, colors, and light/shadow must be clear.
+4. **90s as Anchor** — All visuals must adhere to the 90s retro Japanese animation standard; modern CG/3D rendering is rejected. Pursue hand-drawn line characteristics (smooth lines, block shadows) and cinematic lighting (soft warm light, volumetric light).
 
 ---
 
-## 二、季节色调映射
+## II. Seasonal Color Mapping
 
-| 季节 | 主色调 | 辅色调 | 提示词 |
+| Season | Primary Color | Secondary Color | Prompt |
 |---|---|---|---|
-| 春 | 粉色+嫩绿 | 浅黄、淡紫 | 春日粉色、樱花盛开 |
-| 夏 | 碧绿+蓝色 | 浅蓝、白色 | 夏日碧绿、蓝天白云 |
-| 秋 | 金黄+橙红 | 棕色、深绿 | 秋日金黄、枫叶变红 |
-| 冬 | 白色+灰色 | 深蓝、浅蓝 | 冬日白色、雪花飘落 |
+| Spring | Pink + Light Green | Light Yellow, Light Purple | Spring pink, blooming cherry blossoms |
+| Summer | Emerald Green + Blue | Light Blue, White | Summer emerald, blue sky with white clouds |
+| Autumn | Golden Yellow + Orange-Red | Brown, Dark Green | Autumn gold, red maple leaves |
+| Winter | White + Gray | Dark Blue, Light Blue | Winter white, falling snowflakes |
 
 ---
 
-## 三、室内场景
+## III. Indoor Scenes
 
-### 空间规范
+### Spatial Specifications
 
-| 维度 | 约束 | 提示词 |
+| Dimension | Constraint | Prompt |
 |---|---|---|
-| 风格 | 90年代日式房间/西式房间 | {风格}风格 |
-| 材质 | 木质/石材/布料/玻璃为主 | 木质家具、布艺装饰 |
-| 色调 | 低饱和暖色调/柔和冷色调 | 暖色调/冷色调 |
-| 纵深 | 前/中/后景层次 | 前景{元素}、中景{元素}、后景{元素} |
-| 质感 | 线条流畅、色彩柔和 | 线条流畅、色彩柔和 |
-| 光照 | 自然光/灯光，柔和电影光 | 自然光照、柔和电影光 |
-| 线条感 | 轮廓线清晰、块面阴影 | 清晰线条、块面阴影 |
-| 瑕疵感 | 墙面有使用痕迹、家具自然磨损 | 使用痕迹、自然磨损 |
+| Style | 90s Japanese room / Western room | {style} style |
+| Material | Primarily wood/stone/fabric/glass | Wooden furniture, fabric decorations |
+| Color Tone | Low-saturation warm tones / Soft cool tones | Warm tones / Cool tones |
+| Depth | Foreground/midground/background layers | Foreground {element}, midground {element}, background {element} |
+| Texture | Smooth lines, soft colors | Smooth lines, soft colors |
+| Lighting | Natural light / Artificial light, soft cinematic light | Natural lighting, soft cinematic light |
+| Line Quality | Clear outlines, block shadows | Clear lines, block shadows |
+| Imperfections | Walls show signs of use, furniture has natural wear | Signs of use, natural wear |
 
-### 室内类型速查
+### Indoor Type Quick Reference
 
-| 类型 | 核心元素 | 氛围词 |
+| Type | Core Elements | Atmosphere Words |
 |---|---|---|
-| 卧室/闺房 | 床/衣柜/梳妆台 | 温馨私密、舒适 |
-| 书房/书斋 | 书架/书桌/椅子 | 宁静、书卷气 |
-| 客厅/正厅 | 沙发/茶几/装饰 | 舒适、温馨 |
-| 走廊/阳台 | 栏杆/植物/装饰 | 通透、开阔 |
-| 厨房/餐厅 | 餐桌/厨具 | 温馨、烟火气 |
+| Bedroom / Boudoir | Bed / Wardrobe / Dressing table | Cozy and private, comfortable |
+| Study / Library | Bookshelf / Desk / Chair | Serene, scholarly |
+| Living Room / Main Hall | Sofa / Coffee table / Decorations | Comfortable, cozy |
+| Corridor / Balcony | Railing / Plants / Decorations | Open, spacious |
+| Kitchen / Dining Room | Dining table / Kitchenware | Cozy, homely |
 
 ---
 
-## 四、室外场景
+## IV. Outdoor Scenes
 
-### 空间规范
+### Spatial Specifications
 
-| 维度 | 约束 | 提示词 |
+| Dimension | Constraint | Prompt |
 |---|---|---|
-| 类型 | 庭院/山林/街道/广场 | {场景}，{季节}，{时间} |
-| 天候 | 晴/阴/雨/雪 | 晴天、雨天、雪天 |
-| 植被 | 树/花/草（须符合季节） | 树木、花草 |
-| 建筑 | 90年代建筑/日式建筑 | 90年代建筑/日式建筑 |
-| 空气感 | 必须有空气透视，远处偏灰 | 空气透视、远景模糊 |
-| 光照 | 自然光为唯一光源，柔和电影光 | 自然光照、柔和电影光 |
-| 线条感 | 轮廓线清晰、块面阴影 | 清晰线条、块面阴影 |
-| 瑕疵感 | 墙面有使用痕迹、地面有磨损 | 使用痕迹、磨损痕迹 |
+| Type | Courtyard / Mountain forest / Street / Plaza | {scene}, {season}, {time} |
+| Weather | Sunny / Cloudy / Rainy / Snowy | Sunny day, rainy day, snowy day |
+| Vegetation | Trees / Flowers / Grass (must match season) | Trees, flowers, grass |
+| Architecture | 90s architecture / Japanese architecture | 90s architecture / Japanese architecture |
+| Air Perspective | Must have aerial perspective; distant areas appear grayish | Aerial perspective, blurred background |
+| Lighting | Natural light is the only light source, soft cinematic light | Natural lighting, soft cinematic light |
+| Line Quality | Clear outlines, block shadows | Clear lines, block shadows |
+| Imperfections | Walls show signs of use, ground has wear | Signs of use, wear marks |
 
-### 室外类型速查
+### Outdoor Type Quick Reference
 
-| 类型 | 核心元素 | 氛围词 |
+| Type | Core Elements | Atmosphere Words |
 |---|---|---|
-| 庭院花园 | 植物/小桥/水池 | 宁静、优美 |
-| 山林/公园 | 树木/山石/道路 | 自然、开阔 |
-| 街道/市场 | 建筑/摊位/行人 | 热闹、生活气息 |
-| 河边/湖边 | 水面/桥梁/树木 | 宁静、优美 |
-| 屋顶/天台 | 栏杆/天空/远景 | 开阔、自由 |
+| Courtyard Garden | Plants / Small bridge / Pond | Serene, beautiful |
+| Mountain Forest / Park | Trees / Rocks / Paths | Natural, open |
+| Street / Market | Buildings / Stalls / Pedestrians | Bustling, lively |
+| Riverside / Lakeside | Water surface / Bridge / Trees | Serene, beautiful |
+| Rooftop / Terrace | Railing / Sky / Distant view | Open, free |
 
 ---
 
-## 五、主视图规范
+## V. Main View Specifications
 
-### 视图定义
+### View Definition
 
-> 单画面主视图，从场景中最具代表性的角度拍摄，承载空间叙事与构图重心。
+> Single-frame main view, shot from the most representative angle of the scene, carrying spatial narrative and compositional focus.
 
-| 项目 | 约束 | 提示词 |
+| Item | Constraint | Prompt |
 |---|---|---|
-| 视角 | 自然观察视角，构图最能体现场景主体与纵深 | hero shot、representative angle |
-| 视点高度 | 默认人眼平视高度，特殊场景可俯/仰 | eye level（默认） |
-| 构图 | 主体居中或符合三分法，前/中/后景层次清晰 | balanced composition |
+| Perspective | Natural observation perspective; composition best reflects the scene subject and depth | hero shot, representative angle |
+| Eye Level | Default eye-level height; special scenes may use high/low angles | eye level (default) |
+| Composition | Subject centered or follows rule of thirds; clear foreground/midground/background layers | balanced composition |
 
-### 画面规范
+### Frame Specifications
 
-| 项目 | 约束 |
+| Item | Constraint |
 |---|---|
-| 布局 | 单画面（非拼图、非多视图、非分屏） |
-| 人物 | **严禁出现任何人物、人影、人体轮廓** |
-| 一致性 | 风格/材质/色调/光线统一 |
-| 光线 | 单一光源逻辑，光影方向一致 |
-| 画面比例 | 默认 16:9（或按调用方设定） |
+| Layout | Single frame (not a collage, not multi-view, not split-screen) |
+| Characters | **Strictly prohibited: any characters, silhouettes, or human outlines** |
+| Consistency | Unified style/material/color tone/lighting |
+| Lighting | Single light source logic, consistent light/shadow direction |
+| Aspect Ratio | Default 16:9 (or as set by the caller) |
 
 ---
 
-## 六、提示词模板
+## VI. Prompt Templates
 ```
-90年代复古日系动画风格场景主视图概念图，
-90s anime style，手绘平涂上色，柔和暖色调，精细流畅线条，电影感光影，
-scene design sheet，environment concept art，no people，no characters，no human figures，
-90年代复古风格，怀旧治愈氛围，
-{室内/室外}，{场景类型}，{季节+时间}，
-前景：{元素}，中景：{元素}，后景：{元素}，
-{色调描述}，{天候/氛围元素}，
-{材质描述}，空气透视，线条细节超清晰，
-线条流畅、块面阴影、使用痕迹，
-柔和电影光、背景光晕、自然光照，
-单画面构图，自然观察视角，构图能代表场景主体并展示前/中/后景层次，
-画面中无任何人物
-图中不要有任何文字
+90s retro Japanese anime style scene main view concept art,
+90s anime style, hand-drawn flat coloring, soft warm tones, fine and smooth lines, cinematic lighting,
+scene design sheet, environment concept art, no people, no characters, no human figures,
+90s retro style, nostalgic and healing atmosphere,
+{indoor/outdoor}, {scene type}, {season + time},
+Foreground: {element}, Midground: {element}, Background: {element},
+{color tone description}, {weather/atmosphere element},
+{material description}, aerial perspective, ultra-clear line details,
+smooth lines, block shadows, signs of use,
+soft cinematic light, background glow, natural lighting,
+single frame composition, natural observation perspective, composition represents the scene subject and displays foreground/midground/background layers,
+no people in the image
+no text in the image
 ```
 
 ---
 
-## 七、约束规则
+## VII. Constraint Rules
 
-### 必守
+### Mandatory
 
-| 编号 | 规则 |
+| ID | Rule |
 |---|---|
-| R1 | 场景必须有「前中后景层次」 |
-| R2 | 室外必须包含「空气透视」 |
-| R3 | 场景图必须为「单画面主视图」，不得拼接多视图/分屏/网格 |
-| R4 | 构图须能代表场景主体并展示前/中/后景层次 |
-| R5 | 场景图中**严禁出现任何人物** |
-| R6 | 必须包含90年代关键词（90s anime style / hand-drawn / warm tone） |
-| R7 | 必须包含线条特征（流畅线条、块面阴影 至少一项） |
-| R8 | 材质必须带有使用痕迹，禁止全新无瑕的"CG 感" |
+| R1 | The scene must have "foreground, midground, and background layers" |
+| R2 | Outdoor scenes must include "aerial perspective" |
+| R3 | The scene image must be a "single main view"; splicing multiple views/split screens/grids is prohibited |
+| R4 | The composition must represent the main subject of the scene and display foreground/midground/background layers |
+| R5 | **No characters of any kind are allowed in the scene image** |
+| R6 | Must include 90s keywords (90s anime style / hand-drawn / warm tone) |
+| R7 | Must include line characteristics (smooth lines, block shading, at least one of the two) |
+| R8 | Materials must show signs of wear; pristine, flawless "CG feel" is prohibited |
 
-### 严禁
+### Prohibited
 
-| 编号 | 严禁 |
+| ID | Prohibition |
 |---|---|
-| X1 | 背景纯白/纯黑/无场景 |
-| X2 | 极端天候（暴风雨/雷电/暴雪，除非剧情需要） |
-| X3 | 场景无纵深/无层次 |
-| X4 | 植被/天候与季节矛盾 |
-| X5 | 出现任何人物、人影、人体剪影 |
-| X6 | 画面被拼接成多视图/网格/分屏布局 |
-| X7 | 3D 渲染/CG 动画/现代风格质感 |
-| X8 | 材质过于干净完美、无任何使用痕迹 |
-| X9 | 光照过于均匀平坦、无柔和电影光 |
+| X1 | Pure white/pure black background/no scene |
+| X2 | Extreme weather (storm/lightning/blizzard, unless required by the plot) |
+| X3 | Scene lacks depth/layers |
+| X4 | Vegetation/weather contradicts the season |
+| X5 | Any characters, human figures, or human silhouettes appear |
+| X6 | The image is spliced into a multi-view/grid/split-screen layout |
+| X7 | 3D rendering/CG animation/modern style texture |
+| X8 | Materials are too clean and perfect, with no signs of wear |
+| X9 | Lighting is too uniform and flat, lacking soft cinematic light |

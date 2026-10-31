@@ -1,50 +1,50 @@
-# 青春成长 · 导演叙事手法技能包
+# Youth Growth · Director's Narrative Techniques Skill Pack
 
-## 简介
+## Overview
 
-本技能包为 **青春成长** 类型故事提供一套完整的导演叙事手法参考，涵盖从宏观叙事规划到微观分镜执行的全流程指导。适用于任何视觉风格。
+This skill pack provides a complete reference for directorial narrative techniques for **Youth Growth** stories, covering the full process from macro-level narrative planning to micro-level storyboard execution. It is applicable to any visual style.
 
-## 核心理念
+## Core Concepts
 
-- **第一次的珍贵** — 青春叙事的核心魅力在于"第一次"：第一次心动、第一次失败、第一次告别、第一次为别人勇敢
-- **笨拙即真实** — 青春的表达方式就是笨拙的：说错话、做错事、错过又追回来。完美的青春不动人，慌张的才动人
-- **时间不可逆** — 青春叙事的底层情感是"再也回不去"，所有甜蜜和遗憾都因为不可重来而珍贵
-- **群像共振** — 青春不是一个人的事，朋友、对手、老师、家人构成的群像共振才是完整的青春
+- **The Preciousness of Firsts** — The core appeal of youth narratives lies in "firsts": the first crush, the first failure, the first farewell, the first act of bravery for someone else
+- **Clumsiness is Authenticity** — The way youth expresses itself is clumsy: saying the wrong thing, doing the wrong thing, missing out and then chasing it back. Perfect youth is unconvincing; the flustered is what moves people
+- **Time is Irreversible** — The underlying emotion of youth narratives is "it can never be returned to." All sweetness and regret are precious precisely because they cannot be repeated
+- **Ensemble Resonance** — Youth is not a solo endeavor. The ensemble resonance formed by friends, rivals, teachers, and family constitutes a complete portrayal of youth
 
-## 文件结构
+## File Structure
 
 ```
 Coming_of_age/
-├── README.md                                          ← 本文件
+├── README.md                                          ← This file
 └── driector_skills/
-    ├── director_planning_narrative.md                 ← 叙事规划手法
-    └── director_storyboard_table_narrative.md         ← 分镜表叙事手法
+    ├── director_planning_narrative.md                 ← Narrative planning techniques
+    └── director_storyboard_table_narrative.md         ← Storyboard table narrative techniques
 ```
 
-## 技能文件说明
+## Skill File Description
 
-### 1. 叙事规划手法 (`director_planning_narrative.md`)
+### 1. Narrative Planning Techniques (`director_planning_narrative.md`)
 
-导演在 **叙事规划阶段** 使用的技法参考，定义青春成长在主题立意、情感节奏、场景情绪设计与声音方向上的整体规划方法。
+Technique reference used by the director during the **narrative planning stage**, defining the overall planning methods for youth growth in terms of thematic intent, emotional rhythm, scene emotional design, and sound direction.
 
-| 章节 | 内容概要 |
+| Chapter | Content Overview |
 |---|---|
-| 主题立意与情感内核 | 第一次的珍贵、笨拙即真实、时间不可逆、群像共振 |
-| 叙事结构与节奏规划 | 碎片化叙事、情绪过山车、成长弧线、回忆与当下 |
-| 分场景情绪设计 | 六大典型青春段落设计、空间记忆绑定、季节叙事 |
-| 声音与音乐方向 | 青春音景、沉默的成长、音乐记忆锚点、环境即时代 |
-| 构图与景别叙事 | 群像与个体、距离变化叙事、空间的情感记忆 |
-| 镜头运动与节奏 | 活力与沉静交替、奔跑跟拍、回忆运镜、定格瞬间 |
+| Thematic Intent and Emotional Core | The preciousness of the first time, clumsiness as authenticity, the irreversibility of time, ensemble resonance |
+| Narrative Structure and Rhythm Planning | Fragmented narrative, emotional roller coaster, growth arc, memory and the present |
+| Scene-by-Scene Emotional Design | Design of six typical youth segments, spatial memory binding, seasonal narrative |
+| Sound and Music Direction | Youth soundscapes, silent growth, musical memory anchors, environment as era |
+| Composition and Shot Scale Narrative | Ensemble and individual, narrative through changing distance, spatial emotional memory |
+| Camera Movement and Rhythm | Alternating vitality and stillness, running follow shots, memory camera work, frozen moments |
 
-### 2. 分镜表叙事手法 (`director_storyboard_table_narrative.md`)
+### 2. Storyboard Table Narrative Techniques (`director_storyboard_table_narrative.md`)
 
-导演在 **分镜表制作阶段** 使用的技法参考，定义青春成长在分镜表中的景别情感映射、运镜活力感、时长把控、镜头合并与转场逻辑。
+Technique reference used by the director during the **storyboard table production stage**, defining the mapping of shot scale to emotion, camera movement vitality, duration control, shot merging, and transition logic for youth growth in the storyboard table.
 
-| 章节 | 内容概要 |
+| Chapter | Content Overview |
 |---|---|
-| 分镜表定位 | 分镜表作为青春情感节奏控制核心工具的定位说明 |
-| 景别选择 | 群像景别、特写捕捉微表情、远景的孤独与自由 |
-| 运镜节奏 | 活力跟拍、沉静凝视、回忆缓移、青春节奏感 |
-| 时长把控 | 日常碎片时长、情感段落拉长、沉默的分量 |
-| 镜头合并策略 | 日常碎片整合、群戏一镜涵盖、叙事密度 |
-| 一镜到底 | 校园穿越、奔跑追逐、告别长镜头 |
+| Storyboard Table Positioning | Explanation of the storyboard table's role as the core tool for controlling youth emotional rhythm |
+| Shot Scale Selection | Ensemble shot scales, close-ups capturing micro-expressions, wide shots for loneliness and freedom |
+| Camera Movement Rhythm | Vitality follow shots, still gazes, slow memory pans, youth rhythm feel |
+| Duration Control | Duration of daily fragments, extended emotional segments, the weight of silence |
+| Shot Merging Strategy | Integration of daily fragments, single-shot coverage of ensemble scenes, narrative density |
+| One-Take | Campus traversal, running chase, farewell long take |

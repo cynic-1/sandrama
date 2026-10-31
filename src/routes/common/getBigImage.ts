@@ -5,7 +5,7 @@ import { z } from "zod";
 import { validateFields } from "@/middleware/middleware";
 const router = express.Router();
 
-// 获取生成图片
+// Get the generated image
 export default router.post(
   "/",
   validateFields({

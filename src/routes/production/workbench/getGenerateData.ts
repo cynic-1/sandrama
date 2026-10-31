@@ -8,7 +8,7 @@ const router = express.Router();
 interface VideoItem {
   id: number;
   src: string;
-  state: "未生成" | "生成中" | "已完成" | "生成失败";
+  state: "Not generated" | "Generating" | "Completed" | "Generation failed";
 }
 
 interface TrackMedia {
@@ -21,7 +21,7 @@ interface TrackMedia {
 interface TrackItem {
   id?: number;
   prompt: string;
-  state: "未生成" | "生成中" | "已完成" | "生成失败";
+  state: "Not generated" | "Generating" | "Completed" | "Generation failed";
   reason?: string;
   duration?: number;
   selectVideoId?: number;
@@ -40,7 +40,7 @@ export default router.post(
     const projectData = await u.db("o_project").where("id", projectId).select("id", "videoModel", "mode").first();
 
     if (!projectData?.videoModel) {
-      return res.status(400).json(success("项目未配置视频模型"));
+      return res.status(400).json(success("The project is not configured with a video model"));
     }
     let videoMode = "";
     try {
@@ -80,9 +80,9 @@ export default router.post(
         ];
       }
     });
-    // 按 storyboardId 分组的资产数据，key 为 storyboardId
+    // Asset data grouped by storyboardId, with storyboardId as the key
     const otherDataMap: Record<number, any[]> = {};
-    // 解析 videoMode 中 audioReference 的数量，例如 'audioReference:3' => 3
+    // Parse the number of audioReference in videoMode, for example 'audioReference:3' => 3
     const audioReferenceCount = (() => {
       if (!Array.isArray(videoMode)) return 0;
       const item = (videoMode as string[]).find((v) => v.toLowerCase().startsWith("audioreference:"));
@@ -165,7 +165,7 @@ export default router.post(
         id: trackId,
         duration: item?.duration ?? 0,
         prompt: item?.prompt || "",
-        state: (item?.state as "未生成" | "生成中" | "已完成" | "生成失败") ?? "未生成",
+        state: (item?.state as "Not generated" | "Generating" | "Completed" | "Generation failed") ?? "Not generated",
         reason: item?.reason ?? "",
         selectVideoId: Number(item?.videoId)!,
         medias: (() => {
@@ -179,13 +179,13 @@ export default router.post(
             return true;
           });
 
-          // 有 audioReference 时，按数量截取 audio 类型资产
+          // When audioReference is present, truncate assets of the audio type according to the quantity.
           const audioCountMap: Record<string, number> = {};
           const filteredAssets = uniqueAssets.filter((a) => {
             if (a.fileType !== "audio" || audioReferenceCount === 0) return true;
             const key = String(a.id);
             audioCountMap[key] = (audioCountMap[key] ?? 0) + 1;
-            // 统计当前 track 内 audio 总数，超过上限则过滤
+            // Count the total number of audio items in the current track, and filter them if the limit is exceeded
             const totalAudio = Object.values(audioCountMap).reduce((s, n) => s + n, 0);
             return totalAudio <= audioReferenceCount;
           });
@@ -201,7 +201,7 @@ export default router.post(
             .map(async (v) => ({
               id: v.id!,
               src: v.filePath ? await u.oss.getFileUrl(v.filePath) : "",
-              state: v.state === "已完成" ? "已完成" : v.state === "生成中" ? "生成中" : v.state === "生成失败" ? "生成失败" : "未生成",
+              state: v.state === "Completed" ? "Completed" : v.state === "Generating" ? "Generating" : v.state === "Generation failed" ? "Generation failed" : "Not generated",
               errorReason: v?.errorReason ?? "",
             })),
         ),

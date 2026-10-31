@@ -1,10 +1,12 @@
 import express from "express";
 import u from "@/utils";
+import { db } from "@/utils/db";
 import { success, error } from "@/lib/responseFormat";
 import { validateFields } from "@/middleware/middleware";
 import { z } from "zod";
 import { hashPassword } from "@/utils/auth";
 import { setToken } from "@/routes/login/login";
+import { allocateUserId } from "@/utils/userId";
 
 const router = express.Router();
 const registerAttempts = new Map<string, { count: number; firstAttemptAt: number }>();
@@ -37,25 +39,29 @@ export default router.post(
       attempt.count += 1;
     }
 
-    const exists = await u.db("o_user").whereRaw("lower(name) = lower(?)", [username]).first();
-    if (exists) {
-      return res.status(400).send(error("Username already exists"));
-    }
-
-    const userCountResult = await u.db("o_user").count<{ count: number }>("id as count").first();
-    const role: "admin" | "user" = Number(userCountResult?.count ?? 0) === 0 ? "admin" : "user";
-
     const hashedPassword = await hashPassword(String(password));
-    const [id] = await u.db("o_user").insert({
-      name: username,
-      password: hashedPassword,
-      role,
-      disabled: 0,
-      tokenVersion: 0,
-      createdAt: now,
-      updatedAt: now,
-      lastLoginAt: now,
+    // Serialize the uniqueness check and insert, including concurrent case variants.
+    const account = await db.transaction(async (trx) => {
+      const exists = await trx("o_user").whereRaw("lower(name) = lower(?)", [username]).first();
+      if (exists) return null;
+      const count = await trx("o_user").count("id as count").first();
+      const role: "admin" | "user" = Number(count?.count ?? 0) === 0 ? "admin" : "user";
+      const id = await allocateUserId(trx);
+      await trx("o_user").insert({
+        id,
+        name: username,
+        password: hashedPassword,
+        role,
+        disabled: 0,
+        tokenVersion: 0,
+        createdAt: now,
+        updatedAt: now,
+        lastLoginAt: now,
+      });
+      return { id, role };
     });
+    if (!account) return res.status(400).send(error("Username already exists"));
+    const { id, role } = account;
 
     const tokenData = await u.db("o_setting").where("key", "tokenKey").first();
     if (!tokenData?.value) {

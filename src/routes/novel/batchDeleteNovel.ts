@@ -14,7 +14,7 @@ export default router.post(
   async (req, res) => {
     const { ids } = req.body;
     if (!ids.length) {
-      return res.status(400).send(error("请先选择需要删除的内容"));
+      return res.status(400).send(error("Please select the content to be deleted"));
     }
     const novels = await u.db("o_novel").whereIn("id", ids).select("id", "projectId");
     const projectIds = [...new Set(novels.map((novel) => Number(novel.projectId)).filter(Number.isFinite))];
@@ -26,6 +26,6 @@ export default router.post(
     await u.db("o_novel").whereIn("id", ids).del();
     for (const projectId of projectIds) await renumberNovelChapters(projectId);
 
-    res.status(200).send(success({ message: "删除原文成功" }));
+    res.status(200).send(success({ message: "The original text was successfully deleted" }));
   },
 );

@@ -1,10 +1,11 @@
 import express from "express";
-import u from "@/utils";
+import { db } from "@/utils/db";
 import { z } from "zod";
 import { success, error } from "@/lib/responseFormat";
 import { validateFields } from "@/middleware/middleware";
 import { requireAdmin } from "@/middleware/auth";
 import { hashPassword } from "@/utils/auth";
+import { allocateUserId } from "@/utils/userId";
 
 const router = express.Router();
 
@@ -18,21 +19,25 @@ export default router.post(
   }),
   async (req, res) => {
     const name = String(req.body.name).trim();
-    const exists = await u.db("o_user").whereRaw("lower(name) = lower(?)", [name]).first();
-    if (exists) return res.status(409).send(error("Username already exists"));
-    const max = (await u.db("o_user").max("id as maxId").first()) as any;
-    const id = Math.max(Number(max?.maxId ?? 0) + 1, Date.now());
-    const now = Date.now();
-    await u.db("o_user").insert({
-      id,
-      name,
-      password: await hashPassword(req.body.password),
-      role: req.body.role === "admin" ? "admin" : "user",
-      disabled: false,
-      tokenVersion: 0,
-      createdAt: now,
-      updatedAt: now,
+    const password = await hashPassword(req.body.password);
+    const id = await db.transaction(async (trx) => {
+      const exists = await trx("o_user").whereRaw("lower(name) = lower(?)", [name]).first();
+      if (exists) return null;
+      const id = await allocateUserId(trx);
+      const now = Date.now();
+      await trx("o_user").insert({
+        id,
+        name,
+        password,
+        role: req.body.role === "admin" ? "admin" : "user",
+        disabled: false,
+        tokenVersion: 0,
+        createdAt: now,
+        updatedAt: now,
+      });
+      return id;
     });
-    res.status(201).send(success({ id, name, role: req.body.role === "admin" ? "admin" : "user" }, "创建用户成功"));
+    if (id === null) return res.status(409).send(error("Username already exists"));
+    res.status(201).send(success({ id, name, role: req.body.role === "admin" ? "admin" : "user" }, "User created successfully"));
   },
 );

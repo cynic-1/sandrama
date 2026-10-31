@@ -13,6 +13,6 @@ export default router.post(
   async (req, res) => {
     const { id, enable } = req.body;
     await u.userSettings.updateVendorConfig(id, { enable });
-    res.status(200).send(success("更新成功"));
+    res.status(200).send(success("Update successful"));
   },
 );

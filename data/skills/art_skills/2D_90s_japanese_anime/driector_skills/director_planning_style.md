@@ -1,88 +1,88 @@
 ---
 name: director_planning_style
-description: 日式动画约束 — 定义90年代日式动画在色调体系、光影方案、质感方向、场景空间元素、乐器选择与环境音上的全局约束。适用于任何叙事类型。
+description: Japanese Animation Constraints — Defines global constraints for 1990s Japanese animation regarding color palettes, lighting schemes, texture direction, scene spatial elements, instrument selection, and ambient sound. Applicable to any narrative type.
 metaData: director_skills
 ---
 
-# 日式动画约束 · 90年代日式动画 · 技法参考
+# Japanese Animation Constraints · 1990s Japanese Animation · Technique Reference
 
 ---
 
-## 一、色调体系与画面基调
+## I. Color Palette System and Visual Tone
 
-- **色调基底** — 全片以暖黄（C1）、樱花粉（C3）、天空蓝（C6）为基底色，整体色温偏暖（4800-5200K），饱和度中低（50-70%），呈现90年代手绘动画的温暖怀旧感。全片保持柔和暖色调基底，局部点缀冷色（浅蓝 C6、淡紫 C7）增加层次
-- **冷暖叙事对比** — 冷色（浅蓝 C6、淡紫 C7）作为叙事转折的视觉信号，用于夜晚或情绪转折段落局部点缀。冷暖切换应与故事弧线同步，而非随意混用
-- **色盘先行原则** — 段落规划需先绑定情绪场景（日常/心动/离别/重逢等），再确定主色+辅色与光影方案，避免"剧情对了但情绪不对色"
-- **禁用色域** — 高饱和荧光色、霓虹色、现代CG渲染色彩体系均与本风格不兼容
+- **Base Color Palette** — The entire film uses Warm Yellow (C1), Cherry Blossom Pink (C3), and Sky Blue (C6) as base colors. The overall color temperature is warm (4800-5200K), with medium-low saturation (50-70%), evoking the warm, nostalgic feel of 1990s hand-drawn animation. Maintain a soft, warm-toned base throughout the film, with local accents of cool colors (Light Blue C6, Pale Purple C7) to add depth.
+- **Warm/Cool Narrative Contrast** — Cool colors (Light Blue C6, Pale Purple C7) serve as visual signals for narrative turning points, used for local accents in night scenes or emotional transition segments. The switch between warm and cool tones should synchronize with the story arc, rather than being mixed arbitrarily.
+- **Palette-First Principle** — Segment planning must first bind emotional scenes (daily life/heart-fluttering/parting/reunion, etc.), then determine the primary + secondary colors and lighting scheme, avoiding situations where "the plot is right but the emotional color is wrong."
+- **Prohibited Color Domains** — High-saturation fluorescent colors, neon colors, and modern CG rendering color systems are incompatible with this style.
 
 ---
 
-## 二、光影方案体系
+## II. Lighting Scheme System
 
-- **光影即叙事** — 6 套光影方案对应不同情绪段落，导演规划阶段应在段落层面确定光影基调方向，而非逐镜指定
-- **光源角度** — 默认 30-45°斜侧光，模拟自然光效果
+- **Lighting as Narrative** — Six lighting schemes correspond to different emotional segments. During the director's planning phase, the lighting tone direction should be determined at the segment level, rather than specified shot-by-shot.
+- **Light Source Angle** — Default 30-45° oblique side light, simulating natural light effects.
 
-| 情绪段落 | 光影方向 | 色调倾向 | 适用阶段 |
+| Emotional Segment | Lighting Direction | Color Tendency | Applicable Stage |
 |---|---|---|---|
-| 日常温馨 | A·柔和漫射 | 暖黄底 + 均匀柔和光 | 全片 |
-| 心动瞬间 | B·暖调侧光 | 樱花粉 + 暖橙局部 | 升温段 |
-| 办公室/学校 | C·顶光+环境光 | 中性暖 + 柔和冷白 | 工作/学习段 |
-| 黄昏浪漫 | D·逆光暖调 | 琥珀暖主导 + 冷蓝背景 | 甜蜜段 |
-| 夜晚月色 | E·月光冷调 | 淡蓝主调 + 暖色局部点缀 | 夜晚段 |
-| 回忆/闪回 | F·柔焦暖光 | 暖黄主调 + 雾化效果 | 回忆段 |
+| Daily Warmth | A · Soft Diffusion | Warm Yellow Base + Uniform Soft Light | Entire Film |
+| Heart-Fluttering Moment | B · Warm-Toned Side Light | Cherry Blossom Pink + Local Warm Orange | Warming Segment |
+| Office/School | C · Top Light + Ambient Light | Neutral Warm + Soft Cool White | Work/Study Segment |
+| Dusk Romance | D · Backlit Warm Tone | Amber Warm Dominant + Cool Blue Background | Sweet Segment |
+| Night Moonlight | E · Moonlight Cool Tone | Light Blue Dominant + Local Warm Accents | Night Segment |
+| Memory/Flashback | F · Soft Focus Warm Light | Warm Yellow Dominant + Haze Effect | Memory Segment |
 
-- **冷暖光分配** — 暖色调贯穿全片可用，根据场景需要灵活调整；冷色调（淡蓝主调）仅在夜晚或情绪转折后使用
-- **氛围方向映射** — 每场戏的氛围方向应能映射到上述光影方案（A-F）的某一方向，确保视觉一致性
-
----
-
-## 三、质感方向
-
-- **平涂纪实感** — 90年代手绘动画的核心：线条清晰流畅、上色均匀、光影层次分明
-- **清晰线稿 + 细腻上色** — 这是画面质感的锚点。不是模糊晕染，不是现代CG渲染
-- **平涂不等于简陋** — 本风格强调90年代手绘动画的质感表达（清晰线稿、平涂上色、光影层次），通过构图与情绪设计放大感染力，而非依赖复杂特效
-- **手绘不等于粗糙** — 90年代日式动画强调手绘质感的影像表达（自然光位、柔和色彩、细腻表情），通过镜头与情绪设计放大感染力，而非依赖奇观特效
+- **Warm/Cool Light Allocation** — Warm tones can be used throughout the entire film, adjusted flexibly according to scene needs; cool tones (Light Blue dominant) are used only after night scenes or emotional turning points.
+- **Atmosphere Direction Mapping** — The atmosphere direction of each scene should map to one of the lighting schemes (A-F) above to ensure visual consistency.
 
 ---
 
-## 四、日式场景空间元素
+## III. Texture Direction
 
-90年代日式动画特有的场景元素及其视觉叙事功能：
-
-- **窗框/门框/走廊** — 天然的框架式构图道具，制造"看不透"的层次感与空间纵深
-- **教室/屋顶/街道** — 青春感的天然载体，景即情：教室窗边阳光 = 青春、黄昏街道长影 = 怀旧、居家暖光餐桌 = 家庭温暖
-- **樱花/落叶/雨幕** — 留白构图的天然载体，景即情：满树樱花 = 心动、落叶纷飞 = 离愁、雨中独行 = 孤寂
-- **夕阳/月色/路灯** — 日式动画的光源载体，夕阳 = 暖/浪漫（方案D）、月色 = 冷/孤寂（方案E）、路灯 = 夜晚日常
-- **段落间用场景空镜过渡** — 本风格有丰富的场景资产（不同时段/天候/天气变体），段落衔接建议用场景空镜做情绪缓冲，不要硬切
-- **转折点用视觉而非台词** — 优先使用画面手段（光影突变、景别跳切、空镜隐喻）而非依赖对白解释
+- **Flat Coloring Realism** — The core of 1990s hand-drawn animation: clear, flowing lines, uniform coloring, and distinct lighting layers.
+- **Clear Line Art + Delicate Coloring** — This is the anchor of visual texture. It is not blurred washes, nor modern CG rendering.
+- **Flat Coloring Does Not Mean Crude** — This style emphasizes the texture expression of 1990s hand-drawn animation (clear line art, flat coloring, lighting layers), amplifying impact through composition and emotional design, rather than relying on complex effects.
+- **Hand-Drawn Does Not Mean Rough** — 1990s Japanese animation emphasizes the visual expression of hand-drawn texture (natural light positioning, soft colors, delicate expressions), amplifying impact through camera work and emotional design, rather than relying on spectacular effects.
 
 ---
 
-## 五、日式动画乐器与环境音
+## IV. Japanese Scene Spatial Elements
 
-90年代日式动画世界观下的声音元素约束：
+Scene elements unique to 1990s Japanese animation and their visual narrative functions:
 
-### 乐器选择
+- **Window Frames/Door Frames/Corridors** — Natural framing composition props, creating a sense of "impenetrability" and spatial depth.
+- **Classrooms/Rooftops/Streets** — Natural carriers of youthful sentiment; the scene is the emotion: sunlight by the classroom window = youth, long shadows on a dusk street = nostalgia, warm light at a home dining table = family warmth.
+- **Cherry Blossoms/Falling Leaves/Rain Curtains** — Natural carriers of negative space composition; the scene is the emotion: full trees of cherry blossoms = heart-fluttering, falling leaves = parting sorrow, walking alone in the rain = loneliness.
+- **Sunset/Moonlight/Streetlights** — Light source carriers in Japanese animation: sunset = warm/romantic (Scheme D), moonlight = cold/lonely (Scheme E), streetlights = daily night life.
+- **Use Scene Empty Shots for Transitions Between Segments** — This style has rich scene assets (different time periods/weather/condition variants). It is recommended to use scene empty shots for emotional buffering during segment connections, avoiding hard cuts.
+- **Use Visuals Instead of Dialogue for Turning Points** — Prioritize visual means (sudden lighting changes, shot size jump cuts, empty shot metaphors) rather than relying on dialogue for explanation.
 
-- **钢琴** — 日常/温馨/回忆段落的核心乐器，最能表现90年代动画的质感
-- **吉他** — 轻松/浪漫/街头段落，扫弦的温柔感适合日常氛围
-- **弦乐铺底** — 情感升华/离别段落，拉弦的细腻感适合情绪过渡
-- **八音盒/风铃** — 回忆/梦幻段落，清脆音色适合怀旧氛围
+---
 
-### 乐器组合策略
+## V. Japanese Animation Instruments and Ambient Sound
 
-| 情绪阶段 | 乐器组合 |
+Sound element constraints under the 1990s Japanese animation worldview:
+
+### Instrument Selection
+
+- **Piano** — Core instrument for daily/warm/memory segments; best expresses the texture of 1990s animation.
+- **Guitar** — For relaxed/romantic/street segments; the gentle feel of strumming suits daily atmospheres.
+- **String Pads** — For emotional elevation/parting segments; the delicate feel of bowing suits emotional transitions.
+- **Music Box/Wind Chimes** — For memory/dreamlike segments; crisp tones suit nostalgic atmospheres.
+
+### Instrument Combination Strategy
+
+| Emotional Stage | Instrument Combination |
 |---|---|
-| 平稳/开场/收尾 | 八音盒独奏 或 风铃独奏 |
-| 日常温馨 | 钢琴 + 轻吉他 |
-| 情绪升华/浪漫 | 弦乐 + 钢琴 |
-| 回忆/梦幻 | 八音盒 + 钢琴 |
+| Stable/Opening/Ending | Music Box Solo or Wind Chime Solo |
+| Daily Warmth | Piano + Light Guitar |
+| Emotional Elevation/Romance | Strings + Piano |
+| Memory/Dreamlike | Music Box + Piano |
 
-### 日式环境音
+### Japanese Ambient Sound
 
-- **典型环境音层次** — 蝉鸣虫唱 / 电车轨道声 / 风吹过树叶 / 雨滴檐廊 / 市井人声 / 鸟鸣 / 风声
-- **每场戏标注 1-2 个核心环境音**，帮助后续音效设计。环境音层次越丰富，日式场景越有沉浸感
-- **留白比配乐更重要** — 关键情感瞬间（对视、转身、离别）优先考虑去掉配乐，只留环境音（风声、蝉鸣、电车声），让观众自己感受情绪
-- **避免满配** — 全片配乐覆盖率建议不超过 50%。留白段落的"无声"与配乐段落形成呼吸感，突出真实情感
+- **Typical Ambient Sound Layers** — Cicadas and insects / Train track sounds / Wind blowing through leaves / Raindrops on eaves / Marketplace voices / Birdsong / Wind sounds
+- **Label 1-2 core ambient sounds for each scene** to assist subsequent sound design. The richer the ambient sound layers, the more immersive the Japanese scene becomes.
+- **Negative Space is More Important Than Score** — For key emotional moments (eye contact, turning away, parting), prioritize removing the score and leaving only ambient sound (wind, cicadas, train sounds) to let the audience feel the emotion themselves.
+- **Avoid Over-Scoring** — The score coverage for the entire film is recommended to be no more than 50%. The "silence" of negative space segments creates a breathing rhythm with scored segments, highlighting authentic emotion.
 
 ---

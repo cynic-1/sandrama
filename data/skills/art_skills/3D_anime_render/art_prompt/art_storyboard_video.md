@@ -1,11 +1,11 @@
-# 视频提示词 · 视觉风格约束
+# Video Prompt · Visual Style Constraints
 
-生成视频提示词时，必须注入以下视觉风格标签：
+When generating video prompts, the following visual style tags must be injected:
 
-| 模式 | 风格标签 |
+| Mode | Style Tags |
 |------|----------|
-| **通用多参模式（英文）** | `3D anime render, cel-shaded 3D, cinematic lighting, warm tones, high-detail textures, clear outlines` |
-| **通用首尾帧模式（英文）** | `3D anime render, cel-shaded 3D, cinematic lighting, warm tones, high-detail textures, clear outlines, shallow depth of field` |
-| **Seedance 2.0（中文）** | `3D动画渲染，赛璐珞质感，电影级光影，温暖色调，高细节材质，清晰轮廓线` |
+| **General Multi-Parameter Mode (English)** | `3D anime render, cel-shaded 3D, cinematic lighting, warm tones, high-detail textures, clear outlines` |
+| **General First-Last Frame Mode (English)** | `3D anime render, cel-shaded 3D, cinematic lighting, warm tones, high-detail textures, clear outlines, shallow depth of field` |
+| **Seedance 2.0 (Chinese)** | `3D animation rendering, cel-shaded texture, cinematic lighting and shadow, warm tones, high-detail materials, clear outline strokes` |
 
 

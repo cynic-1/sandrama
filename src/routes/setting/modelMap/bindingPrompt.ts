@@ -16,6 +16,6 @@ export default router.post(
   async (req, res) => {
     const { vendorId, model, path, fileName } = req.body;
     await u.userSettings.saveModelPrompt({ vendorId, model, path, fileName });
-    res.status(200).send(success("绑定成功"));
+    res.status(200).send(success("Binding successful"));
   },
 );

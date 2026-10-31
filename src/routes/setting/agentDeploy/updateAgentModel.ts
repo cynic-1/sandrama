@@ -20,6 +20,6 @@ export default router.post(
   async (req, res) => {
     const { id, name, model, modelName, vendorId, desc, temperature, maxOutputTokens } = req.body;
     await u.userSettings.updateAgentDeploy(id, { name, model, modelName, vendorId, desc, temperature, maxOutputTokens });
-    res.status(200).send(success("配置成功"));
+    res.status(200).send(success("Configuration successful"));
   },
 );

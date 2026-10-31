@@ -5,7 +5,7 @@ import { success, error } from "@/lib/responseFormat";
 import { validateFields } from "@/middleware/middleware";
 const router = express.Router();
 
-// 新增剧本
+// Add a new script
 export default router.post(
   "/",
   validateFields({
@@ -36,6 +36,6 @@ export default router.post(
       }
     }
 
-    res.status(200).send(success({ message: "添加剧本成功" }));
+    res.status(200).send(success({ message: "Script added successfully" }));
   },
 );

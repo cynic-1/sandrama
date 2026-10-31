@@ -1,108 +1,108 @@
 ---
 name: director_planning_narrative
-description: 叙事手法技法 · 家庭温情 — 定义家庭温情类型在主题立意、情感节奏、场景情绪设计与声音方向上的叙事规划方法。适用于任何视觉风格。
+description: Narrative techniques and techniques · Family warmth - defines the narrative planning method of family warmth type in terms of theme conception, emotional rhythm, scene mood design and sound direction. Works with any visual style.
 metaData: director_skills
 ---
 
-# 叙事手法 · 家庭温情 · 技法参考
+# Narrative Technique · Family Warmth · Technical Reference
 
 ---
 
-## 一、主题立意与情感内核
+## 1. Theme conception and emotional core
 
-### 家庭温情叙事要点
+### Key points of family warmth narrative
 
-- **平凡即伟大** — 家庭叙事的力量不在于戏剧性的大事件，而在于日复一日的陪伴、妥协与无条件的爱。主题立意应聚焦于"那些看似平淡却构成生命底色的日常"
-- **爱在嘴边却说不出** — 家庭情感表达的核心矛盾：最深的爱用最笨拙的方式传递。父亲不说"我爱你"但每天早起做早餐；母亲嘴上唠叨但行李箱里塞满吃的。立意应围绕"不说出口的爱"
-- **代际回响** — 家庭叙事最动人的瞬间是"代际重复"：当孩子无意间做了父母年轻时同样的动作、说了同样的话。这种回响赋予家庭叙事"时间的厚度"
-- **离场感受建议方向** — 温暖 / 想家 / 眼眶一热 / 想给家人打个电话。避免"催泪""苦情"等刻意煽情方向
-- **日常的神圣** — 一家人围坐吃饭、一起看电视说闲话、接孩子放学——这些日常场景在家庭叙事中不是"过场"，而是最有叙事价值的核心段落。它们的重复本身就是"幸福"的定义
-
----
-
-## 二、叙事结构与节奏规划
-
-### 家庭温情叙事要点
-
-- **日常流是基本功** — 家庭叙事的节奏应接近"生活的节奏"：缓慢、重复、带有规律性。早起→做饭→出门→归来→吃饭→休息，这种日常循环本身就是叙事结构
-- **情感暗线** — 表面上是日常琐碎，底下应有一条情感暗线在缓慢推进（渐行渐远的亲密/正在老去的父母/即将离家的孩子）。暗线不用明说，观众能感受到
-- **代际对照** — 两代人的故事线可以形成对照：父亲当年的选择 vs 孩子此刻的选择；母亲年轻时的梦想 vs 女儿现在的追求。对照中既有传承也有冲突
-- **危机与回归** — 家庭叙事的高潮通常不是"冲突爆发"，而是"差一点就散了但最终回归"。分离的威胁让团聚变得珍贵
-- **转折点用行动而非言语** — 家庭矛盾的和解不靠道歉的台词，靠一个行动：默默端来一杯水、把对方爱吃的菜放到面前、雨天去车站接人。行动比千言万语更有家庭叙事的质感
-- **"最后一餐"模型** — 家庭叙事的催泪点往往是"最后一次"的日常：出嫁前最后一顿家常饭、搬家前最后一次在老房子里吃饭、父母送孩子离家。"最后一次"赋予日常以不可承受的重量
+- **Ordinary is Great** — The power of family narrative lies not in dramatic events, but in day-to-day companionship, compromise and unconditional love. The theme should focus on "those everyday things that seem ordinary but form the background of life"
+- **Love is on the lips but cannot be spoken** — The core contradiction of family emotional expression: the deepest love is conveyed in the clumsiest way. My father doesn't say "I love you" but gets up early every day to make breakfast; my mother is nagging but her suitcase is full of food. The idea should be centered around "unspoken love"
+- **Intergenerational Echoes** — The most moving moments in family narratives are "intergenerational repetitions": when children inadvertently do the same actions and say the same words as their parents did when they were young. This echo gives family narratives the "thickness of time"
+- **Suggested directions for leaving the venue** — Warmth / Homesickness / Hot eyes / Want to call family. Avoid deliberately sensationalizing directions such as "tear-jerking" and "bitterness"
+- **The Sacredness of Everyday** — A family sitting around having a meal, watching TV and gossiping together, picking up the children from school - these daily scenes are not "passing scenes" in family narratives, but core paragraphs with the most narrative value. Their repetition itself is the definition of "happiness"
 
 ---
 
-## 三、分场景情绪设计
+## 2. Narrative structure and rhythm planning
 
-### 家庭温情叙事要点
+### Key points of family warmth narrative
 
-- **情绪目标用生活体感词** — 不说"温暖"，说"喝了一口热汤从胃暖到心"。不说"思念"，说"翻到旧照片拿起来又放下"。家庭情绪永远是具象的、可触摸的
-- **典型情绪段落与设计** —
+- **Daily flow is the basic skill** — The rhythm of family narrative should be close to the "rhythm of life": slow, repetitive, and regular. Waking up early→cooking→going out→returning→eating→resting, this daily cycle itself is a narrative structure
+- **Emotional Dark Thread** — On the surface, it is daily trivial matters, but underneath there should be an emotional dark thread that is slowly advancing (fading intimacy/aging parents/children about to leave home). There is no need to say the hidden thread, the audience can feel it
+- **Intergenerational Contrast** — The story lines of two generations can be contrasted: the father's choices back then vs. the children's choices now; the mother's dreams when she was young vs. the daughter's current pursuits. There is both inheritance and conflict in the comparison
+- **Crisis and Return** — The climax of a family narrative is usually not "conflict breaks out" but "almost breaks up but finally returns". The threat of separation makes reunion precious
+- **The turning point is with actions rather than words** - Reconciliation of family conflicts does not rely on apologetic lines, but on an action: silently bringing a glass of water, putting the other person's favorite food in front of you, picking someone up at the station on a rainy day. Actions are more like a family narrative than a thousand words
+- **"Last Meal" Model** - The tear-jerking point of family narratives is often the "last" daily routine: the last home-cooked meal before getting married, the last time eating in an old house before moving, and parents sending their children away from home. "The last time" gives daily life an unbearable weight
 
-| 段落类型 | 情绪方向 | 叙事手法 | 音乐建议 |
+---
+
+## 3. Scene emotional design
+
+### Key points of family warmth narrative
+
+- **Use life experience words for emotional goals** — Instead of saying "warmth", say "taking a sip of hot soup warms your heart from your stomach to your heart". Instead of saying "missing", say "turning through old photos, picking them up and putting them down again." Family emotions are always tangible and tangible
+- **Typical emotional passages and designs** —
+
+| Paragraph Types | Emotional Direction | Narrative Techniques | Music Suggestions |
 |---|---|---|---|
-| 日常团聚 | 温馨 + 安心 | 吃饭/聊天/做家务，节奏平稳，细节丰富 | 极轻衬底或纯生活音 |
-| 笨拙关心 | 感动 + 心酸 | 不善表达的关心：塞钱/备伞/偷偷打电话 | 无配乐，让行动自己说话 |
-| 代际冲突 | 委屈 + 不解 | 各说各话、冷战、一个转身摔门 | 突然安静，只留呼吸和门声 |
-| 分离/送别 | 不舍 + 克制 | 车站/门口/机场，嘴上说没事但手没松开 | 极简单一器乐或纯环境音 |
-| 和解/回归 | 释然 + 感恩 | 一个拥抱/一顿饭/一句"回来了啊" | 温暖器乐缓缓渐入 |
-| 传承/回响 | 时间的温柔 | 孩子做了父母同样的事，代际情感闭合 | 主题旋律温暖变奏 |
+| Daily reunion | Warmth + peace of mind | Eating/chatting/doing housework, smooth rhythm, rich details | Extremely light substrate or pure life sound |
+| Clumsy concern | Touching + sad | Poor expression of concern: stuffing money/preparing umbrellas/making secret phone calls | No soundtrack, let the actions speak for themselves |
+| Intergenerational conflict | Grievance + confusion | Everyone talking, cold war, turning around and slamming the door | Suddenly quiet, leaving only breathing and the sound of the door |
+| Separation/Farewell | Reluctance + Restraint | Station/doorway/airport, saying it’s okay but not letting go | Extremely simple instrumental music or pure ambient sound |
+| Reconciliation/Return | Relief + Gratitude | A hug/a meal/the phrase "I'm back" | Warm instrumental music gradually enters |
+| Inheritance/echo | The tenderness of time | The children did the same thing as their parents, and the intergenerational emotions closed | Warm variations of the theme melody |
 
-- **"物件传情"是叙事核心工具** — 家庭叙事中情感传递高度依赖具体物件：
-  - **食物**：一碗汤/一盘菜/一个便当 = 最直接的爱的表达
-  - **旧物**：老照片/旧衣服/孩子小时候的画 = 时间的温度
-  - **钥匙/门**：给钥匙 = 这是你的家；留着门 = 永远等你回来
-- **空间即归属** — 家庭叙事中"家"这个空间本身就是最重要的角色。厨房 = 爱的生产地；客厅 = 家人的交集点；孩子的房间 = 独立与牵挂；老房子 = 记忆的容器
-- **"旁观者"视角的温柔** — 家庭叙事的高级手法是"旁观者看到了当事人没看到的"：孩子没看到母亲在身后偷偷抹泪、父亲没看到孩子在门缝里看着他
+- **"Object communication" is the core tool of narrative** — The emotional transmission in family narratives is highly dependent on specific objects:
+  - **Food**: A bowl of soup/a plate of vegetables/a bento = the most direct expression of love
+  - **Old things**: old photos/old clothes/children’s drawings from childhood = the temperature of time
+  - **Key/Door**: Give the key = this is your home; keep the door = always waiting for you to come back
+- **Space is Belonging** — In family narratives, the space "home" itself is the most important role. Kitchen = the place where love is produced; living room = the intersection of family members; child’s room = independence and concern; old house = container of memory
+- **Gentleness from the perspective of "bystander"** - The advanced technique of family narrative is that "the bystander sees what the person involved does not see": the child does not see the mother secretly wiping tears behind him, and the father does not see the child looking at him through the crack in the door.
 
 ---
 
-## 四、声音与音乐方向
+## 4. Sound and Music Direction
 
-### 家庭温情叙事要点
+### Key points of family warmth narrative
 
-- **家有自己的音景** — 锅铲翻炒声、水壶烧开的咕嘟声、拖鞋在地板上的啪嗒声、电视机的模糊声——这些声音构成"家的声音"，每场戏标注 1-2 个标志性家庭音效
-- **生活声即配乐** — 家庭叙事中最有力的"配乐"往往是生活声本身：切菜的节奏、洗碗的水声、缝纫机的哒哒声。这些声音不需要配乐覆盖，它们本身就是家的旋律
-- **沉默的亲情** — 家人之间最深的情感往往在沉默中：父子一起坐着不说话、母女各做各的事但待在同一个空间。关键亲情段落应去掉配乐，只留生活环境音
-- **配乐极度克制** — 家庭温情配乐覆盖率建议不超过 40%。过度配乐会让温情变成煽情，克制的配乐让观众自己感动
-- **音乐情绪递进模型** —
+- **Home has its own soundscape** - the sound of a spatula stir-frying, the sound of a kettle boiling, the clack of slippers on the floor, the blurry sound of the TV - these sounds constitute the "sound of home", and each scene is marked with 1-2 iconic home sound effects
+- **The sounds of life are the soundtrack** — The most powerful "soundtrack" in family narratives is often the sounds of life itself: the rhythm of chopping vegetables, the sound of dishwashing water, the clicking of a sewing machine. These sounds don’t need a soundtrack to cover them, they are the melody of home in themselves
+- **Silent Family Affection** — The deepest emotions between family members are often found in silence: father and son sit together without speaking, mother and daughter each do their own thing but stay in the same space. The soundtrack should be removed from the key family paragraphs and only the life environment sounds should be left.
+- **Soundtrack is extremely restrained** — It is recommended that the coverage rate of family warmth soundtrack should not exceed 40%. Excessive soundtrack can turn warmth into sensationalism, while restrained soundtrack can move the audience themselves.
+- **Music Emotion Progressive Model** —
 
-| 情绪阶段 | 音乐策略 | 覆盖率 |
+| Emotional Stages | Music Strategy | Coverage |
 |---|---|---|
-| 日常平稳 | 纯生活音或极轻衬底 | 极低 |
-| 暗流涌动 | 单一器乐低音量 | 低 |
-| 冲突爆发 | 突然全场安静 | 无 |
-| 和解回暖 | 温暖器乐缓缓渐入 | 中 |
-| 代际回响 | 主题旋律完整呈现 | 中高 |
+| Daily stability | Pure life sound or extremely light backing | Extremely low |
+| Undercurrent | Single instrumental music with low volume | Low |
+| Conflict broke out | Suddenly the whole place was quiet | None |
+| Reconciliation and warmth | Warm instrumental music slowly fades in | Middle |
+| Intergenerational echo | Complete presentation of the theme melody | Medium to high |
 
-- **"回家"的声音** — 家庭叙事中最有仪式感的音效是"回家的声音"：钥匙开门声、进门喊一声"我回来了"、拖鞋放好的声音。这些声音每次出现都在重复"家还在"的安心感
-
----
-
-## 五、构图与景别叙事
-
-### 家庭温情叙事要点
-
-- **三大核心构图的叙事功能** —
-  - **多人同框** — 一家人在同一画面中（吃饭/坐沙发/合影），传递"我们是一家人"的归属感
-  - **前后景分层** — 一人在前做事/一人在后默默注视，传递"看不见的关心"
-  - **门框/窗框构图** — 从门框里看到的家人 = 被保护的空间/即将离开的空间/回忆中的画面
-- **餐桌是核心叙事空间** — 家庭叙事中餐桌出现频率最高。餐桌构图的微妙变化映射家庭关系：满座 = 团圆；空了一个位置 = 缺失；只有两个人 = 相依为命
-- **距离即关系** — 家人间的物理距离映射情感距离：挤在一起 = 亲密/安心；各坐一方 = 冷战/疏远；一人站着一人坐着 = 权力/关心的不对等
-- **远景的守望** — 家庭叙事中远景的核心功能是"守望"：站在门口目送的身影、窗边等待归来的剪影、远处越走越远的背影
-- **大特写的亲情功能** — 大特写用于捕捉家庭中"说不出口"的情感细节：母亲颤抖的嘴唇、父亲握紧又松开的手、孩子偷偷红了的眼眶
-- **空间的时间层次** — 同一个家庭空间（客厅/厨房/孩子的房间）在不同段落反复出现时，通过微妙的细节变化传递时间流逝：墙上的照片多了/少了、家具旧了、曾经的玩具变成了课本
+- **The sound of "coming home"** - The most ritualistic sound effect in family narratives is the "sound of coming home": the sound of keys opening the door, shouting "I'm back" when entering the door, and the sound of slippers being put on. Every time these sounds appear, they repeat the sense of security that "home is still here"
 
 ---
 
-## 六、镜头运动与节奏
+## 5. Composition and scenery narrative
 
-### 家庭温情叙事要点
+### Key points of family warmth narrative
 
-- **安稳缓移为主** — 家庭叙事的镜头运动应传达"安稳/安心"的感觉。缓慢、平稳、不急不躁。70% 以上镜头为静止或极缓运动
-- **缓推 = 注意到/走近** — "观众注意到了一个温暖的细节"的心理暗示，适合发现角色偷偷做的好事、注意到桌上留的饭、看到门口摆好的鞋
-- **缓拉 = 离开/目送** — "观众/角色退开"的心理暗示，适合送别、离家、从家庭场景退出
-- **旁观者凝视** — 家庭叙事中大量镜头应有"旁观者安静注视"的感觉。镜头不参与、不干扰，只是默默地看着这一家人——像一个温柔的见证者
-- **日常跟随** — 跟随角色在家中的日常动线（从厨房到餐厅端菜、从门口到客厅放东西），用缓慢的跟移传递生活的节奏感
-- **运镜即家的温度** — 静止 = 安稳/陪伴；缓推 = 靠近/关注；缓拉 = 离别/目送；缓慢跟移 = 日常/陪伴；摇镜扫过家人 = 清点幸福
+- **Narrative function of three core compositions** —
+  - **Multiple people in the same frame** — The whole family is in the same picture (eating/sitting on the sofa/taking photos), conveying the sense of belonging that "we are a family"
+  - **Background and background layering** — one person is doing things in front/one person is watching silently from behind, conveying "invisible care"
+  - **Door frame/window frame composition** — family seen from the door frame = protected space/space about to be left/image in memories
+- **The dining table is the core narrative space** — The dining table appears most frequently in family narratives. Subtle changes in the composition of the table reflect family relationships: a full table = reunion; an empty seat = absence; only two people = dependence on each other.
+- **Distance is relationship** — The physical distance between family members reflects the emotional distance: crowded together = closeness/security; each sitting on one side = cold war/alienation; one standing and the other sitting = asymmetry of power/concern
+- **Watching of the distant view** — The core function of the distant view in the family narrative is "watching": the figure standing at the door watching, the silhouette waiting by the window to return, the silhouette walking farther and farther in the distance
+- **Family function of large close-ups** — Large close-ups are used to capture the "unspeakable" emotional details in the family: the mother's trembling lips, the father's clenching and unclenching hands, and the child's secretly red eyes.
+- **Time hierarchy of space** — When the same family space (living room/kitchen/child's room) appears repeatedly in different paragraphs, the passage of time is conveyed through subtle changes in details: there are more/less photos on the wall, the furniture is old, and the toys that used to be turned into textbooks
+
+---
+
+## 6. Camera movement and rhythm
+
+### Key points of family warmth narrative
+
+- **Steady and slow movement is the main priority** — The camera movement of family narratives should convey a feeling of "stability/security". Slow, steady, not impatient. More than 70% of the shots are still or extremely slow motion
+- **Slow push = notice/come closer** — The psychological suggestion of "the audience noticed a warm detail", suitable for discovering the good things the character secretly did, noticing the food left on the table, and seeing the shoes placed at the door.
+- **Slow pull = leaving/seeing off** — The psychological suggestion of "audience/character retreating", suitable for saying goodbye, leaving home, and exiting from family scenes
+- **Onlooker's Gaze** — A large number of shots in family narratives should have the feeling of "the silent gaze of onlookers". The camera does not participate or interfere, it just watches the family silently - like a gentle witness
+- **Daily Following** — Follow the character's daily movements at home (from the kitchen to the dining room to serve food, from the door to the living room to put things away), using slow movement to convey the rhythm of life
+- **Moving the mirror is the temperature of home** — Still = stability/companionship; Slow push = approach/attention; Slow pull = farewell/seeing off; Slow follow = daily/accompanying; Panning the camera across family members = Counting happiness

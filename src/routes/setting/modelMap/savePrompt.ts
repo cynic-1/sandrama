@@ -23,11 +23,11 @@ export default router.post(
     const resolvedRoot = path.resolve(modelPromptRoot);
     const resolvedFile = path.resolve(filePath);
     if (!resolvedFile.startsWith(resolvedRoot + path.sep)) {
-      return res.status(400).send(error("非法路径"));
+      return res.status(400).send(error("Invalid path"));
     }
     const relativePath = path.relative(modelPromptRoot, resolvedFile).replace(/\\/g, "/");
     await u.userSettings.setModelPromptFile(relativePath, data);
 
-    res.status(200).send(success("保存成功"));
+    res.status(200).send(success("Saved successfully"));
   },
 );

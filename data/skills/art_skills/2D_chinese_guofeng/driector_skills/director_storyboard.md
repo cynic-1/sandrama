@@ -1,153 +1,153 @@
 ---
 name: director_storyboard
-description: 导演分镜提示词技法 · 国风二次元新国潮
+description: Director Storyboard Prompt Techniques · Chinese-Style 2D Neo-Chic
 metaData: director_skills
 ---
 
-# 分镜提示词 · 国风二次元新国潮 · 风格专属技法
+# Storyboard Prompts · Chinese-Style 2D Neo-Chic · Style-Specific Techniques
 
 ---
 
-## 适用范围
+## Scope
 
-本 Skill 专用于**国风二次元新国潮**风格的分镜提示词生成。
+This Skill is exclusively for generating storyboard prompts in the **Chinese-Style 2D Neo-Chic** style.
 
 ---
 
-## 情绪 → 面容/眼神词映射
+## Emotion → Facial Expression/Eye Gaze Mapping
 
-| 情绪输入 | 面容词 | 眼神词 | 微表情补充 |
+| Emotion Input | Facial Expression Terms | Eye Gaze Terms | Micro-Expression Supplements |
 |----------|--------|--------|-----------|
-| 温柔 / 深情 | 神情温柔，眉目含情 | 眼神专注柔和，目光温暖 | 嘴角微扬，表情治愈 |
-| 坚定 / 勇敢 | 神情认真，目光清亮 | 眼神坚定，目光向前 | 下巴微抬，表情果敢 |
-| 羞涩 / 腼腆 | 脸颊泛红，眼神躲闪 | 眼神羞涩，目光低垂 | 嘴角轻抿，表情可爱 |
-| 凌厉 / 肃杀 | 神情冷峻，目光如刀 | 眼神锐利，目光坚定 | 下颌收紧，表情威严 |
-| 喜悦 / 欢快 | 表情灿烂，眼睛弯月 | 眼神明亮，目光灵动 | 脸颊微红，表情生动 |
-| 忧伤 / 哀婉 | 神情哀婉，眼神黯淡 | 眼神含泪，目光低垂 | 嘴角下沉，表情哀伤 |
-| 惊讶 / 惊喜 | 眼睛微睁，表情生动 | 眼神明亮，目光聚焦 | 嘴巴微张，表情意外 |
-| 沉思 / 内省 | 神情淡淡，目光悠远 | 眼神放空，目光失焦 | 表情平静，气质内敛 |
-| 疲惫 / 倦怠 | 眼神朦胧，表情柔和 | 目光略显疲惫，眼神柔和 | 微微打哈欠，表情慵懒 |
-| 期待 / 盼望 | 眼神发光，表情鲜活 | 眼神期待，目光闪烁 | 嘴角上扬，表情生动 |
+| Gentle / Deep Affection | Gentle expression, eyes full of emotion | Focused, soft gaze, warm look | Slight upturn of lips, healing expression |
+| Resolute / Brave | Serious expression, clear gaze | Determined gaze, looking forward | Chin slightly raised, resolute expression |
+| Shy / Timid | Blushing cheeks, evasive eyes | Shy gaze, downcast eyes | Lips lightly pressed, cute expression |
+| Sharp / Grim | Stern expression, gaze like a blade | Sharp gaze, firm look | Jaw tightened, majestic expression |
+| Joyful / Cheerful | Radiant expression, crescent-shaped eyes | Bright gaze, lively look | Slight blush, vivid expression |
+| Sorrowful / Melancholic | Melancholic expression, dim eyes | Tearful gaze, downcast eyes | Corners of mouth turned down, sorrowful expression |
+| Surprised / Delighted | Eyes slightly wide open, vivid expression | Bright gaze, focused look | Mouth slightly open, surprised expression |
+| Contemplative / Introspective | Faint expression, distant gaze | Blank gaze, unfocused look | Calm expression, reserved demeanor |
+| Tired / Weary | Hazy eyes, soft expression | Slightly tired gaze, soft eyes | Slight yawn, languid expression |
+| Expectant / Hopeful | Glowing eyes, vibrant expression | Expectant gaze, sparkling look | Upturned lips, lively expression |
 
 ---
 
-## 光影氛围词库（国风二次元新国潮）
+## Lighting and Atmosphere Vocabulary (Chinese-Style 2D Neo-Chic)
 
-### 时间段光线
+### Time-of-Day Lighting
 
-| 时间段 | 主光词 | 色调词 | 气氛词 |
+| Time of Day | Key Light Terms | Color Tone Terms | Atmosphere Terms |
 |--------|--------|--------|--------|
-| 清晨 | 柔和晨光，暖色侧射 | 月白 + 青绿 | 薄雾弥漫，空气清新 |
-| 正午 | 明亮阳光，直射柔光 | 朱红 + 金黄高光 | 光影清晰，色彩鲜明 |
-| 傍晚/黄昏 | 逆光剪影，暖色渐变 | 朱红 + 靛蓝渐变 | 夕阳余晖，轮廓光 |
-| 夜间 | 冷色背景 + 暖光点缀 | 靛蓝主调 + 暖黄光点 | 宁静温馨，灯光柔和 |
-| 雨天 | 漫射冷光，无主光源 | 青绿 + 月白 | 空气湿润，低对比 |
+| Early Morning | Soft morning light, warm side lighting | Moon white + Cyan-green | Thin mist, fresh air |
+| Noon | Bright sunlight, direct soft light | Vermilion + Golden highlights | Clear light and shadow, vivid colors |
+| Evening/Dusk | Backlit silhouette, warm gradient | Vermilion + Indigo gradient | Sunset afterglow, rim light |
+| Night | Cool background + warm light accents | Indigo dominant + Warm yellow light points | Quiet and cozy, soft lighting |
+| Rainy Day | Diffused cool light, no key light source | Cyan-green + Moon white | Humid air, low contrast |
 
-### 情绪光影
+### Emotional Lighting
 
-| 情绪基调 | 光线类型 | 补充约束 |
+| Emotional Tone | Light Type | Supplementary Constraints |
 |----------|----------|----------|
-| 仙侠飘逸 | 柔光漫射，飘逸动态 | 青绿色调，景深虚化，赛璐璐平涂 |
-| 宫廷华贵 | 暖光照明，局部高光 | 朱红色调，高光强调，景深层次 |
-| 少女日常 | 局部柔光，柔和阴影 | 胭脂色调，近景特写，清新氛围 |
-| 武侠肃杀 | 冷调阴影，硬光对比 | 靛蓝 + 墨黑，低饱和度，紧张氛围 |
-| 月夜诗意 | 月光照明，冷暖对比 | 靛蓝背景，暖光点缀，唯美氛围 |
+| Xianxia Ethereal | Soft diffused light, ethereal dynamics | Cyan-green tones, depth-of-field blur, cel shading flat color |
+| Imperial Opulence | Warm lighting, local highlights | Vermilion tones, emphasized highlights, depth layers |
+| Girl's Daily Life | Local soft light, soft shadows | Rouge tones, close-up shots, fresh atmosphere |
+| Wuxia Grim | Cool-toned shadows, hard light contrast | Indigo + Ink black, low saturation, tense atmosphere |
+| Moonlit Poetic | Moonlight illumination, warm-cool contrast | Indigo background, warm light accents, aesthetic atmosphere |
 
 ---
 
-## 场景质感约束词（按场景类型）
+## Scene Texture Constraint Terms (By Scene Type)
 
-| 场景类型 | 必加约束词 |
+| Scene Type | Mandatory Constraint Terms |
 |----------|-----------|
-| 仙侠场景 | 云雾缭绕、飞檐亭台、飘逸衣袂、青绿山水、赛璐璐平涂 |
-| 宫廷场景 | 朱红宫墙、金顶琉璃、雕梁画栋、汉白玉栏杆、新国潮装饰 |
-| 闺阁室内 | 屏风格扇、雕花窗棂、纱幔帐帘、古典家具、细腻笔触 |
-| 武侠场景 | 竹林/雪地/山崖、冷色调、氛围压抑、线条凌厉、新国潮风格 |
-| 节日庆典 | 灯笼/彩带/烟花、高饱和暖色、氛围热闹、人群熙攘 |
-| 夜晚街景 | 灯笼/街灯/店铺、暖光点缀、冷色背景、倒影反射、日式渲染 |
+| Xianxia Scene | Swirling clouds, upturned eaves and pavilions, flowing sleeves, cyan-green landscapes, cel shading flat color |
+| Imperial Scene | Vermilion palace walls, golden glazed roofs, carved beams and painted pillars, white marble railings, Neo-Chic decorations |
+| Boudoir Interior | Screen-style fans, carved window lattices, gauze curtains and drapes, classical furniture, delicate brushstrokes |
+| Wuxia Scene | Bamboo groves/Snowy fields/Cliffs, cool tones, oppressive atmosphere, sharp lines, Neo-Chic style |
+| Festival Celebration | Lanterns/Ribbons/Fireworks, high-saturation warm colors, lively atmosphere, bustling crowds |
+| Night Street Scene | Lanterns/Street lamps/Shops, warm light accents, cool background, reflections, Japanese rendering |
 
 ---
 
-## 固定风格锚定词（所有输出必须包含）
+## Fixed Style Anchoring Terms (Must be included in all outputs)
 
-**国风二次元锚定（必选）：**
+**Chinese-Style 2D Anchoring (Mandatory):**
 
-国风二次元，新国潮美学，日式动画渲染，赛璐璐平涂，细腻笔触
+Chinese-Style 2D, Neo-Chic aesthetic, Japanese animation rendering, cel shading flat color, delicate brushstrokes
 
-**人物质感（含人物镜头时必选）：**
+**Character Texture (Mandatory when character shots are included):**
 
-二次元国风造型，线条清晰，赛璐璐上色，服饰细节精致，光影层次丰富
+2D Chinese-style character design, clear lines, cel shading coloring, exquisite costume details, rich light and shadow layers
 
-**场景质感（含场景镜头时必选）：**
+**Scene Texture (Mandatory when scene shots are included):**
 
-国风二次元场景，传统建筑细节丰富，日式渲染技术，光影质感细腻
+Chinese-Style 2D scene, rich traditional architectural details, Japanese rendering technique, delicate light and shadow texture
 
-**一致性锚定（参考图模式必选）：**
+**Consistency Anchoring (Mandatory for Reference Image Mode):**
 
-保持人物造型与参考图一致，保持场景风格与参考图一致，保持光影色彩基调统一
+Maintain character design consistent with the reference image, maintain scene style consistent with the reference image, maintain unified light and color tone
 
-**风格收尾（固定）：**
+**Style Closing (Fixed):**
 
-国风二次元电影质感，东方古韵，新国潮风格，日式动画渲染技法
+Chinese-Style 2D cinematic quality, Eastern ancient charm, Neo-Chic style, Japanese animation rendering technique
 
-**画质锁定词（所有输出必须包含，置于风格收尾之后）：**
+**Image Quality Locking Terms (Must be included in all outputs, placed after the style closing):**
 
-模式A（中文）——默认（画面无画内文字需求时）：
-国风二次元高清渲染，高细节，细腻线条，赛璐璐平涂感，电影质感，画面无字幕、无水印、无标题叠字
+Mode A (Chinese) — Default (when no in-frame text is required):
+Chinese-Style 2D high-definition rendering, high detail, delicate lines, cel shading flat color feel, cinematic quality, no subtitles, no watermarks, no title overlays in the frame
 
-模式A（中文）——画内文字场景（画面描述中含牌匾/对联/书籍等道具文字时）：
-国风二次元高清渲染，高细节，细腻线条，赛璐璐平涂感，电影质感，画面无字幕、无水印、无标题叠字，牌匾/对联等场景道具上的文字清晰可辨
+Mode A (Chinese) — In-frame Text Scenes (when the scene description includes props with text such as plaques/couplets/books):
+Chinese-Style 2D high-definition rendering, high detail, delicate lines, cel shading flat color feel, cinematic quality, no subtitles, no watermarks, no title overlays in the frame, text on scene props such as plaques and couplets is clearly legible
 
-模式B（英文）——默认：
+Mode B (English) — Default:
 Chinese style anime, neo-chic aesthetic, Japanese animation rendering technique, cel shading, fine brushstrokes, cinematic quality, high detail, no subtitles, no captions, no watermark, no title overlay
 
-模式B（英文）——画内文字场景：
+Mode B (English) — In-frame Text Scenes:
 Chinese style anime, neo-chic aesthetic, Japanese animation rendering technique, cel shading, fine brushstrokes, cinematic quality, high detail, no subtitles, no captions, no watermark, no title overlay, legible text on in-scene props such as plaques and couplets
 
-**负向词模板（模式B 必须包含，置于提示词末尾）：**
+**Negative Prompt Template (Must be included in Mode B, placed at the end of the prompt):**
 
-> ⚠️ Seedream（模式A）**不支持负向提示词**，负向词仅适用于模式B。模式A 通过正向词中的质感锚定和画质锁定来保证画面质量。
+> ⚠️ Seedream (Mode A) **does not support negative prompts**; negative prompts are only applicable to Mode B. Mode A ensures image quality through texture anchoring and image quality locking in the positive prompt.
 
-模式B（英文）：
+Mode B (English):
 no photorealistic, no realistic photography, no 3D render, no low-poly, no rough modeling, no plastic texture, no harsh lines, no western fantasy, no cyberpunk, no sci-fi, no modern elements, no cartoon style without anime quality, no subtitles, no captions, no watermark, no title overlay, no UI text
 
 ---
 
-## 美学禁止项（生成时严格规避）
+## Aesthetic Prohibitions (Strictly Avoid During Generation)
 
-以下词汇/风格不得出现于输出提示词中：
+The following terms/styles must not appear in the output prompt:
 
-- ❌ 写实摄影/3D写实渲染/照片级真实感词
-- ❌ 高饱和荧光色/霓虹色/数码感强
-- ❌ 西方奇幻/赛博朋克/过度现代元素
-- ❌ 粗劣线条/模糊画质/低精度建模
-- ❌ 卡通/动漫/二次元风格但无精致感
-- ❌ 扁平设计/无二次元纵深感
-- ❌ 色彩混乱/光影错误/透视错误
-- ❌ 现代建筑/现代服饰元素
+- ❌ Realistic photography/3D realistic rendering/photo-level realism terms
+- ❌ High-saturation fluorescent colors/Neon colors/Strong digital feel
+- ❌ Western fantasy/Cyberpunk/Excessive modern elements
+- ❌ Rough lines/Blurry image quality/Low-precision modeling
+- ❌ Cartoon/Anime/2D style without refinement
+- ❌ Flat design/Lack of 2D depth
+- ❌ Color chaos/Lighting errors/Perspective errors
+- ❌ Modern architecture/Modern clothing elements
 
-> 💡 **例外**：某些现代渲染技术（如体积光、景深虚化）可以合理使用，但应保持国风二次元美学基调。
+> 💡 **Exception**: Certain modern rendering techniques (such as volumetric light, depth-of-field blur) can be used reasonably, but the Chinese-Style 2D aesthetic tone must be maintained.
 
 ---
 
-## 完整生成示例
+## Complete Generation Example
 
-> 以下为同一输入分别使用模式A和模式B的对照展示，实际使用时**仅输出其中一种**。
+> The following shows a comparison of the same input using Mode A and Mode B. In actual use, **only one of them should be output**.
 
-### 输入（分镜表行数据）
+### Input (Storyboard Table Row Data)
 
-| 序号 | 画面描述 | 场景 | 关联资产名称 | 时长 | 景别 | 运镜 | 角色动作 | 情绪 | 光影氛围 |
+| No. | Frame Description | Scene | Related Asset Name | Duration | Shot Size | Camera Movement | Character Action | Emotion | Lighting Atmosphere |
 |------|---------|------|-------------|------|------|------|---------|------|----------|
-| 1 | 古装少女站在宫殿前，手持花枝，眼神温柔 | 宫殿 | 古装少女 | 6s | 中景 | 缓推 | 侧身持花，眼神温柔 | 温婉 / 典雅 | 暖光照明 |
+| 1 | Ancient-costume girl standing in front of a palace, holding a flower branch, gentle eyes | Palace | Ancient-costume girl | 6s | Medium Shot | Slow Push | Standing sideways holding a flower, gentle eyes | Gentle / Elegant | Warm light illumination |
 
-### 示例输出A（模式A · Seedream）
+### Example Output A (Mode A · Seedream)
 
 [Prompt]
-国风二次元，新国潮美学，日式动画渲染，赛璐璐平涂，细腻笔触，二次元国风造型，线条清晰，赛璐璐上色，服饰细节精致，光影层次丰富，中景构图，古装少女站在宫殿前，手持花枝侧身而立，神情温柔，眼神温柔，朱红宫墙背景，金黄高光点缀，体积光氛围，景深虚化，国风二次元电影质感，东方古韵，新国潮风格，日式动画渲染技法，国风二次元高清渲染，高细节，细腻线条，赛璐璐平涂感，电影质感，画面无字幕、无水印、无标题叠字。
-Based on the reference image of 古装少女，maintain consistent: face features, hairstyle, costume details. Generate a new scene: standing in front of palace at dusk, holding flower branch. Keep visual style identical to reference.
+Chinese-Style 2D, Neo-Chic aesthetic, Japanese animation rendering, cel shading flat color, delicate brushstrokes, 2D Chinese-style character design, clear lines, cel shading coloring, exquisite costume details, rich light and shadow layers, medium shot composition, ancient-costume girl standing in front of a palace, standing sideways holding a flower branch, gentle expression, gentle eyes, vermilion palace wall background, golden highlights, volumetric light atmosphere, depth-of-field blur, Chinese-Style 2D cinematic quality, Eastern ancient charm, Neo-Chic style, Japanese animation rendering technique, Chinese-Style 2D high-definition rendering, high detail, delicate lines, cel shading flat color feel, cinematic quality, no subtitles, no watermarks, no title overlays in the frame.
+Based on the reference image of the ancient-costume girl, maintain consistent: facial features, hairstyle, costume details. Generate a new scene: standing in front of the palace at dusk, holding a flower branch. Keep visual style identical to the reference.
 
 
-### 示例输出B（模式B · Nanobanana）
+### Example Output B (Mode B · Nanobanana)
 
 ```xml
 <role>
@@ -155,7 +155,7 @@ You are an anime storyboard artist.
 Maintain strict visual continuity across all shots.
 </role>
 <character_reference>
-Image [1]: 古装少女 — 国风二次元造型，典雅服饰，新国潮美学
+Image [1]: Ancient costume girl — Chinese style 2D design, elegant attire, Neo-Chinese Chic aesthetic
 </character_reference>
 <continuity_rules>
 - Same outfit, hairstyle, face features across ALL shots
@@ -171,21 +171,21 @@ no photorealistic, no realistic photography, no 3D render, no low-poly, no rough
 </negative>
 ```
 
-## 快速参考卡
+## Quick Reference Card
 
-### 情绪 → 画面词速查
+### Emotion → Visual Keyword Quick Lookup
 
-| 情绪 | 面容关键词 | 光线匹配 |
+| Emotion | Facial Keywords | Lighting Match |
 |------|-----------|---------|
-| 温柔 | 神情温柔，眼神专注 | 柔光漫射 + 暖光 |
-| 坚定 | 神情认真，目光清亮 | 暖光侧射 + 清晰轮廓 |
-| 羞涩 | 脸颊泛红，眼神躲闪 | 暖光侧射 + 腮红 |
-| 凌厉 | 神情冷峻，目光如刀 | 冷调阴影 + 硬光 |
-| 喜悦 | 表情灿烂，眼睛弯月 | 暖光照明 + 高饱和 |
-| 忧伤 | 神情哀婉，眼神黯淡 | 冷调阴影 + 低对比 |
-| 疲惫 | 眼神朦胧，表情柔和 | 柔和光线 + 低对比 |
-| 沉思 | 神情淡淡，目光悠远 | 体积光 + 雾气 |
-| 期待 | 眼神发光，表情鲜活 | 暖光侧射 + 高亮 |
+| Gentle | Gentle expression, focused gaze | Soft diffused light + warm light |
+| Resolute | Serious expression, clear gaze | Warm side light + clear contours |
+| Shy | Blushing cheeks, averted gaze | Warm side light + blush |
+| Sharp | Stern expression, blade-like gaze | Cool-toned shadows + hard light |
+| Joyful | Radiant expression, crescent-shaped eyes | Warm lighting + high saturation |
+| Melancholy | Sorrowful expression, dim gaze | Cool-toned shadows + low contrast |
+| Weary | Hazy gaze, soft expression | Soft light + low contrast |
+| Contemplative | Faint expression, distant gaze | Volumetric light + mist |
+| Expectant | Glowing eyes, vivid expression | Warm side light + high brightness |
 
 
 

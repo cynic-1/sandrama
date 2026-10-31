@@ -1,5 +1,6 @@
 import { AsyncLocalStorage } from "node:async_hooks";
 import db from "@/utils/db";
+import { englishBuiltinPrompt } from "@/utils/englishPrompts";
 
 type AnyRow = Record<string, any>;
 
@@ -76,7 +77,7 @@ async function save(userId: number, data: UserSettingsData): Promise<void> {
 }
 
 export async function ensureUserSettings(userId = currentUserId()): Promise<UserSettingsData> {
-  if (!userId) throw new Error("未找到当前用户");
+  if (!userId) throw new Error("Current user not found");
   const id = Number(userId);
   const cached = cache.get(id);
   if (cached) return cached;
@@ -225,18 +226,30 @@ export async function deleteVendorConfig(id: string, userId = currentUserId()): 
 }
 
 export async function getPromptRows(userId = currentUserId()): Promise<AnyRow[]> {
-  if (!userId) return db("o_prompt").select("*");
+  if (!userId) return (await db("o_prompt").select("*")).map(localizeBuiltinPrompt);
   const data = await ensureUserSettings(userId);
   const globalRows = await db("o_prompt").select("*");
   let changed = false;
   for (const row of globalRows) {
-    if (row.id !== undefined && !data.prompts[String(row.id)]) {
+    if (row.id === undefined) continue;
+    const existing = data.prompts[String(row.id)];
+    if (!existing) {
       data.prompts[String(row.id)] = { ...row };
+      changed = true;
+      continue;
+    }
+    // Keep user edits (`useData`) but adopt refreshed built-in defaults.
+    if (existing.data !== row.data || existing.name !== row.name) {
+      data.prompts[String(row.id)] = { ...existing, data: row.data, name: row.name, type: row.type };
       changed = true;
     }
   }
   if (changed) await save(Number(userId), data);
-  return Object.values(data.prompts);
+  return Object.values(data.prompts).map(localizeBuiltinPrompt);
+}
+
+function localizeBuiltinPrompt(row: AnyRow): AnyRow {
+  return { ...row, data: englishBuiltinPrompt(row.type, row.data) };
 }
 
 export async function getPromptById(id: number, userId = currentUserId()): Promise<AnyRow | undefined> {

@@ -1,156 +1,156 @@
 ---
 name: art_prop
-description: 道具图像生成 · 约束手册
+description: Prop Image Generation · Constraint Manual
 metaData: art_skills
 ---
 
-# 道具图像生成 · 约束手册
+# Prop Image Generation · Constraint Manual
 
 ---
 
-## 一、道具设计原则
+## I. Prop Design Principles
 
-1. **功能可读** — 道具用途一目了然，造型服务于功能
-2. **质感极致** — 材质纹理必须清晰可辨（金属/玉石/木/布/纸/瓷）
-3. **年代一致** — 所有道具必须符合古风世界观，禁止现代元素
-4. **尺度明确** — 通过参照物或标注暗示道具真实尺寸
-5. **纯道具独立展示** — 画面中只能出现道具本身，严禁出现任何人物、手部、肢体，道具不可处于被持有/佩戴/握持状态，必须以静物陈列方式独立呈现
-
----
-
-## 二、道具分类与美学约束
-
-### 2.1 兵器类
-
-| 项目 | 约束 | 提示词 |
-|---|---|---|
-| 类型 | 剑/刀/弓/枪/扇 | {兵器类型}，古风兵器 |
-| 材质 | 精钢/玄铁 + 宝石镶嵌 + 丝绸剑穗 | 精钢锻造、宝石镶嵌 |
-| 装饰 | 剑鞘/刀柄雕花、流苏、暗纹 | 雕花精致、流苏垂坠 |
-| 光泽 | 金属冷光泽、刃口反光 | 冷光泽、金属质感 |
-| 风格 | 国风二次元 | 新国潮风格、二次元渲染 |
-
-### 2.2 饰品类
-
-| 项目 | 约束 | 提示词 |
-|---|---|---|
-| 类型 | 簪/钗/璎珞/玉佩/手镯/耳坠 | {饰品类型}，古风首饰 |
-| 材质 | 金/银/玉/珍珠/宝石 | 金丝编织、玉质通透 |
-| 工艺 | 极致精细、花丝/掐丝/镶嵌 | 工艺精细、精雕细琢 |
-| 光泽 | 珠光/玉润/金属光泽 | 珠光莹润、金属光泽 |
-| 风格 | 国风二次元 | 精致华丽、新国潮 |
-
-### 2.3 生活器物类
-
-| 项目 | 约束 | 提示词 |
-|---|---|---|
-| 类型 | 茶具/酒具/香炉/棋盘/书卷/灯笼 | {器物类型}，古风器物 |
-| 材质 | 瓷/铜/竹/木/纸 | 青瓷温润、紫铜古朴 |
-| 质感 | 釉面/木纹/竹节清晰 | 釉面光泽、木纹清晰 |
-| 风格 | 新中式 | 素雅古朴 / 华贵精致 |
-| 渲染 | 赛璐璐平涂 | 二次元质感、细腻笔触 |
-
-### 2.4 信物/关键道具类
-
-| 项目 | 约束 | 提示词 |
-|---|---|---|
-| 类型 | 信物/令牌/卷轴/药瓶/玉印 | {道具类型}，古风道具 |
-| 特殊性 | 需有辨识度、叙事象征意义 | 独特造型、寓意深远 |
-| 做旧感 | 可按剧情需要添加年代感 | 古旧斑驳 / 崭新精致 |
-| 风格 | 国风二次元 | 新国潮风格、动漫感 |
-
-### 2.5 文房四宝类（新增）
-
-| 项目 | 约束 | 提示词 |
-|---|---|---|
-| 类型 | 笔/墨/纸/砚 | {文房类型}，文房四宝 |
-| 材质 | 竹/木/玉/陶瓷 | 竹制笔杆、瓷质砚台 |
-| 质感 | 木纹/釉面/笔毫清晰 | 笔毫细腻、砚台温润 |
-| 风格 | 文人雅致 | 古风雅韵、细腻笔触 |
-
-### 2.6 节庆道具类（新增）
-
-| 项目 | 约束 | 提示词 |
-|---|---|---|
-| 类型 | 灯笼/烟花/春联/福字 | {节庆类型}，节庆道具 |
-| 材质 | 纸/布/竹/绸缎 | 丝绸灯笼、纸质春联 |
-| 质感 | 纸纹/布料纹理清晰 | 纹理清晰、质感细腻 |
-| 风格 | 喜庆热闹 | 色彩明亮、热闹氛围 |
+1. **Functional Readability** — The purpose of the prop is immediately clear; the form serves the function.
+2. **Ultimate Texture** — Material textures must be clearly distinguishable (metal/jade/wood/cloth/paper/porcelain).
+3. **Era Consistency** — All props must conform to the ancient-style worldview; modern elements are prohibited.
+4. **Clear Scale** — The true size of the prop must be implied through reference objects or annotations.
+5. **Pure Prop Independent Display** — Only the prop itself may appear in the frame. The appearance of any person, hand, or limb is strictly prohibited. Props must not be in a state of being held, worn, or gripped; they must be presented independently in a still-life display manner.
 
 ---
 
-## 三、多角度设定图规范
+## II. Prop Categories and Aesthetic Constraints
 
-### 视图定义
+### 2.1 Weapons
 
-| 位置 | 视图 | 角度 | 要求 | 提示词 |
+| Item | Constraint | Prompt |
+|---|---|---|
+| Type | Sword/Dagger/Bow/Spear/Fan | {weapon type}, ancient-style weapon |
+| Material | Fine steel/Black iron + gemstone inlay + silk sword tassel | Forged fine steel, gemstone inlay |
+| Decoration | Carved scabbard/hilt, tassels, hidden patterns | Intricate carving, hanging tassels |
+| Sheen | Cold metallic sheen, edge reflection | Cold sheen, metallic texture |
+| Style | National Style 2D | New Guochao style, 2D rendering |
+
+### 2.2 Accessories
+
+| Item | Constraint | Prompt |
+|---|---|---|
+| Type | Hairpin/Tiara/Necklace/Jade Pendant/Bracelet/Earring | {accessory type}, ancient-style jewelry |
+| Material | Gold/Silver/Jade/Pearl/Gemstone | Gold wire weaving, translucent jade |
+| Craftsmanship | Ultimate precision, filigree/enamel/inlay | Fine craftsmanship, exquisite carving |
+| Sheen | Pearl luster/Jade smoothness/Metallic sheen | Lustrous pearl, metallic sheen |
+| Style | National Style 2D | Exquisite and luxurious, New Guochao |
+
+### 2.3 Household Utensils
+
+| Item | Constraint | Prompt |
+|---|---|---|
+| Type | Tea set/Wine set/Incense burner/Chessboard/Scroll/Lantern | {utensil type}, ancient-style utensil |
+| Material | Porcelain/Copper/Bamboo/Wood/Paper | Warm celadon, rustic purple copper |
+| Texture | Clear glaze/wood grain/bamboo nodes | Glaze sheen, clear wood grain |
+| Style | New Chinese | Elegant and rustic / Luxurious and exquisite |
+| Rendering | Celadon flat color | 2D texture, delicate brushstrokes |
+
+### 2.4 Tokens/Key Props
+
+| Item | Constraint | Prompt |
+|---|---|---|
+| Type | Token/Tally/Scroll/Medicine bottle/Jade seal | {prop type}, ancient-style prop |
+| Uniqueness | Must have recognizability and narrative symbolic meaning | Unique shape, profound symbolism |
+| Aging | Can add an aged feel according to plot needs | Old and mottled / Brand new and exquisite |
+| Style | National Style 2D | New Guochao style, anime feel |
+
+### 2.5 Four Treasures of the Study (New)
+
+| Item | Constraint | Prompt |
+|---|---|---|
+| Type | Brush/Ink/Paper/Inkstone | {study tool type}, Four Treasures of the Study |
+| Material | Bamboo/Wood/Jade/Ceramic | Bamboo brush handle, porcelain inkstone |
+| Texture | Clear wood grain/glaze/brush hairs | Delicate brush hairs, warm inkstone |
+| Style | Scholarly elegance | Ancient elegance, delicate brushstrokes |
+
+### 2.6 Festival Props (New)
+
+| Item | Constraint | Prompt |
+|---|---|---|
+| Type | Lantern/Fireworks/Spring couplets/Fu character | {festival type}, festival prop |
+| Material | Paper/Cloth/Bamboo/Silk | Silk lantern, paper spring couplets |
+| Texture | Clear paper grain/cloth texture | Clear texture, delicate quality |
+| Style | Festive and lively | Bright colors, lively atmosphere |
+
+---
+
+## III. Multi-Angle Setup Sheet Standards
+
+### View Definitions
+
+| Position | View | Angle | Requirement | Prompt |
 |---|---|---|---|---|
-| 左上 | 正面图 | 正面 0° | 道具完整正面形态 | front view |
-| 右上 | 侧面图 | 侧面 90° | 厚度/轮廓/结构清晰 | side view |
-| 左下 | 背面图 | 背面 180° | 道具背部结构/装饰 | back view |
-| 右下 | 细节特写 | 局部放大 | 材质纹理/工艺细节 | detail closeup |
+| Top Left | Front View | Front 0° | Complete front form of the prop | front view |
+| Top Right | Side View | Side 90° | Clear thickness/outline/structure | side view |
+| Bottom Left | Back View | Back 180° | Back structure/decoration of the prop | back view |
+| Bottom Right | Detail Close-up | Local magnification | Material texture/craftsmanship details | detail closeup |
 
-### 画面规范
+### Frame Standards
 
-| 项目 | 约束 |
+| Item | Constraint |
 |---|---|
-| 布局 | 同一画面四宫格（2×2），上下左右四视角 |
-| 背景 | 月白纯色 #E8EAF5 |
-| 光线 | 均匀柔光，无硬阴影 |
-| 比例 | 每格道具占格内主体 70%+ |
-| 投影 | 允许自然地面微投影 |
-| 画面比例 | 建议 1:1 |
+| Layout | Four-grid layout (2×2) in the same frame: top, bottom, left, right perspectives |
+| Background | Moon-white solid color #E8EAF5 |
+| Lighting | Even soft light, no hard shadows |
+| Ratio | Prop occupies 70%+ of the main subject in each grid |
+| Shadow | Natural subtle ground shadow allowed |
+| Aspect Ratio | 1:1 recommended |
 
 ---
 
-## 四、材质渲染约束
+## IV. Material Rendering Constraints
 
-| 材质 | 渲染要求 | 提示词 |
+| Material | Rendering Requirement | Prompt |
 |---|---|---|
-| 金属 | 反光/高光/冷光泽、划痕微可见 | 金属质感、冷光泽、反光清晰 |
-| 玉石 | 内透光、温润、微通透 | 玉质通透、温润如脂 |
-| 木质 | 木纹清晰、年轮可见 | 木纹清晰、质感温润 |
-| 瓷器 | 釉面光泽、色泽均匀 | 釉面光泽、瓷质温润 |
-| 布/纸 | 纤维质感、边缘自然 | 布料纹理、纸质古朴 |
-| 宝石 | 折射/内部光线、切面清晰 | 宝石璀璨、光芒折射 |
-| 赛璐璐质感 | 平涂均匀、线条清晰 | 赛璐璐平涂、细腻笔触 |
+| Metal | Reflection/highlight/cold sheen, faint scratches visible | Metallic texture, cold sheen, clear reflection |
+| Jade | Internal translucency, warm, slightly translucent | Translucent jade, warm as fat |
+| Wood | Clear wood grain, visible growth rings | Clear wood grain, warm texture |
+| Porcelain | Glaze sheen, uniform color | Glaze sheen, warm porcelain |
+| Cloth/Paper | Fiber texture, natural edges | Cloth texture, rustic paper |
+| Gemstone | Refraction/internal light, clear facets | Brilliant gemstone, light refraction |
+| Celadon Texture | Uniform flat color, clear lines | Celadon flat color, delicate brushstrokes |
 
 ---
 
-## 五、提示词模板
+## V. Prompt Template
 
-国风二次元道具设定图，
-国风二次元，新国潮美学，日式动画渲染，赛璐璐平涂，细腻笔触，电影质感，
-{道具类型}，{材质描述}，{工艺/装饰描述}，{状态描述}，
-纯道具静物展示，道具独立陈列，无人持有，无人佩戴，
-同一画面四宫格（2×2）：左上正面图+右上侧面图+左下背面图+右下细节特写，
-月白纯色背景，均匀柔光，无硬阴影，
-材质纹理超清晰，质感细腻，{材质光泽描述}
-国风二次元高清渲染，高细节，细腻线条，赛璐璐平涂感，
-画面无字幕、无水印、无标题叠字，
-画面中不能出现任何人物、手部、手指、肢体，道具不可处于被握持或佩戴状态
+National Style 2D prop setup sheet,
+National Style 2D, New Guochao aesthetics, Japanese animation rendering, celadon flat color, delicate brushstrokes, cinematic quality,
+{prop type}, {material description}, {craftsmanship/decoration description}, {state description},
+Pure prop still-life display, prop displayed independently, no one holding, no one wearing,
+Four-grid layout (2×2) in the same frame: Top Left Front View + Top Right Side View + Bottom Left Back View + Bottom Right Detail Close-up,
+Moon-white solid color background, even soft light, no hard shadows,
+Ultra-clear material texture, delicate quality, {material sheen description}
+National Style 2D high-resolution rendering, high detail, delicate lines, celadon flat color feel,
+No subtitles, no watermarks, no title overlays in the frame,
+No person, hand, finger, or limb may appear in the frame; the prop must not be in a state of being held or worn
 
 ---
 
-## 六、约束规则
+## VI. Constraint Rules
 
-### 必守
+### Mandatory
 
-| 编号 | 规则 |
+| ID | Rule |
 |---|---|
-| R1 | 必须指定「月白纯色背景」 |
-| R2 | 必须明确道具材质与工艺 |
-| R3 | 道具造型必须符合古风世界观 |
-| R4 | 必须为「四宫格」布局：正面 + 侧面 + 背面 + 特写 |
-| R5 | 必须包含「国风二次元 + 赛璐璐平涂」关键词 |
+| R1 | Must specify "Moon-white solid color background" |
+| R2 | Must clearly define prop material and craftsmanship |
+| R3 | Prop design must conform to the ancient-style worldview |
+| R4 | Must use "Four-grid" layout: Front + Side + Back + Close-up |
+| R5 | Must include "National Style 2D + Celadon flat color" keywords |
 
-### 严禁
+### Prohibited
 
-| 编号 | 严禁 |
+| ID | Prohibition |
 |---|---|
-| X1 | 复杂场景背景 |
-| X2 | 道具与人物同画面（本环节为纯道具图） |
-| X3 | 出现任何人物形象，包括全身、半身、局部（手、手指、手臂等肢体） |
-| X4 | 道具处于被持有、握持、佩戴、使用中的状态 |
-| X5 | 出现暗示人物存在的元素（如手持痕迹、佩戴视角、使用姿态） |
-| X6 | 现代元素出现在古风道具中 |
+| X1 | Complex scene backgrounds |
+| X2 | Prop and person in the same frame (this stage is for pure prop images) |
+| X3 | Appearance of any person, including full body, half body, or partial (hands, fingers, arms, etc.) |
+| X4 | Prop in a state of being held, gripped, worn, or in use |
+| X5 | Elements implying the presence of a person (e.g., hand-holding marks, wearing perspective, usage posture) |
+| X6 | Modern elements appearing in ancient-style props |

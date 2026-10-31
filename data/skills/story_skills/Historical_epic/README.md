@@ -1,50 +1,50 @@
-# 历史史诗 · 导演叙事手法技能包
+# Historical Epic · Directorial Narrative Techniques Skill Pack
 
-## 简介
+## Overview
 
-本技能包为 **历史史诗** 类型故事提供一套完整的导演叙事手法参考，涵盖从宏观叙事规划到微观分镜执行的全流程指导。适用于任何视觉风格。
+This skill pack provides a complete reference for directorial narrative techniques for **Historical Epic** stories, covering the full process from macro-level narrative planning to micro-level storyboard execution. It is applicable to any visual style.
 
-## 核心理念
+## Core Concepts
 
-- **大时代小人物** — 史诗的力量不在于帝王将相，而在于洪流中普通人的挣扎与抉择
-- **命运的不可抗力** — 历史叙事的张力来自"个人意志与时代洪流的碰撞"，越是抗争越显悲壮
-- **仪式感即重量** — 登基、盟誓、决战、殉道——关键节点的仪式感赋予事件历史的重量
-- **苍凉底色** — 史诗的情感底色是苍凉而非悲伤，是"知其不可而为之"的壮美
+- **Great Era, Small Characters** — The power of an epic lies not in emperors and generals, but in the struggles and choices of ordinary people caught in the torrent of history
+- **The Inevitability of Fate** — The tension in historical narratives comes from "the collision between individual will and the torrent of the era"; the more one resists, the more tragic and heroic it becomes
+- **Ritual as Weight** — Coronations, oaths, decisive battles, martyrdoms — the ritualistic nature of key moments grants events historical weight
+- **Desolate Undercurrent** — The emotional undercurrent of an epic is desolation rather than sadness; it is the sublime beauty of "pursuing what one knows to be impossible"
 
-## 文件结构
+## File Structure
 
 ```
 Historical_epic/
-├── README.md                                          ← 本文件
+├── README.md                                          ← This file
 └── driector_skills/
-    ├── director_planning_narrative.md                 ← 叙事规划手法
-    └── director_storyboard_table_narrative.md         ← 分镜表叙事手法
+    ├── director_planning_narrative.md                 ← Narrative planning techniques
+    └── director_storyboard_table_narrative.md         ← Storyboard table narrative techniques
 ```
 
-## 技能文件说明
+## Skill File Description
 
-### 1. 叙事规划手法 (`director_planning_narrative.md`)
+### 1. Narrative Planning Techniques (`director_planning_narrative.md`)
 
-导演在 **叙事规划阶段** 使用的技法参考，定义历史史诗在主题立意、情感节奏、场景情绪设计与声音方向上的整体规划方法。
+Technique reference used by the director during the **narrative planning stage**, defining the overall planning methods for historical epics in terms of thematic intent, emotional rhythm, scene mood design, and sound direction.
 
-| 章节 | 内容概要 |
+| Chapter | Content Overview |
 |---|---|
-| 主题立意与情感内核 | 大时代小人物、命运碰撞、仪式感重量、苍凉底色 |
-| 叙事结构与节奏规划 | 宏微交织、史诗节奏弧、群像叙事、时间跨度处理 |
-| 分场景情绪设计 | 六大典型史诗段落设计、权力空间叙事、仪式场景 |
-| 声音与音乐方向 | 厚重低音、人声力量、战场音景、沉默的庄严 |
-| 构图与景别叙事 | 空间权力关系、群像调度、孤独个体与宏大空间 |
-| 镜头运动与节奏 | 庄重缓移、俯瞰全局、凝视与对峙、史诗长镜头 |
+| Thematic Intent and Emotional Core | Great era, small figures, collision of fates, weight of ritual, bleak undertone |
+| Narrative Structure and Rhythm Planning | Interweaving of macro and micro, epic rhythm arc, ensemble narrative, handling of time spans |
+| Scene-by-Scene Mood Design | Design of six typical epic segments, narrative of power spaces, ritual scenes |
+| Sound and Music Direction | Heavy low tones, power of the human voice, battlefield soundscape, the solemnity of silence |
+| Composition and Shot Scale Narrative | Spatial power relations, ensemble staging, the lonely individual and vast space |
+| Camera Movement and Rhythm | Solemn slow movement, bird's-eye overview, gazing and confrontation, epic long takes |
 
-### 2. 分镜表叙事手法 (`director_storyboard_table_narrative.md`)
+### 2. Storyboard Table Narrative Techniques (`director_storyboard_table_narrative.md`)
 
-导演在 **分镜表制作阶段** 使用的技法参考，定义历史史诗在分镜表中的景别权力叙事、运镜庄重感、时长把控、镜头合并与转场逻辑。
+Technique reference used by the director during the **storyboard table production stage**, defining shot scale power narrative, camera movement solemnity, duration control, shot merging, and transition logic for historical epics in the storyboard table.
 
-| 章节 | 内容概要 |
+| Chapter | Content Overview |
 |---|---|
-| 分镜表定位 | 分镜表作为史诗叙事节奏控制核心工具的定位说明 |
-| 景别选择 | 宏观与微观交织、远景的史诗价值、特写的人性锚点 |
-| 运镜节奏 | 庄重缓移、俯瞰叙事、对峙静止、仪式运镜 |
-| 时长把控 | 史诗远景时长、仪式段落节奏、对白沉稳节奏 |
-| 镜头合并策略 | 群像整合、战役叙事密度、空间连续性 |
-| 一镜到底 | 战场穿越、仪式全程、时代变迁长镜头 |
+| Storyboard Table Positioning | Explanation of the storyboard table's role as the core tool for controlling epic narrative rhythm |
+| Shot Scale Selection | Interweaving of macro and micro, the epic value of wide shots, the human anchor of close-ups |
+| Camera Movement Rhythm | Solemn slow movement, bird's-eye narrative, static confrontation, ritual camera movement |
+| Duration Control | Duration of epic wide shots, rhythm of ritual segments, steady rhythm of dialogue |
+| Shot Merging Strategy | Ensemble integration, narrative density of battles, spatial continuity |
+| One-Take | Battlefield traversal, full ritual sequence, long take of era transition |

@@ -1,84 +1,84 @@
 ---
 name: director_storyboard_table_narrative
-description: 分镜表叙事手法 · 喜剧搞笑 — 定义喜剧搞笑在分镜表中的景别策略、运镜节奏、时长把控、笑点分镜设计、多人调度与转场手法。适用于任何视觉风格。
+description: Storyboard Narrative Techniques · Comedy and Funny - Define comedy and comedy scene selection strategies, camera movement rhythm, duration control, laugh point storyboard design, multi-person scheduling and transition techniques in the storyboard. Works with any visual style.
 metaData: director_skills
 ---
 
-# 分镜表叙事手法 · 喜剧搞笑 · 技法参考
+# Storyboard Narrative Technique · Comedy · Technical Reference
 
 ---
 
-## 一、分镜表定位
+## 1. Storyboard positioning
 
-分镜表是导演将剧本转化为镜头语言的核心工具。表单字段由导演根据项目需要自行设定（分镜号、景别、运镜、时长、人物、事件、台词、光影、情绪、转场等），以下仅提供喜剧搞笑叙事类型下的技法参考。
-
----
-
-## 二、景别选择
-
-- **反应镜头是喜剧王牌** — 笑点发生后必须紧跟一个"反应镜头"（旁观者的表情/当事人的石化），用近景捕捉。没有反应镜头的笑点是哑炮
-- **全景暴露信息** — 喜剧中全景的核心功能是"让观众看到角色看不到的荒谬"：身后的人、背景的异常、即将发生的灾难。全景 = 给观众上帝视角
-- **中景承载对话** — 角色互动/碰撞的主力景别，保持足够信息量让观众看到肢体语言和表情
-- **特写定格尴尬** — 特写在喜剧中放大尴尬细节：写错的字、错放的东西、僵住的笑容。停留短暂（1-2s）但冲击力足够
-- **定场镜头要有喜感种子** — 喜剧的定场镜头可以在看似正常的场景中埋入一个"不对"的细节（背景有人在做奇怪的事/标语写错了），为后续笑点做铺垫
+Storyboards are the core tool for directors to transform scripts into lens language. The form fields are set by the director according to the needs of the project (story number, scene, shot movement, duration, characters, events, lines, light and shadow, emotions, transitions, etc.). The following only provides technical reference for comedy narrative types.
 
 ---
 
-## 三、运镜节奏
+## 2. Scene selection
 
-- **固定机位为主** — 60% 以上镜头固定，冷静旁观的视角让荒谬更突出
-- **急推 = 反应放大** — 笑点后快速推向反应者面部，放大震惊/石化/难以置信。是喜剧分镜中使用最高频的运镜
-- **甩镜 = 揭示荒谬** — 从A迅速甩到B，用速度本身传递"什么？！"的惊讶感
-- **跟拍失控** — 角色陷入混乱时（追逐、逃跑、手忙脚乱）用手持跟拍，摇晃感传递"一切失控"
-- **缓推 = 发现细节** — 缓慢推向一个荒谬的细节，给观众"等等让我看清楚……哈！"的发现式笑点
-- **运镜不抢戏** — 喜剧运镜的原则是"不抢角色的戏"。运镜越简洁越好，花哨运镜会分散对笑点的注意力
-
----
-
-## 四、时长把控
-
-- **铺垫给足时长** — 铺垫镜头 3-4s，让观众充分建立预期。铺垫不够充分，包袱就不响
-- **包袱精准节拍** — 抖包袱的镜头 1.5-2s，干脆利落。笑点的冲击力在于"突然"，拖了就不好笑
-- **反应镜头 2-3s** — 给旁观者/当事人的反应足够的"定格"时间，让观众消化笑点
-- **留白笑点** — 笑点后留 1-2s 的"空白"（角色沉默/空气凝固），给观众笑的时间。如果立刻推进叙事，笑声会被剪断
-- **黄金 6 秒规则** — 喜剧节奏要求单镜头通常不超过 4s（比其他类型更快），只有铺垫和真情段落可以到 5-6s
-- **三遍法则的时长递进** — 同一个笑点重复三遍时：第一遍正常时长→第二遍稍短（观众已知预期）→第三遍最短或最长（打破模式）
+- **Reaction shot is the trump card of comedy** — The punchline must be followed by a "reaction shot" (the expression of the bystander/the petrification of the person involved), captured with a close-up shot. A joke without a reaction shot is a squib
+- **Panorama Exposed Information** — The core function of panorama in comedy is to "allow the audience to see the absurdity that the characters cannot see": the people behind them, the anomalies in the background, the disaster that is about to happen. Panorama = giving the audience a God’s perspective
+- **Mid shot carries dialogue** — the main shot of character interaction/collision, maintaining enough information for the audience to see body language and expressions
+- **Close-up freezes awkwardness** — Close-ups magnify embarrassing details in comedy: wrong words, misplaced things, frozen smiles. The stay is short (1-2s) but the impact is sufficient
+- **The establishing shot must have the seeds of joy** — The establishing shot of comedy can bury an "off" detail in a seemingly normal scene (someone is doing strange things in the background/the slogan is written wrong), paving the way for subsequent laughter.
 
 ---
 
-## 五、笑点分镜设计
+## 3. Rhythm of camera movement
 
-- **铺垫→包袱的镜头结构** — 铺垫镜头（中景/近景，角色认真做某事）→ 包袱镜头（全景揭示荒谬/特写放大错误/近景反应石化）。两个镜头构成一个笑点单元
-- **视觉笑点不需要台词** — 纯画面笑点（角色踩到东西、背景有荒谬事件、道具放错位置）用全景或带运镜的中景呈现，不依赖对白
-- **信息差笑点** — 观众知道但角色不知道的信息制造期待感笑点。分镜上：全景给观众信息→切回角色中景/近景（角色浑然不知）→灾难发生
-- **连锁反应笑点** — 一个小失误引发多米诺骨牌式连锁崩塌。分镜用快速硬切串联每个"倒塌"环节（2s/镜），节奏越来越快
-- **能一镜拍完的喜剧场面不要拆** — 一个长镜头中角色从正常逐渐走向失控，全过程一镜到底比碎切更有"不可挽回"的喜感
-
----
-
-## 六、多人喜剧调度
-
-- **群戏反应链** — 笑点发生后依次切每个旁观者的反应：A惊呆→B偷笑→C假装没看见→D比当事人更尴尬。反应链本身就是笑点的延续
-- **角色碰撞用对切** — 性格反差大的两个角色对话用正反打对切，节奏加快（每句 1.5-2s），碰撞感通过剪辑速度外化
-- **旁观者是最好的笑点放大器** — 分镜中始终保留一个"旁观者位"：一个路人、一个不相关的角色、一只宠物——他们的反应帮助观众"确认"这件事确实很荒谬
-- **群体失控用全景** — 多人同时陷入混乱时用全景一镜呈现，让观众同时看到所有荒谬。全景的信息量爆炸本身就是喜感
+- **Fixed camera positions** — More than 60% of the lenses are fixed, and the calm observer’s perspective makes the absurdity more prominent.
+- **Push = Reaction Amplification** — Push quickly to the face of the responder after the punchline to amplify shock/petrification/disbelief. It is the most frequently used shot in comedy storyboards.
+- **Screening = Revealing Absurdity** — Quickly flinging from A to B, using the speed itself to convey the sense of surprise of "What?!"
+- **Out of control tracking** — When the character is in chaos (chasing, escaping, scrambling), use handheld tracking to create a shaking feeling that conveys "everything is out of control"
+- **Slow push = discovering details** — Slowly push a ridiculous detail, giving the audience a "wait a minute, let me see clearly... ha!" discovery-style laugh point
+- **Shoot the scene without stealing the scene** — The principle of shooting in comedy is "do not steal the scene of the character". The simpler the camerawork, the better; fancy camerawork will distract from the punchline.
 
 ---
 
-## 七、台词与节奏
+## 4. Duration control
 
-- **台词节拍决定笑点** — 喜剧台词的笑点在于节拍：铺垫语速正常→包袱前微停顿（0.5s）→包袱一句话干脆落地。停顿是笑点的"引线"
-- **吐槽要快** — 吐槽/回怼的台词必须在上一句话结束后 0.5s 内接上，快速反击才有爽感。分镜中吐槽镜头不给额外铺垫，直接硬切近景
-- **沉默的喜感** — 荒谬的事发生后角色集体沉默 2-3s，比任何台词都好笑。沉默中角色的微表情（假装没事/石化/缓慢转头）是笑点本体
-- **重复的力量** — 同一句话/同一个动作重复三遍，第三遍变化（说错/做错/自己都笑了）。分镜中三遍用相同景别+相同构图，第三遍打破
-- **旁白的吐槽功能** — 喜剧中旁白可以充当"毒舌吐槽者"，用冷静的语气描述荒谬的画面。旁白配远景或全景效果最佳
+- **Give enough foreshadowing time** — 3-4 seconds of foreshadowing shots to allow the audience to fully build up their expectations. If the preparation is not sufficient, the baggage will not ring.
+- **Precise beat of Baofeng** — The shot of shaking Baofeng takes 1.5-2 seconds, crisp and clean. The impact of the punchline lies in the "suddenness", and it won't be funny if it's delayed
+- **Reaction shot 2-3s** — Give the onlookers/participants enough "freezing" time for their reactions to allow the audience to digest the point of laughter.
+- **Blank for laughs** — Leave a 1-2 second "blank" after the laughs (the character is silent/the air freezes) to give the audience time to laugh. If the narrative were to be advanced immediately, the laughter would be cut off
+- **Golden 6 Seconds Rule** — The rhythm of comedy requires that a single shot usually does not exceed 4s (faster than other types), and only foreshadowing and true love passages can reach 5-6s
+- **The duration progression of the three-time rule** — When the same joke is repeated three times: the first time is normal → the second time is slightly shorter (the audience knows what to expect) → the third time is the shortest or longest (breaking the pattern)
 
 ---
 
-## 八、转场设计
+## 5. Laughter storyboard design
 
-- **荒谬对比切** — 从一个极端直接硬切到另一个极端（角色说"绝不可能"→下一镜角色正在做这件事），硬切本身就是笑点
-- **假正经转场** — 用正式/庄重的转场方式（淡入淡出、字幕卡"三小时后"）来过渡荒谬内容，反差出喜感
-- **同场景内快速硬切** — 喜剧的场景内剪辑节奏偏快，硬切为主，不拖泥带水
-- **反差蒙太奇** — 角色口述的"美好计划"与实际执行的"灾难现场"交替剪辑，理想vs现实的反差构成持续喜感
-- **打破第四面墙** — 角色突然看向镜头/对观众说话的瞬间用正面近景+突然静止，制造"你看到了吧？"的共谋感
+- **Foreshadowing → Burdened shot structure** — Foreshadowing shot (medium shot/close shot, the character is doing something seriously) → Burdened shot (panorama reveals absurdity/close-up magnification error/close shot reacts to petrification). Two shots form a laugh unit
+- **Visual laugh points do not require lines** — Pure visual laugh points (characters stepping on things, ridiculous events in the background, misplaced props) are presented in panoramic or medium shots with movement, without relying on dialogue
+- **Information Gaps** — Information that the audience knows but the characters don’t know creates anticipation and laughter. Storyboard: Panorama gives information to the audience → Cut back to mid shot/close shot of the character (the character is unaware of it) → Disaster occurs
+- **Chain Reaction Punch** — A small mistake triggers a domino-like chain collapse. The storyboard uses fast hard cuts to connect each "collapse" link (2s/shot), and the rhythm is getting faster and faster.
+- **Don’t tear down comedy scenes that can be shot in one shot** — In one long shot, the character gradually goes from normal to out of control. The whole process in one shot is more "irreversible" and joyful than cutting it into pieces.
+
+---
+
+## 6. Multiplayer comedy scheduling
+
+- **Group reaction chain** — After the punchline occurs, the reaction of each bystander is shown in sequence: A is stunned → B is laughing → C pretends not to see → D is more embarrassed than the person involved. The reaction chain itself is the continuation of the joke
+- **Character collisions are cut in half** — The dialogue between two characters with contrasting personalities is cut in half, with a faster pace (1.5-2s per sentence), and the sense of collision is externalized through the editing speed.
+- **Bystanders are the best laugh amplifiers** — Always keep a "bystander position" in the storyboard: a passerby, an irrelevant character, a pet - their reactions help the audience "confirm" that this thing is indeed ridiculous
+- **Panorama for groups out of control** — When multiple people are in chaos at the same time, a panoramic shot is used to show it, allowing the audience to see all the absurdity at the same time. The explosion of panoramic information is itself a joy
+
+---
+
+## 7. Lines and Rhythm
+
+- **The tempo of the lines determines the point of laughter** — The point of laughter in comedy lines lies in the tempo: the pace of the foreshadowing is normal → there is a slight pause (0.5s) before the baggage → the baggage sentence simply lands. Pause is the "lead" of laughter
+- **Complain quickly** — The line of complaint/reply must be connected within 0.5 seconds after the end of the previous sentence. Only by counterattacking quickly can you feel good. The complaining scene in the storyboard does not provide any additional foreshadowing, and directly cuts to the close-up shot.
+- **Silent Joy** — The characters are silent for 2-3 seconds after something ridiculous happens, which is funnier than any line. The micro-expressions of the characters in silence (pretending to be okay/petrified/turning their heads slowly) are the main points of laughter
+- **The Power of Repetition** — Repeat the same sentence/action three times, and change it the third time (you say it wrong/do it wrong/you laugh). Use the same scene + the same composition three times in the storyboard, and break it the third time
+- **Narrator's complaining function** — In comedy, the narrator can act as a "snarker" and describe ridiculous scenes in a calm tone. Narration works best with distant views or panoramic views
+
+---
+
+## 8. Transition design
+
+- **Absurd Contrast Cut** — Cut directly from one extreme to the other (the character says "no way" → the character is doing it in the next shot), and the cut itself is the point of laughter
+- **Fake Serious Transition** — Use formal/solemn transition methods (fade in and fade out, subtitle card "three hours later") to transition absurd content, and the contrast creates a sense of joy
+- **Fast hard cuts within the same scene** — The editing pace of comedy scenes is fast, and hard cuts are the main focus, without being sloppy.
+- **Contrast Montage** — The "beautiful plan" spoken by the character is alternately edited with the actual execution of the "disaster scene". The contrast between ideal and reality creates a continuous sense of joy.
+- **Break the fourth wall** — When the character suddenly looks towards the camera/speaks to the audience, use a frontal close-up + sudden stillness to create a sense of collusion of "Did you see that?"

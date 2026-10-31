@@ -1,114 +1,114 @@
 ---
 name: director_planning_narrative
-description: 叙事手法技法 · 古风仙侠 — 定义古风仙侠类型在主题立意、宿命节奏、场景意境设计与声音方向上的叙事规划方法。适用于任何视觉风格。
+description: Narrative Techniques and Techniques · Ancient-style Xianxia - Defines the narrative planning method of the ancient-style Xianxia type in terms of theme conception, fateful rhythm, scene artistic conception design and sound direction. Works with any visual style.
 metaData: director_skills
 ---
 
-# 叙事手法 · 古风仙侠 · 技法参考
+# Narrative Techniques · Ancient Fairy Tales · Technique Reference
 
 ---
 
-## 一、主题立意与仙侠内核
+## 1. Theme conception and Xianxia core
 
-### 古风仙侠叙事要点
+### The main points of the ancient fairy tale narrative
 
-- **天道与人心的拉扯** — 仙侠叙事的核心矛盾是"天道无情"与"人心有情"的对抗。修仙要斩断七情六欲，但打动观众的恰恰是角色无法割舍的情——这种矛盾本身就是最好的叙事张力
-- **宿命不是结局是起点** — "命中注定"不是叙事终点，而是叙事起点。知道宿命后选择接受还是反抗，才是角色弧线的关键。越不可违抗的天命，逆天而行越震撼
-- **孤独求道** — 仙侠主角的底色是孤独：独上昆仑、独守千年、独对天劫。孤独不是悲剧，是修行本身。叙事要让观众"理解"这种孤独的重量
-- **离场感受建议方向** — 苍凉壮美 / 超然物外 / 意难平 / 悟道释然。避免"甜蜜""轻松""搞笑"等与仙侠气质不匹配的方向
-- **大爱与小情** — 仙侠的格局是"大爱"（苍生/天道/正义），但打动人的是"小情"（一个人的守候/一句未说出的话/一件留下的信物）。大爱立意，小情动人
-
----
-
-## 二、叙事结构与宿命节奏
-
-### 古风仙侠叙事要点
-
-- **命运伏笔贯穿全篇** — 仙侠叙事适合在开篇就植入命运的种子（预言、天象、前世记忆碎片），让观众从头到尾都在"等待命运兑现"的张力中
-- **三世因果结构** — 仙侠天然适合"前世—今生—来世"的多层叙事。前世的遗憾在今生重演，今生的抉择决定来世。时间跨度越大，情感越厚重
-- **悟道递进** — 主角的成长不是"打怪升级"，而是"悟道递进"：从执念到放下、从有招到无招、从求仙到问心。每次领悟都应伴随一个叙事转折点
-- **段落间用天象/季节做呼吸** — 仙侠段落衔接用天地变化做自然过渡：春去秋来、日升月落、云聚云散。比人工转场更有意境
-- **劫难弧线** — 仙侠的节奏引擎是"劫"：心劫（情感考验）→ 身劫（肉体考验）→ 天劫（终极考验）。每次渡劫都比前一次代价更大、领悟更深
-- **高潮段落的"静"比"动"更高级** — 仙侠终极对决的最高形态不是大开大合的法术碰撞，而是万法归一后的静默对峙——一剑、一眼、一念之间，胜负已分
+- **The pull between the law of heaven and the human heart** — The core contradiction in the fairy tale narrative is the confrontation between "the law of heaven is ruthless" and "the human heart is sentimental". Cultivation as an immortal requires cutting off the seven emotions and six desires, but what moves the audience is precisely the characters’ inseparable feelings - this contradiction itself is the best narrative tension.
+- **Fate is not the ending, but the starting point** — "Destined" is not the end of the narrative, but the starting point. The key to the character arc is whether you choose to accept or resist after knowing your fate. The more irresistible the destiny is, the more shocking it is to go against it.
+- **Lonely Seeking the Way** — The background of the protagonist of Xianxia is loneliness: going to Kunlun alone, guarding alone for thousands of years, and facing the catastrophe alone. Loneliness is not a tragedy, it is practice itself. The narrative requires the audience to "understand" the weight of this loneliness
+- **Suggested directions for leaving the scene** — Desolation and magnificence / Transcendence / Uneasy feeling / Relief after enlightenment. Avoid "sweet", "relaxed", "funny" and other directions that do not match the Xianxia temperament
+- **Big Love and Little Love** — The pattern of Xianxia is "big love" (common people/the way of heaven/justice), but what touches people is "little love" (a person's waiting/an unspoken word/a token left behind). Big love and intention, small affection is touching
 
 ---
 
-## 三、分场景意境设计
+## 2. Narrative structure and fatalistic rhythm
 
-### 古风仙侠叙事要点
+### The main points of the ancient fairy tale narrative
 
-- **意境用诗化描述** — 不说"美丽"，说"月照寒潭，松影横斜"。诗化的意境描述能更好地指导场景美术和镜头取景
-- **典型仙侠段落与设计** —
+- **Foreshadowing of fate runs through the entire story** - Xianxia narrative is suitable for planting the seeds of fate (prophecy, celestial phenomena, past life memory fragments) at the beginning, so that the audience is in the tension of "waiting for fate to be fulfilled" from beginning to end.
+- **Three-life causal structure** - Xianxia is naturally suitable for the multi-layered narrative of "past life - present life - afterlife". The regrets of the past life are repeated in this life, and the choices made in this life determine the next life. The longer the time span, the thicker the emotion
+- **Progressive Enlightenment** — The protagonist's growth is not "killing monsters and upgrading", but "progressive Enlightenment": from obsession to letting go, from having tricks to having no tricks, from seeking immortality to asking questions. Every realization should be accompanied by a narrative turning point
+- **Use celestial phenomena/seasons to breathe between paragraphs** — Xianxia paragraphs use the changes in heaven and earth to make natural transitions: spring goes and autumn comes, the sun rises and the moon sets, and the clouds gather and disperse. More artistic than manual transitions
+- **Tribulation Arc** — The rhythm engine of Xianxia is "Tribulation": Heart Tribulation (emotional test) → Body Tribulation (physical trial) → Heavenly Tribulation (ultimate test). Each tribulation is more costly and profound than the previous one.
+- **The "stillness" in the climax is more advanced than the "movement"** - The highest form of the ultimate duel between Xianxia and Xia is not the collision of spells, but the silent confrontation after all magics are unified - with one sword, one glance, and one thought, the winner or loser is decided.
 
-| 段落类型 | 情绪方向 | 叙事手法 | 音乐建议 |
+---
+
+## 3. Scenario-based artistic conception design
+
+### The main points of the ancient fairy tale narrative
+
+- **Poetic description of the artistic conception** — Don’t say "beautiful", say "the moon shines on the cold pool, and the pine shadows are slanting across the lake." Poetic description of artistic conception can better guide scene art and lens framing
+- **Typical Xianxia passages and designs** —
+
+| Paragraph Types | Emotional Direction | Narrative Techniques | Music Suggestions |
 |---|---|---|---|
-| 入世/出场 | 超然 + 惊艳 | 云雾中现身、御剑飞行、远景渐入 | 空灵箫笛，大量留白 |
-| 修行/悟道 | 静谧 + 专注 | 独坐山巅、瀑布下练功、星空冥想 | 古琴独奏或纯自然音 |
-| 情劫/羁绊 | 隐忍 + 深情 | 欲触未触、转身离去、信物交接 | 箫/埙独奏，悲而不伤 |
-| 误解/分离 | 苍凉 + 决绝 | 背对背、各自踏入不同的路 | 低沉弦乐或风声独白 |
-| 渡劫/对决 | 壮烈 + 悲悯 | 天象巨变、一人独对天地 | 从寂静到磅礴鼓乐 |
-| 飞升/涅槃 | 释然 + 超脱 | 化光上升、万物复苏、微笑消散 | 梵音/天籁渐起渐远 |
+| Entering the world/appearing | Transcendence + Stunning | Appearing in the clouds and mist, flying with a sword, the distant view gradually coming in | Ethereal flute, lots of white space |
+| Cultivation/enlightenment | Silence + concentration | Sitting alone on the top of a mountain, practicing under a waterfall, meditating under the stars | Guqin solo or pure natural music |
+| Love Tribulation/Bondation | Forbearance + Deep Affection | Untouched desire, turning away, handing over tokens | Flute/Xun solo, sad but not sad |
+| Misunderstanding/Separation | Desolation + Decision | Back to back, each taking a different road | Low strings or wind monologue |
+| Overcoming the tribulation/dueling | Heroic + Compassion | Great changes in the sky, one person facing the world alone | From silence to majestic drum music |
+| Ascension/Nirvana | Relief + Transcendence | The light rises, all things revive, and the smile disappears | The Sanskrit sound/the sound of nature gradually rises and fades away |
 
-- **天人感应是叙事核心** — 角色情绪与天地自然同频共振：
-  - **平静**：风平浪静、日光正好、花自开落
-  - **悲伤**：天降细雨、落叶纷飞、月被云遮
-  - **愤怒**：狂风骤起、雷电交加、大地震颤
-  - **觉悟**：云开日出、天光倾泻、万物生辉
-- **空间即修行境界** — 场景的空间层次映射角色的修行阶段：山脚（入门）→ 山腰（历练）→ 山巅（悟道）→ 天外天（超脱）。空间越高越开阔，意境越通透
-- **镜头意图写"境界"而非"画面"** — "用远景是为了让观众感受他独对天地的渺小与从容"优于"用远景拍山巅的人"。意境表达清晰了，分镜自然准确
+- **The relationship between heaven and man is the core of the narrative** — The character’s emotions resonate with the nature of heaven and earth:
+  - **Calm**: The wind is calm, the sun is just right, and the flowers are blooming and falling.
+  - **Sadness**: It’s drizzling, fallen leaves are flying, and the moon is covered by clouds
+  - **Wrath**: Strong winds, thunder and lightning, and the earth trembles
+  - **Enlightenment**: The clouds open, the sun rises, the sky light pours in, and everything shines
+- **Space is the realm of practice** — The spatial hierarchy of the scene reflects the character’s stage of practice: foot of the mountain (entry) → mountainside (experience) → top of the mountain (enlightenment) → heaven outside the sky (transcendence). The higher the space, the more open it is and the more transparent the artistic conception is.
+- **The purpose of the shot is to write about "realm" rather than "picture"** - "Using a long shot is to let the audience feel the insignificance and calmness of his unique view of the world" is better than "using a long shot to take pictures of people on the top of the mountain". The artistic conception is clearly expressed, and the storyboarding is natural and accurate.
 
 ---
 
-## 四、声音与音乐方向
+## 4. Sound and Music Direction
 
-### 古风仙侠叙事要点
+### The main points of the ancient fairy tale narrative
 
-- **天籁即配乐** — 仙侠最好的"配乐"是自然之声：松涛、瀑布、风铃、鸟鸣、远钟。自然音的层次越丰富，仙气越足
-- **古乐留白** — 古琴/箫/笛/埙不满配，一句一停，让音符间的空白传递意境。配乐的空白和画面的留白一样重要
-- **避免现代感音效** — 电子合成器、重低音贝斯等现代音效与仙侠气质不兼容。即使是战斗段落，也应以鼓/锣/钟等传统打击乐为节奏骨架
-- **梵音/吟唱的仪式感** — 飞升、渡劫、大悟等重要段落可用梵音或无词吟唱，制造"超越凡尘"的仪式感。全片不超过 2-3 处
-- **音乐情绪模型** —
+- **The sounds of nature are the soundtrack** — The best "soundtrack" for Xianxia is the sounds of nature: pines, waterfalls, wind chimes, birdsong, and distant bells. The richer the levels of natural sounds, the more fairy-like they are.
+- **Blank space in ancient music** - The guqin/xiao/dizi/xun are not matched properly. Stop every sentence and let the blank space between the notes convey the artistic conception. The white space in the soundtrack is as important as the white space in the picture
+- **Avoid modern sound effects** — Modern sound effects such as electronic synthesizers and heavy bass are incompatible with the Xianxia temperament. Even the battle passages should use traditional percussion instruments such as drums/gongs/bells as the rhythmic skeleton
+- **Ritual sense of Sanskrit music/chanting** — Important passages such as ascension, transcending tribulation, and enlightenment can be sung in Sanskrit music or without words to create a sense of ritual that "transcends the mundane world." No more than 2-3 places in the entire film
+- **Music Emotion Model** —
 
-| 情绪阶段 | 音乐策略 | 覆盖率 |
+| Emotional Stages | Music Strategy | Coverage |
 |---|---|---|
-| 日常/修行 | 古琴或箫独奏，极低音量 | 低 |
-| 情劫/羁绊 | 箫/埙悲奏，节制隐忍 | 中低 |
-| 酝酿/蓄势 | 鼓点从远到近，渐强 | 中 |
-| 渡劫/对决 | 磅礴鼓乐或突然全寂 | 极端 |
-| 飞升/超脱 | 梵音/天籁渐远 | 中高→渐弱 |
+| Daily/Practice | Guqin or flute solo, very low volume | Low |
+| Love Tribulation/Fetters | Flute/Xun sad music, restraint and forbearance | Medium-low |
+| Brewing/Gathering momentum | The drum beats from far to near, crescendoing | Medium |
+| Overcoming Tribulation/Duel | Powerful drum music or sudden silence | Extreme |
+| Ascension/Transcendence | Sanskrit/Natural Sound Fading | Medium High → Diminished |
 
-- **"一声定乾坤"** — 仙侠中最有力的音效往往是一个单独的声音：一声剑鸣、一声钟响、一声远雷。在关键瞬间用一个清晰的单一音效，比丰满的配乐更震撼
-
----
-
-## 五、构图与景别叙事
-
-### 古风仙侠叙事要点
-
-- **三大核心构图的叙事功能** —
-  - **山水写意构图** — 大量天地留白中嵌入微小人影，传递"天地辽阔、人如蜉蝣"的仙侠哲学
-  - **云雾遮蔽构图** — 云雾/烟霞半遮半掩主体，制造仙境的朦胧感与神秘感
-  - **纵深层叠构图** — 前景枝叶/中景人物/远景山峦层层叠叠，空间纵深感越强意境越深
-- **中心构图的神圣感** — 中心构图在仙侠中暗示"天命所归/独立天地间"，留给飞升、渡劫、终极领悟等仪式性场景
-- **竖构图的"通天"感** — 瀑布、悬崖、飞升等纵向场景用竖构图，强调天地贯通的气势
-- **空镜不是过渡** — 仙侠的山水空镜本身就是叙事：一片落花 = 时光流逝；一轮明月 = 思念；一场大雪 = 心如止水。给空镜 4-6s 足够时长
-- **景别即境界** —
-  - **大远景/远景** — 天地格局、孤独修行、宿命感
-  - **全景** — 场景全貌、仪式场面、对峙站位
-  - **中景/近景** — 人物互动、对话、表情变化
-  - **特写** — 眼中星辰、指尖灵力、信物纹理，灵韵聚焦
-- **大特写在仙侠中的功能** — 不是放大情绪而是"见微知著"：一滴泪映出月光、一片花瓣落在掌心、剑刃上映出对手的脸。大特写全片 2-3 次
+- **"One Sound Settles the Universe"** — The most powerful sound effect in Xian Xia is often a single sound: a sword clanging, a bell ringing, a distant thunder. Using a clear single sound effect at key moments is more shocking than a rich soundtrack
 
 ---
 
-## 六、镜头运动与节奏
+## 5. Composition and scenery narrative
 
-### 古风仙侠叙事要点
+### The main points of the ancient fairy tale narrative
 
-- **以静为宗** — 70% 以上镜头应为静止或极缓运动，仙侠的气质是"不动如山"。画面越静，意境越深
-- **御风跟拍** — 御剑飞行、腾云驾雾等段落用流畅跟拍，速度感中保持画面稳定，营造"乘风"而非"被风追"的从容
-- **缓摇 = 天地展卷** — 缓慢水平摇移展示山水全貌，如同卷轴缓缓展开。速度控制在"观众来得及品味每一寸风景"
-- **缓推 = 入境/走近** — 从远景缓推至人物，模拟"走进这个世界"的入境感。适合开篇定场和悟道段落
-- **快切在仙侠中极少使用** — 仙侠战斗不靠快切堆节奏，靠一招一式的"意"。即使是法术碰撞，也应是大开大合的完整镜头而非碎片剪辑
-- **运镜即天道** — 静止 = 定/悟；缓推 = 入世/靠近；缓拉 = 出世/超脱；缓摇 = 天地展卷；升降 = 升华/坠落
-- **升降运镜的仙侠特权** — 仙侠是少数能大量使用升降运镜的类型：从地面升至云端（飞升）、从天空降至人间（入世）。升降方向本身就是叙事
+- **Narrative function of three core compositions** —
+  - **Landscape freehand composition** — Tiny human figures are embedded in a large amount of blank space, conveying the fairy philosophy of "the world is vast and people are like mayflies"
+  - **Cloud and Mist Obstruction Composition** — Clouds and haze half-cover the subject, creating a hazy and mysterious feeling in a fairyland.
+  - **Vertically stacked composition** — branches and leaves in the foreground/people in the mid-ground/mountains in the distance are stacked on top of each other. The stronger the sense of spatial depth, the deeper the artistic conception.
+- **The sacredness of the central composition** — The central composition implies "the destination of destiny/independence between heaven and earth" in Xianxia, leaving it for ritual scenes such as ascension, transcending tribulation, and ultimate realization.
+- **The "sky-reaching" feeling of vertical composition** — Vertical compositions are used for vertical scenes such as waterfalls, cliffs, and soaring to emphasize the momentum of the connection between heaven and earth.
+- **The empty mirror is not a transition** - Xianxia's empty landscape mirror itself is a narrative: a falling flower = the passage of time; a bright moon = longing; a heavy snow = the heart feels like still water. Give the empty mirror 4-6s enough time
+- **Scenery is the realm** —
+  - **Great Vision/Vision** — The pattern of heaven and earth, lonely practice, and a sense of destiny
+  - **Panorama** — full view of the scene, ceremony scenes, confrontation positions
+  - **Mid shot/close shot** — character interaction, dialogue, expression changes
+  - **Close-up** — Stars in eyes, spiritual power at fingertips, texture of tokens, focus on aura
+- **The function of close-up in Xianxia** - not to amplify emotions but to "see the smallest details": a tear reflects the moonlight, a petal falls on the palm, and the sword blade reflects the opponent's face. Full close-up 2-3 times throughout the film
+
+---
+
+## 6. Camera movement and rhythm
+
+### The main points of the ancient fairy tale narrative
+
+- **Stand still** — More than 70% of the shots should be static or extremely slow-moving. The Xianxia's temperament is "motionless as a mountain". The quieter the picture, the deeper the artistic conception
+- **Following the Wind** — Smooth tracking shots are used for scenes such as flying with a sword, flying in the clouds, and riding in the fog, keeping the picture stable in the sense of speed, creating the calmness of "riding the wind" rather than being "chased by the wind"
+- **Slow Panning = Unfolding of Heaven and Earth** — Slow horizontal panning to show the entire landscape, like a scroll slowly unrolling. The speed is controlled so that "the audience has time to appreciate every inch of the scenery"
+- **Easy push = entry/approach** — Slowly push from the distant view to the characters, simulating the sense of entry of "entering this world". Suitable for setting up the scene at the beginning and for enlightenment passages
+- **Quick cuts are rarely used in Xianxia** - Xianxia battles do not rely on fast cuts to build rhythm, but rely on the "intention" of each move. Even if there is a spell collision, it should be a complete shot of the opening and closing rather than fragmented editing.
+- **Moving Mirror is the Way of Heaven** — Stillness = concentration/enlightenment; Slow push = Entering the world/approaching; Slow pull = Transcendence/detachment; Slow shaking = Unfolding of heaven and earth; Lifting and falling = sublimation/falling
+- **Xianxia Privilege of Lifting and Lowering Mirrors** — Xianxia is one of the few types who can make extensive use of lifting and lowering mirrors: rising from the ground to the clouds (ascension), and descending from the sky to the earth (entering the world). The lifting direction itself is the narrative

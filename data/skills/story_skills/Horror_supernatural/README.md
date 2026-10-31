@@ -1,50 +1,50 @@
-# 恐怖灵异 · 导演叙事手法技能包
+# Horror & Supernatural · Director's Narrative Techniques Skill Pack
 
-## 简介
+## Introduction
 
-本技能包为 **恐怖灵异** 类型故事提供一套完整的导演叙事手法参考，涵盖从宏观叙事规划到微观分镜执行的全流程指导。适用于任何视觉风格。
+This skill pack provides a complete reference for directorial narrative techniques for **Horror & Supernatural** stories, covering the full workflow from macro-level narrative planning to micro-level storyboard execution. It is applicable to any visual style.
 
-## 核心理念
+## Core Concepts
 
-- **未知即恐惧** — 真正的恐怖来自"看不见的东西"，观众的想象力远比任何画面更可怕
-- **日常的裂缝** — 最有效的恐怖不是鬼怪本身，而是熟悉环境中出现的"不对劲"
-- **缓慢侵蚀** — 恐惧不是一次性吓人，而是从微妙的不安一点点蔓延到无处可逃
-- **人心比鬼可怕** — 最深层的恐怖来自人性的黑暗面，超自然只是照妖镜
+- **The Unknown is Fear** — True horror comes from "what cannot be seen"; the audience's imagination is far more terrifying than any visual
+- **Cracks in the Everyday** — The most effective horror is not the ghosts themselves, but the "off-ness" that appears in familiar environments
+- **Slow Erosion** — Fear is not a one-time scare, but a subtle unease that gradually spreads until there is no escape
+- **Human Nature is Scarier than Ghosts** — The deepest horror comes from the dark side of human nature; the supernatural is merely a mirror that reveals it
 
-## 文件结构
+## File Structure
 
 ```
 Horror_supernatural/
-├── README.md                                          ← 本文件
+├── README.md                                          ← This file
 └── driector_skills/
-    ├── director_planning_narrative.md                 ← 叙事规划手法
-    └── director_storyboard_table_narrative.md         ← 分镜表叙事手法
+    ├── director_planning_narrative.md                 ← Narrative planning techniques
+    └── director_storyboard_table_narrative.md         ← Storyboard table narrative techniques
 ```
 
-## 技能文件说明
+## Skill File Description
 
-### 1. 叙事规划手法 (`director_planning_narrative.md`)
+### 1. Narrative Planning Techniques (`director_planning_narrative.md`)
 
-导演在 **叙事规划阶段** 使用的技法参考，定义恐怖灵异在主题立意、情感节奏、场景情绪设计与声音方向上的整体规划方法。
+Technique references used by the director during the **Narrative Planning Phase**, defining the overall planning methods for horror and supernatural genres in terms of thematic intent, emotional rhythm, scene mood design, and sound direction.
 
-| 章节 | 内容概要 |
+| Chapter | Content Overview |
 |---|---|
-| 主题立意与情感内核 | 未知恐惧、日常裂缝、缓慢侵蚀、人心映射 |
-| 叙事结构与节奏规划 | 不安积累、松紧交替、虚实模糊、高潮反转 |
-| 分场景情绪设计 | 六大典型恐怖段落设计、安全感剥夺、空间异化 |
-| 声音与音乐方向 | 寂静杀伤力、低频压迫、声源不明、突然静默 |
-| 构图与景别叙事 | 空间留白威胁、视角受限、景别信息控制 |
-| 镜头运动与节奏 | 呼吸感运镜、失控感、窥视视角、静止压迫 |
+| Thematic Intent and Emotional Core | Fear of the unknown, cracks in the everyday, slow erosion, reflections of the human heart |
+| Narrative Structure and Rhythm Planning | Accumulation of unease, alternation of tension and release, blurring of reality and illusion, climax and reversal |
+| Scene-by-Scene Mood Design | Design of six typical horror segments, deprivation of safety, spatial alienation |
+| Sound and Music Direction | The lethality of silence, low-frequency oppression, unknown sound sources, sudden silence |
+| Composition and Shot Size Narrative | Threat through spatial negative space, restricted perspective, information control via shot size |
+| Camera Movement and Rhythm | Breathing-like camera work, sense of loss of control, voyeuristic perspective, static oppression |
 
-### 2. 分镜表叙事手法 (`director_storyboard_table_narrative.md`)
+### 2. Storyboard Table Narrative Techniques (`director_storyboard_table_narrative.md`)
 
-导演在 **分镜表制作阶段** 使用的技法参考，定义恐怖灵异在分镜表中的景别控制、运镜恐惧构建、时长张力、镜头合并与转场逻辑。
+Technique references used by the director during the **Storyboard Table Production Phase**, defining shot size control, fear construction through camera movement, duration tension, shot merging, and transition logic for horror and supernatural genres in the storyboard table.
 
-| 章节 | 内容概要 |
+| Chapter | Content Overview |
 |---|---|
-| 分镜表定位 | 分镜表作为恐惧节奏控制核心工具的定位说明 |
-| 景别选择 | 信息遮蔽景别、威胁暗示、主观受限视野 |
-| 运镜节奏 | 缓慢逼近、失控摇晃、突然静止、窥视跟踪 |
-| 时长把控 | 恐惧拉长、惊吓压缩、寂静时长控制 |
-| 镜头合并策略 | 连续不安感维持、氛围镜头整合、叙事密度 |
-| 一镜到底 | 长镜头窒息感、逃跑跟踪、空间探索 |
+| Storyboard Table Positioning | Explanation of the storyboard table's positioning as the core tool for controlling fear rhythm |
+| Shot Size Selection | Shot sizes for information concealment, threat implication, subjective restricted field of view |
+| Camera Movement Rhythm | Slow approach, uncontrolled shaking, sudden stillness, voyeuristic tracking |
+| Duration Control | Stretching fear, compressing scares, controlling duration of silence |
+| Shot Merging Strategy | Maintaining continuous unease, integrating atmosphere shots, narrative density |
+| One-Take | Suffocating feel of long takes, escape tracking, spatial exploration |

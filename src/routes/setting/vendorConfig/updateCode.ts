@@ -70,16 +70,16 @@ export default router.post(
       const { tsCode, id } = req.body;
       const jsCode = transform(tsCode, { transforms: ["typescript"] }).code;
       const exports = u.vm(jsCode);
-      if (!exports) return res.status(400).send(success("脚本文件必须导出对象"));
-      if (!exports.textRequest) return res.status(400).send(success("脚本文件必须导出文本请求对象"));
-      if (!exports.imageRequest) return res.status(400).send(success("脚本文件必须导出图像请求对象"));
-      if (!exports.videoRequest) return res.status(400).send(success("脚本文件必须导出视频请求对象"));
-      if (!exports.vendor) return res.status(400).send(success("脚本文件必须导出vendor对象"));
+      if (!exports) return res.status(400).send(success("The script file must export an object"));
+      if (!exports.textRequest) return res.status(400).send(success("The script file must export a text request object"));
+      if (!exports.imageRequest) return res.status(400).send(success("The script file must export the image request object"));
+      if (!exports.videoRequest) return res.status(400).send(success("The script file must export the video request object"));
+      if (!exports.vendor) return res.status(400).send(success("The script file must export the vendor object"));
       const vendor = exports.vendor;
       const result = vendorConfigSchema.safeParse(vendor);
       if (!result.success) {
         const errorMsg = result.error.issues.map((e) => `${e.path.join(".")}: ${e.message}`).join("; ");
-        return res.status(400).send(error(`vendor配置校验失败: ${errorMsg}`));
+        return res.status(400).send(error(`Vendor configuration validation failed:${errorMsg}`));
       }
       await u.userSettings.updateVendorConfig(id, { models: JSON.stringify(vendor.models ?? []) });
       u.vendor.writeCode(id, tsCode);
@@ -88,7 +88,7 @@ export default router.post(
       res.status(200).send(success(result.data));
     } catch (err) {
       console.log(err);
-      res.status(400).send(error(serializeError(err).message || "未知错误"));
+      res.status(400).send(error(serializeError(err).message || "Unknown error"));
     }
   },
 );

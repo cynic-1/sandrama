@@ -1,85 +1,85 @@
 ---
 name: director_storyboard_table_narrative
-description: 分镜表叙事手法 · 古风仙侠 — 定义古风仙侠在分镜表中的景别策略、运镜节奏、时长把控、仙术战斗设计、人物关系叙事与转场手法。适用于任何视觉风格。
+description: Storyboard Narrative Techniques · Ancient Fairy Tales - Define the scene separation strategies, camera movement rhythm, duration control, magic battle design, character relationship narrative and transition techniques in the storyboard. Works with any visual style.
 metaData: director_skills
 ---
 
-# 分镜表叙事手法 · 古风仙侠 · 技法参考
+# Storyboard Narrative Techniques · Ancient Fairy Tales · Technical Reference
 
 ---
 
-## 一、分镜表定位
+## 1. Storyboard positioning
 
-分镜表是导演将剧本转化为镜头语言的核心工具。表单字段由导演根据项目需要自行设定（分镜号、景别、运镜、时长、人物、事件、台词、光影、情绪、转场等），以下仅提供古风仙侠叙事类型下的技法参考。
-
----
-
-## 二、景别选择
-
-- **远景是仙侠的基础景别** — 仙侠叙事中远景的使用频率远高于其他类型。天地辽阔中的渺小人影本身就在传递仙侠哲学，不要吝啬远景
-- **写意中景** — 仙侠中景不追求信息密度，而是追求"画中人"的意境。人物与环境融为一体，山水花木都是画面的一部分
-- **灵韵特写** — 特写在仙侠中聚焦的不是纯粹的表情，而是"灵韵"：眼中星辰流转、指尖灵力明灭、剑身光华流淌。特写要有超凡脱俗的质感
-- **大特写极其克制** — 大特写在仙侠中每段落最多 1 次，留给"见微知著"的瞬间：一滴泪、一片花瓣、一缕断发
-- **定场镜头要有诗意** — 仙侠定场不只交代地点，要传递意境：云海中的仙山、月下的孤亭、雪覆的古刹。1-2 个远景镜头完成定场+意境建立
+Storyboards are the core tool for directors to transform scripts into lens language. The form fields are set by the director according to the needs of the project (storyboard numbers, scenes, camera movements, duration, characters, events, lines, light and shadow, emotions, transitions, etc.). The following only provides technical reference for the ancient fairy tale narrative type.
 
 ---
 
-## 三、运镜节奏
+## 2. Scene selection
 
-- **以静为主** — 70% 以上镜头静止或极缓运动，让画面本身的美感和意境说话
-- **御风跟拍** — 飞行/腾跃段落用流畅跟拍，保持画面稳定，营造从容御风感而非狼狈追逐感
-- **缓摇 = 展卷** — 水平缓摇展示山水全貌，速度极慢，如画卷展开。适合定场和意境段落
-- **缓推 = 入境** — 从远景缓推至人物，观众"走入"画面世界。适合段落开篇和悟道段落
-- **缓拉 = 出世** — 从人物缓拉至远景，角色融入天地。适合离别、超脱、飞升段落
-- **升降 = 升华/坠落** — 镜头上升 = 飞升/领悟/超脱；镜头下降 = 入世/坠落/重返凡尘。仙侠中升降运镜是核心叙事工具
-
----
-
-## 四、时长把控
-
-- **意境镜头从容** — 山水空镜、修行静态镜头给 5-6s 足够时长，让观众"品味"意境，不急着切走
-- **人物互动正常节奏** — 对话、交互等叙事镜头保持 3-4s 正常节奏
-- **战斗一招一镜** — 仙侠战斗讲究一招一式的仪式感，每一招一个完整镜头（3-5s），不碎切
-- **悟道镜头可超长** — 角色入定/领悟的镜头可突破 6s 上限到 8s，因为"悟"本身就是需要时间的过程。配合缓推或静止机位
-- **黄金 6 秒规则灵活适用** — 仙侠叙事中纯意境镜头可放宽至 6-8s，但前提是画面有自然动态（风、云、水、光影变化）维持视觉兴趣
-- **"一念之间"的时间操控** — 关键抉择瞬间可用升格拉伸到 4-6s（实际动作可能只有 1s），将角色的一念之间放大成观众可感知的思考过程
+- **Long shot is the basic scene type of Xianxia** — The frequency of use of long shot in Xianxia narrative is much higher than that of other types. The tiny figure in the vastness of the world itself conveys the philosophy of Xianxia, don’t skimp on the vision
+- **Freehand mid-shot** — Xianxia mid-shot does not pursue information density, but pursues the artistic conception of "the person in the painting". The characters and the environment are integrated, and the landscapes, flowers and trees are all part of the picture.
+- **Aura Close-up** — What the close-up focuses on in Xianxia is not the pure expression, but the "aura": the stars flowing in the eyes, the spiritual power on the fingertips, and the brilliance of the sword flowing. Close-ups should have an otherworldly quality
+- **Close-ups are extremely restrained** — Close-ups can be used up to once in each paragraph in Xianxia, leaving only the moments of "seeing the smallest details": a tear, a petal, a strand of broken hair.
+- **The establishing shot must be poetic** - The setting shot of Xianxia not only explains the location, but also conveys the artistic conception: the fairy mountain in the sea of clouds, the lonely pavilion under the moon, the ancient temple covered with snow. 1-2 long shots to complete the scene and establish the artistic conception
 
 ---
 
-## 五、仙术战斗设计
+## 3. Rhythm of camera movement
 
-- **写意优先于写实** — 仙侠战斗的镜头不追求"看清每一拳"，而是传递招式的"意"：一剑划过，花瓣纷飞；一掌推出，山河震动。画面描述侧重意境而非动作细节
-- **天象呼应战斗** — 战斗升级时天象同步变化：出招→风起；对招→云涌；终极一击→天地变色。在分镜描述中同步标注天象变化
-- **一招定胜负** — 仙侠的终极对决最好收束在"一招"：双方蓄力→对视→同时出手→一瞬间画面静止→结果揭晓。简洁即是力量
-- **战斗间的对视** — 高手过招之间穿插 1-2 个对视镜头（近景对切），用眼神传递"你我都知道下一招见生死"的默契
-- **能一镜拍完的法术不拆碎** — 一个完整的法术施展（起手→蓄力→释放）优先用一个带运镜的长镜头完成，不要拆成碎片
-
----
-
-## 六、人物关系叙事
-
-- **师徒传承** — 师父传功/赠剑/临终嘱托是仙侠最经典的传承镜头。用近景对切完成情感交流，信物交接用特写聚焦
-- **道侣羁绊** — 仙侠中的感情表达极度克制：并肩看月不说话、擦肩而过留余香、千年后再见只一句"你来了"。分镜用距离感和留白传递深情
-- **宿敌对镜** — 宿敌之间用对称构图对峙，景别从全景递进到近景对切，最后特写对视。对称中的对抗是仙侠对决的仪式感
-- **独行者叙事** — 仙侠主角常有大量独行段落。独行用远景+背影构图，不给正脸，让孤独感通过空间关系自行传递
+- **Predominantly still** — More than 70% of the shots are still or in extremely slow motion, allowing the beauty and artistic conception of the picture to speak for itself.
+- **Following the wind** — Use smooth tracking during the flying/jumping stages to keep the picture stable and create a sense of calmly riding the wind instead of an embarrassing chase.
+- **Slow rocking = Unfolding** — Slowly panning horizontally to show the entire landscape, very slowly, like a scroll unfolding. Suitable for setting scenes and artistic conception paragraphs
+- **Easy push = entry** — From the distant view to the characters, the audience "enters" the world of the picture. Suitable for paragraph openings and enlightenment paragraphs
+- **Slow pull = coming out of the world** — Slowly pull from the character to the distant view, the character blends into the world. Suitable for parting, detachment, and ascension passages
+- **Ascension = Sublimation/Fall** — The lens rises = Ascension/Enlightenment/Transcendence; The lens drops = Entering the world/Falling/Returning to the mortal world. The lifting and lowering mirror in Xianxia is the core narrative tool
 
 ---
 
-## 七、台词与留白
+## 4. Duration control
 
-- **言简意深** — 仙侠台词应精炼如诗，一句顶十句。"此去经年，山高水远"比"我要走了你保重身体记得吃饭"更有力量
-- **大段沉默是修行** — 修行/悟道/独行段落可以完全无台词，持续 3-5 个镜头纯沉默。沉默本身就是仙侠的叙事语言
-- **诗化台词配空镜** — 内心独白或旁白如果是诗化语言，配远景或山水空镜比配人物近景更合适
-- **一句一镜** — 重要台词独占一个镜头，不与其他台词共享。给这句话足够的空间和留白
-- **临终遗言极短** — 仙侠中角色临终的最后一句话应极短（3-5个字），配合特写+渐弱。越短越有千钧之重
+- **Easy shot of artistic conception** - 5-6s is enough time for empty landscape shots and static shots of spiritual practice to allow the audience to "taste" the artistic conception without rushing away.
+- **Normal rhythm of character interaction** — Dialogue, interaction and other narrative shots maintain a normal rhythm of 3-4 seconds
+- **Fighting with one move and one shot** — Xianxia battle pays attention to the ritual sense of one move and one move, each move has a complete shot (3-5s), no fragmentation
+- **Enlightenment shots can be extremely long** — The shots of the character entering trance/enlightenment can exceed the upper limit of 6s to 8s, because "enlightenment" itself is a process that takes time. Cooperate with slow push or static position
+- **The golden 6-second rule is flexible and applicable** — Pure artistic conception shots in Xianxia narratives can be relaxed to 6-8s, but the premise is that the picture has natural dynamics (wind, clouds, water, light and shadow changes) to maintain visual interest
+- **"One-thought" time control** - The key decision moment can be stretched to 4-6s by upscaling (the actual action may only be 1s), amplifying the character's one-thought into a thinking process that the audience can perceive
 
 ---
 
-## 八、转场设计
+## 5. Fairy magic battle design
 
-- **云雾转场** — 最经典的仙侠转场：画面被云雾覆盖→散去后是新场景。自然、写意、零出戏
-- **四季流转** — 用快速的季节变化（花开→叶落→雪覆→春回）表达时间流逝，适合修行段落间的大跨度转场
-- **水面倒影** — 从水面倒影切入，涟漪散去后进入新场景或回忆。适合过渡到前世/回忆段落
-- **同场景内用硬切** — 同一场景内镜头间保持硬切，干净利落
-- **段落间用空镜呼吸** — 大段落之间插入 1-2 个山水/天象空镜（4-6s）做情绪过渡
-- **梦境/前世用叠化** — 进入梦境或前世回忆用慢叠化，画面重叠的瞬间暗示两个时空的交织
+- **Freehandism takes priority over realism** - The shots of Xianxia's battles do not seek to "see every punch clearly", but to convey the "meaning" of the moves: a sword passes through, petals fly; a palm is pushed out, and the mountains and rivers shake. Picture description focuses on artistic conception rather than action details
+- **Celestial phenomena echo the battle** — When the battle escalates, the celestial phenomena change simultaneously: move → wind rises; counter move → clouds surge; final blow → the color of heaven and earth changes. Simultaneously mark changes in celestial phenomena in the storyboard description
+- **One move determines the outcome** — The ultimate showdown between Xianxia and Xia is best concluded with "one move": both sides charge up → look at each other → take action at the same time → the screen freezes for a moment → the result is revealed. Simplicity is power
+- **Looking between battles** — 1-2 shots of each other (close-up shots) are interspersed between the masters' moves, using the eyes to convey the tacit understanding of "you and I both know the next move will lead to life and death"
+- **Spells that can be shot in one shot will not be broken into pieces** — A complete spell cast (start → charge → release) should be completed first with a long shot with a moving scope, and do not break it into pieces
+
+---
+
+## 6. Character Relationship Narrative
+
+- **Master-disciple inheritance** — Master passing on skills/gifting swords/dying instructions are the most classic inheritance scenes of Xianxia. Use close-up shots to complete emotional exchanges, and use close-ups to focus on the handover of tokens.
+- **Taoist Couple Bond** - The expression of emotions in Xian Xia is extremely restrained: looking at the moon side by side without speaking, leaving a lingering fragrance when passing by, and only saying "you are here" when we meet again after a thousand years. Storyboards use distance and white space to convey deep feelings
+- **Old Enemy Mirror** - The confrontation between the old enemies is symmetrical, with the scenes progressively changing from panoramic view to close-up shot, and finally a close-up look at each other. Confrontation in symmetry is the ritual of the duel between immortals and heroes
+- **Lone Walker Narrative** — Xianxia protagonists often have a lot of solo passages. Walking alone uses distant view + background to compose the picture, without showing the front face, allowing the loneliness to be conveyed by itself through spatial relationships.
+
+---
+
+## 7. Lines and blank space
+
+- **Simple words but profound meaning** — Xianxia lines should be as concise as poetry, one sentence is worth ten sentences. "It's been years, the mountains are high and the rivers are far away" is more powerful than "I'm leaving, please take care of yourself and remember to eat"
+- **Long stretches of silence are practice** — The passages of practice/enlightenment/walking alone can have no lines at all and last for 3-5 shots of pure silence. Silence itself is the narrative language of Xianxia
+- **Poetic lines paired with empty shots** — If the inner monologue or narration is written in poetic language, it is more appropriate to pair it with a long shot or an empty shot of a landscape rather than a close-up shot of a character.
+- **One sentence, one shot** — Important lines occupy one shot exclusively and are not shared with other lines. Give this sentence enough space and white space
+- **Very short last words** — The last words of a character in Xianxia should be very short (3-5 words), with close-up + fade-out. The shorter it is, the more important it is
+
+---
+
+## 8. Transition design
+
+- **Cloud and Mist Transition** — The most classic Xianxia transition: the screen is covered by clouds and mist → after it disperses, a new scene appears. Natural, freehand, zero drama
+- **Four Seasons** — Use rapid seasonal changes (flowers bloom → leaves fall → snow cover → spring return) to express the passage of time, suitable for long-span transitions between practice paragraphs
+- **Water Reflection** — Cut from the reflection on the water, and enter a new scene or memory after the ripples dissipate. Suitable for transition to past life/memory paragraphs
+- **Use hard cuts within the same scene** — Keep hard cuts between shots in the same scene, clean and neat
+- **Breathe with empty mirrors between paragraphs** — Insert 1-2 landscape/celestial empty mirrors (4-6s) between large paragraphs for emotional transition
+- **Dissolve in dreams/past lives** — Use slow dissolve when entering a dream or recalling past lives. The moment when the images overlap implies the interweaving of two time and space.

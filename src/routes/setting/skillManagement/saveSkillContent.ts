@@ -20,11 +20,11 @@ export default router.post(
     const skillsRoot = u.getPath(["skills"]);
     const filePath = p.join(skillsRoot, path);
     if (!isPathInside(filePath, skillsRoot)) {
-      return res.status(400).send(error("无效的路径"));
+      return res.status(400).send(error("Invalid path"));
     }
 
     if (!fs.existsSync(filePath)) {
-      return res.status(400).send(error("文件不存在"));
+      return res.status(400).send(error("File does not exist"));
     }
 
     const raw = await fs.promises.writeFile(filePath, content, "utf-8");

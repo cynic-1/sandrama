@@ -9,8 +9,8 @@ const KEY_LENGTH = 64;
 
 /** Hash a password using the Node.js built-in scrypt implementation. */
 export async function hashPassword(password: string): Promise<string> {
-  if (typeof password !== "string" || password.length < 8) {
-    throw new Error("密码至少需要 8 个字符");
+  if (typeof password !== "string" || password.length < 6) {
+    throw new Error("Password must be at least 6 characters");
   }
   const salt = crypto.randomBytes(16);
   const derivedKey = (await (scryptAsync as any)(password, salt, KEY_LENGTH, {

@@ -7,21 +7,21 @@ export default function replaceUrl(url: string): string {
     const pathname = new URL(url).pathname;
     cleanedPath = pathname;
   } catch (e) {
-    // 如果不是有效的URL，则直接使用原字符串
+    // If it is not a valid URL, use the original string directly
     cleanedPath = url;
   }
   cleanedPath = cleanedPath.replace(/^\/oss/, "").replace(/^\/smallImage/, "");
-  // 去除 query 参数
+  // Remove the query parameters
   cleanedPath = cleanedPath.split("?")[0];
-  // 防止路径穿越：对路径进行规范化后，确保不含上溯分量
-  // 使用 posix 规范化（保持 / 分隔符），去除所有 .. 和 .
+  // Prevent path traversal: after normalizing the path, ensure it does not contain upward components
+  // Use POSIX normalization (preserving / separators), and remove all .. and .
   const normalized = path.posix.normalize(cleanedPath);
 
-  // 规范化后若路径以 ../ 开头或等于 .. 则说明发生了路径穿越，拒绝并返回空字符串
+  // After normalization, if the path starts with ../ or equals .., it indicates path traversal; reject it and return an empty string.
   if (normalized.startsWith("../") || normalized === "..") {
     return "";
   }
 
-  // 去除前导斜杠，保证返回的是相对路径
+  // Remove the leading slash to ensure the returned path is relative.
   return normalized.replace(/^\/+/, "");
 }

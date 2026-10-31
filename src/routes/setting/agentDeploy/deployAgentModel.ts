@@ -27,6 +27,6 @@ export default router.post(
       const { id, name, model, modelName, vendorId, desc, temperature, maxOutputTokens } = item;
       await u.userSettings.updateAgentDeploy(id, { name, model, modelName, vendorId, desc, temperature, maxOutputTokens });
     }
-    res.status(200).send(success("批量配置成功"));
+    res.status(200).send(success("Batch configuration successful"));
   },
 );

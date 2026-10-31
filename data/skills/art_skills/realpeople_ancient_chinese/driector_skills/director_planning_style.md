@@ -1,88 +1,88 @@
 ---
 name: director_planning_style
-description: 古风约束 — 定义真人古风写实在色调体系、光影方案、质感方向、场景空间元素、乐器选择与环境音上的全局约束。适用于任何叙事类型。
+description: Classical Style Constraints — Defines global constraints for live-action classical realism regarding color systems, lighting schemes, texture directions, scene spatial elements, instrument selection, and environmental sound. Applicable to any narrative type.
 metaData: director_skills
 ---
 
-# 古风约束 · 真人古风写实 · 技法参考
+# Classical Style Constraints · Live-Action Classical Realism · Technique Reference
 
 ---
 
-## 一、色调体系与画面基调
+## I. Color System and Visual Tone
 
-- **色调基底** — 全片以月白（C1）、冷白肤（C2）、青黛（C6）为基底色，整体色温偏冷（4800-5200K），饱和度中低（30-50%），呈现悲凉清冷的高级灰调
-- **冷暖叙事对比** — 暖色（琥珀暖 C7、珠光金 C3、烟霞粉 C5）作为叙事转折的视觉信号，用于情感回暖段落局部点缀。冷暖切换应与故事弧线同步，而非随意混用
-- **冷暖分配策略** — 悲戚/孤绝/压抑段落严格维持冷色调基底，禁用暖橙、琥珀等暖色调；暖色仅在情感回暖后释放，用冷暖对比做叙事转折
-- **色盘先行原则** — 段落规划需先绑定情绪场景（初见/升温/误会/重逢/大婚等），再确定主色+辅色与光影方案，避免"剧情对了但情绪不对色"
-- **禁用色域** — 高饱和荧光色、霓虹色、现代色彩体系均与本风格不兼容
+- **Color Base** — The entire film uses Moon White (C1), Cool White Skin (C2), and Indigo (C6) as base colors. The overall color temperature is cool (4800-5200K), with medium-low saturation (30-50%), presenting a high-end grey tone that is melancholic and cold.
+- **Warm/Cool Narrative Contrast** — Warm colors (Amber Warm C7, Pearl Gold C3, Sunset Pink C5) serve as visual signals for narrative turning points, used for local accents in emotional recovery segments. The switch between warm and cool tones should sync with the story arc, not be mixed arbitrarily.
+- **Warm/Cool Allocation Strategy** — Melancholic/lonely/oppressive segments must strictly maintain the cool color base; warm tones such as warm orange and amber are prohibited. Warm colors are released only after emotional recovery, using warm/cool contrast for narrative turns.
+- **Color Palette First Principle** — Segment planning must first bind emotional scenes (first meeting/heating up/misunderstanding/reunion/grand wedding, etc.), then determine the main color + auxiliary color and lighting scheme, avoiding "the plot is right but the emotional color is wrong."
+- **Prohibited Color Range** — High-saturation fluorescent colors, neon colors, and modern color systems are incompatible with this style.
 
 ---
 
-## 二、光影方案体系
+## II. Lighting Scheme System
 
-- **光影即叙事** — 7 套光影方案对应不同情绪段落，导演规划阶段应在段落层面确定光影基调方向，而非逐镜指定
-- **光源角度** — 正给镜头默认 38.5° 斜射（非 45°），侧给镜头可适当调整
+- **Lighting as Narrative** — 7 lighting schemes correspond to different emotional segments. During the director's planning phase, the lighting tone direction should be determined at the segment level, not specified shot by shot.
+- **Light Source Angle** — Front-facing shots default to a 38.5° oblique angle (not 45°); side-facing shots can be adjusted appropriately.
 
-| 光影方案 | 方案名 | 色调倾向 | 适用情绪 |
+| Lighting Scheme | Scheme Name | Color Tendency | Applicable Emotion |
 |---|---|---|---|
-| A | 珠光柔漫 | 冷白底 + 微暖肤光 | 日常温馨、轻松甜蜜 |
-| B | 侧逆仙气 | 月白 + 珠光金边缘光 | 仙境亮相、惊艳登场 |
-| C | 烛光暖影 | 琥珀暖主导 + 墨玉黑暗部 | 夜间暧昧、亲密升温 |
-| D | 月光冷辉 | 青黛 + 霜雪银 | 夜间孤寂、思念独处 |
-| E | 窗纱透光 | 冷白底 + 侧光斑驳 | 室内日间、日常起居 |
-| F | 天光漫射 | 青黛远景 + 月白雾气 | 远景、雾中、意境空镜 |
-| G | 冷光侧射 | 青黛冷白 + 38.5°侧射冷光，无暖色 | 悲戚孤绝、压抑冷清 |
+| A | Pearl Soft Diffusion | Cool white base + slight warm skin light | Daily warmth, light sweetness |
+| B | Side-Back Ethereal | Moon white + Pearl Gold edge light | Fairy realm appearance, stunning entrance |
+| C | Candlelight Warm Shadow | Amber Warm dominant + Jet Black shadows | Nighttime ambiguity, intimate heating up |
+| D | Moonlight Cold Glow | Indigo + Frost Silver | Nighttime loneliness, solitary longing |
+| E | Window Gauze Translucence | Cool white base + side light dapples | Indoor daytime, daily living |
+| F | Sky Light Diffusion | Indigo distant view + Moon White mist | Distant views, in mist, atmospheric empty shots |
+| G | Cold Light Side Shot | Indigo Cool White + 38.5° side shot cold light, no warm colors | Melancholic loneliness, oppressive coldness |
 
-- **冷暖光分配** — 暖色光（琥珀暖/暖橙）适用于情感回暖段落；悲戚/孤绝段落一律冷光。导演可根据叙事需要调整冷暖切换点
-- **氛围方向映射** — 每场戏的氛围方向应能映射到上述光影方案（A-G）的某一方向，确保视觉一致性
-
----
-
-## 三、质感方向
-
-- **超清纪实感** — 真人写实摄影的核心：毛孔可见、发丝根根分明、纹理细节超清晰
-- **强对比度 + 极致细节** — 这是画面质感的锚点。不是胶片颗粒，不是水墨写意，是影视级纪实摄影
-- **材质真实** — 所有服化道的材质必须可信：丝绸的光泽、棉麻的纹理、金属的反光、玉石的润感。禁止"塑料感"和"CG感"
-- **皮肤质感** — 真实皮肤的毛孔、微瑕、光泽感。既不过度磨皮也不刻意放大瑕疵，追求"真实但好看"
-- **写实不等于平淡** — 真人古风写实强调真实可拍的影像表达（真实光位、真实材质、真实动作节奏），通过镜头与情绪设计放大感染力，而非依赖奇观特效
+- **Warm/Cool Light Allocation** — Warm light (Amber Warm/Warm Orange) is suitable for emotional recovery segments; melancholic/lonely segments always use cold light. The director can adjust the warm/cool switching points according to narrative needs.
+- **Atmosphere Direction Mapping** — The atmosphere direction of each scene should be mappable to one of the above lighting schemes (A-G) to ensure visual consistency.
 
 ---
 
-## 四、古风场景空间元素
+## III. Texture Direction
 
-古风世界观特有的场景元素及其视觉叙事功能：
-
-- **纱帘/屏风/门框** — 天然的框架式构图道具，制造"看不透"的层次感与空间纵深
-- **庭院/花树/雨幕** — 留白构图的天然载体，景即情：满庭花开 = 释然、独坐雨中 = 孤寂、落叶纷飞 = 离愁
-- **烛火/月色/窗光** — 古风世界的光源载体，烛光 = 暖/私密（方案C）、月色 = 冷/孤寂（方案D）、窗光 = 日常/静谧（方案E）
-- **段落间用场景空镜过渡** — 本风格有丰富的场景资产（不同时段/天候变体），段落衔接建议用场景空镜做情绪缓冲，不要硬切
-- **转折点用视觉而非台词** — 优先使用画面手段（光影突变、景别跳切、空镜隐喻）而非依赖对白解释
+- **Ultra-Clear Documentary Feel** — The core of live-action realistic photography: visible pores, distinct hair strands, ultra-clear texture details.
+- **High Contrast + Extreme Detail** — This is the anchor of visual texture. It is not film grain, not ink wash freehand, but film-grade documentary photography.
+- **Material Authenticity** — All costume, makeup, and prop materials must be credible: the sheen of silk, the texture of cotton/linen, the reflection of metal, the luster of jade. "Plastic feel" and "CG feel" are prohibited.
+- **Skin Texture** — Real skin pores, minor imperfections, and sheen. Neither over-smoothing nor deliberately exaggerating flaws; aim for "real but beautiful."
+- **Realism Does Not Mean Flatness** — Live-action classical realism emphasizes realistic, filmable visual expression (real light positions, real materials, real action rhythms), amplifying impact through camera and emotional design, rather than relying on spectacular effects.
 
 ---
 
-## 五、古风乐器与环境音
+## IV. Classical Scene Spatial Elements
 
-古风世界观下的声音元素约束：
+Scene elements unique to the classical worldview and their visual narrative functions:
 
-### 乐器选择
+- **Gauze Curtains/Screens/Door Frames** — Natural framing composition props, creating a "cannot see through" sense of layering and spatial depth.
+- **Courtyards/Flowering Trees/Rain Curtains** — Natural carriers for negative space composition; the scene is the emotion: a courtyard full of blooming flowers = relief, sitting alone in the rain = loneliness, falling leaves swirling = parting sorrow.
+- **Candle Fire/Moonlight/Window Light** — Light source carriers in the classical world: Candlelight = warm/intimate (Scheme C), Moonlight = cold/lonely (Scheme D), Window light = daily/quiet (Scheme E).
+- **Use Scene Empty Shots for Transitions Between Segments** — This style has rich scene assets (different time/weather variants). It is recommended to use scene empty shots for emotional buffering in segment connections, avoiding hard cuts.
+- **Use Visuals Instead of Dialogue for Turning Points** — Prioritize visual means (sudden lighting changes, shot size jump cuts, empty shot metaphors) rather than relying on dialogue for explanation.
 
-- **箫** — 凄凉、孤寂、悲戚段落的核心乐器，最能表现冷清哀婉
-- **二胡** — 情感激荡、悲痛、思念段落，拉弦的哭腔感适合情绪爆发
-- **唢呐** — 情感波动剧烈段落（大悲大喜、命运转折、高潮），慎用但一用即核弹
-- **古琴** — 开场定调 / 平稳段落，与箫搭配使用
-- **琵琶** — 紧张、急促段落的点缀，不作主导
-- 弦乐铺底可增加电影感但不宜喧宾夺主
+---
 
-### 乐器组合策略
+## V. Classical Instruments and Environmental Sound
 
-| 情绪阶段 | 乐器组合 |
+Sound element constraints under the classical worldview:
+
+### Instrument Selection
+
+- **Xiao (Flute)** — The core instrument for melancholic, lonely, and sorrowful segments; best expresses cold, mournful elegance.
+- **Erhu** — For emotionally intense, tragic, and longing segments; the crying tone of the strings suits emotional outbursts.
+- **Suona** — For segments with intense emotional fluctuation (great sorrow/great joy, fate turning points, climaxes); use with caution, but once used, it is a nuclear bomb.
+- **Guqin** — For opening tone setting / steady segments; used in combination with the Xiao.
+- **Pipa** — Accent for tense, urgent segments; not used as the lead.
+- String music padding can increase the cinematic feel but should not overshadow the main elements.
+
+### Instrument Combination Strategy
+
+| Emotional Stage | Instrument Combination |
 |---|---|
-| 平稳/开场/收尾 | 古琴独奏 或 古琴 + 箫 |
-| 悲戚渐浓 | 箫 + 二胡 |
-| 情绪爆发/命运转折 | 唢呐独奏 或 唢呐 + 二胡 |
-| 紧张/急促 | 琵琶点缀 + 弦乐衬底 |
+| Steady/Opening/Closing | Guqin solo or Guqin + Xiao |
+| Melancholy intensifying | Xiao + Erhu |
+| Emotional outburst/Fate turning point | Suona solo or Suona + Erhu |
+| Tense/Urgent | Pipa accent + String music padding |
 
-### 古风环境音
+### Classical Environmental Sound
 
-- **典型环境音层次** — 蝉鸣虫唱 / 溪水潺潺 / 风过竹林 / 市井叫卖 / 夜雨滴檐 / 衣料摩擦 / 风铃轻响
-- **每场戏标注 1-2 个核心环境音**，帮助后续音效设计。环境音层次越丰富，古风场景越有沉浸感
+- **Typical Environmental Sound Layers** — Cicadas and insects / Babbling streams / Wind through bamboo groves / Market street vendors / Night rain dripping on eaves / Fabric friction / Wind chimes ringing lightly.
+- **Label 1-2 core environmental sounds for each scene** to assist subsequent sound design. The richer the environmental sound layers, the more immersive the classical scene.

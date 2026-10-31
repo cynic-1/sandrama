@@ -1,86 +1,86 @@
 ---
 name: director_storyboard_table_narrative
-description: 分镜表叙事手法 · 都市职场 — 定义都市职场在分镜表中的景别策略、运镜节奏、时长把控、对话分镜设计、独处段落与转场手法。适用于任何视觉风格。
+description: Storyboard Narrative Techniques · Urban Workplace - Define the scene selection strategy, shot rhythm, duration control, dialogue storyboard design, solitary paragraphs and transition techniques in the storyboard of the urban workplace. Works with any visual style.
 metaData: director_skills
 ---
 
-# 分镜表叙事手法 · 都市职场 · 技法参考
+# Storyboard Narrative Technique · Urban Workplace · Technical Reference
 
 ---
 
-## 一、分镜表定位
+## 1. Storyboard positioning
 
-分镜表是导演将剧本转化为镜头语言的核心工具。表单字段由导演根据项目需要自行设定（分镜号、景别、运镜、时长、人物、事件、台词、光影、情绪、转场等），以下仅提供都市职场叙事类型下的技法参考。
-
----
-
-## 二、景别选择
-
-- **景别即社交距离** — 职场分镜中景别的核心逻辑是"人与人的距离感"。正式场合用中景（社交距离），对峙/亲密时才进近景
-- **中景是主力景别** — 职场叙事中中景使用频率最高（40-50%），因为职场本身就是"保持适当距离"的社交场域
-- **近景打破距离** — 近景在职场中暗示"距离被打破"：可能是信任（私下交心），也可能是压迫（上级逼近）。每次使用近景都意味着关系发生了变化
-- **特写捕捉潜台词** — 职场中人人带面具，真实情绪藏在微表情里。特写的核心功能是"揭穿面具"：克制微笑下的紧张、点头认同时的不屑、签字时的犹豫
-- **定场镜头交代权力空间** — 职场定场不只是"这是一间办公室"，要交代空间中的权力暗示：谁坐在主位、谁靠近门口、空间是开放的还是封闭的。1-2 个镜头搞定
+Storyboards are the core tool for directors to transform scripts into lens language. The form fields are set by the director according to the needs of the project (shot number, scene, shot movement, duration, characters, events, lines, light and shadow, emotions, transitions, etc.). The following only provides technical reference for the urban workplace narrative type.
 
 ---
 
-## 三、运镜节奏
+## 2. Scene selection
 
-- **固定机位为主** — 65% 以上镜头固定，传递冷静客观的观察视角
-- **纪实手持** — 跟随角色行走/通勤时用极微手持，增加真实感但晃动几乎不可察
-- **缓推 = 压迫/审视** — 缓推向角色面部，适合被质问、做决定、承受压力的段落
-- **缓拉 = 孤立/全局** — 从角色拉到全景，揭示个体在庞大体系中的渺小
-- **横移 = 扫视群像** — 水平横移扫过多个角色或工位，建立群体关系和空间全貌
-- **运镜即态度** — 固定 = 冷静旁观；缓推 = 逼迫/关注；缓拉 = 抽离/孤立；手持 = 真实参与
-
----
-
-## 四、时长把控
-
-- **对话镜头标准节奏** — 有台词的镜头 2-4s，一句一切，保持对话的节奏感和信息清晰度
-- **沉默博弈拉长** — 对峙/博弈中的沉默镜头给 3-4s，让沉默本身成为武器。观众能感受到"没说出口的话"
-- **日常碎片快节奏** — 通勤、打字、喝咖啡等日常片段每个 1.5-2s 即可，快速碎片化传递日常节奏
-- **独处镜头给时长** — 独自在车里坐着、深夜洗脸、站在窗前——这些"真实瞬间"给 4-5s，让观众感受角色卸下面具后的疲惫
-- **黄金 6 秒规则** — 单镜头不超过 6s。职场叙事的力量在于信息密度而非时长，宁可多切一个角度也不要死撑一个镜头
-- **蒙太奇碎片** — 时间流逝段落的碎片镜头每个 1-1.5s，快速叠加传递"日复一日"的压迫感
+- **Scene separation is social distance** — The core logic of scene separation in workplace storyboards is "the sense of distance between people." Use mid shot (social distance) for formal occasions, close shot only for confrontations/intimates
+- **Mid shot is the main scene** — Mid shot is used most frequently in workplace narratives (40-50%), because the workplace itself is a social field where "appropriate distance is maintained"
+- **Close shot breaks distance** — Close shot implies "distance is broken" in the workplace: it may be trust (private heart-to-heart communication), or it may be oppression (superior approaching). Each use of close-up means a change in the relationship
+- **Close-up captures subtext** — In the workplace, everyone wears a mask, and true emotions are hidden in micro-expressions. The core function of a close-up is to "unmask": to suppress the tension behind a smile, the disdain when nodding in agreement, and the hesitation when signing.
+- **Establishing shot explains the power space** — The workplace setting is not just "this is an office", but also explains the power implications in the space: who is sitting at the main seat, who is near the door, whether the space is open or closed. 1-2 shots done
 
 ---
 
-## 五、对话分镜设计
+## 3. Rhythm of camera movement
 
-- **权力位对切** — 对话分镜中谁在画面上方/下方暗示权力关系。仰拍上级+俯拍下属是经典权力对切
-- **过肩镜头的权力暗示** — 过肩镜头中"谁的肩膀"出现在前景 = 谁拥有当前话语权。被压制的角色用对方肩膀做前景遮挡
-- **三角关系构图** — 三人博弈场景用三角构图，三人分处画面三个位置。随着立场转变，三角构图动态调整
-- **潜台词用表情镜头** — 话中有话的台词后，切一个 1-2s 的听者反应镜头（近景/特写），让观众从听者的微表情中读出潜台词
-- **会议室全景→近景递进** — 会议段落从全景（全局）开始，随着冲突升级逐渐递进到近景/特写（聚焦对抗双方），景别递进映射张力递进
-- **能一镜交代的不拆两镜** — 一个带横移的镜头如果能同时展示说话者和听者的反应，就不要拆成正反打两个镜头
-
----
-
-## 六、独处段落
-
-- **下班后的真实** — 在电梯里靠墙闭眼、独自开车回家的沉默、回到家瘫在沙发上——这些段落是职场叙事最珍贵的"真实时刻"，用中远景+固定机位，给足时长
-- **独自崩溃的克制** — 职场人的崩溃不是嚎啕大哭，是洗手间里的深呼吸、红眼眶、手扶额头。用近景捕捉克制的崩溃，比夸张表演更有共鸣
-- **深夜反思** — 深夜独处的反思/回顾用远景+环境空镜搭配，窗外的城市灯火暗示"这座城市里有无数个同样疲惫的人"
-- **通勤段落的叙事功能** — 通勤不是过渡而是叙事：地铁里的疲惫面孔、堵车时的无奈、走入公司前的深呼吸——这些"切换人格"的瞬间是职场人最真实的仪式
+- **Fixed camera positions** — More than 65% of the lenses are fixed, delivering a calm and objective observation perspective
+- **Documentary Handheld** — Use minimal handholding when following the character while walking/commuting, increasing the sense of reality but shaking is almost unnoticeable
+- **Easy push = oppression/examination** — Slowly push towards the character's face, suitable for passages where he is being questioned, making decisions, and under pressure.
+- **Slow pull = Isolated/Global** — Pull from the character to the panorama, revealing the insignificance of the individual in the huge system
+- **Traverse = Scan group portrait** — Horizontally pan across multiple characters or workstations to establish group relationships and overall space view
+- **Mirroring is Attitude** — Fixed = watch calmly; push = force/attention; pull = pull away/isolate; handheld = real participation
 
 ---
 
-## 七、台词与潜台词
+## 4. Duration control
 
-- **话中有话是常态** — 职场台词很少是字面意思。"这个方案还可以再优化"= 否定；"我尊重你的决定"= 不同意但不想吵。分镜要用表情镜头帮助观众解读潜台词
-- **沉默的攻防** — 问完问题后的沉默、提议后等待回应的沉默——沉默在职场对话中是"逼迫对方先开口"的策略。给沉默 2-3s 的独立镜头
-- **一句台词一个镜头** — 关键博弈台词独占一个镜头，不与其他对白共享。给这句话配近景+听者反应
-- **旁白/内心独白极少** — 职场叙事靠"言行不一"的反差叙事（嘴上说"没事"脸上写着"有事"），不靠旁白解释内心。旁白仅在必须补充信息时使用
-- **群体对话的焦点管理** — 多人会议中不需要每个人说话都切镜头。用全景/中景展示全局，只在关键发言时切近景聚焦
+- **Standard rhythm of dialogue shots** — 2-4s of shots with lines, everything in one sentence, maintaining the rhythm of the dialogue and the clarity of information
+- **Silence Game Extended** — The silence shots in the confrontation/game are given to 3-4s, making silence itself a weapon. The audience can feel the "unsaid words"
+- **Fast pace of daily fragments** — Daily fragments such as commuting, typing, drinking coffee, etc. only take 1.5-2 seconds each to quickly deliver daily rhythms in fragments
+- **Length of solitude shots** — Sitting alone in the car, washing face late at night, standing in front of the window - these "real moments" are given for 4-5 seconds, allowing the audience to feel the exhaustion of the character after taking off the mask.
+- **The Golden 6 Second Rule** — No more than 6 seconds per shot. The power of workplace narrative lies in the density of information rather than the duration. It is better to cut an extra angle than stick to one shot.
+- **Montage Fragments** — The fragmented shots of the time lapse paragraph are 1-1.5s each, and are quickly superimposed to convey the sense of oppression of "day after day"
 
 ---
 
-## 八、转场设计
+## 5. Dialogue storyboard design
 
-- **同场景内用硬切** — 同一会议室/办公室内镜头间硬切，保持节奏干净
-- **日常流转用碎片蒙太奇** — 日复一日的职场日常用快速碎片蒙太奇（闹钟→通勤→打卡→开会→加班→回家），每个碎片 1-1.5s
-- **空间对比转场** — 从繁忙的办公室硬切到深夜安静的家，用空间反差传递"两个世界"的割裂感
-- **时间跳跃用字幕或空镜** — 时间跨度较大时用字幕标注（"三个月后"）或用季节/天气变化的空镜暗示
-- **段落间用通勤过渡** — 通勤段落是职场叙事天然的段落分隔器：上班通勤 = 新段落开始；下班通勤 = 段落收束
-- **手机屏幕转场** — 消息通知/邮件/新闻推送作为转场触发器，画面聚焦手机屏幕→新信息→引入新段落
+- **Power Position Cut** — Who is above/below the frame in a dialogue storyboard implies a power relationship. The superior shot from above + the subordinate shot from above is a classic power balance
+- **Power cues in over-the-shoulder shots** — "Whose shoulder" appears in the foreground in an over-the-shoulder shot = who has the current right to speak. The suppressed character uses the opponent's shoulder as a foreground occlusion
+- **Triangular Relationship Composition** — The three-person game scene uses a triangular composition, and the three people are located in three positions on the screen. As the position changes, the triangular composition dynamically adjusts
+- **Use expression shots for subtext** — After the words are spoken, cut a 1-2 second shot of the listener's reaction (close-up/close-up), allowing the audience to read the subtext from the listener's micro-expressions
+- **Conference room panorama → close-up progression** — The meeting paragraph starts from the panorama (big picture), and gradually progresses to the close-up/close-up (focusing on both sides of the confrontation) as the conflict escalates. The progression of scenes reflects the progression of tension.
+- **If you can explain in one shot, don’t split it into two shots** — If a shot with lateral movement can show the reaction of the speaker and the listener at the same time, don’t split it into two shots, front and back.
+
+---
+
+## 6. Alone paragraphs
+
+- **Reality after get off work** - Leaning against the wall in the elevator with eyes closed, the silence of driving home alone, and slumping on the sofa after returning home - these passages are the most precious "real moments" in workplace narratives, using medium and long shots + fixed camera positions to give them enough time
+- **Control of breaking down alone** — The breakdown of a working person is not crying loudly, but taking deep breaths, red eyes, and hand on forehead in the bathroom. Capturing the breakdown of restraint in close-up is more resonant than exaggerated performance
+- **Late Night Reflection** — Reflection/review of solitude late at night using distant views + ambient empty mirrors. The city lights outside the window suggest that "there are countless equally tired people in this city."
+- **Narrative function of commuting paragraphs** — Commuting is not a transition but a narrative: the tired faces in the subway, the helplessness in traffic jams, the deep breaths before entering the company - these moments of "switching personalities" are the most authentic rituals for working people.
+
+---
+
+## 7. Lines and subtext
+
+- **It is normal to have words within words** — Lines spoken in the workplace are rarely literal. "This plan can be further optimized" = negative; "I respect your decision" = disagree but don't want to argue. Storyboards should use expression shots to help the audience interpret the subtext
+- **The offense and defense of silence** — the silence after asking a question, the silence after making a proposal and waiting for a response - silence is a strategy of "forcing the other party to speak first" in workplace conversations. Give 2-3s of independent footage to silence
+- **One line, one shot** — Key game lines occupy one shot exclusively and are not shared with other dialogues. Give this sentence a close-up shot + listener reaction
+- **Very little narration/inner monologue** - The workplace narrative relies on the contrast between words and deeds (saying "nothing" on the lips but "something happened" on the face), and does not rely on narration to explain the inner feelings. Narration is only used when additional information is necessary
+- **Focus management for group conversations** — In multi-person meetings, there is no need to cut off the camera for everyone speaking. Use panorama/medium shot to show the overall situation, and only switch to close-up focus during key speeches
+
+---
+
+## 8. Transition design
+
+- **Hard cuts within the same scene** — Hard cuts between shots in the same conference room/office to keep the rhythm clean
+- **Fragment montage for daily circulation** — A quick fragment montage for daily use in the workplace day after day (alarm clock → commute → clock in → meeting → working overtime → going home), each fragment takes 1-1.5 seconds
+- **Space contrast transition** — Cut from a busy office to a quiet home late at night, using spatial contrast to convey the sense of separation of "two worlds"
+- **Use subtitles or empty shots for time jumps** — When the time span is large, use subtitles ("Three months later") or use empty shots to indicate seasonal/weather changes.
+- **Use commuting transitions between paragraphs** — Commuting paragraphs are natural paragraph separators for workplace narratives: commuting to work = the beginning of a new paragraph; commuting to get off work = the end of a paragraph
+- **Mobile screen transition** — message notification/email/news push as transition trigger, the screen focuses on the mobile phone screen→new information→introducing a new paragraph

@@ -1,21 +1,21 @@
 /**
- * 去除深度思考模型输出的 <think>...</think> 标签及其内容
+ * Remove the tags and their content from the output of the deep thinking model
  *
- * 1. stripThink(text)          — 用于非流式，直接去除完整文本中的 <think> 块
- * 2. createThinkStreamFilter() — 用于流式，返回有状态的过滤器，逐 chunk 过滤
+ * 1. stripThink(text) — for non-streaming, directly removes the complete  block from the full text
+ * 2. createThinkStreamFilter() — Used for streaming, returns a stateful filter that filters chunk by chunk
  */
 
 /**
- * 非流式：去除完整文本中的 <think>...</think>
+ * Non-streaming: Remove the from the complete text
  */
 export function stripThink(text: string): string {
   return text.replace(/<think>[\s\S]*?<\/think>/g, "").trim();
 }
 
 /**
- * 流式：创建一个有状态的 chunk 过滤器
+ * Streaming: Create a stateful chunk filter
  *
- * 用法：
+ * Usage:
  * ```ts
  * const filter = createThinkStreamFilter();
  * for await (const chunk of textStream) {
@@ -30,7 +30,7 @@ export function createThinkStreamFilter() {
 
   return {
     /**
-     * 输入一个 chunk，返回过滤后需要输出的文本（可能为空字符串）
+     * Input a chunk and return the filtered text that needs to be output (which may be an empty string).
      */
     push(chunk: string): string {
       let output = "";
@@ -38,28 +38,28 @@ export function createThinkStreamFilter() {
 
       while (i < chunk.length) {
         if (insideThink) {
-          // 正在 <think> 内部，寻找 </think>
+          // Inside the <think>, looking for
           const closeIdx = chunk.indexOf("</think>", i);
           if (closeIdx !== -1) {
-            // 找到闭合标签，跳过标签内容
+            // Find the closing tag and skip the tag content
             insideThink = false;
             i = closeIdx + "</think>".length;
           } else {
-            // 整个剩余 chunk 都在 think 内，全部丢弃
+            // The entire remaining chunk is within think, discard all
             break;
           }
         } else {
-          // 不在 <think> 内部
+          // Not inside the <think>
           const openIdx = chunk.indexOf("<think>", i);
           if (openIdx !== -1) {
-            // 找到开启标签，输出标签之前的内容
+            // Find the opening tag and output the content before the tag
             output += buffer + chunk.slice(i, openIdx);
             buffer = "";
             insideThink = true;
             i = openIdx + "<think>".length;
           } else {
-            // 没有发现 <think>，但可能 chunk 末尾是不完整的 "<thi..."
-            // 缓冲末尾可能是 "<" 开头的不完整标签片段
+            // No <think> found, but the end of the chunk may be an incomplete "<thi..."
+            // The end of the buffer may contain an incomplete tag fragment starting with "<"
             const potentialStart = findPartialTag(chunk, i);
             if (potentialStart !== -1) {
               output += buffer + chunk.slice(i, potentialStart);
@@ -77,7 +77,7 @@ export function createThinkStreamFilter() {
     },
 
     /**
-     * 流结束时调用，刷出缓冲区中残留的内容
+     * Called when the stream ends, flushing any remaining content in the buffer
      */
     flush(): string {
       const remaining = buffer;
@@ -88,13 +88,13 @@ export function createThinkStreamFilter() {
 }
 
 /**
- * 检查 chunk[startIdx..] 的末尾是否包含 "<think>" 的不完整前缀
- * 如 "<", "<t", "<th", "<thi", "<thin", "<think"
- * 返回不完整前缀的起始位置，未找到则返回 -1
+ * Check whether the end of chunk[startIdx..] contains an incomplete prefix of "
+ * "<", "<t", "<th", "<thi", "<thin", "<think"
+ * Returns the starting position of the incomplete prefix, or -1 if not found
  */
 function findPartialTag(chunk: string, startIdx: number): number {
   const tag = "<think>";
-  // 只需检查末尾最多 tag.length - 1 个字符
+  // Only check up to tag.length - 1 characters at the end
   const searchStart = Math.max(startIdx, chunk.length - (tag.length - 1));
   for (let i = searchStart; i < chunk.length; i++) {
     const remaining = chunk.slice(i);

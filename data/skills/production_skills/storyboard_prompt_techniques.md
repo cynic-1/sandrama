@@ -1,184 +1,184 @@
 ---
 name: storyboard_prompt_techniques
 description: >-
-  通用分镜提示词技法参考。
-  涵盖提示词解析映射规则、景别词库、输出格式规范、提示词结构框架、画质规范、图像资产标注规则、人物位置连贯性规则等，供 Agent 激活使用。
+Reference for general storyboard prompt techniques.
+Covers prompt parsing and mapping rules, shot-type vocabulary, output format specifications, prompt structure framework, image quality standards, image asset annotation rules, and character position continuity rules, for Agent activation.
 ---
-# 分镜提示词 · 通用基础技法
+# Storyboard Prompts · General Basic Techniques
 
-> 以下为分镜提示词生成的**通用基础规范**，适用于所有视觉风格。风格锚定词、情绪映射、光影词库、场景质感、美学禁止项等**风格相关内容**由风格专属技法（`director_storyboard`）定义。
-
----
-
-## 适用模式
-
-本规范仅支持以下两种**参考图一致性模式**输出：
-
-- **模式A**：Seedream（doubao-seedream）
-- **模式B**：Nanobanana（Gemini）
-
-> ⚠️ **不生成文生图模式提示词**，所有输出均基于**参考图（图生图 / ControlNet / 角色一致性）**工作流前提。
+> The following are the **general basic specifications** for generating storyboard prompts, applicable to all visual styles. **Style-related content**, such as style anchor terms, emotion mapping, light and shadow vocabulary, scene texture, and aesthetic prohibitions, is defined by the style-specific technique (`director_storyboard`).
 
 ---
 
-## 分镜表内容忠实性原则（最高优先级）
+## Applicable Modes
 
-提示词生成是**格式转换**，不是**创意写作**。分镜表是提示词的**唯一内容来源**，所有画面信息必须忠实于分镜表对应行，仅在表达格式和措辞上适配图像生成模型的要求。
+This specification supports only the following two **reference image consistency modes** for output:
 
-### 核心原则：画面描述是主干，不是素材
+- **Mode A**: Seedream (doubao-seedream)
+- **Mode B**: Nanobanana (Gemini)
 
-分镜表「画面描述」字段承载了镜头的全部视觉信息，是提示词正文的**主干内容**。风格词、画质词、光影词等修饰类词汇是**辅助装饰**，服务于画面描述。当二者在 token 预算上争夺空间时，**画面描述优先**，宁可缩减风格词也不可删减画面描述中的视觉元素。
+> ⚠️ **Do not generate text-to-image mode prompts**; all outputs are based on the **reference image (image-to-image / ControlNet / character consistency)** workflow premise.
 
-### 铁律
+---
 
-1. **画面描述完整保留**：分镜表「画面描述」字段中的所有视觉元素（主体、物件、空间关系、动态细节、镜头关系）必须在提示词正文中完整出现，**不得遗漏任何一项**
-2. **语义等价转换**：将分镜表字段转换为提示词时，只改变表达形式（中↔英、散文↔关键词、叙事语言↔视觉描述），**不改变语义**。例：分镜表写"建筑空间柱影深沉" → 提示词必须体现该空间柱影暗调，不可替换为"华丽建筑"等不同语义
-3. **禁止创意发散**：不添加分镜表未提及的装饰性视觉元素（如分镜表未写花瓣飘落，提示词不可自行添加）；不重新诠释场景氛围（分镜表写"冷傲轻蔑"不可改为"忧伤落寞"）
-4. **风格词从属于内容**：风格锚定词、画质锁定词、场景质感词等风格类词汇是**辅助修饰**，服务于分镜表已定义的画面内容，不得反客为主——当风格词与分镜表具体描述冲突时，以分镜表为准
-5. **逐字段回溯校验**：生成每条提示词后，须逐字段比对分镜表对应行，确认以下映射均已准确体现：
+## Fidelity Principle for Storyboard Content (Highest Priority)
 
-| 分镜表字段 | 提示词中须体现 | 校验要点 |
+Prompt generation is **format conversion**, not **creative writing**. The storyboard is the **sole source of content** for the prompt. All visual information must faithfully correspond to the respective row in the storyboard, adapting only in expression format and wording to meet the requirements of the image generation model.
+
+### Core Principle: The visual description is the main trunk, not the material
+
+The "Visual Description" field in the storyboard carries all the visual information of the shot and serves as the **core content** of the prompt body. Stylistic terms, image quality terms, lighting and shadow terms, and other decorative modifiers serve as **auxiliary embellishments** that support the description of the scene. When the two compete for space within the token budget, **visual description takes priority**; it is better to reduce style words than to remove visual elements from the visual description.
+
+### Iron Rule
+
+1. **Complete preservation of visual descriptions**: All visual elements in the "Visual Description" field of the storyboard (subjects, objects, spatial relationships, dynamic details, and camera relationships) must appear in full in the prompt body, **with no omissions**.
+2. **Semantic Equivalence Transformation**: When converting storyboard table fields into prompts, only the form of expression is changed (Chinese↔English, prose↔keywords, narrative language↔visual description), **without altering the semantics**. Example: If the storyboard states "deep column shadows in the architectural space," the prompt must reflect the dark-toned column shadows in that space; it must not be replaced with a different semantic concept such as "grand architecture."
+3. **No creative divergence**: Do not add decorative visual elements not mentioned in the storyboard (e.g., if the storyboard does not specify falling petals, the prompt must not add them on its own); Do not reinterpret the scene's atmosphere (the storyboard specifies "cold, arrogant, and contemptuous," which must not be changed to "sad and desolate").
+4. **Style terms subordinate to content**: Style-anchoring terms, image-quality locking terms, scene-texture terms, and other style-related vocabulary serve as **auxiliary modifiers**, supporting the visual content already defined in the storyboard. They must not take precedence over the content—when style terms conflict with the specific descriptions in the storyboard, the storyboard takes precedence.
+5. **Field-by-field retrospective validation**: After generating each prompt, you must compare it field by field against the corresponding row in the storyboard table to confirm that the following mappings have been accurately reflected:
+
+| Storyboard Field | Must Be Reflected in the Prompt | Validation Points |
 |-----------|---------------|--------|
-| 画面描述 | 提示词正文【画面】段的核心内容 | 所有视觉主体、空间关系、关键细节是否**零遗漏**保留 |
-| 场景 | 提示词正文【画面】段的环境锚定 | 场景类型是否一致 |
-| 景别 | 景别构图词 | 景别是否匹配（复合景别取首帧起始端） |
-| 角色动作 | 主体体态与朝向 | 动作语义是否一致、朝向是否显式标注 |
-| 情绪 | 情绪面容词 | 情绪基调是否一致 |
-| 光影氛围 | 提示词正文【光影】段 | 光源方向、色调倾向、明暗关系是否完整一致 |
+| Screen Description | Core content of the [Screen] section in the prompt body | Whether all visual subjects, spatial relationships, and key details are preserved with **zero omissions** |
+| Scene | Environment anchoring in the [Visual] section of the prompt body | Whether the scene types are consistent |
+| Shot Type | Shot Type Composition Term | Shot Type Match (For composite shot types, use the starting end of the first frame) |
+| Character Action | Subject's Posture and Orientation | Consistency of Action Semantics and Explicit Annotation of Orientation |
+| Emotion | Emotional facial expression term | Is the emotional tone consistent? |
+| Light and Shadow Atmosphere | Main Prompt Text [Light and Shadow] Section | Whether the light source direction, color tone tendency, and light-dark relationships are complete and consistent |
 
-> ⚠️ **校验不通过 = 提示词无效**，必须修正后再输出。最常见的失败模式：画面描述中的具体元素被风格模板词覆盖遗漏。
+> ⚠️ **Validation failure = invalid prompt**. It must be corrected before output. The most common failure mode: specific elements in the visual description are overwritten or omitted by style template terms.
 
 ---
 
-## 首帧识别原则
+## First-Frame Recognition Principles
 
-分镜图是**视频的首帧参考**。模型应根据分镜表「画面描述」的语义自行判断该帧的视觉状态，不机械套用"预备态"模板。
+The storyboard is the **first-frame reference for the video**. The model should independently determine the visual state of the frame based on the semantics of the "Screen Description" in the storyboard, rather than mechanically applying the "preparation state" template.
 
-**判断逻辑**：
+**Judgment Logic**:
 
-| 画面描述类型 | 处理方式 | 示例 |
+| Screen Description Type | Handling Method | Example |
 |-------------|---------|------|
-| **静态瞬间**（停步仰望、站立凝视、侧头冷笑、伏案书写） | **直接按描述生成**，不做动作改写 | "角色停步仰望某物" → 提示词直接写"停步仰望某物" |
-| **连续动作过程**（走过长廊、挥剑斩下、转身离去） | 取动作**起始瞬间的凝固态**（非抽象预备态） | "挥剑斩下" → "剑已举至头顶，剑尖朝下，即将劈下的瞬间" |
-| **镜头运动**（缓推至中景、拉远至全景、淡入） | 取**起始端景别**作为首帧构图 | "远景→中景" → 首帧取"大远景" |
-| **过渡效果**（黑场淡入、叠化转场） | 保留描述但标注为开场状态 | "开场黑场淡入" → "画面自黑场浮现，开场大远景..." |
+| **Static Moment** (stopping to look up, standing and gazing, tilting head with a cold smirk, hunched over a desk writing) | **Generate directly according to the description**, without rewriting the action | "Character stops to look up at something" → Prompt directly states "stops to look up at something" |
+| **Continuous action process** (walking through the corridor, swinging the sword to strike, turning and leaving) | Capture the **frozen state at the initial moment of the action** (not an abstract preparatory state) | "Swinging the sword to strike" → "The sword is raised to the top of the head, the tip pointing downward, at the instant just before the downward slash" |
+| **Camera Movement** (slow push to medium shot, pull back to wide shot, fade in) | Use the **starting shot size** as the composition for the first frame | "Wide shot → Medium shot" → First frame uses "Extreme wide shot" |
+| **Transition Effects** (fade-in from black, dissolve transitions) | Retain the description but mark it as the opening state | "Fade-in from black at the opening" → "The frame emerges from black, opening with a wide long shot..." |
 
-**判断依据**：画面描述的主动词时态和叙事密度。
+**Basis for judgment**: The tense of the active verb in the screen description and the narrative density.
 
-> ❌ **错误做法**：把所有动作都改写成"即将发生"的预备态，导致动作语义被稀释
-> - 分镜表写"停步仰望" → 错误改写为"即将抬起头望向前方"（动作被削弱）
-> - 分镜表写"冷笑居高临下" → 错误改写为"嘴角即将扬起"（情绪被削弱）
+> ❌ **Incorrect approach**: Rewriting all actions into a "about to happen" preparatory state, which dilutes the semantic meaning of the actions
+> - The storyboard says "stop and look up" → incorrectly rewritten as "about to lift head and look forward" (the action is weakened)
+> - The storyboard says "smirk with a superior attitude" → incorrectly rewritten as "the corners of the mouth are about to rise" (the emotion is weakened)
 >
-> ✅ **正确做法**：忠实分镜表的动作描述，仅在该动作确为连续过程时才取起始端
+> ✅ **Correct approach**: Faithfully follow the action descriptions in the storyboard, and only take the starting point when the action is indeed a continuous process
 
 ---
 
-## 解析映射规则
+## Parsing Mapping Rules
 
-| 分镜字段 | 提示词对应处理 |
+| Storyboard Field | Prompt Corresponding Processing |
 |----------|----------------|
-| 画面描述 | **主干内容**：提示词正文【画面】段的核心信息来源。须完整保留画面描述中的**所有**可见主体、空间层次、关键细节、镜头关系，仅将叙事语言转换为视觉描述格式。严禁删减关键元素、替换为不同语义或自行添加画面描述中不存在的视觉元素 |
-| 场景 | 融入【画面】段作为环境锚定，叠加风格专属技法的场景质感约束词 |
-| 景别 | 镜头构图词（见下方景别词库），须与分镜表「景别」字段匹配。复合景别（如"远景→中景"）取**首帧起始端** |
-| 运镜 | 仅作分镜制作信息，不进入提示词，不输出运镜备注 |
-| 角色动作 | 基于分镜表「角色动作」字段，按"首帧识别原则"处理。必须保留动作语义内涵与 `｜朝向：` 显式标注 |
-| 情绪 | 基于分镜表「情绪」字段，从风格专属技法的情绪映射表中选取匹配的面容/眼神词。情绪基调须与分镜表一致 |
-| 光影氛围 | 基于分镜表「光影氛围」字段，**独立成段**写入【光影】段，完整保留光源方向、色调倾向、明暗关系、质感细节 |
-| 台词 | 不进入提示词，不输出 |
-| 音效 | 不进入提示词，不输出 |
-| 关联资产名称/ID | 仅用于内部参考图绑定，按"图像资产标注规则"处理 |
+| Screen Description | **Main Content**: The core source of information for the [Screen] section of the prompt body.  Strictly prohibit deleting key elements, replacing them with different semantics, or adding visual elements that do not exist in the scene description.
+| Scene | Integrated into the [Visual] section as an environmental anchor, with scene texture constraint terms specific to the style's techniques overlaid |
+| Shot Type | Shot composition term (see the shot type library below); must match the "Shot Type" field in the storyboard table. Composite shot types (e.g., "wide shot → medium shot") take the **starting end of the first frame** |
+| Camera Movement | For storyboard production information only; do not include in the prompt; do not output camera movement notes |
+| Character Action | Based on the "Character Action" field in the storyboard, processed according to the "First Frame Recognition Principle." Must preserve the semantic connotation of actions and the explicit `| Facing:` annotation
+| Emotion | Based on the "Emotion" field in the storyboard, select the matching facial expression/eye terms from the style-specific technique emotion mapping table. The emotional tone must be consistent with the storyboard |
+| Light and Shadow Atmosphere | Based on the "Light and Shadow Atmosphere" field in the storyboard, **write it as a standalone paragraph** in the [Light and Shadow] section, fully preserving the light source direction, color tone tendency, light-dark relationships, and texture details |
+| Dialogue | Not included in the prompt, not output |
+| Sound Effect | Not included in the prompt, not output |
+| Related Asset Name/ID | Used only for internal reference image binding, processed according to the "Image Asset Annotation Rules" |
 
 ---
 
-## 景别词库（通用）
+## Shot Type Lexicon (General)
 
-| 景别输入 | 模式B（Nanobanana）英文镜头词 | 模式A（Seedream）中文画面词 |
+| Shot Type Input | Mode B (Nanobanana) English Shot Terms | Mode A (Seedream) Chinese Scene Terms |
 |----------|-------------------------------|---------------------------|
-| 大远景/大全景 | `extreme wide shot, establishing shot` | 大远景构图，环境全貌，人物渺小于场景 |
-| 远景/全景 | `wide shot, full shot, full body` | 全身入镜，远景构图，人景比例协调 |
-| 中景 | `medium shot, cowboy shot, knee shot` | 中景构图，人物膝盖以上入镜 |
-| 近景 | `medium close-up, upper body` | 近景构图，上半身入镜，背景虚化 |
-| 半身 | `half body shot, bust shot` | 半身构图，腰部以上入镜，浅景深 |
-| 特写 | `close-up, face focus` | 特写构图，面部或细节局部放大，背景深度虚化 |
-| 大特写 | `extreme close-up, macro detail` | 大特写，极度局部细节，虚化背景 |
-| 过肩镜 | `over the shoulder shot, two shot` | 过肩构图，前景人物后背虚化，远景人物清晰 |
+| Extreme wide shot / wide establishing shot | `extreme wide shot, establishing shot` | Extreme wide shot composition, full view of the environment, characters appear small within the scene |
+| Wide/Full Shot | `wide shot, full shot, full body` | Full body in frame, wide composition, balanced ratio between subject and environment |
+| Medium shot | `medium shot, cowboy shot, knee shot` | Medium shot composition, framing the subject from the knees up |
+| Close-up | `medium close-up, upper body` | Close-up composition, upper body in frame, blurred background |
+| Half body | `half body shot, bust shot` | Half-body composition, waist-up framing, shallow depth of field |
+| Close-up | `close-up, face focus` | Close-up composition, magnifying the face or a specific detail, with a blurred background depth |
+| Extreme Close-Up | `extreme close-up, macro detail` | Extreme close-up, extreme local detail, blurred background |
+| Over-the-shoulder shot | `over the shoulder shot, two shot` | Over-the-shoulder composition, with the foreground character's back blurred and the background character in sharp focus |
 
-**复合景别处理**：分镜表若写"远景→中景""中景→特写"等镜头运动，分镜图作为首帧参考，**取箭头左侧的起始景别**。
+**Composite Shot Handling**: If the storyboard specifies camera movements such as "wide shot → medium shot" or "medium shot → close-up," the storyboard image serves as the reference for the first frame, and **the starting shot type on the left side of the arrow is used**.
 
 ---
 
-## 输出格式规范
+## Output Format Specification
 
-每条分镜**只输出一种模式的提示词正文**（二选一），不允许同条分镜同时输出模式A与模式B。
+For each storyboard, **output only the prompt text of one mode** (choose one of two). It is not allowed to output both Mode A and Mode B in the same storyboard.
 
-**模式选择规则**：
+**Mode Selection Rules**:
 
-| 条件 | 选择模式 |
+| Condition | Selection Mode |
 |------|----------|
-| 目标模型为 Seedream / 豆包系列 | 模式A（中文 Prompt） |
-| 目标模型为 Nanobanana / Gemini 系列 | 模式B（英文 JSON Prompt） |
-| 用户未指定模型 | 默认模式A，或询问用户确认 |
-| 批量生成 | 全程保持同一模式，不可中途切换 |
+| Target model is Seedream / Doubao series | Mode A (Chinese Prompt) |
+| Target model is Nanobanana / Gemini series | Mode B (English JSON Prompt) |
+| User did not specify a model | Default to Mode A, or ask the user for confirmation |
+| Batch Generation | Maintain the same mode throughout; switching mid-process is not allowed |
 
-**输出内容规则**：
-- 选择模式A时：仅输出 `[Prompt]` 正文（无负向词，Seedream 不支持）
-- 选择模式B时：仅输出 `[JSON Prompt]` 正文（含 `"negative"` 字段）
-- 除提示词正文外，以下内容默认不输出：分镜标题、参考图绑定说明、台词备注、音效备注、约束检查、资产汇总
+**Output Content Rules**:
+- When mode A is selected: output only the `[Prompt]` body (no negative words, as Seedream does not support them)
+- When mode B is selected: output only the `[JSON Prompt]` body (including the `"negative"` field)
+- Except for the main prompt text, the following content is not output by default: storyboard titles, reference image binding descriptions, dialogue notes, sound effect notes, constraint checks, and asset summaries
 
 ---
 
-## 提示词结构框架（画面描述优先）
+## Prompt Structure Framework (Visual Description First)
 
-### 结构总则
+### General Structural Principles
 
-提示词正文采用**三段式结构**，确保画面描述占据主干地位：
-
-```
-【画面】→ 承载分镜表「画面描述」+「场景」+「景别」+「角色动作」+「情绪」的完整视觉内容（主干，信息密度最高）
-【光影】→ 承载分镜表「光影氛围」的光源、色调、明暗关系（独立成段，避免被风格词挤压）
-【风格】→ 风格锚定词 + 画质锁定词 + 禁止项声明（辅助修饰，简短）
-```
-
-> **篇幅分配原则**：【画面】段为信息密度最高、篇幅最长的段落，须完整承载分镜表「画面描述」的所有视觉元素；【光影】段次之，独立承载光影氛围；【风格】段最短，仅放必要的风格锚定词与画质锁定词。三段顺序不可颠倒、长度不可倒置——若风格词篇幅超过画面段，即为失败产出。
-
-### 模式A：Seedream（API `reference_images`）
-
-机制：参考图通过 API 参数 `reference_images` 传入，prompt 内使用 `@图N` 直接绑定参考图。
-
-Prompt 结构：
+The prompt body adopts a **three-part structure**, ensuring that the visual description occupies the primary position:
 
 ```
-@图1 为{资产名称}{资产类型} @图2 为{资产名称}{资产类型} ... ,
-
-【画面】{场景锚定}，{景别构图词}，{画面描述完整转写——保留所有视觉元素、空间关系、主体动作、朝向、情绪}。
-
-【光影】{光源方向}，{色调倾向}，{明暗关系}，{质感细节}。
-
-【风格】{风格锚定词}，{画质锁定词}，禁止画外字幕、水印、UI 文字。
-
-保持 @图N 面部特征、发型、服饰与参考图完全一致。
+【Screen】→ Carries the complete visual content of the storyboard’s “Screen Description” + “Scene” + “Shot Size” + “Character Action” + “Emotion” (main trunk, highest information density)
+【Light and Shadow】→ Carries the light source, color tone, and light-dark relationships of the storyboard’s “Light and Shadow Atmosphere” (kept as a separate paragraph to avoid being squeezed by style terms)
+[Style] → Style anchor terms + Quality lock terms + Prohibited items declaration (auxiliary modifiers, concise)
 ```
 
-**关键规则**：
-- 【画面】段须完整承载分镜表「画面描述」字段的所有信息，**不得删减**
-- 【画面】段中，角色/场景/道具名称**必须使用 `@图N` 替代**（不用文字名称）
-- 朝向信息须显式写入【画面】段（如"3/4正面朝右"）
-- 不再追加英文段"Based on the reference image... Generate a new scene..."（`@图N` 机制已承担参考图绑定功能，追加英文段会导致画面描述出现两份、容易冲突）
+> **Principle of Length Allocation**: The [Visual] section is the one with the highest information density and the longest length; it must fully carry all the visual elements from the "Visual Description" column of the storyboard table; 【Light and Shadow】The second segment, independently carrying the light and shadow atmosphere; 【Style】Keep the segment as short as possible, including only essential style anchor terms and image quality lock terms. The three segments must not be reordered, and their lengths must not be inverted—if the style words exceed the length of the visual segment, the output is considered a failure.
 
-> `[风格锚定词]`、`[画质锁定词]` 的具体内容由**风格专属技法**定义。
+### Mode A: Seedream (API `reference_images`)
 
-### 模式B：Nanobanana（多模态 + JSON）
+Mechanism: Reference images are passed via the API parameter `reference_images`, and `@ImageN` is used within the prompt to directly bind a reference image.
 
-机制：参考图与 prompt 一起作为多模态输入，prompt 使用结构化 JSON 约束角色一致性。
+Prompt structure:
 
-Prompt 结构（固定框架）：
+```
+@Figure 1 is {Asset Name}{Asset Type} @Figure 2 is {Asset Name}{Asset Type} ... ,
+
+[Frame] {Scene Anchor}, {Shot Type and Composition}, {Complete transcription of the visual description—preserving all visual elements, spatial relationships, subject actions, orientation, and emotions}.
+
+【Light and Shadow】{Light Source Direction}, {Color Tone Tendency}, {Light-Dark Relationship}, {Texture Details}.
+
+[Style] {style anchor term}, {quality lock term}, no off-screen subtitles, watermarks, or UI text.
+
+Maintain the facial features, hairstyle, and clothing of @Image N to be completely consistent with the reference image.
+```
+
+**Key Rule**:
+- [Screen] The segment must fully carry all the information in the "Screen Description" field of the storyboard; **no omissions are allowed**.
+- In the [Scene] section, character/scene/prop names **must be replaced with `@ImageN`** (do not use text names).
+- Orientation information must be explicitly written in the [Scene] section (e.g., "3/4 front facing right").
+- No longer append the English segment "Based on the reference image... Generate a new scene..." (the `@ImageN` mechanism already handles reference image binding; appending the English segment would result in duplicate scene descriptions and potential conflicts)
+
+> The specific content of `[Style Anchor Terms]` and `[Quality Lock Terms]` is defined by **style-specific techniques**.
+
+### Mode B: Nanobanana (Multimodal + JSON)
+
+Mechanism: The reference image and the prompt are used together as multimodal input, with the prompt employing structured JSON to enforce character consistency.
+
+Prompt Structure (Fixed Framework):
 
 ```json
 {
   "role": "You are a cinematographer and storyboard artist. Maintain strict visual continuity across all shots.",
   "character_reference": [
-    { "image": 1, "ref": "@图1", "description": "[外貌关键描述: 发色/发型/服装/体型]" },
-    { "image": 2, "ref": "@图2", "description": "[外貌关键描述]" }
+{ "image": 1, "ref": "@Figure 1", "description": "[Key appearance description: hair color/hair style/clothing/body type]" },
+{ "image": 2, "ref": "@Figure 2", "description": "[Key appearance description]" }
   ],
   "continuity_rules": [
     "Same wardrobe, hairstyle, face features across ALL shots",
@@ -187,223 +187,223 @@ Prompt 结构（固定框架）：
     "Do NOT introduce new characters not in reference images"
   ],
   "shot": {
-    "scene_and_framing": "[场景锚定 + 景别构图词]",
-    "subject_and_action": "[主体动作 + 朝向 + 情绪 + 所有画面描述中的视觉元素，使用@图N替代角色/场景名]",
-    "lighting": "[光源方向 + 色调 + 明暗关系 + 质感]",
-    "style": "[风格锚定词 + 画质锁定词]"
+"scene_and_framing": "[Scene anchoring + shot size and composition terms]",
+"subject_and_action": "[Subject action + direction + emotion + all visual elements from the scene description, using @ImageN to replace character/scene names]",
+"lighting": "[light source direction + color tone + light-dark relationship + texture]",
+"style": "[style anchor term + image quality lock term]"
   },
-  "negative": "[负向词模板，含 no subtitles, no watermark, no UI text]（具体词条由风格专属技法定义）"
+"negative": "[Negative prompt template, including no subtitles, no watermark, no UI text] (specific terms are defined by style-specific techniques)"
 }
 ```
 
-**关键规则**：
-- `shot` 字段拆分为 4 个子字段，强制画面描述独占 `scene_and_framing` 和 `subject_and_action` 两个位置，避免被风格词挤压
-- `subject_and_action` 是信息密度最高的字段，须完整承载分镜表「画面描述」+「角色动作」+「情绪」
-- 参考图作为图片输入，不是 URL 文本
-- 角色描述保持 1-2 句关键特征，避免冗长
+**Key Rule**:
+- The `shot` field is split into four subfields, forcing the visual description to exclusively occupy the `scene_and_framing` and `subject_and_action` positions, preventing it from being squeezed out by style terms.
+- `subject_and_action` is the field with the highest information density and must fully carry the storyboard's "Visual Description" + "Character Action" + "Emotion"
+- The reference image is used as an image input, not as URL text
+- Keep character descriptions to 1–2 key features, avoiding verbosity
 
 ---
 
-## 通用语言与质量规范
+## General Language and Quality Standards
 
-- 模式A（Seedream）优先中文自然语言段落
-- 模式B（Nanobanana）优先英文 JSON 结构化提示词
-- 提示词聚焦"内容表现 + 画质锐利"，避免模糊类词
-- 不使用会导致糊图的表达（见下方「画质降级禁用词」表）
-- 模式B 负向词按风格专属「负向词模板」输出，每条必须包含，不可省略；模式A 不输出负向词
-- 画质锁定词按风格专属「画质锁定词」模板输出，每条必须包含
-
----
-
-## 画外文字 vs 画内文字规则
-
-- **画外文字**（字幕、水印、标题卡、旁白叠字等 UI 层覆盖文字）→ **绝对禁止**，必须在【风格】段和负向词中声明禁止
-- **画内文字**（场景中自然存在的文字道具：角色提笔写字、书卷上的字迹、匾额牌匾、书信内容、路标、店铺招牌等）→ **属于场景道具**，当分镜画面描述中明确包含此类内容时，应在【画面】段正常描述其存在，不受禁止文字规则限制
-- **判断标准**：该文字是否存在于**故事世界内部**。匾额上的字 = 画内道具 ✅；画面底部的角色对白 = 画外字幕 ❌
+- Mode A (Seedream) prioritizes natural Chinese language paragraphs
+- Mode B (Nanobanana) prioritizes English JSON structured prompts
+- The prompt focuses on "content presentation + sharp image quality," avoiding blur-related terms
+- Do not use expressions that would result in a blurry image (see the "Prohibited Terms for Quality Degradation" table below)
+- Mode B: Negative words are output according to the style-specific "Negative Word Template"; each entry must be included and cannot be omitted. Mode A does not output negative words
+- Quality lock words are output according to the style-specific “Quality Lock Words” template, and each entry must include
 
 ---
 
-## 画质降级禁用词（所有风格通用）
+## Off-screen Text vs. On-screen Text Rules
 
-| 禁用写法 | 模型行为 | 安全替代 |
+- **Off-screen text** (subtitles, watermarks, title cards, voiceover overlays, and other UI-layer text overlays) → **Strictly prohibited**; must be declared as prohibited in the [Style] section and in the negative prompt.
+- **In-frame text** (text props that naturally exist within the scene: characters writing with a brush, characters on scrolls, plaques and signboards, letter contents, road signs, shop signs, etc.) → **belongs to scene props**. When the storyboard frame description explicitly includes such content, its presence should be described normally in the [Visual] section and is not subject to the no-text rule.
+- **Criterion**: Whether the text exists **within the story world**. The characters on the plaque = props within the painting ✅; Character dialogue at the bottom of the screen = off-screen subtitles ❌
+
+---
+
+## Quality Degradation Prohibited Terms (Common to All Styles)
+
+| Forbidden Pattern | Model Behavior | Safe Alternative |
 |---------|---------|----------|
-| `film grain` / `胶片颗粒` | 全图加噪点变糊 | `subtle cinematic texture` / `轻微电影质感` |
-| `imperfect focus` / `失焦` | 全图失焦 | 直接删除 |
-| `edges not perfectly sharp` | 边缘变糊 | 直接删除 |
-| `slight natural deviation` | 整体降分辨率 | 直接删除 |
-| `not completely stable` | 画面模糊 | 直接删除 |
-| `blurry background`（滥用） | 主体跟着糊 | `background bokeh, subject in sharp focus` |
-| `hazy` / `foggy`（滥用） | 全图雾化 | 仅在空气透视需求时用，同时加 `subject sharp` |
-| `柔焦` / `朦胧感` | 降低整体锐度 | 直接删除 |
+| `film grain` / `Film grain` | Adds noise to the entire image, making it blurry | `subtle cinematic texture` / `Subtle cinematic texture` |
+| `imperfect focus` / `Out of focus` | Out-of-focus across the entire image | Delete directly |
+| `edges not perfectly sharp` | edges become blurred | delete directly |
+| `slight natural deviation` | Overall resolution reduction | Direct deletion |
+| `not completely stable` | Blurry screen | Delete directly |
+| `blurry background` (misuse) | Subject becomes blurred | `background bokeh, subject in sharp focus` |
+| `hazy` / `foggy` (misuse) | Full-image haze | Use only when aerial perspective is required, and add `subject sharp` at the same time |
+| `Soft Focus` / `Hazy Feel` | Reduce overall sharpness | Delete directly |
 
-> **核心原则**：内容可以"不完美"（光线不均、构图非对称），画质必须锐利。
-
----
-
-## 批量处理规范
-
-用户输入多行分镜表时：
-
-1. **逐行顺序处理**，不跳行、不合并
-2. 每条分镜仅输出目标模式的提示词正文（Prompt 或 JSON Prompt）
-3. 若同一场景连续多镜，**场景质感词可复用**，但情绪/光线/景别/动作必须**按行独立处理**
-4. 关联资产名称相同的镜次，**一致性标注词必须一致**
-5. 不追加任何非提示词区块（如资产引用汇总、台词/音效备注、约束检查）
+> **Core Principle**: Content may be "imperfect" (uneven lighting, asymmetric composition), but image quality must be sharp.
 
 ---
 
-## 图像资产标注规则
+## Batch Processing Specification
 
-每条分镜的 `prompt` 字段必须以**图像资产标注**作为前缀，且**提示词正文中使用 `@图N` 直接替代对应的角色/场景/道具名称**，建立参考图与画面描述的直接绑定关系。标注按 `associateAssetsIds` 中资产的引用顺序，从 `@图1` 开始依次编号。
+When the user inputs a multi-line storyboard:
 
-**格式**：`@图1 为{资产名称}{资产类型} @图2 为{资产名称}{资产类型} ... , 正文中使用@图N替代角色/场景名称的提示词`
+1. **Process line by line in order**, without skipping lines or merging
+2. For each storyboard, output only the prompt body in the target format (Prompt or JSON Prompt).
+3. If the same scene spans multiple consecutive shots, **scene texture terms may be reused**, but emotion/lighting/shot size/action must be **handled independently per line**.
+4. Associate mirror instances with the same related asset name; **consistency annotation terms must be identical**
+5. Do not append any non-prompt blocks (such as asset reference summaries, dialogue/sound effect notes, or constraint checks).
 
-**类型映射**：
+---
 
-| 资产 type | 标注类型词 |
+## Image Asset Annotation Rules
+
+The `prompt` field of each storyboard shot must be prefixed with **image asset annotations**, and the **prompt body must directly replace the corresponding character/scene/prop names with `@Image N`**, establishing a direct binding between reference images and the visual description. Annotations are numbered sequentially starting from `@Figure 1`, following the order of asset references in `associateAssetsIds`.
+
+**Format**: `@Figure 1 is {Asset Name}{Asset Type} @Figure 2 is {Asset Name}{Asset Type} ... , use @Figure N in the body text to replace character/scene name prompts`
+
+**Type Mapping**:
+
+| Asset type | Annotation type word |
 |-----------|------------|
-| role      | 角色       |
-| tool      | 道具       |
-| scene     | 场景       |
-| clip      | 片段       |
+| role      | Role       |
+| tool      | item       |
+| scene     | scene       |
+| clip      | segment    |
 
-**规则**：
-- 编号从 `@图1` 起，按 `associateAssetsIds` 数组顺序依次递增
-- 每个引用的资产 ID 对应一个标注项，**不可遗漏、不可多出**
-- 资产名称使用 assets 数据中该资产的 `name` 字段
-- 资产类型根据上方类型映射表填写
-- 标注部分与提示词正文之间用 `, ` 分隔
-- 衍生资产沿用其自身 `name` 和父资产的 `type`
-- **正文绑定（核心）**：提示词正文中，所有原本应出现角色名/场景名/道具名的位置，**必须替换为对应的 `@图N` 标记**，不再使用文字名称。这样参考图与画面中的视觉主体形成直接指向关系，避免资产名称与角色名称不一致导致的歧义（例如：当衍生资产的名称与原角色名不一致时，使用 `@图N` 可绕开名称歧义直接指向参考图）
-- 同一 `@图N` 在正文中可多次出现（如角色在前景和反射面中同时可见时）
+**Rules**:
+- Numbering starts from `@Figure 1` and increments sequentially according to the order of the `associateAssetsIds` array
+- Each referenced asset ID corresponds to one annotation item; **no omissions or extras are allowed**.
+- Use the `name` field of the asset in the assets data for the asset name
+- Fill in the asset type according to the type mapping table above
+- Separate the annotation part from the prompt body with `, `
+- Derived assets retain their own `name` and the parent asset's `type`
+- **Body Binding (Core)**: In the prompt body, all positions where character names, scene names, or prop names should originally appear **must be replaced with the corresponding `@Image N` markers**, and text names are no longer used. This way, the reference image forms a direct pointing relationship with the visual subject in the frame, avoiding ambiguity caused by inconsistencies between asset names and character names (for example: when the name of a derivative asset does not match the original character name, using `@Image N` can bypass the name ambiguity and directly point to the reference image).
+- The same `@Figure N` may appear multiple times in the body text (e.g., when a character is visible simultaneously in the foreground and in a reflective surface).
 
-**示例**（假设 `associateAssetsIds="[A, B, C]"` 对应 角色甲(role)、角色乙(role)、某场景(scene)）：
+**Example** (assuming `associateAssetsIds="[A, B, C]"` corresponds to Character A (role), Character B (role), and a certain scene (scene)):
 
-❌ 错误（正文使用文字名称，与前缀标注脱节）：
+❌ Error (the body uses text names, which is inconsistent with the prefix labels):
 ```
-@图1 为角色甲角色 @图2 为角色乙角色 @图3 为某场景场景, 角色甲冷笑，居高临下看着跪地的角色乙，场景内柱影深沉……
+@Image 1 is Character A, @Image 2 is Character B, @Image 3 is a certain scene. Character A sneers, looking down at Character B who is kneeling on the ground, with deep shadows cast by the pillars in the scene...
 ```
 
-✅ 正确（正文使用 @图N 直接绑定参考图）：
+✅ Correct (the body text uses @ImageN to directly bind the reference image):
 ```
-@图1 为角色甲角色 @图2 为角色乙角色 @图3 为某场景场景,
+@Figure 1 is Character A, @Figure 2 is Character B, @Figure 3 is a certain scene,
 
-【画面】@图3 内，中景构图，@图1 身形挺立于画面左侧，3/4侧面朝右，嘴角微扬冷笑，居高临下俯视跪于画面右侧地面的@图2；@图2 俯身伏地，3/4背面朝左，双手撑地，肩背紧绷……
+[Frame] Within @Image 3, medium shot composition, @Image 1 stands upright on the left side of the frame, in a 3/4 profile facing right, with a slight smirk at the corner of the mouth, looking down from a superior position at @Image 2 kneeling on the ground on the right side of the frame; @Figure 2 Crouched on the ground, three-quarter back view facing left, hands braced on the floor, shoulders and back tense...
 ```
 
 ---
 
-## 人物位置与朝向连贯性规则
+## Rules for Character Position and Orientation Coherence
 
-生成每条 prompt 时，须遵守以下跨分镜人物位置与朝向一致性约束。
+When generating each prompt, the following cross-shot character position and orientation consistency constraints must be observed.
 
-### 一、朝向获取规则（从分镜表获取人物面部朝向）
+### I. Orientation Retrieval Rules (Obtaining Character Facial Orientation from the Storyboard Table)
 
-分镜表的「角色动作」字段已包含 `｜朝向：` 显式标注，提示词生成时**优先直接提取**，并在 prompt 中**显式写入**对应朝向方位词（如 `facing right` / `面朝右`、`three-quarter view facing left` / `3/4侧面朝左`）。
+The "Character Action" field in the storyboard table already includes the explicit `｜Facing:` annotation. When generating prompts, **prioritize direct extraction** and **explicitly write** the corresponding directional terms (e.g., `facing right` / `Facing right`, `three-quarter view facing left` / `3/4Side facing left`) into the prompt.
 
-**获取优先级**（高→低）：
+**Priority Retrieval** (High → Low):
 
-| 优先级 | 线索来源 | 处理逻辑 |
+| Priority | Lead Source | Processing Logic |
 |--------|---------|----------|
-| **1** | **角色动作字段的 `｜朝向：` 标注** | 分镜表已显式标注 → **直接采用**，无需推断 |
-| 2 | **画面描述中的显式方位词** | 画面描述直接提及朝向（如"背对镜头""望向窗外""面朝观众"）→ 直接采用（仅当优先级1缺失时） |
-| 3 | **多角色空间关系（180° 视轴线）** | 对话/对峙/互动场景中，两角色面朝彼此：画面左侧角色面朝右，画面右侧角色面朝左。首次出场建立基准后全场景锁定 |
-| 4 | **景别暗示** | 过肩镜：前景人物背对/侧背对镜头，远景人物面朝镜头方向；特写/近景独白：默认 3/4 侧面 |
-| 5 | **情绪与叙事语义** | 孤独/沉思/回忆 → 侧面轮廓或3/4背面；对抗/质问 → 正面或3/4正面朝向对方；躲避/羞涩 → 微侧头避开对方 |
-| 6 | **场景空间逻辑** | 门口迎客 → 面朝门外；眺望风景 → 面朝风景方向；伏案书写 → 面朝桌面低头 |
+| **1** | **The `｜Facing:` annotation in the character action field** | Explicitly annotated in the storyboard table → **adopt directly**, no inference needed |
+| 2 | **Explicit directional terms in the visual description** | The visual description directly mentions orientation (e.g., "facing away from the camera," "looking out the window," "facing the audience") → Adopt directly (only when Priority 1 is absent) |
+| 3 | **Multi-character spatial relationships (180° eyeline)** | In dialogue/confrontation/interaction scenes, two characters face each other: the character on the left side of the frame faces right, and the character on the right side of the frame faces left. First appearance establishes baseline, then full-scene lock |
+| 4 | **Shot Type Implication** | Over-the-shoulder shot: the foreground figure is facing away from or in profile to the camera, while the background figure faces the camera; Close-up/medium close-up monologue: default 3/4 profile |
+| 5 | **Emotional and Narrative Semantics** | Loneliness/Contemplation/Memory → Profile or 3/4 rear view; Confrontation/interrogation → facing the other person directly or at a 3/4 angle; Avoidance/Shyness → Slightly tilting the head to avoid the other person |
+| 6 | **Scene Spatial Logic** | Greeting at the entrance → facing outward; Gazing at the scenery → Facing the direction of the scenery; Writing at a desk → Head down facing the desk |
 
-> **常规情况下只需读取优先级1**，分镜表已在源头标注完成。优先级2~6仅作为分镜表标注缺失时的兜底推断。
+> **Under normal circumstances, only Priority 1 needs to be read**; the storyboard table has already been annotated at the source. Priorities 2–6 serve only as fallback inferences when storyboard annotations are missing.
 
-**获取步骤**：
-1. 读取分镜表当前行「角色动作」字段中 `｜朝向：` 后的标注内容
-2. 若标注存在且完整 → 直接采用，跳过后续优先级
-3. 若标注缺失（如空镜行）→ 按优先级2~6逐条推断
-4. 将获取到的朝向信息写入 prompt 中对应角色的描述位置
+**Acquisition Steps**:
+1. Read the annotation content following `｜Facing:` in the "Character Action" field of the current row in the storyboard table
+2. If the annotation exists and is complete → adopt it directly, skipping subsequent priorities
+3. If annotations are missing (e.g., empty shot lines) → infer sequentially according to priorities 2–6
+4. Write the retrieved orientation information into the corresponding character description position in the prompt
 
-**朝向词库**：
+**Orientation Vocabulary**:
 
-| 朝向类型 | 模式A（中文） | 模式B（英文） | 适用场景 |
+| Orientation Type | Mode A (Chinese) | Mode B (English) | Applicable Scenarios |
 |---------|-------------|-------------|---------|
-| 正面 | 正面面朝镜头 | facing camera, front view | 自我宣言、直接对抗观众视线 |
-| 3/4正面 | 3/4侧面微朝镜头 | three-quarter view facing camera | 对话主体、情感传递 |
-| 正侧面 | 正侧面轮廓 | profile view, side view | 独白、沉思、对峙剪影 |
-| 3/4背面 | 3/4侧背面 | three-quarter back view | 离去、疏离、回忆 |
-| 背面 | 背对镜头 | back view, from behind | 神秘登场、离别、遥望 |
-| 面朝左 | 面朝画面左侧 | facing left | 180°线右侧角色、朝左侧目标 |
-| 面朝右 | 面朝画面右侧 | facing right | 180°线左侧角色、朝右侧目标 |
-| 微低头 | 微微低头 | slightly looking down | 悲伤、内疚、沉思 |
-| 微仰头 | 微微仰头 | slightly looking up | 傲慢、仰望、期待 |
+| Front | Front facing the camera | facing camera, front view | Self-declaration, direct confrontation with the viewer's gaze |
+| 3/4 front | 3/4 side slightly toward camera | three-quarter view facing camera | Dialogue subject, emotional conveyance |
+| Frontal side | Frontal side profile | profile view, side view | monologue, contemplation, confrontation silhouette |
+| 3/4 back | 3/4 side back | three-quarter back view | departure, alienation, memory |
+| Back | Facing away from the camera | back view, from behind | Mysterious entrance, parting, gazing from afar |
+| Facing left | Facing the left side of the screen | facing left | Characters on the right side of the 180° line, facing leftward targets |
+| Facing right | Facing the right side of the screen | facing right | Characters on the left side of the 180° line, facing right-side targets |
+| Slight head tilt | Slightly looking down | slightly looking down | Sadness, guilt, contemplation |
+| Slightly looking up | Slightly looking up | slightly looking up | arrogance, looking up, anticipation |
 
-> 朝向标注须同时包含**水平朝向**（面朝左/右/镜头）和**俯仰倾向**（如有），如"3/4侧面朝右，微微仰头"。
+> Orientation annotations must include both **horizontal orientation** (facing left/right/camera) and **pitch tendency** (if applicable), such as "3/4 side view facing right, slightly looking up."
 
-### 二、位置与朝向锁定规则
+### II. Position and Orientation Locking Rules
 
-- **画面位置锁定**：同一角色在同一场景内的多条分镜中，其画面左右位置（画面左侧 / 中央 / 右侧）须保持固定，不得无叙事理由地跳侧
-- **朝向守恒**：对话/对峙场景遵循 180° 视轴线——角色A面朝右则全场景保持面朝右，角色B面朝左则全场景保持面朝左；prompt 中须通过方位词（facing left / 面朝左、on the left side of frame / 画面左侧等）显式标注
-- **前后景层次一致**：若角色A在分镜N中处于前景、角色B处于中景，则同场景后续分镜中二者前后关系不应无理由反转
-- **位置变化须有动作衔接**：角色画面位置确需变化时（如角色走动、转身），前序分镜的 prompt 中须包含对应位移/转身动作描写，不可凭空跳位
-- **朝向变化须有动作衔接**：角色朝向确需变化时（如转头、回身），当前分镜的 prompt 中须包含转向动作描写（如"微微转头朝向画面左侧"），且该转向须与分镜表「角色动作」字段一致，不可凭空改向
-- **跨场景可重置**：切换到全新场景时允许重新分配画面位置与朝向，但新场景内部仍须保持一致
+- **Screen Position Lock**: For a character appearing in multiple shots within the same scene, their left/right position on screen (left / center / right) must remain fixed and must not switch sides without a narrative reason.
+- **Orientation Preservation**: Dialogue/confrontation scenes follow the 180° axis of action—Character A facing right remains facing right throughout the scene, and Character B facing left remains facing left throughout the scene; In the prompt, explicit annotations must be provided using directional terms (e.g., facing left / Facing left, on the left side of the frame / Left side of the screen, etc.).
+- **Consistent foreground/background layering**: If character A is in the foreground and character B is in the midground in storyboard N, their relative front-back relationship should not be reversed without reason in subsequent storyboards of the same scene.
+- **Position changes must be accompanied by action transitions**: When a character's on-screen position needs to change (e.g., walking, turning), the prompt for the preceding storyboard shot must include a description of the corresponding movement/turning action; abrupt position jumps are not allowed.
+- **Orientation changes must be accompanied by a connecting action**: When a character's orientation genuinely needs to change (e.g., turning the head, turning around), the prompt for the current storyboard shot must include a description of the turning action (e.g., "slightly turns head toward the left side of the frame"), and this turn must be consistent with the "Character Action" field in the storyboard table; arbitrary changes in orientation are not permitted.
+- **Cross-scene reset**: When switching to a new scene, reassigning screen positions and orientations is allowed, but consistency must still be maintained within the new scene.
 
-### 三、反射面视觉关系
+### III. Visual Relationships of Reflective Surfaces
 
-当画面中存在反射介质（镜面、水面、光滑金属、窗玻璃、相机镜头等）时，须注意以下规则：
+When reflective media (mirrors, water surfaces, smooth metals, window glass, camera lenses, etc.) are present in the frame, the following rules must be observed:
 
-- **镜像翻转**：反射面中角色的左右朝向与实体相反（实体面朝右→镜像面朝左），prompt 中须显式标注反射体与实体的朝向关系（如"@图1 面朝右，水面倒影中@图1 面朝左"）
-- **反射面不改变位置基准**：角色的画面位置以实体为准，反射面中的映像不视为角色位置变化
-- **反射面内容与实体一致**：反射面中可见的角色服饰、发型、表情等必须与同帧实体一致，不可出现偏差
-- **反射面景深与清晰度**：根据反射面距离和材质，反射图像可适当降低清晰度（如水面波纹导致的模糊），但须在 prompt 中标注（如"水面倒影微微扭曲"）
-- **识别触发**：当分镜画面描述或场景资产中包含镜面、水面、湖面、溪流、玻璃、金属反光、相机/摄像等反射性元素时，自动触发本规则
+- **Mirror Flip**: The character's left-right orientation in the reflection is opposite to that of the entity (entity facing right → mirror facing left). The prompt must explicitly specify the orientation relationship between the reflection and the entity (e.g., "@Image 1 faces right, and in the water reflection, @Image 1 faces left").
+- **Reflective surfaces do not change the positional reference**: A character's on-screen position is based on the entity; the reflection in a reflective surface is not considered a change in the character's position.
+- **Reflection surface content matches the entity**: The character’s clothing, hairstyle, expression, and other details visible on the reflection surface must be consistent with the entity in the same frame; no discrepancies are allowed.
+- **Depth of Field and Sharpness of Reflection Surfaces**: Based on the distance and material of the reflective surface, the reflected image may have appropriately reduced sharpness (e.g., blurring caused by water ripples), but this must be specified in the prompt (e.g., "slightly distorted water reflection").
+- **Trigger Identification**: This rule is automatically triggered when the storyboard frame description or scene assets contain reflective elements such as mirrors, water surfaces, lakes, streams, glass, metallic reflections, cameras/camcorders, etc.
 
 ---
 
-## 附：完整产出示例
+## Appendix: Complete Output Example
 
-以下示范一条分镜从输入到输出的完整流程，供 Agent 参考。本示例使用抽象占位符（角色甲、某场景、道具X 等），实际应用时替换为分镜表的具体内容。
+The following demonstrates the complete workflow of a storyboard from input to output, for Agent reference. This example uses abstract placeholders (Character A, a certain scene, Prop X, etc.). In actual application, replace them with the specific content from the storyboard.
 
-### 输入（分镜表某行）
+### Input (a row from the storyboard table)
 
-| 字段 | 内容 |
+| Field | Content |
 |------|------|
-| 画面描述 | 开场黑场淡入，某场景出口大远景，人流涌动，醒目指示物立于画面右侧，角色甲背着道具X 独行人流中，镜头缓推至中景，他手攥道具Y 忽然停步仰望指示物，眼神紧张而笃定 |
-| 场景 | 某场景出口 |
-| 景别 | 远景→中景 |
-| 角色动作 | 背包步行前行→忽然停步→抬头仰望指示物→手攥道具Y 微紧｜朝向：3/4正面朝右 |
-| 情绪 | 局促与笃定并存 |
-| 光影氛围 | 左侧柔和晨光均匀铺洒，暖黄底色轻染地面，指示物受光清晰，人影逆光偏暗形成轮廓感 |
-| 关联资产ID | [a, b, c, d] → 角色甲(role)、道具X(tool)、道具Y(tool)、某场景出口(scene) |
+| Screen Description | Fade in from black, wide long shot of a scene exit, crowd surging, a prominent sign standing on the right side of the frame, Character A carrying Prop X walking alone through the crowd, camera slowly pushes in to a medium shot, he grips Prop Y in his hand, suddenly stops and looks up at the sign, his eyes tense yet resolute |
+| Scene | Exit of a certain scene |
+| Shot Type | Long Shot → Medium Shot |
+| Character Action | Backpack walking forward → suddenly stops → looks up at the indicator → hand grips prop Y slightly tighter | Orientation: 3/4 front facing right |
+| Emotion | A coexistence of unease and certainty |
+| Light and Atmosphere | Soft morning light evenly spreads from the left, with a warm yellow base lightly tinting the ground; the indicator object is clearly illuminated, while the human figure is backlit and appears darker, creating a silhouette effect |
+| Related Asset ID | [a, b, c, d] → Character A (role), Item X (tool), Item Y (tool), a scene exit (scene) |
 
-### 输出（模式A · Seedream）
+### Output (Mode A · Seedream)
 
 ```
-@图1 为角色甲角色 @图2 为道具X 道具 @图3 为道具Y 道具 @图4 为某场景出口场景,
+@Image 1 is Character A, @Image 2 is Prop X, @Image 3 is Prop Y, @Image 4 is a scene exit,
 
-【画面】@图4，开场自黑场淡入，大远景构图，人流涌动穿行，画面右侧醒目立有指示物；@图1 背着@图2 独行于人流之中，手中紧攥@图3，身体3/4正面朝右，停步于人群之间，抬头仰望画面右侧的指示物，眼神紧张而笃定，面容局促中透着决意。
+[Visual] @Image 4, fade in from black, wide long shot, crowds surging and moving through the frame, a prominent signpost standing on the right side of the frame; @Figure 1 carries @Figure 2 while walking alone through the crowd, gripping @Figure 3 tightly in hand, positioned in a three-quarter frontal view facing right, pausing among the people, looking up at the sign on the right side of the frame, with a tense yet resolute gaze, and a face that appears uneasy yet determined.
 
-【光影】左侧柔和晨光均匀铺洒，暖黄底色轻染地面，指示物受光清晰明亮，周围人影逆光偏暗形成剪影轮廓，@图1 身形半受光半逆光，面部轮廓微亮。
+【Light and Shadow】Soft morning light evenly spreads from the left, with a warm yellow base tone lightly tinting the ground. The indicator object is clearly and brightly illuminated, while surrounding figures are backlit and appear darker, forming silhouette outlines. @Image 1 is half-lit and half-backlit, with a slightly bright facial contour.
 
-【风格】{风格锚定词}，{画质锁定词}，禁止画外字幕、水印、UI 文字。
+[Style] {style anchor term}, {quality lock term}, no off-screen subtitles, watermarks, or UI text.
 
-保持 @图1 面部特征、发型、服饰与参考图完全一致。
+Maintain the facial features, hairstyle, and clothing of @Image 1 to be completely consistent with the reference image.
 ```
 
-> 【风格】段中的 `{风格锚定词}` `{画质锁定词}` 由风格专属技法（`director_storyboard`）提供，本通用规范不写死具体词条。
+> The `{style anchor terms}` and `{quality lock terms}` in the 【Style】 section are provided by the style-specific technique (`director_storyboard`); this general specification does not hardcode specific terms.
 
-### 校验比对
+### Validation Comparison
 
-| 分镜表字段 | 提示词体现位置 | 是否一致 |
+| Storyboard Field | Prompt Location | Consistent? |
 |-----------|---------------|---------|
-| 开场黑场淡入 | 【画面】"开场自黑场淡入" | ✅ |
-| 某场景出口 | 【画面】"@图4" | ✅ |
-| 大远景（首帧起始端） | 【画面】"大远景构图" | ✅ |
-| 人流涌动 | 【画面】"人流涌动穿行" | ✅ |
-| 指示物在右侧 | 【画面】"画面右侧醒目立有指示物" | ✅ |
-| 角色甲背道具X 独行 | 【画面】"@图1 背着@图2 独行于人流之中" | ✅ |
-| 手攥道具Y | 【画面】"手中紧攥@图3" | ✅ |
-| 停步仰望指示物 | 【画面】"停步于人群之间，抬头仰望画面右侧的指示物" | ✅ |
-| 朝向3/4正面朝右 | 【画面】"身体3/4正面朝右" | ✅ |
-| 紧张而笃定 | 【画面】"眼神紧张而笃定" | ✅ |
-| 左侧晨光+暖黄底色 | 【光影】"左侧柔和晨光均匀铺洒，暖黄底色" | ✅ |
-| 人影逆光剪影 | 【光影】"人影逆光偏暗形成剪影轮廓" | ✅ |
+| Fade in from black at the opening | [Visual] "Fade in from black at the opening" | ✅ |
+| Scene Exit | [Visual] "@Figure 4" | ✅ |
+| Extreme long shot (starting end of the first frame) | [Visual] "Extreme long shot composition" | ✅ |
+| Surging crowds | [Visual] "Surging crowds weaving through" | ✅ |
+| Indicator on the right | [Screen] "A prominent indicator is placed on the right side of the screen" | ✅ |
+| Character A carries prop X and walks alone | [Visual] "@Figure 1 carrying Figure 2 walks alone through the crowd" | ✅ |
+| Hand gripping prop Y | [Screen] "Tightly gripping @Image 3 in hand" | ✅ |
+| Stop and Look Up at the Indicator | [Scene] "Stop among the crowd and look up at the indicator on the right side of the frame" | ✅ |
+| Facing 3/4 front to the right | [Frame] "Body 3/4 front to the right" | ✅ |
+| Tense yet resolute | [Visual] "Tense yet resolute gaze" | ✅ |
+| Left-side morning light + warm yellow background | 【Light and Shadow】 "Soft morning light evenly spreads from the left, warm yellow background" | ✅ |
+| Human silhouette against backlight | [Light and Shadow] "The human figure appears dark against the backlight, forming a silhouette outline" | ✅ |
 
-**零遗漏，校验通过。**
+**No omissions, verification passed.** **

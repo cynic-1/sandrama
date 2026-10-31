@@ -1,89 +1,902 @@
 <!doctype html>
-<html lang="zh-CN">
+<html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>SandDrama · 用户管理</title>
+  <link rel="icon" type="image/png" href="./studio-logo.png" />
+  <title>SandDrama · User Management & Account Center</title>
   <style>
-    :root { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; color: #1f2937; background: #f5f7fb; }
-    body { max-width: 1080px; margin: 0 auto; padding: 32px 20px; }
-    .card { background: #fff; border-radius: 12px; padding: 22px; margin-bottom: 18px; box-shadow: 0 4px 18px #14213d12; }
-    h1 { margin: 0 0 8px; } h2 { margin-top: 0; font-size: 18px; }
-    .muted { color: #6b7280; font-size: 13px; }
-    form { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px; align-items: end; }
-    label { display: grid; gap: 6px; font-size: 13px; color: #4b5563; }
-    input, select, button { box-sizing: border-box; width: 100%; min-height: 38px; border: 1px solid #d1d5db; border-radius: 7px; padding: 7px 10px; background: #fff; }
-    button { cursor: pointer; border: 0; background: #2563eb; color: #fff; font-weight: 600; }
-    button.danger { background: #dc2626; } button.secondary { background: #6b7280; }
-    table { width: 100%; border-collapse: collapse; } th, td { padding: 11px 8px; text-align: left; border-bottom: 1px solid #e5e7eb; font-size: 14px; }
-    .actions { display: flex; gap: 7px; } .actions button { width: auto; min-height: 30px; }
-    #message { min-height: 20px; margin-top: 10px; color: #2563eb; } .error { color: #dc2626 !important; }
-    @media (max-width: 760px) { form { grid-template-columns: 1fr 1fr; } table { display: block; overflow-x: auto; white-space: nowrap; } }
+    :root {
+      --bg-0: #070913;
+      --bg-1: #0d1224;
+      --bg-2: #131b35;
+      --card: rgba(17, 24, 48, 0.78);
+      --card-border: rgba(148, 163, 184, 0.16);
+      --text: #f8fafc;
+      --muted: #94a3b8;
+      --primary: #7c3aed;
+      --primary-hover: #6d28d9;
+      --accent: #06b6d4;
+      --success: #10b981;
+      --warning: #f59e0b;
+      --danger: #ef4444;
+      font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      color: var(--text);
+      background: var(--bg-0);
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      min-height: 100vh;
+      background:
+        radial-gradient(circle at 12% 10%, rgba(124, 58, 237, 0.22), transparent 36%),
+        radial-gradient(circle at 88% 15%, rgba(6, 182, 212, 0.18), transparent 36%),
+        linear-gradient(180deg, var(--bg-0) 0%, var(--bg-1) 100%);
+      color: var(--text);
+    }
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 30;
+      backdrop-filter: blur(16px);
+      background: rgba(7, 9, 19, 0.8);
+      border-bottom: 1px solid var(--card-border);
+    }
+    .topbar-inner {
+      max-width: 1240px;
+      margin: 0 auto;
+      padding: 14px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+    }
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      text-decoration: none;
+      color: var(--text);
+    }
+    .brand img {
+      height: 36px;
+      width: auto;
+      object-fit: contain;
+    }
+    .brand-badge {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 4px 10px;
+      border-radius: 999px;
+      background: linear-gradient(135deg, rgba(124, 58, 237, 0.25), rgba(6, 182, 212, 0.25));
+      border: 1px solid rgba(124, 58, 237, 0.45);
+      color: #e2e8f0;
+    }
+    .nav-actions {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+    .container {
+      max-width: 1240px;
+      margin: 0 auto;
+      padding: 28px 24px 64px;
+    }
+    .hero-banner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+      padding: 24px 28px;
+      border-radius: 20px;
+      background: linear-gradient(135deg, rgba(124, 58, 237, 0.22), rgba(6, 182, 212, 0.12));
+      border: 1px solid rgba(124, 58, 237, 0.32);
+      margin-bottom: 24px;
+      flex-wrap: wrap;
+    }
+    .hero-banner h1 {
+      margin: 0 0 6px;
+      font-size: 26px;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+    }
+    .hero-banner p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 14px;
+    }
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 16px;
+      margin-bottom: 24px;
+    }
+    .stat-card {
+      background: var(--card);
+      border: 1px solid var(--card-border);
+      border-radius: 16px;
+      padding: 18px 20px;
+      backdrop-filter: blur(12px);
+    }
+    .stat-label {
+      color: var(--muted);
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      margin-bottom: 8px;
+    }
+    .stat-value {
+      font-size: 28px;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+    }
+    .stat-sub {
+      margin-top: 4px;
+      font-size: 12px;
+      color: var(--muted);
+    }
+    .layout-grid {
+      display: grid;
+      grid-template-columns: 360px 1fr;
+      gap: 22px;
+      align-items: start;
+    }
+    .layout-grid > div { min-width: 0; }
+    .card {
+      background: var(--card);
+      border: 1px solid var(--card-border);
+      border-radius: 18px;
+      padding: 22px;
+      margin-bottom: 20px;
+      backdrop-filter: blur(14px);
+      box-shadow: 0 16px 40px rgba(0, 0, 0, 0.28);
+    }
+    .card-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      margin-bottom: 16px;
+    }
+    .card-title {
+      margin: 0;
+      font-size: 17px;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .muted {
+      color: var(--muted);
+      font-size: 13px;
+    }
+    label {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      font-size: 13px;
+      color: #cbd5e1;
+      font-weight: 500;
+    }
+    input, select {
+      width: 100%;
+      height: 40px;
+      border-radius: 10px;
+      border: 1px solid rgba(148, 163, 184, 0.24);
+      background: rgba(15, 23, 42, 0.75);
+      color: var(--text);
+      padding: 0 12px;
+      font-size: 14px;
+      outline: none;
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
+    input:focus, select:focus {
+      border-color: var(--primary);
+      box-shadow: 0 0 0 3px rgba(124, 58, 237, 0.22);
+    }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      height: 40px;
+      padding: 0 16px;
+      border-radius: 10px;
+      border: 1px solid transparent;
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+      text-decoration: none;
+      transition: all 0.18s ease;
+      color: var(--text);
+      background: var(--primary);
+    }
+    .btn:hover { background: var(--primary-hover); transform: translateY(-1px); }
+    .btn:disabled { opacity: 0.55; cursor: not-allowed; transform: none; }
+    .btn-outline {
+      background: rgba(255, 255, 255, 0.04);
+      border-color: rgba(148, 163, 184, 0.26);
+      color: #e2e8f0;
+    }
+    .btn-outline:hover {
+      background: rgba(255, 255, 255, 0.1);
+      border-color: rgba(148, 163, 184, 0.45);
+    }
+    .btn-danger {
+      background: rgba(239, 68, 68, 0.16);
+      border-color: rgba(239, 68, 68, 0.4);
+      color: #fca5a5;
+    }
+    .btn-danger:hover {
+      background: rgba(239, 68, 68, 0.28);
+    }
+    .btn-sm {
+      height: 32px;
+      padding: 0 11px;
+      font-size: 12px;
+      border-radius: 8px;
+    }
+    .stack-form {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+    .create-grid {
+      display: grid;
+      grid-template-columns: 1.2fr 1.2fr 1fr auto;
+      gap: 12px;
+      align-items: end;
+    }
+    .toolbar {
+      display: flex;
+      gap: 12px;
+      margin-bottom: 16px;
+      flex-wrap: wrap;
+    }
+    .toolbar input {
+      flex: 1;
+      min-width: 200px;
+    }
+    .toolbar select {
+      width: 150px;
+    }
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      padding: 3px 10px;
+      border-radius: 999px;
+      font-size: 12px;
+      font-weight: 600;
+    }
+    .badge-admin {
+      background: rgba(124, 58, 237, 0.2);
+      color: #c4b5fd;
+      border: 1px solid rgba(124, 58, 237, 0.4);
+    }
+    .badge-user {
+      background: rgba(6, 182, 212, 0.16);
+      color: #67e8f9;
+      border: 1px solid rgba(6, 182, 212, 0.35);
+    }
+    .badge-active {
+      background: rgba(16, 185, 129, 0.16);
+      color: #6ee7b7;
+      border: 1px solid rgba(16, 185, 129, 0.35);
+    }
+    .badge-disabled {
+      background: rgba(239, 68, 68, 0.16);
+      color: #fca5a5;
+      border: 1px solid rgba(239, 68, 68, 0.35);
+    }
+    .table-wrap {
+      overflow-x: auto;
+      border-radius: 12px;
+      border: 1px solid var(--card-border);
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      text-align: left;
+      font-size: 13.5px;
+    }
+    th {
+      background: rgba(15, 23, 42, 0.85);
+      color: #94a3b8;
+      font-weight: 600;
+      padding: 12px 14px;
+      border-bottom: 1px solid var(--card-border);
+      white-space: nowrap;
+    }
+    td {
+      padding: 13px 14px;
+      border-bottom: 1px solid rgba(148, 163, 184, 0.1);
+      vertical-align: middle;
+    }
+    tr:last-child td { border-bottom: none; }
+    tr:hover td { background: rgba(255, 255, 255, 0.02); }
+    .actions {
+      display: flex;
+      gap: 6px;
+      flex-wrap: wrap;
+    }
+    .toast {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      z-index: 100;
+      padding: 12px 18px;
+      border-radius: 12px;
+      background: rgba(15, 23, 42, 0.95);
+      border: 1px solid rgba(16, 185, 129, 0.5);
+      color: #ecfdf5;
+      font-size: 13.5px;
+      font-weight: 500;
+      box-shadow: 0 12px 32px rgba(0, 0, 0, 0.45);
+      display: none;
+    }
+    .toast.error {
+      border-color: rgba(239, 68, 68, 0.6);
+      color: #fef2f2;
+    }
+    .modal-backdrop {
+      position: fixed;
+      inset: 0;
+      z-index: 80;
+      background: rgba(4, 6, 14, 0.72);
+      backdrop-filter: blur(6px);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+    .modal-backdrop.open { display: flex; }
+    .modal {
+      width: 100%;
+      max-width: 440px;
+      background: #111830;
+      border: 1px solid rgba(148, 163, 184, 0.25);
+      border-radius: 18px;
+      padding: 24px;
+      box-shadow: 0 24px 64px rgba(0, 0, 0, 0.6);
+    }
+    .modal h3 { margin: 0 0 16px; font-size: 18px; }
+    .modal-actions {
+      display: flex;
+      justify-content: flex-end;
+      gap: 10px;
+      margin-top: 18px;
+    }
+    .profile-meta {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      padding: 12px;
+      border-radius: 12px;
+      background: rgba(15, 23, 42, 0.6);
+      border: 1px solid rgba(148, 163, 184, 0.12);
+      margin-bottom: 16px;
+      font-size: 12.5px;
+    }
+    .profile-meta div span {
+      display: block;
+      color: var(--muted);
+      font-size: 11px;
+      margin-bottom: 2px;
+    }
+    @media (max-width: 600px) {
+      .topbar-inner { flex-direction: column; align-items: flex-start; padding: 12px 16px; }
+      .brand img { max-width: 150px; }
+      .brand-badge { display: none; }
+      .container { padding: 20px 12px; }
+      .hero-banner { padding: 20px; }
+      .hero-banner h1 { font-size: 23px; }
+      .create-grid { grid-template-columns: 1fr !important; }
+      .card-header { flex-wrap: wrap; }
+      .modal-backdrop { overflow-y: auto; }
+    }
+    @media (max-width: 980px) {
+      .stats-grid { grid-template-columns: repeat(2, 1fr); }
+      .layout-grid { grid-template-columns: 1fr; }
+      .create-grid { grid-template-columns: 1fr 1fr; }
+    }
   </style>
 </head>
 <body>
-  <section class="card">
-    <h1>用户管理</h1>
-    <div class="muted">仅管理员可用。用户创建后可独立登录，项目数据按用户隔离。</div>
-    <div id="message"></div>
-  </section>
-  <section class="card">
-    <h2>创建用户</h2>
-    <form id="createForm">
-      <label>用户名<input name="name" required maxlength="64" /></label>
-      <label>初始密码<input name="password" type="password" minlength="8" required /></label>
-      <label>角色<select name="role"><option value="user">普通用户</option><option value="admin">管理员</option></select></label>
-      <button type="submit">创建用户</button>
-    </form>
-  </section>
-  <section class="card">
-    <h2>用户列表</h2>
-    <table><thead><tr><th>ID</th><th>用户名</th><th>角色</th><th>状态</th><th>最后登录</th><th>操作</th></tr></thead><tbody id="users"></tbody></table>
-  </section>
-<script>
-  const message = document.querySelector('#message');
-  const users = document.querySelector('#users');
-  const show = (text, error = false) => { message.textContent = text || ''; message.className = error ? 'error' : ''; };
-  async function request(path, options = {}) {
-    const response = await fetch(path, { credentials: 'same-origin', headers: { 'Content-Type': 'application/json', ...(options.headers || {}) }, ...options });
-    const data = await response.json().catch(() => ({}));
-    if (!response.ok || data.code >= 400) throw new Error(data.message || data.data || '请求失败');
-    return data.data;
-  }
-  const date = value => value ? new Date(Number(value)).toLocaleString() : '从未登录';
-  function row(user) {
-    const tr = document.createElement('tr');
-    tr.innerHTML = `<td>${user.id}</td><td>${escapeHtml(user.name)}</td><td>${user.role === 'admin' ? '管理员' : '普通用户'}</td><td>${user.disabled ? '已禁用' : '启用'}</td><td>${date(user.lastLoginAt)}</td><td class="actions"><button data-action="edit">编辑</button><button class="danger" data-action="delete">删除</button></td>`;
-    tr.querySelector('[data-action=edit]').onclick = async () => {
-      const name = prompt('用户名', user.name); if (name === null) return;
-      const password = prompt('新密码（留空不修改，至少 8 位）', ''); if (password === null) return;
-      const role = prompt('角色：admin 或 user', user.role || 'user'); if (role === null) return;
-      const disabled = confirm('确定将该账号设为禁用吗？（取消即启用）');
-      try { await request('/api/setting/userManagement/updateUser', { method: 'POST', body: JSON.stringify({ id: user.id, name, password: password || undefined, role, disabled }) }); show('更新成功'); await load(); } catch (e) { show(e.message, true); }
+  <header class="topbar">
+    <div class="topbar-inner">
+      <a href="/#/project" class="brand">
+        <img src="./studio-logo.png" alt="" /><strong>SandDrama</strong>
+        <span class="brand-badge">Account & User Center</span>
+      </a>
+      <div class="nav-actions">
+        <a href="/?landing=1" class="btn btn-outline btn-sm">✦ Explore Home</a>
+        <a href="/#/project" class="btn btn-outline btn-sm">← Back to Studio</a>
+        <button id="logoutBtn" class="btn btn-danger btn-sm" type="button">Sign Out</button>
+      </div>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="hero-banner">
+      <div>
+        <h1 id="welcomeHeading">User Management & Account Security</h1>
+        <p id="welcomeSub">Manage your personal credentials, workspace isolation, and team accounts.</p>
+      </div>
+      <div id="currentRoleBadge"></div>
+    </section>
+
+    <section id="adminStats" class="stats-grid" style="display: none;">
+      <div class="stat-card">
+        <div class="stat-label">Total Accounts</div>
+        <div class="stat-value" id="statTotalUsers">0</div>
+        <div class="stat-sub">Registered studio members</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-label">Active Accounts</div>
+        <div class="stat-value" id="statActiveUsers" style="color: #34d399;">0</div>
+        <div class="stat-sub">Enabled & ready to create</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-label">Administrators</div>
+        <div class="stat-value" id="statAdmins" style="color: #c4b5fd;">0</div>
+        <div class="stat-sub">System & user managers</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-label">Total Projects</div>
+        <div class="stat-value" id="statProjects" style="color: #38bdf8;">0</div>
+        <div class="stat-sub">Across all user workspaces</div>
+      </div>
+    </section>
+
+    <div class="layout-grid" id="mainLayout">
+      <!-- Left Column: Self-Service Profile & Security -->
+      <div>
+        <section class="card">
+          <div class="card-header">
+            <h2 class="card-title">👤 My Account Profile</h2>
+          </div>
+          <div class="profile-meta">
+            <div><span>User ID</span><strong id="myId">-</strong></div>
+            <div><span>Role</span><strong id="myRole">-</strong></div>
+            <div><span>My Projects</span><strong id="myProjects">0</strong></div>
+            <div><span>Last Login</span><strong id="myLastLogin">-</strong></div>
+          </div>
+          <form id="profileForm" class="stack-form">
+            <label>
+              Username
+              <input name="name" id="myNameInput" required minlength="2" maxlength="64" placeholder="Enter username" />
+            </label>
+            <label>
+              New Password <span class="muted">(Leave blank to keep current password, min 6 chars)</span>
+              <input name="password" id="myPasswordInput" type="password" minlength="6" maxlength="128" placeholder="New password (optional)" />
+            </label>
+            <label>
+              Confirm New Password
+              <input name="confirmPassword" id="myConfirmInput" type="password" placeholder="Confirm new password" />
+            </label>
+            <button type="submit" class="btn">Save My Profile</button>
+          </form>
+        </section>
+      </div>
+
+      <!-- Right Column: Admin User Directory (Visible to Admins) -->
+      <div id="adminColumn" style="display: none;">
+        <section class="card">
+          <div class="card-header">
+            <div>
+              <h2 class="card-title">➕ Create New User</h2>
+              <div class="muted">Create isolated studio accounts for team members or clients.</div>
+            </div>
+          </div>
+          <form id="createForm" class="create-grid">
+            <label>
+              Username
+              <input name="name" required minlength="2" maxlength="64" placeholder="e.g. alice_studio" />
+            </label>
+            <label>
+              Initial Password
+              <input name="password" type="password" minlength="6" required placeholder="At least 6 characters" />
+            </label>
+            <label>
+              Role
+              <select name="role">
+                <option value="user">Standard User</option>
+                <option value="admin">Administrator</option>
+              </select>
+            </label>
+            <button type="submit" class="btn">Create Account</button>
+          </form>
+        </section>
+
+        <section class="card">
+          <div class="card-header">
+            <div>
+              <h2 class="card-title">🛡️ Team & User Directory</h2>
+              <div class="muted">Search, filter, update roles, reset passwords, or disable accounts.</div>
+            </div>
+            <button id="refreshBtn" class="btn btn-outline btn-sm" type="button">↻ Refresh</button>
+          </div>
+
+          <div class="toolbar">
+            <input id="searchInput" type="search" placeholder="Search by username or ID..." />
+            <select id="roleFilter">
+              <option value="all">All Roles</option>
+              <option value="admin">Administrators</option>
+              <option value="user">Standard Users</option>
+            </select>
+            <select id="statusFilter">
+              <option value="all">All Status</option>
+              <option value="active">Active Only</option>
+              <option value="disabled">Disabled Only</option>
+            </select>
+          </div>
+
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>ID</th>
+                  <th>Username</th>
+                  <th>Role</th>
+                  <th>Status</th>
+                  <th>Projects</th>
+                  <th>Created</th>
+                  <th>Last Login</th>
+                  <th>Actions</th>
+                </tr>
+              </thead>
+              <tbody id="usersBody"></tbody>
+            </table>
+          </div>
+        </section>
+      </div>
+
+      <!-- Non-admin info card -->
+      <div id="nonAdminColumn" style="display: none;">
+        <section class="card">
+          <h2 class="card-title">🎬 Workspace Isolation & Security</h2>
+          <p class="muted" style="line-height: 1.6; margin-top: 8px;">
+            Your SandDrama account has a dedicated, isolated workspace. All novels, scripts, storyboards, characters, scenes, AI provider keys, and generated videos created under your account are private to you.
+          </p>
+          <div style="margin-top: 18px; display: flex; gap: 10px;">
+            <a href="/#/project" class="btn">Open My Projects</a>
+            <a href="/?landing=1" class="btn btn-outline">View Studio Overview</a>
+          </div>
+        </section>
+      </div>
+    </div>
+  </main>
+
+  <!-- Edit User Modal -->
+  <div id="editModal" class="modal-backdrop">
+    <div class="modal" role="dialog" aria-modal="true" aria-labelledby="editTitle">
+      <h3 id="editTitle">Edit User Account</h3>
+      <form id="editForm" class="stack-form">
+        <input type="hidden" name="id" id="editId" />
+        <label>
+          Username
+          <input name="name" id="editName" required minlength="2" maxlength="64" />
+        </label>
+        <label>
+          Reset Password <span class="muted">(Leave blank to keep unchanged)</span>
+          <input name="password" id="editPassword" type="password" minlength="6" maxlength="128" placeholder="New password (optional)" />
+        </label>
+        <label>
+          Role
+          <select name="role" id="editRole">
+            <option value="user">Standard User</option>
+            <option value="admin">Administrator</option>
+          </select>
+        </label>
+        <label>
+          Account Status
+          <select name="disabled" id="editDisabled">
+            <option value="false">Active (Enabled)</option>
+            <option value="true">Disabled (Suspended)</option>
+          </select>
+        </label>
+        <div class="modal-actions">
+          <button type="button" id="closeEditModal" class="btn btn-outline">Cancel</button>
+          <button type="submit" class="btn">Save Changes</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+
+  <script>
+    const toastEl = document.getElementById('toast');
+    let toastTimer = null;
+    function showToast(text, isError = false) {
+      if (!text) return;
+      toastEl.textContent = text;
+      toastEl.className = isError ? 'toast error' : 'toast';
+      toastEl.style.display = 'block';
+      clearTimeout(toastTimer);
+      toastTimer = setTimeout(() => { toastEl.style.display = 'none'; }, 3600);
+    }
+
+    function getAuthHeaders() {
+      const token = localStorage.getItem('token');
+      return token ? { Authorization: token } : {};
+    }
+
+    async function request(path, options = {}) {
+      const response = await fetch(path, {
+        credentials: 'same-origin',
+        ...options,
+        headers: {
+          'Content-Type': 'application/json',
+          ...getAuthHeaders(),
+          ...(options.headers || {}),
+        },
+      });
+      const data = await response.json().catch(() => ({}));
+      if (response.status === 401) {
+        ['token', 'userId', 'userName', 'userRole'].forEach(key => localStorage.removeItem(key));
+        window.location.href = '/?landing=1';
+        throw new Error('Please sign in first');
+      }
+      if (!response.ok || data.code >= 400) {
+        throw new Error(data.message || data.data || 'Request failed');
+      }
+      return data.data;
+    }
+
+    function escapeHtml(value) {
+      return String(value ?? '').replace(/[&<>'"]/g, c => ({
+        '&': '&amp;', '<': '&lt;', '>': '&gt;', "'": '&#39;', '"': '&quot;'
+      }[c]));
+    }
+
+    function formatDate(value) {
+      return value ? new Date(Number(value)).toLocaleString('en-US', {
+        month: 'short', day: 'numeric', year: 'numeric', hour: '2-digit', minute: '2-digit'
+      }) : 'Never';
+    }
+
+    let currentProfile = null;
+    let allUsers = [];
+
+    async function loadMyProfile() {
+      const me = await request('/api/setting/loginConfig/getUser');
+      if (!me) {
+        window.location.href = '/#/login';
+        return;
+      }
+      currentProfile = me;
+      document.getElementById('myId').textContent = '#' + me.id;
+      document.getElementById('myRole').textContent = me.role === 'admin' ? 'Administrator' : 'Standard User';
+      document.getElementById('myProjects').textContent = String(me.projectCount ?? 0);
+      document.getElementById('myLastLogin').textContent = formatDate(me.lastLoginAt);
+      document.getElementById('myNameInput').value = me.name || '';
+      document.getElementById('welcomeHeading').textContent = `Welcome, ${me.name}`;
+      document.getElementById('currentRoleBadge').innerHTML = me.role === 'admin'
+        ? '<span class="badge badge-admin">⚡ System Administrator</span>'
+        : '<span class="badge badge-user">✦ Studio Creator</span>';
+
+      if (me.role === 'admin') {
+        document.getElementById('adminStats').style.display = 'grid';
+        document.getElementById('adminColumn').style.display = 'block';
+        document.getElementById('nonAdminColumn').style.display = 'none';
+        await loadUsers();
+      } else {
+        document.getElementById('adminStats').style.display = 'none';
+        document.getElementById('adminColumn').style.display = 'none';
+        document.getElementById('nonAdminColumn').style.display = 'block';
+      }
+    }
+
+    function renderUsers() {
+      const q = document.getElementById('searchInput').value.trim().toLowerCase();
+      const roleFilter = document.getElementById('roleFilter').value;
+      const statusFilter = document.getElementById('statusFilter').value;
+
+      const filtered = allUsers.filter(u => {
+        if (q && !String(u.name).toLowerCase().includes(q) && !String(u.id).includes(q)) return false;
+        if (roleFilter !== 'all' && u.role !== roleFilter) return false;
+        if (statusFilter === 'active' && u.disabled) return false;
+        if (statusFilter === 'disabled' && !u.disabled) return false;
+        return true;
+      });
+
+      const tbody = document.getElementById('usersBody');
+      tbody.innerHTML = '';
+
+      for (const user of filtered) {
+        const tr = document.createElement('tr');
+        const isSelf = currentProfile && Number(user.id) === Number(currentProfile.id);
+        tr.innerHTML = `
+          <td>#${user.id}</td>
+          <td>
+            <strong>${escapeHtml(user.name)}</strong>
+            ${isSelf ? '<span class="muted" style="font-size:11px; margin-left:6px;">(You)</span>' : ''}
+          </td>
+          <td>
+            <span class="badge ${user.role === 'admin' ? 'badge-admin' : 'badge-user'}">
+              ${user.role === 'admin' ? 'Admin' : 'User'}
+            </span>
+          </td>
+          <td>
+            <span class="badge ${user.disabled ? 'badge-disabled' : 'badge-active'}">
+              ${user.disabled ? 'Disabled' : 'Active'}
+            </span>
+          </td>
+          <td>${Number(user.projectCount ?? 0)}</td>
+          <td class="muted">${formatDate(user.createdAt)}</td>
+          <td class="muted">${formatDate(user.lastLoginAt)}</td>
+          <td class="actions">
+            <button type="button" class="btn btn-outline btn-sm" data-action="edit">Edit</button>
+            <button type="button" class="btn btn-outline btn-sm" data-action="toggle">
+              ${user.disabled ? 'Enable' : 'Disable'}
+            </button>
+            ${!isSelf ? '<button type="button" class="btn btn-danger btn-sm" data-action="delete">Delete</button>' : ''}
+          </td>
+        `;
+
+        tr.querySelector('[data-action="edit"]').onclick = () => openEditModal(user);
+        tr.querySelector('[data-action="toggle"]').onclick = async () => {
+          try {
+            await request('/api/setting/userManagement/updateUser', {
+              method: 'POST',
+              body: JSON.stringify({ id: user.id, disabled: !user.disabled }),
+            });
+            showToast(`Account "${user.name}" ${user.disabled ? 'enabled' : 'disabled'}`);
+            await loadUsers();
+          } catch (err) {
+            showToast(err.message, true);
+          }
+        };
+        const delBtn = tr.querySelector('[data-action="delete"]');
+        if (delBtn) {
+          delBtn.onclick = async () => {
+            if (!confirm(`Delete user "${user.name}"? Their projects will be safely transferred to your administrator account.`)) return;
+            try {
+              await request('/api/setting/userManagement/deleteUser', {
+                method: 'POST',
+                body: JSON.stringify({ id: user.id }),
+              });
+              showToast(`Deleted user "${user.name}"`);
+              await loadUsers();
+            } catch (err) {
+              showToast(err.message, true);
+            }
+          };
+        }
+        tbody.appendChild(tr);
+      }
+    }
+
+    async function loadUsers() {
+      const list = await request('/api/setting/userManagement/listUsers');
+      allUsers = Array.isArray(list) ? list : [];
+      document.getElementById('statTotalUsers').textContent = String(allUsers.length);
+      document.getElementById('statActiveUsers').textContent = String(allUsers.filter(u => !u.disabled).length);
+      document.getElementById('statAdmins').textContent = String(allUsers.filter(u => u.role === 'admin').length);
+      document.getElementById('statProjects').textContent = String(allUsers.reduce((acc, u) => acc + Number(u.projectCount ?? 0), 0));
+      renderUsers();
+    }
+
+    function openEditModal(user) {
+      document.getElementById('editId').value = user.id;
+      document.getElementById('editName').value = user.name;
+      document.getElementById('editPassword').value = '';
+      document.getElementById('editRole').value = user.role === 'admin' ? 'admin' : 'user';
+      document.getElementById('editDisabled').value = user.disabled ? 'true' : 'false';
+      document.getElementById('editModal').classList.add('open');
+      document.getElementById('editName').focus();
+    }
+
+    document.getElementById('closeEditModal').onclick = () => {
+      document.getElementById('editModal').classList.remove('open');
     };
-    tr.querySelector('[data-action=delete]').onclick = async () => {
-      if (!confirm(`确定删除用户“${user.name}”？其项目将转交当前管理员。`)) return;
-      try { await request('/api/setting/userManagement/deleteUser', { method: 'POST', body: JSON.stringify({ id: user.id }) }); show('删除成功'); await load(); } catch (e) { show(e.message, true); }
+
+    document.getElementById('editForm').onsubmit = async (e) => {
+      e.preventDefault();
+      const id = Number(document.getElementById('editId').value);
+      const name = document.getElementById('editName').value.trim();
+      const password = document.getElementById('editPassword').value;
+      const role = document.getElementById('editRole').value;
+      const disabled = document.getElementById('editDisabled').value === 'true';
+
+      try {
+        const updated = await request('/api/setting/userManagement/updateUser', {
+          method: 'POST',
+          body: JSON.stringify({
+            id,
+            name,
+            password: password ? password : undefined,
+            role,
+            disabled,
+          }),
+        });
+        if (updated?.token) localStorage.setItem('token', updated.token);
+        if (Number(id) === Number(currentProfile?.id) && updated?.name) localStorage.setItem('userName', updated.name);
+        document.getElementById('editModal').classList.remove('open');
+        showToast('User updated successfully');
+        await loadMyProfile();
+      } catch (err) {
+        showToast(err.message, true);
+      }
     };
-    return tr;
-  }
-  function escapeHtml(value) { return String(value).replace(/[&<>'"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;',"'":'&#39;','"':'&quot;'}[c])); }
-  async function load() {
-    try { const list = await request('/api/setting/userManagement/listUsers'); users.replaceChildren(...list.map(row)); }
-    catch (e) { show(e.message, true); }
-  }
-  document.querySelector('#createForm').onsubmit = async event => {
-    event.preventDefault();
-    const formElement = event.currentTarget;
-    const form = new FormData(formElement);
-    try {
-      await request('/api/setting/userManagement/createUser', { method: 'POST', body: JSON.stringify(Object.fromEntries(form)) });
-      formElement.reset();
-      show('创建成功');
-      await load();
-    } catch (e) { show(e.message, true); }
-  };
-  load();
-</script>
+
+    document.getElementById('profileForm').onsubmit = async (e) => {
+      e.preventDefault();
+      const name = document.getElementById('myNameInput').value.trim();
+      const password = document.getElementById('myPasswordInput').value;
+      const confirmPassword = document.getElementById('myConfirmInput').value;
+
+      if (password && password !== confirmPassword) {
+        showToast('New passwords do not match', true);
+        return;
+      }
+
+      try {
+        const updated = await request('/api/setting/loginConfig/updateUserPwd', {
+          method: 'POST',
+          body: JSON.stringify({
+            id: currentProfile?.id,
+            name,
+            password: password || '',
+          }),
+        });
+        if (updated?.token) localStorage.setItem('token', updated.token);
+        if (updated?.name) localStorage.setItem('userName', updated.name);
+        document.getElementById('myPasswordInput').value = '';
+        document.getElementById('myConfirmInput').value = '';
+        showToast('Profile saved successfully');
+        await loadMyProfile();
+      } catch (err) {
+        showToast(err.message, true);
+      }
+    };
+
+    document.getElementById('createForm').onsubmit = async (e) => {
+      e.preventDefault();
+      const formEl = e.currentTarget;
+      const fd = new FormData(formEl);
+      try {
+        await request('/api/setting/userManagement/createUser', {
+          method: 'POST',
+          body: JSON.stringify(Object.fromEntries(fd)),
+        });
+        formEl.reset();
+        showToast('User account created successfully');
+        await loadUsers();
+      } catch (err) {
+        showToast(err.message, true);
+      }
+    };
+
+    document.getElementById('searchInput').oninput = renderUsers;
+    document.getElementById('roleFilter').onchange = renderUsers;
+    document.getElementById('statusFilter').onchange = renderUsers;
+    document.getElementById('refreshBtn').onclick = () => loadUsers().then(() => showToast('Directory refreshed')).catch(err => showToast(err.message, true));
+
+    document.addEventListener('keydown', event => {
+      if (event.key === 'Escape') document.getElementById('editModal').classList.remove('open');
+    });
+    window.addEventListener('storage', event => {
+      if (event.key === 'token') location.reload();
+    });
+
+    document.getElementById('logoutBtn').onclick = async () => {
+      try {
+        await fetch('/api/login/logout', { method: 'POST', credentials: 'same-origin' });
+      } catch {}
+      localStorage.removeItem('token');
+      localStorage.removeItem('userId');
+      localStorage.removeItem('userName');
+      localStorage.removeItem('userRole');
+      window.location.href = '/?landing=1';
+    };
+
+    loadMyProfile().catch(err => showToast(err.message, true));
+  </script>
 </body>
 </html>

@@ -1,33 +1,33 @@
-# 2D扁平风（Flat Design）风格说明
+# 2D Flat Design Style Guide
 
-本风格专为"2D扁平风（Flat Design）"题材打造，所有美术提示词、规范和生成内容均严格限定于：
+This style is specifically designed for "2D Flat Design" subjects. All art prompts, specifications, and generated content are strictly limited to:
 
-- **扁平设计风格**：以扁平设计（Flat Design）为核心，涵盖UI设计、信息图表、插画等，体现现代简约美学。
-- **纯色色块质感**：所有角色、场景、道具均以2D扁平风格为标准，强调纯色填充、无阴影无渐变、简洁线条。
-- **简约现代美学**：在扁平风格基础上追求清晰表达，画面色调明快简洁，细节简化，整体氛围简约现代、舒适宜人。
-- **情感表达**：适合展现温柔、治愈、浪漫的扁平风格内容，强调现代简约美学下的情感表达。
+- **Flat Design Style**: Centered on Flat Design, encompassing UI design, infographics, and illustrations, embodying a modern minimalist aesthetic.
+- **Solid Color Block Texture**: All characters, scenes, and props adhere to the 2D flat style standard, emphasizing solid color fills, no shadows or gradients, and clean lines.
+- **Minimalist Modern Aesthetic**: Pursuing clear expression on the foundation of the flat style, with bright and concise color tones, simplified details, and an overall atmosphere that is minimalist, modern, and comfortable.
+- **Emotional Expression**: Suited for showcasing gentle, healing, and romantic flat-style content, emphasizing emotional expression under a modern minimalist aesthetic.
 
-## 适用范围
+## Scope of Application
 
-- 2D扁平风题材的AI美术生成（角色、场景、道具、分镜等）
-- 需要极致扁平质感、简洁线条、现代简约氛围的视觉创作
+- AI art generation for 2D flat design subjects (characters, scenes, props, storyboards, etc.)
+- Visual creations requiring extreme flat texture, clean lines, and a modern minimalist atmosphere
 
-## 严禁内容
+## Prohibited Content
 
-- 写实渲染、3D渲染、照片级真实感
-- 阴影、渐变、纹理、光影
-- 复杂细节、精细纹理、写实背景
-- 黑暗暴力、成人向内容
+- Realistic rendering, 3D rendering, photorealism
+- Shadows, gradients, textures, lighting effects
+- Complex details, fine textures, realistic backgrounds
+- Dark violence, adult-oriented content
 
-## 风格体验
+## Style Experience
 
-在本风格下，您将体验到：
+Under this style, you will experience:
 
-- 角色面容简约、气质清新，造型、服饰均为2D扁平设计风格
-- 场景空间层次简洁，线条清晰流畅，氛围真实且富有现代感
-- 道具、日常物品、环境细节均为扁平化造型，工艺简洁，质感清爽
-- 分镜与画面均以2D扁平为基础，强调叙事与情感表达
+- Characters with simple facial features and a fresh demeanor, with designs and clothing in the 2D flat design style
+- Scenes with simple spatial layers, clear and smooth lines, and an atmosphere that is realistic yet modern
+- Props, everyday items, and environmental details in flat design forms, with simple craftsmanship and a refreshing texture
+- Storyboards and visuals based on 2D flat design, emphasizing narrative and emotional expression
 
 ---
 
-本风格仅适用于"2D扁平风（Flat Design）"相关项目。如需其他风格（如写实3D、插画、现代3D等），请勿使用本套提示词。
+This style is only applicable to "2D Flat Design" related projects. If other styles (such as realistic 3D, illustration, modern 3D, etc.) are required, do not use this set of prompts.

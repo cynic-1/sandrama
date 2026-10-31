@@ -25,17 +25,22 @@ export interface AgentContext {
 function buildMemPrompt(mem: Awaited<ReturnType<Memory["get"]>>): string {
   let memoryContext = "";
   if (mem.rag.length) {
-    memoryContext += `[相关记忆]\n${mem.rag.map((r) => r.content).join("\n")}`;
+    memoryContext += `[Related memories]
+${mem.rag.map((r) => r.content).join("\n")}`;
   }
   if (mem.summaries.length) {
     if (memoryContext) memoryContext += "\n\n";
-    memoryContext += `[历史摘要]\n${mem.summaries.map((s, i) => `${i + 1}. ${s.content}`).join("\n")}`;
+    memoryContext += `[Historical Summary]
+${mem.summaries.map((s, i) => `${i + 1}. ${s.content}`).join("\n")}`;
   }
   if (mem.shortTerm.length) {
     if (memoryContext) memoryContext += "\n\n";
-    memoryContext += `[近期对话]\n${mem.shortTerm.map((m) => `${m.role}: ${m.content}`).join("\n")}`;
+    memoryContext += `[Recent conversations]
+${mem.shortTerm.map((m) => `${m.role}: ${m.content}`).join("\n")}`;
   }
-  return `## Memory\n以下是你对用户的记忆，可作为参考但不要主动提及：\n${memoryContext}`;
+  return `## Memory
+The following is your memory of the user，It can be used as a reference, but do not mention it proactively.：
+${memoryContext}`;
 }
 
 export async function runDecisionAI(ctx: AgentContext) {
@@ -53,13 +58,13 @@ export async function runDecisionAI(ctx: AgentContext) {
   const novelData = await u.db("o_novel").where("projectId", resTool.data.projectId).select("chapterIndex");
 
   const projectInfo = [
-    "## 项目信息",
-    `小说名称：${projectData?.name ?? "未知"}`,
-    `小说类型：${projectData?.type ?? "未知"}`,
-    `小说简介：${projectData?.intro ?? "无"}`,
-    `目标改编影视视觉手册|画风：${projectData?.artStyle ?? "无"}`,
-    `目标改编视频画幅：${projectData?.videoRatio ?? "16:9"}`,
-    `章节数量：${novelData.length}章`,
+    "## Project Information",
+    `Novel Title：${projectData?.name ?? "Unknown"}`,
+    `Novel type：${projectData?.type ?? "Unknown"}`,
+    `Novel Synopsis：${projectData?.intro ?? "None"}`,
+    `Target: Adapted Film and Television Visual Handbook|Art style：${projectData?.artStyle ?? "None"}`,
+    `Target adapted video aspect ratio：${projectData?.videoRatio ?? "16:9"}`,
+    `Number of chapters：${novelData.length}Chapter`,
   ].join("\n");
 
   const { fullStream } = await u.Ai.Text("scriptAgent:decisionAgent", ctx.thinkConfig.think, ctx.thinkConfig.thinlLevel).stream({
@@ -128,30 +133,30 @@ function createSubAgent(parentCtx: AgentContext) {
       });
     }
 
-    parentCtx.msg = resTool.newMessage("assistant", "视频策划");
+    parentCtx.msg = resTool.newMessage("assistant", "Video Planning");
     return fullResponse;
   }
 
   const promptInput = z
     .object({
-      prompt: z.string().describe("交给子Agent的任务简约描述，100字以内"),
+      prompt: z.string().describe("Delegate to childAgentTask brief，100within characters"),
     })
     .toJSONSchema();
 
   const run_sub_agent_storySkeleton = tool({
-    description: "运行执行subAgent来完成故事骨架相关任务",
+    description: "RunsubAgentTo complete the story skeleton-related tasks",
     inputSchema: jsonSchema<{ prompt: string }>(promptInput),
     execute: async ({ prompt }) => {
       const skill = path.join(u.getPath("skills"), "script_execution_skeleton.md");
       const systemPrompt = await fs.promises.readFile(skill, "utf-8");
 
-      const formatPrompt = "\n你必须使用如下XML格式写入工作区：\n<storySkeleton>故事骨架内容</storySkeleton>";
+      const formatPrompt = " You must use the followingXMLFormat and write to workspace： <storySkeleton>Story Skeleton Content</storySkeleton>";
 
       return runAgent({
         key: "scriptAgent:storySkeletonAgent",
         prompt,
         system: systemPrompt + formatPrompt,
-        name: "编剧",
+        name: "Screenwriter",
         memoryKey: "assistant:execution:storySkeleton",
         messages: [{ role: "user", content: prompt + formatPrompt }],
       });
@@ -159,19 +164,19 @@ function createSubAgent(parentCtx: AgentContext) {
   });
 
   const run_sub_agent_adaptationStrategy = tool({
-    description: "运行执行subAgent来完成改编策略相关任务",
+    description: "RunsubAgentto complete tasks related to the adaptation strategy",
     inputSchema: jsonSchema<{ prompt: string }>(promptInput),
     execute: async ({ prompt }) => {
       const skill = path.join(u.getPath("skills"), "script_execution_adaptation.md");
       const systemPrompt = await fs.promises.readFile(skill, "utf-8");
 
-      const formatPrompt = "\n你必须使用如下XML格式写入工作区：\n<adaptationStrategy>改编策略内容</adaptationStrategy>";
+      const formatPrompt = " You must use the followingXMLFormat and write to workspace： <adaptationStrategy>Adaptation Strategy Content</adaptationStrategy>";
 
       return runAgent({
         key: "scriptAgent:adaptationStrategyAgent",
         prompt,
         system: systemPrompt + formatPrompt,
-        name: "编剧",
+        name: "Screenwriter",
         memoryKey: "assistant:execution:adaptationStrategy",
         messages: [{ role: "user", content: prompt + formatPrompt }],
       });
@@ -179,38 +184,41 @@ function createSubAgent(parentCtx: AgentContext) {
   });
 
   const run_sub_agent_script = tool({
-    description: "运行执行subAgent来完成剧本相关任务",
+    description: "RunsubAgentto complete script-related tasks",
     inputSchema: jsonSchema<{ prompt: string }>(promptInput),
     execute: async ({ prompt }) => {
       const skill = path.join(u.getPath("skills"), "script_execution_script.md");
       const systemPrompt = await fs.promises.readFile(skill, "utf-8");
 
       const scriptList = await u.db("o_script").where("projectId", resTool.data.projectId).select("id", "name");
-      const scriptPrompt = ["## 可用剧本(ID:名称)", scriptList.map((s: any) => `${s.id}:${(s.name || "").replace(/[,:]/g, "")}`).join(","), ""].join(
+      const scriptPrompt = ["## Available scripts(ID:Name)", scriptList.map((s: any) => `${s.id}:${(s.name || "").replace(/[,:]/g, "")}`).join(","), ""].join(
         "\n",
       );
 
       const novelData = await u.db("o_novel").where("projectId", resTool.data.projectId).select("chapterIndex");
 
-      const formatPrompt = `\n你必须使用如下XML格式输出剧本：\nXML不得添加任何额外标签<scriptItem name="剧本名称">剧本内容</scriptItem><scriptItem name="剧本名称">剧本内容</scriptItem><scriptItem name="剧本名称">剧本内容</scriptItem>\n你还必须调用 save_script 工具把完整剧本保存到工作台；工具调用成功后才可以返回确认。禁止只回复“已写入”而不输出正文或调用工具。`;
+      const formatPrompt = `
+You must useXMLOutput the script in the specified format：
+XMLNo additional tags shall be added<scriptItem name="Script Name">Script content</scriptItem><scriptItem name="Script Name">Script content</scriptItem><scriptItem name="Script Name">Script content</scriptItem>
+You must also call save_script The tool saves the complete script to the workspace；Return confirmation only after the tool call succeeds。Prohibited from replying only“Written”without outputting the main text or calling tools。`;
 
       const savedScripts: ScriptItem[] = [];
       const saveScriptTool = tool({
-        description: "保存一集完整剧本到工作台。必须在生成完整剧本后调用，不能用确认文字代替。",
+        description: "Save a complete episode script to the workspace。Must be called after the complete script is generated，Confirmation text cannot be used as a substitute。",
         inputSchema: jsonSchema<{ name: string; content: string }>(
           z
             .object({
-              name: z.string().min(1).describe("剧本名称，例如作品名 EP08：集标题"),
-              content: z.string().min(1).describe("完整剧本正文，不能是确认语句"),
+              name: z.string().min(1).describe("Script Name，For example, the title of the work EP08：Collection Title"),
+              content: z.string().min(1).describe("Full script，It cannot be a confirmation statement"),
             })
             .toJSONSchema(),
         ),
         execute: async ({ name, content }) => {
           const script = { name: name.trim(), content: content.trim() };
-          if (!script.name || !script.content) throw new Error("剧本名称和正文不能为空");
+          if (!script.name || !script.content) throw new Error("The script name and body cannot be empty");
           await persistScriptItems(resTool.data.projectId, [script]);
           savedScripts.push(script);
-          return `保存成功：${script.name}`;
+          return `Saved successfully：${script.name}`;
         },
       });
 
@@ -219,10 +227,10 @@ function createSubAgent(parentCtx: AgentContext) {
         prompt,
         system: systemPrompt + formatPrompt,
         messages: [
-          { role: "assistant", content: scriptPrompt + `章节数量：${novelData.length}章` },
+          { role: "assistant", content: scriptPrompt + `Number of chapters：${novelData.length}Chapter` },
           { role: "user", content: prompt + formatPrompt },
         ],
-        name: "编剧",
+        name: "Screenwriter",
         memoryKey: "assistant:execution:script",
         tools: { save_script: saveScriptTool },
       });
@@ -230,18 +238,18 @@ function createSubAgent(parentCtx: AgentContext) {
       const scripts = extractScriptItems(fullResponse);
       const persistedScripts = scripts.length ? scripts : savedScripts;
       if (!persistedScripts.length) {
-        throw new Error("剧本生成失败：模型未返回有效的 scriptItem 内容，未写入工作台");
+        throw new Error("Script generation failed：The model did not return a valid scriptItem Content，Not written to the workbench");
       }
 
       if (scripts.length && !savedScripts.length) {
         await persistScriptItems(resTool.data.projectId, scripts);
       }
-      return `已写入${persistedScripts.length}集剧本，请在工作台查看。`;
+      return `Written${persistedScripts.length}Collected scripts，Please check on the workbench。`;
     },
   });
 
   const run_supervision_agent = tool({
-    description: "运行监督层subAgent执行独立任务，完成后返回结果",
+    description: "Run the supervision layersubAgentExecute independent tasks，Return the result after completion",
     inputSchema: jsonSchema<{ prompt: string }>(promptInput),
     execute: async ({ prompt }) => {
       const skill = path.join(u.getPath("skills"), "script_agent_supervision.md");
@@ -251,7 +259,7 @@ function createSubAgent(parentCtx: AgentContext) {
         key: "scriptAgent:supervisionAgent",
         prompt,
         system: systemPrompt,
-        name: "编辑",
+        name: "Edit",
         memoryKey: "assistant:supervision",
       });
     },
@@ -287,12 +295,12 @@ async function consumeFullStream(
       }
       if (chunk.type === "reasoning-start") {
         thinkTime = Date.now();
-        thinking = msg.thinking("思考中...");
+        thinking = msg.thinking("Thinking...");
       } else if (chunk.type === "reasoning-delta") {
         thinking?.append(chunk.text);
       } else if (chunk.type === "reasoning-end") {
         thinkTime = Date.now() - thinkTime;
-        thinking?.updateTitle(`思考完毕（${(thinkTime / 1000).toFixed(1)} 秒）`);
+        thinking?.updateTitle(`Thinking complete（${(thinkTime / 1000).toFixed(1)} second）`);
         thinking?.complete();
         thinking = null;
       } else if (chunk.type === "text-delta") {

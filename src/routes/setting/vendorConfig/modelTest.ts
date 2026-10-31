@@ -6,7 +6,7 @@ import { z } from "zod";
 import { tool, jsonSchema } from "ai";
 const router = express.Router();
 
-// 检查语言模型
+// Check the language model
 export default router.post(
   "/",
   validateFields({
@@ -24,9 +24,9 @@ export default router.post(
           fnName: "imageRequest",
           modelData: {
             prompt:
-              "一张16:9比例的图片，完美等分为2x2四宫格布局，各区域无缝衔接：\n左上宫格：一只可爱的猫，毛发蓬松，眼睛明亮，姿态俏皮\n右上宫格：一只友善的狗，金毛犬，表情愉悦，摇着尾巴\n左下宫格：一头健壮的牛，田园背景，目光温和，皮毛光泽\n右下宫格：一匹骏马，姿态优雅，鬃毛飘逸，肌肉健美\n风格要求：四个宫格风格统一，色彩鲜艳饱和，高清画质，细节清晰锐利，专业插画风格，线条干净，统一的左上方光源，柔和阴影，和谐配色，卡通/半写实风格，宫格间用白色或浅灰细线分隔", //图片提示词
-            referenceList: [], //输入的图片提示词
-            size: "1K", // 图片尺寸
+              "One16:9Proportional images，Perfectly divided into2x2Four-Grid Layout，Seamless integration across all regions： Top-left grid：A cute cat，Fluffy hair，Bright eyes，Playful Pose Top-right grid：A friendly dog，Golden Retriever，Happy Expression，Wagging its tail Bottom-left grid：A sturdy bull，Pastoral Background，Gentle gaze，Fur Gloss Bottom-right grid：A Steed，Elegant Posture，Flowing Mane，Muscle Fitness Style Requirements：Four grid cells with a unified style，Vivid, saturated colors，HD Quality，Sharp, clear details，Professional Illustration Style，Clean lines，Unified light source in the upper left，Soft Shadow，Harmonious Color Scheme，Cartoon/Semi-realistic style，Separate grid cells with thin white or light gray lines", // Image prompt
+            referenceList: [], // The input image prompt
+            size: "1K", // Image size
             aspectRatio: "16:9",
           },
         },
@@ -34,8 +34,8 @@ export default router.post(
       } as const;
       const vendorConfigData = await u.userSettings.getVendorConfig(id);
 
-      if (!vendorConfigData) return res.status(500).send(error("未找到该供应商配置"));
-      if (!vendorConfigData.models) return res.status(500).send(error("未找到模型列表"));
+      if (!vendorConfigData) return res.status(500).send(error("Supplier configuration not found"));
+      if (!vendorConfigData.models) return res.status(500).send(error("Model list not found"));
 
       const modelList = await u.vendor.getModelList(vendorConfigData.id!);
 
@@ -74,14 +74,14 @@ export default router.post(
 
       if (type == "text") {
         const { textStream } = await u.Ai.Text(`${id}:${modelName}`).stream({
-          prompt: "请调用工具获取火星的天气，并回答我多少气温",
+          prompt: "Please call the tool to get the weather on Mars，And answer me what the temperature is",
           tools: { getWeatherTool },
         });
         let fullResponse = "";
         for await (const chunk of textStream) {
           fullResponse += chunk;
         }
-        if (!fullResponse) return res.status(500).send(error("模型未返回结果"));
+        if (!fullResponse) return res.status(500).send(error("The model did not return a result"));
         res.status(200).send(success(fullResponse));
       } else {
         const aiTypeFn = {

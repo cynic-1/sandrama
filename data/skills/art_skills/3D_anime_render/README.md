@@ -1,33 +1,33 @@
-# 3D 动画渲染风格说明
+# 3D Animation Rendering Style Guide
 
-本风格专为"3D 动画渲染"题材打造，所有美术提示词、规范和生成内容均严格限定于：
+This style is specifically designed for "3D animation rendering" subjects. All art prompts, specifications, and generated content are strictly limited to:
 
-- **3D 动画世界观**：以现代都市为背景，涵盖街道、咖啡厅、居家、办公室、商场等，体现现代都市生活气息。
-- **赛璐珞质感**：所有角色、场景、道具均以 3D 动画渲染为标准，强调轮廓线清晰度、材质细腻度、光影层次感。
-- **治愈治愈美学**：在 3D 渲染基础上追求电影感氛围，画面色调温暖明亮，细节丰富，整体氛围温暖治愈、明快动人。
-- **情感表达**：适合展现温柔、治愈、浪漫的都市恋爱故事，强调现代都市美学下的情感表达。
+- **3D Animation Worldview**: Set in a modern urban environment, covering streets, cafes, homes, offices, shopping malls, etc., reflecting the atmosphere of modern urban life.
+- **Cel-Shaded Aesthetic**: All characters, scenes, and props are rendered to 3D animation standards, emphasizing the clarity of outlines, the subtlety of materials, and the layering of light and shadow.
+- **Healing Aesthetic**: Pursuing a cinematic atmosphere on the basis of 3D rendering, with warm and bright color tones, rich details, and an overall mood that is warm, healing, and uplifting.
+- **Emotional Expression**: Suitable for depicting gentle, healing, and romantic urban love stories, emphasizing emotional expression under modern urban aesthetics.
 
-## 适用范围
+## Scope of Application
 
-- 3D 动画渲染题材的 AI 美术生成（角色、场景、道具、分镜等）
-- 需要极致 3D 渲染质感、细腻材质、温馨治愈氛围的视觉创作
+- AI art generation for 3D animation rendering subjects (characters, scenes, props, storyboards, etc.)
+- Visual creations requiring ultimate 3D rendering quality, delicate materials, and a warm, healing atmosphere
 
-## 严禁内容
+## Prohibited Content
 
-- 写实渲染、照片级真实感
-- 暗调、重阴影、过度对比
-- 高饱和荧光色、霓虹色
-- 现代元素缺失、黑暗暴力、成人向内容
+- Realistic rendering, photo-level realism
+- Dark tones, heavy shadows, excessive contrast
+- High-saturation fluorescent colors, neon colors
+- Lack of modern elements, dark violence, adult-oriented content
 
-## 风格体验
+## Style Experience
 
-在本风格下，您将体验到：
+Under this style, you will experience:
 
-- 角色面容精致、气质温柔或清亮，服饰、妆容、发型均为 3D 动画渲染风格
-- 场景空间层次丰富，轮廓线清晰流畅，氛围真实且富有诗意
-- 道具、日常物品、环境细节均为现代造型，工艺精细，质感细腻
-- 分镜与画面均以 3D 渲染为基础，强调叙事与情感表达
+- Characters with refined features and a gentle or clear temperament; clothing, makeup, and hairstyles are all in the 3D animation rendering style
+- Scenes with rich spatial layers, clear and smooth outlines, and an atmosphere that is realistic yet poetic
+- Props, everyday items, and environmental details featuring modern designs, fine craftsmanship, and delicate textures
+- Storyboards and frames based on 3D rendering, emphasizing narrative and emotional expression
 
 ---
 
-本风格仅适用于"3D 动画渲染"相关项目。如需其他风格（如写实 3D、CG、插画、现代等），请勿使用本套提示词。
+This style is applicable only to "3D animation rendering" related projects. If you require other styles (such as realistic 3D, CG, illustration, or modern), do not use this set of prompts.

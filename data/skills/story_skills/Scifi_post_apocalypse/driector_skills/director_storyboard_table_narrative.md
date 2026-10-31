@@ -1,86 +1,86 @@
 ---
 name: director_storyboard_table_narrative
-description: 分镜表叙事手法 · 科幻末世 — 定义科幻末世在分镜表中的景别策略、运镜节奏、时长把控、生存行动设计、人性抉择叙事与转场手法。适用于任何视觉风格。
+description: Storyboard Narrative Techniques · Science Fiction Apocalypse - Define the scene selection strategy, camera movement rhythm, duration control, survival action design, human decision-making narrative and transition techniques in the storyboard for the science fiction apocalypse. Works with any visual style.
 metaData: director_skills
 ---
 
-# 分镜表叙事手法 · 科幻末世 · 技法参考
+# Storyboard narrative techniques · Science fiction apocalypse · Technical reference
 
 ---
 
-## 一、分镜表定位
+## 1. Storyboard positioning
 
-分镜表是导演将剧本转化为镜头语言的核心工具。表单字段由导演根据项目需要自行设定（分镜号、景别、运镜、时长、人物、事件、台词、光影、情绪、转场等），以下仅提供科幻末世叙事类型下的技法参考。
-
----
-
-## 二、景别选择
-
-- **远景是末世的灵魂景别** — 科幻末世中远景的使用频率远高于其他类型。废墟全貌、荒原无际、文明遗迹的宏观震撼是末世叙事的基底
-- **生存特写** — 末世中特写聚焦的不是"美"而是"真"：开裂的嘴唇、指甲缝里的泥、绷带渗出的血、最后一口水在瓶底晃。特写是生存压力的放大镜
-- **科技遗迹景别** — 废弃的科技设备（生锈的机器人、灭了的屏幕、坍塌的天线塔）用中景交代全貌+特写聚焦细节，两镜完成"曾经先进如今废弃"的叙事
-- **大特写极其克制** — 大特写在末世中留给"最有叙事力的物件"：一张照片、一封未发出的信、一个孩子的鞋。全段落最多 1 次
-- **定场镜头要有"震撼+信息"** — 末世定场必须同时传递震撼感和生存信息：废墟的规模（震撼）+ 是否有威胁/资源（信息）。1-2 个远景镜头搞定
+Storyboards are the core tool for directors to transform scripts into lens language. The form fields are set by the director according to the needs of the project (story number, scene, camera movement, duration, characters, events, lines, light and shadow, emotions, transitions, etc.). The following only provides technical reference for the sci-fi apocalyptic narrative type.
 
 ---
 
-## 三、运镜节奏
+## 2. Scene selection
 
-- **手持为基础** — 50% 以上镜头轻微手持，传递生存的不稳定感
-- **安全时微晃** — 暂歇/营地段落手持晃动极微，几乎感觉不到但比三脚架多一丝"活人气息"
-- **危险时明显晃** — 探索未知空间、听到不明声响时，手持晃动增加，映射角色的警觉与不安
-- **缓移 = 探索/搜索** — 极缓水平移动模拟角色小心推进，速度越慢悬念越强
-- **快推 = 危机/发现** — 威胁出现或重要发现时猛然快推，冲击感拉满
-- **缓拉 = 揭示荒芜** — 从细节缓拉到远景，废墟的无际感逐渐展开。是末世叙事的标志性运镜
-
----
-
-## 四、时长把控
-
-- **废墟凝视** — 远景废墟镜头给 5-6s 足够时长，让观众"消化"眼前的毁灭。废墟远景不是过渡而是叙事本身
-- **生存行动正常节奏** — 搜索物资、行走、警戒等动作镜头 2-4s，保持叙事推进的节奏
-- **危机镜头压缩** — 威胁出现/逃跑/战斗的镜头压到 1.5-2s，快节奏传递紧迫感
-- **人性抉择给足时长** — 道德困境（丢不丢下伤员、开不开枪、分不分食物）的决策镜头给 4-5s，让观众和角色一起"煎熬"
-- **黄金 6 秒规则** — 除远景废墟和一镜到底探索，单镜头不超过 6s
-- **沉默荒原的留白** — 行走荒原段落可以连续 3-4 个镜头无台词无配乐，纯环境音+脚步声。总沉默时长不超过 20s，但足以让观众感受到"世界的空"
+- **Long shot is the soul scene of the apocalypse** — The frequency of use of long shot in science fiction apocalypse is much higher than that of other types. The overall view of the ruins, the endless wasteland, and the macroscopic shock of the ruins of civilization are the basis of the apocalyptic narrative
+- **Survival Close-up** — In the apocalypse, the focus of close-ups is not "beauty" but "truth": cracked lips, mud between nails, blood seeping from bandages, and the last sip of water sloshing at the bottom of the bottle. Close-up is a magnifying glass of survival pressure
+- **Technology Relics Scene** — Abandoned technological equipment (rusty robots, dead screens, collapsed antenna towers) uses a medium shot to convey the overall picture + a close-up to focus on the details, and the two shots complete the narrative of "once advanced but now abandoned"
+- **The close-up is extremely restrained** — The close-up leaves "the most narrative objects" in the apocalypse: a photo, an unsent letter, and a child's shoes. Maximum 1 time for entire paragraph
+- **The establishing shot must have "shock + information"** - The setting scene of the apocalypse must convey a sense of shock and survival information at the same time: the scale of the ruins (shock) + whether there are threats/resources (information). 1-2 long shots are done
 
 ---
 
-## 五、生存行动设计
+## 3. Rhythm of camera movement
 
-- **搜索镜头的悬念** — 搜索物资段落的分镜逻辑：全景扫视空间→中景靠近目标→特写检查物品→结果（找到/空手）。每次搜索都带悬念"有没有东西？"
-- **战斗/逃亡的混乱感** — 末世战斗不是招式对拆，而是混乱、狼狈、不择手段。分镜用手持跟拍+快切+不完美构图（画面一半被遮挡）传递真实的求生混乱
-- **资源争夺的道德重量** — 和其他幸存者争夺资源时，分镜不要只拍"动作"，更要拍"眼神"：对方的恐惧、自己手的犹豫、物资从对方手中被夺走的特写。让观众感受到每一次争夺的道德成本
-- **长镜头探索** — 进入新的废墟空间可用一镜到底跟拍（角色推门→走入→环视→发现），时长可达 8-10s，连续输出新空间信息维持紧张感
-- **能一镜交代的不拆碎** — 一个跟拍长镜头（角色搜索房间→找到物品→放入背包）比拆成三个碎镜头更有沉浸感
-
----
-
-## 六、人性抉择叙事
-
-- **道德困境用沉默** — 面对道德抉择（救不救、杀不杀、分不分）的段落去掉所有配乐，只留环境音+角色呼吸。让沉默的重量压在观众心上
-- **抉择镜头三拍** — ①面对困境的全景（处境）→ ②角色表情近景/特写（挣扎）→ ③行动结果（选择）。三拍完成，不拖沓
-- **信任与背叛** — 被背叛的瞬间用"揭示性"镜头语言：从信任者视角缓拉，揭示背叛者的行为→切信任者表情特写。先给事实，再给反应
-- **牺牲的仪式感** — 角色自我牺牲的镜头给足仪式感：最后一次对视（近景对切）→ 转身走向危险（全景背影）→ 留下者的反应（特写）。不要快速带过，牺牲值得被凝视
-- **善良的微光** — 在绝望中选择善良（分出最后的食物、冒险救陌生人）的镜头，用温暖的光影变化+微弱的温暖配乐渐入。但不过度煽情——克制才有力量
+- **Handheld based** — More than 50% of the shots are slightly handheld, conveying a sense of instability in survival
+- **Slight shaking when safe** — During the break/camp section, the hand-held shaking is very slight and almost imperceptible, but it has more of a "lifelike" feel than a tripod.
+- **Obvious shaking when in danger** — When exploring unknown spaces and hearing unknown sounds, the shaking of the hand increases, reflecting the character's alertness and uneasiness.
+- **Slow Movement = Exploration/Search** — Extremely slow horizontal movement simulates the character's careful advancement. The slower the speed, the stronger the suspense.
+- **Quick Push = Crisis/Discovery** — When a threat appears or an important discovery occurs, push quickly to get a full sense of impact.
+- **Slow pull = Reveal desolation** — From details to distant views, the sense of endlessness of the ruins gradually unfolds. It is the iconic lens of the apocalyptic narrative.
 
 ---
 
-## 七、台词与留白
+## 4. Duration control
 
-- **惜字如金** — 末世中人没有闲聊的精力。台词应极简实用："安全""走""还有多远"。偶尔一句带感情的话（"谢谢你没走"）因为稀缺而格外有力
-- **环境叙事替代对白** — 不要用台词解释"发生了什么"。让观众自己从废墟中读出答案：一堵墙上的抓痕、一条堵满废车的高速路、一面挂满寻人启事的墙
-- **回忆碎片** — 关于"末日前"的回忆台词应极短，如碎片闪过（"那天还是晴天……"然后沉默）。配近景+失焦/闪回处理
-- **一句台词一个镜头** — 末世中每句台词都有重量，给独立镜头。尤其是表达信任/承诺/告别的台词
-- **独白用远景** — 角色罕有的内心独白配远景/荒原空镜，声音像是从"这个空旷世界的某处"飘来
+- **Ruin Gaze** — A long shot of ruins gives 5-6s enough time for the audience to "digest" the destruction in front of them. The vision of ruins is not a transition but a narrative itself
+- **Normal rhythm of survival operations** — 2-4 seconds of action shots such as searching for supplies, walking, and guarding, maintaining the rhythm of narrative advancement
+- **Crisis shot compression** — The shots of threat appearing/escape/fighting are compressed to 1.5-2s, and the fast pace conveys a sense of urgency
+- **Sufficient time is given for human decisions** — The decision-making scenes of moral dilemmas (whether to abandon the wounded, whether to shoot, whether to divide the food) are given to 4-5s, allowing the audience to "suffer" with the characters.
+- **Golden 6 Seconds Rule** — Except for long-range ruins and one-shot exploration, a single shot should not exceed 6 seconds.
+- **The blank space in the silent wasteland** — The walking in the wasteland can last for 3-4 consecutive shots with no lines or soundtrack, pure ambient sound + footsteps. The total silence duration does not exceed 20 seconds, but it is enough to make the audience feel the "emptiness of the world"
 
 ---
 
-## 八、转场设计
+## 5. Survival action design
 
-- **同场景内用硬切** — 同一空间内镜头间硬切，保持叙事紧凑
-- **废墟蒙太奇** — 场景切换时用 2-3 个废墟空镜快速叠加（1-1.5s/个），交代地理转移的同时强化末世氛围
-- **信号干扰转场** — 画面出现电子信号干扰效果（雪花/条纹/扭曲）做转场，暗示科技文明的残喘
-- **时间衰变** — 用同一地点不同衰败程度的对比镜头表达时间流逝（完好→锈蚀→坍塌），适合回忆与当下的转场
-- **闪回文明** — 用 1-2s 的短闪回插入"末日前"的画面（繁华街道/笑着的人群），与当下废墟形成刺痛性对比。闪回画面质感应更明亮温暖，与当下的灰暗形成色温反差
-- **段落间用行走过渡** — 荒原行走段落是末世叙事天然的段落分隔器，给 2-3 个远景镜头交代从A到B的迁移
+- **Suspense of the search shot** — The storyboard logic of the search for supplies section: panoramic scan of the space → medium shot close to the target → close-up inspection of the item → result (found/empty-handed). Every search is filled with suspense "Is there anything?"
+- **The chaotic feeling of fight/escape** — The battle in the apocalypse is not about a battle of moves, but about chaos, embarrassment, and unscrupulous means. The storyboard uses handheld tracking + fast cuts + imperfect composition (half of the screen is blocked) to convey the real chaos of survival.
+- **The moral weight of resource competition** — When competing for resources with other survivors, the storyboard should not only capture the "action", but also the "eyes": the other party's fear, the hesitation of your own hands, and close-ups of materials being taken away from the other party's hands. Let the audience feel the moral cost of every fight
+- **Long Lens Exploration** — When entering a new ruins space, you can follow the shot from end to end (the character pushes the door → walks in → looks around → discovers), the duration can be up to 8-10 seconds, and the new space information is continuously output to maintain a sense of tension.
+- **It can be explained in one shot without breaking it up** — One long follow-up shot (the character searches the room → finds the item → puts it in the backpack) is more immersive than splitting it into three broken shots
+
+---
+
+## 6. Humanity Choice Narrative
+
+- **Silence is used for moral dilemmas** — In the passages facing moral choices (save or not, kill or not, separate or not), all the soundtracks are removed, leaving only ambient sound + character breathing. Let the weight of silence weigh on the audience's hearts
+- **Three shots of decision shots** — ① Panoramic view of facing a dilemma (situation) → ② Close-up/close-up of character expression (struggle) → ③ Action result (choice). Completed in three takes, no procrastination
+- **Trust and Betrayal** — The moment of betrayal uses the language of "revealing" lenses: slow-down from the perspective of the trustor, revealing the betrayer's behavior → close-up of the trustor's expression. Give facts first, then reactions
+- **The Ritual Sense of Sacrifice** — The shots of the characters' self-sacrifice give a full sense of ritual: the last look at each other (close-up cutaway) → turning towards danger (panoramic back view) → the reaction of those left behind (close-up). Don't pass by quickly, the sacrifice is worthy of being stared at
+- **Glimmer of Kindness** — Shots of choosing kindness in despair (separating the last food, taking risks to save strangers), using warm light and shadow changes + a faint warm soundtrack to fade in. But don’t be overly sensational – only with restraint can you gain strength.
+
+---
+
+## 7. Lines and blank space
+
+- **Cherish words like gold** — In the last days, people have no energy for small talk. The lines should be minimalist and practical: "Safe", "Go", "How far is it?" Occasionally, an emotional word ("Thank you for not leaving") is particularly powerful because of its scarcity.
+- **Environmental narrative instead of dialogue** — Don't use lines to explain "what happened". Let the audience read the answers themselves from the ruins: scratches on a wall, a highway blocked by abandoned cars, and a wall covered with missing persons notices.
+- **Memory Fragments** — Memory lines about "before the end" should be very short, like flashes of fragments ("It was a sunny day..." followed by silence). With close-up + out-of-focus/flashback processing
+- **One line, one shot** — In the apocalypse, every line has weight and is given an independent shot. Especially lines expressing trust/commitment/farewell
+- **Monologue with long shot** — The character’s rare inner monologue is paired with a long shot/empty shot of the wasteland, and the sound seems to be floating from "somewhere in this empty world"
+
+---
+
+## 8. Transition design
+
+- **Hard cuts within the same scene** — Hard cuts between shots in the same space to keep the narrative compact
+- **Ruins Montage** — When switching scenes, use 2-3 empty ruins mirrors to quickly superimpose (1-1.5s/piece) to explain the geographical shift while enhancing the apocalyptic atmosphere.
+- **Signal interference transition** — Electronic signal interference effects (snowflakes/stripes/distortions) appear on the screen as a transition, implying the remnants of technological civilization.
+- **Time Decay** — Use contrasting shots of different degrees of decay in the same place to express the passage of time (intact → rust → collapse), suitable for the transition between memories and the present
+- **Flashback to Civilization** — Use short flashbacks of 1-2 seconds to insert "pre-apocalyptic" scenes (busy streets/laughing people) to form a stinging contrast with the current ruins. The quality of the flashback image feels brighter and warmer, forming a color temperature contrast with the current grayness.
+- **Walking transition between paragraphs** — The walking paragraph in the wasteland is a natural paragraph separator for apocalyptic narratives, giving 2-3 long shots to explain the migration from A to B

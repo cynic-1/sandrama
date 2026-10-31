@@ -6,7 +6,7 @@ import { z } from "zod";
 import { tool, jsonSchema } from "ai";
 const router = express.Router();
 
-// 检查语言模型
+// Check the language model
 export default router.post(
   "/",
   validateFields({
@@ -39,8 +39,8 @@ export default router.post(
     try {
       const vendorConfigData = await u.userSettings.getVendorConfig(id);
 
-      if (!vendorConfigData) return res.status(500).send(error("未找到该供应商配置"));
-      if (!vendorConfigData.models) return res.status(500).send(error("未找到模型列表"));
+      if (!vendorConfigData) return res.status(500).send(error("Supplier configuration not found"));
+      if (!vendorConfigData.models) return res.status(500).send(error("Model list not found"));
       const modelList = await u.vendor.getModelList(vendorConfigData.id!);
 
       const selectedModel = modelList.find((i: any) => i.modelName == modelName);
@@ -53,7 +53,7 @@ export default router.post(
         } catch (e) {}
       }
       const configuredDuration = Number(selectedModel.durationResolutionMap?.[0]?.duration?.[0] ?? 4);
-      // Seedance 2.x 上游不接受 2 秒，最短时长为 4 秒。
+      // Seedance 2.x upstream does not accept 2 seconds; the minimum duration is 4 seconds.
       const duration = modelName.toLowerCase().includes("seedance-2") ? Math.max(4, configuredDuration) : configuredDuration;
       const reqFn = await u.Ai.Video(`${id}:${modelName}`).run({
         duration,

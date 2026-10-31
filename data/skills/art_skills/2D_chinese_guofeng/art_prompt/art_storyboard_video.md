@@ -1,11 +1,11 @@
-# 视频提示词 · 视觉风格约束
+# Video Prompt · Visual Style Constraints
 
-生成视频提示词时，必须注入以下视觉风格标签：
+When generating video prompts, the following visual style tags must be injected:
 
-| 模式 | 风格标签 |
+| Mode | Style Tags |
 |------|----------|
-| **通用多参模式（英文）** | `Chinese style anime, cel-shaded, neo-chic oriental aesthetic, cinematic, vivid colors, detailed brushwork` |
-| **通用首尾帧模式（英文）** | `Chinese style anime, cel-shaded, neo-chic oriental aesthetic, cinematic, vivid colors, detailed brushwork, shallow depth of field` |
-| **Seedance 2.0（中文）** | `国风二次元动画，赛璐璐平涂，新国潮东方美学，电影风格，色彩鲜明，细腻笔触` |
+| **General Multi-Reference Mode (English)** | `Chinese style anime, cel-shaded, neo-chic oriental aesthetic, cinematic, vivid colors, detailed brushwork` |
+| **General First-Last Frame Mode (English)** | `Chinese style anime, cel-shaded, neo-chic oriental aesthetic, cinematic, vivid colors, detailed brushwork, shallow depth of field` |
+| **Seedance 2.0 (Chinese)** | `Chinese-style 2D animation, cel flat coloring, New Guochao Eastern aesthetics, cinematic style, vibrant colors, delicate brushwork` |
 
 

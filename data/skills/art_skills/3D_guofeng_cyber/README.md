@@ -1,130 +1,130 @@
-# 国风赛博3D风格 说明
-# 国风赛博3D风格 说明
-# 国风赛博3D风格 说明
-# 国风赛博3D风格 说明
-# 国风赛博3D风格 说明
-# 国风赛博3D风格 说明
-# 国风赛博3D风格 说明
-# 国风赛博3D风格 说明
-# 国风赛博3D风格 说明
-# 国风赛博3D风格 说明
-# 国风赛博3D风格 说明
-# 国风赛博3D风格 说明
-# 国风赛博3D风格 说明
-# 国风赛博3D风格 说明
-# 国风赛博3D风格 说明
-# 国风赛博3D风格 说明
-# 国风赛博3D风格 说明
-# 国风赛博3D风格 说明
-# 国风赛博3D风格 说明
-# 国风赛博3D风格 说明
-# 国风赛博3D风格 说明
-# 国风赛博3D风格 说明
-# 国风赛博3D风格 说明
-# 国风赛博3D风格 说明
-# 国风赛博3D风格 说明
-# 国风赛博3D风格 说明
-# 国风赛博3D风格 说明
+# Guofeng Cyber 3D Style Description
+# Guofeng Cyber 3D Style Description
+# Guofeng Cyber 3D Style Description
+# Guofeng Cyber 3D Style Description
+# Guofeng Cyber 3D Style Description
+# Guofeng Cyber 3D Style Description
+# Guofeng Cyber 3D Style Description
+# Guofeng Cyber 3D Style Description
+# Guofeng Cyber 3D Style Description
+# Guofeng Cyber 3D Style Description
+# Guofeng Cyber 3D Style Description
+# Guofeng Cyber 3D Style Description
+# Guofeng Cyber 3D Style Description
+# Guofeng Cyber 3D Style Description
+# Guofeng Cyber 3D Style Description
+# Guofeng Cyber 3D Style Description
+# Guofeng Cyber 3D Style Description
+# Guofeng Cyber 3D Style Description
+# Guofeng Cyber 3D Style Description
+# Guofeng Cyber 3D Style Description
+# Guofeng Cyber 3D Style Description
+# Guofeng Cyber 3D Style Description
+# Guofeng Cyber 3D Style Description
+# Guofeng Cyber 3D Style Description
+# Guofeng Cyber 3D Style Description
+# Guofeng Cyber 3D Style Description
+# Guofeng Cyber 3D Style Description
 
 
 
-######抖音号  anyexiaoshu27提供开发
-本方案基于国风3D核心规范深度定制，将中国传统东方美学内核与赛博朋克科幻元素做本土化深度融合，保留原版高精度3D渲染、传统色盘、东方意境、电影级光影的核心优势，同时完成赛博元素的国风适配，杜绝生硬拼接，适配全品类AI美术生成工具。
-
----
-
-## 一、风格核心定义（生成底层逻辑）
-本风格所有美术提示词、规范和生成内容均严格限定于：
-- **国风赛博3D渲染**：以三维建模渲染技术为核心，深度融合中国传统东方美学与赛博朋克科幻内核，将中式榫卯、水墨意境、传统纹样、古风形制与全息光影、机械结构、霓虹光效、未来科技元素做本土化融合，拒绝无内核的元素堆砌
-- **3D超精细质感**：8K高精度模型、4K超清PBR物理材质渲染、次世代游戏级别拓扑、金属/织物/玉石/全息材质质感拉满，细节纤毫毕现，纹理清晰可辨
-- **国风赛博专属色盘**：以青绿、朱红、靛蓝、鎏金、墨黑为基底，搭配低饱和中式霓虹色（朱砂红霓虹、石青蓝全息、鎏金辉光），杜绝荧光溢色，色彩典雅与未来感兼具
-- **东方赛博美学氛围**：虚实相生的水墨意境+赛博光影层次，留白构图，中式对称美学，烟雨朦胧的体积光与全息投影交织，诗意空间与未来都市感完美融合
-- **国风赛博人物造型**：3D次世代古风建模，骨相东方古典，服饰为汉服形制+赛博机能改造，妆容典雅融合赛博光效妆面，发型考究搭配机械发饰，全程保留东方神韵
-- **电影级顶级光影**：UE5/Blender Cycles顶级渲染，体积光、环境光遮蔽、全局光照、光线追踪、景深虚化、动态模糊、LUT色彩校准，影视级镜头语言，氛围感拉满
-
-### 适用范围
-- 国风赛博3D题材的AI美术生成（角色立绘、场景概念、道具设计、分镜脚本、游戏CG、影视海报等）
-- 需要3D次世代质感、东方美学内核、赛博科幻氛围的视觉创作
-- 国风赛博题材游戏美术、影视概念设计、动画短片、数字藏品等商业应用场景
-
-### 严禁内容
-- 写实摄影/真人照片级真实感（除非特别标注）
-- 纯西方赛博朋克/西式奇幻/哥特/维多利亚风格，无国风内核的生硬拼接
-- 现代都市日常元素/无中式元素的纯科幻机械
-- 低精度模型/粗糙拓扑/贴图模糊/穿模/畸形结构
-- 过度饱和荧光色/高溢色/强数码噪点/低对比度灰蒙画面
-- 违背东方古典骨相的西式建模脸/畸形人体/夸张违和的肢体比例
-- 低俗暴露/不符合汉服形制的魔改服饰/无文化内核的元素堆砌
+######Developed by Douyin account anyexiaoshu27
+This solution is deeply customized based on the core specifications of Guofeng 3D, achieving a localized deep fusion of the core of traditional Chinese Eastern aesthetics with cyberpunk sci-fi elements. It retains the core advantages of the original version: high-precision 3D rendering, traditional color palettes, Eastern artistic conception, and cinematic lighting, while completing the Guofeng adaptation of cyber elements. It avoids rigid splicing and is compatible with all categories of AI art generation tools.
 
 ---
 
-## 二、通用核心正向提示词（必加基础Prompt）
-所有生成内容均需先添加此基础段，锁定风格与画质下限，适配Midjourney、Stable Diffusion等全平台
-```
-(masterpiece, best quality, 8k, ultra-detailed), 国风赛博3D渲染风格，UE5引擎渲染，Blender Cycles光线追踪，次世代高精度建模，PBR物理材质，全局光照，光线追踪反射，电影级体积光，环境光遮蔽，景深效果，东方美学构图，虚实相生，中式对称美学，色彩和谐典雅，国风赛博专属色盘，细节拉满，纹理清晰，质感真实
-```
+## I. Core Style Definition (Underlying Generation Logic)
+All art prompts, specifications, and generated content for this style are strictly limited to:
+- **Guofeng Cyber 3D Rendering**: Centered on 3D modeling and rendering technology, deeply fusing traditional Chinese Eastern aesthetics with the core of cyberpunk sci-fi. It integrates Chinese mortise-and-tenon joinery, ink-wash artistic conception, traditional patterns, and ancient forms with holographic lighting, mechanical structures, neon effects, and futuristic tech elements in a localized manner, rejecting the piling up of elements without a core.
+- **3D Ultra-Fine Texture**: 8K high-precision models, 4K ultra-clear PBR physical material rendering, next-generation game-level topology, maximizing the texture of metal/fabric/jade/holographic materials, with details visible down to the finest hair, and clearly discernible textures.
+- **Guofeng Cyber Exclusive Color Palette**: Based on cyan-green, vermilion red, indigo blue, gilded gold, and ink black, combined with low-saturation Chinese neon colors (cinnabar red neon, azurite blue hologram, gilded glow). It avoids fluorescent color overflow, combining elegance with a futuristic feel.
+- **Eastern Cyber Aesthetic Atmosphere**: Ink-wash artistic conception where the real and virtual give birth to each other + cyber lighting layers, negative space composition, Chinese symmetrical aesthetics, misty rain volume light and holographic projections interweaving, perfectly fusing poetic space with a futuristic urban feel.
+- **Guofeng Cyber Character Design**: 3D next-generation ancient-style modeling, Eastern classical bone structure, costumes in Hanfu form + cyber functional modifications, elegant makeup fused with cyber light-effect makeup, meticulous hairstyles paired with mechanical hair accessories, maintaining Eastern charm throughout.
+- **Cinematic Top-Tier Lighting**: Top-tier rendering with UE5/Blender Cycles, volume light, ambient occlusion, global illumination, ray tracing, depth of field blur, motion blur, LUT color calibration, cinematic camera language, maximizing atmosphere.
+
+### Scope of Application
+- AI art generation for Guofeng Cyber 3D themes (character standing art, scene concepts, prop design, storyboard scripts, game CG, movie posters, etc.)
+- Visual creation requiring 3D next-generation texture, Eastern aesthetic core, and cyber sci-fi atmosphere
+- Commercial application scenarios such as Guofeng Cyber themed game art, film concept design, animated shorts, and digital collectibles
+
+### Strictly Prohibited Content
+- Realistic photography/lifelike realism of real people (unless specifically noted)
+- Pure Western cyberpunk/Western fantasy/Gothic/Victorian styles, rigid splicing without a Guofeng core
+- Modern urban daily elements/pure sci-fi machinery without Chinese elements
+- Low-precision models/rough topology/blurry textures/clipping/deformed structures
+- Over-saturated fluorescent colors/high color overflow/strong digital noise/low-contrast grayish images
+- Western modeling faces that violate Eastern classical bone structure/deformed human bodies/exaggerated and incongruous limb proportions
+- Vulgar exposure/modifications to costumes that do not conform to Hanfu forms/piling up of elements without cultural core
 
 ---
 
-## 三、专项细分提示词（按需搭配核心Prompt使用）
-### 1. 角色专项提示词
-#### 通用国风赛博角色基础段
+## II. Universal Core Positive Prompts (Mandatory Base Prompt)
+All generated content must first add this base section to lock in the style and minimum quality standard, compatible with all platforms such as Midjourney and Stable Diffusion
 ```
-3D次世代古风人物建模，东方古典骨相，完美人体比例，五官精致立体，丹凤眼/桃花眼，中式古典妆容，搭配赛博光效面纹，高马尾/古风发髻搭配机械鎏金发饰，汉服形制交领/齐胸/圆领袍，搭配赛博机能风拼接面料，暗纹刺绣，鎏金包边，全息纹样投影，榫卯结构机械义肢（可选），玉石配饰，金属挂坠，织物纹理清晰，发丝根根分明，动态飘逸，皮肤质感细腻通透，眼神灵动，氛围感拉满，电影级特写镜头，柔光补光，轮廓光勾勒
-```
-
-#### 细分角色变体（直接替换基础段即可）
-- **国风赛博侠女**：飒爽英姿，高马尾，劲装汉服短打形制，飞鱼服暗纹，鎏金机械护腕，腰间全息玉佩，皮革拼接面料，金属铆钉，手持赛博改造唐刀，眼神凌厉，动作张力拉满，雨夜场景，霓虹反光，雨水打湿发丝，电影级打斗镜头
-- **国风赛博贵公子**：温润如玉，宽袖圆领袍，暗纹织锦，鎏金镶边，全息云纹投影，玉冠搭配机械发簪，手持全息折扇，指尖流光，眉眼温润，气质矜贵，亭台楼阁全息场景，柔光笼罩，电影级中景镜头
-- **国风赛博祭司**：广袖流仙裙，渐变靛蓝面料，银线刺绣星象纹样，全息法阵投影，额间朱砂赛博光纹，发间玉石机械步摇，手持玉柄全息法杖，周身流光萦绕，仙气与未来感兼具，神殿场景，体积光穿透，电影级全景镜头
-
-### 2. 场景专项提示词
-#### 通用国风赛博场景基础段
-```
-3D次世代场景建模，国风赛博未来都市，中式飞檐斗拱古建筑群，榫卯结构摩天楼宇，青瓦红墙搭配全息霓虹招牌，中式纹样霓虹光效，空中悬浮全息龙舟，烟雨江南水墨意境，空中楼阁，九曲桥流水，水面反射霓虹光影，街道两侧古风商铺搭配全息投影广告，灯笼造型赛博路灯，人流穿梭，虚实结合，层次丰富，气势恢宏，电影级广角镜头，全景构图，体积光穿透雨雾，全局光照，氛围感拉满
-```
-
-#### 细分场景变体（直接替换基础段即可）
-- **国风赛博宫廷皇城**：恢弘中式故宫形制建筑群，鎏金屋顶，朱红宫墙，搭配全息盘龙投影，午门城楼改造为赛博主控塔，空中悬浮全息凤辇，汉白玉栏杆搭配霓虹灯带，广场巨型全息国风法阵，体积光穿透云层，电影级航拍全景，史诗级氛围感
-- **国风赛博江南水乡**：白墙黛瓦徽派建筑，临河吊脚楼，乌篷船改造为赛博悬浮艇，水面倒映中式霓虹招牌，烟雨朦胧，油纸伞造型全息投影，石桥搭配全息流水纹样，巷弄深处灯笼赛博路灯，电影级中景镜头，水墨意境氛围感
-- **国风赛博仙侠秘境**：悬浮空中的古风仙山建筑群，亭台楼阁，飞瀑流泉，搭配全息云海投影，玉石材质机械栈道，周身萦绕流光的中式赛博法阵，千年古树搭配全息枝叶，体积光穿透云层，虚实相生，仙气与未来感兼具，电影级超广角镜头
-
-### 3. 道具专项提示词
-#### 通用国风赛博道具基础段
-```
-3D次世代道具建模，国风赛博风格，中式传统器物形制+赛博机械改造，PBR物理材质，金属/玉石/织物/全息材质质感真实，纹理细节清晰，光影层次丰富，中式传统纹样雕刻，鎏金镶边，全息投影纹样，榫卯机械结构，电影级特写镜头，柔光补光，轮廓光勾勒
-```
-
-#### 细分道具变体（直接替换基础段即可）
-- **国风赛博兵器**：唐刀/汉剑/长枪，中式传统形制，刀身/剑身鎏金云纹雕刻，榫卯结构机械部件，刀柄玉石包裹，周身萦绕全息流光，刃口寒光凛冽，金属质感拉满，电影级特写，背景虚化
-- **国风赛博配饰**：玉佩/发簪/步摇/香囊，中式传统造型，和田玉/翡翠材质，搭配鎏金机械结构，内置全息投影模块，可投射中式纹样，玉石通透质感，金属光泽细腻，细节纤毫毕现，电影级微距镜头
-- **国风赛博器物**：全息折扇/赛博灯笼/机械古琴，中式传统形制，扇面宣纸质感搭配全息动态山水，灯笼竹编框架搭配霓虹内芯，古琴桐木琴身搭配机械琴弦，可投射全息乐谱，材质质感真实，光影氛围雅致
-
-### 4. 分镜/影视概念专项提示词
-```
-国风赛博3D动画分镜，电影级镜头语言，UE5渲染，次世代高精度建模，多镜头叙事，景别丰富（全景/中景/近景/特写），运镜流畅，推轨镜头，环绕镜头，慢镜头，光影层次丰富，体积光，环境光遮蔽，全局光照，景深效果，色彩分级，东方美学构图，国风赛博世界观，故事感拉满，氛围感强烈，影视级概念设计，游戏CG画质
+(masterpiece, best quality, 8k, ultra-detailed), Chinese-style cyber 3D rendering style, UE5 engine rendering, Blender Cycles ray tracing, next-generation high-precision modeling, PBR physical materials, global illumination, ray tracing reflections, cinematic volumetric lighting, ambient occlusion, depth of field effect, Eastern aesthetic composition, interplay of the real and the virtual, Chinese symmetrical aesthetics, harmonious and elegant colors, Chinese-style cyber exclusive color palette, maximum detail, clear textures, realistic texture
 ```
 
 ---
 
-## 四、负面/严禁提示词（必加，规避劣质生成）
+## III. Specialized Sub-Prompts (Use in combination with the Core Prompt as needed)
+### 1. Character-Specific Prompts
+#### General Chinese-Style Cyber Character Base Section
 ```
-(worst quality, low quality, normal quality), 低分辨率，模糊，噪点，马赛克，变形，穿模，畸形，人体结构错误，五官扭曲，缺失手指，多余肢体，丑陋，低俗，暴露，写实摄影，真人照片，纯西方赛博朋克，西式风格，无国风元素，荧光溢色，过度饱和，灰蒙画面，低精度建模，粗糙贴图，水印，文字，签名，边框
+3D next-generation ancient-style character modeling, Eastern classical bone structure, perfect human proportions, exquisite and three-dimensional facial features, phoenix eyes/peach blossom eyes, Chinese classical makeup, paired with cyber light-effect facial patterns, high ponytail/ancient-style hair bun paired with mechanical gilded hair ornaments, Hanfu form with crossed collar/chest-high/round collar robe, paired with cyber tech-style spliced fabrics, dark pattern embroidery, gilded edging, holographic pattern projection, mortise and tenon structure mechanical prosthetic limb (optional), jade accessories, metal pendants, clear fabric texture, distinct hair strands, dynamic and flowing, delicate and translucent skin texture, lively eyes, full atmosphere, cinematic close-up shot, soft light fill, contour light outlining
+```
+
+#### Sub-character Variants (Directly replace the base segment)
+- **Guofeng Cyber Heroine**: Dashing and spirited, high ponytail, fitted Hanfu short-cut silhouette, flying fish robe with hidden patterns, gilded mechanical wrist guards, holographic jade pendant at the waist, leather-spliced fabric, metal rivets, wielding a cyber-modified Tang sword, sharp gaze, maximum action tension, rainy night scene, neon reflections, rain-soaked hair, cinematic fight shot
+- **Guofeng Cyber Nobleman**: Gentle and refined, wide-sleeved round-collar robe, hidden-pattern brocade, gilded trim, holographic cloud pattern projection, jade crown paired with mechanical hairpin, holding a holographic folding fan, light flowing from fingertips, gentle features, noble demeanor, holographic pavilion and tower scene, soft light enveloping, cinematic medium shot
+- **Guofeng Cyber Priestess**: Wide-sleeved flowing immortal dress, gradient indigo fabric, silver-thread embroidery with celestial patterns, holographic spell array projection, cinnabar cyber light patterns on the forehead, jade mechanical buyao hair ornament, holding a jade-handled holographic staff, light flowing around the body, combining ethereal aura with futuristic feel, temple scene, volumetric light penetration, cinematic wide shot
+
+### 2. Scene-Specific Prompts
+#### General Guofeng Cyber Scene Base Segment
+```
+3D next-generation scene modeling, Chinese-style cyber-futuristic city, ancient Chinese architectural complex with flying eaves and bracket sets, mortise-and-tenon structure skyscrapers, blue tiles and red walls paired with holographic neon signs, Chinese pattern neon light effects, floating holographic dragon boats in the air, misty Jiangnan ink-wash aesthetic, sky pavilions, nine-bend bridge with flowing water, water surface reflecting neon light and shadows, ancient-style shops on both sides of the street paired with holographic projection advertisements, lantern-shaped cyber streetlights, crowds weaving through, combination of virtual and real, rich layers, grand atmosphere, cinematic wide-angle lens, panoramic composition, volumetric light penetrating rain and mist, global illumination, atmosphere maxed out
+```
+
+#### Sub-scene Variants (Directly replace the base segment)
+- **National-Style Cyber Imperial Palace**: A grand Chinese Forbidden City-style architectural complex, gilded roofs, vermilion palace walls, paired with holographic coiling-dragon projections. The Meridian Gate tower is retrofitted into a cyber main control tower. A holographic phoenix palanquin hovers in the air. White marble railings are paired with neon light strips. A giant holographic national-style magic array in the plaza. Volumetric light penetrates the clouds. Cinematic aerial panorama. Epic atmosphere.
+- **National-Style Cyber Jiangnan Water Town**: White-walled, dark-tiled Hui-style architecture. Stilted houses facing the river. Black-canopied boats retrofitted into cyber hovercrafts. Chinese neon signs reflected on the water surface. Misty rain haze. Holographic projections shaped like oil-paper umbrellas. Stone bridges paired with holographic flowing-water patterns. Lanterns in the depths of the alleys serving as cyber streetlights. Cinematic medium shot. Ink-wash aesthetic atmosphere.
+- **National-Style Cyber Xianxia Mystic Realm**: Ancient-style immortal mountain architectural complexes floating in the air. Pavilions and towers. Waterfalls and flowing springs. Paired with holographic sea-of-clouds projections. Jade-material mechanical walkways. Chinese cyber magic arrays swirling with flowing light around the surroundings. Millennium-old ancient trees paired with holographic branches and leaves. Volumetric light penetrates the clouds. The interplay of the real and the virtual. Combining immortal aura with a futuristic feel. Cinematic ultra-wide-angle shot.
+
+### 3. Prop-Specific Prompts
+#### General National-Style Cyber Prop Base Segment
+```
+3D next-generation prop modeling, Chinese-style cyber style, traditional Chinese vessel forms + cyber mechanical modifications, PBR physical materials, realistic textures of metal/jade/fabric/holographic materials, clear texture details, rich light and shadow layers, traditional Chinese pattern carving, gilded inlaid edges, holographic projection patterns, mortise and tenon mechanical structures, cinematic close-up shots, soft fill light, rim light outlining
+```
+
+#### Subdivided Prop Variants (Directly replace the base segment)
+- **Guofeng Cyber Weapons**: Tang Dao / Han Sword / Long Spear, traditional Chinese form, gold-plated cloud pattern engraving on the blade/sword body, mortise-and-tenon mechanical components, jade-wrapped handle, holographic flowing light surrounding the weapon, sharp cold light at the edge, full metallic texture, cinematic close-up, blurred background
+- **Guofeng Cyber Accessories**: Jade Pendant / Hairpin / Buyao / Sachet, traditional Chinese styling, Hetian jade / jadeite material, paired with gold-plated mechanical structures, built-in holographic projection module, capable of projecting Chinese patterns, translucent jade texture, delicate metallic luster, every detail visible, cinematic macro shot
+- **Guofeng Cyber Objects**: Holographic Folding Fan / Cyber Lantern / Mechanical Guqin, traditional Chinese form, fan surface with xuan paper texture paired with dynamic holographic landscapes, lantern with bamboo-woven frame paired with neon core, guqin with paulownia wood body paired with mechanical strings, capable of projecting holographic musical scores, realistic material texture, elegant light and shadow atmosphere
+
+### 4. Storyboard / Film Concept Specialized Prompts
+```
+Chinese-style cyberpunk 3D animation storyboard, cinematic camera language, UE5 rendering, next-generation high-precision modeling, multi-shot narrative, rich shot scales (wide/medium/close-up/extreme close-up), smooth camera movements, dolly shots, orbiting shots, slow motion, rich light and shadow layers, volumetric lighting, ambient occlusion, global illumination, depth of field effects, color grading, Eastern aesthetic composition, Chinese-style cyberpunk worldview, maximum storytelling impact, strong atmosphere, film-grade concept design, game CG quality
 ```
 
 ---
 
-## 五、完整可直接复制生成示例
-### 示例1：国风赛博侠女角色（全段直接粘贴）
+## IV. Negative/Forbidden Prompts (Mandatory, to Avoid Low-Quality Generation)
 ```
-(masterpiece, best quality, 8k, ultra-detailed), 国风赛博3D渲染风格，UE5引擎渲染，Blender Cycles光线追踪，次世代高精度建模，PBR物理材质，全局光照，光线追踪反射，电影级体积光，环境光遮蔽，景深效果，东方美学构图，虚实相生，色彩和谐典雅，国风赛博专属色盘，细节拉满，纹理清晰，质感真实
-3D次世代古风人物建模，东方古典骨相，完美人体比例，五官精致立体，丹凤眼，中式古典妆容，搭配朱砂红赛博光效面纹，高马尾搭配鎏金机械发饰，劲装汉服短打形制，飞鱼服暗纹刺绣，鎏金包边，皮革机能拼接面料，全息云纹投影，榫卯结构机械护腕，腰间全息玉佩，手持赛博改造唐刀，刀身鎏金盘龙雕刻，眼神凌厉，动作张力拉满，雨夜国风赛博街巷场景，霓虹反光，雨水打湿发丝，电影级中景镜头，柔光补光，轮廓光勾勒
-Negative prompt: (worst quality, low quality, normal quality), 低分辨率，模糊，噪点，马赛克，变形，穿模，畸形，人体结构错误，五官扭曲，缺失手指，多余肢体，丑陋，低俗，暴露，写实摄影，真人照片，纯西方赛博朋克，西式风格，无国风元素，荧光溢色，过度饱和，灰蒙画面，低精度建模，粗糙贴图，水印，文字，签名，边框
+(worst quality, low quality, normal quality), low resolution, blurry, noise, mosaic, deformation, clipping, malformed, incorrect human anatomy, distorted facial features, missing fingers, extra limbs, ugly, vulgar, exposed, realistic photography, real person photo, pure Western cyberpunk, Western style, no Chinese style elements, fluorescent color overflow, oversaturation, gray and hazy image, low-precision modeling, rough textures, watermark, text, signature, border
 ```
 
-### 示例2：国风赛博江南水乡场景（全段直接粘贴）
+---
+
+## V. Complete Copy-Paste-Ready Generation Examples
+### Example 1: National-Style Cyber Heroine Character (Paste the Entire Section Directly)
 ```
-(masterpiece, best quality, 8k, ultra-detailed), 国风赛博3D渲染风格，UE5引擎渲染，Blender Cycles光线追踪，次世代高精度建模，PBR物理材质，全局光照，光线追踪反射，电影级体积光，环境光遮蔽，景深效果，东方美学构图，虚实相生，水墨意境，中式对称美学，色彩和谐典雅，国风赛博专属色盘，细节拉满，纹理清晰，质感真实
-3D次世代场景建模，国风赛博江南水乡，白墙黛瓦徽派建筑群，临河吊脚楼，乌篷船改造为赛博悬浮艇，水面倒映石青蓝中式霓虹招牌，烟雨朦胧，油纸伞造型全息投影，石拱桥搭配全息流水纹样，巷弄深处灯笼造型赛博路灯，行人撑着全息油纸伞穿梭，层次丰富，氛围雅致，电影级广角镜头，全景构图，体积光穿透雨雾，氛围感拉满
-Negative prompt: (worst quality, low quality, normal quality), 低分辨率，模糊，噪点，马赛克，变形，穿模，低精度建模，粗糙贴图，写实摄影，真人照片，纯西方赛博朋克，西式建筑，无国风元素，荧光溢色，过度饱和，灰蒙画面，水印，文字，签名，边框
+(masterpiece, best quality, 8k, ultra-detailed), Chinese-style cyber 3D rendering style, UE5 engine rendering, Blender Cycles ray tracing, next-gen high-precision modeling, PBR physical materials, global illumination, ray tracing reflections, cinematic volumetric light, ambient occlusion, depth of field effect, Eastern aesthetic composition, interplay of the real and the virtual, harmonious and elegant colors, exclusive Chinese-style cyber color palette, maximum detail, clear textures, realistic texture
+3D next-gen ancient-style character modeling, Eastern classical bone structure, perfect human proportions, exquisite and three-dimensional facial features, phoenix eyes, Chinese classical makeup, paired with cinnabar red cyber light effect facial patterns, high ponytail paired with gilded mechanical hair accessories, jinzhuang Hanfu short-cut format, feiyu suit dark pattern embroidery, gilded edging, leather functional spliced fabric, holographic cloud pattern projection, mortise and tenon structure mechanical wrist guard, holographic jade pendant at the waist, holding a cyber-modified Tang sword, sword body with gilded coiled dragon carving, sharp gaze, maximum action tension, rainy night Chinese-style cyber street scene, neon reflections, rain wetting hair strands, cinematic medium shot, soft light fill, rim light outlining
+Negative prompt: (worst quality, low quality, normal quality), low resolution, blur, noise, mosaic, deformation, clipping, deformity, incorrect human structure, distorted facial features, missing fingers, extra limbs, ugly, vulgar, exposed, realistic photography, real person photo, pure Western cyberpunk, Western style, no Chinese-style elements, fluorescent color overflow, over-saturation, gray and dull image, low-precision modeling, rough textures, watermark, text, signature, border
+```
+
+### Example 2: National-Style Cyber Jiangnan Water Town Scene (Paste the entire paragraph directly)
+```
+(masterpiece, best quality, 8k, ultra-detailed), Chinese-style cyber 3D rendering style, UE5 engine rendering, Blender Cycles ray tracing, next-gen high-precision modeling, PBR physical materials, global illumination, ray tracing reflections, cinematic volumetric light, ambient occlusion, depth of field effect, Eastern aesthetic composition, interplay of the real and the virtual, ink wash painting mood, Chinese symmetrical aesthetics, harmonious and elegant colors, exclusive Chinese-style cyber color palette, maximum detail, clear textures, realistic texture
+3D next-gen scene modeling, Chinese-style cyber Jiangnan water town, white walls and dark tiles Hui-style architectural cluster, stilt houses along the river, black-canopied boats transformed into cyber hovercraft, water surface reflecting stone-blue Chinese neon signs, misty drizzle, holographic projection of oil-paper umbrella shapes, stone arch bridge paired with holographic flowing water patterns, lantern-shaped cyber streetlights deep in the alleys, pedestrians weaving through with holographic oil-paper umbrellas, rich layers, elegant atmosphere, cinematic wide-angle lens, panoramic composition, volumetric light penetrating rain and mist, atmosphere maxed out
+Negative prompt: (worst quality, low quality, normal quality), low resolution, blur, noise, mosaic, deformation, clipping, low-precision modeling, rough textures, realistic photography, real human photos, pure Western cyberpunk, Western architecture, no Chinese-style elements, fluorescent color overflow, over-saturation, gray and dull image, watermark, text, signature, border
 ```

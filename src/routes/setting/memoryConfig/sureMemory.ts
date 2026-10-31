@@ -5,7 +5,7 @@ import { success } from "@/lib/responseFormat";
 import { validateFields } from "@/middleware/middleware";
 const router = express.Router();
 
-// 获取用户
+// Get user
 export default router.post(
   "/",
   validateFields({
@@ -35,6 +35,6 @@ export default router.post(
     await upsert("modelOnnxFile", JSON.stringify(modelOnnxFile));
     await upsert("modelDtype", modelDtype);
 
-    res.status(200).send(success("保存设置成功"));
+    res.status(200).send(success("Settings saved successfully"));
   },
 );

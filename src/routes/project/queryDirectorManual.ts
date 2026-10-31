@@ -5,14 +5,14 @@ import fs from "fs";
 import path from "path";
 const router = express.Router();
 
-// 字段映射表
+// Field Mapping Table
 const DATA_MAP: { label: string; value: string; subDir?: string }[] = [
   { label: "README", value: "README" },
-  { label: "导演规划", value: "director_planning_narrative", subDir: "driector_skills" },
-  { label: "分镜表", value: "director_storyboard_table_narrative", subDir: "driector_skills" },
+  { label: "Director's Plan", value: "director_planning_narrative", subDir: "driector_skills" },
+  { label: "Storyboard", value: "director_storyboard_table_narrative", subDir: "driector_skills" },
 ];
 
-// 读取 md 文件内容，文件不存在时返回空字符串
+// Read the contents of the md file; return an empty string if the file does not exist
 function readMd(filePath: string): string {
   try {
     return fs.readFileSync(filePath, "utf-8");
@@ -21,7 +21,7 @@ function readMd(filePath: string): string {
   }
 }
 
-// 获取 images 文件夹下所有图片文件路径列表
+// Get the list of file paths for all image files in the images folder
 async function readAllImages(imagesDir: string) {
   try {
     const ossPath = u.getPath(path.join("skills", "story_skills", imagesDir, "images"));
@@ -37,12 +37,12 @@ async function readAllImages(imagesDir: string) {
   }
 }
 
-// 获取导演手册
+// Get the Director's Handbook
 export default router.post("/", async (req, res) => {
   try {
     const artPromptsDir = u.getPath(["skills", "story_skills"]);
 
-    // 读取所有风格文件夹
+    // Read all style folders
     const styleDirs = fs
       .readdirSync(artPromptsDir, { withFileTypes: true })
       .filter((d) => d.isDirectory())

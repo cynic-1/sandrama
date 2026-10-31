@@ -1,90 +1,90 @@
 ---
 name: director_planning_style
-description: 都市言情约束 — 定义成熟都市言情二次元动画在色调体系、光影方案、质感方向、场景空间元素、配乐选择与环境音上的全局约束。适用于任何叙事类型。
+description: Urban Romance Constraints — Defines global constraints for mature urban romance 2D animation regarding color grading, lighting schemes, texture direction, scene spatial elements, music selection, and ambient sound. Applicable to any narrative type.
 metaData: director_skills
 ---
 
-# 都市言情约束 · 成熟都市言情二次元动画 · 技法参考
+# Urban Romance Constraints · Mature Urban Romance 2D Animation · Technique Reference
 
 ---
 
-## 一、色调体系与画面基调
+## I. Color Grading System and Visual Tone
 
-- **色调基底** — 全片以冷白肤（C1）、浅蓝（C3）、青灰（C6）为基底色，整体色温偏冷（5800-7000K），饱和度中低（30-50%），呈现清冷克制的高级灰调
-- **冷暖叙事对比** — 暖色（琥珀暖 C7、烟霞粉 C5）作为叙事转折的视觉信号，用于情感回暖与暧昧升温段落的局部点缀。冷暖切换应与故事弧线同步，而非随意混用
-- **冷暖分配策略** — 分离/压抑/冷漠段落严格维持冷色调基底（青灰 C6 + 浅蓝 C3），禁用琥珀暖、烟霞粉等暖色调；暖色仅在情感回暖后释放，用冷暖对比做叙事转折
-- **色盘先行原则** — 段落规划需先绑定情绪场景（初见心动/暧昧升温/守护承诺/分离误会/重逢释怀/夜宴灯会等），再确定主色+辅色与光影方案，避免"剧情对了但情绪不对色"
-- **禁用色域** — 高饱和荧光色、霓虹色、现代数码色彩体系均与本风格不兼容
+- **Color Base** — The entire film uses Cool White Skin (C1), Light Blue (C3), and Cyan-Gray (C6) as base colors. The overall color temperature is cool (5800-7000K), with medium-low saturation (30-50%), presenting a refined, restrained high-end gray tone.
+- **Warm/Cold Narrative Contrast** — Warm colors (Amber Warm C7, Smoke Pink C5) serve as visual signals for narrative turning points, used for local accents in segments of emotional warming and ambiguous tension. Warm/cold shifts should synchronize with the story arc, rather than being mixed arbitrarily.
+- **Warm/Cold Allocation Strategy** — Segments of separation, suppression, or coldness strictly maintain the cool color base (Cyan-Gray C6 + Light Blue C3); warm tones such as Amber Warm and Smoke Pink are prohibited. Warm colors are released only after emotional warming, using warm/cold contrast for narrative turns.
+- **Palette-First Principle** — Segment planning must first bind emotional scenes (first meeting/ambiguous tension/guarding promise/separation misunderstanding/reunion relief/night banquet lantern festival, etc.), then determine the main color + auxiliary color and lighting scheme, avoiding "the plot is right but the emotional color is wrong."
+- **Prohibited Color Domains** — High-saturation fluorescent colors, neon colors, and modern digital color systems are incompatible with this style.
 
 ---
 
-## 二、光影方案体系
+## II. Lighting Scheme System
 
-- **光影即叙事** — 7 套光影方案对应不同情绪段落，导演规划阶段应在段落层面确定光影基调方向，而非逐镜指定
-- **赛璐璐光影特征** — 清晰的明暗分界线、戏剧化低调光影为核心手段；光影必须服务于情绪叙事，保持二次元动画的赛璐璐上色风格
+- **Lighting as Narrative** — 7 lighting schemes correspond to different emotional segments. During the director's planning phase, the lighting tone direction should be determined at the segment level, rather than specified shot-by-shot.
+- **Cel-Shading Lighting Characteristics** — Clear light/dark boundaries and dramatic low-key lighting are core techniques; lighting must serve emotional narrative, maintaining the cel-shading coloring style of 2D animation.
 
-| 光影方案 | 方案名 | 色调倾向 | 适用情绪 |
+| Lighting Scheme | Scheme Name | Color Tendency | Applicable Emotion |
 |---|---|---|---|
-| A | 柔光侧逆 | 冷白底 + 局部暖光轮廓勾勒 | 心动悸动、温柔深情、日常温馨 |
-| B | 硬侧高反差 | 墨黑 C4 + 银灰 C8 硬光分割 | 对峙压迫、愤怒冷峻、紧张对抗 |
-| C | 漫射冷光 | 青灰 C6 + 浅蓝 C3 低调打光 | 压抑悲伤、分离误会、孤独寂寥 |
-| D | 散射暖光 | 琥珀暖 C7 + 烟霞粉 C5 局部 | 暧昧升温、重逢释怀、亲密甜蜜 |
-| E | 窗光自然 | 素白 C10 + 浅蓝 C3 侧光斑驳 | 室内日间、日常起居、职场通勤 |
-| F | 夜景灯火 | 琥珀暖 C7 点缀 + 青灰 C6 暗部 | 夜宴灯会、城市夜景、浪漫流光 |
-| G | 月光冷蓝 | 浅蓝 C3 + 银灰 C8 冷光 | 夜间孤寂、思念独处、冷漠疏离 |
+| A | Soft Back-Side Light | Cool white base + local warm light contour outlining | Heart fluttering, gentle deep affection, daily warmth |
+| B | Hard Side High Contrast | Ink Black C4 + Silver Gray C8 hard light division | Confrontation oppression, angry coldness, tense conflict |
+| C | Diffused Cold Light | Cyan-Gray C6 + Light Blue C3 low-key lighting | Suppressed sadness, separation misunderstanding, lonely desolation |
+| D | Scattered Warm Light | Amber Warm C7 + Smoke Pink C5 local | Ambiguous tension, reunion relief, intimate sweetness |
+| E | Window Natural Light | Plain White C10 + Light Blue C3 side light mottling | Indoor daytime, daily living, workplace commute |
+| F | Night Scene Lights | Amber Warm C7 accents + Cyan-Gray C6 shadows | Night banquet lantern festival, city night view, romantic flowing lights |
+| G | Moonlight Cold Blue | Light Blue C3 + Silver Gray C8 cold light | Nighttime solitude, longing alone, cold alienation |
 
-- **冷暖光分配** — 暖色光（琥珀暖 C7）适用于情感回暖、暧昧亲密段落；冷色光（青灰 C6 + 浅蓝 C3）适用于分离、压抑、冷漠段落。导演可根据叙事需要调整冷暖切换点
-- **氛围方向映射** — 每场戏的氛围方向应能映射到上述光影方案（A-G）的某一方向，确保视觉一致性
-
----
-
-## 三、质感方向
-
-- **赛璐璐为锚** — 成熟都市言情二次元动画的核心：清晰线条、赛璐璐上色、戏剧化低调光影，呈现电影级二次元动画画面
-- **面容与皮肤** — 面容细腻渲染、皮肤细腻、五官精致；女性冷白肤（C1）通透不惨白，男性暖白肤（C2）清爽自然。肌肤保持赛璐璐质感的平滑细腻
-- **服饰材质** — 衣物布料质感清晰、纹理细节超清晰、布料折痕真实、衣物随动态飘逸。现代都市服饰（西装/衬衫/连衣裙/大衣）的面料质感须可信
-- **场景材质** — 场景材质纹理清晰、空气透视、现代使用痕迹、生活气息。玻璃反光、金属光泽、木质纹理、布艺垂感均需在赛璐璐风格下清晰呈现
-- **赛璐璐不等于扁平** — 成熟都市言情二次元动画强调在赛璐璐上色基础上叠加电影级光影与景深虚化，通过构图与情绪设计放大感染力，而非依赖写实堆砌
+- **Warm/Cold Light Allocation** — Warm light (Amber Warm C7) is suitable for emotional warming and ambiguous intimate segments; cold light (Cyan-Gray C6 + Light Blue C3) is suitable for separation, suppression, and coldness segments. The director can adjust the warm/cold switching points according to narrative needs.
+- **Atmosphere Direction Mapping** — The atmosphere direction of each scene should be mappable to one of the above lighting schemes (A-G) to ensure visual consistency.
 
 ---
 
-## 四、都市场景空间元素
+## III. Texture Direction
 
-现代都市世界观特有的场景元素及其视觉叙事功能：
-
-- **落地窗/玻璃隔断/门框** — 天然的框架式构图道具，制造"看不透"的层次感与空间纵深。玻璃的反光与透射是画面亮点
-- **城市天际线/街道/公园** — 留白构图的天然载体，景即情：繁华街景 = 孤独中的喧嚣、雨中独坐长椅 = 孤寂、落叶飘过街道 = 离愁
-- **灯光/窗光/屏幕光** — 现代都市的光源载体，室内暖灯 = 暖/私密（方案D）、城市夜景 = 冷暖交织（方案F）、自然窗光 = 日常/静谧（方案E）
-- **段落间用场景空镜过渡** — 本风格有丰富的场景资产（不同时段/天候变体），段落衔接建议用场景空镜做情绪缓冲，不要硬切。城市天际线、窗外雨景、空荡的咖啡厅均可作为过渡空镜
-- **转折点用视觉而非台词** — 优先使用画面手段（光影突变、景别跳切、空镜隐喻）而非依赖对白解释
+- **Cel-Shading as Anchor** — The core of mature urban romance 2D animation: clear lines, cel-shading coloring, dramatic low-key lighting, presenting movie-grade 2D animation visuals.
+- **Faces and Skin** — Delicate facial rendering, fine skin, exquisite features; female Cool White Skin (C1) is translucent but not pale, male Warm White Skin (C2) is fresh and natural. Skin maintains the smooth, fine texture of cel-shading.
+- **Clothing Materials** — Clear fabric texture, ultra-clear texture details, realistic fabric folds, clothing flowing with movement. The fabric texture of modern urban clothing (suits/shirts/dresses/coats) must be credible.
+- **Scene Materials** — Clear scene material textures, aerial perspective, modern usage traces, life atmosphere. Glass reflections, metallic sheen, wood grain, and fabric drape must be clearly presented under the cel-shading style.
+- **Cel-Shading Does Not Equal Flatness** — Mature urban romance 2D animation emphasizes overlaying movie-grade lighting and depth-of-field blur on the cel-shading base, amplifying impact through composition and emotional design, rather than relying on realistic accumulation.
 
 ---
 
-## 五、都市配乐与环境音
+## IV. Urban Scene Spatial Elements
 
-现代都市言情世界观下的声音元素约束：
+Scene elements unique to the modern urban worldview and their visual narrative functions:
 
-### 配乐乐器选择
+- **Floor-to-ceiling windows/Glass partitions/Door frames** — Natural framing composition props, creating a sense of "impenetrability" and spatial depth. Glass reflection and transmission are visual highlights.
+- **City skyline/Streets/Parks** — Natural carriers for negative space composition; the scene is the emotion: bustling street scene = noise in loneliness, sitting alone on a bench in the rain = solitude, leaves drifting over the street = parting sorrow.
+- **Lights/Window light/Screen light** — Light source carriers in the modern urban setting; indoor warm light = warm/private (Scheme D), city night view = warm/cold interweaving (Scheme F), natural window light = daily/quiet (Scheme E).
+- **Use scene empty shots for transitions between segments** — This style has rich scene assets (different time/weather variants). It is recommended to use scene empty shots for emotional buffering in segment connections, avoiding hard cuts. City skylines, rainy views outside the window, and empty cafes can serve as transition empty shots.
+- **Use visuals rather than dialogue for turning points** — Prioritize visual means (lighting sudden changes, shot size jump cuts, empty shot metaphors) rather than relying on dialogue for explanation.
 
-- **钢琴** — 核心乐器，适用范围最广：独奏用于孤寂/思念/回忆段落，轻快触键用于日常/心动段落
-- **弦乐（小提琴/大提琴/弦乐组）** — 情感铺底与升华，大提琴低沉适合压抑/隐忍，小提琴高音适合心动/悸动，弦乐组适合情绪高潮
-- **吉他（原声/电吉他）** — 原声吉他用于日常温馨/轻松休闲段落，电吉他清音用于都市夜景/微醺氛围
-- **电子氛围音** — 低频电子pad用于城市空镜/孤独段落的氛围铺底，增加现代都市的空间感
-- **长笛/单簧管** — 轻柔段落的点缀，不作主导，用于清晨/公园/日常的氛围衬托
+---
 
-### 配乐组合策略
+## V. Urban Music and Ambient Sound
 
-| 情绪阶段 | 乐器组合 |
+Sound element constraints under the modern urban romance worldview:
+
+### Music Instrument Selection
+
+- **Piano** — Core instrument, widest range of application: solo for solitude/longing/memory segments, light key touches for daily/heart-fluttering segments.
+- **Strings (Violin/Cello/String Ensemble)** — Emotional underpinning and sublimation; low cello is suitable for suppression/endurance, high violin is suitable for heart-fluttering/palpitation, string ensemble is suitable for emotional climax.
+- **Guitar (Acoustic/Electric Guitar)** — Acoustic guitar for daily warmth/relaxed leisure segments, electric guitar clean tone for urban night view/tipsy atmosphere.
+- **Electronic Ambient Sound** — Low-frequency electronic pad for atmosphere underpinning in city empty shots/solitude segments, adding a sense of modern urban space.
+- **Flute/Clarinet** — Accents for gentle segments, not dominant, used for atmosphere support in morning/park/daily settings.
+
+### Music Combination Strategy
+
+| Emotional Stage | Instrument Combination |
 |---|---|
-| 平稳/开场/收尾 | 钢琴独奏 或 钢琴 + 轻弦乐 |
-| 心动/悸动 | 钢琴 + 小提琴 |
-| 暧昧升温/亲密 | 原声吉他 + 轻钢琴 + 弦乐铺底 |
-| 压抑/悲伤/分离 | 大提琴独奏 或 大提琴 + 钢琴 |
-| 情绪爆发/重逢/高潮 | 弦乐组全奏 + 钢琴 |
-| 都市夜景/孤独 | 电子氛围音 + 钢琴 |
-| 日常温馨/休闲 | 原声吉他 + 长笛 + 轻打击乐 |
+| Stable/Opening/Closing | Piano solo or Piano + Light Strings |
+| Heart-fluttering/Palpitation | Piano + Violin |
+| Ambiguous tension/Intimacy | Acoustic Guitar + Light Piano + String underpinning |
+| Suppression/Sadness/Separation | Cello solo or Cello + Piano |
+| Emotional outburst/Reunion/Climax | Full String Ensemble + Piano |
+| Urban night view/Solitude | Electronic ambient sound + Piano |
+| Daily warmth/Leisure | Acoustic Guitar + Flute + Light Percussion |
 
-### 都市环境音
+### Urban Ambient Sound
 
-- **典型环境音层次** — 车流远声 / 雨打玻璃窗 / 咖啡机运转声 / 键盘敲击声 / 高跟鞋踏地声 / 电梯提示音 / 城市夜风 / 远处汽车鸣笛 / 公园鸟鸣 / 餐厅轻微嘈杂声
-- **每场戏标注 1-2 个核心环境音**，帮助后续音效设计。环境音层次越丰富，都市场景越有沉浸感
+- **Typical Ambient Sound Layers** — Distant traffic noise / Rain hitting glass windows / Coffee machine operation sound / Keyboard typing sound / High heels stepping on the ground / Elevator chime / Urban night wind / Distant car horn / Park bird song / Slight restaurant noise
+- **Label 1-2 core ambient sounds for each scene** to assist subsequent sound design. The richer the ambient sound layers, the more immersive the urban scene.

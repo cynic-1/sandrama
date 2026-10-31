@@ -25,10 +25,10 @@ export default router.post(
                 storyboardIds.length ? u.db("o_storyboard").whereIn("id", storyboardIds).select("projectId") : [],
                 assetsIds.length ? u.db("o_assets").whereIn("id", assetsIds).select("projectId") : [],
             ]);
-            // 逐项校验归属，避免通过资源 ID 读取其他用户的文件。
+            // Verify ownership item by item to prevent reading other users' files via resource IDs.
             for (const row of [...storyboards, ...assets]) {
                 const project = await u.db("o_project").where("id", row.projectId).select("userId").first();
-                if (!project || Number(project.userId ?? 1) !== user.id) return res.status(403).send({ message: "无权访问文件" });
+                if (!project || Number(project.userId ?? 1) !== user.id) return res.status(403).send({ message: "Access to the file is denied" });
             }
         }
         const result: Record<string, string> = {};

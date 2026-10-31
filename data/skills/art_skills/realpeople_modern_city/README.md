@@ -1,322 +1,317 @@
-# 真人都市影像风格
-# 真人都市影像风格
+# Live-Action Urban Visual Style
+# Live-Action Urban Visual Style
 
-# 真人都市题材视觉手册 · 风格说明
+# Live-Action Urban Subject Visual Manual · Style Guide
 
-本手册专为"真人都市"题材视觉创作打造，所有美术提示词、视觉规范和生成内容严格限定于真人实拍级都市影视美学体系。
-
----
-
-## 一、风格核心定义
-
-**真人都市**是以**真人影视摄影美学**为基准、以**当代中国都市**为核心的视觉风格体系。其核心特征为：
-
-- **真人写实摄影质感**：以真人影视级摄影为锚点，画面呈现真实人物的皮肤纹理、毛发细节、微表情与肢体语言，杜绝3D建模感、CG渲染感、手绘感
-- **当代都市世界观**：所有场景严格限定于当代中国都市空间——写字楼、居民区、街巷、商圈、地铁、公园、校园、医院等真实都市生活场景
-- **电影级摄影语言**：以院线级真人电影摄影为基准，强调自然光与人工光的有机调度、构图叙事的专业性、景深与焦点的情绪表达、色彩分级的电影感
-- **都市人文温度感**：在保持专业影像品质的前提下，强调都市生活的烟火气、人与人之间的真实情感连接、日常瞬间的审美提炼
-
-### 创作理念与核心价值
-
-本手册的核心创作理念为 **"真实即力量"**：
-
-1. **真实感的审美回归**：在AI生成影像日趋泛滥的当下，真人写实质感以其不可替代的真实力量，成为最具情感穿透力的视觉语言。肌肤的纹理、眼神的温度、衣物的褶皱、阳光穿过发丝的碎影——这些真实细节构成了一种生命质感，是3D渲染无法复刻的审美深度。
-
-2. **都市的叙事容器**：当代都市是中国人最熟悉的叙事空间。写字楼的格子间承载着职场梦想，老小区的楼道回荡着市井烟火，地铁车厢里的陌生人对视、深夜便利店的一盏灯——都市空间本身就是一个巨大的叙事容器，等待被挖掘。
-
-3. **人本主义的视觉立场**：本手册坚持以"人"为核心。无论场景多么宏大、光影多么绚丽，最终回归到人物的情感状态与内心世界。每一帧画面都是一次对人性的注视。
-
-4. **电影与日常的临界点**：寻求"电影的精致"与"日常的真实"之间的微妙平衡——画面足够美、足够专业、有电影感，但不过度精致而失去生活感；人物足够真实、足够生动，但不过度随意而失去审美品质。
-
-**核心价值：**
-
-- 为AI视觉创作者提供一套系统化、可复用的真人都市题材提示词方法论
-- 建立从概念到成品的标准化视觉创作管线
-- 降低真人都市题材AI视觉创作的技术门槛与试错成本
-- 填补当前AI视觉创作领域"真人都市题材系统化方法论"的空白
+This manual is specifically designed for visual creation in the "Live-Action Urban" genre. All art prompts, visual standards, and generated content are strictly confined to the aesthetic system of live-action, photorealistic urban cinema.
 
 ---
 
-## 二、目标受众与应用场景
+## I. Core Style Definition
 
-### 目标受众
+**Live-Action Urban** is a visual style system based on **live-action cinematic photography aesthetics** and centered on **contemporary Chinese urban landscapes**. Its core characteristics are:
 
-| 受众群体 | 核心需求 | 使用场景 |
+- **Live-Action Photorealistic Texture**: Anchored in live-action film-grade photography, the imagery presents realistic human skin textures, hair details, micro-expressions, and body language, strictly eliminating any 3D modeling, CG rendering, or hand-drawn feel.
+- **Contemporary Urban Worldview**: All scenes are strictly limited to contemporary Chinese urban spaces—office buildings, residential areas, streets and alleys, commercial districts, subways, parks, campuses, hospitals, and other real-life urban settings.
+- **Cinematic Photography Language**: Based on theatrical live-action film photography, emphasizing the organic orchestration of natural and artificial light, professional compositional storytelling, emotional expression through depth of field and focus, and cinematic color grading.
+- **Urban Humanistic Warmth**: While maintaining professional image quality, it emphasizes the everyday vitality of urban life, authentic emotional connections between people, and the aesthetic refinement of daily moments.
+
+### Creative Philosophy and Core Values
+
+The core creative philosophy of this manual is **"Authenticity is Power"**:
+
+1. **The Aesthetic Return to Authenticity**: In an era where AI-generated imagery is increasingly prevalent, live-action photorealistic texture, with its irreplaceable power of authenticity, becomes the most emotionally penetrating visual language. Skin textures, the warmth in the eyes, fabric wrinkles, and the fragmented shadows of sunlight passing through hair—these authentic details constitute a sense of life that 3D rendering cannot replicate in terms of aesthetic depth.
+2. **The Urban Narrative Container**: The contemporary city is the most familiar narrative space for Chinese people. Office cubicles carry workplace dreams, the corridors of old residential compounds echo with the hustle and bustle of daily life, strangers exchanging glances in subway cars, and a single light in a late-night convenience store—the urban space itself is a massive narrative container waiting to be explored.
+3. **Human-Centric Visual Stance**: This manual insists on placing "the human" at the core. No matter how grand the scene or how brilliant the light and shadow, the focus ultimately returns to the character's emotional state and inner world. Every frame is an act of observing humanity.
+4. **The Threshold Between Cinema and Daily Life**: Seeking a subtle balance between "cinematic refinement" and "daily authenticity"—the image is beautiful, professional, and cinematic, but not so polished that it loses its sense of life; the character is real and vivid, but not so casual that it loses aesthetic quality.
+
+**Core Values:**
+
+- Provides AI visual creators with a systematic and reusable prompt methodology for live-action urban subjects.
+- Establishes a standardized visual creation pipeline from concept to final product.
+- Lowers the technical barrier and trial-and-error costs for AI visual creation in the live-action urban genre.
+- Fills the current gap in the "systematic methodology for live-action urban subjects" in the AI visual creation field.
+
+---
+
+## II. Target Audience and Application Scenarios
+
+### Target Audience
+
+| Audience Group | Core Needs | Usage Scenarios |
 |---|---|---|
-| **影视从业者** | 快速产出都市题材的概念设计图、氛围参考图、人物造型方案 | 都市剧/都市电影的前期视觉开发，分镜概念图，美术方案比选 |
-| **广告/品牌创意人员** | 产出具有真人质感的都市生活方式视觉素材 | 品牌视觉方案提案，社交媒体内容创作，电商场景搭建 |
-| **摄影师/导演** | 获取都市题材的创意灵感与视觉参考 | 个人创作项目的视觉研究，拍摄前的调性确定与参考板制作 |
-| **AI视觉创作者** | 系统化学习真人都市题材的提示词创作方法 | AI影像创作练习，风格探索，个人作品集构建 |
-| **游戏/互动叙事开发者** | 获取真人影视质感的参考标准用于写实类作品 | 真人互动影游概念设计，写实题材游戏的视觉参考 |
-| **内容创作者/自媒体** | 快速产出高品质真人都市视觉内容 | 短视频封面，图文内容配图，账号视觉风格统一 |
+| **Film & TV Professionals** | Rapid production of concept design images, mood reference images, and character styling plans for urban subjects | Pre-production visual development for urban dramas/films, storyboard concept art, art direction selection |
+| **Advertising/Brand Creatives** | Production of urban lifestyle visual assets with live-action texture | Brand visual proposal, social media content creation, e-commerce scene setup |
+| **Photographers/Directors** | Acquisition of creative inspiration and visual references for urban subjects | Visual research for personal creative projects, tone determination and mood board creation before shooting |
+| **AI Visual Creators** | Systematic learning of prompt creation methods for live-action urban subjects | AI image creation practice, style exploration, personal portfolio building |
+| **Game/Interactive Narrative Developers** | Acquisition of live-action cinematic quality reference standards for realistic works | Concept design for live-action interactive games, visual references for realistic-themed games |
+| **Content Creators/Self-Media** | Rapid production of high-quality live-action urban visual content | Short video thumbnails, image-text content illustrations, unified account visual style |
 
-### 应用场景
+### Application Scenarios
 
-- **AI图像生成**：覆盖角色肖像、场景空间、道具细节、氛围光影、电影级剧照等全品类真人都市视觉内容
-- **AI视频生成**：适配Doubao-Seedance等AI视频生成平台，产出真人质感都市短片
-- **前期视觉开发**：为影视、广告项目提供快速的概念视觉方案，节省实拍试错成本
-- **分镜与叙事可视化**：以真人实拍感画面呈现分镜脚本，直观传达镜头语言与叙事节奏
-- **个人/品牌视觉体系构建**：为创作者或品牌建立统一的真人都市视觉风格库
+- **AI Image Generation**: Covers all categories of live-action urban visual content, including character portraits, scene spaces, prop details, atmospheric lighting, and cinematic stills.
+- **AI Video Generation**: Compatible with AI video generation platforms such as Doubao-Seedance, producing urban short films with live-action texture.
+- **Pre-Production Visual Development**: Provides rapid concept visual solutions for film and advertising projects, saving the costs of live-action trial and error.
+- **Storyboard and Narrative Visualization**: Presents storyboard scripts with live-action photorealistic imagery, intuitively conveying camera language and narrative rhythm.
+- **Personal/Brand Visual System Construction**: Establishes a unified live-action urban visual style library for creators or brands.
 
 ---
 
-## 三、视觉风格定位
+## III. Visual Style Positioning
 
-### 3.1 整体风格定位
+### 3.1 Overall Style Positioning
 
-**"电影级真人写实都市美学"**
+**"Cinematic Live-Action Photorealistic Urban Aesthetics"**
 
-以当代中国都市为叙事舞台，以真人影视摄影为技术锚点，追求院线级都市电影的画面品质与审美高度。整体风格在"电影感"与"生活感"之间寻找黄金平衡——画面精致但不空洞，真实但不随意，审美在线但不炫技。
+Using the contemporary Chinese city as the narrative stage and live-action film photography as the technical anchor, it pursues the image quality and aesthetic height of theatrical urban cinema. The overall style seeks a golden balance between "cinematic feel" and "sense of life"—refined but not empty, authentic but not casual, aesthetically on-point but not showy.
 
-### 3.2 影像质感层级
+### 3.2 Image Texture Hierarchy
 
-| 质感维度 | 定位标准 |
+| Texture Dimension | Positioning Standard |
 |---|---|
-| **皮肤质感** | 真人摄影级，可见自然的皮肤纹理、毛孔、细纹、痣斑，杜绝过度磨皮与塑料感 |
-| **毛发质感** | 发丝根根分明，自然蓬松或垂落，受光面与背光面层次清晰，杜绝僵硬发块 |
-| **衣物质感** | 面料纹理可辨（棉麻的肌理、羊毛的绒感、丝绸的光泽、皮革的纹路），褶皱符合身体动态与重力 |
-| **环境质感** | 墙面有使用痕迹、地面有自然磨损、玻璃有反射与折射、金属有氧化与划痕，杜绝"全新道具感" |
-| **光影质感** | 自然光与人工光有机调度，杜绝生硬的反差与不自然的噪点，追求电影级色彩科学 |
+| **Skin Texture** | Live-action photography grade; visible natural skin texture, pores, fine lines, and moles; strictly avoids over-smoothing and plastic feel. |
+| **Hair Texture** | Individual strands clearly defined; naturally fluffy or falling; clear layers between lit and shadowed areas; strictly avoids stiff hair blocks. |
+| **Fabric Texture** | Distinguishable fabric textures (cotton/linen grain, wool fluff, silk sheen, leather grain); wrinkles conform to body dynamics and gravity. |
+| **Environment Texture** | Walls show signs of use, floors show natural wear, glass shows reflection and refraction, metal shows oxidation and scratches; strictly avoids the "brand-new prop" feel. |
+| **Lighting Texture** | Organic orchestration of natural and artificial light; strictly avoids harsh contrast and unnatural noise; pursues cinematic color science. |
 
-### 3.3 色彩体系
+### 3.3 Color System
 
-**基底色盘（都市色盘）**
+**Base Palette (Urban Palette)**
 
-| 色号 | 色名 | 色值参考 | 功能定位 |
+| Color Code | Color Name | Color Value Reference | Functional Positioning |
 |---|---|---|---|
-| C0 | 都市白 | 微暖米白 | 晨光基底、室内墙面、纯洁/新生感 |
-| C1 | 雾灰 | 中性低调灰 | 城市建筑基色、冷静克制感 |
-| C2 | 炭黑 | 深邃不沉闷黑 | 都市夜景基底、剪影、神秘感 |
-| C3 | 暖橙 | 低饱和日落橙 | 情感升温、温馨居家、金色时刻 |
-| C4 | 冷蓝 | 清透天光蓝 | 日间室外、清冷独处、理性克制 |
-| C5 | 暖金 | 温润金调 | 高光时刻、精英质感、温暖回忆 |
-| C6 | 藏青 | 深沉蓝调 | 夜雨孤寂、悬疑氛围、都市夜色 |
-| C7 | 砖红 | 低调暖红 | 市井烟火、老城肌理、怀旧情绪 |
-| C8 | 深绿 | 都市植被绿 | 生活治愈、自然触感、松弛氛围 |
+| C0 | Urban White | Slightly warm off-white | Morning light base, indoor walls, sense of purity/rebirth |
+| C1 | Misty Grey | Neutral low-key grey | Base color for urban architecture, calm and restrained feel |
+| C2 | Charcoal Black | Deep but not dull black | Base for urban night scenes, silhouettes, sense of mystery |
+| C3 | Warm Orange | Low-saturation sunset orange | Emotional warming, cozy home, golden hour |
+| C4 | Cool Blue | Clear skylight blue | Daytime outdoors, cold solitude, rational restraint |
+| C5 | Warm Gold | Warm gold tone | Highlight moments, elite texture, warm memories |
+| C6 | Navy Blue | Deep blue tone | Lonely rainy nights, suspense atmosphere, urban night |
+| C7 | Brick Red | Low-key warm red | Everyday hustle, old city texture, nostalgic emotion |
+| C8 | Deep Green | Urban vegetation green | Life healing, natural touch, relaxed atmosphere |
 
-**情绪色盘矩阵**
+**Emotional Palette Matrix**
 
-| 情绪类型 | 主色 | 辅色 | 色调倾向 |
+| Emotion Type | Primary Color | Secondary Color | Tone Tendency |
 |---|---|---|---|
-| 都市日常 | C1雾灰 + C4冷蓝 | C0都市白 | 中性偏冷，清澈通透 |
-| 职场精英 | C2炭黑 + C5暖金 | C1雾灰 | 冷暖对冲，利落高级 |
-| 温馨居家 | C3暖橙 + C0都市白 | C7砖红 | 暖调柔和，松弛治愈 |
-| 市井烟火 | C7砖红 + C3暖橙 | C8深绿 | 暖调浓郁，生活气息 |
-| 雨夜悬疑 | C6藏青 + C2炭黑 | C4冷蓝 | 冷调压抑，氛围浓重 |
-| 青春治愈 | C0都市白 + C8深绿 | C3暖橙 | 明快清新，生命力感 |
-| 深夜独处 | C2炭黑 + C6藏青 | C5暖金（点缀） | 极暗调，孤独诗意 |
+| Urban Daily Life | C1 Misty Grey + C4 Cool Blue | C0 Urban White | Neutral leaning cold, clear and transparent |
+| Workplace Elite | C2 Charcoal Black + C5 Warm Gold | C1 Misty Grey | Cold-warm contrast, sharp and high-end |
+| Cozy Home | C3 Warm Orange + C0 Urban White | C7 Brick Red | Warm and soft, relaxed and healing |
+| Everyday Hustle | C7 Brick Red + C3 Warm Orange | C8 Deep Green | Warm and rich, full of the vitality of life |
+| Rainy Night Suspense | C6 Navy Blue + C2 Charcoal Black | C4 Cool Blue | Cold and oppressive, heavy atmosphere |
+| Youth Healing | C0 Urban White + C8 Deep Green | C3 Warm Orange | Bright and fresh, sense of vitality |
+| Late-Night Solitude | C2 Charcoal Black + C6 Navy Blue | C5 Warm Gold (accent) | Extremely dark tone, lonely poetry |
 
-### 3.4 光影体系
+### 3.4 Lighting System
 
-真人都市题材的光影以**"自然主义为基础、电影级调度为追求"**为核心原则：
+The lighting for live-action urban subjects is based on the core principle of **"Naturalism as the foundation, cinematic orchestration as the goal"**:
 
-| 光影方案 | 方案名 | 光影特征 | 适用情绪 |
+| Lighting Scheme | Scheme Name | Lighting Characteristics | Applicable Emotion |
 |---|---|---|---|
-| A | 金色时刻 | 低角度暖调日光，长阴影，空气透亮 | 希望、新生、温情回忆、都市晨昏 |
-| B | 日间漫射 | 大面积柔光照明，窗光/天光为主，阴影柔和不锐利 | 日常叙事、室内办公、松弛治愈 |
-| C | 霓虹都市夜 | 城市霓虹灯光为主光源，冷暖光对冲，多层光源叠加 | 都市夜生活、孤独行走、浪漫邂逅 |
-| D | 雨夜清辉 | 湿地面反射街灯，冷蓝主调+暖橙点缀，体积感雨雾 | 悬疑铺垫、孤独思念、文艺感伤 |
-| E | 室内暖光 | 台灯/顶灯暖调主光，暗部丰富有细节，窗帘透光 | 居家日常、亲密对话、深夜独白 |
-| F | 硬光叙事 | 强主光+深阴影，高对比度，轮廓锐利，戏剧化 | 冲突对峙、命运转折、高燃时刻 |
-| G | 蓝调时刻 | 日落后/日出前的天空漫射光，整体偏蓝紫调，静谧 | 内心独白、诗意留白、尾声收束 |
+| A | Golden Hour | Low-angle warm sunlight, long shadows, clear air | Hope, rebirth, warm memories, urban dawn/dusk |
+| B | Daytime Diffusion | Large-area soft lighting, window/sky light dominant, soft non-sharp shadows | Daily narrative, indoor office, relaxed healing |
+| C | Neon Urban Night | City neon lights as main source, cold-warm light contrast, multi-layer light stacking | Urban nightlife, lonely walking, romantic encounter |
+| D | Rainy Night Clarity | Wet ground reflecting streetlights, cool blue dominant + warm orange accents, volumetric rain mist | Suspense setup, lonely longing, literary melancholy |
+| E | Indoor Warm Light | Warm-toned main light from desk/ceiling lamps, rich details in shadows, light through curtains | Home daily life, intimate conversation, late-night monologue |
+| F | Hard Light Narrative | Strong key light + deep shadows, high contrast, sharp contours, dramatic | Conflict confrontation, fate turning point, high-energy moment |
+| G | Blue Hour | Diffused sky light after sunset/before sunrise, overall blue-purple tone, serene | Inner monologue, poetic blank space, closing sequence |
 
 ---
 
-## 四、关键视觉元素
+## IV. Key Visual Elements
 
-### 4.1 人物视觉元素
+### 4.1 Character Visual Elements
 
-真人都市题材的人物视觉以**"真实个体、都市气质"**为核心：
+Character visuals in live-action urban subjects are centered on **"Authentic Individuals, Urban Temperament"**:
 
-- **面容标准**：真人肌肤质感，五官自然立体，妆容符合都市审美且不过度修饰。支持多元面容类型——清冷知性、阳光元气、成熟稳重、酷飒干练、温柔治愈等
-- **发型标准**：当代都市潮流发型，发丝自然质感，杜绝假发感与僵硬造型。支持披肩直发、锁骨发、利落短发、慵懒卷发、通勤低马尾等多种都市发型
-- **服饰标准**：当代都市日常着装体系——通勤正装（西装、衬衫、风衣）、休闲日常（卫衣、针织衫、牛仔裤）、都市潮流（设计感单品、叠穿搭配）、生活居家（舒适针织家居服）等。面料纹理清晰，褶皱自然
-- **表情与体态**：微表情真实细腻（眼神、嘴角、眉宇），肢体语言自然不做作，杜绝僵硬摆拍感与过度戏剧化表情
-- **人物气质维度**：精英干练 / 温柔治愈 / 青春元气 / 成熟内敛 / 酷飒独立 / 市井质朴 / 文艺忧郁
+- **Facial Standards**: Live-action skin texture, natural three-dimensional features, makeup conforming to urban aesthetics without excessive modification. Supports diverse facial types—cool and intellectual, sunny and energetic, mature and steady, cool and capable, gentle and healing, etc.
+- **Hairstyle Standards**: Contemporary urban trendy hairstyles, natural hair texture, strictly avoiding wig-like or stiff styling. Supports shoulder-length straight hair, collarbone-length hair, sharp short hair, lazy curls, and low ponytails for commuting, among other urban hairstyles.
+- **Clothing Standards**: Contemporary urban daily wear system—commute formal wear (suits, shirts, trench coats), casual daily wear (hoodies, knits, jeans), urban trends (designer items, layering), and home comfort (cozy knit loungewear). Clear fabric textures and natural wrinkles.
+- **Expression and Posture**: Realistic and delicate micro-expressions (eyes, mouth corners, brows), natural and unpretentious body language, strictly avoiding stiff posing and overly dramatic expressions.
+- **Character Temperament Dimensions**: Elite and capable / Gentle and healing / Youthful and energetic / Mature and reserved / Cool and independent / Earthy and rustic / Literary and melancholic
 
-### 4.2 场景视觉元素
+### 4.2 Scene Visual Elements
 
-- **写字楼/办公室**：玻璃幕墙、开放式工位、独立办公室、会议室、茶水间——玻璃隔断的透与隔、屏幕光的冷调漫射、午后阳光穿过百叶窗的条纹光影
-- **城市街头**：老街巷弄、繁华商圈、天桥地道、公交站台、地铁通勤——行道树的光影、车流的动态模糊、陌生人流动的人群感、街牌与橱窗的城市质感
-- **居家空间**：老小区楼道、高层公寓阳台、客厅厨房卧室——窗光洒入的温暖感、居家杂物的生活痕迹、窗帘飘动的空气感
-- **餐饮空间**：社区面馆、网红咖啡厅、深夜便利店、夜市排档、公司食堂——食物的烟火气、玻璃上的水雾、暖调灯光的包裹感
-- **城市公共空间**：公园长椅、医院走廊、校园操场、书店角落、天台屋顶——空间与人物情绪的呼应关系
+- **Office Buildings/Offices**: Glass curtain walls, open workstations, private offices, meeting rooms, break rooms—transparency and separation of glass partitions, cool-toned diffusion of screen light, striped light and shadow of afternoon sun through blinds.
+- **City Streets**: Old alleys, bustling commercial districts, overpasses and underpasses, bus stops, subway commutes—light and shadow of street trees, motion blur of traffic, the flow of strangers, urban texture of street signs and shop windows.
+- **Home Spaces**: Old residential corridors, high-rise apartment balconies, living rooms, kitchens, bedrooms—warmth of window light, life traces of household clutter, sense of air movement from fluttering curtains.
+- **Dining Spaces**: Community noodle shops, trendy cafes, late-night convenience stores, night market stalls, company canteens—smoky aroma of food, water mist on glass, enveloping feel of warm-toned lighting.
+- **Urban Public Spaces**: Park benches, hospital corridors, campus playgrounds, bookstore corners, rooftop terraces—correspondence between space and character emotion.
 
-### 4.3 道具与细节元素
+### 4.3 Props and Detail Elements
 
-- **都市生活道具**：手机（消息弹窗、屏幕反光）、笔记本电脑（键盘光映脸）、咖啡杯（水汽氤氲）、耳机（独处符号）、雨伞（雨景核心道具）、工牌、外卖包装
-- **光影道具**：台灯、路灯、车灯、霓虹招牌、屏幕光源、蜡烛——均为都市叙事中的氛围制造者
-- **情感符号道具**：旧照片、信件、戒指、车票、便当盒、绿植——承载叙事功能的小物件
-- **季节与天气元素**：春日樱花/柳絮、夏日暴雨/蝉鸣、秋日落叶/风衣、冬日呵气/雪花——季节感增强都市叙事的时间维度
+- **Urban Life Props**: Mobile phones (message pop-ups, screen reflections), laptops (keyboard light reflecting on face), coffee cups (steam rising), headphones (symbol of solitude), umbrellas (core prop for rain scenes), ID badges, takeout packaging.
+- **Lighting Props**: Desk lamps, streetlights, car lights, neon signs, screen light sources, candles—all are atmosphere creators in urban narratives.
+- **Emotional Symbol Props**: Old photos, letters, rings, tickets, bento boxes, houseplants—small objects carrying narrative functions.
+- **Seasonal and Weather Elements**: Spring cherry blossoms/catkins, summer heavy rain/cicadas, autumn fallen leaves/trench coats, winter breath/snowflakes—seasonal elements enhance the temporal dimension of urban narratives.
 
-### 4.4 镜头语言元素
+### 4.4 Camera Language Elements
 
-| 景别 | 叙事功能 | 真人都市特征 |
+| Shot Size | Narrative Function | Live-Action Urban Characteristics |
 |---|---|---|
-| 大特写 | 情绪爆发点、关键细节 | 眼神、手指微动、泪珠、信息屏幕 |
-| 近景 | 人物情感、对话反应 | 面部微表情、肩部以上，强调情绪传递 |
-| 中近景 | 人物互动、动作叙事 | 腰部以上，兼顾表情与手势 |
-| 中景 | 人物关系、空间交代 | 全身入画，人物与环境的关系 |
-| 全景 | 环境氛围、人物孤寂/融入 | 人物占比较小，空间叙事为主 |
-| 空镜 | 情绪缓冲、隐喻留白 | 无人物，纯环境镜头，城市景观 |
+| Extreme Close-Up | Emotional climax, key details | Eyes, subtle finger movements, tears, information screens |
+| Close-Up | Character emotion, dialogue reaction | Facial micro-expressions, above shoulders, emphasizing emotional transmission |
+| Medium Close-Up | Character interaction, action narrative | Above waist, balancing expression and gestures |
+| Medium Shot | Character relationship, spatial context | Full body in frame, relationship between character and environment |
+| Wide Shot | Environmental atmosphere, character solitude/integration | Small character proportion, spatial narrative dominant |
+| Empty Shot | Emotional buffer, metaphorical blank space | No characters, pure environment shot, cityscape |
 
 ---
 
-## 五、严禁内容（优先级最高）
+## V. Strictly Prohibited Content (Highest Priority)
 
-本风格严格排除以下内容类型，确保视觉体系纯净统一：
+This style strictly excludes the following content types to ensure the purity and unity of the visual system:
 
-1. **非真人质感**：3D渲染/CG建模/次世代游戏引擎/动画风格/手绘插画/水彩油画/二次元/Voxel/低多边形等一切非真人实拍影像质感
-2. **非都市世界观**：古风/古装/传统中式古建/仙侠/玄幻/武侠/民国/西方奇幻/中世纪/赛博朋克/科幻未来/星际太空等非当代都市背景
-3. **非当代中国语境**：明显非中国都市特征的建筑、街道、标识、人物造型（如和服、韩屋、欧式小镇等）
-4. **技术质量缺陷**：低分辨率/模糊/噪点/变形/畸形肢体/五官扭曲/比例失调/抠图感/塑料感/过度磨皮/假面感
-5. **审美倾向违规**：过度高饱和/死亡荧光色/廉价滤镜感/过度HDR/脏乱差画面/刻意阴间色调
-6. **内容合规红线**：暴露/低俗/暗示性/暴力血腥/违法内容/歧视性表达/政治敏感元素
+1. **Non-Live-Action Texture**: 3D rendering/CG modeling/next-gen game engines/animation style/hand-drawn illustration/watercolor oil painting/2D anime/Voxel/low-poly, and any other non-live-action photorealistic image textures.
+2. **Non-Urban Worldview**: Ancient style/period costumes/traditional Chinese ancient architecture/xianxia/fantasy/wuxia/Republic of China era/Western fantasy/Medieval/cyberpunk/sci-fi future/interstellar space, and any non-contemporary urban backgrounds.
+3. **Non-Contemporary Chinese Context**: Buildings, streets, signage, or character styling with obvious non-Chinese urban characteristics (e.g., kimono, Korean houses, European small towns, etc.).
+4. **Technical Quality Defects**: Low resolution/blur/noise/distortion/deformed limbs/distorted facial features/disproportionate ratios/cutout feel/plastic feel/over-smoothing/mask-like face.
+5. **Aesthetic Violations**: Excessive high saturation/death fluorescent colors/cheap filter feel/over-HDR/dirty and messy images/deliberately gloomy tones.
+6. **Content Compliance Red Lines**: Exposure/vulgarity/suggestive content/violent gore/illegal content/discriminatory expressions/politically sensitive elements.
 
----
+---## VI. Project Phase Planning and Expected Outcomes
 
-## 六、项目阶段规划与预期成果
+This visual handbook creation project adopts a phased progression strategy to ensure comprehensive coverage from the macro framework to micro-level details.
 
-本视觉手册创作项目采用分阶段推进策略，确保从宏观框架到微观细则的完整覆盖。
+### Phase 1: Framework Establishment and Style Anchoring (Completed in this cycle)
 
-### 第一阶段：框架搭建与风格锚定（本期完成）
+**Objective:** Establish the overall project framework, clarifying core definitions, creative philosophy, and style positioning.
 
-**目标：** 建立项目整体框架，明确核心定义、创作理念、风格定位。
+**Deliverables:**
+- ✅ README Document (this document) — The project's guiding document
+- ⬜ Prefix Prompt Document — Global style anchoring, universal core positive and negative prompts
+- ⬜ Style Benchmark Reference Images — Key visual reference boards for live-action urban themes
 
-**交付物：**
-- ✅ README 文档（本文档）—— 项目纲领性文件
-- ⬜ 前缀提示词文档 —— 全局风格锚定、通用核心正向提示词与负面提示词
-- ⬜ 风格基准参考图 —— 真人都市题材的关键视觉参考板
-
-**预期成果：** 为后续所有细分创作提供不可动摇的风格底线与创作方向。
+**Expected Outcome:** Provide an unshakable style baseline and creative direction for all subsequent specialized creation tasks.
 
 ---
 
-### 第二阶段：角色视觉体系搭建
+### Phase 2: Character Visual System Construction
 
-**目标：** 建立完整的真人都市人物视觉创作体系。
+**Objective:** Establish a complete visual creation system for live-action urban characters.
 
-**交付物：**
-- ⬜ 角色提示词文档 —— 通用角色基底提示词 + 细分角色类型变体
-- ⬜ 角色衍生文档 —— 面向不同性别、年龄层、职业类型、气质类型的角色变体
-- ⬜ 角色造型参考 —— 服饰、妆容、发型视觉参考体系
+**Deliverables:**
+- ⬜ Character Prompt Document — Universal character base prompts + specialized character type variants
+- ⬜ Character Derivative Document — Character variants for different genders, age groups, professions, and temperament types
+- ⬜ Character Styling Reference — Visual reference system for clothing, makeup, and hairstyles
 
-**核心任务清单：**
-- 都市男性角色类型体系（职场精英型、文艺忧郁型、阳光运动型、成熟稳重型、市井生活型等）
-- 都市女性角色类型体系（知性精英型、元气治愈型、酷飒独立型、温柔细腻型、烟火市井型等）
-- 双人/多人互动关系视觉规范
-- 年龄跨度视觉处理方案（青年 / 中年 / 老年）
+**Core Task List:**
+- Urban male character type system (Workplace Elite, Artistic Melancholic, Sunny Athletic, Mature Steady, Everyday Life, etc.)
+- Urban female character type system (Intellectual Elite, Energetic Healing, Cool Independent, Gentle Delicate, Everyday Life, etc.)
+- Visual standards for dual/multi-person interaction relationships
+- Visual handling solutions for age spans (Youth / Middle Age / Elderly)
 
-**预期成果：** 覆盖都市题材全人物类型的标准化提示词库，支持快速迭代与变体生成。
-
----
-
-### 第三阶段：场景与空间视觉体系搭建
-
-**目标：** 建立完整的真人都市场景空间视觉创作体系。
-
-**交付物：**
-- ⬜ 场景提示词文档 —— 通用场景基底提示词 + 细分场景类型变体
-- ⬜ 场景衍生文档 —— 不同时段（晨/午/暮/夜）、不同天气（晴/阴/雨/雪）、不同季节的变体
-
-**核心任务清单：**
-- 写字楼/办公空间全场景体系（开放式办公区、独立办公室、会议室、茶水间、走廊、大堂）
-- 居家空间全场景体系（老小区/高层公寓、客厅/卧室/厨房/阳台、日夜变体）
-- 城市公共空间全场景体系（街头巷弄、商圈、地铁/公交、公园、天台、校园）
-- 餐饮消费空间全场景体系（面馆/餐厅、咖啡厅/奶茶店、便利店、夜市/排档）
-- 关键场景元素的视觉规范（玻璃幕墙、街灯、行道树、电子屏幕、雨幕、人群）
-
-**预期成果：** 覆盖当代都市全场景空间的标准化提示词库，支持不同情绪、时段、天气的灵活切换。
+**Expected Outcome:** A standardized prompt library covering all character types in urban themes, supporting rapid iteration and variant generation.
 
 ---
 
-### 第四阶段：道具与细节视觉体系搭建
+### Phase 3: Scene and Space Visual System Construction
 
-**目标：** 建立完整的真人都市道具与细节视觉创作体系。
+**Objective:** Establish a complete visual creation system for live-action urban scenes and spaces.
 
-**交付物：**
-- ⬜ 道具提示词文档 —— 通用道具基底提示词 + 细分道具类型变体
-- ⬜ 道具衍生文档 —— 道具的情绪化变体与叙事功能变体
+**Deliverables:**
+- ⬜ Scene Prompt Document — Universal scene base prompts + specialized scene type variants
+- ⬜ Scene Derivative Document — Variants for different time periods (Morning/Noon/Dusk/Night), different weather conditions (Clear/Overcast/Rain/Snow), and different seasons
 
-**核心任务清单：**
-- 通讯与电子产品（手机、笔记本、平板、耳机、智能手表）
-- 餐饮道具（咖啡杯、外卖包装、便当盒、餐具、水杯/保温杯）
-- 办公/学习道具（工牌、文具、文件/档案袋、台灯、书架）
-- 出行道具（雨伞、背包/通勤包、车钥匙、地铁卡、共享单车）
-- 情绪符号道具（旧照片、信件/明信片、戒指/首饰、植物盆栽、书籍）
+**Core Task List:**
+- Full scene system for office buildings/workspaces (Open office areas, private offices, meeting rooms, break rooms, corridors, lobbies)
+- Full scene system for residential spaces (Old residential compounds/High-rise apartments, Living rooms/Bedrooms/Kitchens/Balconies, Day/Night variants)
+- Full scene system for urban public spaces (Streets and alleys, Commercial districts, Metro/Bus, Parks, Rooftops, Campuses)
+- Full scene system for dining and consumption spaces (Noodle shops/Restaurants, Cafes/Milk tea shops, Convenience stores, Night markets/Food stalls)
+- Visual standards for key scene elements (Glass curtain walls, Street lamps, Street trees, Electronic screens, Rain curtains, Crowds)
 
-**预期成果：** 覆盖都市日常全道具类型的标准化提示词库，确保道具的"叙事参与感"而非"背景摆设感"。
-
----
-
-### 第五阶段：分镜与叙事视觉体系搭建
-
-**目标：** 建立真人都市题材的分镜视觉创作体系与叙事规范。
-
-**交付物：**
-- ⬜ 分镜提示词文档 —— 通用分镜基底提示词 + 细分情绪类型分镜变体
-- ⬜ 分镜表文档 —— 标准化分镜表模板 + 填充示例
-- ⬜ 分镜视频文档 —— 面向AI视频生成的分镜动态化规范
-- ⬜ 导演规划文档 —— 真人都市题材的全局导演约束（色调体系、光影方案、氛围方向、叙事节奏）
-
-**核心任务清单：**
-- 景别体系（大特写→全景）的提示词规范
-- 运镜体系（固定/推拉/摇移/跟/升降/手持）的提示词规范
-- 叙事情绪类型的分镜风格变体（日常治愈/职场成长/青春励志/都市悬疑/温情生活）
-- 空镜与转场视觉规范
-- 多镜头叙事序列的提示词编排方法
-
-**预期成果：** 从单帧到多镜头序列的完整叙事视觉创作体系，支持从概念到分镜的全流程AI辅助。
+**Expected Outcome:** A standardized prompt library covering all contemporary urban scene spaces, supporting flexible switching between different moods, time periods, and weather conditions.
 
 ---
 
-### 第六阶段：整合验证与迭代优化
+### Phase 4: Props and Detail Visual System Construction
 
-**目标：** 对前五阶段成果进行全面整合、实测验证与迭代优化。
+**Objective:** Establish a complete visual creation system for live-action urban props and details.
 
-**交付物：**
-- ⬜ 完整可直接复制的提示词合集（各专项文档的最终整合版）
-- ⬜ 实测样本图集（覆盖角色/场景/道具/分镜全品类）
-- ⬜ 迭代修正记录与经验总结
-- ⬜ 最终版视觉手册（整合所有阶段的终版文档）
+**Deliverables:**
+- ⬜ Prop Prompt Document — Universal prop base prompts + specialized prop type variants
+- ⬜ Prop Derivative Document — Emotional variants and narrative function variants for props
 
-**预期成果：** 一套经过充分验证、可直接用于生产实践的真人都市题材AI视觉创作完整方法论体系。
+**Core Task List:**
+- Communication and electronic products (Mobile phones, Laptops, Tablets, Headphones, Smartwatches)
+- Dining props (Coffee cups, Takeout packaging, Bento boxes, Tableware, Water bottles/Thermoses)
+- Office/Study props (Employee ID badges, Stationery, Files/Document folders, Desk lamps, Bookshelves)
+- Travel props (Umbrellas, Backpacks/Commuter bags, Car keys, Metro cards, Shared bikes)
+- Emotional symbol props (Old photos, Letters/Postcards, Rings/Jewelry, Potted plants, Books)
+
+**Expected Outcome:** A standardized prompt library covering all urban daily prop types, ensuring props have a "narrative presence" rather than a "background decoration" feel.
 
 ---
 
-## 七、使用说明
+### Phase 5: Storyboard and Narrative Visual System Construction
 
-### 提示词使用原则
+**Objective:** Establish a storyboard visual creation system and narrative standards for live-action urban themes.
 
-1. **前缀先行**：所有生成内容必须首先加载"前缀提示词"中的全局风格锚定段，锁定真人都市写实质感基线
-2. **专项叠加**：在全局前缀基础上，按需叠加角色/场景/道具/分镜专项提示词
-3. **负面必加**：每次生成必须附带"负面提示词"，规避伪影与风格偏差
-4. **迭代优化**：建议首轮生成后根据效果对专项提示词做微调，而非修改全局前缀
-5. **平台适配**：本手册提示词优先适配Doubao-Seedream（生图）与Doubao-Seedance（视频生成），部分提示词可能需根据平台特性微调
+**Deliverables:**
+- ⬜ Storyboard Prompt Document — Universal storyboard base prompts + specialized emotional type storyboard variants
+- ⬜ Storyboard Table Document — Standardized storyboard table template + filled examples
+- ⬜ Storyboard Video Document — Dynamic storyboard standards for AI video generation
+- ⬜ Director Planning Document — Global director constraints for live-action urban themes (Color palette system, Lighting schemes, Atmosphere direction, Narrative rhythm)
 
-### 文件结构约定
-真人都市/
-├── README.md                  # 本文档 - 项目纲领
-├── 前缀.txt                   # 全局风格锚定 + 通用正负提示词
-├── 角色.txt                   # 角色专项提示词
-├── 角色衍生.txt               # 角色类型变体扩展
-├── 场景.txt                   # 场景专项提示词
-├── 场景衍生.txt               # 场景时段/天气/季节变体
-├── 道具.txt                   # 道具专项提示词
-├── 道具衍生.txt               # 道具情绪化与叙事变体
-├── 分镜.txt                   # 分镜专项提示词
-├── 分镜表.txt                 # 标准化分镜表模板
-├── 分镜视频.txt               # AI视频生成分镜规范
-├── 导演规划.txt               # 全局导演约束（色调/光影/氛围/叙事）
-└── reference/                 # 视觉参考图目录（可选）
+**Core Task List:**
+- Prompt standards for the shot size system (Extreme Close-up → Wide Shot)
+- Prompt standards for the camera movement system (Static/Push-Pull/Pan/Tracking/Crane/Handheld)
+- Storyboard style variants for narrative emotional types (Daily Healing/Workplace Growth/Youth Inspiration/Urban Suspense/Warm Life)
+- Visual standards for empty shots and transitions
+- Prompt orchestration methods for multi-shot narrative sequences
+
+**Expected Outcome:** A complete narrative visual creation system from single frames to multi-shot sequences, supporting full-process AI assistance from concept to storyboard.
+
 ---
 
-## 八、版本记录
+### Phase 6: Integration, Verification, and Iterative Optimization
 
-| 版本 | 日期 | 阶段 | 更新内容 |
+**Objective:** Comprehensive integration, practical verification, and iterative optimization of the outcomes from the previous five phases.
+
+**Deliverables:**
+- ⬜ Complete, directly copyable prompt collection (Final integrated version of all specialized documents)
+- ⬜ Practical sample image gallery (Covering all categories: Characters/Scenes/Props/Storyboards)
+- ⬜ Iteration correction records and experience summary
+- ⬜ Final Visual Handbook (Final integrated document of all phases)
+
+**Expected Outcome:** A complete methodological system for live-action urban theme AI visual creation that has been thoroughly verified and is ready for production practice.
+
+---
+
+## VII. Usage Instructions
+
+### Prompt Usage Principles
+
+1. **Prefix First:** All generated content must first load the global style anchoring section from the "Prefix Prompt" to lock in the live-action urban realistic texture baseline.
+2. **Specialized Overlay:** Based on the global prefix, overlay specialized prompts for characters/scenes/props/storyboards as needed.
+3. **Negative Mandatory:** Every generation must include "Negative Prompts" to avoid artifacts and style deviations.
+4. **Iterative Optimization:** It is recommended to fine-tune specialized prompts based on results after the first round of generation, rather than modifying the global prefix.
+5. **Platform Adaptation:** The prompts in this handbook are primarily optimized for Doubao-Seedream (Image Generation) and Doubao-Seedance (Video Generation); some prompts may require minor adjustments based on platform characteristics.
+
+### File Structure Convention
+LiveActionUrban/
+├── README.md                  # This document - Project Guideline
+├── Prefix.txt                 # Global style anchoring + Universal positive/negative prompts
+├── Character.txt              # Character specialized prompts
+├── CharacterDerivative.txt    # Character type variant expansion
+├── Scene.txt                  # Scene specialized prompts
+├── SceneDerivative.txt        # Scene time/weather/season variants
+├── Prop.txt                   # Prop specialized prompts
+├── PropDerivative.txt         # Prop emotional and narrative variants
+├── Storyboard.txt             # Storyboard specialized prompts
+├── StoryboardTable.txt        # Standardized storyboard table template
+├── StoryboardVideo.txt        # AI video generation storyboard standards
+├── DirectorPlan.txt           # Global director constraints (Color/Lighting/Atmosphere/Narrative)
+└── reference/                 # Visual reference image directory (Optional)
+---
+
+## VIII. Version History
+
+| Version | Date | Phase | Update Content |
 |---|---|---|---|
-| v0.1 | 2026-04-30 | 第一阶段 | 初始框架搭建，README纲领文档创建 |
+| v0.1 | 2026-04-30 | Phase 1 | Initial framework establishment, README guideline document creation |
 
 ---
 
-> **"真实即力量"** —— 在AI生成影像的时代，真人写实质感以其不可替代的生命力，成为最具情感穿透力的视觉语言。本手册致力于为创作者提供一套系统化的方法论，让每一次AI视觉创作都能捕捉到都市生活中那些真实而动人的瞬间。
+> **"Reality is Power"** — In the era of AI-generated imagery, the live-action realistic texture, with its irreplaceable vitality, becomes the visual language with the greatest emotional penetration. This handbook is dedicated to providing creators with a systematic methodology, enabling every AI visual creation to capture those authentic and moving moments of urban life.

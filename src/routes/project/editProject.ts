@@ -7,7 +7,7 @@ import { currentUser } from "@/middleware/auth";
 import { isAdmin } from "@/utils/auth";
 const router = express.Router();
 
-// 新增项目
+// Add a new project
 export default router.post(
   "/",
   validateFields({
@@ -43,7 +43,7 @@ export default router.post(
       mode,
     });
 
-    if (!updated) return res.status(404).send({ message: "项目不存在或无权访问" });
-    res.status(200).send(success({ message: "编辑项目成功" }));
+    if (!updated) return res.status(404).send({ message: "The project does not exist or you do not have access permission" });
+    res.status(200).send(success({ message: "Project edited successfully" }));
   },
 );

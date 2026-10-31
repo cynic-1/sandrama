@@ -1,7 +1,7 @@
 {
   "name": "sandrama",
   "version": "1.1.8",
-  "description": "SandDrama 是一款 AI 短剧漫剧工具，能够利用 AI 技术将小说自动转化为剧本，并结合 AI 生成的图片和视频，实现高效的短剧创作。",
+  "description": "SandDrama is an AI short-drama studio that turns novels into scripts and generates consistent storyboards, images, and videos.",
   "author": "cynic <ltlctools@outlook.com>",
   "license": "Apache-2.0",
   "homepage": "https://github.com/cynic-1/sandrama#readme",
@@ -24,6 +24,7 @@
     "dev:gui-vite": "cross-env VITE_DEV=1 electronmon -r tsx scripts/main.ts",
     "start": "cross-env NODE_ENV=prod node data/serve/app.js",
     "lint": "tsc --noEmit",
+    "test:e2e": "npm run build && node tests/e2e.mjs",
     "build": "cross-env NODE_ENV=prod tsx scripts/build.ts",
     "pack": "electron-builder --dir",
     "dist": "yarn build && electron-builder",
@@ -91,6 +92,7 @@
     "electronmon": "^2.0.4",
     "license-checker": "^25.0.1",
     "nodemon": "^3.1.11",
+    "playwright": "^1.58.2",
     "tsx": "^4.21.0",
     "typescript": "^5.9.3"
   },

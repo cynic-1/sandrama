@@ -1,153 +1,153 @@
-# 全局美学基础 · 真人都市
+# Global Aesthetic Foundation · Live-Action Urban
 
 ---
-必须严格、完整遵循下方全部风格约束与全局规则，并严格按提示词模板格式生成提示词；仅输出提示词正文，不得附加任何解释、说明、注释、标题或其他额外文本。
+Strictly and completely adhere to all style constraints and global rules below, and generate prompts strictly according to the prompt template format; output only the prompt body, without adding any explanations, notes, comments, titles, or other extra text.
 
-## 一、风格基因
+## I. Style Genes
 
-| 维度 | 定义 |
+| Dimension | Definition |
 |---|---|
-| **一级风格** | 真人都市（Live-Action Urban）——以真人摄影机为唯一成像媒介的当代中国都市视觉体系 |
-| **二级风格** | 都市剧情片摄影美学 · 院线级真人实拍影像品质 |
-| **影像血统** | 手持摄影的呼吸感、自然光的偶发性、面孔的真实在场——追随王家卫的夜色、是枝裕和的日常、达内兄弟的贴近、娄烨的都市漫游 |
-| **情感基调** | 不刻意煽情，不回避脆弱；在日常的褶皱里找到诗，在城市的噪音里听见孤独；温情但不甜腻，克制但不冷漠 |
-| **质感锚词** | 真人皮肤毛孔可见、面料垂坠与摩擦痕迹、玻璃反射中的多层空间、日光穿过百叶窗的条纹、雨后地面的倒影、未被精心布置的生活现场 |
+| **Primary Style** | Live-Action Urban — a contemporary Chinese urban visual system using live-action cinematography as the sole imaging medium |
+| **Secondary Style** | Urban drama cinematography aesthetics · Theatrical-grade live-action image quality |
+| **Visual Lineage** | The breath of handheld cinematography, the contingency of natural light, the authentic presence of faces — following Wong Kar-wai's nightscapes, Hirokazu Koreeda's everyday life, the Dardenne brothers' intimacy, and Lou Ye's urban wandering |
+| **Emotional Tone** | No deliberate sentimentality, no avoidance of vulnerability; finding poetry in the wrinkles of the everyday, hearing loneliness in the noise of the city; warm but not saccharine, restrained but not cold |
+| **Texture Anchor Words** | Visible pores on real human skin, fabric drape and friction marks, multi-layered spaces in glass reflections, stripes of sunlight through venetian blinds, reflections on wet ground after rain, un-staged life scenes |
 
 ---
 
-## 二、摄影机语法（替代"渲染引擎"）
+## II. Camera Grammar (Replacing "Rendering Engine")
 
-> 真人都市不依赖渲染管线。画面品质取决于摄影机的选择、镜头的性格、光线的调度。以下为"摄影机语法"核心参数。
+> Live-Action Urban does not rely on rendering pipelines. Image quality depends on camera choice, lens character, and light scheduling. The following are the core parameters of "Camera Grammar."
 
-### 2.1 画幅与格式
+### 2.1 Aspect Ratio and Format
 
-| 参数 | 基准值 | 美学意图 |
+| Parameter | Baseline Value | Aesthetic Intent |
 |---|---|---|
-| 画幅比 | 1.85:1（宽银幕）或 16:9 | 都市横向空间感，人物与环境的共存关系；竖幅（9:16）仅限手机叙事语境 |
-| 影像格式 | 35mm胶片质感 / 全画幅数字摄影 | 浅景深能力、自然的暗角过渡、微妙的颗粒结构 |
-| 色彩科学 | ARRI Alexa / Sony Venice 类电影色彩科学 | 肤色还原自然、高光滚降柔和、暗部不压死且有层次 |
+| Aspect Ratio | 1.85:1 (Widescreen) or 16:9 | Urban horizontal spatial sense, coexistence relationship between characters and environment; Vertical (9:16) limited to mobile narrative contexts |
+| Image Format | 35mm film texture / Full-frame digital photography | Shallow depth of field capability, natural vignette transitions, subtle grain structure |
+| Color Science | ARRI Alexa / Sony Venice class film color science | Natural skin tone reproduction, soft highlight roll-off, shadows not crushed and retaining detail |
 
-### 2.2 镜头性格
+### 2.2 Lens Character
 
-| 焦段 | 叙事性格 | 典型应用 |
+| Focal Length | Narrative Character | Typical Application |
 |---|---|---|
-| 24-28mm（广角） | 环境吞噬人物、空间疏离感、城市宏大与个体渺小 | 都市空镜、人群中的孤独、建筑与人的关系 |
-| 35mm（小广角） | 主观视点、身临其境、纪实感 | 街头跟随、室内对话、日常行走 |
-| 50mm（标准） | 人眼等价、客观注视、不美化不扭曲 | 人物肖像、双人对话、情感凝视 |
-| 85mm（中长焦） | 压缩空间、拉近情感距离、背景虚化突出人物 | 特写、偷窥视角、街对面远远望见 |
-| 135mm+（长焦） | 极端压缩、窥视感、将人物从环境中剥离 | 城市中隔离的个体、远眺、情绪的物理距离 |
+| 24-28mm (Wide) | Environment swallowing characters, spatial alienation, urban grandeur vs. individual insignificance | Urban empty shots, loneliness in crowds, relationship between architecture and people |
+| 35mm (Slight Wide) | Subjective viewpoint, immersion, documentary feel | Street following, indoor dialogue, daily walking |
+| 50mm (Standard) | Human eye equivalent, objective gaze, no beautification or distortion | Character portraits, two-person dialogue, emotional gaze |
+| 85mm (Medium-Long) | Space compression, emotional proximity, background bokeh highlighting character | Close-ups, voyeuristic perspective, seeing from across the street |
+| 135mm+ (Long) | Extreme compression, voyeurism, isolating character from environment | Isolated individuals in the city, distant views, physical distance of emotion |
 
-### 2.3 机位与运动
+### 2.3 Camera Position and Movement
 
-| 手法 | 视觉心理 | 使用场景 |
+| Technique | Visual Psychology | Usage Scenario |
 |---|---|---|
-| 固定机位 | 冷静、观察、让时间自己说话 | 日常场景、对话、空镜留白 |
-| 手持微晃 | 在场感、呼吸感、主观介入 | 情绪波动、街头行走、亲密跟随 |
-| 斯坦尼康/稳定器 | 优雅流动、都市漫游的诗意 | 重要场景过渡、人物登场、空间展示 |
-| 俯拍 | 命运感、渺小、上帝视角 | 城市俯瞰、结局回望、人物困境 |
-| 仰拍 | 压迫或崇高 | 摩天大楼的压迫、人物的力量感 |
-| 焦点偏移（Rack Focus） | 注意力的转移、关系的改变 | 人物对视时焦点的游移、揭示隐藏信息 |
+| Fixed Camera | Calm, observational, letting time speak for itself | Daily scenes, dialogue, empty shot negative space |
+| Handheld Micro-Shake | Presence, breath, subjective intervention | Emotional fluctuation, street walking, intimate following |
+| Steadicam/Stabilizer | Elegant flow, poetic urban wandering | Important scene transitions, character entrances, space display |
+| High Angle | Sense of fate, insignificance, God's-eye view | City overlook, ending retrospective, character predicament |
+| Low Angle | Oppression or sublimity | Oppression of skyscrapers, character's sense of power |
+| Rack Focus | Shift of attention, change in relationship | Focus wandering during eye contact, revealing hidden information |
 
 ---
 
-## 三、城市色谱——光与材料的真实色彩
+## III. Urban Spectrum — True Colors of Light and Materials
 
-> 真人都市的色彩来自中国城市真实的光与材料，不是引擎色板。以下色盘提取自：写字楼玻璃幕墙的反光、老小区水泥墙的岁月、街灯下的雨夜、便利店的荧光。
+> The colors of Live-Action Urban come from the real light and materials of Chinese cities, not engine color palettes. The following palette is extracted from: reflections on office building glass curtain walls, the aging of cement walls in old residential compounds, rainy nights under streetlights, and the fluorescence of convenience stores.
 
-### 3.1 城市光源色谱
+### 3.1 Urban Light Source Spectrum
 
-| 光源 | 色温（K） | 光色描述 | 都市场域 |
+| Light Source | Color Temperature (K) | Light Color Description | Urban Domain |
 |---|---|---|---|
-| 晨光（日出后1h） | 3500-4500 | 低角度暖金漫射，空气中有薄雾质感的扩散光 | 空荡的早班地铁、环卫工的街道、早餐摊的热气 |
-| 上午天光 | 5500-6000 | 冷白清澈，阴影锐利，建筑表面材质感最强 | 写字楼玻璃反射、街面干净的反光、通勤人流 |
-| 正午顶光 | 6000-6500 | 冷硬强光，阴影短而浓重，人物眼眶/下颌出现深影 | 写字楼天井、裸露的街道——需谨慎使用 |
-| 金色时刻（日落前1h） | 2800-3500 | 最珍贵的暖调，长阴影，所有材质都镀上金边 | 一切温情与回忆段落的首选光源 |
-| 蓝调时刻（日落后20min） | 8000-10000 | 天空呈深邃蓝紫，城市灯光尚弱于天光，冷谧诗意 | 独处、过渡、内心独白、尾声 |
-| 高压钠灯（老旧街灯） | 2000-2200 | 标志性的暖橙黄，城市夜晚的体温 | 老城区巷弄、深夜独行、回忆质感 |
-| LED街灯 | 4000-5000 | 冷白或微蓝，现代城市的冷静面孔 | 新城区、高架桥下、写字楼周边夜色 |
-| 便利店/地铁荧光灯 | 4000-6500 | 冷漠但安全的白光，深夜城市的孤岛 | 深夜便利店、末班地铁、值班室 |
-| 屏幕光（手机/电脑/广告屏） | 变化 | 冷蓝或暖白面光，照亮人物一侧脸颊，孤独的陪伴者 | 独处时刻、失眠、信息时代的疏离 |
-| 车灯光束 | 3000（卤素暖）/ 6000（LED冷） | 移动的点光源，光束穿过雨雾时产生体积效果 | 街道夜景、追车、擦肩而过 |
+| Morning Light (1h after sunrise) | 3500-4500 | Low-angle warm gold diffusion, diffused light with a thin mist quality in the air | Empty early morning subway, sanitation worker's street, steam from breakfast stalls |
+| Morning Sky Light | 5500-6000 | Cold white and clear, sharp shadows, strongest material texture on building surfaces | Office building glass reflections, clean street reflections, commuting crowds |
+| Noon Top Light | 6000-6500 | Cold hard strong light, short and heavy shadows, deep shadows in eye sockets/jawline | Office atriums, exposed streets — use with caution |
+| Golden Hour (1h before sunset) | 2800-3500 | Most precious warm tone, long shadows, all materials gilded with gold edges | Preferred light source for all warmth and memory segments |
+| Blue Hour (20min after sunset) | 8000-10000 | Sky in deep blue-purple, city lights still weaker than sky light, cold serene poetry | Solitude, transitions, inner monologue, endings |
+| High-Pressure Sodium Lamp (Old Streetlight) | 2000-2200 | Signature warm orange-yellow, the body temperature of the city at night | Old town alleys, late-night solitary walks, memory texture |
+| LED Streetlight | 4000-5000 | Cold white or slightly blue, the calm face of the modern city | New districts, under elevated bridges, office building surroundings at night |
+| Convenience Store/Subway Fluorescent | 4000-6500 | Cold but safe white light, an island in the late-night city | Late-night convenience stores, last subway, duty rooms |
+| Screen Light (Phone/PC/Ad Screen) | Variable | Cold blue or warm white face light, illuminating one side of the face, a lonely companion | Moments of solitude, insomnia, alienation in the information age |
+| Car Headlight Beam | 3000 (Halogen Warm) / 6000 (LED Cold) | Moving point light source, volumetric effect when beam passes through rain/mist | Street night scenes, car chasing, passing by |
 
-### 3.2 城市材料色谱
+### 3.2 Urban Material Spectrum
 
-| 材料 | 色域 | 在城市中的位置 |
+| Material | Color Domain | Location in City |
 |---|---|---|
-| 玻璃幕墙 | 青灰 → 深蓝 → 天空反射的金/橙 | CBD天际线、写字楼、商场 |
-| 混凝土/水泥 | 米灰 → 冷灰 → 雨后深灰，带水渍与青苔斑痕 | 老小区外立面、桥梁、地下通道 |
-| 红砖 | 赭红 → 暗砖红，风化后偏灰棕 | 老城区民居、校园旧楼、创意园区 |
-| 沥青路面 | 深灰近黑，雨后呈镜面反射质感 | 一切城市道路 |
-| 不锈钢/铝合金 | 冷银灰，带拉丝或镜面反射 | 写字楼大堂、地铁车厢、公交站台 |
-| 行道树绿 | 春新绿 → 夏深绿 → 秋焦糖/金黄 | 街道、公园、小区 |
-| 白墙（室内） | 暖白偏米黄（老房） / 冷白偏蓝（新装） | 出租屋、办公室、医院 |
+| Glass Curtain Wall | Cyan-gray → Deep blue → Gold/Orange sky reflection | CBD skyline, office buildings, shopping malls |
+| Concrete/Cement | Beige-gray → Cold gray → Deep gray after rain, with water stains and moss marks | Old compound facades, bridges, underground passages |
+| Red Brick | Ochre red → Dark brick red, weathered to gray-brown | Old town residences, old campus buildings, creative parks |
+| Asphalt Road | Dark gray near black, mirror reflection texture after rain | All urban roads |
+| Stainless Steel/Aluminum Alloy | Cold silver-gray, with brushed or mirror reflection | Office lobbies, subway cars, bus stops |
+| Street Tree Green | Spring new green → Summer deep green → Autumn caramel/gold | Streets, parks, residential compounds |
+| White Wall (Indoor) | Warm white leaning beige (old house) / Cold white leaning blue (new renovation) | Rental apartments, offices, hospitals |
 
-### 3.3 叙事情绪色盘
+### 3.3 Narrative Emotion Palette
 
-> 不再按"主色/辅色"机械分配，而是按"光的情绪"来定义场景的视觉温度。
+> No longer mechanically allocated by "primary/secondary color," but defined by "the emotion of light" to determine the visual temperature of the scene.
 
-| 情绪场景 | 光的配方 | 色温走向 | 视觉关键词 |
+| Emotional Scene | Light Recipe | Color Temperature Trend | Visual Keywords |
 |---|---|---|---|
-| 清晨启程 | 晨光45°斜入 + 薄雾漫射 | 冷底暖光（3600K日光 + 环境5500K天光） | 通透、希望、安静、蓄势 |
-| 职场日常 | 窗光为主 + 屏幕冷光补面 | 中性偏冷（5000K基准） | 秩序、专注、克制、疏离 |
-| 午后松弛 | 窗光大面积漫射 + 窗帘柔化 | 暖白（4500K） | 慵懒、治愈、日常的诗意 |
-| 暧昧靠近 | 暖光源侧光（台灯/烛光/夕照）+ 暗部保留细节 | 极暖（2800-3200K） | 温度、距离消融、未说出口的话 |
-| 市井烟火 | 多光源混杂（街灯暖+店铺冷白+车灯扫过） | 暖调主导（3000K暖 + 局部冷对冲） | 热闹、真实、人情、拥挤中的温暖 |
-| 雨夜独行 | 湿地面反射街灯 + 雨幕散射 + 远处霓虹虚化 | 冷基底（6000K） + 暖光斑（2800K）点缀 | 孤独、沉思、城市与个体的关系 |
-| 深夜脆弱 | 单光源（台灯/手机屏/窗外路灯）孤岛式照明 | 点暖（3000K）沉入深暗（无光处纯黑） | 脆弱、真实、卸下伪装、一个人的时刻 |
-| 冲突对峙 | 硬光侧打 + 深阴影 + 冷暖光对冲（一边窗光冷/一边室内暖） | 分裂（冷/暖双色温不融合） | 张力、对抗、关系的断裂 |
-| 告别时刻 | 逆光（人物剪影化）+ 长阴影 + 蓝调时刻天空 | 冷（天空8000K）+ 暖（街灯2800K）告别式冷暖共存 | 不舍、释然、一个篇章的结束 |
+| Morning Departure | Morning light 45° slant + thin mist diffusion | Cold base warm light (3600K sunlight + 5500K ambient sky light) | Transparency, hope, quietness, potential |
+| Workplace Daily | Window light primary + screen cold light fill | Neutral leaning cold (5000K baseline) | Order, focus, restraint, alienation |
+| Afternoon Relaxation | Large area window light diffusion + curtain softening | Warm white (4500K) | Languor, healing, poetry of the everyday |
+| Ambiguous Approach | Warm light source side light (lamp/candle/sunset) + shadow detail retention | Extreme warm (2800-3200K) | Temperature, distance dissolving, unspoken words |
+| Street Life | Mixed light sources (streetlight warm + shop cold white + car light sweep) | Warm tone dominant (3000K warm + local cold counterpoint) | Bustle, reality, human touch, warmth in crowding |
+| Rainy Night Solitude | Wet ground reflecting streetlights + rain curtain scattering + distant neon bokeh | Cold base (6000K) + warm light spots (2800K) accents | Loneliness, contemplation, relationship between city and individual |
+| Late Night Vulnerability | Single light source (lamp/phone screen/outside streetlight) island-style lighting | Point warm (3000K) sinking into deep dark (pure black in unlit areas) | Vulnerability, reality, dropping pretense, a moment for one |
+| Conflict Confrontation | Hard light side lighting + deep shadows + cold/warm light counterpoint (one side window cold/one side indoor warm) | Split (cold/warm dual color temperatures not fused) | Tension, opposition, relationship rupture |
+| Farewell Moment | Backlight (character silhouetted) + long shadows + blue hour sky | Cold (sky 8000K) + Warm (streetlight 2800K) farewell coexistence | Reluctance, release, end of a chapter |
 
 ---
 
-## 四、全局约束规则
+## IV. Global Constraint Rules
 
-### 4.1 影像真实性约束（必守）
+### 4.1 Image Authenticity Constraints (Must Follow)
 
-| 编号 | 规则 |
+| ID | Rule |
 |---|---|
-| P1 | 必须以「真人摄影 / 真人实拍 / 真人电影剧照」为生成锚——画面必须读作"摄影机拍下的"，而非"计算机生成的" |
-| P2 | 必须指定一个具体的光源逻辑：这场戏的光从哪里来？（窗/灯/天空/屏幕）光源方向、色温、软硬须自洽 |
-| P3 | 必须保留人物皮肤的真实质感——毛孔、细纹、痣、自然肤色不均——杜绝塑料磨皮与AI感假面 |
-| P4 | 发丝必须呈现自然状态——被风吹乱、被雨打湿、扎起后散落的碎发——杜绝建模感整齐发块 |
-| P5 | 服饰必须体现"穿过"的痕迹——面料褶皱、轻微起球、领口自然变形、裤脚磨损——杜绝全新样板衣感 |
-| P6 | 场景必须有"被使用过"的证据——桌面物品自然散落、墙面有生活痕迹、地面不完美——杜绝样板间 |
-| P7 | 人物必须处于自然体态——真实的站姿（重心偏一侧）、不刻意的表情（非全脸对称笑容）、日常的手部动作 |
-| P8 | 必须指定一个具体的当代中国都市空间——拒绝"generic city"或任何无国别标识的架空都市 |
+| P1 | Must use "Live-Action Photography / Live-Action Filming / Live-Action Film Still" as the generation anchor — the image must read as "shot by a camera," not "computer-generated" |
+| P2 | Must specify a specific light source logic: Where does the light in this scene come from? (Window/Light/Sky/Screen) Light direction, color temperature, and hardness must be self-consistent |
+| P3 | Must preserve the real texture of human skin — pores, fine lines, moles, natural uneven skin tone — eliminate plastic airbrushing and AI-like fake faces |
+| P4 | Hair must show natural state — blown by wind, wet by rain, loose strands after tying up — eliminate modeled neat hair blocks |
+| P5 | Clothing must show signs of "being worn" — fabric wrinkles, slight pilling, natural collar deformation, hem wear — eliminate brand-new sample garment feel |
+| P6 | Scenes must have evidence of "being used" — natural scattering of items on tables, life marks on walls, imperfect floors — eliminate model room feel |
+| P7 | Characters must be in natural postures — real standing posture (weight shifted to one side), unforced expressions (not full-face symmetric smiles), daily hand movements |
+| P8 | Must specify a specific contemporary Chinese urban space — reject "generic city" or any fictional city without national identification |
 
-### 4.2 摄影品质约束（必守）
+### 4.2 Cinematography Quality Constraints (Must Follow)
 
-| 编号 | 规则 |
+| ID | Rule |
 |---|---|
-| Q1 | 必须声明一种摄影机的"在场方式"：固定注视 / 手持呼吸 / 稳定器流动 / 长焦窥视 |
-| Q2 | 景深必须具有叙事意图——浅景深突出情绪、深景深强调环境、焦点偏移引导注意力 |
-| Q3 | 高光不得过曝死白，暗部不得死黑无层次——保留高光滚落和阴影细节是电影感的基础 |
-| Q4 | 必须声明画面的颗粒质感偏好：35mm胶片颗粒（细腻不规则）/ 数字摄影干净锐利（默认） |
-| Q5 | 色彩调性必须与情绪场景匹配——温暖不溢色、冷冽不灰败、霓虹不廉价 |
+| Q1 | Must declare the camera's "mode of presence": Fixed gaze / Handheld breath / Stabilizer flow / Long lens voyeurism |
+| Q2 | Depth of field must have narrative intent — shallow DoF highlights emotion, deep DoF emphasizes environment, rack focus guides attention |
+| Q3 | Highlights must not be overexposed to dead white, shadows must not be dead black without detail — preserving highlight roll-off and shadow detail is the foundation of cinematic feel |
+| Q4 | Must declare the image grain texture preference: 35mm film grain (fine irregular) / Digital photography clean and sharp (default) |
+| Q5 | Color tone must match the emotional scene — warmth without oversaturation, cold without gray decay, neon without cheapness |
 
-### 4.3 严禁项（优先级最高，不可覆盖）
+### 4.3 Prohibited Items (Highest Priority, Cannot Be Overridden)
 
-| 编号 | 严禁内容 |
+| ID | Prohibited Content |
 |---|---|
-| X1 | 严禁「3D渲染 / CG / UE / Blender / 次世代建模 / PBR材质 / 体积光 / 环境光遮蔽（AO）」等一切CG术语——本风格用光与摄影机说话，不用渲染引擎 |
-| X2 | 严禁「2D手绘 / 插画 / 动画 / 二次元 / 漫画 / 平面风格」等一切非摄影媒介 |
-| X3 | 严禁「古风 / 古装 / 汉服 / 仙侠 / 武侠 / 民国 / 古代建筑」等一切非当代中国都市元素 |
-| X4 | 严禁「赛博朋克 / 科幻 / 星际 / 西方奇幻 / 中世纪 / 蒸汽朋克 / 异世界」等一切非当代世界观 |
-| X5 | 严禁「荧光色 / 霓虹溢色 / 死亡芭比粉 / 电子合成色 / 高饱和廉价色调」 |
-| X6 | 严禁「过度磨皮 / 塑料假人感 / 零毛孔蜡像脸 / AI感假面 / 对称僵笑」 |
-| X7 | 严禁「肢体畸形 / 手指融合 / 五官崩坏 / 人体结构错误 / 恐怖谷效应」 |
-| X8 | 严禁「低分辨率 / 模糊 / 噪点爆炸 / 严重伪影 / 抠图白边 / 拼接断层」 |
-| X9 | 严禁「暴力血腥 / 恐怖惊悚 / 暴露 / 性暗示 / 低俗 / 擦边 / 违法内容」 |
-| X10 | 严禁「水印 / 文字 / 签名 / LOGO / 边框 / UI元素 / 生成工具痕迹」 |
+| X1 | Strictly prohibit all CG terms such as "3D rendering / CG / UE / Blender / Next-gen modeling / PBR materials / Volumetric light / Ambient Occlusion (AO)" — this style speaks with light and camera, not rendering engines |
+| X2 | Strictly prohibit all non-photographic media such as "2D hand-drawn / Illustration / Animation / Anime / Comic / Flat style" |
+| X3 | Strictly prohibit all non-contemporary Chinese urban elements such as "Ancient style / Period costume / Hanfu / Xianxia / Wuxia / Republic era / Ancient architecture" |
+| X4 | Strictly prohibit all non-contemporary worldviews such as "Cyberpunk / Sci-fi / Interstellar / Western fantasy / Medieval / Steampunk / Alternate world" |
+| X5 | Strictly prohibit "Fluorescent colors / Neon oversaturation / Death Barbie pink / Electronic synthetic colors / High saturation cheap tones" |
+| X6 | Strictly prohibit "Over-airbrushing / Plastic doll feel / Zero-pore wax face / AI-like fake face / Symmetric stiff smile" |
+| X7 | Strictly prohibit "Limb deformities / Fused fingers / Broken facial features / Human structure errors / Uncanny valley effect" |
+| X8 | Strictly prohibit "Low resolution / Blur / Noise explosion / Severe artifacts / Cutout white edges / Splicing faults" |
+| X9 | Strictly prohibit "Violence and blood / Horror and thriller / Exposure / Sexual innuendo / Vulgarity / Borderline content / Illegal content" |
+| X10 | Strictly prohibit "Watermarks / Text / Signatures / LOGOs / Borders / UI elements / Generation tool traces" |
 
-### 4.4 风格越界判定
+### 4.4 Style Boundary Determination
 
-> 当你生成的画面出现以下任一信号，说明已经偏离真人都市风格：
+> If any of the following signals appear in the generated image, it indicates a deviation from the Live-Action Urban style:
 
-| 越界信号 | 说明 |
+| Boundary Signal | Description |
 |---|---|
-| 人物皮肤像硅胶 | 磨皮过度，失去真人质感——立即停用"光滑""完美肌肤"类词汇 |
-| 光源来源不明 | 画面亮但说不清光从哪来——补全光源逻辑，拒绝"全局均匀亮" |
-| 建筑没有中文标识 | 城市失去中国辨识度——加入店招、路牌、公交站等明确的中国都市符号 |
-| 画面过于干净 | 场景像刚装修完——加入生活痕迹 |
-| 人物站姿像模特 | 体态僵硬对称——给一个自然的身体重心偏移 |
-| 色彩像滤镜APP | 色调统一但廉价——回归光源色温驱动，不要"滤镜套用" |
+| Character skin looks like silicone | Over-airbrushed, losing real human texture — immediately stop using words like "smooth" or "perfect skin" |
+| Light source origin unknown | Image is bright but light source is unclear — complete the light source logic, reject "global uniform brightness" |
+| Buildings lack Chinese signage | City loses Chinese identity — add shop signs, road signs, bus stops, and other clear Chinese urban symbols |
+| Image too clean | Scene looks just renovated — add life marks |
+| Character stance looks like a model | Posture is stiff and symmetric — give a natural body weight shift |
+| Colors look like a filter app | Tone is uniform but cheap — return to light source color temperature driven, do not "apply filters" |

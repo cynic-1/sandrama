@@ -30,10 +30,10 @@ export default router.post(
   async (req, res) => {
     const { scriptId, projectId, prompt, uploadData, model, duration, resolution, audio, mode, trackId } = req.body;
     const modeData = parseVideoMode(mode);
-    //获取生成视频比例
+    // Get the generated video aspect ratio
     const ratio = await u.db("o_project").select("videoRatio").where("id", projectId).first();
-    const videoPath = `/${projectId}/video/${uuidv4()}.mp4`; //视频保存路径
-    // 后端自动补齐当前轨道的分镜图和关联资产，手动选择只作为额外参考。
+    const videoPath = `/${projectId}/video/${uuidv4()}.mp4`; // Video save path
+    // The backend automatically completes the storyboard frames and associated assets for the current track; manual selection serves only as an additional reference.
     const resolvedReferences = await resolveVideoReferences({
       projectId,
       scriptId,
@@ -49,13 +49,13 @@ export default router.post(
       })),
     );
     if (modeData !== "text" && base64.length === 0) {
-      return res.status(400).send(error("当前分镜没有可用的参考媒体，请先生成分镜图"));
+      return res.status(400).send(error("The current storyboard has no available reference media. Please generate the storyboard image first."));
     }
-    //新增
+    // Added
     const [videoId] = await u.db("o_video").insert({
       filePath: videoPath,
       time: Date.now(),
-      state: "生成中",
+      state: "Generating",
       scriptId,
       projectId,
       videoTrackId: trackId,
@@ -65,7 +65,7 @@ export default router.post(
       projectId,
       videoId,
       scriptId,
-      type: "视频",
+      type: "Video",
     };
     const aiVideo = u.Ai.Video(model);
     aiVideo
@@ -81,19 +81,19 @@ export default router.post(
         },
         {
           projectId,
-          taskClass: "视频生成",
-          describe: "根据提示词生成视频",
+          taskClass: "Video generation",
+          describe: "Generate a video based on the prompt",
           relatedObjects: JSON.stringify(relatedObjects),
         },
       )
       .then(async () => await aiVideo.save(videoPath))
-      .then(async () => await u.db("o_video").where("id", videoId).update({ state: "生成成功" }))
+      .then(async () => await u.db("o_video").where("id", videoId).update({ state: "Generation successful" }))
       .catch(async (error: any) => {
         await u
           .db("o_video")
           .where("id", videoId)
           .update({
-            state: "生成失败",
+            state: "Generation failed",
             errorReason: u.error(error).message,
           });
       });

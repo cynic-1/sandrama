@@ -5,7 +5,7 @@ import { success } from "@/lib/responseFormat";
 import { validateFields } from "@/middleware/middleware";
 const router = express.Router();
 
-// 更新原文数据
+// Update the original data
 export default router.post(
   "/",
   validateFields({
@@ -27,6 +27,6 @@ export default router.post(
       event: event,
     });
 
-    res.status(200).send(success({ message: "更新原文成功" }));
+    res.status(200).send(success({ message: "The original text was updated successfully" }));
   },
 );

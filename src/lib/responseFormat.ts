@@ -1,23 +1,25 @@
+import { englishMessage } from "@/lib/englishMessages";
+
 export interface ApiResponse {
   code: number;
   data: any;
   message: string;
 }
 
-// 成功回调
-export function success<T>(data: T | null = null, message: string = "成功"): ApiResponse {
+// Success callback
+export function success<T>(data: T | null = null, message: string = "Success"): ApiResponse {
   return {
     code: 200,
     data,
-    message,
+    message: englishMessage(message),
   };
 }
 
-// 客户端错误响应
+// Client error response
 export function error<T>(message: string = "", data: T | null = null): ApiResponse {
   return {
     code: 400,
     data,
-    message,
+    message: englishMessage(message),
   };
 }

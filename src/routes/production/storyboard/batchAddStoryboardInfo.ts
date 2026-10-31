@@ -24,7 +24,7 @@ export default router.post(
   }),
   async (req, res) => {
     const { data, scriptId, projectId } = req.body;
-    if (!data.length) return res.status(400).send({ success: false, message: "数据不能为空" });
+    if (!data.length) return res.status(400).send({ success: false, message: "Data cannot be empty" });
     for (const item of data) {
       const [id] = await u.db("o_storyboard").insert({
         prompt: item.prompt,
@@ -48,8 +48,8 @@ export default router.post(
       item.id = id;
     }
     const lastStoryboard = await u.db("o_storyboard").where("scriptId", scriptId);
-    if (!lastStoryboard || !lastStoryboard.length) return res.status(400).send(error("未查到分镜数据"));
-    //根据track分组
+    if (!lastStoryboard || !lastStoryboard.length) return res.status(400).send(error("No storyboard data found"));
+    // Group by track
     const storyboardGroupByTrack: Record<string, number[]> = {};
     lastStoryboard.forEach((item: any) => {
       if (!storyboardGroupByTrack[item.track]) {
@@ -58,25 +58,25 @@ export default router.post(
       storyboardGroupByTrack[item.track].push(item.id);
     });
 
-    //循环：先查询数据库中是否已存在相同track名称的trackId，有则复用，没有则新建
+    // Loop: First, query the database to check whether a trackId with the same track name already exists. If it exists, reuse it; otherwise, create a new one.
     for (const track in storyboardGroupByTrack) {
       const storyboardIds = storyboardGroupByTrack[track] ?? [];
 
-      // 计算该track下所有分镜的duration总和
+      // Calculate the sum of the durations of all shots under this track
       const trackDuration = lastStoryboard
         .filter((item: any) => item.track == track)
         .reduce((sum: number, item: any) => sum + Number(item.duration), 0);
 
-      // 查找该scriptId下是否已有相同track名称且已分配trackId的分镜记录
+      // Check whether there are already storyboard records under this scriptId with the same track name and an assigned trackId
       const existingStoryboard = await u.db("o_storyboard").where({ scriptId, track }).whereNotNull("trackId").first();
 
       let trackId: number;
       if (existingStoryboard?.trackId) {
-        // 已存在相同track名称的trackId，直接复用，并更新duration
+        // If a trackId with the same track name already exists, reuse it directly and update the duration.
         trackId = existingStoryboard.trackId;
         await u.db("o_videoTrack").where("id", trackId).update({ duration: trackDuration });
       } else {
-        // 不存在，新建videoTrack
+        // Does not exist, create a new videoTrack
         const newTrackId = Date.now()
         await u.db("o_videoTrack").insert({
           id: newTrackId,

@@ -1,34 +1,34 @@
-# 成熟都市言情二次元动画风格说明
+# Mature Urban Romance 2D Animation Style Guide
 
-本风格专为**成熟都市言情二次元动画**题材打造，所有美术提示词、规范和生成内容均严格限定于：
+This style is specifically designed for **mature urban romance 2D animation** subjects. All art prompts, specifications, and generated content are strictly limited to:
 
-- **二次元动画风格**：所有角色、场景、道具均以二次元动画为标准，强调赛璐璐上色、清晰线条、戏剧化低调光影。
-- **现代都市言情背景**：现代都市生活场景，涵盖公寓、办公室、咖啡厅、城市街道等，杜绝古风/奇幻元素。
-- **电影级构图**：画面构图强调电影感，景深虚化、镜头光学特征、空气透视。
-- **低饱和冷色调**：整体色调偏冷，暖色仅作点缀，突出清冷与温柔并存的甜宠氛围。
+- **2D Animation Style**: All characters, scenes, and props adhere to 2D animation standards, emphasizing cel shading, clean line art, and dramatic low-key lighting.
+- **Modern Urban Romance Setting**: Modern urban life settings, including apartments, offices, cafes, and city streets. Ancient or fantasy elements are strictly prohibited.
+- **Cinematic Composition**: Frame composition emphasizes a cinematic feel, featuring depth-of-field blur, lens optical characteristics, and aerial perspective.
+- **Low-Saturation Cool Tones**: The overall color palette leans cool, with warm colors used only as accents to highlight a sweet, doting atmosphere that blends coolness and tenderness.
 
-## 适用范围
+## Scope of Application
 
-- 成熟都市言情题材的AI美术生成（角色、场景、道具、分镜等）
-- 现代小说改编动画风格的视觉创作
-- 需要清晰线条、赛璐璐上色、电影级构图的视觉创作
+- AI art generation for mature urban romance subjects (characters, scenes, props, storyboards, etc.)
+- Visual creation for animated adaptations of modern novels
+- Visual creation requiring clean line art, cel shading, and cinematic composition
 
-## 严禁内容
+## Prohibited Content
 
-- 真人写实/摄影/3D渲染风格
-- 高饱和荧光色/霓虹色
-- 古风/奇幻/科幻等现代元素以外的风格
-- 暗示性、暴露、透视等不适宜内容
+- Live-action realism / photography / 3D rendering styles
+- High-saturation fluorescent / neon colors
+- Styles other than modern elements, such as ancient, fantasy, or sci-fi
+- Inappropriate content such as suggestive, revealing, or see-through imagery
 
-## 风格体验
+## Style Experience
 
-在本风格下，您将体验到：
+Under this style, you will experience:
 
-- 角色面容精致、气质清冷或温润，服饰、妆容、发型均为现代都市二次元风格
-- 场景空间层次丰富，材质纹理超清晰，氛围真实且富有诗意
-- 道具、装饰、配饰等均为现代都市造型，工艺精细，质感极致
-- 分镜与视频均以二次元动画为基础，强调叙事与情感表达
+- Characters with refined features and a cool or warm temperament; clothing, makeup, and hairstyles all follow modern urban 2D animation aesthetics
+- Scenes with rich spatial layers, ultra-clear material textures, and an atmosphere that is both realistic and poetic
+- Props, decorations, and accessories all feature modern urban designs with exquisite craftsmanship and ultimate texture quality
+- Storyboards and videos based on 2D animation, emphasizing narrative and emotional expression
 
 ---
 
-本风格仅适用于"成熟都市言情二次元动画"相关项目。如需其他风格（如真人写实、古风、奇幻等），请勿使用本套提示词。
+This style is applicable only to projects related to "mature urban romance 2D animation." If you require other styles (such as live-action realism, ancient, or fantasy), do not use this set of prompts.

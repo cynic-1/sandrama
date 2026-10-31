@@ -13,14 +13,14 @@ export default router.post(
   async (req, res) => {
     const { key } = req.body;
     const vendorConfigData = await u.userSettings.getVendorConfig("sanddrama");
-    if (!vendorConfigData) return res.status(500).send(error("未找到该供应商配置"));
-    if (!vendorConfigData.inputValues) return res.status(500).send(error("未找到模型配置数据"));
+    if (!vendorConfigData) return res.status(500).send(error("Supplier configuration not found"));
+    if (!vendorConfigData.inputValues) return res.status(500).send(error("Model configuration data not found"));
     const inputValue = JSON.parse(vendorConfigData.inputValues!);
     inputValue.apiKey = key;
     await u.userSettings.updateVendorConfig("sanddrama", { inputValues: JSON.stringify(inputValue) });
     try {
       const resText = await u.Ai.Text(`sanddrama:claude-haiku-4-5-20251001`).invoke({
-        prompt: "1+1等于几？,请直接回答2，不要解释",
+        prompt: "What is 1+1? Please answer 2 directly, without explanation",
       });
       if (resText.text) {
         for (const [agentKey, values] of [
@@ -31,13 +31,13 @@ export default router.post(
           const agent = await u.userSettings.getAgentDeployByKey(agentKey);
           if (agent?.id !== undefined) await u.userSettings.updateAgentDeploy(Number(agent.id), values);
         }
-        res.status(200).send(success("一键填入成功"));
+        res.status(200).send(success("One-click fill successful"));
       }
     } catch (err) {
       console.error(err);
       inputValue.apiKey = "";
       await u.userSettings.updateVendorConfig("sanddrama", { inputValues: JSON.stringify(inputValue) });
-      res.status(400).send(error("KEY无效，请重新输入"));
+      res.status(400).send(error("The KEY is invalid. Please re-enter it."));
     }
   },
 );

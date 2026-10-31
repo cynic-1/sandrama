@@ -5,7 +5,7 @@ import { success } from "@/lib/responseFormat";
 import { validateFields } from "@/middleware/middleware";
 const router = express.Router();
 
-// 获取资产
+// Get assets
 export default router.post(
   "/",
   validateFields({
@@ -27,10 +27,10 @@ export default router.post(
     if (name) {
       query = query.andWhere("name", "like", `%${name}%`);
     }
-    // 分页查询
+    // Paginated query
     const parentAssets = await query.where("o_assets.assetsId", null).offset(offset).limit(limit);
 
-    // 获取所有子资产供关联使用
+    // Retrieve all child assets for association
     let childQuery = u
       .db("o_assets")
       .leftJoin("o_image", "o_assets.imageId", "o_image.id")
@@ -43,7 +43,7 @@ export default router.post(
     }
     const childAssets = await childQuery;
 
-    // 为每个子资产添加图片地址
+    // Add image URLs for each sub-asset
     const childAssetsWithSrc = await Promise.all(
       childAssets.map(async (child) => ({
         ...child,
@@ -51,7 +51,7 @@ export default router.post(
       })),
     );
 
-    // 为每个父资产添加子资产
+    // Add child assets to each parent asset
     const result = await Promise.all(
       parentAssets.map(async (parent) => ({
         ...parent,
@@ -61,7 +61,7 @@ export default router.post(
       })),
     );
 
-    // 统计总数
+    // Count total
     const totalQuery = (await u
       .db("o_assets")
       .where("projectId", projectId)

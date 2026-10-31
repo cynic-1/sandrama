@@ -6,49 +6,49 @@ import u from "@/utils";
 import { startDerivativeAssetImageGeneration } from "@/utils/derivativeAssetImageGeneration";
 
 const deriveAssetSchema = z.object({
-  id: z.number().describe("衍生资产ID,如果新增则为空"),
-  assetsId: z.number().describe("关联的资产ID"),
-  prompt: z.string().describe("生成提示词"),
-  name: z.string().describe("衍生资产名称"),
-  desc: z.string().describe("衍生资产描述"),
-  src: z.string().nullable().describe("衍生资产资源路径"),
-  state: z.enum(["未生成", "生成中", "已完成", "生成失败"]).describe("衍生资产生成状态"),
-  type: z.enum(["role", "tool", "scene", "clip"]).describe("衍生资产类型"),
+  id: z.number().describe("Derived Asset ID, empty if newly added"),
+  assetsId: z.number().describe("Associated asset ID"),
+  prompt: z.string().describe("Generate a prompt"),
+  name: z.string().describe("Derivative Asset Name"),
+  desc: z.string().describe("Derivative Asset Description"),
+  src: z.string().nullable().describe("Derived asset resource path"),
+  state: z.enum(["Not generated", "Generating", "Completed", "Generation failed"]).describe("Derived asset generation status"),
+  type: z.enum(["role", "tool", "scene", "clip"]).describe("Derivative asset type"),
 });
 export const assetItemSchema = z.object({
-  id: z.number().describe("资产唯一标识"),
-  name: z.string().describe("资产名称"),
-  type: z.enum(["role", "tool", "scene", "clip"]).describe("资产类型"),
-  prompt: z.string().describe("生成提示词"),
-  desc: z.string().describe("资产描述"),
-  derive: z.array(deriveAssetSchema).describe("衍生资产列表"),
+  id: z.number().describe("Asset Unique Identifier"),
+  name: z.string().describe("Asset Name"),
+  type: z.enum(["role", "tool", "scene", "clip"]).describe("Asset Type"),
+  prompt: z.string().describe("Generate a prompt"),
+  desc: z.string().describe("Asset Description"),
+  derive: z.array(deriveAssetSchema).describe("List of derivative assets"),
 });
 const storyboardSchema = z.object({
-  id: z.number().describe("分镜ID，必须为真实id"),
-  duration: z.number().describe("持续时长(秒)"),
-  prompt: z.string().describe("生成提示词"),
-  associateAssetsIds: z.array(z.number()).describe("关联资产ID列表"),
-  src: z.string().nullable().describe("分镜资源路径"),
-  index: z.number().nullable().optional().describe("分镜排序字段"),
+  id: z.number().describe("Storyboard ID, must be a real ID"),
+  duration: z.number().describe("Duration (seconds)"),
+  prompt: z.string().describe("Generate a prompt"),
+  associateAssetsIds: z.array(z.number()).describe("List of associated asset IDs"),
+  src: z.string().nullable().describe("Storyboard resource path"),
+  index: z.number().nullable().optional().describe("Storyboard sorting field"),
 });
 const workbenchDataSchema = z.object({
-  name: z.string().describe("项目名称"),
-  duration: z.string().describe("视频时长"),
-  resolution: z.string().describe("分辨率"),
-  fps: z.string().describe("帧率"),
-  cover: z.string().optional().describe("封面图片路径"),
-  gradient: z.string().optional().describe("渐变色配置"),
+  name: z.string().describe("Project Name"),
+  duration: z.string().describe("Video duration"),
+  resolution: z.string().describe("Resolution"),
+  fps: z.string().describe("Frame rate"),
+  cover: z.string().optional().describe("Cover image path"),
+  gradient: z.string().optional().describe("Gradient color configuration"),
 });
 const posterItemSchema = z.object({
-  id: z.number().describe("海报ID"),
-  image: z.string().describe("海报图片路径"),
+  id: z.number().describe("Poster ID"),
+  image: z.string().describe("Poster image path"),
 });
 export const flowDataSchema = z.object({
-  script: z.string().describe("剧本内容"),
-  scriptPlan: z.string().describe("拍摄计划"),
-  assets: z.array(assetItemSchema).describe("衍生资产"),
-  storyboardTable: z.string().describe("分镜表"),
-  storyboard: z.array(storyboardSchema).describe("分镜面板"),
+  script: z.string().describe("Script content"),
+  scriptPlan: z.string().describe("Shooting Plan"),
+  assets: z.array(assetItemSchema).describe("Derivative assets"),
+  storyboardTable: z.string().describe("Storyboard"),
+  storyboard: z.array(storyboardSchema).describe("Storyboard Panel"),
 });
 
 export type FlowData = z.infer<typeof flowDataSchema>;
@@ -65,8 +65,8 @@ interface ToolConfig {
 }
 
 /**
- * 串行队列：确保 socket 操作排队执行，避免并发过高导致假死
- * @param delayMs 每个操作之间的最小间隔(ms)
+ * Serial queue: Ensures socket operations are queued for execution, avoiding excessive concurrency that could lead to a pseudo-deadlock
+ * @param delayMs The minimum interval between each operation (ms)
  */
 function createSocketQueue(delayMs = 800) {
   let lastPromise: Promise<any> = Promise.resolve();
@@ -88,52 +88,52 @@ export default (toolCpnfig: ToolConfig) => {
   const workMap: Record<any, any> = {};
   const tools: Record<string, Tool> = {
     get_flowData: tool({
-      description: "获取工作区数据",
+      description: "Get workspace data",
       inputSchema: jsonSchema<{ key: keyof FlowData }>(
         z
           .object({
-            key: keySchema.describe("数据key"),
+            key: keySchema.describe("Data key"),
           })
           .toJSONSchema(),
       ),
       execute: async ({ key }) => {
-        const thinking = msg.thinking(`正在获取${flowDataKeyLabels[key]}工作区数据...`);
+        const thinking = msg.thinking(`Fetching${flowDataKeyLabels[key]}Workspace data...`);
 
         const flowData: FlowData = await new Promise((resolve) => socket.emit("getFlowData", { key }, (res: any) => resolve(res)));
-        thinking.appendText(`获取到${flowDataKeyLabels[key]}:\n` + JSON.stringify(flowData[key], null, 2));
-        thinking.updateTitle(`获取${flowDataKeyLabels[key]}完成`);
+        thinking.appendText(`Obtained${flowDataKeyLabels[key]}:\n` + JSON.stringify(flowData[key], null, 2));
+        thinking.updateTitle(`Get${flowDataKeyLabels[key]}Done`);
         thinking.complete();
         if (workMap[key] && JSON.stringify(workMap[key]) === JSON.stringify(flowData[key])) {
-          console.info(`[tools] get_flowData: ${flowDataKeyLabels[key]}数据未变化，无需更新`);
-          return `${flowDataKeyLabels[key]}数据未变化，无需更新`;
+          console.info(`[tools] get_flowData: ${flowDataKeyLabels[key]}The data has not changed, so no update is needed.`);
+          return `${flowDataKeyLabels[key]}The data has not changed, so no update is needed.`;
         }
         workMap[key] = flowData[key];
         return flowData[key];
       },
     }),
     add_deriveAsset: tool({
-      description: "新增或更新衍生资产",
+      description: "Add or update derivative assets",
       inputSchema: jsonSchema<{ assetsId: number; id: number | null; name: string; desc: string }>(
         z
           .object({
-            assetsId: z.number().describe("关联的资产ID"),
-            id: z.number().nullable().describe("衍生资产ID,如果新增则为空"),
-            name: z.string().describe("衍生资产名称"),
-            desc: z.string().describe("衍生资产描述"),
+            assetsId: z.number().describe("Associated asset ID"),
+            id: z.number().nullable().describe("Derived Asset ID, empty if newly added"),
+            name: z.string().describe("Derivative Asset Name"),
+            desc: z.string().describe("Derivative Asset Description"),
           })
           .toJSONSchema(),
       ),
       execute: async (raw) => {
-        // 容错：LLM 偶尔传 "null" 字符串或空串，统一规范为 null
+        // Fault tolerance: LLMs occasionally pass the string "null" or an empty string; normalize these to null.
         const idRaw = raw.id as unknown;
         const normalizedId = idRaw === "null" || idRaw === "" || idRaw === undefined ? null : (idRaw as number | null);
         const deriveAsset = { ...raw, id: normalizedId };
 
-        const thinking = msg.thinking("正在操作资产...");
+        const thinking = msg.thinking("Operating assets...");
         const { projectId, scriptId } = resTool.data;
         const startTime = Date.now();
         const parentAssets = await u.db("o_assets").where("id", deriveAsset.assetsId).select("id", "type").first();
-        if (!parentAssets) return "关联的资产不存在";
+        if (!parentAssets) return "The associated asset does not exist";
 
         const data = {
           id: deriveAsset.id ?? undefined,
@@ -146,56 +146,56 @@ export default (toolCpnfig: ToolConfig) => {
         };
         if (deriveAsset.id) {
           await u.db("o_assets").where("id", deriveAsset.id).update(data);
-          thinking.appendText(`已更新衍生资产，ID: ${deriveAsset.id}\n`);
+          thinking.appendText(`Updated derivative asset, ID:${deriveAsset.id}\n`);
         } else {
           const [insertedId] = await u.db("o_assets").insert(data);
           data.id = insertedId;
           await u.db("o_scriptAssets").insert({ scriptId, assetId: insertedId });
-          thinking.appendText(`已新增衍生资产，ID: ${insertedId}\n`);
+          thinking.appendText(`A derivative asset has been added, ID:${insertedId}\n`);
         }
         const res = await new Promise((resolve) => socket.emit("addDeriveAsset", data, (res: any) => resolve(res)));
-        thinking.updateTitle("资产操作完成");
+        thinking.updateTitle("Asset operation completed");
         thinking.complete();
-        return res ?? "操作成功";
+        return res ?? "Operation successful";
       },
     }),
     del_deriveAsset: tool({
-      description: "删除衍生资产",
+      description: "Delete derivative assets",
       inputSchema: jsonSchema<{ assetsId: number; id: number }>(
         z
           .object({
-            assetsId: z.number().describe("关联的资产ID"),
-            id: z.number().describe("衍生资产ID"),
+            assetsId: z.number().describe("Associated asset ID"),
+            id: z.number().describe("Derived Asset ID"),
           })
           .toJSONSchema(),
       ),
       execute: async ({ assetsId, id }) => {
-        const thinking = msg.thinking("正在操作资产...");
+        const thinking = msg.thinking("Operating assets...");
         const { scriptId } = resTool.data;
         await u.db("o_assets").where("id", id).del();
         await u.db("o_scriptAssets").where({ scriptId, assetId: id }).del();
-        thinking.appendText(`已删除衍生资产，ID: ${id}\n`);
+        thinking.appendText(`Deleted derivative asset, ID:${id}\n`);
         const res = await new Promise((resolve) => socket.emit("delDeriveAsset", { assetsId, id }, (res: any) => resolve(res)));
-        thinking.updateTitle("资产操作完成");
+        thinking.updateTitle("Asset operation completed");
         thinking.complete();
-        return res ?? "删除成功";
+        return res ?? "Deletion successful";
       },
     }),
     generate_deriveAsset: tool({
-      description: "生成衍生资产图片",
+      description: "Generate derivative asset images",
       inputSchema: jsonSchema<{ ids: number[] }>(
         z
           .object({
-            ids: z.array(z.number()).describe("需要生成的 衍生资产ID"),
+            ids: z.array(z.number()).describe("Derived asset ID to be generated"),
           })
           .toJSONSchema(),
       ),
       execute: async ({ ids }) => {
-        const thinking = msg.thinking("正在生成衍生资产...");
+        const thinking = msg.thinking("Generating derivative assets...");
         try {
           const { projectId, scriptId } = resTool.data;
           if (typeof projectId !== "number" || typeof scriptId !== "number") {
-            throw new Error("当前生产上下文缺少项目或剧本信息");
+            throw new Error("The current production context is missing project or script information");
           }
 
           const result = await startDerivativeAssetImageGeneration({
@@ -203,30 +203,30 @@ export default (toolCpnfig: ToolConfig) => {
             projectId,
             scriptId,
           });
-          thinking.appendText(`已提交衍生资产图片生成任务:\n${JSON.stringify(result, null, 2)}\n`);
-          thinking.updateTitle("衍生资产生成任务已启动");
+          thinking.appendText(`Derivative asset image generation task submitted:${JSON.stringify(result, null, 2)}\n`);
+          thinking.updateTitle("The derivative asset generation task has been initiated");
           thinking.complete();
-          return `已启动 ${result.length} 个衍生资产图片生成任务，最终结果请以工作台状态为准。`;
+          return `Started${result.length}For a derivative asset image generation task, the final result should be based on the workbench status.`;
         } catch (error) {
           const message = u.error(error).message;
-          thinking.appendText("衍生资产生成失败:\n" + message);
-          thinking.updateTitle("衍生资产生成失败");
+          thinking.appendText("Failed to generate derivative asset:" + message);
+          thinking.updateTitle("Failed to generate derivative assets");
           thinking.complete();
-          return `衍生资产生成失败：${message}`;
+          return `Derived asset generation failed:${message}`;
         }
       },
     }),
     generate_storyboard: tool({
-      description: "生成分镜图片",
+      description: "Generate storyboard images",
       inputSchema: jsonSchema<{ ids: number[] }>(
         z
           .object({
-            ids: z.array(z.number()).describe("必须获取真实的分镜ID，支持批量生成"),
+            ids: z.array(z.number()).describe("You must obtain the actual storyboard ID, and batch generation is supported."),
           })
           .toJSONSchema(),
       ),
       execute: async ({ ids }) => {
-        const thinking = msg.thinking("正在生成分镜...");
+        const thinking = msg.thinking("Generating storyboards...");
         socketQueue(
           () =>
             new Promise((resolve, reject) =>
@@ -237,21 +237,21 @@ export default (toolCpnfig: ToolConfig) => {
             ),
         )
           .then((res) => {
-            thinking.appendText("生成的分镜数据:\n" + JSON.stringify(res, null, 2));
-            thinking.updateTitle("分镜生成完成");
+            thinking.appendText("Generated storyboard data:" + JSON.stringify(res, null, 2));
+            thinking.updateTitle("Storyboard generation complete");
             thinking.complete();
           })
           .catch((e) => {
-            thinking.appendText("分镜生成失败:\n" + u.error(e).message);
-            thinking.updateTitle("分镜生成失败");
+            thinking.appendText("Storyboard generation failed:" + u.error(e).message);
+            thinking.updateTitle("Storyboard generation failed");
             thinking.complete();
           });
 
-        return "开始生成分镜";
+        return "Start generating storyboards";
       },
     }),
     add_flowData_storyboard: tool({
-      description: "新增分镜面板到工作区",
+      description: "Add a storyboard panel to the workspace",
       inputSchema: jsonSchema<{
         videoDesc: string;
         prompt: string | null;
@@ -262,17 +262,17 @@ export default (toolCpnfig: ToolConfig) => {
       }>(
         z
           .object({
-            videoDesc: z.string().describe("画面描述、场景、关联资产名称、时长、景别、运镜、角色动作、情绪、光影氛围、台词、音效、关联资产ID"),
-            prompt: z.string().nullable().describe("分镜图片提示词"),
-            track: z.string().describe("分组"),
-            duration: z.number().describe("视频推荐时间"),
-            associateAssetsIds: z.array(z.number()).nullable().describe("该分镜所需的资产ID列表"),
-            shouldGenerateImage: z.enum(["true", "false"]).describe("是否需要生成分镜图片"),
+            videoDesc: z.string().describe("Visual description, scene, related asset name, duration, shot size, camera movement, character action, emotion, lighting and atmosphere, dialogue, sound effects, related asset ID"),
+            prompt: z.string().nullable().describe("Storyboard image prompt"),
+            track: z.string().describe("Group"),
+            duration: z.number().describe("Video recommendation time"),
+            associateAssetsIds: z.array(z.number()).nullable().describe("List of asset IDs required for this storyboard"),
+            shouldGenerateImage: z.enum(["true", "false"]).describe("Do you need to generate storyboard images?"),
           })
           .toJSONSchema(),
       ),
       execute: async (raw) => {
-        const thinking = msg.thinking("正在新增 分镜面板 数据...");
+        const thinking = msg.thinking("Adding storyboard panel data...");
         const data = {
           videoDesc: raw.videoDesc,
           prompt: raw.prompt,
@@ -291,13 +291,13 @@ export default (toolCpnfig: ToolConfig) => {
             ),
         )
           .then((res) => {
-            thinking.appendText("新增的分镜数据:\n" + JSON.stringify(data, null, 2));
-            thinking.updateTitle("新增分镜成功");
+            thinking.appendText("Newly added storyboard data:" + JSON.stringify(data, null, 2));
+            thinking.updateTitle("Storyboard added successfully");
             thinking.complete();
           })
           .catch((e) => {
-            thinking.appendText("新增的分镜数据:\n" + JSON.stringify(data, null, 2));
-            thinking.updateTitle("新增分镜失败");
+            thinking.appendText("Newly added storyboard data:" + JSON.stringify(data, null, 2));
+            thinking.updateTitle("Failed to add storyboard");
             thinking.complete();
           });
         return true;

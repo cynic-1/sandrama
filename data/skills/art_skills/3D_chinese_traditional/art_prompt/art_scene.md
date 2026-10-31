@@ -1,158 +1,158 @@
 ---
 name: art_scene
-description: 场景图生成 · 约束手册
+description: Scene Image Generation · Constraint Manual
 metaData: art_skills
 ---
 
-# 场景图生成 · 约束手册
+# Scene Image Generation · Constraint Manual
 
 ---
 
-## 一、场景美学原则
+## I. Scene Aesthetic Principles
 
-1. **空间叙事** — 场景承载情绪与叙事功能，不是纯背景板
-2. **层次纵深** — 所有场景必须具备前/中/后景，杜绝扁平
-3. **质感至上** — 木质/石质/布料/水面等材质纹理必须超清晰
-4. **3D为锚** — 一切画面以3D渲染为标准，拒绝平面贴图/3D渲染/CG动画质感；追求体积光、环境光遮蔽、景深虚化等电影渲染效果
+1. **Spatial Narrative** — The scene carries emotional and narrative functions; it is not merely a background board.
+2. **Layered Depth** — All scenes must possess foreground/midground/background layers; flatness is prohibited.
+3. **Texture Supremacy** — Material textures such as wood, stone, fabric, and water surfaces must be ultra-clear.
+4. **3D as Anchor** — All visuals must adhere to 3D rendering standards. Reject flat textures, 3D rendering, or CG animation aesthetics. Pursue cinematic rendering effects such as volumetric lighting, ambient occlusion, and depth-of-field blur.
 
 ---
 
-## 二、季节色调映射
+## II. Seasonal Color Mapping
 
-| 季节 | 主色调 | 辅色调 | 提示词 |
+| Season | Primary Color | Secondary Color | Prompt Keywords |
 |---|---|---|---|
-| 春 | 青绿 + 朱红 | 月白、藤黄 | 春色青翠、桃花灼灼 |
-| 夏 | 青绿 + 靛蓝 | 月白、青绿 | 夏荷碧绿、浓荫蔽日 |
-| 秋 | 赭石 + 金黄 | 朱红、赭石 | 秋枫赤红、金叶飘零 |
-| 冬 | 月白 + 靛蓝 | 墨黑、青绿 | 冬雪素白、枯枝霜挂 |
+| Spring | Cyan-green + Vermilion | Moon white, Ginkgo yellow | Spring colors lush and green, peach blossoms blazing |
+| Summer | Cyan-green + Indigo | Moon white, Cyan-green | Summer lotus emerald, dense shade blocking the sun |
+| Autumn | Ochre + Golden yellow | Vermilion, Ochre | Autumn maples crimson, golden leaves drifting |
+| Winter | Moon white + Indigo | Ink black, Cyan-green | Winter snow plain white, bare branches frosted |
 
 ---
 
-## 三、室内场景
+## III. Indoor Scenes
 
-### 空间规范
+### Spatial Specifications
 
-| 维度 | 约束 | 提示词 |
+| Dimension | Constraint | Prompt Keywords |
 |---|---|---|
-| 风格 | 古代宅邸/宫殿/书房/闺阁，明清至唐宋 | 古代{朝代}风格 |
-| 材质 | 木质为主、石/玉/绢/纱为辅 | 檀木家具、玉石屏风、绢纱帷幔 |
-| 色调 | 中国传统色调 + 月白纱幔 + 朱红木漆 | 暖木色调、素雅陈设 |
-| 纵深 | 前/中/后景层次 | 前景{元素}、中景{元素}、后景{元素} |
-| 质感 | 木纹/布料垂感/瓷器光泽可辨 | 纹理清晰、材质质感精细 |
-| 光照 | 自然光源为主（窗光/烛光），体积光，环境光遮蔽 | 自然光漫射、烛光摇曳、体积光 |
-| 镜头感 | 景深虚化前后景、镜头暗角、色散微痕 | depth of field、lens vignette、chromatic aberration |
-| 瑕疵感 | 木面有使用痕迹、石面有风化纹、布料有自然褶皱 | 岁月痕迹、自然磨损、布料自然垂褶 |
+| Style | Ancient residences/palaces/studies/boudoirs, Ming-Qing to Tang-Song | Ancient {dynasty} style |
+| Material | Primarily wood, supplemented by stone/jade/silk/gauze | Sandalwood furniture, jade screens, silk and gauze drapes |
+| Color Palette | Traditional Chinese colors + moon white gauze + vermilion lacquer | Warm wood tones, elegant furnishings |
+| Depth | Foreground/midground/background layers | Foreground {element}, midground {element}, background {element} |
+| Texture | Wood grain/fabric drape/ceramic gloss must be discernible | Clear textures, refined material quality |
+| Lighting | Primarily natural light sources (window light/candlelight), volumetric light, ambient occlusion | Natural light diffusion, flickering candlelight, volumetric light |
+| Lens Feel | Depth-of-field blur for foreground/background, lens vignette, subtle chromatic aberration | depth of field, lens vignette, chromatic aberration |
+| Imperfection | Wood surfaces show usage marks, stone surfaces show weathering patterns, fabrics show natural folds | Traces of time, natural wear, natural fabric drapes |
 
-### 室内类型速查
+### Indoor Type Quick Reference
 
-| 类型 | 核心元素 | 氛围词 |
+| Type | Core Elements | Atmosphere Keywords |
 |---|---|---|
-| 闺阁/卧房 | 纱帐、梳妆台、铜镜、花瓶 | 温馨私密、纱幔轻垂 |
-| 书房/书斋 | 书架、卷轴、笔墨、棋盘 | 幽静雅致、墨香四溢 |
-| 大殿/正厅 | 高柱、匾额、帷幕、烛台 | 庄严华美、气势恢宏 |
-| 庭院回廊 | 廊柱、石栏、花木、灯笼 | 曲径通幽、灯影摇曳 |
-| 厨房/膳堂 | 灶台、蒸笼、食器 | 烟火气息、温馨日常 |
+| Boudoir/Bedroom | Gauze curtains, dressing table, bronze mirror, vase | Cozy and private, gauze drapes hanging lightly |
+| Study/Library | Bookshelves, scrolls, ink and brush, chessboard | Quiet and elegant, fragrance of ink |
+| Grand Hall/Main Hall | High pillars, plaques, curtains, candlesticks | Solemn and magnificent, grand atmosphere |
+| Courtyard Corridor | Corridor pillars, stone railings, flowers and trees, lanterns | Winding path to seclusion, flickering lantern shadows |
+| Kitchen/Dining Hall | Stove, steamer baskets, tableware | Earthy atmosphere, cozy daily life |
 
 ---
 
-## 四、室外场景
+## IV. Outdoor Scenes
 
-### 空间规范
+### Spatial Specifications
 
-| 维度 | 约束 | 提示词 |
+| Dimension | Constraint | Prompt Keywords |
 |---|---|---|
-| 类型 | 庭院/山林/溪畔/古桥/集市 | {场景}，{季节}，{时间} |
-| 天候 | 晴/阴/薄雾/细雨/飞雪 | 薄雾弥漫、细雨如丝 |
-| 植被 | 梅/竹/松/桃花/柳/荷（须符合季节） | 桃花灼灼、翠竹成林 |
-| 水体 | 溪/湖/瀑布需有光影反射 | 溪水潺潺、湖面如镜 |
-| 建筑 | 飞檐斗拱、青瓦白墙、石桥木亭 | 飞檐翘角、石拱桥 |
-| 空气感 | 必须有空气透视，体积光，远景模糊 | 远山如黛、空气透视、体积光 |
-| 光照 | 自然光为唯一光源，日光/月光需有体积光与散射 | 自然光照、体积光、景深虚化 |
-| 镜头感 | 景深虚化、镜头暗角、色散、光斑散景 | depth of field、bokeh、lens flare、vignette |
-| 瑕疵感 | 石面青苔/风化、木面开裂/包浆、瓦片残缺/苔痕 | 青苔斑驳、风化痕迹、岁月包浆 |
+| Type | Courtyard/mountain forest/stream bank/ancient bridge/market | {scene}, {season}, {time} |
+| Weather | Sunny/overcast/light mist/drizzle/snowfall | Light mist pervasive, drizzle like silk |
+| Vegetation | Plum/bamboo/pine/peach/willow/lotus (must match season) | Peach blossoms blazing, emerald bamboo forest |
+| Water | Streams/lakes/waterfalls must have light and shadow reflections | Stream babbling, lake surface like a mirror |
+| Architecture | Flying eaves and bracket sets, blue tiles and white walls, stone bridges and wooden pavilions | Upturned eaves, stone arch bridge |
+| Air Sense | Must have aerial perspective, volumetric light, blurred distant view | Distant mountains like ink, aerial perspective, volumetric light |
+| Lighting | Natural light is the only source; sunlight/moonlight must have volumetric light and scattering | Natural lighting, volumetric light, depth-of-field blur |
+| Lens Feel | Depth-of-field blur, lens vignette, chromatic aberration, bokeh | depth of field, bokeh, lens flare, vignette |
+| Imperfection | Moss/weathering on stone, cracks/patina on wood, broken tiles/moss marks | Mottled moss, weathering traces, aged patina |
 
-### 室外类型速查
+### Outdoor Type Quick Reference
 
-| 类型 | 核心元素 | 氛围词 |
+| Type | Core Elements | Atmosphere Keywords |
 |---|---|---|
-| 庭院花园 | 假山、池塘、花木、石径 | 花影扶疏、曲径通幽 |
-| 山林竹海 | 古木、竹林、山石、云雾 | 层峦叠嶂、云雾缥缈 |
-| 溪畔湖边 | 溪流、卵石、垂柳、荷花 | 溪水潺潺、柳影婆娑 |
-| 古桥长亭 | 石拱桥、长亭、柳树 | 长亭古道、杨柳依依 |
-| 集市街道 | 酒旗、摊贩、灯笼 | 热闹市井、烟火人间 |
-| 屋顶天台 | 瓦片、飞檐、夜空 | 月下独酌、清风徐来 |
+| Courtyard Garden | Rockery, pond, flowers and trees, stone path | Dappled flower shadows, winding path to seclusion |
+| Mountain Forest Bamboo Sea | Ancient trees, bamboo groves, mountain rocks, clouds and mist | Layered peaks, ethereal clouds |
+| Stream Bank Lakeside | Stream, pebbles, weeping willows, lotus | Stream babbling, swaying willow shadows |
+| Ancient Bridge Long Pavilion | Stone arch bridge, long pavilion, willow trees | Long pavilion on the old road, willows swaying gently |
+| Market Street | Wine flags, street vendors, lanterns | Bustling marketplace, earthly warmth |
+| Rooftop Terrace | Tiles, flying eaves, night sky | Drinking alone under the moon, gentle breeze |
 
 ---
 
-## 五、主视图规范
+## V. Main View Specifications
 
-### 视图定义
+### View Definition
 
-> 单画面主视图，从场景中最具代表性的角度拍摄，承载空间叙事与构图重心。
+> Single-frame main view, shot from the most representative angle of the scene, carrying spatial narrative and compositional focus.
 
-| 项目 | 约束 | 提示词 |
+| Item | Constraint | Prompt Keywords |
 |---|---|---|
-| 视角 | 自然观察视角，构图最能体现场景主体与纵深 | hero shot、representative angle |
-| 视点高度 | 默认人眼平视高度，特殊场景可俯/仰 | eye level（默认） |
-| 构图 | 主体居中或符合三分法，前/中/后景层次清晰 | balanced composition |
+| Perspective | Natural observation perspective; composition best represents the scene subject and depth | hero shot, representative angle |
+| Eye Level | Default eye-level height; special scenes may use high/low angles | eye level (default) |
+| Composition | Subject centered or following the rule of thirds; clear foreground/midground/background layers | balanced composition |
 
-### 画面规范
+### Frame Specifications
 
-| 项目 | 约束 |
+| Item | Constraint |
 |---|---|
-| 布局 | 单画面（非拼图、非多视图、非分屏） |
-| 人物 | **严禁出现任何人物、人影、人体轮廓** |
-| 一致性 | 风格/材质/色调/光线统一 |
-| 光线 | 单一光源逻辑，光影方向一致 |
-| 画面比例 | 默认 16:9（或按调用方设定） |
+| Layout | Single frame (not a collage, not multi-view, not split-screen) |
+| Figures | **Strictly prohibited: any people, human shadows, or human silhouettes** |
+| Consistency | Unified style/material/color/lighting |
+| Lighting | Single light source logic, consistent light and shadow direction |
+| Aspect Ratio | Default 16:9 (or as set by the caller) |
 
 ---
 
-## 六、提示词模板
+## VI. Prompt Template
 
-古风场景主视图概念图，
-3D渲染风格，高精度建模，PBR材质，国风3D，电影级光影，
+Ancient-style scene main view concept art,
+3D rendering style, high-precision modeling, PBR materials, Chinese-style 3D, cinematic lighting,
 3D rendered, volumetric lighting,
 depth of field, natural lens vignette, subtle chromatic aberration, bokeh,
-3D渲染质感，体积光，自然光照，物理光影，
+3D rendering texture, volumetric light, natural lighting, physical light and shadow,
 scene design sheet, environment concept art, no people, no characters, no human figures,
-{室内/室外}，{场景类型}，{朝代风格}，{季节+时间},
-前景：{元素}, 中景：{元素}, 后景：{元素},
-{色调描述}, {天候/氛围元素},
-{材质描述}, 空气透视, 纹理细节超清晰,
-材质自然磨损痕迹，岁月包浆，青苔风化，布料自然垂褶，
-体积光，环境光遮蔽，自然光漫射，柔和光影，
-单画面构图，自然观察视角，构图能代表场景主体并展示前/中/后景层次，
-画面中无任何人物
-图中不要有任何文字
+{indoor/outdoor}, {scene type}, {dynasty style}, {season+time},
+Foreground: {element}, Midground: {element}, Background: {element},
+{color description}, {weather/atmosphere element},
+{material description}, aerial perspective, ultra-clear texture details,
+natural wear marks on materials, aged patina, moss and weathering, natural fabric drapes,
+volumetric light, ambient occlusion, natural light diffusion, soft light and shadow,
+single-frame composition, natural observation perspective, composition represents the scene subject and displays foreground/midground/background layers,
+no people in the frame
+no text in the image
 
 ---
 
-## 七、约束规则
+## VII. Constraint Rules
 
-### 必守
+### Mandatory
 
-| 编号 | 规则 |
+| ID | Rule |
 |---|---|
-| R1 | 场景必须有「前中后景层次」 |
-| R2 | 室外必须包含「空气透视」 |
-| R3 | 场景图必须为「单画面主视图」，不得拼接多视图/分屏/网格 |
-| R4 | 构图须能代表场景主体并展示前/中/后景层次 |
-| R5 | 场景图中**严禁出现任何人物** |
-| R6 | 必须包含3D渲染关键词（3D rendered / volumetric lighting / PBR materials） |
-| R7 | 必须包含镜头光学特征（depth of field / lens vignette / bokeh 至少一项） |
-| R8 | 材质必须带有自然磨损/岁月痕迹，禁止全新无瑕的"CG 感" |
+| R1 | The scene must have "foreground/midground/background layers" |
+| R2 | Outdoor scenes must include "aerial perspective" |
+| R3 | Scene images must be a "single-frame main view"; no multi-view/split-screen/grid collages |
+| R4 | Composition must represent the scene subject and display foreground/midground/background layers |
+| R5 | **Strictly prohibited: any people in scene images** |
+| R6 | Must include 3D rendering keywords (3D rendered / volumetric lighting / PBR materials) |
+| R7 | Must include lens optical features (at least one of depth of field / lens vignette / bokeh) |
+| R8 | Materials must show natural wear/aging traces; brand-new, flawless "CG feel" is prohibited |
 
-### 严禁
+### Prohibited
 
-| 编号 | 严禁 |
+| ID | Prohibition |
 |---|---|
-| X1 | 背景纯白/纯黑/无场景 |
-| X2 | 极端天候（暴风雨/雷电/暴雪，除非剧情需要） |
-| X3 | 场景无纵深/无层次 |
-| X4 | 植被/天候与季节矛盾 |
-| X5 | 出现任何人物、人影、人体剪影或人体轮廓 |
-| X6 | 画面被拼接成多视图/网格/分屏布局 |
-| X7 | 低精度建模/粗糙贴图/塑料质感（禁用 low-poly、rough modeling 等词） |
-| X8 | 材质过于干净完美、无任何使用痕迹与岁月感（避免"塑料感"） |
-| X9 | 光照过于均匀平坦、无景深虚化、无镜头光学特征 |
+| X1 | Pure white/pure black background/no scene |
+| X2 | Extreme weather (storm/lightning/blizzard, unless required by plot) |
+| X3 | Scene lacks depth/layers |
+| X4 | Vegetation/weather contradicts the season |
+| X5 | Any people, human shadows, human silhouettes, or human outlines appear |
+| X6 | Frame is collaged into multi-view/grid/split-screen layout |
+| X7 | Low-precision modeling/rough textures/plastic texture (prohibited words: low-poly, rough modeling, etc.) |
+| X8 | Materials are too clean/perfect, with no usage traces or sense of age (avoid "plastic feel") |
+| X9 | Lighting is too uniform/flat, no depth-of-field blur, no lens optical features |

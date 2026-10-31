@@ -1,184 +1,182 @@
 ---
 name: art_scene
-description: 3D国风赛博场景图生成 · 约束手册
+description: 3D Guofeng Cyber Scene Image Generation · Constraint Manual
 metaData: art_skills
 ---
-# 3D国风赛博场景图生成 · 约束手册
+# 3D Guofeng Cyber Scene Image Generation · Constraint Manual
 
 ---
 
-## 一、场景美学原则
+## I. Scene Aesthetic Principles
 
-1. **空间叙事** — 场景承载东方未来主义的情绪与叙事功能，以传统中式美学为内核、赛博朋克科技为外延，兼容小尺度古风空间叙事与大尺度都市江湖叙事，绝非纯背景板
-2. **层次纵深** — 所有场景必须具备前/中/后景三层递进结构，小尺度古风场景以前景赛博装置/全息投影、中景核心国风建筑、后景山水云雾打造层次；大尺度都市场景以前景街道/古建、中景摩天楼宇、后景浮空都市/电子云雾打造立体纵深，绝对杜绝扁平画面
-3. **古今共生** — 古风元素与赛博都市元素必须有机融合，保留东方空间礼制、建筑形制、美学内核，赛博科技为服务于国风内核的升级手段，杜绝生硬堆砌与风格割裂，同时兼容纯古风赛博化、纯国风赛博都市、古风+都市融合三类场景
-4. **质感至上** — 木质/石质/布料/水面等传统材质，与阳极氧化铝/碳纤维/全息光膜/霓虹灯管/钢化玻璃/电子屏等赛博材质的纹理必须8K超清晰，PBR物理级质感可触可辨，适配古风温润质感与都市工业质感双需求
-5. **3D为锚** — 一切画面以3A游戏级3D渲染为绝对标准，拒绝平面贴图、劣质CG、二次元平涂质感；强制追求RTX路径追踪、全局光照、体积光、环境光遮蔽、景深虚化等电影级离线渲染效果，锚定东方赛博朋克的写实3D风格，同时适配古风柔和光影与都市强对比光影
+1. **Spatial Narrative** — The scene carries the emotional and narrative functions of Eastern futurism, with traditional Chinese aesthetics as the core and cyberpunk technology as the extension. It accommodates both small-scale ancient-style spatial narratives and large-scale urban jianghu narratives; it is absolutely not a mere background board.
+2. **Layered Depth** — All scenes must possess a three-layer progressive structure of foreground/midground/background. Small-scale ancient-style scenes create layers with foreground cyber devices/holographic projections, midground core Guofeng architecture, and background landscapes/mist/clouds. Large-scale urban scenes create three-dimensional depth with foreground streets/ancient buildings, midground skyscrapers, and background floating cities/electronic mist. Flat images are absolutely prohibited.
+3. **Coexistence of Ancient and Modern** — Ancient-style elements and cyber-urban elements must be organically integrated. Retain Eastern spatial etiquette, architectural forms, and aesthetic cores. Cyber technology serves as an upgrade means for the Guofeng core. Avoid rigid stacking and stylistic fragmentation. It must accommodate three types of scenes: pure ancient-style cyberization, pure Guofeng cyber-urban, and ancient+urban fusion.
+4. **Texture Supremacy** — Traditional materials such as wood/stone/fabric/water surface, and cyber materials such as anodized aluminum/carbon fiber/holographic light film/neon tubes/tempered glass/electronic screens, must have 8K ultra-clear textures. PBR physical-level textures must be touchable and distinguishable, adapting to both the warm texture of ancient styles and the industrial texture of urban settings.
+5. **3D as Anchor** — All images must adhere to the absolute standard of 3A game-level 3D rendering. Reject flat textures, low-quality CG, and 2D flat-color textures. Mandate cinematic offline rendering effects such as RTX path tracing, global illumination, volumetric light, ambient occlusion, and depth-of-field blur. Anchor the realistic 3D style of Eastern cyberpunk, while adapting to the soft light and shadow of ancient styles and the high-contrast light and shadow of urban settings.
 
 ---
 
-## 二、季节色调映射
+## II. Seasonal Color Mapping
 
-| 季节 | 主色调 | 辅色调 | 提示词 |
+| Season | Main Colors | Secondary Colors | Prompts |
 |---|---|---|---|
-| 春 | 青绿 + 朱红 | 月白、藤黄、荧光桃红、电子青 | 赛博春景、全息桃花灼灼、电子翠竹青翠、霓虹飞檐染春、都市霓虹映春、古街桃花衬摩天楼 |
-| 夏 | 青绿 + 靛蓝 | 月白、湖蓝、荧光蓝、霓虹紫 | 赛博夏荷、全息莲叶碧绿、电子浓荫蔽日、霓虹水榭流光、都市荷塘映楼宇、滨江霓虹染夏夜 |
-| 秋 | 赭石 + 金黄 | 朱红、琥珀橙、电子金、暖霓虹 | 赛博秋枫、全息金叶飘零、电子古亭染秋、霓虹长街铺金、都市古枫映赛博楼宇、长街金叶衬霓虹 |
-| 冬 | 月白 + 靛蓝 | 墨黑、冰蓝、荧光银、冷霓虹 | 赛博冬雪、全息霜花素白、电子寒枝霜挂、霓虹冰雕映夜、都市霓虹映雪、古建霜挂衬浮空都市 |
+| Spring | Cyan-Green + Vermilion | Moon White, Ginkgo Yellow, Fluorescent Pink, Electronic Cyan | Cyber spring scenery, holographic peach blossoms blazing, electronic emerald bamboo lush, neon eaves stained with spring, urban neon reflecting spring, ancient street peach blossoms against skyscrapers |
+| Summer | Cyan-Green + Indigo | Moon White, Lake Blue, Fluorescent Blue, Neon Purple | Cyber summer lotus, holographic lotus leaves green, electronic dense shade blocking sun, neon water pavilion flowing light, urban lotus pond reflecting buildings, riverside neon staining summer night |
+| Autumn | Ochre + Golden Yellow | Vermilion, Amber Orange, Electronic Gold, Warm Neon | Cyber autumn maple, holographic golden leaves drifting, electronic ancient pavilion stained with autumn, neon long street paved with gold, urban ancient maple reflecting cyber buildings, long street golden leaves against neon |
+| Winter | Moon White + Indigo | Ink Black, Ice Blue, Fluorescent Silver, Cold Neon | Cyber winter snow, holographic frost flowers plain white, electronic cold branches with frost, neon ice sculptures reflecting night, urban neon reflecting snow, ancient buildings with frost against floating city |
 
 ---
 
-## 三、室内场景
+## III. Indoor Scenes
 
-### 空间规范
+### Spatial Specifications
 
-| 维度 | 约束 | 提示词 |
+| Dimension | Constraint | Prompts |
 |---|---|---|
-| 风格 | 兼容古代宅邸/宫殿/书房/闺阁的赛博化改造，以及国风赛博都市空间（顶层loft/摩天楼会所/都市公寓/国风办公空间），以唐宋至明清中式美学为内核，赛博朋克未来科技为形态，保留东方空间礼制，适配古风私密空间与都市开放空间双需求 | 古代{朝代}赛博化风格、国风赛博都市空间、飞檐斗拱赛博化改造、东方未来主义空间 |
-| 材质 | 碳化檀木为主，阳极氧化铝、碳纤维、玉石全息屏、绢纱光膜、霓虹灯管、钢化玻璃、量子水墨面板为辅，传统与赛博材质融合统一 | 碳化檀木家具、玉石全息屏风、绢纱光膜帷幔、霓虹楹联、嵌入式电子水墨屏、金属拉丝饰面 |
-| 色调 | 中国传统色调为基底，月白光膜+朱红霓虹漆为核心，搭配赛博冷暖撞色（霓虹青/粉/蓝与传统木色对冲），光影层次丰富不杂乱，适配古风暖调与都市冷调双需求 | 暖木撞冷霓虹、赛博国风雅致陈设、全息光影点缀、传统色与霓虹色和谐统一 |
-| 纵深 | 强制前/中/后景三层层次，每层植入对应国风赛博元素，空间递进逻辑清晰，兼容古风小空间与都市大平层纵深需求 | 前景{全息投影/霓虹摆件/赛博绿植}、中景{赛博家具/核心空间结构}、后景{浮空平台/全景落地窗/赛博都市远景} |
-| 质感 | 木纹肌理、光膜垂感、瓷器釉面、金属拉丝、玻璃反光、全息半透明质感、电子屏像素纹理必须清晰可辨，无模糊贴图 | 8K超高清纹理、PBR物理材质、质感精细可触、材质属性物理准确 |
-| 光照 | 自然光源+赛博人工光源双体系，以窗光/烛光为基础，霓虹自发光/全息体积光/电子屏补光为辅助，强制体积光、环境光遮蔽、RTX全局光照，适配古风柔和漫射与都市强对比光影 | 自然光漫射、霓虹光影摇曳、全息体积光、赛博环境光遮蔽、RTX全局光照、路径追踪 |
-| 镜头感 | 景深虚化前后景、镜头暗角、色散微痕、霓虹光斑散景、镜头眩光、光轨拖影，还原电影镜头光学特征 | depth of field、lens vignette、chromatic aberration、neon bokeh、lens flare、light trail |
-| 瑕疵感 | 木面有使用包浆、金属面有氧化划痕、石面有风化纹、光膜有自然褶皱、电子屏有细微像素噪点、霓虹灯管有轻微光衰，拒绝完美无瑕的塑料感 | 岁月使用痕迹、自然氧化磨损、光膜自然垂褶、赛博设备使用痕迹、风化包浆质感 |
+| Style | Compatible with cyberized renovation of ancient residences/palaces/studies/boudoirs, and Guofeng cyber-urban spaces (top-floor loft/skyscraper club/urban apartment/Guofeng office space). With Tang-Song to Ming-Qing Chinese aesthetics as the core and cyberpunk future technology as the form, retaining Eastern spatial etiquette, adapting to both ancient-style private spaces and urban open spaces | Ancient {Dynasty} cyberized style, Guofeng cyber-urban space, cyberized renovation of flying eaves and dou-arch brackets, Eastern futurist space |
+| Materials | Primarily carbonized sandalwood, supplemented by anodized aluminum, carbon fiber, jade holographic screens, silk gauze light film, neon tubes, tempered glass, and quantum ink panels. Traditional and cyber materials are integrated and unified | Carbonized sandalwood furniture, jade holographic screen, silk gauze light film drapes, neon couplets, embedded electronic ink screens, metal brushed finish |
+| Color Tone | Based on traditional Chinese color tones, with moon-white light film + vermilion neon paint as the core, paired with cyber cool-warm contrast colors (neon cyan/pink/blue contrasting with traditional wood colors). Light and shadow layers are rich but not cluttered, adapting to both ancient-style warm tones and urban cool tones | Warm wood contrasting with cool neon, elegant cyber Guofeng furnishings, holographic light and shadow accents, harmonious unity of traditional and neon colors |
+| Depth | Mandatory three-layer structure of foreground/midground/background, with corresponding Guofeng cyber elements embedded in each layer. Clear spatial progression logic, accommodating both small ancient-style spaces and large urban flat-floor depth requirements | Foreground {holographic projection/neon ornaments/cyber greenery}, Midground {cyber furniture/core spatial structure}, Background {floating platform/panoramic floor-to-ceiling window/cyber urban distant view} |
+| Texture | Wood grain texture, light film drape, porcelain glaze, metal brushing, glass reflection, holographic semi-transparent texture, and electronic screen pixel texture must be clearly distinguishable, with no blurry textures | 8K ultra-high-definition texture, PBR physical materials, fine touchable texture, physically accurate material properties |
+| Lighting | Dual system of natural light sources + cyber artificial light sources. Based on window light/candlelight, supplemented by neon self-emission/holographic volumetric light/electronic screen fill light. Mandatory volumetric light, ambient occlusion, RTX global illumination, adapting to both ancient-style soft diffusion and urban high-contrast light and shadow | Natural light diffusion, swaying neon light and shadow, holographic volumetric light, cyber ambient occlusion, RTX global illumination, path tracing |
+| Lens Feel | Depth-of-field blur for foreground/background, lens vignette, chromatic aberration traces, neon bokeh, lens flare, light trail blur, reproducing cinematic lens optical characteristics | depth of field, lens vignette, chromatic aberration, neon bokeh, lens flare, light trail |
+| Imperfection | Wood surfaces have usage patina, metal surfaces have oxidation scratches, stone surfaces have weathering patterns, light films have natural wrinkles, electronic screens have subtle pixel noise, neon tubes have slight light decay. Reject the perfect, flawless plastic feel | Traces of age and use, natural oxidation and wear, natural light film drapes, cyber device usage traces, weathered patina texture |
 
-### 室内类型速查
+### Indoor Type Quick Reference
 
-| 类型 | 核心元素 | 氛围词 |
+| Type | Core Elements | Atmosphere Words |
 |---|---|---|
-| 赛博闺阁/卧房 | 光膜纱帐、全息梳妆台、智能铜镜、悬浮花瓶、霓虹妆灯、全景赛博窗 | 私密赛博雅韵、光膜轻垂、全息光影缱绻、东方未来温柔质感 |
-| 赛博书房/全息书斋 | 悬浮全息书架、电子卷轴、触控笔墨、全息棋盘、量子水墨面板、智能茶台 | 幽静赛博雅致、墨香与电子流交织、东方文人未来空间 |
-| 赛博大殿/正厅 | 赛博高柱、全息匾额、光膜帷幕、阵列霓虹烛台、浮空王座、全景落地屏 | 庄严赛博华美、东方未来气势恢宏、国风赛博礼制空间 |
-| 赛博回廊/浮空连廊 | 赛博廊柱、全息石栏、电子花木、悬浮灯笼、霓虹灯带、半透明光膜顶 | 赛博曲径通幽、霓虹灯影摇曳、东方园林未来化改造 |
-| 赛博膳堂/智能厨坊 | 智能灶台、悬浮蒸笼、全息食器、霓虹餐灯、嵌入式酒柜、半开放中岛 | 赛博烟火气息、未来东方温馨日常、传统食礼科技化表达 |
-| 赛博都市顶层loft | 全景落地窗、浮空茶台、全息屏风、开放式国风书房、都市天际线全景、霓虹灯带 | 高空东方雅韵、都市全景视野、国风与都市生活融合 |
-| 赛博都市国风会所 | 阵列中式立柱、全息水景、悬浮包厢、霓虹楹联、全景落地玻璃、都市庭院 | 东方商务雅韵、赛博都市高端空间、礼制与科技融合 |
-| 赛博都市公寓卧房 | 模块化国风家具、全息妆台、光膜隔断、窗畔都市霓虹全景、悬浮绿植 | 都市东方日常、温馨赛博居所、小空间国风未来感 |
-| 赛博都市国风办公空间 | 全息办公台、电子水墨墙、开放式茶歇区、阵列霓虹宫灯、全景都市窗 | 东方商务未来感、高效赛博办公空间、国风职场美学 |
+| Cyber Boudoir/Bedroom | Light film gauze curtains, holographic dressing table, smart bronze mirror, floating vases, neon makeup lights, panoramic cyber window | Private cyber elegance, light film gently hanging, holographic light and shadow entangled, Eastern futuristic gentle texture |
+| Cyber Study/Holographic Library | Floating holographic bookshelves, electronic scrolls, touch ink and brush, holographic chessboard, quantum ink panels, smart tea table | Quiet cyber elegance, ink scent intertwined with electronic flow, Eastern scholar futuristic space |
+| Cyber Grand Hall/Main Hall | Cyber high pillars, holographic plaques, light film curtains, arrayed neon candle stands, floating throne, panoramic floor-to-ceiling screen | Solemn cyber splendor, Eastern futuristic grandeur, Guofeng cyber etiquette space |
+| Cyber Corridor/Floating Walkway | Cyber corridor pillars, holographic stone railings, electronic flowers and trees, floating lanterns, neon light strips, semi-transparent light film roof | Cyber winding path to seclusion, swaying neon light shadows, Eastern garden futurized renovation |
+| Cyber Dining Hall/Smart Kitchen | Smart stove, floating steamer, holographic tableware, neon dining lights, embedded wine cabinet, semi-open island | Cyber domestic atmosphere, futuristic Eastern warm daily life, technological expression of traditional dining etiquette |
+| Cyber Urban Top-Floor Loft | Panoramic floor-to-ceiling windows, floating tea table, holographic screen, open Guofeng study, urban skyline panorama, neon light strips | High-altitude Eastern elegance, urban panoramic view, fusion of Guofeng and urban life |
+| Cyber Urban Guofeng Club | Arrayed Chinese pillars, holographic water features, floating private rooms, neon couplets, panoramic floor-to-ceiling glass, urban courtyard | Eastern business elegance, high-end cyber urban space, fusion of etiquette and technology |
+| Cyber Urban Apartment Bedroom | Modular Guofeng furniture, holographic makeup table, light film partitions, urban neon panorama by the window, floating greenery | Urban Eastern daily life, cozy cyber residence, small-space Guofeng futuristic feel |
+| Cyber Urban Guofeng Office Space | Holographic office desk, electronic ink wall, open tea break area, arrayed neon palace lanterns, panoramic urban window | Eastern business futuristic feel, efficient cyber office space, Guofeng workplace aesthetics |
 
 ---
 
-## 四、室外场景
+## IV. Outdoor Scenes
 
-### 空间规范
+### Spatial Specifications
 
-| 维度 | 约束 | 提示词 |
+| Dimension | Constraint | Prompts |
 |---|---|---|
-| 类型 | 兼容庭院/山林/溪畔/古桥/集市的赛博化改造，以及国风赛博都市/古街摩天楼共生区/浮空都市/滨江赛博古街等大尺度都市场景，保留东方山水格局与市井肌理，融入赛博朋克都市形态，适配小尺度古风场景与大尺度都市场景双需求 | 国风赛博{场景}，{季节}，{时间}，东方赛博朋克都市、新中式未来山水、古建与摩天楼共生 |
-| 天候 | 晴/阴/薄雾/细雨/飞雪，可叠加电子雾、全息雨、霓虹雪、光污染薄雾、量子烟云、都市楼宇间霓虹光雨等赛博化天候，符合季节逻辑 | 电子薄雾弥漫、全息细雨如丝、霓虹飞雪漫天、都市光污染雾霭、量子烟云缥缈 |
-| 植被 | 全息梅/电子竹/赛博松/霓虹桃花/光感柳/全息荷（必须严格符合季节），可搭配赛博绿植、浮空盆栽、光感植被，保留东方植物意象，适配古风山水与都市街景双需求 | 全息桃花灼灼、电子翠竹成林、赛博松涛阵阵、街景光感绿植、滨江全息垂柳 |
-| 水体 | 赛博溪流/全息湖面/霓虹瀑布/电子水潭/都市滨江水域，必须带有精准的光影反射、霓虹倒影、电子水波纹理、楼宇倒影，物理属性准确 | 赛博溪水潺潺、全息湖面如镜、霓虹瀑布流光、水面霓虹倒影清晰、滨江楼宇倒影完整 |
-| 建筑 | 兼容中式古建赛博化改造，以及国风赛博摩天楼、叠层浮空建筑群、古街与摩天楼共生体、滨江赛博古建群，保留中式建筑核心形制，融入赛博都市垂直空间逻辑 | 赛博飞檐翘角、霓虹石拱桥、浮空国风建筑群、东方赛博摩天楼、叠层空中庭院、古街与摩天楼共生 |
-| 空气感 | 必须有空气透视，古风场景遵循近景-中景-远山的透视逻辑，都市场景遵循近景街道-中景楼宇-远景天际线的高低空透视逻辑，强制霓虹体积光、远景模糊，严格遵循近实远虚规则 | 远山如黛/都市天际线朦胧、空气透视、霓虹体积光、电子雾霭、近实远虚 |
-| 光照 | 自然日光/月光+赛博人工光源双体系，以自然光照为基础，霓虹自发光/全息投影光/电子屏补光/摩天楼探照灯为辅助，强制体积光、全局光照、路径追踪、景深虚化，适配古风柔和光影与都市霓虹强对比光影 | 自然光照+赛博霓虹补光、全息体积光、RTX全局光照、路径追踪、景深虚化 |
-| 镜头感 | 景深虚化、镜头暗角、色散、霓虹光斑散景、镜头眩光、光轨拖影、赛博雨夜水面反光，还原电影级镜头光学特征 | depth of field、bokeh、neon bokeh、lens flare、vignette、light trail、rain surface reflection |
-| 瑕疵感 | 石面青苔/风化、金属面氧化划痕、木面开裂/包浆、瓦片残缺/苔痕、霓虹灯管轻微光衰、电子屏细微噪点、建筑表面赛博涂鸦、管线外露的工业感，拒绝完美无瑕的塑料CG感 | 青苔斑驳、风化痕迹、岁月包浆、赛博设备使用痕迹、金属氧化磨损、工业风管线外露 |
+| Type | Compatible with cyberized renovation of courtyards/mountain forests/stream banks/ancient bridges/markets, and large-scale urban scenes such as Guofeng cyber-urban/ancient street skyscraper symbiosis zones/floating cities/riverside cyber ancient streets. Retain Eastern landscape patterns and urban textures, integrate cyberpunk urban forms, adapting to both small-scale ancient-style scenes and large-scale urban scenes | Guofeng cyber {scene}, {season}, {time}, Eastern cyberpunk urban, New Chinese future landscapes, symbiosis of ancient buildings and skyscrapers |
+| Weather | Sunny/Overcast/Thin Mist/Drizzle/Snowfall. Can be overlaid with cyberized weather such as electronic mist, holographic rain, neon snow, light pollution haze, quantum smoke clouds, and neon light rain between urban buildings. Must conform to seasonal logic | Electronic thin mist pervasive, holographic drizzle like silk, neon snowfall filling the sky, urban light pollution haze, quantum smoke clouds ethereal |
+| Vegetation | Holographic plum/electronic bamboo/cyber pine/neon peach blossoms/light-sensing willows/holographic lotus (must strictly conform to season). Can be paired with cyber greenery, floating potted plants, light-sensing vegetation. Retain Eastern plant imagery, adapting to both ancient-style landscapes and urban street scenes | Holographic peach blossoms blazing, electronic emerald bamboo forming forest, cyber pine waves rolling, street scene light-sensing greenery, riverside holographic weeping willows |
+| Water | Cyber streams/holographic lake surfaces/neon waterfalls/electronic pools/urban riverside waters. Must have precise light and shadow reflections, neon reflections, electronic water ripple textures, and building reflections, with accurate physical properties | Cyber stream babbling, holographic lake surface like a mirror, neon waterfall flowing light, clear neon reflections on water surface, complete building reflections on riverside |
+| Architecture | Compatible with cyberized renovation of Chinese ancient buildings, and Guofeng cyber skyscrapers, stacked floating building clusters, ancient street and skyscraper symbiosis, riverside cyber ancient building clusters. Retain core Chinese architectural forms, integrate cyber urban vertical spatial logic | Cyber flying eaves and upturned corners, neon stone arch bridge, floating Guofeng building cluster, Eastern cyber skyscraper, stacked aerial courtyards, symbiosis of ancient street and skyscrapers |
+| Air Sense | Must have aerial perspective. Ancient-style scenes follow the perspective logic of foreground-midground-distant mountains. Urban scenes follow the high-low perspective logic of foreground street-midground buildings-distant skyline. Mandatory neon volumetric light and distant blur, strictly following the rule of near-real and far-virtual | Distant mountains like ink/urban skyline hazy, aerial perspective, neon volumetric light, electronic mist, near-real far-virtual |
+| Lighting | Dual system of natural sunlight/moonlight + cyber artificial light sources. Based on natural light, supplemented by neon self-emission/holographic projection light/electronic screen fill light/skyscraper searchlights. Mandatory volumetric light, global illumination, path tracing, depth-of-field blur, adapting to both ancient-style soft light and shadow and urban neon high-contrast light and shadow | Natural light + cyber neon fill light, holographic volumetric light, RTX global illumination, path tracing, depth-of-field blur |
+| Lens Feel | Depth-of-field blur, lens vignette, chromatic aberration, neon bokeh, lens flare, light trail blur, cyber rainy night water surface reflection, reproducing cinematic-level lens optical characteristics | depth of field, bokeh, neon bokeh, lens flare, vignette, light trail, rain surface reflection |
+| Imperfection | Stone surface moss/weathering, metal surface oxidation scratches, wood surface cracks/patina, tile fragments/moss marks, neon tube slight light decay, electronic screen subtle noise, cyber graffiti on building surfaces, exposed industrial pipes. Reject the perfect, flawless plastic CG feel | Mottled moss, weathering traces, age patina, cyber device usage traces, metal oxidation wear, exposed industrial style pipes |
 
-### 室外类型速查
+### Outdoor Type Quick Reference
 
-| 类型 | 核心元素 | 氛围词 |
+| Type | Core Elements | Atmosphere Words |
 |---|---|---|
-| 赛博庭院/浮空花园 | 全息假山、霓虹池塘、电子花木、悬浮石径、光感喷泉、浮空亭台 | 全息花影扶疏、赛博曲径通幽、东方园林未来主义改造 |
-| 赛博山林/电子竹海 | 赛博古木、全息竹林、霓虹山石、电子云雾、浮空平台、山间赛博栈道 | 赛博层峦叠嶂、电子云雾缥缈、东方山水赛博化表达 |
-| 赛博溪畔/全息湖边 | 霓虹溪流、光感卵石、全息垂柳、电子荷花、浮空水榭、水面霓虹倒影 | 赛博溪水潺潺、全息柳影婆娑、东方水韵未来感呈现 |
-| 赛博古桥/浮空长亭 | 霓虹石拱桥、全息长亭、电子柳树、浮空栈道、桥体赛博灯带、江畔霓虹 | 赛博长亭古道、霓虹杨柳依依、东方离愁未来化叙事 |
-| 赛博集市/霓虹长街 | 霓虹酒旗、全息摊贩、悬浮灯笼、赛博商铺、电子招牌、浮空连廊 | 热闹赛博市井、东方未来烟火人间、国风赛博江湖气息 |
-| 赛博屋顶/浮空天台 | 霓虹瓦片、赛博飞檐、全息夜空、都市霓虹全景、浮空座椅、月下霓虹灯 | 月下霓虹独酌、赛博清风徐来、东方意境未来感升华 |
-| 国风赛博都市核心区 | 古街与摩天楼共生、中式飞檐摩天楼、浮空建筑群、霓虹巨幕、阵列全息广告牌、空中轨道交通 | 东方未来都市核心、赛博江湖烟火、国风赛博朋克天际线 |
-| 赛博都市滨江古街 | 江畔古建群、霓虹石拱桥、对岸摩天楼群、水面楼宇倒影、滨江浮空栈道、沿街赛博商铺 | 滨江赛博烟火、古建与都市共生、东方水岸未来感 |
-| 赛博都市浮空庭院区 | 摩天楼群间的浮空古建、空中连廊、悬浮园林、云雾缭绕、楼宇霓虹映衬 | 高空东方秘境、都市空中园林、国风赛博垂直空间 |
-| 赛博都市老城区 | 赛博化古巷、青瓦霓虹顶、沿街全息商铺、错落古建、远处摩天楼背景、市井烟火 | 老巷赛博烟火、新旧共生江湖气、国风都市烟火叙事 |
+| Cyber Courtyard/Floating Garden | Holographic rockery, neon pond, electronic flowers and trees, floating stone path, light-sensing fountain, floating pavilions | Holographic flower shadows sparse, cyber winding path to seclusion, Eastern garden futurist renovation |
+| Cyber Mountain Forest/Electronic Bamboo Sea | Cyber ancient trees, holographic bamboo forest, neon mountain rocks, electronic mist/clouds, floating platforms, mountain cyber plank paths | Cyber layered peaks, electronic mist/clouds ethereal, Eastern landscape cyberized expression |
+| Cyber Stream Bank/Holographic Lakeside | Neon stream, light-sensing pebbles, holographic weeping willows, electronic lotus, floating water pavilion, neon reflections on water surface | Cyber stream babbling, holographic willow shadows swaying, Eastern water charm futuristic presentation |
+| Cyber Ancient Bridge/Floating Long Pavilion | Neon stone arch bridge, holographic long pavilion, electronic willows, floating plank path, bridge body cyber light strip, riverside neon | Cyber long pavilion ancient road, neon willows gentle, Eastern parting sorrow futurized narrative |
+| Cyber Market/Neon Long Street | Neon wine flags, holographic vendors, floating lanterns, cyber shops, electronic signs, floating walkways | Bustling cyber urban market, Eastern futuristic human smoke, Guofeng cyber jianghu atmosphere |
+| Cyber Rooftop/Floating Terrace | Neon tiles, cyber flying eaves, holographic night sky, urban neon panorama, floating seats, moonlit neon lights | Moonlit neon solitary drinking, cyber gentle breeze coming, Eastern imagery futuristic sublimation |
+| Guofeng Cyber Urban Core Area | Symbiosis of ancient street and skyscrapers, Chinese flying eave skyscrapers, floating building clusters, neon giant screens, arrayed holographic billboards, aerial rail transit | Eastern futuristic urban core, cyber jianghu smoke, Guofeng cyberpunk skyline |
+| Cyber Urban Riverside Ancient Street | Riverside ancient building cluster, neon stone arch bridge, opposite bank skyscraper cluster, building reflections on water surface, riverside floating plank path, street-side cyber shops | Riverside cyber smoke, symbiosis of ancient buildings and urban, Eastern waterfront futuristic feel |
+| Cyber Urban Floating Courtyard Area | Floating ancient buildings between skyscraper clusters, aerial walkways, suspended gardens, mist swirling, building neon reflection | High-altitude Eastern secret realm, urban aerial garden, Guofeng cyber vertical space |
+| Cyber Urban Old Town | Cyberized ancient alleys, blue tile neon roofs, street-side holographic shops, staggered ancient buildings, distant skyscraper background, urban market smoke | Old alley cyber smoke, symbiosis of old and new jianghu vibe, Guofeng urban smoke narrative |
 
 ---
 
-## 五、四视图设定图规范
+## V. Four-View Setting Image Specifications
 
-### 视图定义
+### View Definitions
 
-> 摄像机固定于国风赛博场景中心点，小尺度古风场景采用人眼平视高度，大尺度都市场景可采用高空中心点固定，分别朝前/后/左/右四个方向平视拍摄，形成 360° 无死角环视，完整呈现场景空间结构与赛博元素布局，兼容小尺度古风空间与大尺度都市空间。
+> The camera is fixed at the center point of the Guofeng cyber scene. Small-scale ancient-style scenes use eye-level height, while large-scale urban scenes can use a fixed high-altitude center point. It shoots horizontally in four directions: front/back/left/right, forming a 360° blind-spot-free panoramic view, completely presenting the scene's spatial structure and cyber element layout, accommodating both small-scale ancient-style spaces and large-scale urban spaces.
 
-| 位置 | 视图 | 视角方向 | 要求 | 提示词 |
+| Position | View | View Direction | Requirements | Prompts |
 |---|---|---|---|---|
-| 左上 | 前视图 | 从中心点向前方平视（0°） | 完整展示国风赛博场景正面主体结构、前中后景纵深层次、核心赛博装置与中式建筑/都市天际线 | front view、eye level/高空固定视点、looking forward、cyberpunk guofeng scene main structure |
-| 右上 | 右视图 | 从中心点向右方平视（90°） | 完整展示国风赛博场景右侧空间延伸、建筑侧面结构、赛博装置布局与空间纵深/都市右侧天际线 | right side view、eye level/高空固定视点、looking right、cyberpunk guofeng scene side structure |
-| 左下 | 后视图 | 从中心点向后方平视（180°） | 完整展示国风赛博场景背面结构、后景空间层次、赛博元素背面布局与空间逻辑/都市背面天际线 | back view、eye level/高空固定视点、looking backward、cyberpunk guofeng scene back structure |
-| 右下 | 左视图 | 从中心点向左方平视（270°） | 完整展示国风赛博场景左侧空间延伸、建筑侧面结构、赛博装置布局与空间纵深/都市左侧天际线 | left side view、eye level/高空固定视点、looking left、cyberpunk guofeng scene side structure |
+| Top Left | Front View | Horizontal view from center point to the front (0°) | Completely display the main front structure of the Guofeng cyber scene, foreground/midground/background depth layers, core cyber devices and Chinese architecture/urban skyline | front view, eye level/high-altitude fixed viewpoint, looking forward, cyberpunk guofeng scene main structure |
+| Top Right | Right View | Horizontal view from center point to the right (90°) | Completely display the right-side spatial extension of the Guofeng cyber scene, building side structure, cyber device layout and spatial depth/urban right-side skyline | right side view, eye level/high-altitude fixed viewpoint, looking right, cyberpunk guofeng scene side structure |
+| Bottom Left | Back View | Horizontal view from center point to the back (180°) | Completely display the back structure of the Guofeng cyber scene, background spatial layers, cyber element back layout and spatial logic/urban back skyline | back view, eye level/high-altitude fixed viewpoint, looking backward, cyberpunk guofeng scene back structure |
+| Bottom Right | Left View | Horizontal view from center point to the left (270°) | Completely display the left-side spatial extension of the Guofeng cyber scene, building side structure, cyber device layout and spatial depth/urban left-side skyline | left side view, eye level/high-altitude fixed viewpoint, looking left, cyberpunk guofeng scene side structure |
 
-### 画面规范
+### Image Specifications
 
-| 项目 | 约束 |
+| Item | Constraint |
 |---|---|
-| 布局 | 同一画面 2×2 网格均匀排列：上排（前视图 + 右视图），下排（后视图 + 左视图），形成从场景中心点环视的四方向完整视图，无变形、无裁切 |
-| 人物 | **严禁出现任何人物、人影、人体轮廓、人体剪影，无任何生物主体** |
-| 视点 | 四视图均从场景同一中心点出发，视线高度严格一致，小尺度场景采用人眼平视高度，大尺度都市场景采用统一高空视点，无高低偏移、无远近缩放 |
-| 一致性 | 四视图的中式建筑结构、赛博装置布局、霓虹光效位置、全息投影内容、都市天际线、材质纹理、色调光影、季节天候必须100%完全一致，空间逻辑自洽 |
-| 光线 | 四视图光源方向严格统一，自然光+赛博人工光源的光影逻辑完全一致，光源在不同视角下的位置、光照强度、阴影方向完全符合物理规则 |
-| 画面比例 | 强制 1:1 正方形画幅（适配2×2网格均匀排布） |
+| Layout | Uniform 2×2 grid arrangement in the same image: Top row (Front View + Right View), Bottom row (Back View + Left View), forming a complete four-direction view from the scene center point, with no distortion and no cropping |
+| Characters | **Strictly prohibited from appearing any characters, human shadows, human outlines, human silhouettes, or any biological subjects** |
+| Viewpoint | All four views start from the same center point of the scene. The line-of-sight height is strictly consistent. Small-scale scenes use eye-level height, while large-scale urban scenes use a unified high-altitude viewpoint. No high-low offset and no near-far scaling |
+| Consistency | The Chinese architectural structure, cyber device layout, neon light effect positions, holographic projection content, urban skyline, material textures, color tones and light/shadow, and seasonal weather in the four views must be 100% completely consistent, with self-consistent spatial logic |
+| Light | The light source direction in the four views is strictly unified. The light and shadow logic of natural light + cyber artificial light sources is completely consistent. The position, light intensity, and shadow direction of light sources under different viewpoints strictly conform to physical rules |
+| Aspect Ratio | Mandatory 1:1 square aspect ratio (adapted for uniform 2×2 grid arrangement) |
 
----
+---## VI. Prompt Template
 
-## 六、提示词模板
-
-3D国风赛博场景四视图设定图，
-3A游戏级3D渲染，RTX路径追踪，全局光照，高精度硬表面建模，PBR物理材质，国风赛博3D，电影级CG光影，东方未来主义，
+3D Guofeng Cyber Scene Four-View Setting Sheet,
+3A game-grade 3D rendering, RTX path tracing, global illumination, high-precision hard-surface modeling, PBR physical materials, Guofeng Cyber 3D, cinematic CG lighting, Oriental Futurism,
 3D rendered, cyberpunk guofeng, oriental futurism, volumetric lighting, RTX path tracing, global illumination, PBR materials,
 depth of field, natural lens vignette, subtle chromatic aberration, neon bokeh, lens flare, light trail,
-超高清8K纹理，体积光，自然光照+赛博霓虹补光，物理级精准光影，环境光遮蔽，
+Ultra-high-definition 8K textures, volumetric light, natural lighting + cyber neon fill light, physically accurate light and shadow, ambient occlusion,
 scene design sheet, environment concept art, no people, no characters, no human figures, no creatures,
-{古风室内/古风室外/都市室内/都市室外}，{国风赛博场景类型}，{中式朝代内核+赛博改造风格}，{季节+时间},
-前景：{全息投影/霓虹摆件/赛博绿植/街道古建/核心前景元素}, 中景：{赛博建筑核心结构/浮空平台/霓虹装置/摩天楼宇/核心中景元素}, 后景：{赛博国风都市远景/浮空建筑群/电子云雾/山水远景/核心后景元素},
-{国风赛博季节色调+霓虹撞色描述}, {天候/赛博氛围元素},
-{传统+赛博融合材质描述}, 空气透视, 8K超高清纹理细节, 材质物理属性准确,
-材质自然磨损氧化痕迹，岁月包浆，青苔风化，光膜自然垂褶，霓虹灯管轻微光衰，电子屏细微噪点，
-全息体积光，RTX全局光照，环境光遮蔽，自然光漫射，霓虹自发光补光，柔和光影与赛博硬光对冲，
-同一画面2×2网格均匀排列：从场景中心点360°环视，前视图+右视图+后视图+左视图，
-四视图均从同一中心点{人眼平视/高空固定}拍摄，建筑结构一致，赛博装置布局一致，霓虹光效位置一致，都市天际线一致，材质色调一致，光影逻辑完全一致，
-画面中无任何人物、人影、人体轮廓，
-图中不要有任何文字、水印、logo、标注
+{Ancient-style Interior/Ancient-style Exterior/Urban Interior/Urban Exterior}, {Guofeng Cyber Scene Type}, {Chinese Dynasty Core + Cyber Modification Style}, {Season + Time},
+Foreground: {Holographic projection/Neon ornament/Cyber plant/Street ancient architecture/Core foreground element}, Midground: {Cyber architecture core structure/Levitating platform/Neon installation/Skyscraper/Core midground element}, Background: {Cyber Guofeng city distant view/Levitating building cluster/Electronic mist/Mountain-water distant view/Core background element},
+{Guofeng Cyber seasonal color tone + neon contrast description}, {Weather/Cyber atmosphere element},
+{Traditional + Cyber fusion material description}, aerial perspective, 8K ultra-high-definition texture details, accurate physical material properties,
+Natural wear and oxidation marks on materials, aged patina, moss weathering, natural drapes of light film, slight light decay of neon tubes, subtle noise on electronic screens,
+Holographic volumetric light, RTX global illumination, ambient occlusion, natural light diffusion, neon self-illuminated fill light, contrast between soft light/shadow and cyber hard light,
+Uniform 2×2 grid arrangement in the same frame: 360° panoramic view from the scene center point, front view + right view + back view + left view,
+All four views are shot from the same center point {eye-level/High-altitude fixed}, consistent architectural structure, consistent cyber installation layout, consistent neon light effect positions, consistent urban skyline, consistent material color tones, completely consistent light and shadow logic,
+No people, human shadows, or human silhouettes in the frame,
+No text, watermarks, logos, or annotations in the image
 
 ---
 
-## 七、约束规则
+## VII. Constraint Rules
 
-### 必守
+### Mandatory
 
-| 编号 | 规则 |
+| ID | Rule |
 |---|---|
-| R1 | 所有场景必须具备「前/中/后景三层递进层次」，空间逻辑清晰，小尺度古风场景与大尺度都市场景均需严格遵守，杜绝扁平画面 |
-| R2 | 室外场景必须包含「空气透视」，古风场景遵循近景-中景-远山的透视逻辑，都市场景遵循近景街道-中景楼宇-远景天际线的高低空透视逻辑，严格遵循近实远虚规则 |
-| R3 | 所有场景图必须为「四视图设定图」（从场景中心点360°环视：前视图 + 右视图 + 后视图 + 左视图），2×2网格均匀排布，兼容小尺度场景人眼平视与大尺度都市场景高空固定视点 |
-| R4 | 四视图的中式建筑结构/赛博装置布局/霓虹光效/全息投影/都市天际线/材质/色调/光线/季节/天候必须100%完全一致，空间逻辑自洽 |
-| R5 | 场景图中**严禁出现任何人物、人影、人体剪影、人体轮廓、任何生物主体** |
-| R6 | 必须包含3D国风赛博核心渲染关键词（3D rendered / volumetric lighting / PBR materials / RTX path tracing / cyberpunk guofeng 至少3项） |
-| R7 | 必须包含电影级镜头光学特征（depth of field / lens vignette / neon bokeh 至少一项） |
-| R8 | 所有材质必须带有自然磨损/岁月痕迹/赛博设备使用痕迹，禁止全新无瑕的"塑料CG感"，必须具备PBR物理级质感，同时适配古风温润质感与都市工业质感 |
-| R9 | 必须遵循「古今共生」核心准则，古风元素与赛博都市元素必须有机融合，保留东方美学内核，杜绝生硬堆砌与风格割裂 |
+| R1 | All scenes must possess a "foreground/midground/background three-layer progressive hierarchy," with clear spatial logic. Both small-scale ancient-style scenes and large-scale urban scenes must strictly adhere to this, eliminating flat imagery |
+| R2 | Outdoor scenes must include "aerial perspective." Ancient-style scenes follow the perspective logic of foreground-midground-distant mountains, while urban scenes follow the high-low perspective logic of foreground streets-midground buildings-distant skyline, strictly adhering to the rule of near-real, far-virtual |
+| R3 | All scene sheets must be "Four-View Setting Sheets" (360° panoramic view from the scene center point: front view + right view + back view + left view), arranged in a uniform 2×2 grid, compatible with eye-level views for small-scale scenes and high-altitude fixed viewpoints for large-scale urban scenes |
+| R4 | The Chinese architectural structure/cyber installation layout/neon light effects/holographic projections/urban skyline/materials/color tones/lighting/season/weather in the four views must be 100% completely consistent, with self-consistent spatial logic |
+| R5 | It is **strictly forbidden** for any people, human shadows, human silhouettes, human outlines, or any biological subjects to appear in the scene sheet |
+| R6 | Must include core 3D Guofeng Cyber rendering keywords (at least 3 of: 3D rendered / volumetric lighting / PBR materials / RTX path tracing / cyberpunk guofeng) |
+| R7 | Must include cinematic lens optical characteristics (at least one of: depth of field / lens vignette / neon bokeh) |
+| R8 | All materials must have natural wear/age marks/cyber equipment usage traces. Brand-new, flawless "plastic CG feel" is prohibited. Must possess PBR physical-grade texture, while adapting to both the warm texture of ancient styles and the industrial texture of urban settings |
+| R9 | Must follow the "Coexistence of Ancient and Modern" core principle. Ancient-style elements and cyber urban elements must be organically fused, preserving the core of Oriental aesthetics, eliminating rigid stacking and stylistic fragmentation |
 
-### 严禁
+### Prohibited
 
-| 编号 | 严禁 |
+| ID | Prohibition |
 |---|---|
-| X1 | 背景纯白/纯黑/无有效场景内容/无空间结构 |
-| X2 | 极端天候（暴风雨/雷电/暴雪，除非有明确剧情需求），天候与季节设定矛盾 |
-| X3 | 场景无纵深/无层次/无前后景区分，画面扁平无空间感，都市场景无高低空层次 |
-| X4 | 植被/天候/色调与设定季节严重矛盾，破坏季节叙事逻辑 |
-| X5 | 出现任何人物、人影、人体剪影、人体轮廓、任何生物主体 |
-| X6 | 四视图之间建筑结构/赛博装置/霓虹光效/都市天际线/材质/色调/光影不一致，或视点中心不统一、空间逻辑混乱 |
-| X7 | 低精度建模/粗糙贴图/塑料质感/平面平涂/劣质CG效果，禁用 low-poly、rough modeling、flat color 等相关表述 |
-| X8 | 材质过于干净完美、无任何使用痕迹与岁月感，出现严重"塑料感""玩具感" |
-| X9 | 光照过于均匀平坦、无体积光、无环境光遮蔽、无景深虚化、无镜头光学特征，光影无层次 |
-| X10 | 中式传统形制与赛博都市元素生硬堆砌、风格割裂，出现纯西式赛博朋克与国风元素无逻辑拼接 |
-| X11 | 都市场景无东方内核，仅堆砌西式赛博元素，丢失国风美学核心 |
-| X12 | 古风场景无赛博化逻辑，仅在传统古建上强行叠加霓虹，无有机融合 |
+| X1 | Pure white/pure black background/no valid scene content/no spatial structure |
+| X2 | Extreme weather (storm/lightning/blizzard, unless there is a clear plot requirement), weather contradicting the seasonal setting |
+| X3 | Scene lacking depth/layers/foreground-background distinction, flat image without spatial sense, urban scene lacking high-low layers |
+| X4 | Vegetation/weather/color tones severely contradicting the set season, breaking the seasonal narrative logic |
+| X5 | Appearance of any people, human shadows, human silhouettes, human outlines, or any biological subjects |
+| X6 | Inconsistency in architectural structure/cyber installations/neon light effects/urban skyline/materials/color tones/light and shadow between the four views, or inconsistent viewpoint center, chaotic spatial logic |
+| X7 | Low-precision modeling/rough textures/plastic texture/flat coloring/poor-quality CG effects. Prohibited from using related terms such as low-poly, rough modeling, flat color |
+| X8 | Materials too clean and perfect, with no usage traces or sense of age, exhibiting severe "plastic feel" or "toy feel" |
+| X9 | Lighting too uniform and flat, lacking volumetric light, ambient occlusion, depth-of-field blur, or lens optical characteristics, light and shadow lacking hierarchy |
+| X10 | Rigid stacking of Chinese traditional forms and cyber urban elements, stylistic fragmentation, appearance of pure Western cyberpunk and Guofeng elements spliced without logic |
+| X11 | Urban scene lacking Oriental core, merely stacking Western cyber elements, losing the core of Guofeng aesthetics |
+| X12 | Ancient-style scene lacking cyberization logic, merely forcibly overlaying neon on traditional ancient architecture, lacking organic fusion |
 
 ---
 
-### 古风+都市双场景适配校验清单
-| 校验项 | 合规标准 |
+### Ancient + Urban Dual-Scene Adaptation Verification Checklist
+| Verification Item | Compliance Standard |
 |---|---|
-| 古风场景适配 | 可生成赛博化古建、庭院、山水场景，保留东方传统形制与美学内核 |
-| 都市场景适配 | 可生成国风赛博摩天楼、古街都市共生区、浮空都市场景，具备完整的都市空间逻辑 |
-| 融合场景适配 | 可生成古风+都市无缝融合的场景，无风格割裂、元素生硬堆砌问题 |
-| 四视图兼容 | 同时适配小尺度古风场景人眼平视四视图、大尺度都市场景高空固定视点四视图 |
-| 风格统一性 | 所有场景均锚定3D国风赛博核心风格，不会出现纯古风、纯西式赛博的跑偏问题 |
+| Ancient-style scene adaptation | Can generate cyberized ancient architecture, courtyards, and landscape scenes, preserving the core of Oriental traditional forms and aesthetics |
+| Urban scene adaptation | Can generate Guofeng cyber skyscrapers, ancient street-urban symbiotic zones, and levitating urban scenes, possessing complete urban spatial logic |
+| Fusion scene adaptation | Can generate scenes where ancient style and urban style are seamlessly fused, with no stylistic fragmentation or rigid element stacking issues |
+| Four-view compatibility | Simultaneously adapts to eye-level four-view for small-scale ancient-style scenes and high-altitude fixed viewpoint four-view for large-scale urban scenes |
+| Style consistency | All scenes are anchored to the core 3D Guofeng Cyber style, avoiding deviations into pure ancient style or pure Western cyber style |

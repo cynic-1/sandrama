@@ -5,7 +5,7 @@ import { success } from "@/lib/responseFormat";
 import { validateFields } from "@/middleware/middleware";
 const router = express.Router();
 
-// 获取原文数据
+// Retrieve the original data
 export default router.post(
   "/",
   validateFields({

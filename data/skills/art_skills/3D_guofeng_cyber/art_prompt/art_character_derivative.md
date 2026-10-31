@@ -1,387 +1,383 @@
 ---
 name: art_character_derivative
-description: 3D国风赛博人物衍生资产生成 · 约束手册
+description: 3D Chinese-Style Cyber Character Derivative Asset Generation · Constraint Manual
 metaData: art_skills
 ---
 
-# 3D国风赛博人物衍生资产生成 · 约束手册
-## （古风传统场景+现代都市赛博场景 双适配版）
+# 3D Chinese-Style Cyber Character Derivative Asset Generation · Constraint Manual
+## (Dual-Adaptation Version: Ancient Traditional Scenes + Modern Urban Cyber Scenes)
 
 ---
 
-## 一、叠加原则（双场景通用核心规则）
+## I. Overlay Principles (Core Rules for Dual Scenes)
 
-1. **面容不变** — 叠加后五官必须与底模完全一致，禁止面容偏移、变形、风格化篡改
-2. **姿态不变** — 保持底模自然站立姿态，禁止任何姿态/动作/体态变化
-3. **逐层可控** — 每层独立描述，古风/赛博元素分层独立，便于按层替换（换装不换妆、换赛博元素不换国风基底）
-4. **风格统一** — 所有服化元素服从同一美学体系，**古风场景以东方传统美学为核心，赛博元素为轻量可选融合；都市场景以国风形制为基底，赛博机能为核心表达**，全程禁止国风与赛博元素割裂对立
-5. **质感不降** — 叠加后质感标准不低于底模，3D PBR材质、电影级光影为全场景通用底线
-6. **纯服化范畴** — 仅叠加妆容/发型/服饰/配饰，禁止引入道具、场景、环境、动作
-7. **双场景一键适配** — 无明确赛博/都市线索时，默认兼容纯古风生成；有明确赛博/都市线索时，自动匹配国风赛博都市体系，无需重构底层逻辑
+1. **Unchanged Face** — After overlay, facial features must be completely identical to the base model. Facial shifting, deformation, or stylized alteration is prohibited.
+2. **Unchanged Pose** — Maintain the natural standing pose of the base model. Any change in pose, action, or body posture is prohibited.
+3. **Layer-by-Layer Control** — Each layer is described independently. Ancient-style and cyber elements are separated by layer to facilitate layer-specific replacement (change costume without changing makeup; change cyber elements without changing the Chinese-style base).
+4. **Style Unity** — All costume and makeup elements must adhere to a unified aesthetic system. **In ancient scenes, Eastern traditional aesthetics are the core, with cyber elements as lightweight optional fusion; in urban scenes, Chinese-style forms are the base, with cyber mechanics as the core expression.** Throughout the process, the separation or opposition of Chinese-style and cyber elements is prohibited.
+5. **No Quality Degradation** — The quality standard after overlay must not be lower than the base model. 3D PBR materials and cinematic lighting are the universal baseline for all scenes.
+6. **Pure Costume and Makeup Scope** — Only overlay makeup, hairstyle, clothing, and accessories. Introducing props, scenes, environments, or actions is prohibited.
+7. **One-Click Dual-Scene Adaptation** — When there are no explicit cyber/urban cues, default to pure ancient-style generation. When there are explicit cyber/urban cues, automatically match the Chinese-style cyber urban system without restructuring the underlying logic.
 
 ---
 
-## 二、叠加层级（双场景全兼容分层结构）
+## II. Overlay Hierarchy (Fully Compatible Layered Structure for Dual Scenes)
 
-| 层级 | 内容 | 双场景适配说明 |
+| Layer | Content | Dual-Scene Adaptation Notes |
 |---|---|---|
-| L0 | 底模 | 基础形象底模，面容、体态、站立姿态完全锁定，古风/都市场景通用，不做任何修改 |
-| L1 | 妆容（决策层） | 先分析用户线索，再决策「基础妆 / 轻妆 / 正式妆 / 赛博机能妆 / 都市通勤妆」强度与风格，含古风专属传统妆造、都市赛博专属光效妆造两套体系 |
-| L2 | 发型造型 | 国风发髻/束发/编发 + 传统发饰/赛博机能发件，含古风传统造型、都市赛博轻量化造型两套体系，高精度发丝标准全场景通用 |
-| L3 | 中衣/内搭 | 替换白色基础中衣，古风场景用传统丝绸中衣，都市场景用国风机能面料内搭，可融入可控电路暗纹、微霓虹光带 |
-| L4 | 外衣/主服 | 核心双适配层：古风场景用中式传统华服/礼服/常服；都市场景用**国风形制为核心的赛博机能服**（必须保留立领/斜襟/盘扣/襦裙等中式核心结构），禁止无国风内核的纯西式机能服 |
-| L5 | 配饰 | 传统头饰/耳饰/项饰/腰饰/手饰 + 国风赛博机能配饰/光感组件，古风场景用传统配饰为主、轻量赛博点缀；都市场景用国风+赛博融合配饰，全程禁止纯西式赛博配饰 |
+| L0 | Base Model | Base character model. Face, body type, and standing pose are completely locked. Universal for ancient/urban scenes; no modifications allowed. |
+| L1 | Makeup (Decision Layer) | First analyze user cues, then decide the intensity and style of "Base Makeup / Light Makeup / Formal Makeup / Cyber Functional Makeup / Urban Commute Makeup." Includes two systems: ancient-specific traditional makeup and urban cyber-specific light-effect makeup. |
+| L2 | Hairstyle & Styling | Chinese-style buns/bound hair/braids + traditional hair accessories/cyber functional hair pieces. Includes two systems: ancient traditional styling and urban cyber lightweight styling. High-precision hair strand standards are universal for all scenes. |
+| L3 | Inner Garment/Underlayer | Replaces the white basic inner garment. Ancient scenes use traditional silk inner garments; urban scenes use Chinese-style functional fabric underlayers. Can incorporate controllable circuit patterns and micro-neon light bands. |
+| L4 | Outer Garment/Main Costume | Core dual-adaptation layer: Ancient scenes use Chinese traditional formal wear/ceremonial wear/everyday wear; urban scenes use **cyber functional costumes with Chinese-style forms as the core** (must retain core Chinese structures such as stand-up collars, diagonal plackets, frog buttons, and ruqun skirts). Pure Western-style functional costumes without a Chinese-style core are prohibited. |
+| L5 | Accessories | Traditional headwear/earrings/necklaces/waist ornaments/hand ornaments + Chinese-style cyber functional accessories/light-sensing components. Ancient scenes primarily use traditional accessories with lightweight cyber accents; urban scenes use Chinese-style + cyber fusion accessories. Pure Western-style cyber accessories are prohibited throughout. |
 
-> **范畴边界**：人物衍生资产仅包含 L0–L5 层级（服化妆造），不包含道具（伞/剑/扇/书/灯笼等手持物）、场景环境（室内/室外/天气等）、姿态动作（行走/回眸/举手等）。这些属于其他资产类型的范畴；赛博机能元素仅限L1-L5服化妆造范畴，不得超出边界修改底模身体结构。
+> **Scope Boundary**: Character derivative assets include only L0–L5 layers (costume and makeup). They do not include props (umbrellas/swords/fans/books/lanterns and other handheld items), scene environments (indoor/outdoor/weather, etc.), or poses/actions (walking/looking back/raising hands, etc.). These belong to other asset types. Cyber functional elements are limited to the L1-L5 costume and makeup scope and must not exceed the boundary to modify the base model's body structure.
 
 ---
 
-## 三、妆容约束（L1·古风+都市双体系）
+## III. Makeup Constraints (L1 · Ancient + Urban Dual Systems)
 
-### 底模到衍生妆造策略（关键）
+### Strategy from Base Model to Derivative Makeup (Key)
 
-> 角色底模虽为素颜，但衍生资产默认进入妆造流程。系统应根据用户提供的线索分析妆造需求，优先匹配古风/都市场景属性，再在对应妆造体系内决策强度，无明确场景线索时默认古风体系，不得擅自切换。
+> Although the character base model is bare-faced, derivative assets default to entering the makeup process. The system should analyze makeup needs based on user-provided cues, prioritize matching ancient/urban scene attributes, and then decide the intensity within the corresponding makeup system. When there are no explicit scene cues, default to the ancient system; unauthorized switching is prohibited.
 
-### L1 线索分析与妆容决策
+### L1 Cue Analysis and Makeup Decision
 
-| 步骤 | 处理内容 | 决策结果 |
+| Step | Processing Content | Decision Result |
 |---|---|---|
-| S1 | 提取用户线索：面部状态词、情绪词、强度词、风格词、场景词（古风/都市） | 形成「场景+妆容」双维度需求摘要 |
-| S2 | 过滤非妆容线索：道具/场景/动作/姿态词不作为上妆依据 | 防止误判 |
-| S3 | 先匹配古风/都市场景体系，再匹配妆容风格矩阵并给出强度档 | 古风体系：基础妆 / 轻妆 / 正式妆；都市体系：通勤妆 / 商务妆 / 赛博机能妆 |
-| S4 | 生成最终 L1 提示词 | 只输出结论，不输出分析过程 |
+| S1 | Extract user cues: facial state words, emotion words, intensity words, style words, scene words (Ancient/Urban) | Form a "Scene + Makeup" dual-dimension requirement summary |
+| S2 | Filter non-makeup cues: Prop/scene/action/pose words are not used as basis for makeup | Prevent misjudgment |
+| S3 | First match the ancient/urban scene system, then match the makeup style matrix and provide the intensity tier | Ancient system: Base Makeup / Light Makeup / Formal Makeup; Urban system: Commute Makeup / Business Makeup / Cyber Functional Makeup |
+| S4 | Generate final L1 prompt | Output only the conclusion, not the analysis process |
 
-### 线索到妆容映射（执行口径·双场景适配）
+### Cue-to-Makeup Mapping (Execution Standard · Dual-Scene Adaptation)
 
-| 线索类型 | 典型线索 | 场景匹配 | L1 决策 |
+| Cue Type | Typical Cues | Scene Match | L1 Decision |
 |---|---|---|---|
-| 无明显场景/面部强调线索 | 仅服饰/发型变化，未强调情绪与状态 | 古风默认 | 基础妆 |
-| 轻微面部线索 | 轻柔、含笑、睫毛轻颤、气色微提 | 古风/都市通用 | 轻妆（极淡） |
-| 明确古风日常线索 | 日常、闺中、外出、休闲、文人雅集 | 古风场景 | 基础妆（自然清透） |
-| 明确古风正式仪式线索 | 大婚、典礼、朝堂、重要场合 | 古风场景 | 正式妆（精致华贵） |
-| 明确都市日常线索 | 通勤、都市日常、休闲出行 | 都市赛博场景 | 都市通勤妆（清透自然+极淡肌理） |
-| 明确都市正式线索 | 商务、全息会议、都市盛典 | 都市赛博场景 | 都市商务妆（精致哑光+冷调质感） |
-| 明确赛博机能线索 | 赛博、机能、夜行、任务、霓虹、未来感 | 都市赛博场景 | 赛博机能妆（可控光效，与国风融合） |
+| No obvious scene/facial emphasis cues | Only costume/hairstyle changes, no emphasis on emotion or state | Ancient Default | Base Makeup |
+| Minor facial cues | Gentle, smiling, light eyelash flutter, slight complexion lift | Ancient/Urban Universal | Light Makeup (Very Light) |
+| Explicit ancient daily cues | Daily, boudoir, going out, leisure, scholar's gathering | Ancient Scene | Base Makeup (Natural and Clear) |
+| Explicit ancient formal ritual cues | Grand wedding, ceremony, court, important occasion | Ancient Scene | Formal Makeup (Exquisite and Luxurious) |
+| Explicit urban daily cues | Commute, urban daily, leisure outing | Urban Cyber Scene | Urban Commute Makeup (Clear and Natural + Very Light Texture) |
+| Explicit urban formal cues | Business, holographic meeting, urban gala | Urban Cyber Scene | Urban Business Makeup (Exquisite Matte + Cool-Tone Texture) |
+| Explicit cyber functional cues | Cyber, functional, night travel, mission, neon, futuristic feel | Urban Cyber Scene | Cyber Functional Makeup (Controllable light effects, fused with Chinese style) |
 
-> 判定原则：
-> 1. 所有衍生资产都要有妆造；先看场景线索匹配体系，再看面部线索决定强度与风格，道具、场景、姿态变化不得单独抬高妆容强度
-> 2. 赛博机能线索仅可触发都市赛博体系妆容，无对应线索不得擅自添加赛博光效妆容
-> 3. 古风场景无明确赛博线索时，禁止添加任何赛博光效/机能妆容，确保纯古风场景完全适配
+> Decision Principles:
+> 1. All derivative assets must have makeup; first match the system based on scene cues, then determine intensity and style based on facial cues. Changes in props, scenes, or poses must not independently raise the makeup intensity.
+> 2. Cyber functional cues can only trigger the urban cyber system makeup. Cyber light-effect makeup must not be added without corresponding cues.
+> 3. In ancient scenes without explicit cyber cues, adding any cyber light-effect/functional makeup is prohibited to ensure full adaptation to pure ancient scenes.
 
-### 女性妆容风格矩阵（双场景全覆盖）
+### Female Makeup Style Matrix (Full Dual-Scene Coverage)
 
-| 体系 | 风格 | 适用场景 | 核心提示词 |
+| System | Style | Applicable Scene | Core Prompt |
 |---|---|---|---|
-| 古风体系 | 清雅素妆 | 古风日常、初遇、闺中、文人雅集 | 妆容清雅、淡扫蛾眉、素妆清颜 |
-| 古风体系 | 宫廷贵气妆 | 古风宫廷、正式、权力、盛典 | 妆容精致、眉形锋利、唇色红润 |
-| 古风体系 | 浪漫桃花妆 | 古风约会、心动、甜蜜场景 | 桃花妆、眼尾微红、唇色水润 |
-| 古风体系 | 大婚盛妆 | 古风大婚、典礼 | 浓妆华美、朱唇凤眼 |
-| 古风体系 | 节日庆典妆 | 古风节日、聚会 | 色彩明亮、粉彩妆容 |
-| 都市赛博体系 | 都市通勤妆 | 都市日常、通勤、休闲出行 | 清透伪素颜、自然眉形、均匀底妆、无夸张色彩 |
-| 都市赛博体系 | 都市商务妆 | 都市商务、全息会议、正式场合 | 哑光冷调底妆、眉形利落、眼妆深邃、唇色低饱和质感 |
-| 都市赛博体系 | 赛博流光妆 | 都市夜行、赛博场景、机能休闲 | 眼尾微霓虹光效、贴肤电路暗纹、唇色带细闪流光、妆面清透不厚重 |
-| 都市赛博体系 | 机能冷调妆 | 都市任务、行动、强气场场景 | 哑光冷调底妆、眉形利落、眼妆深邃、局部哑光机能肌理、无夸张光效 |
+| Ancient System | Elegant Plain Makeup | Ancient daily, first meeting, boudoir, scholar's gathering | Elegant makeup, lightly brushed eyebrows, plain clear face |
+| Ancient System | Imperial Noble Makeup | Ancient court, formal, power, gala | Exquisite makeup, sharp eyebrow shape, red lip color |
+| Ancient System | Romantic Peach Blossom Makeup | Ancient date, heart-flutter, sweet scene | Peach blossom makeup, slight redness at eye corners, moist lip color |
+| Ancient System | Grand Wedding Makeup | Ancient grand wedding, ceremony | Heavy luxurious makeup, vermilion lips and phoenix eyes |
+| Ancient System | Festival Celebration Makeup | Ancient festival, gathering | Bright colors, pink-toned makeup |
+| Urban Cyber System | Urban Commute Makeup | Urban daily, commute, leisure outing | Clear pseudo-bare-face, natural eyebrow shape, even base makeup, no exaggerated colors |
+| Urban Cyber System | Urban Business Makeup | Urban business, holographic meeting, formal occasion | Matte cool-tone base makeup, sharp eyebrow shape, deep eye makeup, low-saturation lip texture |
+| Urban Cyber System | Cyber Flowing Light Makeup | Urban night travel, cyber scene, functional leisure | Slight neon light effect at eye corners, skin-hugging circuit patterns, lip color with fine shimmer flow, clear and non-heavy makeup surface |
+| Urban Cyber System | Functional Cool-Tone Makeup | Urban mission, action, strong aura scene | Matte cool-tone base makeup, sharp eyebrow shape, deep eye makeup, local matte functional texture, no exaggerated light effects |
 
-### 通用底肤（所有妆容·双场景共享）
+### Universal Base Skin (All Makeup · Shared by Dual Scenes)
 
-| 项目 | 约束 | 提示词 |
+| Item | Constraint | Prompt |
 |---|---|---|
-| 质感 | PBR材质渲染、自然透亮、可控肌理，3D质感全场景统一 | PBR材质、自然光泽、柔和质感、细腻皮肤纹理 |
-| 白度 | 粉白基调、通透不惨白 | 粉白基调、白皙透亮 |
-| 内透光 | 从内向外柔光感 | 内透光感、皮肤通透发光 |
-| 赛博适配 | 仅都市赛博体系可添加贴肤级电路暗纹、微霓虹光效，不得覆盖底模皮肤质感；古风体系禁用 | 贴肤电路暗纹、可控微霓虹光效、与皮肤自然融合 |
-| 禁止 | 哑光/死白/蜡感/油光/过曝、大面积覆盖底模的赛博涂装、刺眼强光、古风场景擅自添加赛博元素 | — |
+| Texture | PBR material rendering, natural translucency, controllable texture, unified 3D quality across all scenes | PBR material, natural sheen, soft texture, fine skin texture |
+| Whiteness | Pink-white base tone, translucent not pale | Pink-white base tone, fair and translucent |
+| Inner Glow | Soft light effect from inside out | Inner glow, translucent glowing skin |
+| Cyber Adaptation | Only the urban cyber system can add skin-hugging circuit patterns and micro-neon light effects; must not cover the base model's skin texture; prohibited in the ancient system | Skin-hugging circuit patterns, controllable micro-neon light effects, natural fusion with skin |
+| Prohibited | Matte/dead white/waxy/oil sheen/overexposure, large-area cyber coatings covering the base model, glaring strong light, unauthorized addition of cyber elements in ancient scenes | — |
 
-### 基础妆细化（古风默认档·双场景通用）
+### Base Makeup Details (Ancient Default Tier · Universal for Dual Scenes)
 
-| 项目 | 约束 | 提示词 |
+| Item | Constraint | Prompt |
 |---|---|---|
-| 眉部 | 顺着底模眉形轻修，不改变眉型 | 自然修眉、眉形干净 |
-| 眼部 | 极淡眼部修饰，强调清透与有神 | 眼部清透、极淡眼影 |
-| 面颊 | 极淡气色提亮，粉彩腮红 | 面颊气色自然、粉彩腮红 |
-| 唇部 | 浅粉或朱红润色，保持克制 | 唇色自然润泽、浅粉唇色 |
-| 整体 | 看得出有妆造，但妆感非常轻 | 基础妆、自然妆感、柔和质感 |
+| Eyebrows | Lightly groom along the base model's eyebrow shape, do not change eyebrow type | Natural eyebrow grooming, clean eyebrow shape |
+| Eyes | Very light eye enhancement, emphasizing clarity and spirit | Clear eyes, very light eyeshadow |
+| Cheeks | Very light complexion lift, pink-toned blush | Natural cheek complexion, pink-toned blush |
+| Lips | Light pink or vermilion red, maintain restraint | Natural moist lip color, light pink lip color |
+| Overall | Visible makeup, but very light makeup feel | Base makeup, natural makeup feel, soft texture |
 
-### 男性妆容（双场景适配）
+### Male Makeup (Dual-Scene Adaptation)
 
-| 体系 | 项目 | 约束 | 提示词 |
+| System | Item | Constraint | Prompt |
 |---|---|---|---|
-| 古风通用 | 底肤 | PBR材质渲染、白皙透亮、清爽自然 | PBR材质、白皙透亮、自然光泽 |
-| 古风通用 | 核心原则 | 伪素颜——看着没化妆但皮肤极好 | 伪素颜、天生好皮 |
-| 古风通用 | 眉毛 | 自然浓眉、不改变底模眉形 | 剑眉自然、眉形英挺 |
-| 古风通用 | 唇色 | 自然血色、微润 | 唇色自然、血色感 |
-| 都市赛博体系 | 赛博适配 | 仅可添加局部哑光机能肌理、极淡电路暗纹，无夸张光效，无明确线索禁用 | 极淡贴肤电路暗纹、哑光机能肌理、无强光 |
-| 都市赛博体系 | 都市商务妆 | 哑光清透底妆、眉形利落、无多余妆感 | 清透哑光底妆、利落眉形、伪素颜质感 |
+| Ancient Universal | Base Skin | PBR material rendering, fair and translucent, fresh and natural | PBR material, fair and translucent, natural sheen |
+| Ancient Universal | Core Principle | Pseudo-bare-face—looks like no makeup but excellent skin | Pseudo-bare-face, naturally good skin |
+| Ancient Universal | Eyebrows | Natural thick eyebrows, do not change base model eyebrow shape | Natural sword-like eyebrows, heroic eyebrow shape |
+| Ancient Universal | Lip Color | Natural blood color, slightly moist | Natural lip color, blood-color feel |
+| Urban Cyber System | Cyber Adaptation | Only local matte functional texture and very light circuit patterns can be added; no exaggerated light effects; prohibited without explicit cues | Very light skin-hugging circuit patterns, matte functional texture, no strong light |
+| Urban Cyber System | Urban Business Makeup | Matte clear base makeup, sharp eyebrow shape, no excess makeup feel | Clear matte base makeup, sharp eyebrow shape, pseudo-bare-face texture |
 
 ---
 
-## 四、发型造型约束（L2·古风+都市双体系）
+## IV. Hairstyle & Styling Constraints (L2 · Ancient + Urban Dual Systems)
 
-### 女性造型类型（双场景全覆盖）
+### Female Styling Types (Full Dual-Scene Coverage)
 
-| 体系 | 造型 | 描述 | 适用场景 | 提示词 |
+| System | Style | Description | Applicable Scene | Prompt |
 |---|---|---|---|---|
-| 古风体系 | 高髻云鬓 | 高髻盘发 + 传统发饰 | 古风宫廷、正式、盛典 | 高髻云鬓、精致盘发、传统中式形制 |
-| 古风体系 | 双环髻 | 双环对称、少女感 | 古风年轻角色、日常 | 双环髻、少女风格、中式传统造型 |
-| 古风体系 | 堕马髻 | 侧偏低髻、慵懒感 | 古风日常、休闲、闺中 | 堕马髻、慵懒侧髻、中式传统造型 |
-| 古风体系 | 披发 | 长发全散、自然垂落 | 古风闺中、私密、夜间 | 长发散落、自然垂落、中式传统质感 |
-| 古风体系 | 束发高马尾 | 高束干练、利落 | 古风习武、行动场景 | 高束马尾、干练利落、中式传统束发 |
-| 古风体系 | 半扎发 | 发顶半扎 + 后方垂发 | 古风日常、出行 | 半扎云髻、自然垂发、中式传统造型 |
-| 都市赛博体系 | 国风半扎低马尾 | 中式半扎发+低马尾、利落不拖沓 | 都市通勤、日常出行 | 国风半扎低马尾、中式编发点缀、干练日常、高精度发丝 |
-| 都市赛博体系 | 国风高束机能髻 | 中式高髻+机能结构固定、可内嵌微霓虹光带 | 都市正式、全息盛典、机能场景 | 国风高束机能髻、钛合金发件固定、内嵌可控微霓虹光带 |
-| 都市赛博体系 | 国风半机械编发 | 中式三股编+机能编绳、微光流苏点缀 | 都市休闲、夜行、赛博场景 | 国风半机械编发、中式编发基底、机能编绳、光感流苏点缀 |
-| 都市赛博体系 | 国风高马尾 | 中式束发+高马尾、机能发扣固定 | 都市机能、行动、任务场景 | 国风高马尾、中式束发基底、机能发扣固定、利落干练 |
+| Ancient System | High Bun Cloud Hair | High bun updo + traditional hair accessories | Ancient court, formal, gala | High bun cloud hair, exquisite updo, traditional Chinese form |
+| Ancient System | Double Ring Bun | Double ring symmetry, youthful feel | Ancient young character, daily | Double ring bun, youthful style, traditional Chinese styling |
+| Ancient System | Falling Horse Bun | Side low bun, lazy feel | Ancient daily, leisure, boudoir | Falling horse bun, lazy side bun, traditional Chinese styling |
+| Ancient System | Loose Hair | Long hair fully loose, natural fall | Ancient boudoir, private, night | Loose long hair, natural fall, traditional Chinese texture |
+| Ancient System | Bound High Ponytail | High bound, capable, sharp | Ancient martial arts, action scene | High bound ponytail, capable and sharp, traditional Chinese bound hair |
+| Ancient System | Half-Tied Hair | Top half tied + back hair hanging | Ancient daily, outing | Half-tied cloud bun, natural hanging hair, traditional Chinese styling |
+| Urban Cyber System | Chinese-Style Half-Tied Low Ponytail | Chinese half-tied hair + low ponytail, sharp not dragging | Urban commute, daily outing | Chinese-style half-tied low ponytail, Chinese braid accents, capable daily, high-precision hair strands |
+| Urban Cyber System | Chinese-Style High Bound Functional Bun | Chinese high bun + functional structure fixation, can embed micro-neon light bands | Urban formal, holographic gala, functional scene | Chinese-style high bound functional bun, titanium alloy hair piece fixation, embedded controllable micro-neon light bands |
+| Urban Cyber System | Chinese-Style Semi-Mechanical Braid | Chinese three-strand braid + functional braid rope, micro-light tassel accents | Urban leisure, night travel, cyber scene | Chinese-style semi-mechanical braid, Chinese braid base, functional braid rope, light-sensing tassel accents |
+| Urban Cyber System | Chinese-Style High Ponytail | Chinese bound hair + high ponytail, functional hair clip fixation | Urban functional, action, mission scene | Chinese-style high ponytail, Chinese bound hair base, functional hair clip fixation, sharp and capable |
 
-### 女性发饰（双场景适配）
+### Female Hair Accessories (Dual-Scene Adaptation)
 
-| 体系 | 约束 | 提示词 |
+| System | Constraint | Prompt |
 |---|---|---|
-| 古风体系 | 华丽精致、与服饰配套、纯传统中式材质工艺，无赛博元素（无明确线索禁用） | 华丽发饰、精致工艺、金银发簪、珠翠满头、精细雕刻 |
-| 都市赛博体系 | 国风形制为核心、与服饰配套、传统材质+赛博机能材质融合，光效可控 | 国风赛博发饰、精致工艺、金银玉饰+钛合金机能件、可控微霓虹光带、全息投影点缀 |
+| Ancient System | Luxurious and exquisite, matched with costume, pure traditional Chinese material and craft, no cyber elements (prohibited without explicit cues) | Luxurious hair accessories, exquisite craft, gold and silver hairpins, beads and jade full head, fine carving |
+| Urban Cyber System | Chinese-style form as core, matched with costume, fusion of traditional materials + cyber functional materials, controllable light effects | Chinese-style cyber hair accessories, exquisite craft, gold/silver/jade ornaments + titanium alloy functional pieces, controllable micro-neon light bands, holographic projection accents |
 
-### 男性造型类型（双场景全覆盖）
+### Male Styling Types (Full Dual-Scene Coverage)
 
-| 体系 | 造型 | 适用场景 | 提示词 |
+| System | Style | Applicable Scene | Prompt |
 |---|---|---|---|
-| 古风体系 | 束发半冠 | 古风日常、文人、雅集 | 束发半冠、玉簪束发、中式传统造型 |
-| 古风体系 | 全冠高束 | 古风正式、朝堂、盛典 | 全冠高束、玉冠束发、中式传统形制 |
-| 古风体系 | 散发披肩 | 古风私密、夜间场景 | 散发披肩、长发如墨、中式传统质感 |
-| 古风体系 | 束发高马尾 | 古风战斗、习武场景 | 高束战发、马尾利落、中式传统束发 |
-| 都市赛博体系 | 国风机能半冠束发 | 都市日常、通勤、商务场景 | 国风机能半冠束发、中式束发基底、哑光钛合金发件、利落干练 |
-| 都市赛博体系 | 国风低马尾束发 | 都市休闲、日常出行 | 国风低马尾束发、中式束发基底、极简机能发扣、自然质感 |
-| 都市赛博体系 | 国风高束机能发 | 都市机能、任务、夜行场景 | 国风高束机能发、中式束发基底、全包式机能发冠、哑光工艺 |
+| Ancient System | Bound Hair Half-Crown | Ancient daily, scholar, gathering | Bound hair half-crown, jade pin bound hair, traditional Chinese styling |
+| Ancient System | Full Crown High Bound | Ancient formal, court, gala | Full crown high bound, jade crown bound hair, traditional Chinese form |
+| Ancient System | Loose Hair Over Shoulders | Ancient private, night scene | Loose hair over shoulders, long hair like ink, traditional Chinese texture |
+| Ancient System | Bound High Ponytail | Ancient combat, martial arts scene | High bound battle hair, sharp ponytail, traditional Chinese bound hair |
+| Urban Cyber System | Chinese-Style Functional Half-Crown Bound Hair | Urban daily, commute, business scene | Chinese-style functional half-crown bound hair, Chinese bound hair base, matte titanium alloy hair pieces, sharp and capable |
+| Urban Cyber System | Chinese-Style Low Ponytail Bound Hair | Urban leisure, daily outing | Chinese-style low ponytail bound hair, Chinese bound hair base, minimalist functional hair clip, natural texture |
+| Urban Cyber System | Chinese-Style High Bound Functional Hair | Urban functional, mission, night travel scene | Chinese-style high bound functional hair, Chinese bound hair base, full-coverage functional hair crown, matte craft |
 
----
+---## V. Costume Constraints (L3+L4: Core Adaptation Layer for Dual Scenarios)
 
-## 五、服饰约束（L3+L4·双场景核心适配层）
+### Core Red Lines (Universal to Both Scenarios: Non-Negotiable)
+**All costumes must use traditional Chinese silhouettes as the absolute core.** In ancient-style scenarios, strictly adhere to the cutting logic of Chinese traditional attire. In urban cyberpunk scenarios, at least one core Chinese structural element—such as a mandarin collar, diagonal placket, frog buttons, ruqun, symmetrical front closure, or wide sleeves—must be retained. Pure Western suits, pure functional jackets, and pure Western cyberpunk attire devoid of a Chinese aesthetic core are prohibited, ensuring the Chinese aesthetic foundation is not lost in either ancient or urban scenarios.
 
-### 核心红线（双场景通用·不可突破）
-**所有服饰必须以中式传统形制为绝对核心**，古风场景严格遵循中式服饰剪裁逻辑；都市赛博场景必须保留立领/斜襟/盘扣/襦裙/对襟/大袖等至少1项中式核心结构，禁止出现无国风内核的纯西式西装、纯机能冲锋衣、纯西式赛博朋克服饰，确保古风+都市场景国风基底不丢失。
+### Female Costume Matrix (Full Coverage for Both Scenarios)
 
-### 女性服饰矩阵（双场景全覆盖）
-
-| 体系 | 风格 | 款式核心 | 适用场景 | 提示词 |
+| System | Style | Core Design | Applicable Scenarios | Prompt |
 |---|---|---|---|---|
-| 古风体系 | 古风日常长裙 | 中式襦裙形制、飘逸裙摆、传统刺绣 | 古风日常、闺中、雅集、出行 | 古风襦裙长裙、飘逸衣裙、丝绸质感、传统苏绣纹样、多层叠穿 |
-| 古风体系 | 宫廷礼服 | 中式礼服形制、大袖衫、层叠裙摆、华贵刺绣 | 古风宫廷、正式、盛典、权力场景 | 古风宫廷礼服、华贵裙装、中式大袖衫、金线刺绣、层叠裙摆 |
-| 古风体系 | 轻便常服 | 中式短衫、立领斜襟、收腰剪裁、利落不拖沓 | 古风行动、习武、出行场景 | 古风轻便常服、短衫剪裁、立领斜襟、棉麻丝绸质感、利落干练 |
-| 古风体系 | 寝衣 | 薄纱中衣、素色丝绸、宽松舒适 | 古风室内、夜间、私密场景 | 古风寝衣、宽松舒适、薄纱丝绸材质、素色简约 |
-| 古风体系 | 大婚嫁衣 | 凤冠霞帔形制、层叠红装、传统婚服纹样 | 古风婚礼、大婚典礼 | 古风大婚嫁衣、凤冠霞帔、层叠红裳、金线刺绣、中式婚服形制 |
-| 都市赛博体系 | 国风通勤常服 | 中式立领/斜襟衬衫、改良短款襦裙、机能面料拼接、日常不夸张 | 都市日常、通勤、休闲出行 | 国风赛博通勤常服、中式立领斜襟、改良襦裙剪裁、丝绸与哑光机能面料拼接、极简刺绣、利落日常 |
-| 都市赛博体系 | 国风商务礼服 | 中式对襟西装形制、改良唐装结构、高级哑光面料、极简华贵 | 都市商务、全息会议、正式场合 | 国风赛博商务礼服、中式对襟唐装基底、高级哑光面料、立体剪裁、极简中式纹样、华贵低调 |
-| 都市赛博体系 | 轻机能国风常服 | 中式短衫+机能马甲、斜襟盘扣+磁吸卡扣、收腰剪裁、轻便利落 | 都市行动、夜行、机能休闲场景 | 轻机能国风常服、中式斜襟短衫、机能马甲拼接、磁吸盘扣、哑光机能面料、利落干练 |
-| 都市赛博体系 | 国风赛博大婚/盛典礼服 | 中式凤冠霞帔/礼服形制、钛合金立体结构、层叠裙摆、可控微霓虹光带 | 都市大婚、全息盛典、重要场合 | 国风赛博盛典礼服、中式礼服核心形制、丝绸与3D打印结构拼接、金线刺绣与电路暗纹融合、可控微霓虹光带 |
-| 都市赛博体系 | 国风机能寝衣 | 中式斜襟中衣、薄纱与机能里衬拼接、宽松舒适、微光泽肌理 | 都市室内、夜间、私密场景 | 国风机能寝衣、中式斜襟形制、宽松舒适、薄纱与机能面料拼接、微光泽肌理 |
+| Ancient Style | Ancient Daily Long Dress | Chinese ruqun silhouette, flowing skirt hem, traditional embroidery | Ancient daily life, boudoir, elegant gatherings, outings | Ancient ruqun long dress, flowing gown, silk texture, traditional Suzhou embroidery patterns, layered styling |
+| Ancient Style | Court Formal Dress | Chinese formal dress silhouette, wide-sleeved robe, layered skirt hem, luxurious embroidery | Ancient court, formal events, grand ceremonies, power scenes | Ancient court formal dress, luxurious gown, Chinese wide-sleeved robe, gold-thread embroidery, layered skirt hem |
+| Ancient Style | Lightweight Daily Wear | Chinese short jacket, mandarin collar with diagonal placket, waist-cinched cut, sleek and uncluttered | Ancient action, martial arts practice, outings | Ancient lightweight daily wear, short jacket cut, mandarin collar with diagonal placket, cotton-linen silk texture, sleek and capable |
+| Ancient Style | Nightwear | Thin gauze inner garment, plain-colored silk, loose and comfortable | Ancient indoor, nighttime, private scenes | Ancient nightwear, loose and comfortable, thin gauze silk material, plain and simple |
+| Ancient Style | Grand Wedding Attire | Fengguan Xiapeng silhouette, layered red garments, traditional wedding patterns | Ancient weddings, grand wedding ceremonies | Ancient grand wedding attire, Fengguan Xiapeng, layered red garments, gold-thread embroidery, Chinese wedding dress silhouette |
+| Urban Cyberpunk | Chinese-Style Commuter Daily Wear | Chinese mandarin collar/diagonal placket shirt, modified short ruqun, functional fabric splicing, understated daily look | Urban daily life, commuting, casual outings | Chinese-style cyberpunk commuter daily wear, Chinese mandarin collar with diagonal placket, modified ruqun cut, silk and matte functional fabric splicing, minimal embroidery, sleek daily look |
+| Urban Cyberpunk | Chinese-Style Business Formal Wear | Chinese symmetrical front closure suit silhouette, modified Tang suit structure, high-end matte fabric, minimal luxury | Urban business, holographic meetings, formal occasions | Chinese-style cyberpunk business formal wear, Chinese symmetrical front closure Tang suit base, high-end matte fabric, three-dimensional cut, minimal Chinese patterns, understated luxury |
+| Urban Cyberpunk | Light Functional Chinese-Style Daily Wear | Chinese short jacket + functional vest, diagonal placket with frog buttons + magnetic clasps, waist-cinched cut, light and sleek | Urban action, night travel, functional casual scenes | Light functional Chinese-style daily wear, Chinese diagonal placket short jacket, functional vest splicing, magnetic frog buttons, matte functional fabric, sleek and capable |
+| Urban Cyberpunk | Chinese-Style Cyberpunk Grand Wedding/Ceremonial Dress | Chinese Fengguan Xiapeng/formal dress silhouette, titanium alloy 3D structure, layered skirt hem, controllable micro-neon light bands | Urban grand weddings, holographic galas, important occasions | Chinese-style cyberpunk ceremonial dress, Chinese formal dress core silhouette, silk and 3D-printed structure splicing, fusion of gold-thread embroidery and circuit patterns, controllable micro-neon light bands |
+| Urban Cyberpunk | Chinese-Style Functional Nightwear | Chinese diagonal placket inner garment, thin gauze and functional lining splicing, loose and comfortable, subtle sheen texture | Urban indoor, nighttime, private scenes | Chinese-style functional nightwear, Chinese diagonal placket silhouette, loose and comfortable, thin gauze and functional fabric splicing, subtle sheen texture |
 
-### 女性服饰通用约束（双场景适配）
+### Universal Female Costume Constraints (Dual Scenario Adaptation)
 
-| 项目 | 约束 | 提示词 |
+| Item | Constraint | Prompt |
 |---|---|---|
-| 主色 | 古风场景默认中国传统色调；都市场景可搭配低饱和赛博冷调撞色、可控霓虹色点缀，禁止高饱和刺眼配色 | 中国传统色调、国风赛博配色、低饱和撞色、可控霓虹色点缀 |
-| 材质 | 古风场景默认丝绸+刺绣+珠光面料；都市场景可拼接哑光机能面料、高亮反光条、3D打印结构件，必须保留国风核心面料基底 | 丝绸质感、刺绣细节、古风场景纯传统面料；都市场景传统面料与机能面料拼接、3D打印立体结构 |
-| 纹理 | 古风场景默认中式传统纹样；都市场景可融合传统纹样与电路纹理、赛博暗纹，纹理超清晰，禁止无国风内核的纯赛博纹理 | 衣服质感清晰、纹理超清晰、古风场景纯中式传统纹样；都市场景传统纹样与电路纹理深度融合 |
-| 肩部 | 古风场景默认国风云肩/披帛；都市场景可搭配机能肩甲/结构装饰，必须与中式形制统一 | 古风场景云肩华美、披帛飘逸；都市场景国风肩甲点缀、与整体形制统一 |
-| 层次 | 多层叠穿、层次分明、国风内搭与外衣逻辑统一，都市场景机能结构不得破坏叠穿逻辑 | 多层叠穿、层次分明、中式形制逻辑统一 |
-| 光效 | 仅都市赛博场景可添加内嵌式微霓虹光带，光效可控不刺眼、不破坏服饰质感，无过曝；古风场景无明确线索禁用 | 都市场景内嵌微霓虹光带、可控光效、无过曝、与服饰自然融合 |
+| Primary Color | Ancient scenarios default to traditional Chinese tones; urban scenarios may use low-saturation cyberpunk cool-tone contrasts and controllable neon accents. High-saturation, glaring color schemes are prohibited | Traditional Chinese tones, Chinese-style cyberpunk color scheme, low-saturation contrast, controllable neon accents |
+| Material | Ancient scenarios default to silk + embroidery + pearlescent fabric; urban scenarios may splice matte functional fabrics, high-visibility reflective strips, and 3D-printed structural components. The Chinese aesthetic core fabric base must be retained | Silk texture, embroidery details, pure traditional fabrics for ancient scenarios; splicing of traditional and functional fabrics, 3D-printed 3D structures for urban scenarios |
+| Texture | Ancient scenarios default to traditional Chinese patterns; urban scenarios may fuse traditional patterns with circuit textures and cyberpunk dark patterns. Textures must be ultra-clear. Pure cyberpunk textures without a Chinese aesthetic core are prohibited | Clear fabric texture, ultra-clear texture, pure traditional Chinese patterns for ancient scenarios; deep fusion of traditional patterns and circuit textures for urban scenarios |
+| Shoulders | Ancient scenarios default to Chinese cloud shoulders/pilao (shoulder shawl); urban scenarios may add functional shoulder armor/structural decorations, which must be unified with the Chinese silhouette | Ornate cloud shoulders and flowing pilao for ancient scenarios; Chinese-style shoulder armor accents unified with the overall silhouette for urban scenarios |
+| Layering | Multi-layered styling, distinct layers, unified logic between Chinese inner wear and outerwear. Functional structures in urban scenarios must not disrupt the layering logic | Multi-layered styling, distinct layers, unified Chinese silhouette logic |
+| Light Effects | Only urban cyberpunk scenarios may add embedded micro-neon light bands. Light effects must be controllable, non-glaring, not damaging to fabric texture, and free of overexposure. Prohibited in ancient scenarios unless explicitly indicated | Embedded micro-neon light bands for urban scenarios, controllable light effects, no overexposure, natural fusion with costume |
 
-### 男性服饰矩阵（双场景全覆盖）
+### Male Costume Matrix (Full Coverage for Both Scenarios)
 
-| 体系 | 风格 | 适用场景 | 提示词 |
+| System | Style | Applicable Scenarios | Prompt |
 |---|---|---|---|
-| 古风体系 | 文人士子装 | 古风日常、书房、雅集、出行 | 古风文人士子装、长衫形制、立领斜襟、丝绸棉麻质感、传统纹样刺绣 |
-| 古风体系 | 武将劲装 | 古风战斗、练武、行动场景 | 古风武将劲装、战袍形制、立领收腰、耐磨面料、利落干练 |
-| 古风体系 | 朝服礼服 | 古风朝堂、典礼、盛典 | 古风朝服、正式礼服形制、大袖宽袍、华贵面料、传统纹样 |
-| 古风体系 | 常服便装 | 古风休闲、私密、日常出行 | 古风常服便装、简约风格、舒适面料、中式立领、宽松得体 |
-| 古风体系 | 大典礼服 | 古风正式、庆典、重要场合 | 古风大典礼服、华贵精致、中式礼服形制、高级面料、金线刺绣 |
-| 都市赛博体系 | 国风商务通勤装 | 都市日常、通勤、商务会议 | 国风商务通勤装、中式立领唐装基底、改良西装剪裁、高级哑光面料、极简中式纹样、利落得体 |
-| 都市赛博体系 | 国风机能休闲装 | 都市日常、休闲出行、轻机能场景 | 国风机能休闲装、中式斜襟短衫、机能面料拼接、磁吸盘扣、宽松舒适、日常百搭 |
-| 都市赛博体系 | 武将机能劲装 | 都市行动、任务、夜行场景 | 国风武将机能劲装、中式战袍基底、哑光机能面料、立体防护结构、立领收腰、利落干练 |
-| 都市赛博体系 | 国风盛典礼服 | 都市全息盛典、正式场合、大婚 | 国风盛典礼服、中式礼服核心形制、华贵面料、钛合金结构点缀、传统纹样与电路暗纹融合 |
+| Ancient Style | Scholar's Attire | Ancient daily life, study, elegant gatherings, outings | Ancient scholar's attire, long gown silhouette, mandarin collar with diagonal placket, silk cotton-linen texture, traditional pattern embroidery |
+| Ancient Style | Warrior's Combat Gear | Ancient combat, martial arts practice, action scenes | Ancient warrior's combat gear, battle robe silhouette, mandarin collar with waist-cinched cut, durable fabric, sleek and capable |
+| Ancient Style | Court Ceremonial Robe | Ancient court hall, ceremonies, grand events | Ancient court robe, formal ceremonial silhouette, wide-sleeved broad robe, luxurious fabric, traditional patterns |
+| Ancient Style | Casual Daily Wear | Ancient leisure, private moments, daily outings | Ancient casual daily wear, simple style, comfortable fabric, Chinese mandarin collar, loose and appropriate |
+| Ancient Style | Grand Ceremony Formal Dress | Ancient formal events, celebrations, important occasions | Ancient grand ceremony formal dress, luxurious and exquisite, Chinese formal dress silhouette, high-end fabric, gold-thread embroidery |
+| Urban Cyberpunk | Chinese-Style Business Commuter Wear | Urban daily life, commuting, business meetings | Chinese-style business commuter wear, Chinese mandarin collar Tang suit base, modified suit cut, high-end matte fabric, minimal Chinese patterns, sleek and appropriate |
+| Urban Cyberpunk | Chinese-Style Functional Casual Wear | Urban daily life, casual outings, light functional scenes | Chinese-style functional casual wear, Chinese diagonal placket short jacket, functional fabric splicing, magnetic frog buttons, loose and comfortable, versatile daily wear |
+| Urban Cyberpunk | Warrior Functional Combat Gear | Urban action, missions, night travel scenes | Chinese-style warrior functional combat gear, Chinese battle robe base, matte functional fabric, 3D protective structure, mandarin collar with waist-cinched cut, sleek and capable |
+| Urban Cyberpunk | Chinese-Style Ceremonial Formal Dress | Urban holographic galas, formal occasions, grand weddings | Chinese-style ceremonial formal dress, Chinese formal dress core silhouette, luxurious fabric, titanium alloy structural accents, fusion of traditional patterns and circuit dark patterns |
 
 ---
 
-## 六、配饰约束（L5·双场景适配）
+## VI. Accessory Constraints (L5: Dual Scenario Adaptation)
 
-### 女性配饰（双场景分体系）
+### Female Accessories (Dual Scenario by System)
 
-| 体系 | 类型 | 约束 | 提示词 |
+| System | Type | Constraint | Prompt |
 |---|---|---|---|
-| 古风体系 | 头饰 | 华丽精致、不单薄、纯中式传统材质，与发型服饰配套 | 华丽头饰、珠翠满头、金银发簪、玉石步摇、精细雕刻 |
-| 古风体系 | 耳饰 | 传统垂坠流苏/玉珰，与整体风格统一 | 流苏耳环、玉珰垂坠、玉石耳饰、金银镶嵌 |
-| 古风体系 | 项饰 | 传统璎珞/项圈，中式传统形制 | 璎珞华美、精致项圈、金银玉石镶嵌 |
-| 古风体系 | 腰饰 | 传统宫绦/玉佩，中式传统工艺 | 宫绦飘逸、腰间玉佩、玉石禁步、精致编织 |
-| 古风体系 | 手饰 | 传统玉镯/臂钏，中式传统形制 | 玉镯通透、臂钏精致、金银玉石材质 |
-| 都市赛博体系 | 头饰 | 国风形制为核心、传统材质+赛博机能材质融合，与发型服饰配套，光效可控 | 国风赛博头饰、珠翠玉石+钛合金机能件、可控微霓虹光带、全息投影点缀、精致工艺 |
-| 都市赛博体系 | 耳饰 | 传统玉珰+赛博机能耳坠融合，光感流苏可控不夸张 | 国风机能耳坠、玉石镶嵌+钛合金材质、可控微霓虹光感流苏、精致小巧 |
-| 都市赛博体系 | 项饰 | 传统璎珞+机能项圈融合，中式形制为核心 | 国风机能项圈、璎珞结构+钛合金材质、内嵌可控微光、精致贴合 |
-| 都市赛博体系 | 腰饰 | 传统宫绦/玉佩+机能腰封融合，磁吸卡扣、立体结构 | 国风机能腰封、宽腰封+宫绦拼接、腰间玉佩、钛合金磁吸卡扣、质感分明 |
-| 都市赛博体系 | 手饰 | 传统玉镯+机能手环融合，中式形制为核心，无夸张设计 | 国风机能手环、通透玉镯+钛合金材质、可控微光、精致贴合 |
+| Ancient Style | Headwear | Ornate and exquisite, not thin or sparse, pure traditional Chinese materials, coordinated with hairstyle and costume | Ornate headwear, pearls and jade hair ornaments, gold and silver hairpins, jade buyao (swaying hair ornaments), intricate carving |
+| Ancient Style | Earrings | Traditional dangling tassels/jade earrings, unified with overall style | Tassel earrings, jade earring drops, jade earrings, gold and silver inlay |
+| Ancient Style | Neckwear | Traditional necklace/neck ring, traditional Chinese silhouette | Ornate necklace, exquisite neck ring, gold, silver, and jade inlay |
+| Ancient Style | Waistwear | Traditional palace sash/jade pendant, traditional Chinese craftsmanship | Flowing palace sash, jade pendant at waist, jade jinbu (waist ornament), intricate weaving |
+| Ancient Style | Handwear | Traditional jade bangle/armlet, traditional Chinese silhouette | Translucent jade bangle, exquisite armlet, gold, silver, and jade materials |
+| Urban Cyberpunk | Headwear | Chinese-style silhouette as core, fusion of traditional materials + cyberpunk functional materials, coordinated with hairstyle and costume, controllable light effects | Chinese-style cyberpunk headwear, pearls, jade, and titanium alloy functional components, controllable micro-neon light bands, holographic projection accents, exquisite craftsmanship |
+| Urban Cyberpunk | Earrings | Fusion of traditional jade earrings + cyberpunk functional earrings, controllable and non-exaggerated light-sense tassels | Chinese-style functional earrings, jade inlay + titanium alloy material, controllable micro-neon light-sense tassels, exquisite and small |
+| Urban Cyberpunk | Neckwear | Fusion of traditional necklace + functional neck ring, Chinese silhouette as core | Chinese-style functional neck ring, necklace structure + titanium alloy material, embedded controllable micro-light, exquisite fit |
+| Urban Cyberpunk | Waistwear | Fusion of traditional palace sash/jade pendant + functional waist belt, magnetic clasps, 3D structure | Chinese-style functional waist belt, wide waist belt + palace sash splicing, jade pendant at waist, titanium alloy magnetic clasps, distinct texture |
+| Urban Cyberpunk | Handwear | Fusion of traditional jade bangle + functional bracelet, Chinese silhouette as core, no exaggerated design | Chinese-style functional bracelet, translucent jade bangle + titanium alloy material, controllable micro-light, exquisite fit |
 
-### 男性配饰（双场景分体系）
+### Male Accessories (Dual Scenario by System)
 
-| 体系 | 类型 | 约束 | 提示词 |
+| System | Type | Constraint | Prompt |
 |---|---|---|---|
-| 古风体系 | 发冠 | 传统玉冠/金冠、精致工艺、中式传统形制，与发型服饰配套 | 玉冠束发、金冠束发、玉石雕刻、精致工艺 |
-| 古风体系 | 腰封 | 传统宽腰封/革带、中式传统形制、质感分明 | 宽腰封、皮质革带、玉石带钩、质感分明 |
-| 古风体系 | 玉佩 | 传统通透温润玉佩、中式传统工艺，腰间佩戴 | 腰间玉佩、通透温润、和田玉质、精致雕刻 |
-| 古风体系 | 腰间配饰 | 佩剑/扇/笛仅限腰间固定配饰，**禁止手持道具**，中式传统形制 | 腰间佩剑固定配饰、折扇腰挂、竹笛腰饰、无手持交互 |
-| 都市赛博体系 | 发冠 | 传统玉冠形制+钛合金机能材质、哑光工艺、精致建模，与发型服饰配套 | 国风机能发冠、中式冠饰基底、哑光钛合金材质、玉石镶嵌、精致工艺 |
-| 都市赛博体系 | 腰封 | 传统宽腰封形制+机能结构、磁吸卡扣、立体剪裁、质感分明 | 国风机能腰封、中式腰封基底、哑光机能面料、钛合金磁吸卡扣、立体结构 |
-| 都市赛博体系 | 玉佩 | 传统玉石形制+亚克力光感材质、通透温润、可控微光，腰间佩戴 | 国风光感玉佩、传统形制、亚克力+玉石材质、通透温润、可控微光 |
-| 都市赛博体系 | 腰间配饰 | 传统形制+机能材质，仅限腰间固定配饰，**禁止手持道具** | 腰间机能佩剑固定配饰、钛合金折扇腰挂、无手持交互 |
+| Ancient Style | Hair Crown | Traditional jade/gold crown, exquisite craftsmanship, traditional Chinese silhouette, coordinated with hairstyle and costume | Jade crown for hair, gold crown for hair, jade carving, exquisite craftsmanship |
+| Ancient Style | Waist Belt | Traditional wide waist belt/leather belt, traditional Chinese silhouette, distinct texture | Wide waist belt, leather belt, jade belt hook, distinct texture |
+| Ancient Style | Jade Pendant | Traditional translucent and warm jade pendant, traditional Chinese craftsmanship, worn at waist | Jade pendant at waist, translucent and warm, Hetian jade quality, exquisite carving |
+| Ancient Style | Waist Accessories | Sword/fan/flute limited to fixed waist accessories, **handheld props prohibited**, traditional Chinese silhouette | Fixed waist sword accessory, folding fan waist hang, bamboo flute waist ornament, no handheld interaction |
+| Urban Cyberpunk | Hair Crown | Traditional jade crown silhouette + titanium alloy functional material, matte craftsmanship, exquisite modeling, coordinated with hairstyle and costume | Chinese-style functional hair crown, Chinese crown base, matte titanium alloy material, jade inlay, exquisite craftsmanship |
+| Urban Cyberpunk | Waist Belt | Traditional wide waist belt silhouette + functional structure, magnetic clasps, 3D cut, distinct texture | Chinese-style functional waist belt, Chinese waist belt base, matte functional fabric, titanium alloy magnetic clasps, 3D structure |
+| Urban Cyberpunk | Jade Pendant | Traditional jade silhouette + acrylic light-sense material, translucent and warm, controllable micro-light, worn at waist | Chinese-style light-sense jade pendant, traditional silhouette, acrylic + jade material, translucent and warm, controllable micro-light |
+| Urban Cyberpunk | Waist Accessories | Traditional silhouette + functional material, limited to fixed waist accessories, **handheld props prohibited** | Fixed waist functional sword accessory, titanium alloy folding fan waist hang, no handheld interaction |
 
 ---
 
-## 七、服化组合速查（双场景全场景覆盖）
+## VII. Costume & Makeup Combination Quick Reference (Full Scenario Coverage for Both Systems)
 
-| 体系 | 场景 | 妆容 | 发型 | 服饰 | 配饰 |
+| System | Scenario | Makeup | Hairstyle | Costume | Accessories |
 |---|---|---|---|---|---|
-| 古风体系 | 闺中日常 | 清雅素妆 | 披发/半扎发 | 古风日常长裙 | 中等（传统简约配饰） |
-| 古风体系 | 初次相遇/雅集 | 清雅素妆 | 半扎发/堕马髻 | 古风日常长裙 | 中偏多（精致传统配饰） |
-| 古风体系 | 浪漫互动 | 浪漫桃花妆 | 半扎发/堕马髻 | 古风日常长裙/轻便常服 | 中等 |
-| 古风体系 | 宫廷盛典正式亮相 | 宫廷贵气妆 | 高髻云鬓 | 古风宫廷礼服 | 极繁（传统华贵配饰） |
-| 古风体系 | 夜间私密 | 清雅/桃花妆 | 披发/堕马髻 | 古风寝衣 | 极简（无多余配饰） |
-| 古风体系 | 大婚典礼 | 大婚盛妆 | 高髻云鬓 | 古风大婚嫁衣 | 极繁（凤冠霞帔全套配饰） |
-| 古风体系 | 习武/行动 | 素妆（极淡） | 束发高马尾 | 古风轻便常服/武将劲装 | 简（仅基础固定配饰） |
-| 都市赛博体系 | 都市通勤日常 | 都市通勤妆 | 国风半扎低马尾 | 国风通勤常服 | 中低（极简国风机能配饰） |
-| 都市赛博体系 | 都市商务正式场合 | 都市商务妆 | 国风机能半冠束发 | 国风商务礼服 | 中等（低调华贵国风机能配饰） |
-| 都市赛博体系 | 都市全息盛典亮相 | 宫廷贵气妆/赛博流光妆 | 国风高束机能髻 | 国风赛博盛典礼服 | 极繁（国风+赛博融合华贵配饰） |
-| 都市赛博体系 | 都市夜行/机能任务 | 机能冷调妆 | 国风高马尾 | 轻机能国风常服/武将机能劲装 | 简（仅机能固定配饰） |
-| 都市赛博体系 | 都市休闲约会 | 浪漫桃花妆/赛博流光妆 | 国风半机械编发 | 国风通勤常服/轻机能常服 | 中等（微光感国风配饰） |
-| 都市赛博体系 | 夜间私密场景 | 清雅素妆 | 披发/低马尾 | 国风机能寝衣 | 极简（无多余配饰） |
-| 都市赛博体系 | 都市大婚典礼 | 大婚盛妆 | 国风高束机能髻 | 国风赛博大婚礼服 | 极繁（国风+赛博融合全套配饰） |
+| Ancient Style | Boudoir Daily | Elegant plain makeup | Loose hair/half-tied hair | Ancient daily long dress | Medium (traditional simple accessories) |
+| Ancient Style | First Meeting/Elegant Gathering | Elegant plain makeup | Half-tied hair/Duoma bun | Ancient daily long dress | Medium-High (exquisite traditional accessories) |
+| Ancient Style | Romantic Interaction | Romantic peach blossom makeup | Half-tied hair/Duoma bun | Ancient daily long dress/Lightweight daily wear | Medium |
+| Ancient Style | Court Gala Formal Debut | Court noble makeup | High bun with cloud-like hair | Ancient court formal dress | Extremely elaborate (traditional luxurious accessories) |
+| Ancient Style | Nighttime Private | Elegant/Peach blossom makeup | Loose hair/Duoma bun | Ancient nightwear | Minimal (no extra accessories) |
+| Ancient Style | Grand Wedding Ceremony | Grand wedding makeup | High bun with cloud-like hair | Ancient grand wedding attire | Extremely elaborate (full Fengguan Xiapeng accessory set) |
+| Ancient Style | Martial Arts/Action | Plain makeup (very light) | Tied hair high ponytail | Ancient lightweight daily wear/Warrior combat gear | Simple (only basic fixed accessories) |
+| Urban Cyberpunk | Urban Commuter Daily | Urban commuter makeup | Chinese-style half-tied low ponytail | Chinese-style commuter daily wear | Low-Medium (minimal Chinese-style functional accessories) |
+| Urban Cyberpunk | Urban Business Formal | Urban business makeup | Chinese-style functional half-crown tied hair | Chinese-style business formal wear | Medium (understated luxurious Chinese-style functional accessories) |
+| Urban Cyberpunk | Urban Holographic Gala Debut | Court noble makeup/Cyberpunk flowing light makeup | Chinese-style high tied functional bun | Chinese-style cyberpunk ceremonial dress | Extremely elaborate (Chinese + cyberpunk fusion luxurious accessories) |
+| Urban Cyberpunk | Urban Night Travel/Functional Mission | Functional cool-tone makeup | Chinese-style high ponytail | Light functional Chinese-style daily wear/Warrior functional combat gear | Simple (only functional fixed accessories) |
+| Urban Cyberpunk | Urban Casual Date | Romantic peach blossom makeup/Cyberpunk flowing light makeup | Chinese-style half-mechanical braided hair | Chinese-style commuter daily wear/Light functional daily wear | Medium (micro-light Chinese-style accessories) |
+| Urban Cyberpunk | Nighttime Private Scene | Elegant plain makeup | Loose hair/Low ponytail | Chinese-style functional nightwear | Minimal (no extra accessories) |
+| Urban Cyberpunk | Urban Grand Wedding Ceremony | Grand wedding makeup | Chinese-style high tied functional bun | Chinese-style cyberpunk wedding dress | Extremely elaborate (Chinese + cyberpunk fusion full accessory set) |
 
 ---
 
-> **🔍 未覆盖场景推断规则（双场景通用）**
+> **🔍 Inference Rules for Uncovered Scenarios (Universal to Both Scenarios)**
 >
-> 当用户描述的场景/情境不在上表时，根据本风格核心基因自行推断，**先锁定古风/都市场景体系，再匹配对应维度规则**：
+> When the user-described scenario/situation is not in the table above, infer based on the core genes of this style. **First lock in the Ancient or Urban scenario system, then match the corresponding dimension rules:**
 >
-> | 推断维度 | 古风体系核心基因 | 都市赛博体系核心基因 |
+> | Inference Dimension | Ancient System Core Gene | Urban Cyberpunk System Core Gene |
 > |---|---|---|
-> | 妆容强度 | 默认清雅素妆；宫廷/权力/正式→宫廷贵气妆；心动/甜宠→浪漫桃花妆；大婚/典礼→大婚盛妆；节日聚会→节日庆典妆 | 默认都市通勤妆；商务/正式→都市商务妆；心动/甜宠→浪漫桃花妆；盛典/大婚→宫廷贵气妆；赛博/机能/夜行→赛博流光妆/机能冷调妆 |
-> | 发型 | 日常/闺中→半扎发或堕马髻；宫廷/正式/盛典→高髻云鬓；私密/夜晚→披发；习武/行动→束发高马尾 | 日常/通勤→半扎低马尾；商务/正式→机能半冠束发；盛典/大婚→高束机能髻；私密/夜晚→披发/低马尾；机能/行动→高马尾 |
-> | 服饰 | 中式传统形制为绝对核心；情感场景→飘逸襦裙长裙；权力/正式→宫廷礼服；行动→轻便常服；PBR材质始终锁定；纯中式传统纹样为默认 | 中式核心形制为绝对基底；日常/通勤→国风通勤常服；商务/正式→国风商务礼服；行动/机能→轻机能常服；PBR材质始终锁定；传统纹样与电路纹理融合为默认 |
-> | 配饰繁度 | 日常→中等；正式/宫廷→极繁；私密→极简；行动→简；纯传统中式配饰为核心 | 日常→中低；商务/盛典→极繁；私密→极简；行动→简；国风+赛博融合配饰为核心，光效可控 |
-> | 质感基准 | PBR材质+电影级柔光始终锁定；体积感与光泽感优先于平面装饰感；无赛博光效（无明确线索禁用） | PBR材质+电影级光影始终锁定；体积感与光泽感优先于平面装饰感；赛博光效为内嵌可控微霓虹，禁止过曝；国风与赛博元素深度融合，无割裂感 |
+> | Makeup Intensity | Default elegant plain makeup; Court/Power/Formal → Court noble makeup; Heart-fluttering/Sweet romance → Romantic peach blossom makeup; Grand wedding/Ceremony → Grand wedding makeup; Holiday gathering → Holiday celebration makeup | Default urban commuter makeup; Business/Formal → Urban business makeup; Heart-fluttering/Sweet romance → Romantic peach blossom makeup; Gala/Grand wedding → Court noble makeup; Cyberpunk/Functional/Night travel → Cyberpunk flowing light makeup/Functional cool-tone makeup |
+> | Hairstyle | Daily/Boudoir → Half-tied hair or Duoma bun; Court/Formal/Gala → High bun with cloud-like hair; Private/Night → Loose hair; Martial arts/Action → Tied hair high ponytail | Daily/Commuter → Half-tied low ponytail; Business/Formal → Functional half-crown tied hair; Gala/Grand wedding → High tied functional bun; Private/Night → Loose hair/Low ponytail; Functional/Action → High ponytail |
+> | Costume | Traditional Chinese silhouette as absolute core; Emotional scenes → Flowing ruqun long dress; Power/Formal → Court formal dress; Action → Lightweight daily wear; PBR material always locked; Pure traditional Chinese patterns as default | Chinese core silhouette as absolute base; Daily/Commuter → Chinese-style commuter daily wear; Business/Formal → Chinese-style business formal wear; Action/Functional → Light functional daily wear; PBR material always locked; Fusion of traditional patterns and circuit textures as default |
+> | Accessory Elaborateness | Daily → Medium; Formal/Court → Extremely elaborate; Private → Minimal; Action → Simple; Pure traditional Chinese accessories as core | Daily → Low-Medium; Business/Gala → Extremely elaborate; Private → Minimal; Action → Simple; Chinese + cyberpunk fusion accessories as core, light effects controllable |
+> | Texture Baseline | PBR material + cinematic soft light always locked; Volume and sheen prioritized over flat decorative feel; No cyberpunk light effects (prohibited unless explicitly indicated) | PBR material + cinematic lighting always locked; Volume and sheen prioritized over flat decorative feel; Cyberpunk light effects are embedded controllable micro-neon, no overexposure; Deep fusion of Chinese and cyberpunk elements, no disjointed feel |
 
-## 八、四视图设定图规范（双场景通用·3D渲染标准统一）
+## VIII. Four-View Character Sheet Standards (Universal to Both Scenarios: Unified 3D Rendering Standards)
 
-> 衍生服化叠加后仍需输出四视图设定图，确保服化妆造、纹样、赛博光效、结构件在各角度的完全一致性，古风/都市场景通用。
+> Even after deriving costume and makeup overlays, a four-view character sheet must be output to ensure complete consistency of costume, makeup, patterns, cyberpunk light effects, and structural components across all angles. Universal for ancient and urban scenarios.
 
-### 视图定义
+### View Definitions
 
-| 位置 | 视图 | 角度 | 景别 | 要求 | 提示词 |
+| Position | View | Angle | Shot Size | Requirement | Prompt |
 |---|---|---|---|---|---|
-| 左一 | 人像特写 | 正面平视 | 面部至锁骨 | 面部占60%+，五官/妆容/妆效细节100%清晰 | portrait closeup、face detail、makeup detail |
-| 左二 | 正视图 | 正面 0° | 全身立像 | 面对镜头、服饰正面全貌、结构/纹样/光带位置清晰 | front view、height mark、costume detail |
-| 右二 | 侧视图 | 右侧 90° | 全身立像 | 纯侧面轮廓、服饰侧面层次、结构侧面形态清晰 | side view、profile、height mark、costume profile detail |
-| 右一 | 后视图 | 后方 180° | 全身立像 | 后脑发饰/背部服饰/发尾/背部结构清晰 | back view、rear view、height mark、rear costume detail |
+| Left 1 | Portrait Close-up | Frontal eye-level | Face to collarbone | Face occupies 60%+, 100% clear details of facial features/makeup/makeup effects | portrait closeup, face detail, makeup detail |
+| Left 2 | Front View | Frontal 0° | Full-body standing | Facing camera, full frontal view of costume, clear position of structure/patterns/light bands | front view, height mark, costume detail |
+| Right 2 | Side View | Right side 90° | Full-body standing | Pure side profile, clear side layers of costume, clear side form of structure | side view, profile, height mark, costume profile detail |
+| Right 1 | Back View | Rear 180° | Full-body standing | Clear back hair accessories/back costume/hair ends/back structure | back view, rear view, height mark, rear costume detail |
 
-### 画面规范（双场景通用·不可突破）
+### Frame Standards (Universal to Both Scenarios: Non-Negotiable)
 
-| 项目 | 约束 |
+| Item | Constraint |
 |---|---|
-| 布局 | 同一画面从左至右并排四视图，古风/都市场景通用布局 |
-| 背景 | 素灰纯色 #B8B8B8，**禁止添加任何场景/环境/天气元素**，古风/都市场景通用 |
-| 站姿 | 自然站立、双脚平行微分、双臂自然下垂或微展（**禁止任何姿态变化**），古风/都市场景通用 |
-| 表情 | 符合妆容风格的微表情，仅限面部微表情，不涉及肢体动作，古风/都市场景通用 |
-| 光线 | 通用标准：均匀柔光，前方主光 + 双侧补光，无硬阴影；都市赛博场景可加可控自发光反射，不破坏整体光影统一，无过曝 |
-| 一致性 | 四视图的面容/妆容/发型/发饰/服饰/配饰/纹样/光效/结构件完全一致，无任何偏差 |
-| 画面比例 | 建议 4:1 或 3:1，古风/都市场景通用 |
-| 3D标准 | 全场景统一高精度建模、PBR材质、8K超高清、电影级渲染，古风/都市场景无质感差异 |
+| Layout | Four views arranged side-by-side from left to right in the same frame. Universal layout for ancient/urban scenarios |
+| Background | Plain gray solid color #B8B8B8. **Prohibited from adding any scene/environment/weather elements**. Universal for ancient/urban scenarios |
+| Stance | Natural standing, feet parallel and slightly apart, arms hanging naturally or slightly extended (**any pose change prohibited**). Universal for ancient/urban scenarios |
+| Expression | Subtle expression matching the makeup style, limited to facial micro-expressions, no body movements involved. Universal for ancient/urban scenarios |
+| Lighting | Universal standard: even soft light, frontal key light + bilateral fill light, no hard shadows; urban cyberpunk scenarios may add controllable self-emissive reflections, not disrupting overall lighting unity, no overexposure |
+| Consistency | Face/makeup/hairstyle/hair accessories/costume/accessories/patterns/light effects/structural components must be completely consistent across the four views, with no deviation |
+| Frame Ratio | Recommended 4:1 or 3:1. Universal for ancient/urban scenarios |
+| 3D Standard | Unified high-precision modeling, PBR materials, 8K ultra-high definition, cinematic rendering across all scenarios. No texture difference between ancient/urban scenarios |
 
----
+---## IX. Prompt Templates (One-Click Adaptation for Dual Scenarios · 3D Chinese-Style Cyber Dedicated)
 
-## 九、提示词模板（双场景一键适配·3D国风赛博专用）
+### Output Format Constraints (Universal for Dual Scenarios · Iron Rules)
 
-### 输出格式约束（双场景通用·铁则）
-
-| 项目 | 约束 |
+| Item | Constraint |
 |---|---|
-| 输出内容 | **仅输出提示词文本**，不输出任何其他内容 |
-| 禁止输出 | 速查表、分层构建方案、视觉约束表、禁止事项表、衍生方案、输出建议、核心要素表等一切非提示词内容 |
-| 禁止场景 | 人物衍生资产**不包含场景/环境描述**，不输出任何场景/环境/天气/背景叙事内容（场景属于场景资产范畴） |
-| 禁止道具 | **不包含任何道具交互**，不输出伞/剑/扇/书/灯笼/酒杯等手持物或交互物（道具属于道具资产范畴） |
-| 禁止姿态变化 | **不改变底模姿态**，不输出行走/回眸/举手/侧身/奔跑等任何动作或体态变化，保持自然站立 |
-| 格式 | 直接输出可用的提示词代码块，无需标题、表格、解释、方案对比 |
+| Output Content | **Output prompt text only**; do not output any other content |
+| Prohibited Output | Quick reference tables, layered construction plans, visual constraint tables, prohibition tables, derivative plans, output suggestions, core element tables, and any other non-prompt content |
+| Prohibited Scenes | Character derivative assets **do not include scene/environment descriptions**; do not output any scene/environment/weather/background narrative content (scenes belong to the scene asset category) |
+| Prohibited Props | **Do not include any prop interactions**; do not output handheld or interactive items such as umbrellas, swords, fans, books, lanterns, or wine cups (props belong to the prop asset category) |
+| Prohibited Pose Changes | **Do not alter the base model's pose**; do not output any actions or postural changes such as walking, looking back, raising hands, turning sideways, or running; maintain a natural standing posture |
+| Format | Directly output a usable prompt code block; no titles, tables, explanations, or plan comparisons required |
 
-### 完整服化叠加（四视图·双场景一键适配）
+### Complete Costume and Makeup Overlay (Four Views · One-Click Adaptation for Dual Scenarios)
 
 ```
-以角色基础形象图为底图，img2img叠加服化妆造，
-3D国风赛博风格，{场景体系：古风/都市赛博}，高精度建模，PBR材质，中式美学核心，{古风轻量融合/都市机能融合}，电影级光影，
-国风赛博{性别}角色四视图设定图，3D渲染，高精建模，8K，超保真
+Using the character's base image as the base, overlay costume, makeup, and styling via img2img,
+3D Chinese-style cyber style, {scene system: ancient style/urban cyber}, high-precision modeling, PBR materials, core of Chinese aesthetics, {light fusion of ancient style/functional fusion of urban}, cinematic lighting,
+Chinese-style cyber {gender} character four-view setting sheet, 3D rendering, high-precision modeling, 8K, ultra-realistic
 character design sheet, character turnaround,
-保持基础形象面容完全一致、自然站立姿态不变，{整体气质},
-【L1·妆容】根据用户线索决策：{基础妆/轻妆/正式妆/都市通勤妆/商务妆/赛博机能妆}；使用 {妆容风格}, PBR材质渲染, {眉妆}, {眼妆}, {唇妆}, {可控微霓虹光效/贴肤电路暗纹（按需添加）},
-【L2·发型】{造型类型}, 高精度发丝清晰, {发饰描述}, 国风形制核心,
-【L3+L4·服饰】{主色}{款式}, {材质}, {装饰工艺}, {传统纹样/传统纹样与电路纹理融合}, 衣服质感清晰, PBR材质渲染, {内嵌可控微霓虹光带（按需添加）},
-【L5·配饰】{头饰}, {耳饰}, {项饰}, {腰饰}, {手饰}, 国风形制核心, 与服化风格统一,
-同一画面左至右并排：人像特写+正视图+侧视图+后视图,
-自然站立, 素灰纯色背景, 均匀柔光, 无硬阴影, {赛博光效可控不刺眼（按需添加）},
-四视图面容/妆容/发型/服饰/配饰/纹样/光效完全一致, 3D国风赛博建模清晰, 高精度建模清晰,
-图中不要有任何文字
+Keep the base facial features completely consistent, natural standing posture unchanged, {overall temperament},
+【L1·Makeup】Decide based on user clues: {base makeup/light makeup/formal makeup/urban commute makeup/business makeup/cyber functional makeup}; use {makeup style}, PBR material rendering, {eyebrow makeup}, {eye makeup}, {lip makeup}, {controllable micro-neon effects/skin-adherent circuit patterns (add as needed)},
+【L2·Hairstyle】{style type}, high-precision clear hair strands, {hair accessory description}, core of Chinese-style form,
+【L3+L4·Costume】{main color}{style}, {material}, {decorative craft}, {traditional patterns/fusion of traditional patterns and circuit textures}, clear fabric texture, PBR material rendering, {embedded controllable micro-neon light bands (add as needed)},
+【L5·Accessories】{headwear}, {earrings}, {neckwear}, {waistwear}, {handwear}, core of Chinese-style form, unified with costume and makeup style,
+Arranged side by side from left to right in the same frame: portrait close-up + front view + side view + back view,
+Natural standing, plain gray solid background, uniform soft light, no hard shadows, {cyber light effects controllable and not glaring (add as needed)},
+Four views completely consistent in face/makeup/hairstyle/costume/accessories/patterns/light effects, clear 3D Chinese-style cyber modeling, clear high-precision modeling,
+No text of any kind in the image
 ```
 
 ---
 
-## 十、约束规则（双场景通用·必守+严禁铁则）
+## X. Constraint Rules (Universal to Both Scenarios: Mandatory + Strictly Prohibited Iron Rules)
 
-### 必守规则（100%执行，无例外）
+### Mandatory Rules (100% Execution, No Exceptions)
 
-| 编号 | 规则 |
+| ID | Rule |
 |---|---|
-| R1 | 叠加后面容必须与底模完全一致，禁止任何五官偏移、变形、风格化篡改 |
-| R2 | 服饰必须用「衣服质感清晰 + PBR材质渲染」，赛博元素不得破坏服饰基础质感与国风核心形制 |
-| R3 | 全场景必须以中式国风形制为绝对核心，古风场景纯传统国风，都市场景国风基底不可丢失，禁止无国风内核的纯西式设计 |
-| R4 | 妆容/发型/服饰/配饰/赛博元素风格完全统一，禁止国风与赛博元素割裂对立 |
-| R5 | 必须输出四视图设定图（人像特写+正视图+侧视图+后视图），古风/都市场景通用 |
-| R6 | 必须指定「素灰纯色背景」，禁止添加任何场景/环境/天气元素，古风/都市场景通用 |
-| R7 | 必须指定「四视图一致性」，所有服化、纹样、赛博光效、结构件在四视图中完全统一 |
-| R8 | **仅输出提示词**——禁止输出速查表/分层方案/视觉约束/禁止事项/衍生方案/输出建议等任何非提示词内容 |
-| R9 | **禁止包含场景描述**——人物衍生资产不涉及场景/环境/天气/背景叙事，场景属于独立资产类型 |
-| R10 | **禁止道具交互**——不包含任何手持物/交互物（伞/剑/扇/书等），道具属于独立资产类型，腰间固定配饰除外 |
-| R11 | **姿态保持不变**——必须保持底模自然站立姿态，禁止任何动作/体态/姿势变化 |
-| R12 | **L1 必须先分析再决策**——先解析用户场景线索、面部线索、风格线索，再匹配对应体系，确定妆容档位 |
-| R13 | **所有衍生资产均需妆造**——正常情况不保持素颜，至少使用基础妆 |
-| R14 | **上妆强度受控**——即使上妆也需克制，不得出现现代浓妆/夸张彩妆/过曝赛博光效 |
-| R15 | **道具/场景/动作不作强度升级依据**——仅凭道具，环境，动作等信息不得把基础妆抬高为更强妆容 |
-| R16 | **双场景适配规则**——无明确赛博/都市线索时，默认兼容纯古风生成；有明确线索时，匹配都市赛博体系，不得擅自切换 |
-| R17 | **赛博元素严格受控**——仅都市赛博体系可使用赛博光效/机能元素，古风场景无明确线索禁用；所有赛博元素必须与国风深度融合，禁止割裂 |
-| R18 | **赛博元素仅限服化范畴**——机能结构件、光效元素仅限服化配饰层级，不得改变底模的五官、肢体结构与基础体态 |
-| R19 | **3D质感全场景统一**——古风/都市场景必须保持统一的高精度建模、PBR材质、电影级光影标准，不得出现质感降级 |
+| R1 | The overlaid face must be completely identical to the base model; any offset, deformation, or stylized alteration of facial features is prohibited. |
+| R2 | Costumes must use "clear fabric texture + PBR material rendering"; cyber elements must not compromise the base texture of the costume or the core form of the Chinese style. |
+| R3 | The entire scene must take the Chinese national style form as the absolute core. Ancient scenes must be purely traditional Chinese style; in urban scenes, the Chinese style foundation must not be lost. Pure Western designs without a Chinese style core are prohibited. |
+| R4 | The style of makeup, hairstyle, costume, accessories, and cyber elements must be completely unified; a disjointed or opposing relationship between Chinese style and cyber elements is prohibited. |
+| R5 | A four-view character sheet (close-up portrait + front view + side view + back view) must be output; this applies to both ancient and urban scenes. |
+| R6 | A "plain gray solid-color background" must be specified; adding any scene, environment, or weather elements is prohibited. This applies to both ancient and urban scenes. |
+| R7 | "Four-view consistency" must be specified; all costumes, makeup, patterns, cyber light effects, and structural components must be completely unified across the four views. |
+| R8 | **Output prompts only** — Outputting any non-prompt content such as quick reference tables, layered schemes, visual constraints, prohibited items, derivative schemes, or output suggestions is prohibited. |
+| R9 | **No scene descriptions** — Character derivative assets do not involve scenes, environments, weather, or background narratives; scenes belong to an independent asset type. |
+| R10 | **No prop interaction** — Do not include any handheld or interactive items (umbrellas, swords, fans, books, etc.); props belong to an independent asset type, excluding fixed waist accessories. |
+| R11 | **Pose remains unchanged** — The natural standing pose of the base model must be maintained; any change in action, posture, or stance is prohibited. |
+| R12 | **L1 must analyze before deciding** — First parse the user's scene clues, facial clues, and style clues, then match the corresponding system to determine the makeup tier. |
+| R13 | **All derivative assets require makeup** — In normal cases, do not maintain a bare face; use at least basic makeup. |
+| R14 | **Makeup intensity is controlled** — Even when makeup is applied, it must be restrained; modern heavy makeup, exaggerated cosmetics, or overexposed cyber light effects are not allowed. |
+| R15 | **Props/scenes/actions are not grounds for intensity escalation** — Basic makeup must not be elevated to stronger makeup based solely on props, environment, or actions. |
+| R16 | **Dual-scenario adaptation rule** — When there are no clear cyber/urban clues, default to pure ancient style generation; when there are clear clues, match the urban cyber system. Unauthorized switching is prohibited. |
+| R17 | **Cyber elements are strictly controlled** — Only the urban cyber system may use cyber light effects/techwear elements; in ancient scenes without clear clues, they are prohibited. All cyber elements must be deeply integrated with the Chinese style; disjointedness is prohibited. |
+| R18 | **Cyber elements are limited to the costume/makeup scope** — Techwear structural components and light effect elements are limited to the costume/accessory level; they must not alter the facial features, limb structure, or basic posture of the base model. |
+| R19 | **3D texture is unified across all scenes** — Ancient/urban scenes must maintain unified high-precision modeling, PBR materials, and cinematic lighting standards; texture degradation is not allowed. |
 
-### 严禁规则（100%禁止，无例外）
+### Strictly Prohibited Rules (100% Prohibited, No Exceptions)
 
-| 编号 | 严禁 |
+| ID | Prohibition |
 |---|---|
-| X1 | 叠加后面容偏移、五官变形、与底模不一致 |
-| X2 | 服饰丢失国风核心形制，出现无中式内核的纯西式西装、纯机能服、纯西式赛博朋克设计 |
-| X3 | 妆容/服饰/赛博元素风格互相冲突、出现割裂感，国风与赛博元素对立 |
-| X4 | 复杂场景背景（必须纯色），禁止添加任何环境/场景/天气元素 |
-| X5 | 四视图间服化妆造、纹样、赛博光效、结构件不一致 |
-| X6 | 输出提示词以外的任何内容（表格/方案/建议/解释/变体等） |
-| X7 | 在人物衍生资产中加入场景描述（街景/雨景/室内/街道/天气等环境元素） |
-| X8 | 输出「核心要素速查」「分层构建方案」「视觉约束」「禁止事项」「衍生方案」等章节 |
-| X9 | 加入任何道具交互（手持伞/剑/扇/书/灯笼/酒杯等物品） |
-| X10 | 改变底模姿态（行走/回眸/举手/侧身/奔跑/低头/仰望等动作描述） |
-| X11 | 加入表情与姿态联动描述（如「侧身45°行走嘴角浅弯」等叙事性描写） |
-| X12 | 未分析用户线索就直接套用固定妆容/赛博元素，擅自切换古风/都市体系 |
-| X13 | 错误保持素颜，导致衍生资产缺少应有妆造 |
-| X14 | 仅因道具/场景/动作词而误把妆容升级，导致妆造强度决策错误 |
-| X15 | 古风场景无明确线索时，擅自添加赛博光效/机能元素，破坏古风氛围 |
-| X16 | 霓虹光效过曝、刺眼、大面积覆盖，破坏画面质感与人物面容、服化细节 |
-| X17 | 擅自修改底模肢体结构、五官形态，添加非服化范畴的义体改造、身体涂装 |
-| X18 | 都市场景丢失国风基底，出现纯西式赛博朋克风格，脱离中式形制核心 |
-| X19 | 出现低俗、夸张、不符合东方审美的西式朋克设计，违背国风美学核心 |
+| X1 | Offset of the overlaid face, deformation of facial features, or inconsistency with the base model. |
+| X2 | Loss of the core Chinese style form in costumes, resulting in pure Western suits, pure techwear, or pure Western cyberpunk designs without a Chinese core. |
+| X3 | Style conflicts among makeup, costumes, and cyber elements, resulting in a disjointed feel or opposition between Chinese style and cyber elements. |
+| X4 | Complex scene backgrounds (must be solid color); adding any environment, scene, or weather elements is prohibited. |
+| X5 | Inconsistency in costume/makeup, patterns, cyber light effects, or structural components between the four views. |
+| X6 | Outputting any content other than the prompt (tables, schemes, suggestions, explanations, variants, etc.). |
+| X7 | Adding scene descriptions to character derivative assets (environmental elements such as street views, rain, interiors, streets, weather, etc.). |
+| X8 | Outputting sections such as "Core Element Quick Reference," "Layered Construction Scheme," "Visual Constraints," "Prohibited Items," or "Derivative Schemes." |
+| X9 | Adding any prop interaction (handheld items such as umbrellas, swords, fans, books, lanterns, wine cups, etc.). |
+| X10 | Changing the pose of the base model (action descriptions such as walking, looking back, raising a hand, turning sideways, running, looking down, or looking up). |
+| X11 | Adding descriptions linking expression and posture (narrative descriptions such as "walking at a 45-degree side angle with a slight smile at the corner of the mouth"). |
+| X12 | Directly applying fixed makeup/cyber elements without analyzing user clues, or unauthorized switching between ancient/urban systems. |
+| X13 | Incorrectly maintaining a bare face, resulting in derivative assets lacking the required makeup. |
+| X14 | Incorrectly upgrading makeup solely due to prop/scene/action words, leading to incorrect makeup intensity decisions. |
+| X15 | Unauthorized addition of cyber light effects/techwear elements in ancient scenes without clear clues, destroying the ancient atmosphere. |
+| X16 | Overexposed, glaring, or large-area coverage of neon light effects, destroying the visual texture and the character's face, costume, and makeup details. |
+| X17 | Unauthorized modification of the base model's limb structure or facial features, or adding cybernetic modifications or body paint outside the costume/makeup scope. |
+| X18 | Loss of the Chinese style foundation in urban scenes, resulting in pure Western cyberpunk style, deviating from the core of the Chinese form. |
+| X19 | Appearance of vulgar, exaggerated Western punk designs that do not conform to Eastern aesthetics, violating the core of Chinese style aesthetics. |
 
 ---
 
-## ✅ 校验完成说明
-1. **双场景100%适配**：完整搭建「古风传统体系」+「都市赛博体系」两套并行规则，无明确赛博线索时可完美生成纯古风内容，有都市线索时可精准生成国风赛博内容，互不冲突
-2. **国风基底零偏移**：全手册贯穿「中式形制为绝对核心」的红线，都市赛博场景所有服饰、发型、配饰均保留国风内核，杜绝纯西式赛博跑偏
-3. **赛博融合可控化**：赛博元素分为「可选轻量款」和「都市强化款」，边界清晰，不会出现古风场景过度赛博化、都市场景国风丢失的问题
-4. **3D标准全统一**：古风/都市场景共用一套高精度3D渲染标准，PBR材质、光影、建模精度无差异，确保生成效果稳定
-5. **核心约束无遗漏**：完整保留原手册的「面容不变、姿态不变、逐层可控、纯服化范畴」等核心规则，优化后不破坏原手册的底层逻辑
-6. **全场景无死角覆盖**：补全了古风+都市全细分场景的服化组合、推断规则、提示词模板，可直接落地使用，无需二次调整
+## ✅ Verification Completion Notes
+1. **100% Dual-Scenario Adaptation**: Two parallel rule sets, the "Ancient Traditional System" and the "Urban Cyber System," have been fully established. When there are no clear cyber clues, pure ancient content can be generated perfectly; when there are urban clues, Chinese style cyber content can be generated precisely. They do not conflict with each other.
+2. **Zero Deviation from Chinese Style Foundation**: The red line of "Chinese form as the absolute core" runs through the entire manual. In urban cyber scenes, all costumes, hairstyles, and accessories retain the Chinese style core, eliminating pure Western cyber deviations.
+3. **Controllable Cyber Integration**: Cyber elements are divided into "Optional Lightweight" and "Urban Enhanced" versions with clear boundaries, preventing over-cyberization in ancient scenes and loss of Chinese style in urban scenes.
+4. **Unified 3D Standards**: Ancient/urban scenes share a single set of high-precision 3D rendering standards with no differences in PBR materials, lighting, or modeling precision, ensuring stable generation results.
+5. **No Omission of Core Constraints**: Core rules from the original manual, such as "unchanged face, unchanged pose, layer-by-layer control, and pure costume/makeup scope," are fully preserved. The optimization does not break the underlying logic of the original manual.
+6. **Comprehensive Coverage Without Blind Spots**: Costume/makeup combinations, inference rules, and prompt templates for all subdivided ancient and urban scenes have been completed. They can be implemented directly without secondary adjustments.

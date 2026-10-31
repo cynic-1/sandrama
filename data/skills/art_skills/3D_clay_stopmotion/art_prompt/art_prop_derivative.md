@@ -1,117 +1,117 @@
-# 黏土定格动画道具衍生状态生成 · 约束手册
+# Clay Stop-Motion Prop Derivative State Generation · Constraint Handbook
 
 ---
 
-## 一、衍生原则
+## I. Derivation Principles
 
-1. **造型锚定** — 道具核心造型/轮廓在所有状态中可识别
-2. **状态可读** — 状态差异必须一目了然
-3. **叙事服务** — 每种状态变体服务于特定剧情节点
-4. **渐进退化** — 损伤/老化状态应有合理的物理逻辑
-5. **纯道具独立展示** — 画面中只能出现道具本身
-
----
-
-## 二、状态类型
-
-### 2.1 使用状态
-
-| 状态 | 描述 | 适用道具 | 提示词 |
-|---|---|---|---|
-| 崭新 | 完好无损、哑光温润 | 所有道具 | 崭新、完好无损、温润质感 |
-| 日常使用 | 微磨损、自然包浆 | 兵器/器物/饰品 | 日常使用痕迹、自然包浆 |
-| 陈旧 | 明显年代感、色泽柔和 | 器物/信物/卷轴 | 古旧斑驳、年代感、色泽柔和 |
-
-### 2.2 损伤状态
-
-| 状态 | 描述 | 适用道具 | 提示词 |
-|---|---|---|---|
-| 微损 | 小裂纹/小缺口/轻微磨损 | 瓷器/玉佩/兵器 | 细微裂纹、轻微缺口 |
-| 破损 | 明显裂缝/断裂/破碎 | 瓷器/饰品/兵器 | 裂缝明显、碎裂、断裂 |
-| 残片 | 仅剩部分/碎片 | 瓷器/玉佩/信物 | 残片、碎片、仅存半块 |
-
-### 2.3 特殊状态
-
-| 状态 | 描述 | 适用道具 | 提示词 |
-|---|---|---|---|
-| 染血 | 血迹附着 | 兵器/衣物/信物 | 血迹斑驳、染血 |
-| 浸水/湿润 | 水渍、湿润反光 | 卷轴/信物/衣物 | 浸水、纸张湿润、墨迹晕染 |
-| 燃烧/焦损 | 焦黑边缘、火烧痕迹 | 卷轴/信物/木质品 | 边缘焦黑、火烧痕迹 |
-| 发光/激活 | 内在能量、微光 | 信物/法器/玉石 | 微微发光、内蕴光华 |
-| 包裹/封存 | 用布/盒子包裹 | 信物/饰品/秘物 | 锦布包裹、木盒封存 |
+1. **Form Anchoring** — The core form/silhouette of the prop must be recognizable in all states
+2. **State Readability** — State differences must be immediately obvious
+3. **Narrative Service** — Each state variant serves a specific plot point
+4. **Progressive Degradation** — Damage/aging states should follow reasonable physical logic
+5. **Pure Prop Independent Display** — Only the prop itself should appear in the frame
 
 ---
 
-## 三、状态变体画面规范
+## II. State Types
 
-### 单状态图
+### 2.1 Usage States
 
-| 项目 | 约束 |
+| State | Description | Applicable Props | Prompt |
+|---|---|---|---|
+| Brand New | Intact, matte and warm | All props | Brand new, intact, warm texture |
+| Daily Use | Minor wear, natural patina | Weapons/Vessels/Ornaments | Daily use marks, natural patina |
+| Aged | Obvious sense of age, soft color tones | Vessels/Keepsakes/Scrolls | Ancient and mottled, sense of age, soft color tones |
+
+### 2.2 Damage States
+
+| State | Description | Applicable Props | Prompt |
+|---|---|---|---|
+| Minor Damage | Small cracks/chips/light wear | Porcelain/Jade pendants/Weapons | Fine cracks, minor chips |
+| Broken | Obvious cracks/fractures/shattering | Porcelain/Ornaments/Weapons | Obvious cracks, shattered, fractured |
+| Fragments | Only parts/fragments remain | Porcelain/Jade pendants/Keepsakes | Fragments, shards, only half remains |
+
+### 2.3 Special States
+
+| State | Description | Applicable Props | Prompt |
+|---|---|---|---|
+| Bloodstained | Blood stains attached | Weapons/Clothing/Keepsakes | Mottled bloodstains, bloodstained |
+| Waterlogged/Wet | Water stains, wet reflection | Scrolls/Keepsakes/Clothing | Waterlogged, wet paper, ink bleeding |
+| Burnt/Charred | Charred edges, fire marks | Scrolls/Keepsakes/Wooden items | Charred edges, fire marks |
+| Glowing/Activated | Inner energy, faint glow | Keepsakes/Magical artifacts/Jade | Faint glow, inner radiance |
+| Wrapped/Sealed | Wrapped in cloth/box | Keepsakes/Ornaments/Secret items | Silk cloth wrapped, wooden box sealed |
+
+---
+
+## III. State Variant Image Specifications
+
+### Single State Image
+
+| Item | Constraint |
 |---|---|
-| 背景 | 纯净中性灰 #E8E8E8（与设定图一致） |
-| 光线 | 暖调柔光，无硬阴影 |
-| 角度 | 与原设定图正面图一致 |
-| 比例 | 道具占画面主体 70%+ |
+| Background | Pure neutral gray #E8E8E8 (consistent with the design sheet) |
+| Lighting | Warm-toned soft light, no hard shadows |
+| Angle | Consistent with the front view of the original design sheet |
+| Scale | Prop occupies 70%+ of the main frame |
 
-### 状态对比图
+### State Comparison Image
 
-| 项目 | 约束 |
+| Item | Constraint |
 |---|---|
-| 布局 | 同一画面并排展示 2-3 种状态 |
-| 标注 | 每种状态下方标注状态名 |
-| 一致性 | 角度/光线/背景完全一致，仅状态不同 |
+| Layout | Display 2-3 states side-by-side in the same frame |
+| Labeling | Label the state name below each state |
+| Consistency | Angle/lighting/background must be identical; only the state differs |
 
 ---
 
-## 四、材质状态变化规则
+## IV. Material State Change Rules
 
-| 材质 | 崭新 → 日常 | 日常 → 陈旧 | 损伤表现 |
+| Material | Brand New → Daily | Daily → Aged | Damage Manifestation |
 |---|---|---|---|
-| 黏土 | 哑光温润 → 微磨损 | 磨损 → 色泽柔和暗淡 | 缺口/裂缝/碎裂 |
-| 木质 | 新木纹理 → 自然包浆 | 包浆 → 色泽暗沉 | 开裂/断裂/虫蛀 |
-| 陶瓷 | 釉面温润 → 微划痕 | 划痕 → 釉面暗淡 | 裂纹/碎裂/缺口 |
-| 金属 | 微光泽 → 微包浆 | 包浆 → 氧化痕迹 | 缺口/卷刃/断裂 |
-| 布/纸 | 崭新平整 → 微皱折 | 皱折 → 发黄变脆 | 撕裂/焦损/墨迹晕染 |
+| Clay | Matte and warm → Minor wear | Wear → Soft, dull color tones | Chips/Cracks/Shattering |
+| Wood | New wood grain → Natural patina | Patina → Darkened color tones | Cracking/Fracturing/Worm damage |
+| Ceramic | Warm glaze → Minor scratches | Scratches → Dull glaze | Cracks/Shattering/Chips |
+| Metal | Slight sheen → Slight patina | Patina → Oxidation marks | Chips/Dulled edge/Fracturing |
+| Cloth/Paper | Brand new and flat → Minor wrinkles | Wrinkles → Yellowing and brittleness | Tearing/Charred edges/Ink bleeding |
 
 ---
 
-## 五、提示词模板
+## V. Prompt Templates
 
-### 单状态变体
+### Single State Variant
 
 ```
-基于{道具名}设定图，黏土定格动画古风道具衍生状态，定格动画风格，3D卡通渲染，暖调光影，
-{道具类型}，{材质描述}，
-当前状态：{状态名}，{状态视觉描述}，
-{材质表面变化描述}，
-纯道具静物展示，道具独立陈列，无人持有，无人佩戴，
-同一画面四宫格（2×2）：左上正面图(front view)+右上侧面图(side view)+左下背面图(back view)+右下细节特写(detail closeup)，
-纯净中性灰背景，暖调柔光，无硬阴影，
-材质纹理超清晰，黏土哑光质感，状态细节可辨
-图中不要有任何文字，
-画面中不能出现任何人物、手部、手指、肢体，道具不可处于被握持或佩戴状态
+Based on the {item name} setting image, clay stop-motion animation ancient-style prop derivative state, stop-motion animation style, 3D cartoon rendering, warm-toned lighting,
+{item type}, {material description},
+Current state: {state name}, {state visual description},
+{material surface change description},
+Pure prop still life display, prop displayed independently, not held by anyone, not worn by anyone,
+Four-panel grid in the same frame (2×2): top-left front view (front view) + top-right side view (side view) + bottom-left back view (back view) + bottom-right detail closeup (detail closeup),
+Pure neutral gray background, warm soft light, no hard shadows,
+Ultra-clear material texture, clay matte texture, state details distinguishable
+No text of any kind in the image,
+No people, hands, fingers, or limbs may appear in the frame, the prop must not be in a held or worn state
 ```
 
 ---
 
-## 六、约束规则
+## VI. Constraint Rules
 
-### 必守
+### Mandatory
 
-| 编号 | 规则 |
+| ID | Rule |
 |---|---|
-| R1 | 道具核心造型/轮廓在所有状态中可识别 |
-| R2 | 状态变化须符合物理逻辑 |
-| R3 | 必须使用四宫格（2×2）布局 |
-| R4 | 必须指定「纯净中性灰背景」，暖调柔光，无硬阴影 |
+| R1 | The core design/outline of the prop must be recognizable in all states |
+| R2 | State changes must conform to physical logic |
+| R3 | A four-panel (2×2) layout must be used |
+| R4 | A "pure neutral gray background" with warm soft lighting and no hard shadows must be specified |
 
-### 严禁
+### Prohibited
 
-| 编号 | 严禁 |
+| ID | Prohibition |
 |---|---|
-| X1 | 状态变化后道具不可识别 |
-| X2 | 违反物理逻辑的损伤 |
-| X3 | 过度血腥/恐怖的损伤描绘 |
-| X4 | 出现任何人物形象 |
-| X5 | 道具处于被持有/佩戴/使用中的状态 |
-| X6 | 冷硬光线/强对比度 |
+| X1 | The prop becomes unrecognizable after state changes |
+| X2 | Damage that violates physical logic |
+| X3 | Excessively gory or terrifying depictions of damage |
+| X4 | Any depiction of human figures |
+| X5 | The prop being in a state of being held, worn, or in use |
+| X6 | Cold, hard lighting or high contrast |

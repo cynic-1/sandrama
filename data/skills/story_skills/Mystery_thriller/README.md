@@ -1,62 +1,62 @@
-# 悬疑推理 · 导演叙事手法技能包
+# Mystery & Deduction · Director's Narrative Techniques Skill Pack
 
-## 简介
+## Overview
 
-本技能包为 **悬疑推理** 类型故事提供一套完整的导演叙事手法参考，涵盖从宏观叙事规划到微观分镜执行的全流程指导。适用于任何视觉风格。
+This skill pack provides a comprehensive reference for directorial narrative techniques for **Mystery & Deduction** stories, covering the full process from macro-level narrative planning to micro-level storyboard execution. It is applicable to any visual style.
 
-## 核心理念
+## Core Concepts
 
-- **信息操控** — 叙事的本质是控制观众"何时知道什么"，悬念来自信息差
-- **不可靠叙事** — 镜头本身可以"说谎"：选择性展示、误导性景别、欺骗性转场
-- **层层剥茧** — 每个段落揭示一层真相，同时制造新的疑问，维持观众的解谜欲
-- **细节即线索** — 每个看似无关的镜头都可能是伏笔，回看时恍然大悟才是最高奖赏
+- **Information Manipulation** — The essence of narrative is controlling "when the audience knows what"; suspense arises from information gaps
+- **Unreliable Narration** — The camera itself can "lie": selective framing, misleading shot scales, and deceptive transitions
+- **Layered Revelation** — Each segment reveals a layer of the truth while simultaneously creating new questions, maintaining the audience's desire to solve the puzzle
+- **Details as Clues** — Every seemingly unrelated shot may be a foreshadowing; the ultimate reward is the moment of realization upon rewatching
 
-## 文件结构
+## File Structure
 
 ```
 Mystery_thriller/
-├── README.md                                          ← 本文件
+├── README.md                                          ← This file
 └── driector_skills/
-    ├── director_planning_narrative.md                 ← 叙事规划手法
-    └── director_storyboard_table_narrative.md         ← 分镜表叙事手法
+    ├── director_planning_narrative.md                 ← Narrative planning techniques
+    └── director_storyboard_table_narrative.md         ← Storyboard table narrative techniques
 ```
 
-## 技能文件说明
+## Skill File Description
 
-### 1. 叙事规划手法 (`director_planning_narrative.md`)
+### 1. Narrative Planning Techniques (`director_planning_narrative.md`)
 
-导演在 **叙事规划阶段** 使用的技法参考，定义悬疑推理在主题立意、信息操控、悬念节奏、场景氛围与声音方向上的整体规划方法。
+Technique reference used by the director during the **narrative planning stage**, defining the overall planning methods for suspense and deduction in terms of thematic intent, information manipulation, suspense pacing, scene atmosphere, and sound direction.
 
-| 章节 | 内容概要 |
+| Chapter | Content Overview |
 |---|---|
-| 主题立意与悬念内核 | 信息差操控、不可靠叙事、真相层级设计 |
-| 叙事结构与悬念节奏 | 钩子→铺陈→转折→揭示循环、红鲱鱼策略、信息释放节奏 |
-| 分场景氛围设计 | 六大典型悬疑段落设计、空间压迫叙事、视觉线索埋设 |
-| 声音与音乐方向 | 不安底噪、寂静恐惧、音效误导、心理音景 |
-| 构图与景别叙事 | 倾斜构图/遮挡构图/深焦叙事、景别的信息操控 |
-| 镜头运动与节奏 | 窥视运镜、不安手持、突然静止、时间操控 |
+| Thematic Intent and Suspense Core | Information gap manipulation, unreliable narration, truth hierarchy design |
+| Narrative Structure and Suspense Pacing | Hook → Setup → Twist → Reveal cycle, red herring strategy, information release pacing |
+| Scene-by-Scene Atmosphere Design | Design of six typical suspense segments, spatial oppression narrative, visual clue planting |
+| Sound and Music Direction | Unsettling ambient noise, fear of silence, sound effect misdirection, psychological soundscape |
+| Composition and Shot Size Narrative | Tilted composition / occluded composition / deep focus narrative, information manipulation via shot size |
+| Camera Movement and Rhythm | Voyeuristic camera moves, uneasy handheld, sudden stillness, time manipulation |
 
-### 2. 分镜表叙事手法 (`director_storyboard_table_narrative.md`)
+### 2. Storyboard Table Narrative Techniques (`director_storyboard_table_narrative.md`)
 
-导演在 **分镜表制作阶段** 使用的技法参考，定义悬疑推理在分镜表中的景别策略、运镜逻辑、时长操控、线索镜头设计与转场手法。
+Technique reference used by the director during the **storyboard table production stage**, defining suspense and deduction strategies in the storyboard table, including shot size strategy, camera movement logic, duration control, clue shot design, and transition techniques.
 
-| 章节 | 内容概要 |
+| Chapter | Content Overview |
 |---|---|
-| 分镜表定位 | 分镜表作为信息操控核心工具的定位说明 |
-| 景别选择 | 信息遮蔽景别、选择性特写、误导性全景 |
-| 运镜节奏 | 窥视缓推、不安摇移、突然静止的心理冲击 |
-| 时长把控 | 悬念拉伸、节奏骤变、沉默倒计时 |
-| 线索镜头设计 | 伏笔植入、视觉线索、回忆闪回处理 |
-| 信息揭示策略 | 真相揭示节奏、反转镜头语言、观众预期管理 |
-| 人物行为设计 | 可疑行为暗示、微表情线索、多义性动作 |
-| 台词与留白 | 未说完的话、歧义台词、沉默的嫌疑 |
-| 转场设计 | 时间跳切/闪回闪前/匹配剪辑/黑屏悬念 |
+| Storyboard Table Positioning | Explanation of the storyboard table's role as the core tool for information manipulation |
+| Shot Size Selection | Information-obscuring shot sizes, selective close-ups, misleading wide shots |
+| Camera Movement Rhythm | Voyeuristic slow push-ins, uneasy pans/tracks, psychological impact of sudden stillness |
+| Duration Control | Suspense stretching, abrupt rhythm shifts, silent countdowns |
+| Clue Shot Design | Foreshadowing planting, visual clues, flashback handling |
+| Information Reveal Strategy | Truth reveal pacing, reversal shot language, audience expectation management |
+| Character Behavior Design | Implication of suspicious behavior, micro-expression clues, ambiguous actions |
+| Dialogue and Silence | Unfinished sentences, ambiguous dialogue, silence as suspicion |
+| Transition Design | Time jump cuts / flashbacks and flash-forwards / match cuts / black screen suspense |
 
-## 使用方式
+## Usage
 
-本技能包作为 SandDrama 导演 AI 的叙事手法参考，在故事创作流程中自动加载，指导：
+This skill pack serves as a narrative technique reference for the SandDrama Director AI. It is automatically loaded during the story creation workflow to guide:
 
-1. **叙事规划** — 确定悬念内核、信息释放节奏、场景氛围与音效方向
-2. **分镜表生成** — 根据叙事规划输出具体的景别、运镜、时长与转场方案
+1. **Narrative Planning** — Determining the suspense core, information release pacing, scene atmosphere, and sound direction
+2. **Storyboard Table Generation** — Outputting specific shot sizes, camera movements, durations, and transition plans based on the narrative plan
 
-两个文件分工明确、逐层递进，从"为什么这样拍"到"具体怎么拍"形成完整闭环。
+The two files have clearly defined roles and progress layer by layer, forming a complete closed loop from "why shoot it this way" to "how exactly to shoot it."

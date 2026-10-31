@@ -1,61 +1,61 @@
-# 古风仙侠 · 导演叙事手法技能包
+# Ancient-Style Xianxia · Directorial Narrative Techniques Skill Pack
 
-## 简介
+## Overview
 
-本技能包为 **古风仙侠** 类型故事提供一套完整的导演叙事手法参考，涵盖从宏观叙事规划到微观分镜执行的全流程指导。适用于任何视觉风格。
+This skill pack provides a complete reference for directorial narrative techniques for **Ancient-Style Xianxia** stories, covering the full workflow from macro-level narrative planning to micro-level storyboard execution. It is applicable to any visual style.
 
-## 核心理念
+## Core Philosophy
 
-- **意境先行** — 仙侠叙事的灵魂是"意在画外"，一山一水一云雾都是情感表达
-- **天地人合一** — 角色情绪与天象、自然融为一体：悲则风起、怒则雷鸣、悟则天光乍现
-- **宿命与抉择** — 叙事张力来自"命定"与"逆天"的拉扯，越不可违抗的宿命，抗争越动人
-- **留白即大道** — 最深的道、最浓的情，都不靠说——靠一壶酒、一柄剑、一场雪中的沉默
+- **Mood First** — The soul of Xianxia narrative is "meaning beyond the frame"; a mountain, a river, or a wisp of cloud are all expressions of emotion
+- **Unity of Heaven, Earth, and Man** — Character emotions merge with celestial phenomena and nature: sorrow brings wind, anger summons thunder, and enlightenment is marked by a sudden burst of heavenly light
+- **Fate and Choice** — Narrative tension arises from the pull between "destiny" and "defying heaven"; the more inescapable the fate, the more moving the resistance
+- **Negative Space is the Great Way** — The deepest truths and the most profound emotions are not spoken—they are conveyed through a pot of wine, a sword, or the silence of a snowfall
 
-## 文件结构
+## File Structure
 
 ```
 Xianxia_fantasy/
-├── README.md                                          ← 本文件
+├── README.md                                          ← This file
 └── driector_skills/
-    ├── director_planning_narrative.md                 ← 叙事规划手法
-    └── director_storyboard_table_narrative.md         ← 分镜表叙事手法
+    ├── director_planning_narrative.md                 ← Narrative planning techniques
+    └── director_storyboard_table_narrative.md         ← Storyboard table narrative techniques
 ```
 
-## 技能文件说明
+## Skill File Description
 
-### 1. 叙事规划手法 (`director_planning_narrative.md`)
+### 1. Narrative Planning Techniques (`director_planning_narrative.md`)
 
-导演在 **叙事规划阶段** 使用的技法参考，定义古风仙侠在主题立意、宿命节奏、场景意境设计与声音方向上的整体规划方法。
+Technique reference used by the director during the **narrative planning stage**, defining the overall planning methods for ancient-style xianxia in terms of thematic intent, fate rhythm, scene atmosphere design, and sound direction.
 
-| 章节 | 内容概要 |
+| Chapter | Content Overview |
 |---|---|
-| 主题立意与仙侠内核 | 天道与人心、宿命与抉择、孤独求道、大爱与小情 |
-| 叙事结构与宿命节奏 | 命运伏笔、三世因果、悟道递进、劫难弧线 |
-| 分场景意境设计 | 六大典型仙侠段落设计、天人感应叙事、空间修行隐喻 |
-| 声音与音乐方向 | 古乐留白、天籁与寂静、梵音/箫笛情绪递进 |
-| 构图与景别叙事 | 山水写意/云雾留白/纵深仙境、景别的境界表达 |
-| 镜头运动与节奏 | 御风运镜、天地缓摇、入定静止、意念快切 |
+| Thematic Intent and Xianxia Core | Heavenly Dao and human heart, fate and choice, solitary pursuit of the Dao, great love and small affection |
+| Narrative Structure and Fate Rhythm | Foreshadowing of destiny, three-life karma, progressive enlightenment, tribulation arc |
+| Scene-by-Scene Atmosphere Design | Design of six typical xianxia segments, heaven-human resonance narrative, spatial cultivation metaphors |
+| Sound and Music Direction | Ancient music and negative space, celestial sounds and silence, emotional progression of Sanskrit chanting/flute and reed pipes |
+| Composition and Shot Scale Narrative | Landscape freehand style/cloud and mist negative space/depth of immortal realms, expression of realms through shot scale |
+| Camera Movement and Rhythm | Wind-riding camera work, slow pans of heaven and earth, meditative stillness, rapid cuts of mental intent |
 
-### 2. 分镜表叙事手法 (`director_storyboard_table_narrative.md`)
+### 2. Storyboard Table Narrative Techniques (`director_storyboard_table_narrative.md`)
 
-导演在 **分镜表制作阶段** 使用的技法参考，定义古风仙侠在分镜表中的景别策略、运镜节奏、时长把控、仙术战斗分镜与转场手法。
+Technique reference used by the director during the **storyboard table production stage**, defining shot scale strategy, camera movement rhythm, duration control, immortal arts combat storyboards, and transition techniques for ancient-style xianxia in the storyboard table.
 
-| 章节 | 内容概要 |
+| Chapter | Content Overview |
 |---|---|
-| 分镜表定位 | 分镜表作为意境再现核心工具的定位说明 |
-| 景别选择 | 山水远景价值、写意中景、灵韵特写 |
-| 运镜节奏 | 御风跟拍、云游缓摇、入定静止、剑气快推 |
-| 时长把控 | 意境镜头的从容、战斗的收放、悟道的留白 |
-| 仙术战斗设计 | 写意优先、力量与意境并重、天象呼应 |
-| 人物关系叙事 | 师徒传承、道侣羁绊、宿敌对镜 |
-| 台词与留白 | 言简意深、诗化台词、大段沉默的修行感 |
-| 转场设计 | 云雾转场/水墨淡化/四季流转/梦境切入 |
+| Storyboard Table Positioning | Explanation of the storyboard table's positioning as the core tool for atmosphere recreation |
+| Shot Scale Selection | Value of distant landscape views, freehand medium shots, spiritual charm close-ups |
+| Camera Movement Rhythm | Wind-riding follow shots, cloud-roaming slow pans, meditative stillness, rapid pushes of sword qi |
+| Duration Control | Composure of atmosphere shots, restraint and release in combat, negative space in enlightenment |
+| Immortal Arts Combat Design | Freehand style priority, balance of power and atmosphere, celestial phenomenon resonance |
+| Character Relationship Narrative | Master-disciple transmission, Dao companion bonds, arch-nemesis mirror confrontation |
+| Dialogue and Negative Space | Concise yet profound words, poetic dialogue, cultivation feel of long silences |
+| Transition Design | Cloud and mist transitions/ink wash fading/seasonal transitions/dream entry |
 
-## 使用方式
+## Usage
 
-本技能包作为 SandDrama 导演 AI 的叙事手法参考，在故事创作流程中自动加载，指导：
+This skill pack serves as a narrative technique reference for the SandDrama Director AI, automatically loaded during the story creation process to guide:
 
-1. **叙事规划** — 确定仙侠内核、宿命节奏曲线、场景意境与音乐方向
-2. **分镜表生成** — 根据叙事规划输出具体的景别、运镜、时长与转场方案
+1. **Narrative Planning** — Determining the xianxia core, fate rhythm curve, scene atmosphere, and music direction
+2. **Storyboard Table Generation** — Outputting specific shot scale, camera movement, duration, and transition plans based on the narrative planning
 
-两个文件分工明确、逐层递进，从"为什么这样拍"到"具体怎么拍"形成完整闭环。
+The two files have clearly defined roles and progress layer by layer, forming a complete closed loop from "why shoot it this way" to "how exactly to shoot it."

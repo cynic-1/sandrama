@@ -13,6 +13,6 @@ export default router.post(
   async (req, res) => {
     const { switchAiDevTool } = req.body;
     await u.userSettings.setSetting("switchAiDevTool", switchAiDevTool);
-    res.status(200).send(success("保存设置成功"));
+    res.status(200).send(success("Settings saved successfully"));
   },
 );

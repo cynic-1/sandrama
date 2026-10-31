@@ -1,211 +1,211 @@
 ---
 name: director_storyboard
-description: 导演分镜提示词技法 · 真人古风写实
+description: Director's Storyboard Prompt Techniques · Live-Action Classical Realism
 metaData: director_skills
 ---
 
-# 分镜提示词 · 真人古风写实 · 风格专属技法
+# Storyboard Prompts · Live-Action Classical Realism · Style-Specific Techniques
 
 ---
 
-## 适用范围
+## Scope
 
-本 Skill 专用于**真人古风写实**风格的分镜提示词生成。
+This Skill is exclusively for generating storyboard prompts in the **Live-Action Classical Realism** style.
 
 ---
 
-## 情绪 → 面容/眼神词映射
+## Emotion → Facial/Eye Expression Mapping
 
-| 情绪输入 | 面容词 | 眼神词 | 微表情补充 |
+| Emotion Input | Facial Terms | Eye Terms | Micro-Expression Supplements |
 |----------|--------|--------|-----------|
-| 心动 / 悸动 | 面色微红，神情微怔 | 眼神含情，目光流连 | 嘴角微扬，表情克制 |
-| 悲伤 / 压抑 | 面容沉静，神情哀戚 | 眼眶微红，眼神低垂 | 眉头轻锁，神情内敛 |
-| 愤怒 / 压迫 | 眉眼凌厉，神情冷峻 | 目光如刀，眼神强势 | 唇线收紧，气场压迫 |
-| 温柔 / 深情 | 神情温和，眉目含情 | 眼神专注柔和，目光深情 | 嘴角轻扬，表情克制温润 |
-| 坚定 / 决绝 | 神情肃然，面容沉着 | 眼神坚定，目光清冽 | 眉眼沉静，气质凛然 |
-| 惊讶 / 震惊 | 神情微愣，面色微变 | 眼神放大，目光骤聚 | 眉梢轻挑，唇形微开 |
-| 冷漠 / 疏离 | 面容清冷，神情漠然 | 眼神空远，目光冰凉 | 表情几乎凝固，气质禁欲 |
-| 喜悦 / 雀跃 | 神情鲜活，笑意盈盈 | 眼神明亮有神，弯月眼尾 | 嘴角扬起，表情生动自然 |
-| 紧张 / 慌乱 | 表情略带茫然，神态慌张 | 眼神飘忽，目光四顾 | 眉心微蹙，表情生动真实 |
-| 隐忍 / 克制 | 神情内敛，面容沉静 | 眼神深沉，眼底有情绪压抑 | 唇线收紧，喉结微动 |
+| Infatuation / Palpitation | Slight blush, faintly stunned expression | Affectionate gaze, lingering eyes | Slight upturn of lips, restrained expression |
+| Sorrow / Suppression | Calm face, mournful expression | Slightly reddened eyes, downcast gaze | Slightly furrowed brows, introverted demeanor |
+| Anger / Oppression | Sharp brows and eyes, stern expression | Blade-like gaze, dominant eyes | Tightened lip line, oppressive aura |
+| Tenderness / Deep Affection | Gentle expression, affectionate brows and eyes | Focused, soft gaze, deep affection | Slight upturn of lips, restrained and warm expression |
+| Determination / Resoluteness | Solemn expression, composed face | Firm gaze, clear and sharp eyes | Calm brows and eyes, austere temperament |
+| Surprise / Shock | Slightly dazed expression, slight change in complexion | Widened eyes, sudden focus | Slight raise of brows, slightly parted lips |
+| Indifference / Alienation | Cold face, indifferent expression | Distant, empty gaze, icy eyes | Expression nearly frozen, ascetic temperament |
+| Joy / Delight | Vivid expression, beaming smile | Bright, lively eyes, crescent-shaped eye corners | Upturned lips, lively and natural expression |
+| Tension / Panic | Slightly bewildered expression, flustered demeanor | Shifting gaze, looking around | Slightly furrowed brow, vivid and realistic expression |
+| Endurance / Restraint | Introverted expression, calm face | Deep gaze, suppressed emotion in the eyes | Tightened lip line, slight movement of the Adam's apple |
 
 ---
 
-## 光影氛围词库（真人古风写实）
+## Lighting and Atmosphere Vocabulary (Live-Action Classical Realism)
 
-> **设计原则**：画面光影分为 **环境光（主）** 与 **器材光（辅）** 两层。环境光由场景时间、天气、空间决定，是画面光影的绝对主基调；器材光仅用于人物塑形和情绪补强，必须服从环境光方向与色温，不得产生独立光源感。
+> **Design Principle**: The lighting in the frame is divided into two layers: **Ambient Light (Primary)** and **Equipment Light (Secondary)**. Ambient light is determined by the scene's time, weather, and space, and serves as the absolute dominant tone of the frame's lighting. Equipment light is used only for character modeling and emotional reinforcement; it must conform to the direction and color temperature of the ambient light and must not create a sense of an independent light source.
 
-### 一、环境光（主光源 · 场景自然光）
+### I. Ambient Light (Primary Light Source · Natural Scene Light)
 
-> 每个分镜 **必须先确定环境光**，再决定是否叠加器材光。
+> For each storyboard shot, **ambient light must be determined first**, followed by a decision on whether to overlay equipment light.
 
-#### 时间段环境光
+#### Time-of-Day Ambient Light
 
-| 时间段 | 自然光源 | 色调倾向 | 环境氛围 |
+| Time of Day | Natural Light Source | Color Tone Tendency | Ambient Atmosphere |
 |--------|---------|---------|----------|
-| 清晨 | 散射晨光，天光漫射 | 冷白光调，淡蓝调 | 薄雾弥漫，空气感，晨露质感 |
-| 午后 | 日光斜射，漫射散光 | 中性色调，轻暖调 | 光影斑驳，层次分明 |
-| 傍晚/黄昏 | 斜射余晖，天光冷暖交替 | 冷调为主，地平线局部暖光 | 长影拉伸，光感诗意 |
-| 夜间 | 月光冷蓝，烛火/灯笼暖点 | 冷蓝主调 | 光影幽深，明暗强对比 |
-| 阴雨 | 漫射冷光，云层遮蔽无主光源 | 灰冷色调 | 空气潮湿感，低饱和度 |
+| Early Morning | Diffused morning light, skylight diffusion | Cold white tone, pale blue tone | Thin mist, sense of air, texture of morning dew |
+| Afternoon | Slanted sunlight, diffused scattered light | Neutral tone, light warm tone | Dappled light and shadow, distinct layers |
+| Evening/Dusk | Slanted afterglow, alternating warm and cool skylight | Predominantly cool tone, local warm light at the horizon | Stretched long shadows, poetic light quality |
+| Night | Cold blue moonlight, warm points from candles/lanterns | Predominantly cold blue tone | Deep shadows, strong contrast between light and dark |
+| Rainy Weather | Diffused cold light, no primary light source due to cloud cover | Gray-cold tone | Humid air feel, low saturation |
 
-#### 场景空间环境光
+#### Scene Space Ambient Light
 
-| 空间类型 | 典型环境光 | 光影特征 |
+| Space Type | Typical Ambient Light | Light and Shadow Characteristics |
 |----------|-----------|----------|
-| 室外开阔 | 天光为主，日照方向决定明暗 | 远景大气透视自然形成层次 |
-| 庭院/园林 | 天光经枝叶过滤，斑驳散射 | 廊下阴影与庭中光区形成明暗对比 |
-| 室内（窗光） | 窗口单向自然光，室内渐暗 | 光线侧射，自然形成明暗过渡 |
-| 密室/暗室 | 烛火/油灯局部暖光，整体暗调 | 光源单一，光域有限，阴影深重 |
-| 竹林/山野 | 光线穿隙，散射光斑 | 高处透光，地面光影交错 |
-| 水面/湖边 | 天光 + 水面反射光 | 波光粼粼，倒影补光，氤氲感 |
+| Open Outdoor | Skylight dominant, brightness determined by sun direction | Natural atmospheric perspective in the distance creates layers |
+| Courtyard/Garden | Skylight filtered through branches and leaves, dappled diffusion | Contrast between shadows under the corridor and light areas in the courtyard |
+| Indoor (Window Light) | Unidirectional natural light from windows, interior gradually darker | Side lighting, natural transition from light to dark |
+| Secret Room/Dark Room | Local warm light from candles/oil lamps, overall dark tone | Single light source, limited light area, deep shadows |
+| Bamboo Grove/Mountain | Light passing through gaps, scattered light spots | Light transmission from above, interlacing light and shadow on the ground |
+| Water Surface/Lakeside | Skylight + water surface reflection | Shimmering waves, reflection-based fill light, hazy atmosphere |
 
-### 二、器材光（辅助光 · 人物塑形）
+### II. Equipment Light (Secondary Light · Character Modeling)
 
-> ⚠️ 器材光 **必须服从环境光基调**：方向与环境光源一致，色温不得与环境光冲突，强度不得超过环境光。
+> ⚠️ Equipment light **must conform to the ambient light tone**: direction must align with the environmental light source, color temperature must not conflict with the ambient light, and intensity must not exceed the ambient light.
 
-#### 器材光类型
+#### Types of Equipment Light
 
-| 光线类型 | 作用 | 适用场景 | 使用约束 |
+| Light Type | Function | Applicable Scenes | Usage Constraints |
 |----------|------|---------|----------|
-| 轮廓光（边缘光） | 勾勒人物边缘，增强人景分离 | 逆光/侧逆光环境 | 强度低于环境光，色温与环境光一致 |
-| 眼神光 | 增加眼部神采与生命感 | 特写/近景含人物 | 极微弱，仅作点睛，不可形成明显光斑 |
-| 补光（反射光） | 提亮暗部细节，避免面部死黑 | 强侧光/逆光造成暗部过重时 | 模拟环境反射，不可形成独立光源感 |
-| 顶光压迫 | 制造面部阴影，增强压迫感 | 审讯、对峙、威严场景 | 须有场景光源合理性（灯笼、天窗、殿顶光） |
+| Rim Light (Edge Light) | Outlines character edges, enhances separation from background | Backlit/Side-backlit environments | Intensity lower than ambient light, color temperature consistent with ambient light |
+| Catchlight | Adds vitality and life to the eyes | Close-ups/Near shots featuring characters | Extremely subtle, used only as an accent, must not form distinct light spots |
+| Fill Light (Reflected Light) | Brightens dark details, avoids pitch-black faces | When strong side/back light causes excessive darkness | Simulates environmental reflection, must not create a sense of an independent light source |
+| Top Light Pressure | Creates facial shadows, enhances sense of oppression | Interrogations, confrontations, scenes of authority | Must have a reasonable scene light source (lantern, skylight, hall ceiling light) |
 
-#### 情绪 → 环境光 + 器材光配合
+#### Emotion → Ambient Light + Equipment Light Coordination
 
-| 情绪基调 | 环境光（主） | 器材光（辅） | 配合原则 |
+| Emotional Tone | Ambient Light (Primary) | Equipment Light (Secondary) | Coordination Principle |
 |----------|-------------|-------------|----------|
-| 心动/温情 | 柔和侧逆自然光，散射暖调环境 | 轮廓光微勾勒 | 环境光定侧逆光基调，器材光仅补充轮廓，浅景深柔化背景 |
-| 对峙/压迫 | 硬朗自然侧光，高对比明暗环境 | 可加顶光（须有合理光源） | 环境光定主方向与硬度，器材光仅增强对比，阴影硬朗 |
-| 压抑/悲伤 | 漫射冷光，阴天/暗室环境 | 极少补光，保留面部暗部 | 以环境冷光为主，刻意不补光以保留阴影层次 |
-| 神秘/肃穆 | 冷蓝环境光，逆光剪影 | 边缘光精准控制，光晕克制 | 环境光定冷蓝基调，器材光仅做边缘分离 |
-| 空灵/意境 | 散射软光，自然光微过曝 | 一般无需器材光 | 环境散射光为主，远景虚淡，空气透视感 |
+| Infatuation/Warmth | Soft side-back natural light, diffused warm-toned environment | Subtle rim light outlining | Ambient light sets the side-back tone, equipment light only supplements the outline, shallow depth of field softens the background |
+| Confrontation/Oppression | Hard natural side light, high-contrast light and dark environment | Top light can be added (must have a reasonable source) | Ambient light sets the main direction and hardness, equipment light only enhances contrast, shadows are hard-edged |
+| Suppression/Sorrow | Diffused cold light, overcast/dark room environment | Minimal fill light, preserve facial shadows | Primarily use cold ambient light, deliberately avoid fill light to preserve shadow layers |
+| Mystery/Solemnity | Cold blue ambient light, backlit silhouette | Precise control of edge light, restrained halo | Ambient light sets the cold blue tone, equipment light only provides edge separation |
+| Ethereal/Artistic | Diffused soft light, slightly overexposed natural light | Generally no equipment light needed | Primarily diffused ambient light, distant background blurred, sense of atmospheric perspective |
 
-### 三、光影冲突规避规则
+### III. Rules for Avoiding Lighting Conflicts
 
-> 生成分镜提示词时，须严格遵循以下原则以确保画面光影自然可信：
+> When generating storyboard prompts, the following principles must be strictly followed to ensure the frame's lighting is natural and credible:
 
-1. **先定环境光，再叠器材光**：每个分镜先根据「时间段 + 场景空间」确定环境光基调，再决定是否需要器材光辅助人物塑形。
-2. **色温一致性**：器材光色温须与环境光协调（如夜间冷蓝环境不可叠加暖黄补光，除非有烛火等场景内合理暖光源）。
-3. **方向合理性**：器材光方向须有场景内光源支撑（窗光方向、烛火位置、月光角度），不可凭空出现。
-4. **强度从属性**：器材光强度 **不得超过环境光**，避免"人物单独打光"的影棚感。
-5. **宁缺毋滥**：当环境光已足够塑造人物、表达情绪时，**不加器材光**。
+1. **Determine ambient light first, then overlay equipment light**: For each storyboard shot, first determine the ambient light tone based on "Time of Day + Scene Space," then decide if equipment light is needed for character modeling.
+2. **Color Temperature Consistency**: The color temperature of equipment light must harmonize with the ambient light (e.g., a cold blue night environment cannot be overlaid with warm yellow fill light, unless there is a reasonable warm light source within the scene such as a candle).
+3. **Directional Plausibility**: The direction of equipment light must be supported by a light source within the scene (window light direction, candle position, moon angle); it cannot appear out of nowhere.
+4. **Intensity Subordination**: The intensity of equipment light **must not exceed the ambient light**, avoiding a "studio lighting" feel where the character is lit independently.
+5. **Less is More**: When ambient light is sufficient to model the character and express emotion, **do not add equipment light**.
 
 ---
 
-## 场景质感约束词（按场景类型）
+## Scene Texture Constraint Terms (By Scene Type)
 
-| 场景类型 | 必加约束词 |
+| Scene Type | Mandatory Constraint Terms |
 |----------|-----------|
-| 宫殿内室 | 雕梁画栋，殿柱质感清晰，地砖反光，帷帐飘逸，烛光暖点 |
-| 庭院/园林 | 青石板路，廊柱斑驳，花木扶疏，水面倒影，空气透视 |
-| 竹林/山野 | 竹影婆娑，光线穿隙，地面竹叶纹理，远山如黛，空气感 |
-| 城楼/城墙 | 青砖纹理清晰，风化质感，远景层叠，大气透视 |
-| 水榭/湖边 | 水面波光，倒影层叠，薄雾氤氲，荷叶质感 |
-| 密室/暗室 | 光源单一，烛火质感，壁面纹理，阴影深重 |
-| 集市/街道 | 市井氛围，人群虚化，建筑纵深，幌子布料质感 |
+| Palace Interior | Carved beams and painted pillars, clear texture of hall columns, reflective floor tiles, flowing curtains, warm points of candlelight |
+| Courtyard/Garden | Blue stone paths, weathered corridor columns, sparse flowers and trees, water reflections, atmospheric perspective |
+| Bamboo Grove/Mountain | Dancing bamboo shadows, light passing through gaps, texture of bamboo leaves on the ground, distant mountains like ink, sense of air |
+| City Wall/City Wall | Clear texture of blue bricks, weathered quality, layered distant views, atmospheric perspective |
+| Water Pavilion/Lakeside | Shimmering water surface, layered reflections, hazy mist, texture of lotus leaves |
+| Secret Room/Dark Room | Single light source, texture of candlelight, wall surface texture, deep shadows |
+| Market/Street | Marketplace atmosphere, blurred crowds, architectural depth, texture of banners and fabrics |
 
 ---
 
-## 固定风格锚定词（所有输出必须包含）
+## Fixed Style Anchoring Terms (Must be included in all outputs)
 
-**真人写实锚定（必选）：**
+**Live-Action Realism Anchoring (Required):**
 ```
-真人写实摄影，电影级画质，超现实主义纪实，强对比度，极致细节，纹理超清晰
-```
-
-**人物质感（含人物镜头时必选）：**
-```
-皮肤细腻，面容细腻渲染，五官立体，发丝根根分明，发丝细腻渲染
+Live-action photorealistic photography, cinematic quality, surrealist documentary, high contrast, extreme detail, ultra-sharp textures
 ```
 
-**服饰质感（含人物镜头时必选）：**
+**Character Texture (Required when character shots are included):**
 ```
-衣物布料质感清晰，纹理细节超清晰，布料折痕真实，衣物随动态飘逸
-```
-
-**一致性锚定（参考图模式必选）：**
-```
-保持人物面容与参考图一致，保持服饰配色与参考图一致，保持场景光线风格统一
+Delicate skin, finely rendered face, three-dimensional facial features, distinct hair strands, finely rendered hair
 ```
 
-**风格收尾（固定）：**
+**Costume Texture (Required when character shots are included):**
 ```
-古风写实美学，东方古典气韵，电影级分镜构图
-```
-
-**画质锁定词（所有输出必须包含，置于风格收尾之后）：**
-
-模式A（中文）——默认（画面无画内文字需求时）：
-```
-超清4K画质，高细节，自然锐度，写实清晰感，画面无字幕、无水印、无标题叠字
+The fabric texture of the clothing is clear, with ultra-sharp texture details, realistic fabric folds, and garments that flow dynamically with movement.
 ```
 
-模式A（中文）——画内文字场景（画面描述中含书写/书卷/匾额等道具文字时）：
+**Consistency Anchoring (Required for Reference Image Mode):**
 ```
-超清4K画质，高细节，自然锐度，写实清晰感，画面无字幕、无水印、无标题叠字，书卷/匾额等场景道具上的文字清晰可辨
+Keep the character's facial features consistent with the reference image, keep the clothing color scheme consistent with the reference image, and keep the scene lighting style unified
 ```
 
-模式B（英文）——默认：
+**Style Finishing (Fixed):**
+```
+Classical Chinese aesthetic, Eastern classical elegance, cinematic storyboard composition
+```
+
+**Image Quality Lock Terms (must be included in all outputs, placed after the style closing):**
+
+Mode A (Chinese) — Default (when there is no in-frame text requirement):
+```
+Ultra HD 4K quality, high detail, natural sharpness, realistic clarity, no subtitles, no watermarks, no title overlays
+```
+
+Mode A (Chinese) — In-frame Text Scenes (when the visual description includes text on props such as calligraphy, scrolls, or plaques):
+```
+Ultra HD 4K quality, high detail, natural sharpness, realistic clarity, no subtitles, no watermarks, no title overlays in the frame, text on scene props such as scrolls/plaques is clearly legible
+```
+
+Mode B (English) — Default:
 ```
 ultra-sharp 4K, high detail, crisp textures, naturalistic sharpness, photorealistic clarity, no subtitles, no captions, no watermark, no title overlay
 ```
 
-模式B（英文）——画内文字场景：
+Mode B (English) — In-Frame Text Scenes:
 ```
 ultra-sharp 4K, high detail, crisp textures, naturalistic sharpness, photorealistic clarity, no subtitles, no captions, no watermark, no title overlay, legible text on in-scene props such as scrolls and plaques
 ```
 
-**负向词模板（模式B 必须包含，置于提示词末尾）：**
+**Negative Prompt Template (Required for Mode B, placed at the end of the prompt):**
 
-> ⚠️ Seedream（模式A）**不支持负向提示词**，负向词仅适用于模式B。模式A 通过正向词中的质感锚定和画质锁定来保证画面质量。
+> ⚠️ Seedream (Mode A) **does not support negative prompts**; negative prompts are only applicable to Mode B. Mode A ensures image quality through texture anchoring and quality locking within the positive prompt.
 
-模式B（英文）：
+Mode B (English):
 ```
 no plastic skin, no beauty filter, no studio lighting, no centered composition, no oversaturation, no AI generated look, no motion blur, no noise, no blurry, no out of focus, no subtitles, no captions, no watermark, no title overlay, no UI text
 ```
 
 ---
 
-## 美学禁止项（生成时严格规避）
+## Aesthetic Prohibitions (Strictly Avoid During Generation)
 
-以下词汇/风格不得出现于输出提示词中：
+The following terms/styles must not appear in the output prompt:
 
-- ❌ 日系/韩系清新滤镜词（如：清新、小清新、日系感）
-- ❌ 动漫/二次元/插画/CG 渲染相关词
-- ❌ 现代服饰/现代场景元素
-- ❌ 暖黄主调色调词（可用"局部暖色烛光点缀"）
-- ❌ 柔焦/朦胧感/低对比滤镜词
-- ❌ 撞色/混搭/霓虹/荧光色系
-- ❌ 卡通比例、大眼睛、Q版等变形描述
-- ❌ 赛博朋克/蒸汽朋克/架空西幻元素
-- ❌ 画外叠加文字（字幕、水印、标题卡、旁白叠字、片头字等 UI 层文字，画面必须为纯视觉画面）
+- ❌ Japanese/Korean fresh-filter terms (e.g., fresh, light and fresh, Japanese vibe)
+- ❌ Anime/2D/illustration/CG rendering-related terms
+- ❌ Modern clothing/modern scene elements
+- ❌ Warm-yellow dominant color-tone terms (local warm candlelight accents are acceptable)
+- ❌ Soft-focus/hazy/low-contrast filter terms
+- ❌ Clashing colors/mixed styles/neon/fluorescent color palettes
+- ❌ Cartoon proportions, big eyes, chibi-style, or other distorted descriptions
+- ❌ Cyberpunk/steampunk/fantasy Western elements
+- ❌ Overlay text outside the frame (subtitles, watermarks, title cards, voiceover overlays, opening titles, and other UI-layer text; the frame must be purely visual)
 
-> 💡 **例外**：故事世界内的道具文字（角色写字、书卷字迹、匾额、牌匾、书信、药方等场景中自然存在的文字）**不属于禁止范围**。当分镜画面描述中包含此类内容时，应如实描写其存在并要求文字清晰。
+> 💡 **Exception**: Text on props within the story world (characters writing, characters on scrolls, plaques, signboards, letters, prescriptions, and other text naturally present in scenes) **is not prohibited**. When a storyboard frame description includes such content, it should be described as present and the text should be required to be clear.
 
 ---
 
-## 完整生成示例
+## Complete Generation Example
 
-> 以下为同一输入分别使用模式A和模式B的对照展示，实际使用时**仅输出其中一种**。
+> The following shows a side-by-side comparison of the same input using Mode A and Mode B. In actual use, **only one of them should be output**.
 
-### 输入（分镜表行数据）
+### Input (Storyboard Table Row Data)
 
-| 序号 | 画面描述 | 场景 | 关联资产名称 | 时长 | 景别 | 运镜 | 角色动作 | 情绪 | 光影氛围 |
+| No. | Frame Description | Scene | Related Asset Name | Duration | Shot Size | Camera Movement | Character Action | Emotion | Lighting & Atmosphere |
 |------|---------|------|-------------|------|------|------|---------|------|----------|
-| 1 | 沈辞独立城楼之上，远眺苍茫大地 | 城楼 | 沈辞 | 4s | 全景 | 静止 | 负手而立，衣袂随风飘扬 | 坚定 / 决绝 | 黄昏冷调侧逆光 |
+| 1 | Shen Ci stands alone atop the City Wall, gazing far into the vast, desolate land | City Wall | Shen Ci | 4s | Wide shot | Static | Standing with hands behind back, robes fluttering in the wind | Resolute / Determined | Dusk cool-toned side-backlight |
 
-### 示例输出A（模式A · Seedream）
+### Example Output A (Mode A · Seedream)
 
 ```
 [Prompt]
-真人写实摄影，电影级画质，超现实主义纪实，强对比度，极致细节，纹理超清晰，全景构图，人物全身入镜，皮肤细腻，面容细腻渲染，五官立体，发丝根根分明，发丝细腻渲染，男性主角立于城楼之上，双臂自然垂于身侧，衣袂初被风拂动，微微扬起，衣物布料质感清晰，布料折痕真实，衣物随动态飘逸，神情沉毅，目光即将投向远方，眼神坚定清冽，城楼青砖纹理清晰，风化质感，远景层叠，大气透视，黄昏冷调侧逆光，轮廓光勾勒人物边缘，古风写实美学，东方古典气韵，电影级分镜构图，超清4K画质，自然锐度，写实清晰感，画面无字幕、无水印、无标题叠字。
-Based on the reference image of 沈辞, maintain consistent: face features, hairstyle, costume details. Generate a new scene: standing on the ancient city wall at dusk, overlooking vast land. Keep character appearance identical to reference.
+Live-action realistic photography, cinematic quality, surrealist documentary style, high contrast, extreme detail, ultra-clear textures, wide-angle composition, full-body shot of the character, delicate skin, finely rendered facial features, three-dimensional facial structure, individual hair strands clearly defined, finely rendered hair, male protagonist standing atop the City Wall, arms hanging naturally at his sides, garments just beginning to be stirred by the wind, slightly lifted, clear fabric texture, realistic cloth folds, clothing flowing with movement, resolute expression, gaze about to look into the distance, firm and clear eyes, clear texture of the City Wall's blue bricks, weathered texture, layered distant view, atmospheric perspective, cold-toned side-backlight at dusk, rim light outlining the character's edges, ancient-style realistic aesthetics, Eastern classical aura, cinematic storyboard composition, ultra-clear 4K quality, natural sharpness, realistic clarity, no subtitles, no watermarks, no title overlays in the frame.
+Based on the reference image of Shen Ci, maintain consistent: face features, hairstyle, costume details. Generate a new scene: standing on the ancient city wall at dusk, overlooking vast land. Keep character appearance identical to reference.
 ```
 
-### 示例输出B（模式B · Nanobanana）
+### Example Output B (Mode B · Nanobanana)
 
 ```xml
 <role>
@@ -213,7 +213,7 @@ You are a cinematographer and storyboard artist.
 Maintain strict visual continuity across all shots.
 </role>
 <character_reference>
-Image [1]: 沈辞 — black long hair tied up, calm sharp eyes, dark ancient hanfu robe, tall slim body shape
+Image [1]: Shen Ci — black long hair tied up, calm sharp eyes, dark ancient hanfu robe, tall slim body shape
 </character_reference>
 <continuity_rules>
 - Same wardrobe, hairstyle, face features across ALL shots
@@ -231,16 +231,16 @@ no plastic skin, no beauty filter, no studio lighting, no centered composition, 
 
 ---
 
-## 快速参考卡
+## Quick Reference Card
 
-### 情绪 → 画面词速查
+### Emotion → Visual Keyword Quick Lookup
 
-| 情绪 | 面容关键词 | 环境光（主） | 器材光（辅） |
+| Emotion | Facial Keywords | Ambient Light (Primary) | Equipment Light (Secondary) |
 |------|-----------|-------------|-------------|
-| 心动 | 面色微红，眼神含情 | 柔和侧逆自然光 | 轮廓光微勾勒 |
-| 悲伤 | 面容沉静，眼眶微红 | 漫射冷光 | 极少补光 |
-| 愤怒 | 眉眼凌厉，目光如刀 | 硬朗自然侧光，高对比 | 可加顶光（须合理光源） |
-| 温柔 | 眉目含情，眼神柔和 | 散射暖调环境光 | 轮廓光微补 |
-| 坚定 | 神情肃然，眼神清冽 | 冷调自然侧光 | 一般无需 |
-| 冷漠 | 面容清冷，眼神空远 | 冷蓝环境光 | 边缘光精准分离 |
-| 隐忍 | 面容沉静，眼底压抑 | 低调冷光环境 | 不补光，保留阴影 |
+| Infatuation | Slightly flushed complexion, affectionate gaze | Soft side-back natural light | Subtle rim light outlining |
+| Sorrow | Calm expression, slightly reddened eyes | Diffused cool light | Minimal fill light |
+| Anger | Sharp brows and eyes, gaze like a blade | Hard natural side light, high contrast | Top light may be added (must have a logical source) |
+| Tenderness | Affectionate brows and eyes, soft gaze | Scattered warm-toned ambient light | Subtle rim light fill |
+| Determination | Solemn expression, clear and piercing gaze | Cool-toned natural side light | Generally not needed |
+| Indifference | Cool expression, distant and empty gaze | Cool blue ambient light | Precise edge light for separation |
+| Restraint | Calm expression, suppressed emotion in the eyes | Low-key cool ambient light | No fill light, preserve shadows |

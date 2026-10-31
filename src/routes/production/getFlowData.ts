@@ -65,19 +65,19 @@ export default router.post(
                   prompt: child.prompt,
                   desc: child.describe ?? "",
                   src: child.filePath && (await u.oss.getSmallImageUrl(child.filePath!)),
-                  state: child.state ?? "未生成", //todo：矫正状态值
+                  state: child.state ?? "Not generated", // todo: Correct the status value
                 })),
             ),
           })),
         ),
         storyboardTable: "",
         storyboard: [],
-        //todo：矫正workbench数据
+        // todo: Correct workbench data
         //@ts-ignore
         workbench: {
           videoList: [],
         },
-        // //todo：矫正封面数据
+        // //todo: Correct cover data
         // poster: {
         //   items: [],
         // },
@@ -131,7 +131,7 @@ export default router.post(
                   type: child.type,
                   desc: child.describe ?? "",
                   src: child.filePath && (await u.oss.getSmallImageUrl(child.filePath!)),
-                  state: child.state ?? "未生成",
+                  state: child.state ?? "Not generated",
                   errorReason: child?.errorReason ?? "",
                   flowId: child.flowId,
                 })),

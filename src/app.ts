@@ -32,10 +32,10 @@ async function checkPermissions() {
     const { dialog, app } = require("electron");
     const { response } = await dialog.showMessageBox({
       type: "warning",
-      title: "权限不足",
-      message: "应用无法访问数据目录",
-      detail: `无法读写以下目录：\n${userDataPath}\n\n请联系管理员授予权限，或以管理员身份运行本程序。`,
-      buttons: ["确认退出"],
+      title: "Insufficient permissions",
+      message: "The app cannot access the data directory",
+      detail: `Cannot read or write the following directory:${userDataPath}Please contact the administrator to grant permissions, or run this program as an administrator.`,
+      buttons: ["Confirm exit"],
       defaultId: 0,
     });
     if (response === 0) {
@@ -61,30 +61,30 @@ export default async function startServe(randomPort: Boolean = false) {
   app.use(express.json({ limit: "100mb" }));
   app.use(express.urlencoded({ extended: true, limit: "100mb" }));
 
-  // oss 静态资源
+  // OSS static resources
   const ossDir = u.getPath("oss");
   if (!fs.existsSync(ossDir)) {
     fs.mkdirSync(ossDir, { recursive: true });
   }
-  console.log("文件目录:", ossDir);
+  console.log("File directory:", ossDir);
   app.use(
     "/oss",
     authenticateStaticRequest,
     enforceStaticProjectAccess,
     (req, res, next) => {
-      // 如果传参 type=small，则返回小图
+      // If the parameter `type=small` is passed, return the small image.
       if (req.query.size) {
         const size = req.query.size as string;
         const smallImageBaseDir = path.join(ossDir, "smallImage");
         const originalPath = path.join(ossDir, req.path);
 
-        // 解析 size 参数
+        // Parse the size parameter
         let sizeSubDir: string;
         let sizeOpts: ThumbnailSize | undefined;
 
-        // 判断是否为 WIDTHxHEIGHT 格式，如 "200x300"：等比压缩到指定宽高边界
+        // Check if the format is WIDTHxHEIGHT, e.g., "200x300": proportionally compress to the specified width and height bounds
         const dimensMatch = size.match(/^(\d+)x(\d+)$/i);
-        // 判断是否为百分比格式，如 "30"、"30%"：等比压缩到原图的指定百分比
+        // Determine if the format is a percentage, e.g., "30" or "30%": proportionally scale the original image to the specified percentage.
         const percentMatch = size.match(/^(\d+(?:\.\d+)?)\s*%?$/);
 
         if (dimensMatch) {
@@ -97,7 +97,7 @@ export default async function startServe(randomPort: Boolean = false) {
           sizeSubDir = `${percentMatch[1]}p`;
           sizeOpts = { type: "percentage", value: pct };
         } else {
-          // 无效的 size 参数，降级返回原图
+          // Invalid size parameter; falling back to the original image.
           express.static(ossDir, { acceptRanges: false })(req, res, next);
           return;
         }
@@ -111,7 +111,7 @@ export default async function startServe(randomPort: Boolean = false) {
           if (thumbnailPath) {
             res.sendFile(thumbnailPath);
           } else {
-            // 缩略图生成失败，降级返回原图
+            // Thumbnail generation failed; falling back to the original image.
             express.static(ossDir, { acceptRanges: false })(req, res, next);
           }
         });
@@ -121,13 +121,13 @@ export default async function startServe(randomPort: Boolean = false) {
     },
     express.static(ossDir, { acceptRanges: false }),
   );
-  // skills 静态资源
+  // skills static resources
   const skillsDir = u.getPath("skills");
   if (!fs.existsSync(skillsDir)) {
     fs.mkdirSync(skillsDir, { recursive: true });
   }
-  console.log("文件目录:", skillsDir);
-  // 只允许图片文件访问
+  console.log("File directory:", skillsDir);
+  // Only allow access to image files
   app.use(
     "/skills",
     (req, res, next) => {
@@ -136,35 +136,35 @@ export default async function startServe(randomPort: Boolean = false) {
     express.static(skillsDir, { acceptRanges: false }),
   );
 
-  // assets 静态资源
+  // assets static resources
   const assetsDir = u.getPath("assets");
   if (!fs.existsSync(assetsDir)) {
     fs.mkdirSync(assetsDir, { recursive: true });
   }
-  console.log("文件目录:", assetsDir);
+  console.log("File directory:", assetsDir);
   app.use("/assets", authenticateStaticRequest, enforceStaticProjectAccess, express.static(assetsDir, { acceptRanges: false }));
 
-  // data/web 静态网站
+  // data/web static website
   const webDir = u.getPath("web");
   if (fs.existsSync(webDir)) {
-    console.log("静态网站目录:", webDir);
+    console.log("Static website directory:", webDir);
     app.use(express.static(webDir, { acceptRanges: false }));
   } else {
-    console.warn("静态网站目录不存在:", webDir);
+    console.warn("Static website directory does not exist:", webDir);
   }
 
-  // API 统一鉴权并校验项目归属；登录接口在 authenticateRequest 中白名单放行。
+  // Unified API authentication and project ownership validation; the login endpoint is whitelisted in `authenticateRequest`.
   app.use("/api", authenticateRequest, enforceProjectAccess);
 
   const router = await import("@/router");
   await router.default(app);
 
-  // 404 处理
+  // 404 handling
   app.use((_, res, next: NextFunction) => {
     return res.status(404).send({ message: "API 404 Not Found" });
   });
 
-  // 错误处理
+  // Error handling
   app.use((err: any, _: Request, res: Response, __: NextFunction) => {
     res.locals.message = err.message;
     res.locals.error = err;
@@ -172,24 +172,25 @@ export default async function startServe(randomPort: Boolean = false) {
     res.status(err.status || 500).send(err);
   });
 
-  const port = randomPort ? 0 : 10588;
+  const envPort = Number(process.env.PORT);
+  const port = randomPort ? 0 : (Number.isFinite(envPort) && envPort > 0 ? envPort : 10588);
   return await new Promise((resolve) => {
     server.listen(port, async () => {
       const address = server.address();
       const realPort = typeof address === "string" ? address : address?.port;
-      console.log(`[服务启动成功]: http://localhost:${realPort}`);
+      console.log(`[Service started successfully]: http://localhost:${realPort}`);
       resolve(realPort);
     });
   });
 }
 
-// 支持await关闭
+// Supports closing with await
 export function closeServe(): Promise<void> {
   return new Promise((resolve, reject) => {
     if (server) {
       server.close((err?: Error) => {
         if (err) return reject(err);
-        console.log("[服务已关闭]");
+        console.log("[Service Closed]");
         resolve();
       });
     } else {

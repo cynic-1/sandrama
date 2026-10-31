@@ -1,152 +1,152 @@
 ---
 name: director_storyboard
-description: 导演分镜提示词技法 · 真人都市写实
+description: Director Storyboard Prompt Techniques · Live-Action Urban Realism
 metaData: director_skills
 ---
 
-# 分镜提示词 · 真人都市写实 · 风格专属技法
+# Storyboard Prompts · Live-Action Urban Realism · Style-Specific Techniques
 
 ---
 
-## 适用范围
+## Scope
 
-本 Skill 专用于**真人都市写实**风格的分镜提示词生成。
+This Skill is exclusively for generating storyboard prompts in the **Live-Action Urban Realism** style.
 
 ---
 
-## 情绪 → 面容/眼神词映射
+## Emotion → Facial/Eye Expression Mapping
 
-| 情绪输入 | 面容词 | 眼神词 | 微表情补充 |
+| Emotion Input | Facial Terms | Eye Terms | Micro-Expression Supplements |
 |----------|--------|--------|-----------|
-| 心动 / 欣喜 | 嘴角微扬，眼底笑意 | 眼神明亮，目光专注 | 脸颊微红，表情自然 |
-| 悲伤 / 失落 | 面色沉静，神情低落 | 眼神黯淡，目光游离 | 眉心轻蹙，表情内敛 |
-| 愤怒 / 压迫 | 眉眼凌厉，神情冷峻 | 目光如炬，眼神强势 | 唇线收紧，气场压迫 |
-| 温柔 / 深情 | 神情柔和，眉目温润 | 眼神专注，目光深情 | 嘴角轻扬，表情克制温暖 |
-| 坚定 / 决绝 | 神情严肃，面容沉着 | 眼神坚定，目光清冽 | 眉眼平静，气质干练 |
-| 惊讶 / 震惊 | 神情微愣，面色微变 | 眼神放大，目光骤聚 | 眉梢轻挑，唇形微张 |
-| 冷漠 / 疏离 | 面容冷淡，神情漠然 | 眼神空远，目光无波 | 表情几乎凝固，气质疏离 |
-| 喜悦 / 雀跃 | 神情鲜活，笑容灿烂 | 眼神明亮有神，笑眼弯弯 | 嘴角上扬，表情生动自然 |
-| 紧张 / 慌乱 | 表情略带茫然，神态慌张 | 眼神飘忽，目光四顾 | 眉心微蹙，表情生动真实 |
-| 隐忍 / 克制 | 神情内敛，面容沉静 | 眼神深沉，眼底有情绪压抑 | 唇线收紧，喉结微动 |
+| Infatuation / Joy | Corners of mouth slightly upturned, smile in the eyes | Bright eyes, focused gaze | Slight blush on cheeks, natural expression |
+| Sadness / Loss | Calm complexion, downcast demeanor | Dim eyes, wandering gaze | Slight frown between brows, restrained expression |
+| Anger / Oppression | Sharp brows and eyes, stern demeanor | Piercing gaze, dominant eyes | Tightened lip line, oppressive aura |
+| Tenderness / Deep Affection | Soft demeanor, gentle brows and eyes | Focused eyes, affectionate gaze | Slight upturn of mouth, restrained warmth |
+| Determination / Resolve | Serious demeanor, composed face | Firm eyes, clear and sharp gaze | Calm brows and eyes, capable temperament |
+| Surprise / Shock | Slightly stunned expression, slight change in complexion | Widened eyes, sudden focus | Slight raise of eyebrows, slightly parted lips |
+| Indifference / Alienation | Cold face, indifferent demeanor | Distant, empty eyes, unrippled gaze | Expression nearly frozen, aloof temperament |
+| Joy / Excitement | Vivid expression, radiant smile | Bright, lively eyes, smiling eyes | Upturned mouth, lively and natural expression |
+| Tension / Panic | Slightly bewildered expression, flustered demeanor | Shifting eyes, looking around | Slight frown between brows, vivid and realistic expression |
+| Endurance / Restraint | Inward demeanor, calm face | Deep eyes, suppressed emotion in the depths | Tightened lip line, slight movement of the Adam's apple |
 
 ---
 
-## 光影氛围词库（真人都市写实）
+## Lighting and Atmosphere Vocabulary (Live-Action Urban Realism)
 
-### 时间段光线
+### Time-of-Day Lighting
 
-| 时间段 | 主光词 | 色调词 | 气氛词 |
+| Time of Day | Key Light Terms | Color Tone Terms | Atmosphere Terms |
 |--------|--------|--------|---------|
-| 清晨 | 散射晨光，漫射柔光 | 冷白/中性色调 | 城市苏醒感，空气清新 |
-| 午后 | 柔和斜侧光，漫射散光 | 暖调为主，轻暖调 | 光影斑驳，层次分明 |
-| 傍晚/黄昏 | 暖调侧逆光，斜射余晖 | 暖调为主，局部暖光点缀 | 长影拉伸，光感温馨 |
-| 夜间 | 窗光冷蓝，室内暖点光源 | 冷暖对比 | 光影幽深，明暗强对比 |
-| 雨天/阴天 | 漫射冷光，无主光源 | 灰蓝主调 | 空气潮湿感，低饱和度 |
-| 办公室/室内 | 顶光+环境光 | 中性灰调 | 柔和均匀，专业感 |
+| Early Morning | Diffused morning light, soft scattered light | Cool white/neutral tones | Sense of city awakening, fresh air |
+| Afternoon | Soft oblique side light, diffused scattered light | Warm tones dominant, light warm tones | Dappled light and shadow, distinct layers |
+| Evening/Dusk | Warm-toned side backlight, slanting afterglow | Warm tones dominant, local warm light accents | Stretched long shadows, warm light feel |
+| Night | Cold blue window light, indoor warm point light sources | Cold-warm contrast | Deep shadows, strong light-dark contrast |
+| Rainy/Overcast | Diffused cold light, no key light source | Gray-blue dominant | Humid air feel, low saturation |
+| Office/Indoor | Top light + ambient light | Neutral gray tones | Soft and even, professional feel |
 
-### 情绪光影
+### Emotional Lighting
 
-| 情绪基调 | 光线类型 | 补充约束 |
+| Emotional Tone | Light Type | Supplementary Constraints |
 |----------|----------|---------|
-| 心动/温情 | 柔和侧逆光，散射暖光局部 | 轮廓光勾勒，浅景深柔化背景 |
-| 对峙/压迫 | 硬侧光，高对比度强打光 | 阴影硬朗，明暗分割明显 |
-| 压抑/悲伤 | 漫射冷光，顶光或侧冷光 | 低调打光，面部局部暗部留存 |
-| 神秘/肃穆 | 冷蓝侧光，逆光剪影 | 光晕控制，边缘光精准 |
-| 空灵/意境 | 散射软光，背光过曝微调 | 空气透视感，远景虚淡 |
+| Infatuation/Warmth | Soft side backlight, local diffused warm light | Rim light outlining, shallow depth of field softening background |
+| Confrontation/Oppression | Hard side light, high-contrast strong lighting | Hard shadows, distinct light-dark division |
+| Oppression/Sadness | Diffused cold light, top light or side cold light | Low-key lighting, retaining local shadows on face |
+| Mystery/Solemnity | Cold blue side light, backlit silhouette | Halo control, precise edge light |
+| Ethereal/Atmospheric | Diffused soft light, slight overexposure of backlight | Atmospheric perspective, distant background blurred and faint |
 
 ---
 
-## 场景质感约束词（按场景类型）
+## Scene Texture Constraints (By Scene Type)
 
-| 场景类型 | 必加约束词 |
+| Scene Type | Mandatory Constraint Terms |
 |----------|-----------|
-| 办公室 | 玻璃隔断反光，办公桌面整洁，电脑屏幕光，现代办公椅 |
-| 咖啡厅/餐厅 | 木质桌椅纹理，咖啡杯细节，暖色吊灯，窗外街景虚化 |
-| 居家空间 | 沙发布料质感，地毯纹理，台灯暖光，生活杂物细节 |
-| 街头/广场 | 沥青路面反光，建筑立面细节，霓虹灯招牌，人群虚化 |
-| 商场/室内空间 | 大理石地面反光，玻璃橱窗，现代照明，商业空间纵深感 |
-| 车内 | 座椅皮革质感，车窗反射，仪表盘光，窗外街景虚化 |
-| 卧室/私密空间 | 床单褶皱，床头灯暖光，衣物随意摆放，生活气息 |
+| Office | Glass partition reflections, tidy office desk, computer screen light, modern office chair |
+| Cafe/Restaurant | Wood grain texture of tables and chairs, coffee cup details, warm-colored pendant lights, blurred street view outside window |
+| Home Space | Sofa fabric texture, carpet texture, warm light from table lamp, details of household clutter |
+| Street/Plaza | Asphalt road surface reflection, building facade details, neon signs, blurred crowd |
+| Mall/Indoor Space | Marble floor reflection, glass display windows, modern lighting, depth of commercial space |
+| Inside Car | Leather texture of seats, car window reflections, dashboard light, blurred street view outside window |
+| Bedroom/Private Space | Bed sheet wrinkles, warm light from bedside lamp, casually placed clothes, lived-in atmosphere |
 
 ---
 
-## 固定风格锚定词（所有输出必须包含）
+## Fixed Style Anchoring Terms (Must be included in all outputs)
 
-**真人写实锚定（必选）：**
+**Live-Action Realism Anchoring (Mandatory):**
 
-真人写实摄影，电影级画质，超现实主义纪实，强对比度，极致细节，纹理超清晰
+Live-action realism photography, cinematic quality, hyper-realistic documentary, strong contrast, extreme detail, ultra-clear textures
 
-**人物质感（含人物镜头时必选）：**
+**Character Texture (Mandatory when character shots are included):**
 
-皮肤细腻，面容细腻渲染，五官立体，发丝根根分明，发丝细腻渲染
+Fine skin, delicate facial rendering, three-dimensional facial features, distinct individual hair strands, delicate hair rendering
 
-**服饰质感（含人物镜头时必选）：**
+**Clothing Texture (Mandatory when character shots are included):**
 
-现代服饰布料质感清晰，纹理细节超清晰，衣物随动态自然垂坠，现代剪裁合身
+Clear modern clothing fabric texture, ultra-clear texture details, clothes draping naturally with movement, modern tailored fit
 
-**一致性锚定（参考图模式必选）：**
+**Consistency Anchoring (Mandatory for Reference Image Mode):**
 
-保持人物面容与参考图一致，保持服饰配色与参考图一致，保持场景光线风格统一
+Maintain character face consistent with reference image, maintain costume color scheme consistent with reference image, maintain scene lighting style unified
 
-**风格收尾（固定）：**
+**Style Closing (Fixed):**
 
-都市写实美学，现代东方气质，电影级分镜构图
+Urban realism aesthetics, modern Eastern temperament, cinematic storyboard composition
 
-**画质锁定词（所有输出必须包含，置于风格收尾之后）：**
+**Quality Lock Terms (Must be included in all outputs, placed after Style Closing):**
 
-模式A（中文）——默认（画面无画内文字需求时）：
-超清4K画质，高细节，自然锐度，写实清晰感，画面无字幕、无水印、无标题叠字
+Mode A (Chinese) — Default (when no in-scene text is required):
+Ultra-clear 4K quality, high detail, natural sharpness, realistic clarity, no subtitles, no watermarks, no title overlays in the frame
 
-模式B（英文）——默认：
+Mode B (English) — Default:
 ultra-sharp 4K, high detail, crisp textures, naturalistic sharpness, photorealistic clarity, no subtitles, no captions, no watermark, no title overlay
 
-模式B（英文）——画内文字场景：
+Mode B (English) — In-scene text scenarios:
 ultra-sharp 4K, high detail, crisp textures, naturalistic sharpness, photorealistic clarity, no subtitles, no captions, no watermark, no title overlay, legible text on in-scene props such as screens, posters, and signage
 
-**负向词模板（模式B 必须包含，置于提示词末尾）：**
+**Negative Prompt Template (Must be included in Mode B, placed at the end of the prompt):**
 
-> ⚠️ Seedream（模式A）**不支持负向提示词**，负向词仅适用于模式B。模式A 通过正向词中的质感锚定和画质锁定来保证画面质量。
+> ⚠️ Seedream (Mode A) **does not support negative prompts**; negative prompts are only applicable to Mode B. Mode A ensures image quality through texture anchoring and quality locking in the positive prompts.
 
-模式B（英文）：
+Mode B (English):
 no plastic skin, no beauty filter, no studio lighting, no centered composition, no oversaturation, no AI generated look, no motion blur, no noise, no blurry, no out of focus, no subtitles, no captions, no watermark, no title overlay, no UI text, no ancient costume, no hanfu, no traditional Chinese architecture
 
 ---
 
-## 美学禁止项（生成时严格规避）
+## Aesthetic Prohibitions (Strictly avoid during generation)
 
-以下词汇/风格不得出现于输出提示词中：
+The following terms/styles must not appear in the output prompts:
 
-- ❌ 古风/古代/汉服/传统建筑相关词
-- ❌ 动漫/二次元/插画/CG 渲染相关词
-- ❌ 现代元素缺失（必须明确现代场景）
-- ❌ 暖黄主调色调词（可用"局部暖色灯光点缀"）
-- ❌ 柔焦/朦胧感/低对比滤镜词
-- ❌ 撞色/混搭/霓虹/荧光色系
-- ❌ 卡通比例、大眼睛、Q版等变形描述
-- ❌ 赛博朋克/蒸汽朋克/架空西幻元素
-- ❌ 画外叠加文字（字幕、水印、标题卡、旁白叠字、片头字等 UI 层文字，画面必须为纯视觉画面）
+- ❌ Terms related to ancient style/ancient times/hanfu/traditional architecture
+- ❌ Terms related to anime/2D/illustration/CG rendering
+- ❌ Lack of modern elements (modern scenes must be explicitly stated)
+- ❌ Warm yellow dominant tone terms (may use "local warm light accents")
+- ❌ Soft focus/hazy feel/low contrast filter terms
+- ❌ Clashing colors/mixing/neon/fluorescent color schemes
+- ❌ Cartoon proportions, big eyes, chibi-style deformations
+- ❌ Cyberpunk/steampunk/fantasy Western elements
+- ❌ Overlaid text outside the frame (subtitles, watermarks, title cards, voiceover overlays, opening credits, and other UI layer text; the frame must be a pure visual image)
 
-> 💡 **例外**：故事世界内的道具文字（角色看手机/电脑屏幕、海报、路牌、招牌等场景中自然存在的文字）**不属于禁止范围**。当分镜画面描述中包含此类内容时，应如实描写其存在并要求文字清晰。
+> 💡 **Exception**: Text on props within the story world (text naturally present in scenes such as characters looking at phone/computer screens, posters, road signs, shop signs, etc.) **is not prohibited**. When the storyboard frame description includes such content, its presence should be described faithfully and the text should be required to be clear.
 
 ---
 
-## 完整生成示例
+## Complete Generation Example
 
-> 以下为同一输入分别使用模式A和模式B的对照展示，实际使用时**仅输出其中一种**。
+> The following shows a comparison of the same input using Mode A and Mode B respectively. In actual use, **only one of them should be output**.
 
-### 输入（分镜表行数据）
+### Input (Storyboard Table Row Data)
 
-| 序号 | 画面描述 | 场景 | 关联资产名称 | 时长 | 景别 | 运镜 | 角色动作 | 情绪 | 光影氛围 |
+| No. | Frame Description | Scene | Associated Asset Name | Duration | Shot Size | Camera Movement | Character Action | Emotion | Lighting Atmosphere |
 |------|---------|------|-------------|------|------|------|---------|------|----------|
-| 1 | 林晚独立咖啡厅窗边，窗外雨滴滑落 | 咖啡厅 | 林晚 | 4s | 中景 | 缓推 | 手持咖啡杯，目光望向窗外 | 思念 / 期待 | 暖调侧光+冷蓝窗光 |
+| 1 | Lin Wan stands by the cafe window, raindrops sliding down outside | Cafe | Lin Wan | 4s | Medium Shot | Slow Push | Holding a coffee cup, gazing out the window | Longing / Anticipation | Warm-toned side light + cold blue window light |
 
-### 示例输出A（模式A · Seedream）
+### Example Output A (Mode A · Seedream)
 
 [Prompt]
-真人写实摄影，电影级画质，超现实主义纪实，强对比度，极致细节，纹理超清晰，中景构图，人物半身入镜，皮肤细腻，面容细腻渲染，五官立体，发丝根根分明，发丝细腻渲染，女性主角立于咖啡厅窗边，双手自然捧着一杯咖啡，目光望向窗外，眼神期待又略带思念，咖啡厅暖调侧光，窗外冷蓝雨光勾勒人物边缘，木质桌椅纹理清晰，玻璃窗上的雨滴细节，现代东方气质，电影级分镜构图，超清4K画质，自然锐度，写实清晰感，画面无字幕、无水印、无标题叠字。
-Based on the reference image of 林晚, maintain consistent: face features, hairstyle, costume details. Generate a new scene: standing by the cafe window on a rainy day, holding a coffee cup, gazing outside. Keep character appearance identical to reference.
+Live-action realism photography, cinematic quality, hyper-realistic documentary, strong contrast, extreme detail, ultra-clear textures, medium shot composition, character half-body in frame, fine skin, delicate facial rendering, three-dimensional facial features, distinct individual hair strands, delicate hair rendering, female protagonist standing by the cafe window, naturally holding a cup of coffee with both hands, gazing out the window, eyes full of anticipation and slight longing, warm-toned side light in the cafe, cold blue rain light outside the window outlining the character's edges, clear wood grain texture of tables and chairs, details of raindrops on the glass window, modern Eastern temperament, cinematic storyboard composition, ultra-clear 4K quality, natural sharpness, realistic clarity, no subtitles, no watermarks, no title overlays in the frame.
+Based on the reference image of Lin Wan, maintain consistent: face features, hairstyle, costume details. Generate a new scene: standing by the cafe window on a rainy day, holding a coffee cup, gazing outside. Keep character appearance identical to reference.
 
-### 示例输出B（模式B · Nanobanana）
+### Example Output B (Mode B · Nanobanana)
 
 ```xml
 <role>
@@ -154,7 +154,7 @@ You are a cinematographer and storyboard artist.
 Maintain strict visual continuity across all shots.
 </role>
 <character_reference>
-Image [1]: 林晚 — black long hair tied in a half ponytail, gentle eyes, modern casual outfit, slim body shape
+Image [1]: Lin Wan — black long hair tied in a half ponytail, gentle eyes, modern casual outfit, slim body shape
 </character_reference>
 <continuity_rules>
 - Same wardrobe, hairstyle, face features across ALL shots
@@ -170,18 +170,18 @@ no plastic skin, no beauty filter, no studio lighting, no centered composition, 
 </negative>
 ```
 
-## 快速参考卡
+## Quick Reference Card
 
-### 情绪 → 画面词速查
+### Emotion → Visual Keyword Quick Lookup
 
-| 情绪 | 面容关键词 | 光线匹配 |
+| Emotion | Facial Keywords | Lighting Match |
 |------|-----------|---------|
-| 心动 | 嘴角微扬，眼底笑意 | 暖调侧光 |
-| 悲伤 | 面色沉静，眼神黯淡 | 漫射冷光 |
-| 愤怒 | 眉眼凌厉，目光如炬 | 硬侧光高对比 |
-| 温柔 | 神情柔和，眼神专注 | 散射暖光局部 |
-| 坚定 | 神情严肃，眼神坚定 | 中性灰调 |
-| 冷漠 | 面容冷淡，眼神空远 | 冷蓝侧光 |
-| 隐忍 | 面容沉静，眼底压抑 | 低调冷光，阴影留存 |
+| Infatuation | Slight upturn at the corners of the mouth, a smile in the eyes | Warm-toned side light |
+| Sorrow | Calm complexion, dim eyes | Diffused cool light |
+| Anger | Sharp brows and eyes, piercing gaze | Hard side light, high contrast |
+| Tenderness | Soft expression, focused eyes | Localized diffused warm light |
+| Determination | Serious expression, resolute eyes | Neutral gray tone |
+| Indifference | Cold expression, distant, empty eyes | Cool blue side light |
+| Restraint | Calm expression, suppressed emotions in the eyes | Low-key cool light, shadows preserved |
 
 

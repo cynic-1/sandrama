@@ -57,8 +57,8 @@ function normalizeSource(source: string): VideoReferenceSource | null {
 
 function normalizeType(type: unknown): VideoReferenceType {
   const normalized = String(type || "image").toLowerCase();
-  if (normalized.includes("audio") || normalized.includes("音频")) return "audio";
-  if (normalized.includes("video") || normalized.includes("视频")) return "video";
+  if (normalized.includes("audio") || normalized.includes("Audio")) return "audio";
+  if (normalized.includes("video") || normalized.includes("Video")) return "video";
   return "image";
 }
 
@@ -75,7 +75,7 @@ function parseMode(mode: unknown): ParsedMode {
           return parsed.flat(Infinity).filter((item): item is string => typeof item === "string");
         }
       } catch {
-        // 保留原始模式，让下方按单模式处理。
+        // Preserve the original mode and let the lower section handle it in single-order mode.
       }
     }
     return trimmed;
@@ -121,8 +121,8 @@ function takeByType(references: ResolvedVideoReference[], type: VideoReferenceTy
 }
 
 /**
- * 解析视频参考媒体。
- * 手动选择仍然排在最前面；没有手动选择时，自动使用当前轨道的分镜图及其关联资产。
+ * Parse video reference media.
+ * Manual selection remains prioritized; when no manual selection is made, the storyboard and its associated assets of the current track are used automatically.
  */
 export async function resolveVideoReferences(options: ResolveVideoReferencesOptions): Promise<ResolveVideoReferencesResult> {
   const mode = parseMode(options.mode);
@@ -258,7 +258,7 @@ export async function resolveVideoReferences(options: ResolveVideoReferencesOpti
     };
   }
 
-  // 未声明多媒体能力时，只传图片，避免把音频/视频资产误当成图片参考。
+  // When multimedia capabilities are not declared, pass only images to avoid misinterpreting audio/video assets as image references.
   return { references: takeByType(allReferences, "image"), storyboardIds };
 }
 

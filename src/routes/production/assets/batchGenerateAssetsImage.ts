@@ -17,7 +17,7 @@ export default router.post(
   async (req, res) => {
     try {
       const result = await startDerivativeAssetImageGeneration(req.body);
-      return res.status(200).send(success(result, "已开始生成资产图片"));
+      return res.status(200).send(success(result, "Asset image generation has started"));
     } catch (error) {
       const message = error instanceof Error ? error.message : String(error);
       return res.status(400).send({ code: 400, data: null, message });

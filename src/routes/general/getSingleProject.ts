@@ -7,7 +7,7 @@ import { currentUser } from "@/middleware/auth";
 import { isAdmin } from "@/utils/auth";
 const router = express.Router();
 
-// 获取单个项目
+// Get a single item
 export default router.post(
   "/",
   validateFields({

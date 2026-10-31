@@ -1,45 +1,45 @@
 ---
 name: director_storyboard_table_style
-description: 分镜表古风约束 — 定义真人古风写实在分镜表中的光影氛围规范、光源角度、动作节奏、环境动态、运镜禁忌与转场禁忌。适用于任何叙事类型。
+description: Classical-style constraints for the storyboard table — Defines the norms for lighting and atmosphere, light source angles, action rhythm, environmental dynamics, camera movement prohibitions, and transition prohibitions in live-action classical realism storyboards. Applicable to any narrative type.
 metaData: director_skills
 ---
 
-# 分镜表古风约束 · 真人古风写实 · 技法参考
+# Storyboard Table Classical-Style Constraints · Live-Action Classical Realism · Technique Reference
 
 ---
 
-## 一、分镜表定位
+## I. Positioning of the Storyboard Table
 
-分镜表是导演将剧本转化为镜头语言的核心工具。以下仅提供真人古风写实风格在分镜表层面的约束规范。
-
----
-
-## 二、光影与氛围
-
-- **同场戏光影统一** — 一场戏内不应出现两种以上光影方案，除非有明确的叙事转折（如烛光被吹灭→月光冷辉）
-- **情绪色盘绑定** — 每场戏至少绑定 1 个情绪场景（如初见心动/分离误会/重逢释怀），并在镜头组内保持主色+辅色连续性
-- **光源角度规范** — 正给镜头光源默认 38.5° 斜射（非笼统的 45°），侧给镜头根据画面需要调整。描述光影时须区分正给/侧给的角度差异
-- **冷暖色调与叙事阶段匹配** — 悲戚/孤绝/被弃段落严格使用冷光（青黛冷白），禁用暖橙/琥珀；暖色调（暖橙+冷蓝背景对比）仅在情感回暖后使用
-- **光影转场是高级手段** — 从窗纱透光（E）渐变到烛光暖影（C）= 日转夜的时间流逝。在分镜表中标注光影变化点
+The storyboard table is the core tool for a director to translate a script into camera language. The following provides only the constraint norms for the live-action classical realism style at the storyboard table level.
 
 ---
 
-## 三、环境动态
+## II. Lighting and Atmosphere
 
-- **环境动态增加画面呼吸感** — 花瓣飘落、烟雾升腾、水波荡漾、纱帘飘动。每 3-4 个镜头至少安排一个有环境动态的镜头，避免画面"死"掉
-- **古风环境元素优先** — 环境动态应选用古风世界观内的元素：落花、飞絮、轻烟、流水、风过竹林、烛火摇曳，禁止出现现代元素
-
----
-
-## 四、古风动作节奏
-
-- **古风动作要慢** — 所有人物动作默认慢速。起身、转身、抬手都应标注"缓慢"
-- **服饰动态** — 古风服饰（宽袖、裙摆、披帛）的飘动是天然的动态资产，可在画面描述中加入衣袂/裙摆的动态，增加画面的"活"感
-- **仪态约束** — 古风人物的举止应符合时代气质：行走稳缓、举手投足含蓄内敛、不出现现代化的肢体语言（如耸肩、摊手）
+- **Unified lighting within a scene** — No more than two lighting schemes should appear within a single scene, unless there is a clear narrative turning point (e.g., candlelight being blown out → cold moonlight)
+- **Emotional color palette binding** — Each scene must be bound to at least one emotional scenario (e.g., first meeting infatuation / separation misunderstanding / reunion relief), and maintain continuity of the primary and secondary colors within the shot group
+- **Light source angle norms** — For frontal shots, the default light source angle is 38.5° oblique (not a generic 45°); for side shots, adjust according to the visual needs. When describing lighting, the angle difference between frontal and side shots must be distinguished
+- **Warm/cool tones matched to narrative stages** — Melancholic / isolated / abandoned segments must strictly use cool light (cyan-dark cold white); warm orange/amber is prohibited. Warm tones (warm orange + cool blue background contrast) are only used after the emotional tone warms up
+- **Lighting transitions are an advanced technique** — A gradient from window gauze light transmission (E) to candlelight warm shadows (C) = the passage of time from day to night. Mark the lighting change points in the storyboard table
 
 ---
 
-## 五、运镜禁忌
+## III. Environmental Dynamics
 
-- **禁用快速运镜** — 甩镜、急推、手持晃动与真人古风写实的气质冲突
-- **禁用花式转场** — 划屏、旋转、百叶窗等与本风格不兼容
+- **Environmental dynamics add a sense of breath to the frame** — Falling petals, rising smoke, rippling water, fluttering gauze curtains. Arrange at least one shot with environmental dynamics every 3-4 shots to avoid the frame becoming "dead"
+- **Priority for classical-style environmental elements** — Environmental dynamics should use elements within the classical worldview: falling flowers, flying fluff, light smoke, flowing water, wind through bamboo groves, flickering candle flames. Modern elements are prohibited
+
+---
+
+## IV. Classical-Style Action Rhythm
+
+- **Classical-style actions should be slow** — All character actions default to slow speed. Rising, turning, and raising hands should be marked as "slow"
+- **Costume dynamics** — The fluttering of classical costumes (wide sleeves, skirt hems, shawls) is a natural dynamic asset. Dynamics of sleeves/skirt hems can be added to the frame description to increase the "living" feel of the image
+- **Demeanor constraints** — The behavior of classical characters should match the temperament of the era: steady and slow walking, restrained and introverted gestures, no modern body language (such as shrugging or spreading hands)
+
+---
+
+## V. Camera Movement Prohibitions
+
+- **Prohibition of fast camera movements** — Whip pans, rapid pushes, and handheld shake conflict with the temperament of live-action classical realism
+- **Prohibition of fancy transitions** — Wipes, rotations, and venetian blinds are incompatible with this style

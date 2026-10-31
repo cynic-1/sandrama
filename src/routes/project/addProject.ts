@@ -6,7 +6,7 @@ import { validateFields } from "@/middleware/middleware";
 import { currentUser } from "@/middleware/auth";
 const router = express.Router();
 
-// 新增项目
+// Add a new project
 export default router.post(
   "/",
   validateFields({
@@ -44,6 +44,6 @@ export default router.post(
       mode,
     });
 
-    res.status(200).send(success({ message: "新增项目成功", projectId }));
+    res.status(200).send(success({ message: "Project added successfully", projectId }));
   },
 );

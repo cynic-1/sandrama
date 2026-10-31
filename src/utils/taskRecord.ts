@@ -1,16 +1,16 @@
 import db from "@/utils/db";
 
 const taskStateMap = {
-  "0": "进行中",
-  "1": "已完成",
-  "-1": "生成失败",
+  "0": "In progress",
+  "1": "Completed",
+  "-1": "Generation failed",
 };
 /**
- * 记录任务并返回结束函数
- * @param projectId  项目 ID
- * @param taskClass  任务分类
- * @param modelName   模型名称
- * @param opts       可选项：关联对象、任务描
+ * Record the task and return the end function
+ * @param projectId  Project ID
+ * @param taskClass  Task classification
+ * @param modelName   Model name
+ * @param opts       Optional: related object, task description
  */
 export default async function taskRecord(
   projectId: number,
@@ -29,7 +29,7 @@ export default async function taskRecord(
   } else if (typeof content === "string") {
     opteorContent = content;
   } else if (typeof content === "function") {
-    throw new Error("不支持的类型");
+    throw new Error("Unsupported type");
   } else {
     try {
       opteorContent = JSON.stringify(content);
@@ -48,7 +48,7 @@ export default async function taskRecord(
     startTime: Date.now(),
   });
 
-  /** 任务成功时调用 done(1)，失败时调用 done(-1, '原因') */
+  /** Call done(1) when the task succeeds, and done(-1, 'reason') when it fails*/
   return async function done(state: 1 | -1, reason?: string) {
     await db("o_tasks")
       .where("id", id)

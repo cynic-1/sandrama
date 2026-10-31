@@ -1,155 +1,155 @@
-# 场景图生成 · 都市写实约束手册
+# Scene Image Generation · Urban Realism Constraint Manual
 
 ---
 
-## 一、场景美学原则
+## I. Scene Aesthetic Principles
 
-1. **空间叙事** — 场景承载情绪与叙事功能，不是纯背景板
-2. **层次纵深** — 所有场景必须具备前/中/后景，杜绝扁平
-3. **质感至上** — 混凝土/玻璃/木材/金属/布料等材质纹理必须超清晰
-4. **实拍为锚** — 一切画面以真实摄影为标准，拒绝 3D 渲染/CG 动画质感；追求镜头光学特征（景深虚化、镜头暗角、色散微痕）与物理光照（自然光漫射、焦散、体积光）
+1. **Spatial Narrative** — Scenes carry emotional and narrative functions; they are not mere background boards.
+2. **Layered Depth** — All scenes must possess foreground/midground/background layers; flat compositions are prohibited.
+3. **Texture Supremacy** — Material textures such as concrete, glass, wood, metal, and fabric must be ultra-clear.
+4. **Live-Action Anchor** — All visuals must adhere to real photography standards, rejecting 3D rendering/CG animation aesthetics. Pursue lens optical characteristics (depth-of-field blur, lens vignetting, subtle chromatic aberration) and physical lighting (natural light diffusion, caustics, volumetric light).
 
 ---
 
-## 二、季节色调映射
+## II. Seasonal Color Mapping
 
-| 季节 | 主色调 | 辅色调 | 提示词 |
+| Season | Primary Colors | Secondary Colors | Prompt Keywords |
 |---|---|---|---|
-| 春 | 嫩绿 + 浅粉 | 天青、鹅黄 | 春日嫩绿、桃花浅粉 |
-| 夏 | 翠绿 + 深蓝 | 海蓝、白 | 夏日翠绿、深蓝天空 |
-| 秋 | 金黄 + 橙红 | 琥珀、褐 | 秋日金黄、落叶橙红 |
-| 冬 | 灰白 + 冷蓝 | 银灰、墨蓝 | 冬日灰白、冷蓝天空 |
+| Spring | Tender green + light pink | Sky blue, goose yellow | Spring tender green, peach blossom light pink |
+| Summer | Emerald green + deep blue | Sea blue, white | Summer emerald green, deep blue sky |
+| Autumn | Golden yellow + orange-red | Amber, brown | Autumn golden yellow, falling leaves orange-red |
+| Winter | Grey-white + cold blue | Silver-grey, ink blue | Winter grey-white, cold blue sky |
 
 ---
 
-## 三、室内场景
+## III. Indoor Scenes
 
-### 空间规范
+### Spatial Specifications
 
-| 维度 | 约束 | 提示词 |
+| Dimension | Constraint | Prompt Keywords |
 |---|---|---|
-| 风格 | 现代公寓/写字楼/咖啡厅/酒店/商场，现代简约/北欧/工业风 | 现代{风格}风格 |
-| 材质 | 混凝土/玻璃/木材/金属/布艺为主 | 混凝土墙面、玻璃幕墙、木地板 |
-| 色调 | 低饱和中性色 + 原木色 + 点缀色 | 中性色调、原木色、点缀色 |
-| 纵深 | 前/中/后景层次 | 前景{元素}、中景{元素}、后景{元素} |
-| 质感 | 木纹/金属拉丝/布艺纹理可辨 | 纹理清晰、质感写实 |
-| 光照 | 自然光源为主（窗光/台灯/吊灯），光线漫射柔和，可见光束粒子、焦散投影 | 自然光漫射、台灯暖光、光束穿窗 |
-| 镜头感 | 浅景深虚化前后景、微镜头暗角、自然色温偏移 | shallow depth of field、lens vignette、natural color cast |
-| 瑕疵感 | 墙面有使用痕迹、地面有磨损、布艺有自然褶皱 | 使用痕迹、自然磨损、布艺自然垂褶 |
+| Style | Modern apartments/office buildings/cafés/hotels/malls; Modern Minimalist/Nordic/Industrial style | Modern {style} style |
+| Materials | Primarily concrete/glass/wood/metal/fabric | Concrete walls, glass curtain walls, wooden flooring |
+| Color Tone | Low-saturation neutral colors + natural wood tones + accent colors | Neutral tones, natural wood tones, accent colors |
+| Depth | Foreground/midground/background layers | Foreground {element}, midground {element}, background {element} |
+| Texture | Wood grain/brushed metal/fabric textures must be discernible | Clear textures, realistic quality |
+| Lighting | Primarily natural light sources (window light/table lamps/pendant lights); light is diffused and soft; visible light beam particles and caustic projections | Natural light diffusion, warm table lamp light, light beams through windows |
+| Lens Feel | Shallow depth of field blurring foreground/background, slight lens vignetting, natural color temperature shift | shallow depth of field, lens vignette, natural color cast |
+| Imperfections | Walls show signs of use, floors show wear, fabrics have natural folds | Signs of use, natural wear, natural fabric draping |
 
-### 室内类型速查
+### Indoor Type Quick Reference
 
-| 类型 | 核心元素 | 氛围词 |
+| Type | Core Elements | Atmosphere Keywords |
 |---|---|---|
-| 现代公寓 | 沙发、茶几、落地窗、绿植 | 温馨舒适、现代简约 |
-| 办公空间 | 办公桌、电脑、文件、绿植 | 专业整洁、高效氛围 |
-| 咖啡厅 | 吧台、咖啡机、桌椅、装饰 | 轻松惬意、文艺氛围 |
-| 酒店客房 | 床、床头柜、落地窗、电视 | 舒适奢华、静谧氛围 |
-| 客厅/起居室 | 沙发、电视柜、地毯、装饰画 | 温馨日常、家庭氛围 |
+| Modern Apartment | Sofa, coffee table, floor-to-ceiling windows, houseplants | Cozy and comfortable, modern minimalist |
+| Office Space | Office desks, computers, documents, houseplants | Professional and tidy, efficient atmosphere |
+| Café | Bar counter, coffee machine, tables and chairs, decorations | Relaxed and pleasant, literary atmosphere |
+| Hotel Guest Room | Bed, bedside table, floor-to-ceiling windows, TV | Comfortable and luxurious, serene atmosphere |
+| Living Room | Sofa, TV stand, carpet, decorative paintings | Warm and everyday, family atmosphere |
 
 ---
 
-## 四、室外场景
+## IV. Outdoor Scenes
 
-### 空间规范
+### Spatial Specifications
 
-| 维度 | 约束 | 提示词 |
+| Dimension | Constraint | Prompt Keywords |
 |---|---|---|
-| 类型 | 街道/广场/公园/天台/停车场 | {场景}，{季节}，{时间} |
-| 天候 | 晴/阴/薄雾/细雨/飞雪 | 薄雾弥漫、细雨如丝 |
-| 植被 | 行道树/花坛/草坪/盆栽（须符合季节） | 行道树、花坛绿植 |
-| 水体 | 喷泉/水池需有光影反射 | 水面反光、喷泉流动 |
-| 建筑 | 现代建筑、玻璃幕墙、金属结构 | 现代建筑、玻璃幕墙 |
-| 空气感 | 必须有空气透视，远处偏灰偏蓝 | 远景灰蓝、空气透视 |
-| 光照 | 自然光为唯一光源，日光/路灯需有体积光与散射 | 自然光照、体积光、路灯暖光 |
-| 镜头感 | 浅景深虚化、镜头暗角、微色散、光斑散景 | shallow depth of field、bokeh、lens flare、vignette |
-| 瑕疵感 | 地面裂缝/墙面剥落/金属氧化/玻璃划痕 | 使用痕迹、自然磨损 |
+| Type | Streets/plazas/parks/rooftops/parking lots | {scene}, {season}, {time} |
+| Weather | Sunny/overcast/light mist/drizzle/snowfall | Light mist pervading, drizzle like silk |
+| Vegetation | Street trees/flower beds/lawn/potted plants (must match the season) | Street trees, flower bed greenery |
+| Water | Fountains/pools must have light and shadow reflections | Water surface reflection, flowing fountain |
+| Architecture | Modern buildings, glass curtain walls, metal structures | Modern buildings, glass curtain walls |
+| Air Feel | Must have aerial perspective; distant areas appear grey and blue | Distant grey-blue, aerial perspective |
+| Lighting | Natural light is the only light source; sunlight/streetlights must have volumetric light and scattering | Natural lighting, volumetric light, warm streetlight |
+| Lens Feel | Shallow depth of field blur, lens vignetting, slight chromatic aberration, light spot bokeh | shallow depth of field, bokeh, lens flare, vignette |
+| Imperfections | Ground cracks/wall peeling/metal oxidation/glass scratches | Signs of use, natural wear |
 
-### 室外类型速查
+### Outdoor Type Quick Reference
 
-| 类型 | 核心元素 | 氛围词 |
+| Type | Core Elements | Atmosphere Keywords |
 |---|---|---|
-| 城市街道 | 路灯、行道树、斑马线 | 都市日常、繁忙街道 |
-| 商业广场 | 建筑、喷泉、广告牌 | 繁华热闹、商业氛围 |
-| 公园绿地 | 草坪、树木、长椅、步道 | 自然宁静、休闲氛围 |
-| 屋顶天台 | 护栏、城市景观、座椅 | 开阔视野、城市风光 |
-| 地下停车场 | 停车位、车道线、指示灯 | 冷峻工业、静谧空间 |
+| City Street | Streetlights, street trees, crosswalks | Urban daily life, busy street |
+| Commercial Plaza | Buildings, fountains, billboards | Bustling and lively, commercial atmosphere |
+| Park Green Space | Lawn, trees, benches, pathways | Natural and tranquil, leisure atmosphere |
+| Rooftop Terrace | Railings, cityscape, seating | Open view, city scenery |
+| Underground Parking Lot | Parking spaces, lane markings, indicator lights | Cold industrial, quiet space |
 
 ---
 
-## 五、主视图规范
+## V. Main View Specifications
 
-### 视图定义
+### View Definition
 
-> 单画面主视图，从场景中最具代表性的角度拍摄，承载空间叙事与构图重心。
+> Single-frame main view, shot from the most representative angle of the scene, carrying spatial narrative and compositional focus.
 
-| 项目 | 约束 | 提示词 |
+| Item | Constraint | Prompt Keywords |
 |---|---|---|
-| 视角 | 自然观察视角，构图最能体现场景主体与纵深 | hero shot、representative angle |
-| 视点高度 | 默认人眼平视高度，特殊场景可俯/仰 | eye level（默认） |
-| 构图 | 主体居中或符合三分法，前/中/后景层次清晰 | balanced composition |
+| Perspective | Natural observation perspective; composition best reflects the scene subject and depth | hero shot, representative angle |
+| Eye Level | Default eye-level height; special scenes may use high/low angles | eye level (default) |
+| Composition | Subject centered or follows the rule of thirds; clear foreground/midground/background layers | balanced composition |
 
-### 画面规范
+### Frame Specifications
 
-| 项目 | 约束 |
+| Item | Constraint |
 |---|---|
-| 布局 | 单画面（非拼图、非多视图、非分屏） |
-| 人物 | **严禁出现任何人物、人影、人体轮廓** |
-| 一致性 | 风格/材质/色调/光线统一 |
-| 光线 | 单一光源逻辑，光影方向一致 |
-| 画面比例 | 默认 16:9（或按调用方设定） |
+| Layout | Single frame (not a collage, not multi-view, not split-screen) |
+| People | **Strictly prohibited: any people, human shadows, or human silhouettes** |
+| Consistency | Unified style/materials/color tones/lighting |
+| Lighting | Single light source logic; consistent light and shadow direction |
+| Aspect Ratio | Default 16:9 (or as set by the caller) |
 
 ---
 
-## 六、提示词模板
+## VI. Prompt Templates
 
 ```
-现代都市场景主视图概念图，
-real photography，photorealistic，shot on ARRI Alexa，35mm film grain，
-RAW photo，ultra realistic，hyper detailed，
-shallow depth of field，natural lens vignette，subtle chromatic aberration，bokeh，
-真实摄影质感，胶片颗粒感，自然光照，物理光影，
-scene design sheet，environment concept art，no people，no characters，no human figures，
-{室内/室外}，{场景类型}，{风格}，{季节+时间}，
-前景：{元素}，中景：{元素}，后景：{元素}，
-{色调描述}，{天候/氛围元素}，
-{材质描述}，空气透视，纹理细节超清晰，
-材质自然磨损痕迹，使用痕迹，墙面剥落，金属氧化，
-自然光漫射，体积光，丁达尔效应，焦散投影，
-单画面构图，自然观察视角，构图能代表场景主体并展示前/中/后景层次，
-画面中无任何人物
-图中不要有任何文字
+Concept image of the main view of a modern urban scene,
+real photography, photorealistic, shot on ARRI Alexa, 35mm film grain,
+RAW photo, ultra realistic, hyper detailed,
+shallow depth of field, natural lens vignette, subtle chromatic aberration, bokeh,
+real photography texture, film grain, natural lighting, physical light and shadow,
+scene design sheet, environment concept art, no people, no characters, no human figures,
+{indoor/outdoor}, {scene type}, {style}, {season+time},
+Foreground: {element}, Midground: {element}, Background: {element},
+{color tone description}, {weather/atmosphere element},
+{material description}, aerial perspective, ultra-clear texture details,
+natural wear marks on materials, signs of use, peeling walls, metal oxidation,
+natural light diffusion, volumetric light, Tyndall effect, caustic projection,
+single frame composition, natural observation perspective, composition that represents the main subject of the scene and displays foreground/midground/background layers,
+no people in the image
+no text in the image
 ```
 
 
 ---
 
-## 七、约束规则
+## VII. Constraint Rules
 
-### 必守
+### Mandatory
 
-| 编号 | 规则 |
+| ID | Rule |
 |---|---|
-| R1 | 场景必须有「前中后景层次」 |
-| R2 | 室外必须包含「空气透视」 |
-| R3 | 场景图必须为「单画面主视图」，不得拼接多视图/分屏/网格 |
-| R4 | 构图须能代表场景主体并展示前/中/后景层次 |
-| R5 | 场景图中**严禁出现任何人物** |
-| R6 | 必须包含实拍摄影关键词（real photography / photorealistic / RAW photo） |
-| R7 | 必须包含镜头光学特征（shallow depth of field / lens vignette / bokeh 至少一项） |
-| R8 | 材质必须带有自然磨损/使用痕迹，禁止全新无瑕的"CG 感" |
+| R1 | The scene must have "foreground, midground, and background layers" |
+| R2 | Outdoor scenes must include "aerial perspective" |
+| R3 | The scene image must be a "single main view"; stitching multiple views/split screens/grids is prohibited |
+| R4 | The composition must represent the main subject of the scene and display foreground/midground/background layers |
+| R5 | **No people of any kind are allowed in the scene image** |
+| R6 | Must include live-action photography keywords (real photography / photorealistic / RAW photo) |
+| R7 | Must include lens optical characteristics (at least one of: shallow depth of field / lens vignette / bokeh) |
+| R8 | Materials must show natural wear/usage marks; pristine, flawless "CG look" is prohibited |
 
-### 严禁
+### Prohibited
 
-| 编号 | 严禁 |
+| ID | Prohibited |
 |---|---|
-| X1 | 背景纯白/纯黑/无场景 |
-| X2 | 极端天候（暴风雨/雷电/暴雪，除非剧情需要） |
-| X3 | 场景无纵深/无层次 |
-| X4 | 植被/天候与季节矛盾 |
-| X5 | 出现任何人物、人影、人体剪影或人体轮廓 |
-| X6 | 画面被拼接成多视图/网格/分屏布局 |
-| X7 | 3D 渲染/CG 动画/卡通/游戏引擎质感（禁用 3D render、CGI、Unreal Engine、Unity 等词） |
-| X8 | 材质过于干净完美、无任何使用痕迹与岁月感（避免"塑料感"） |
-| X9 | 光照过于均匀平坦、无景深虚化、无镜头光学特征 |
+| X1 | Pure white/pure black/no scene background |
+| X2 | Extreme weather (storms/lightning/blizzards, unless required by the plot) |
+| X3 | Scene lacks depth/layers |
+| X4 | Vegetation/weather contradicts the season |
+| X5 | Any people, human shadows, human silhouettes, or human outlines |
+| X6 | Image stitched into multiple views/grid/split-screen layout |
+| X7 | 3D rendering/CG animation/cartoon/game engine aesthetics (do not use terms like 3D render, CGI, Unreal Engine, Unity, etc.) |
+| X8 | Materials too clean/perfect, with no usage marks or sense of age (avoid "plastic look") |
+| X9 | Lighting too uniform/flat, no depth-of-field blur, no lens optical characteristics |
 

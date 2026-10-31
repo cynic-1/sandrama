@@ -1,62 +1,62 @@
-# 甜宠言情 · 导演叙事手法技能包
+# Sweet Romance · Director's Narrative Techniques Skill Pack
 
-## 简介
+## Introduction
 
-本技能包为 **甜宠言情** 类型故事提供一套完整的导演叙事手法参考，涵盖从宏观叙事规划到微观分镜执行的全流程指导。适用于任何视觉风格。
+This skill pack provides a complete reference for directorial narrative techniques for **Sweet Romance** stories, covering the full workflow from macro-level narrative planning to micro-level storyboard execution. It is applicable to any visual style.
 
-## 核心理念
+## Core Concepts
 
-- **含蓄克制** — 情感表达靠留白与微妙反应，而非台词铺陈
-- **以小博大** — 用细节打动人：一个眼神、一次欲言又止、一个被风吹乱的衣角
-- **推拉节奏** — 靠近→退缩→再靠近→误会→分离→重逢，每一轮都更深入、更甜蜜
-- **沉默的力量** — 关键情感瞬间，沉默比配乐更有力
+- **Restrained Subtlety** — Emotional expression relies on negative space and subtle reactions, rather than dialogue exposition
+- **Small Details, Big Impact** — Move the audience with details: a glance, a hesitation, a hem of clothing blown by the wind
+- **Push-Pull Rhythm** — Approach → Retreat → Approach again → Misunderstanding → Separation → Reunion; each cycle goes deeper and sweeter
+- **The Power of Silence** — In key emotional moments, silence is more powerful than the score
 
-## 文件结构
+## File Structure
 
 ```
 Sweet_romance_novel/
-├── README.md                                          ← 本文件
+├── README.md                                          ← This file
 └── driector_skills/
-    ├── director_planning_narrative.md                 ← 叙事规划手法
-    └── director_storyboard_table_narrative.md         ← 分镜表叙事手法
+    ├── director_planning_narrative.md                 ← Narrative planning techniques
+    └── director_storyboard_table_narrative.md         ← Storyboard table narrative techniques
 ```
 
-## 技能文件说明
+## Skill File Description
 
-### 1. 叙事规划手法 (`director_planning_narrative.md`)
+### 1. Narrative Planning Techniques (`director_planning_narrative.md`)
 
-导演在 **叙事规划阶段** 使用的技法参考，定义甜宠言情在主题立意、情感节奏、场景情绪设计与声音方向上的整体规划方法。
+Technique reference used by the director during the **narrative planning stage**, defining the overall planning methods for sweet romance in terms of thematic intent, emotional rhythm, scene emotion design, and sound direction.
 
-| 章节 | 内容概要 |
+| Chapter | Content Overview |
 |---|---|
-| 主题立意与情感内核 | 含蓄内敛、甜的克制、以小博大、冷中带暖 |
-| 叙事结构与节奏规划 | 慢节奏基本功、情绪缓坡递进、推拉节奏模型 |
-| 分场景情绪设计 | 六大典型情绪段落设计、距离感叙事、空间隐喻 |
-| 声音与音乐方向 | 沉默优先、段落式配乐、音乐情绪递进模型 |
-| 构图与景别叙事 | 留白 / 框架 / 三分法构图、景别递进策略 |
-| 镜头运动与节奏 | 以静制动、缓推缓拉情绪映射、心跳运镜 |
+| Thematic Intent & Emotional Core | Subtlety and restraint, restrained sweetness, achieving great impact with small details, warmth within coldness |
+| Narrative Structure & Rhythm Planning | Slow-paced fundamentals, gradual emotional progression, push-pull rhythm model |
+| Scene-by-Scene Emotion Design | Design of six typical emotional segments, narrative of distance, spatial metaphor |
+| Sound & Music Direction | Silence first, segmented scoring, musical emotional progression model |
+| Composition & Shot Scale Narrative | Negative space / framing / rule of thirds composition, shot scale progression strategy |
+| Camera Movement & Rhythm | Motion from stillness, emotional mapping of slow push/pull, heartbeat camera movement |
 
-### 2. 分镜表叙事手法 (`director_storyboard_table_narrative.md`)
+### 2. Storyboard Table Narrative Techniques (`director_storyboard_table_narrative.md`)
 
-导演在 **分镜表制作阶段** 使用的技法参考，定义甜宠言情在分镜表中的景别递进、运镜节奏、时长把控、镜头合并与转场逻辑。
+Technique reference used by the director during the **storyboard table production stage**, defining shot scale progression, camera movement rhythm, duration control, shot merging, and transition logic for sweet romance in the storyboard table.
 
-| 章节 | 内容概要 |
+| Chapter | Content Overview |
 |---|---|
-| 分镜表定位 | 分镜表作为镜头语言核心工具的定位说明 |
-| 景别选择 | 景别递进、远景价值、大特写限定、定场精简 |
-| 运镜节奏 | 默认静止、缓推缓拉情绪含义、心跳运镜 |
-| 时长把控 | 各类镜头时长参考、黄金 6 秒规则 |
-| 镜头合并策略 | 去 AI 感、叙事密度优先、导演思维自检 |
-| 一镜到底 | 长镜头适用条件、标注方式、时长与风险 |
-| 人物互动设计 | 单镜头动作限制、暗示性互动 |
-| 台词与留白 | 无台词长时长、一句一镜、旁白处理 |
-| 转场设计 | 硬切 / 空镜过渡 / 叠化淡入淡出 |
+| Storyboard Table Positioning | Explanation of the storyboard table's role as the core tool of camera language |
+| Shot Scale Selection | Shot scale progression, value of wide shots, limits on extreme close-ups, establishing shot simplification |
+| Camera Movement Rhythm | Default static, emotional meaning of slow push/pull, heartbeat camera movement |
+| Duration Control | Duration references for various shot types, the Golden 6-Second Rule |
+| Shot Merging Strategy | Removing AI feel, prioritizing narrative density, director's self-check |
+| One-Take | Applicable conditions for long takes, annotation methods, duration and risks |
+| Character Interaction Design | Action limits within a single shot, suggestive interaction |
+| Dialogue & Negative Space | Long durations without dialogue, one line per shot, voiceover handling |
+| Transition Design | Hard cut / empty shot transition / dissolve fade in/out |
 
-## 使用方式
+## Usage
 
-本技能包作为 SandDrama 导演 AI 的叙事手法参考，在故事创作流程中自动加载，指导：
+This skill pack serves as a narrative technique reference for the SandDrama Director AI. It is automatically loaded during the story creation workflow to guide:
 
-1. **叙事规划** — 确定情感内核、节奏曲线、场景情绪与音乐方向
-2. **分镜表生成** — 根据叙事规划输出具体的景别、运镜、时长与转场方案
+1. **Narrative Planning** — Determining the emotional core, rhythm curve, scene emotions, and music direction
+2. **Storyboard Table Generation** — Outputting specific shot scales, camera movements, durations, and transition plans based on the narrative plan
 
-两个文件分工明确、逐层递进，从"为什么这样拍"到"具体怎么拍"形成完整闭环。
+The two files have clearly defined roles and progress layer by layer, forming a complete closed loop from "why shoot it this way" to "how specifically to shoot it."

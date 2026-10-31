@@ -1,114 +1,114 @@
 ---
 name: director_planning_narrative
-description: 叙事手法技法 · 喜剧搞笑 — 定义喜剧搞笑类型在主题立意、笑点节奏、场景喜感设计与声音方向上的叙事规划方法。适用于任何视觉风格。
+description: Narrative Techniques and Techniques · Comedy - defines the narrative planning method of comedy type in terms of theme conception, laugh rhythm, scene humor design and sound direction. Works with any visual style.
 metaData: director_skills
 ---
 
-# 叙事手法 · 喜剧搞笑 · 技法参考
+# Narrative techniques · Comedy · Technical reference
 
 ---
 
-## 一、主题立意与喜剧内核
+## 1. Theme concept and comedy core
 
-### 喜剧搞笑叙事要点
+### Key points of comedy and funny narrative
 
-- **预期违背是笑点的引擎** — 所有笑点的底层机制是"预期违背"：观众以为角色会往左，结果往右；以为会哭，结果打了个嗝。导演的工作是先建立预期，再精准地打破它
-- **角色碰撞产生喜感** — 最高级的喜剧不靠段子，靠角色性格的化学反应。一个一本正经的人和一个没正形的人放在一起，对话自然就好笑。性格反差越大碰撞越猛
-- **荒诞要有内在逻辑** — 荒谬的事情发生时，角色必须"认真对待"。角色越认真，观众越觉得荒谬。如果角色自己也觉得荒谬，笑点就消失了
-- **离场感受建议方向** — 开怀大笑 / 会心一笑 / 笑中带泪 / 荒诞释然。避免"恐惧""沉重""苍凉"等与喜剧气质不匹配的方向
-- **笑中带泪是最高境界** — 纯搞笑让人笑完就忘，但在荒诞中突然露出角色真实的脆弱或善良，让观众笑着笑着眼眶一酸——这种情绪反差是喜剧最有力的武器
-
----
-
-## 二、叙事结构与笑点节奏
-
-### 喜剧搞笑叙事要点
-
-- **铺垫→包袱的基本单元** — 每个笑点由"铺垫"和"包袱"两部分组成。铺垫建立预期（越正经越好），包袱打破预期（越出乎意料越好）。两者缺一不可
-- **三遍法则** — 经典喜剧节奏：第一遍建立模式→第二遍强化模式→第三遍打破模式。观众在第三遍时以为还是一样的，结果不是——这就是笑点
-- **递进式荒谬** — 荒谬程度应逐级递进：小荒谬→中荒谬→大荒谬。一上来就太荒谬会让观众无法接受，循序渐进地把荒谬度拉高才能保持喜感
-- **笑点间隔不超过 60 秒** — 喜剧叙事中两个笑点之间的间隔不应超过 60 秒叙事时间。超过 60 秒没有喜感输出，观众的"喜剧期待"会冷却
-- **严肃段落是最好的铺垫** — 喜剧中穿插的严肃/感人段落不是中断喜感，而是为下一个笑点做最长的铺垫。越感动，随后的笑点反差越大
-- **误会链驱动** — 喜剧叙事的经典引擎是"误会"：A误解了B→B误解了A的误解→C不知道AB都在误解→误会越滚越大→最终真相大白，一切荒谬归于可笑
+- **Expectation violation is the engine of laughter** — The underlying mechanism of all laughter is "expectation violation": the audience thought the character would go left, but ended up going right; they thought the character would cry, but ended up burping. The director's job is to establish expectations and then break them with precision
+- **Character collision creates joy** — The most advanced comedy does not rely on jokes, but on the chemical reaction of the characters' personalities. Put a serious person and an unconventional person together, and the conversation will naturally be funny. The greater the personality contrast, the more violent the collision will be.
+- **Absurdity must have internal logic** — When something absurd happens, the character must "take it seriously". The more serious the character is, the more ridiculous it seems to the audience. If the character himself finds it ridiculous, the humor is lost.
+- **Suggested directions for leaving the scene** — Laughing heartily / Smiling knowingly / Laughing with tears / Ridiculous relief. Avoid "fear", "heavyness", "desolation" and other directions that do not match the comedy temperament
+- **Laughing with tears is the highest state** — Pure comedy makes people forget it after laughing, but in the absurdity, the real vulnerability or kindness of the character is suddenly revealed, making the audience laugh with sore eyes. This emotional contrast is the most powerful weapon of comedy.
 
 ---
 
-## 三、分场景喜感设计
+## 2. Narrative structure and laugh rhythm
 
-### 喜剧搞笑叙事要点
+### Key points of comedy and funny narrative
 
-- **喜感用反差描述** — 不说"搞笑"，说"他一脸庄严地给金鱼做心肺复苏"。反差的具象描述本身就能让人发笑
-- **典型喜剧段落与设计** —
+- **Foreshadowing→The basic unit of burden** — Each laugh point consists of two parts: "foreshadowing" and "burden". Foreshadowing builds expectations (the more serious, the better), and baggage breaks expectations (the more unexpected, the better). Both are indispensable
+- **Three passes rule** — Classic comedy rhythm: the first pass establishes the pattern → the second pass strengthens the pattern → the third pass breaks the pattern. The audience thought it was the same the third time, but it turned out not to be the case - that's the point of the joke
+- **Progressive Absurdity** — The degree of absurdity should increase step by step: small absurdity → medium absurdity → big absurdity. If it's too ridiculous right from the start, the audience won't be able to accept it. Only by gradually increasing the level of absurdity can you maintain the sense of joy.
+- **No more than 60 seconds between punchlines** — There should be no more than 60 seconds of narrative time between two punchlines in a comedy narrative. If there is no comedy output for more than 60 seconds, the audience's "comedy expectations" will cool down.
+- **Serious passages are the best foreshadowing** — The serious/touching passages interspersed in comedy are not to interrupt the sense of humor, but to provide the longest foreshadowing for the next laugh point. The more moved you are, the greater the contrast between the subsequent laughter will be.
+- **Misunderstanding chain drive** — The classic engine of comedy narrative is "misunderstanding": A misunderstood B → B misunderstood A's misunderstanding → C didn't know that AB was misunderstanding → the misunderstanding got bigger and bigger → eventually the truth was revealed, and all absurdities became ridiculous
 
-| 段落类型 | 情绪方向 | 叙事手法 | 音乐建议 |
+---
+
+## 3. Scene-based joyful design
+
+### Key points of comedy and funny narrative
+
+- **Joy is described by contrast** — Don't say "funny", say "He performed cardiopulmonary resuscitation on the goldfish with a solemn expression." The concrete description of the contrast itself can make people laugh.
+- **Typical comedy passages and designs** —
+
+| Paragraph Types | Emotional Direction | Narrative Techniques | Music Suggestions |
 |---|---|---|---|
-| 正常开局 | 平静 + 日常 | 一切正常但角色有个小怪癖/小执念 | 正常日常配乐（为反差蓄力） |
-| 小失控 | 意外 + 好笑 | 一个小意外引发连锁反应 | 配乐继续正常（反差加强喜感） |
-| 误会升级 | 尴尬 + 荒谬 | 越解释越糟糕、越补救越崩塌 | 轻快节奏加速暗示失控 |
-| 大失控 | 彻底混乱 | 所有角色同时陷入各自的荒谬 | 欢快配乐全开或突然全静 |
-| 真情流露 | 笑中带泪 | 荒诞中突然露出真实的情感 | 配乐骤停，只剩环境音 |
-| 回归/抖最后一个包袱 | 释然 + 会心 | 一切归于平静后再来一个小笑点 | 轻松收尾旋律 |
+| Normal start | Calm + daily | Everything is normal but the character has a little quirk/obsession | Normal daily soundtrack (to build up the contrast) |
+| Little loss of control | Accident + funny | A small accident triggers a chain reaction | The soundtrack continues to be normal (the contrast enhances the sense of joy) |
+| Escalation of misunderstanding | Embarrassment + Absurdity | The more you explain, the worse it gets, and the more you remedy it, the more it collapses | The brisk pace accelerates, implying loss of control |
+| Big loss of control | Complete chaos | All characters are caught in their own absurdities at the same time | The cheerful soundtrack is either on full blast or suddenly silent |
+| True feelings revealed | Laughter with tears | Absurdity suddenly reveals true emotions | The soundtrack suddenly stops, leaving only ambient sounds |
+| Return / Shake off the last baggage | Relief + understanding | Let’s have a little laugh after everything calms down | Relaxing ending melody |
 
-- **尴尬升级是喜剧核心叙事** — 尴尬感的递进：
-  - **一级**：角色自己尴尬（说错话、摔倒）
-  - **二级**：旁人也看到了角色的尴尬（社死）
-  - **三级**：角色试图补救但更尴尬（越描越黑）
-  - **四级**：完全失控，所有人都尴尬（集体社死）
-- **空间是喜剧的帮凶** — 善用空间元素制造喜感：太小的空间挤太多人、本应庄严的场合发生荒唐事、完全不匹配的人出现在完全不匹配的地点
-- **镜头意图写"喜感来源"而非"拍什么"** — "用全景是为了让观众看到他身后还站着十个不知情的人"优于"用全景拍现场"。喜感来源清晰了，分镜自然对
+- **The escalation of embarrassment is the core narrative of comedy** — the progression of embarrassment:
+  - **Level 1**: The character is embarrassed (said the wrong thing, fell down)
+  - **Level 2**: Others also see the character’s embarrassment (social death)
+  - **Level 3**: The character tries to make amends but becomes more embarrassed (the darker the description, the darker the situation)
+  - **Level 4**: Completely out of control, everyone is embarrassed (collective social death)
+- **Space is the accomplice of comedy** — Make good use of space elements to create a sense of humor: too small a space is crowded with too many people, ridiculous things happen on occasions that should be solemn, and completely mismatched people appear in completely mismatched places.
+- **The purpose of the lens is to write "source of joy" rather than "what to shoot"** - "Using a panoramic view is to let the audience see ten unsuspecting people standing behind him" is better than "using a panoramic view to shoot the scene". The source of joy is clear, and the storyboards are naturally aligned.
 
 ---
 
-## 四、声音与音乐方向
+## 4. Sound and Music Direction
 
-### 喜剧搞笑叙事要点
+### Key points of comedy and funny narrative
 
-- **反差配乐是喜感利器** — 荒谬的画面配一本正经的配乐（古典乐/庄严进行曲）比配欢快音乐更好笑。音画反差本身就是一种"预期违背"
-- **突然静默 = 最大笑点** — 热闹的配乐突然全部停掉，画面中角色做了一件极其荒谬的事——寂静中的荒谬比有配乐时更有冲击力
-- **避免"搞笑配乐"** — 不要用"听起来就很搞笑"的配乐（小丑号角、打击乐搞笑音效）。让画面自己产生喜感，配乐保持中性甚至严肃，反差出喜感
-- **环境音的喜剧功能** — 特定环境音可以成为笑点的一部分：庄严演讲中远处传来的手机铃声、安静考场里突然响起的肚子叫声
-- **音乐情绪模型** —
+- **Contrast music is a powerful tool for happiness** — Ridiculous images paired with serious music (classical music/solemn march) are funnier than upbeat music. The contrast between sound and picture itself is a kind of "expectation violation"
+- **Sudden silence = the biggest laugh** - The lively soundtrack suddenly stopped, and the character in the picture did an extremely ridiculous thing - the absurdity in silence is more impactful than with the soundtrack
+- **Avoid "funny soundtracks"** — Don't use soundtracks that "just sound funny" (clown horns, funny percussion sound effects). Let the picture create a sense of joy on its own, and keep the soundtrack neutral or even serious to create a sense of joy in contrast.
+- **The Comedy Function of Ambient Sound** — Specific ambient sounds can become part of the punch line: the distant ringtone of a mobile phone during a solemn speech, the sudden sound of a stomach growling in a quiet examination room
+- **Music Emotion Model** —
 
-| 情绪阶段 | 音乐策略 | 覆盖率 |
+| Emotional Stages | Music Strategy | Coverage |
 |---|---|---|
-| 正常铺垫 | 正经配乐（与即将到来的荒谬形成反差） | 中 |
-| 小失控 | 配乐不变（假装一切正常） | 中 |
-| 大失控 | 配乐加速或突然全停 | 极端 |
-| 笑点释放 | 短暂静默后恢复 | 低→中 |
-| 真情流露 | 配乐骤停，纯环境音 | 无 |
-| 回归日常 | 轻松收尾 | 中低 |
+| Normal foreshadowing | Serious soundtrack (in contrast to the upcoming absurdity) | Medium |
+| Little loss of control | The soundtrack remains unchanged (pretend everything is normal) | Medium |
+| Big loss of control | The soundtrack speeds up or stops suddenly | Extreme |
+| Laughter Release | Recover after a short silence | Low → Medium |
+| True feelings revealed | The soundtrack suddenly stopped, pure ambient sound | None |
+| Return to daily life | Easy ending | Medium to low |
 
-- **"节拍器"式喜感** — 重复性笑点（同一个失误反复发生）可用固定节奏的背景音强化"又来了"的预期感，第三次打破节奏时笑点最大化
-
----
-
-## 五、构图与景别叙事
-
-### 喜剧搞笑叙事要点
-
-- **三大核心构图的叙事功能** —
-  - **反应镜头构图** — 把笑点制造者放前景/画外，把反应者放画面中心。很多时候旁观者的表情比笑点本身更好笑
-  - **全景暴露构图** — 全景揭示角色不知道的信息（他身后站着人/他裤子破了/背景有荒谬的东西），让观众比角色多看到一层
-  - **错位并置构图** — 两个不匹配的元素同框：穿西装的人和一只鸡、庄严的仪式和混乱的背景，错位并置本身就是喜感
-- **中心构图的"聚光灯"效果** — 中心构图在喜剧中制造"全世界都在看你出丑"的社死感，留给角色最尴尬的瞬间
-- **画面信息差** — 喜剧构图的核心是"观众看到了角色没看到的"：画面左边角色在认真演讲，画面右边有人举着写错字的横幅
-- **景别即喜感节奏** —
-  - **远景/全景** — 暴露全局荒谬、揭示角色不知道的信息
-  - **中景** — 标准叙事、对话互动、角色碰撞
-  - **近景** — 反应镜头的核心景别，捕捉"啊？""什么？"的表情
-  - **特写** — 放大尴尬细节：抽搐的嘴角、僵住的笑容、冒冷汗的额头
-- **大特写的"定格笑点"** — 大特写在喜剧中是"定格放大"的功能：一只放错位置的手、一个写错的名牌、一张完全对不上的表情。停留 1-2s 就够
+- **"Metronome" style of joy** - For repetitive laughs (the same mistake happens repeatedly), you can use a fixed-tempo background sound to enhance the sense of anticipation of "Here we go again", and maximize the laughs when the rhythm is broken for the third time.
 
 ---
 
-## 六、镜头运动与节奏
+## 5. Composition and scenery narrative
 
-### 喜剧搞笑叙事要点
+### Key points of comedy and funny narrative
 
-- **冷静旁观是喜剧的最佳视角** — 60% 以上镜头应为固定机位，以"冷静旁观者"的姿态记录荒谬。镜头越冷静，画面中的荒谬越对比鲜明
-- **急推 = 反应放大** — 某个角色听到/看到荒谬的事，快速推向其面部，放大"石化/震惊/难以置信"的反应。这是喜剧中最高频的运镜
-- **甩镜 = 信息揭示** — 从角色A迅速甩到角色B/某个荒谬的东西，速度本身带有"等等！那是什么？！"的喜感
-- **稳定vs混乱** — 铺垫段落用稳定机位（一切正常）；失控段落机位可以轻微不稳定甚至手持跟拍（跟着混乱走）。稳定→不稳定的转换本身就标记了"开始搞笑了"
-- **运镜即节奏** — 固定 = 冷静旁观/铺垫；急推 = 反应放大；甩镜 = 信息揭示；手持跟拍 = 跟随混乱；缓推 = 发现荒谬细节
-- **慢动作的喜剧功能** — 升格在喜剧中用于"灾难发生的瞬间"：东西飞出去、人滑倒、蛋糕砸脸——慢动作让观众有足够时间"预见灾难"却无法阻止，笑点在预见中积蓄
-- **不要频繁运镜** — 喜剧不需要花哨运镜。镜头越简单朴素，角色的荒谬越突出。运镜过多会分散对笑点的注意力
+- **Narrative function of three core compositions** —
+  - **Reaction Shot Composition** — Put the laugh maker in the foreground/offscreen, and the reactor in the center of the frame. Often the expressions of bystanders are funnier than the punchline itself
+  - **Panorama Revealing Composition** — The panorama reveals information that the character doesn’t know (there’s someone standing behind him/his pants are torn/there’s something ridiculous in the background), allowing the audience to see one more layer than the character
+  - **Misplaced Juxtaposition Composition** — Two mismatched elements in the same frame: a man in a suit and a chicken, a solemn ceremony and a chaotic background. The misplaced juxtaposition itself is a sense of joy.
+- **The "spotlight" effect of the central composition** — The central composition creates a sense of social death in comedy that "the whole world is watching you make a fool of yourself", leaving the character with the most embarrassing moments.
+- **Poor screen information** — The core of the comedy composition is "the audience sees what the character does not see": the character on the left side of the screen is giving a serious speech, and someone on the right side of the screen is holding a banner with typos written on it.
+- **Scenery farewell means joyful rhythm** —
+  - **Long shot/panorama** — expose the absurdity of the situation and reveal information that the character does not know
+  - **Medium shot** — standard narrative, dialogue interaction, character collision
+  - **Closer shot** — The core shot of the reaction shot, capturing the expressions of "Huh?" "What?"
+  - **Close-up** — Zoom in on embarrassing details: twitching corners of the mouth, frozen smile, cold sweat on the forehead
+- **The "freeze-frame laugh" of close-ups** — In comedy, close-ups are the function of "freeze-frame magnification": a misplaced hand, a wrongly written name tag, an expression that doesn't match at all. Staying for 1-2 seconds is enough
+
+---
+
+## 6. Camera movement and rhythm
+
+### Key points of comedy and funny narrative
+
+- **Calm spectatorship is the best perspective for comedy** — More than 60% of the shots should be in fixed positions, recording absurdity with the attitude of a "calm spectator". The calmer the shot, the more contrasting the absurdity in the picture.
+- **Push = Reaction Amplification** — When a character hears/sees something ridiculous, push it quickly to their face to amplify the "petrified/shocked/disbelieving" reaction. This is the most frequent scene move in comedy
+- **Scrap = Information Reveal** — Quickly flick from character A to character B/something ridiculous, the speed itself has a sense of "Wait! What was that?!"
+- **Stable vs. Chaos** — For the foreshadowing sequence, use a stable camera position (everything is normal); for the out-of-control sequence, the camera position can be slightly unstable or even handheld to follow (follow the chaos). The stable → unstable transition itself marks "starting to get funny"
+- **Mirror movement is the rhythm** — Fixed = watch calmly/prepare; push quickly = amplify reaction; flick camera = reveal information; handheld tracking = follow the chaos; slow push = discover absurd details
+- **Comedy function of slow motion** — Upgraded to be used in comedy for "the moment when a disaster occurs": things fly out, people slip, cakes hit their face - slow motion allows the audience enough time to "foresee the disaster" but cannot prevent it, and the laughter is accumulated in the anticipation.
+- **Don’t use too many camera moves** — Comedy doesn’t require fancy camera moves. The simpler and plainer the shot, the more prominent the absurdity of the character. Too much camera movement will distract from the punchline.

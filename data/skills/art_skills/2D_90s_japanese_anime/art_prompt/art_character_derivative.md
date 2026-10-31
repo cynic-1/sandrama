@@ -1,299 +1,299 @@
-# 90年代复古日系动画风格 - 人物衍生资产生成 · 约束手册
+# 90s Retro Japanese Animation Style - Character Derivative Asset Generation · Constraint Manual
 
 ---
 
-## 一、叠加原则
+## I. Overlay Principles
 
-1. **面容不变** — 叠加后五官必须与底模完全一致，禁止面容偏移
-2. **姿态不变** — 保持底模自然站立姿态，禁止任何姿态/动作/体态变化
-3. **逐层可控** — 每层独立描述，便于按层替换（换装不换妆）
-4. **风格统一** — 所有服化元素服从90年代复古手绘平涂美学体系，但不做模板化复制
-5. **角色差异保留** — 不同角色应根据年龄、身份、性格、场合保留服装差异，避免“所有人穿同款”
-6. **质感不降** — 叠加后手绘质感标准不低于底模
-7. **纯服化范畴** — 仅叠加妆容/发型/服饰/鞋履/配饰，禁止引入道具、场景、环境、动作
-
----
-
-## 二、叠加层级
-
-| 层级 | 内容 | 说明 |
-|---|---|---|
-| L0 | 底模 | 基础形象底模，不修改 |
-| L1 | 妆容（决策层） | 根据用户线索分析妆造强度 |
-| L2 | 发型造型 | 发髻/束发/编发 + 发饰 |
-| L3 | 中衣/内搭 | 替换白色基础中衣 |
-| L4 | 外衣/主服 | 和服/现代装/复古装等 |
-| L5 | 鞋履 | 鞋型/袜装/鞋面材质/配色 |
-| L6 | 配饰 | 头饰/耳饰/项饰/腰饰/手饰 |
-
-> **范畴边界**：人物衍生资产仅包含 L0–L6 层级，不包含道具、场景环境、姿态动作。
+1. **Unchanged Face** — After overlaying, facial features must be completely consistent with the base model; facial drift is prohibited.
+2. **Unchanged Pose** — Maintain the natural standing pose of the base model; any changes in pose, action, or body posture are prohibited.
+3. **Layer-by-Layer Control** — Each layer is described independently to facilitate layer-by-layer replacement (change outfit without changing makeup).
+4. **Style Consistency** — All costume and makeup elements must adhere to the 90s retro hand-drawn flat-color aesthetic system, but avoid templated replication.
+5. **Preserve Character Differences** — Different characters should retain clothing differences based on age, status, personality, and occasion to avoid "everyone wearing the same outfit."
+6. **No Quality Drop** — The hand-drawn texture standard after overlaying must not be lower than the base model.
+7. **Pure Costume & Makeup Scope** — Only overlay makeup/hair/clothing/footwear/accessories; introducing props, scenes, environments, or actions is prohibited.
 
 ---
 
-## 三、妆容约束（L1）
+## II. Overlay Hierarchy
 
-### 底模到衍生妆造策略（关键）
-
-> 角色底模为素颜，但衍生资产默认进入妆造流程。系统应根据用户线索分析妆容需求，在基础妆/轻妆/正式妆之间决策强度。
-
-### 线索到妆容映射
-
-| 线索类型 | 典型线索 | L1 决策 |
+| Layer | Content | Description |
 |---|---|---|
-| 无明显面部强调线索 | 仅服饰/发型变化 | 基础妆 |
-| 轻微面部线索 | 含笑、气色微提 | 轻妆 |
-| 明确病弱线索 | 面色苍白、唇色极淡 | 病弱妆 |
-| 明确正式仪式线索 | 盛装、典礼 | 正式妆 |
+| L0 | Base Model | Base image model, no modifications |
+| L1 | Makeup (Decision Layer) | Analyze makeup intensity based on user cues |
+| L2 | Hairstyle | Buns/braids/updos + hair accessories |
+| L3 | Innerwear/Underlayer | Replace the white basic innerwear |
+| L4 | Outerwear/Main Garment | Kimono/modern wear/retro wear, etc.
+| L5 | Footwear | Shoe type/socks/shoe material/color scheme |
+| L6 | Accessories | Headwear/earrings/necklaces/waist accessories/hand accessories |
 
-### 女性妆容风格矩阵
-
-| 风格 | 适用场景 | 核心提示词 |
-|---|---|---|
-| 日常淡妆 | 日常、初遇 | 淡妆、自然妆容、怀旧感 |
-| 约会妆 | 约会、约会 | 甜美妆、暖粉色、气色好 |
-| 正式妆 | 宴会、典礼 | 精致妆容、眼妆明显 |
-| 病弱妆 | 受伤、虚弱 | 面色苍白、唇色淡、眼妆轻 |
-| 复古妆 | 怀旧场景、经典 | 复古妆容、90年代风格 |
-
-### 通用底肤
-
-| 项目 | 约束 | 提示词 |
-|---|---|---|
-| 质感 | 平涂上色、均匀色调 | 平涂上色、皮肤均匀 |
-| 白度 | 暖白皮、柔和不刺眼 | 暖白皮、柔和白皙 |
-| 内透光 | 平涂中保留柔光感 | 皮肤通透、柔和光泽 |
-| 禁止 | 过度数字化/油光/厚重感 | — |
-
-### 男性妆容
-
-| 项目 | 约束 | 提示词 |
-|---|---|---|
-| 底肤 | 健康肤色、平涂上色 | 健康肤色、平涂上色 |
-| 原则 | 伪素颜——看着没化妆但皮肤好 | 伪素颜、天生好皮 |
-| 眉毛 | 自然浓眉、不画眉 | 剑眉自然、眉形英挺 |
-| 唇色 | 自然血色、微润 | 唇色自然、血色感 |
+> **Scope Boundary**: Character derivative assets include only L0–L6 layers; they do not include props, scene environments, or poses/actions.
 
 ---
 
-## 四、发型造型约束（L2）
+## III. Makeup Constraints (L1)
 
-### 女性造型类型
+### Base Model to Derivative Makeup Strategy (Key)
 
-| 造型 | 描述 | 适用 | 提示词 |
+> The character base model is bare-faced, but derivative assets default to entering the makeup process. The system should analyze makeup needs based on user cues and decide the intensity among basic makeup/light makeup/formal makeup.
+
+### Cue-to-Makeup Mapping
+
+| Cue Type | Typical Cues | L1 Decision |
+|---|---|---|
+| No obvious facial emphasis cues | Only clothing/hair changes | Basic Makeup |
+| Slight facial cues | Smiling, slightly improved complexion | Light Makeup |
+| Clear frailty cues | Pale complexion, extremely light lip color | Frailty Makeup |
+| Clear formal ceremony cues | Full dress, ceremony | Formal Makeup |
+
+### Female Makeup Style Matrix
+
+| Style | Applicable Scene | Core Prompts |
+|---|---|---|
+| Daily Light Makeup | Daily, first meeting | Light makeup, natural look, nostalgic feel |
+| Date Makeup | Date, date | Sweet makeup, warm pink, good complexion |
+| Formal Makeup | Banquet, ceremony | Refined makeup, distinct eye makeup |
+| Frailty Makeup | Injured, weak | Pale complexion, light lip color, light eye makeup |
+| Retro Makeup | Nostalgic scenes, classic | Retro makeup, 90s style |
+
+### General Base Skin
+
+| Item | Constraint | Prompts |
+|---|---|---|
+| Texture | Flat color application, uniform tone | Flat color application, uniform skin |
+| Whiteness | Warm white skin, soft and not glaring | Warm white skin, soft fairness |
+| Translucency | Retain soft light feel within flat color | Translucent skin, soft glow |
+| Prohibited | Excessive digitalization/oiliness/heaviness | — |
+
+### Male Makeup
+
+| Item | Constraint | Prompts |
+|---|---|---|
+| Base Skin | Healthy skin tone, flat color application | Healthy skin tone, flat color application |
+| Principle | Pseudo-bare face — looks like no makeup but good skin | Pseudo-bare face, naturally good skin |
+| Eyebrows | Natural thick brows, no drawn brows | Natural sword-shaped brows, sharp brow shape |
+| Lip Color | Natural blood color, slightly moist | Natural lip color, blood-like feel |
+
+---
+
+## IV. Hairstyle Constraints (L2)
+
+### Female Hairstyle Types
+
+| Style | Description | Applicable | Prompts |
 |---|---|---|---|
-| 双马尾 | 两侧马尾、90年代常见 | 少女、日常 | 双马尾、90年代风格 |
-| 高马尾 | 头顶马尾、干练 | 运动、行动 | 高马尾、干练 |
-| 长发披散 | 长发全散、温柔 | 温柔、日常 | 长发披散、柔顺 |
-| 侧马尾 | 一侧马尾、不对称 | 俏皮、个性 | 侧马尾、俏皮 |
-| 编发 | 辫子造型、精致 | 正式、场合 | 编发、精致发型 |
-| 丸子头 | 头顶丸子、可爱 | 可爱、日常 | 丸子头、可爱 |
+| Twin Tails | Tails on both sides, common in 90s | Girl, daily | Twin tails, 90s style |
+| High Ponytail | Ponytail on top of head, capable | Sports, action | High ponytail, capable |
+| Long Hair Loose | Long hair fully loose, gentle | Gentle, daily | Long hair loose, smooth |
+| Side Ponytail | Ponytail on one side, asymmetric | Playful, individual | Side ponytail, playful |
+| Braids | Braid style, refined | Formal, occasions | Braids, refined hairstyle |
+| Bun | Bun on top of head, cute | Cute, daily | Bun, cute |
 
-### 女性发饰
+### Female Hair Accessories
 
-| 项目 | 约束 | 提示词 |
+| Item | Constraint | Prompts |
 |---|---|---|
-| 风格 | 90年代常见、与服饰配套 | 90年代发饰、复古风格 |
-| 材质 | 丝带/珠玉/金属 | 丝带发饰、珠玉发饰 |
-| 工艺 | 手绘质感、符合90年代 | 手绘发饰、90年代风格 |
+| Style | Common in 90s, matching clothing | 90s hair accessories, retro style |
+| Material | Ribbon/pearls/metal | Ribbon hair accessory, pearl hair accessory |
+| Craft | Hand-drawn texture, fits 90s | Hand-drawn hair accessory, 90s style |
 
-### 男性造型类型
+### Male Hairstyle Types
 
-| 造型 | 适用 | 提示词 |
+| Style | Applicable | Prompts |
 |---|---|---|
-| 短发 | 日常、干练 | 短发、干练 |
-| 中长发 | 日常、文雅 | 中长发、文雅 |
-| 长发束起 | 正式、战斗 | 长发束起、帅气 |
-| 散发披肩 | 休闲、温柔 | 散发披肩、温柔 |
+| Short Hair | Daily, capable | Short hair, capable |
+| Medium-Long Hair | Daily, elegant | Medium-long hair, elegant |
+| Long Hair Tied | Formal, combat | Long hair tied, handsome |
+| Loose Hair | Casual, gentle | Loose hair, gentle |
 
 ---
 
-## 五、服饰与鞋履约束（L3+L4+L5）
+## V. Clothing & Footwear Constraints (L3+L4+L5)
 
-> **说明**：以下款式为风格参考，不是硬性制服模板。应优先根据角色身份、年龄、职业、性格与场合自由组合，只要整体仍保持90年代复古日系动画气质即可。
+> **Note**: The following styles are style references, not rigid uniform templates. Prioritize free combinations based on character status, age, profession, personality, and occasion, as long as the overall look maintains the 90s retro Japanese animation vibe.
 
-### 女性服饰矩阵
+### Female Clothing Matrix
 
-| 风格 | 款式 | 适用 | 提示词 |
+| Style | Style | Applicable | Prompts |
 |---|---|---|---|
-| 日常休闲装 | T恤/牛仔裤/连衣裙 | 日常、校园 | 休闲装、舒适 |
-| 和服/汉服 | 传统服饰 | 场合、主题 | 和服、汉服 |
-| 运动装 | 运动服、卫衣 | 运动、休闲 | 运动装、活力 |
-| 礼服 | 礼服裙、90年代风格 | 宴会、正式 | 礼服、优雅 |
-| 制服 | 校服、90年代制服 | 校园、职场 | 制服、整洁 |
+| Daily Casual | T-shirt/jeans/dress | Daily, campus | Casual wear, comfortable |
+| Kimono/Hanfu | Traditional clothing | Occasions, themes | Kimono, Hanfu |
+| Sports Wear | Sportswear, hoodie | Sports, casual | Sports wear, energetic |
+| Formal Dress | Formal dress, 90s style | Banquet, formal | Formal dress, elegant |
+| Uniform | School uniform, 90s uniform | Campus, workplace | Uniform, neat |
 
-### 女性服饰通用约束
+### Female Clothing General Constraints
 
-| 项目 | 约束 | 提示词 |
+| Item | Constraint | Prompts |
 |---|---|---|
-| 主色 | 可按角色设定选择暖色、中性色或低饱和冷色，避免千篇一律 | 怀旧配色、角色化配色 |
-| 材质 | 布料质感清晰，可根据身份选择棉布/针织/制服呢料/丝绸等 | 布料纹理清晰、平涂上色 |
-| 质感 | 线条流畅、色彩柔和，保留90年代手绘感 | 线条流畅、色彩柔和 |
-| 层次 | 层次分明、细节丰富，但复杂度应与角色身份匹配 | 层次分明、细节清晰 |
+| Main Color | Can choose warm, neutral, or low-saturation cool colors based on character setting; avoid uniformity | Nostalgic color scheme, character-specific color scheme |
+| Material | Clear fabric texture; choose cotton/knit/uniform wool/silk, etc., based on status | Clear fabric texture, flat color application |
+| Texture | Smooth lines, soft colors, retain 90s hand-drawn feel | Smooth lines, soft colors |
+| Layers | Distinct layers, rich details, but complexity should match character status | Distinct layers, clear details |
 
-### 男性服饰矩阵
+### Male Clothing Matrix
 
-| 风格 | 适用 | 提示词 |
+| Style | Applicable | Prompts |
 |---|---|---|
-| 日常休闲装 | T恤/牛仔裤 | 日常、休闲 |
-| 制服 | 校服、90年代制服 | 制服、整洁 |
-| 西装 | 正装、正式 | 西装、正式 |
-| 运动装 | 运动服、卫衣 | 运动、活力 |
-| 和服/汉服 | 传统、场合 | 和服、汉服 |
+| Daily Casual | T-shirt/jeans | Daily, casual |
+| Uniform | School uniform, 90s uniform | Uniform, neat |
+| Suit | Formal wear, formal | Suit, formal |
+| Sports Wear | Sportswear, hoodie | Sports, energetic |
+| Kimono/Hanfu | Traditional, occasions | Kimono, Hanfu |
 
-### 鞋履设计矩阵（L5）
+### Footwear Design Matrix (L5)
 
-| 风格 | 女性常用鞋型 | 男性常用鞋型 | 提示词 |
+| Style | Common Female Shoes | Common Male Shoes | Prompts |
 |---|---|---|---|
-| 日常校园 | 乐福鞋、玛丽珍鞋、短袜皮鞋 | 乐福鞋、运动鞋 | 校园鞋、复古日系、简洁鞋型 |
-| 日常休闲 | 帆布鞋、低帮运动鞋、短靴 | 帆布鞋、休闲鞋、低帮运动鞋 | 休闲鞋、舒适、怀旧配色 |
-| 正式场合 | 低跟鞋、细带皮鞋、短靴 | 皮鞋、短靴 | 正式鞋履、精致、线条利落 |
-| 传统服饰 | 木屐、浅口绣鞋、布鞋 | 木屐、布鞋、传统短靴 | 传统鞋履、与服饰配套 |
-| 行动/运动 | 轻便运动鞋、系带短靴 | 运动鞋、功能短靴 | 轻便鞋履、便于行动 |
+| Daily Campus | Loafers, Mary Janes, short sock leather shoes | Loafers, sneakers | Campus shoes, retro Japanese, simple shoe type |
+| Daily Casual | Canvas shoes, low-top sneakers, short boots | Canvas shoes, casual shoes, low-top sneakers | Casual shoes, comfortable, nostalgic color scheme |
+| Formal Occasions | Low heels, thin-strap leather shoes, short boots | Leather shoes, short boots | Formal footwear, refined, sharp lines |
+| Traditional Clothing | Geta, shallow embroidered shoes, cloth shoes | Geta, cloth shoes, traditional short boots | Traditional footwear, matching clothing |
+| Action/Sports | Lightweight sneakers, lace-up short boots | Sneakers, functional short boots | Lightweight footwear, easy to move |
 
-### 鞋履通用约束
+### Footwear General Constraints
 
-| 项目 | 约束 | 提示词 |
+| Item | Constraint | Prompts |
 |---|---|---|
-| 风格统一 | 鞋履需与主服时代感协调，但鞋型可随角色身份自由变化 | 与服饰统一、复古日系 |
-| 结构清晰 | 鞋口/鞋跟/鞋带/袜装层次明确 | 鞋型清晰、结构明确 |
-| 配色 | 可呼应服饰主色、辅色或角色个人标识色，不必固定同一套配色逻辑 | 低饱和配色、怀旧色彩 |
-| 质感 | 手绘平涂、线条流畅，避免现代潮鞋夸张设计 | 手绘鞋履、平涂上色 |
-| 禁止 | 禁止赤脚、禁止缺失鞋履设计、禁止出现现代夸张球鞋科技感 | — |
+| Style Consistency | Footwear must coordinate with the era feel of the main garment, but shoe type can vary freely based on character status | Unified with clothing, retro Japanese |
+| Clear Structure | Clear layers for shoe opening/heel/laces/socks | Clear shoe type, clear structure |
+| Color Scheme | Can echo the main color, secondary color, or character's personal identifier color of the clothing; no fixed single color logic required | Low-saturation color scheme, nostalgic colors |
+| Texture | Hand-drawn flat color, smooth lines, avoid exaggerated modern trendy shoe designs | Hand-drawn footwear, flat color application |
+| Prohibited | Bare feet prohibited, missing footwear design prohibited, modern exaggerated sneaker tech feel prohibited | — |
 
 ---
 
-## 六、配饰约束（L6）
+## VI. Accessory Constraints (L6)
 
-### 女性配饰
+### Female Accessories
 
-| 类型 | 约束 | 提示词 |
+| Type | Constraint | Prompts |
 |---|---|---|
-| 头饰 | 发箍/发夹/蝴蝶结 | 发饰、精致 |
-| 耳饰 | 耳环/耳钉 | 耳环、小巧 |
-| 项饰 | 项链/吊坠 | 项链、精致 |
-| 手饰 | 手镯/手环 | 手镯、纤细 |
-| 包饰 | 包包、挎包 | 包包、时尚 |
+| Headwear | Headband/hair clip/bow | Hair accessory, refined |
+| Earrings | Earrings/studs | Earrings, small |
+| Neckwear | Necklace/pendant | Necklace, refined |
+| Handwear | Bracelet/band | Bracelet, slender |
+| Bag | Handbag, shoulder bag | Handbag, fashionable |
 
-### 男性配饰
+### Male Accessories
 
-| 类型 | 约束 | 提示词 |
+| Type | Constraint | Prompts |
 |---|---|---|
-| 眼镜 | 眼镜/墨镜 | 眼镜、时尚 |
-| 手表 | 手表 | 手表、精致 |
-| 戒指 | 戒指 | 戒指、简约 |
-| 围巾 | 围巾 | 围巾、保暖 |
+| Glasses | Glasses/sunglasses | Glasses, fashionable |
+| Watch | Watch | Watch, refined |
+| Ring | Ring | Ring, simple |
+| Scarf | Scarf | Scarf, warm |
 
 ---
 
-## 七、服化组合速查
+## VII. Costume & Makeup Combination Quick Reference
 
-| 场景 | 妆容 | 发型 | 服饰 | 鞋履 | 配饰 |
+| Scene | Makeup | Hairstyle | Clothing | Footwear | Accessories |
 |---|---|---|---|---|---|
-| 日常校园 | 日常淡妆 | 双马尾/长发披散 | 制服/日常休闲装 | 乐福鞋/玛丽珍鞋/运动鞋 | 简约 |
-| 初次相遇 | 日常淡妆 | 长发披散/侧马尾 | 日常休闲装 | 帆布鞋/低跟鞋 | 中等 |
-| 甜蜜约会 | 约会妆 | 侧马尾/丸子头 | 休闲/和服 | 低跟鞋/木屐 | 中偏多 |
-| 正式场合 | 正式妆 | 编发/高马尾 | 礼服/正式服 | 低跟皮鞋/短靴 | 较繁 |
-| 温柔私密 | 日常淡妆 | 长发披散 | 日常休闲装 | 软底鞋/帆布鞋 | 简约 |
-| 激烈行动 | 日常淡妆（极淡） | 高马尾 | 运动装 | 运动鞋/功能短靴 | 简 |
-| 复古场景 | 复古妆 | 编发/双马尾 | 和服/复古装 | 木屐/布鞋 | 中等 |
+| Daily Campus | Daily Light Makeup | Twin Tails/Long Hair Loose | Uniform/Daily Casual | Loafers/Mary Janes/Sneakers | Simple |
+| First Meeting | Daily Light Makeup | Long Hair Loose/Side Ponytail | Daily Casual | Canvas Shoes/Low Heels | Medium |
+| Sweet Date | Date Makeup | Side Ponytail/Bun | Casual/Kimono | Low Heels/Geta | Medium to High |
+| Formal Occasion | Formal Makeup | Braids/High Ponytail | Formal Dress/Formal Wear | Low Heel Leather Shoes/Short Boots | Relatively Elaborate |
+| Gentle Intimate | Daily Light Makeup | Long Hair Loose | Daily Casual | Soft-soled Shoes/Canvas Shoes | Simple |
+| Intense Action | Daily Light Makeup (Very Light) | High Ponytail | Sports Wear | Sneakers/Functional Short Boots | Simple |
+| Retro Scene | Retro Makeup | Braids/Twin Tails | Kimono/Retro Wear | Geta/Cloth Shoes | Medium |
 
-> **🔍 未覆盖场景推断规则**
+> **🔍 Uncovered Scene Inference Rules**
 >
-> 当用户描述的场景/情境不在上表时，根据本风格核心基因自行推断：
+> When the user-described scene/situation is not in the table above, infer based on the core genes of this style:
 >
-> | 推断维度 | 90年代复古日系动画基因 |
+> | Inference Dimension | 90s Retro Japanese Animation Gene |
 > |---|---|
-> | 妆容强度 | 默认日常淡妆（平涂上色、怀旧感）；正式/典礼→正式妆；约会/心动→约会妆；复古主题→复古妆 |
-> | 发型 | 日常/少女→双马尾或长发披散；运动/行动→高马尾；正式→编发；俏皮/个性→侧马尾；可爱→丸子头 |
-> | 服饰 | 以90年代风格为锚自由变化：可从校服、制服、休闲装、和服、针织、夹克、连衣裙等中按角色设定选择，避免角色之间高度同质化 |
-> | 鞋履 | 根据服装与身份搭配乐福鞋、帆布鞋、皮鞋、短靴、木屐等，不固定单一答案 |
-> | 配饰繁度 | 日常→简约（90年代风格发饰+基础配饰）；正式→中等偏繁；行动/运动→简或无 |
-> | 质感基准 | 手绘平涂上色始终锁定；线条流畅、色彩柔和暖调；禁止数字感/3D渲染/现代CG质感 |
+> | Makeup Intensity | Default Daily Light Makeup (flat color, nostalgic feel); Formal/Ceremony → Formal Makeup; Date/Crush → Date Makeup; Retro Theme → Retro Makeup |
+> | Hairstyle | Daily/Girl → Twin Tails or Long Hair Loose; Sports/Action → High Ponytail; Formal → Braids; Playful/Individual → Side Ponytail; Cute → Bun |
+> | Clothing | Free variation anchored in 90s style: choose from school uniforms, uniforms, casual wear, kimono, knitwear, jackets, dresses, etc., based on character setting; avoid high homogenization between characters |
+> | Footwear | Match loafers, canvas shoes, leather shoes, short boots, geta, etc., based on clothing and status; no fixed single answer |
+> | Accessory Density | Daily → Simple (90s style hair accessories + basic accessories); Formal → Medium to Elaborate; Action/Sports → Simple or None |
+> | Texture Baseline | Hand-drawn flat color application always locked; smooth lines, soft warm-tone colors; digital feel/3D rendering/modern CG texture prohibited |
 
 ---
 
-## 八、四视图设定图规范
+## VIII. Four-View Setting Sheet Specifications
 
-### 视图定义
+### View Definitions
 
-| 位置 | 视图 | 角度 | 景别 | 要求 | 提示词 |
+| Position | View | Angle | Shot Size | Requirements | Prompts |
 |---|---|---|---|---|---|
-| 左一 | 人像特写 | 正面平视 | 面部至锁骨 | 面部占60%+，五官/妆容清晰 | portrait closeup、face detail |
-| 左二 | 正视图 | 正面 0° | 全身立像 | 面对镜头、服饰正面全貌 | front view、full body |
-| 右二 | 侧视图 | 右侧 90° | 全身立像 | 纯侧面轮廓、服饰侧面层次 | side view、profile |
-| 右一 | 后视图 | 后方 180° | 全身立像 | 后脑发饰/背部服饰清晰 | back view、rear view |
+| Left 1 | Portrait Close-up | Frontal eye-level | Face to collarbone | Face occupies 60%+, clear features/makeup | portrait closeup, face detail |
+| Left 2 | Front View | Front 0° | Full body standing | Facing camera, full front view of clothing | front view, full body |
+| Right 2 | Side View | Right 90° | Full body standing | Pure side profile, side layers of clothing | side view, profile |
+| Right 1 | Back View | Rear 180° | Full body standing | Clear back hair accessories/back clothing | back view, rear view |
 
-### 画面规范
+### Frame Specifications
 
-| 项目 | 约束 |
+| Item | Constraint |
 |---|---|
-| 布局 | 同一画面从左至右并排四视图 |
-| 背景 | 暖调米白 #F8F4E8 |
-| 站姿 | 自然站立、双脚平行微分（**禁止任何姿态变化**） |
-| 表情 | 符合妆容风格的微表情（如淡妆→自然、正式妆→微笑） |
-| 光线 | 柔和电影光，均匀柔光，无硬阴影 |
-| 一致性 | 四视图的面容/妆容/发型/发饰/服饰/鞋履/配饰完全一致 |
-| 画面比例 | 建议 4:1 或 3:1 |
+| Layout | Four views arranged side-by-side from left to right in the same frame |
+| Background | Warm beige #F8F4E8 |
+| Standing Pose | Natural standing, feet parallel and slightly apart (**any pose change prohibited**) |
+| Expression | Subtle expression matching makeup style (e.g., light makeup → natural, formal makeup → smile) |
+| Lighting | Soft cinematic light, uniform soft light, no hard shadows |
+| Consistency | Face/makeup/hairstyle/hair accessories/clothing/footwear/accessories completely consistent across four views |
+| Aspect Ratio | Recommended 4:1 or 3:1 |
 
 ---
 
-## 八、提示词模板
+## VIII. Prompt Templates
 
 ```
-以角色基础形象图为底图，img2img叠加服化妆造，
-90s anime style，复古日系动画风格，{性别}角色四视图设定图，手绘平涂上色，柔和暖色调，电影感光影，
-character design sheet，character turnaround，
-保持基础形象面容不变，{整体气质}，
-【L1·妆容】{基础妆/轻妆/正式妆}；使用 {妆容风格}，皮肤均匀，{眉妆}，{眼妆}，{唇妆}，
-【L2·发型】{造型类型}，发丝流畅，{发饰描述}，
-【L3+L4·服饰】{主色}{款式}，{材质}，{装饰工艺}，衣服线条流畅，纹理清晰，
-【L5·鞋履】{鞋款}，{鞋面材质}，{袜装/鞋口设计}，与服饰统一，
-【L6·配饰】{头饰}，{耳饰}，{项饰}，{腰饰}，
-同一画面左至右并排：人像特写+正视图+侧视图+后视图，
-自然站立，纯净中性灰背景，柔和电影光，无硬阴影，
-四视图一致性，面容细腻渲染，发丝细腻渲染，纹理细节清晰
-图中不要有任何文字
+Using the character's base image as the base, overlay costume and makeup via img2img,
+90s anime style, retro Japanese animation style, {gender} character four-view design sheet, hand-drawn flat coloring, soft warm tones, cinematic lighting,
+character design sheet, character turnaround,
+Keep the base facial features unchanged, {overall temperament},
+【L1·Makeup】{base makeup/light makeup/formal makeup}; use {makeup style}, even skin, {eyebrow makeup}, {eye makeup}, {lip makeup},
+【L2·Hairstyle】{style type}, smooth hair strands, {hair accessory description},
+【L3+L4·Clothing】{main color}{style}, {material}, {decorative craft}, smooth clothing lines, clear textures,
+【L5·Footwear】{shoe style}, {upper material}, {socks/shoe opening design}, unified with the outfit,
+【L6·Accessories】{headpiece}, {earrings}, {necklace}, {waist accessory},
+Arranged side by side from left to right in the same frame: portrait close-up + front view + side view + back view,
+Natural standing pose, pure neutral gray background, soft cinematic light, no hard shadows,
+Four-view consistency, delicate facial rendering, delicate hair rendering, clear texture details
+No text of any kind in the image
 ```
 
 ---
 
-## 九、约束规则
+## IX. Constraint Rules
 
-### 必守
+### Mandatory
 
-| 编号 | 规则 |
+| ID | Rule |
 |---|---|
-| R1 | 叠加后面容必须与底模一致 |
-| R2 | 服饰需具备「线条流畅 + 结构清晰」的90年代手绘质感，但款式应允许因角色而异 |
-| R3 | 女性配饰需保持90年代风格并与服饰配套，不强制固定同一种组合 |
-| R4 | 妆容/发型/服饰/鞋履/配饰需在风格上统一，但不得模板化到角色失去差异 |
-| R5 | 必须输出四视图设定图（人像特写+正视图+侧视图+后视图） |
-| R6 | 必须指定「暖调米白背景 #F8F4E8」 |
-| R7 | 必须指定「四视图一致性」 |
-| R8 | **仅输出提示词**——禁止输出表格/方案/解释/变体等 |
-| R9 | **禁止包含场景描述**——不包含场景/环境/天气描述 |
-| R10 | **禁止道具交互**——不包含任何手持物/交互物 |
-| R11 | **姿态保持不变**——必须保持底模自然站立姿态 |
-| R12 | **L1 先分析再决策**——先解析用户面部线索，再确定妆容强度 |
-| R13 | **所有衍生资产均需妆造**——至少使用基础妆 |
-| R14 | **上妆强度受控**——不得出现过度夸张的妆容 |
-| R15 | **道具/场景/动作不作强度升级依据**——仅凭这些信息不得把基础妆抬高 |
+| R1 | The overlaid face must be consistent with the base model |
+| R2 | Costumes must possess a 90s hand-drawn texture characterized by "smooth lines + clear structure," but styles may vary by character |
+| R3 | Female accessories must maintain a 90s style and coordinate with the costume, without mandating a fixed combination |
+| R4 | Makeup, hairstyle, costume, footwear, and accessories must be stylistically unified, but must not be templated to the point of erasing character differences |
+| R5 | Must output a four-view setting sheet (portrait close-up + front view + side view + back view) |
+| R6 | Must specify "warm-toned off-white background #F8F4E8" |
+| R7 | Must specify "four-view consistency" |
+| R8 | **Output prompts only** — Prohibited from outputting tables/plans/explanations/variants, etc. |
+| R9 | **No scene descriptions** — Do not include scene/environment/weather descriptions |
+| R10 | **No prop interaction** — Do not include any held items/interactive objects |
+| R11 | **Pose remains unchanged** — Must maintain the natural standing pose of the base model |
+| R12 | **L1: Analyze before deciding** — First parse user facial cues, then determine makeup intensity |
+| R13 | **All derivative assets require makeup/styling** — Use at least basic makeup |
+| R14 | **Controlled makeup intensity** — Exaggerated makeup is not allowed |
+| R15 | **Props/scenes/actions are not grounds for intensity escalation** — Basic makeup must not be elevated based solely on this information |
 
-### 严禁
+### Strictly Prohibited
 
-| 编号 | 严禁 |
+| ID | Prohibition |
 |---|---|
-| X1 | 叠加后面容偏移 |
-| X2 | 配饰过于简单/现代化（女性） |
-| X3 | 妆容/服饰/鞋履风格互相冲突 |
-| X4 | 复杂场景背景（必须暖色调背景） |
-| X5 | 四视图间服化妆造不一致 |
-| X6 | 输出提示词以外的任何内容 |
-| X7 | 在人物衍生资产中加入场景描述 |
-| X8 | 输出「速查表」「方案」「建议」等章节 |
-| X9 | 加入任何道具交互 |
-| X10 | 改变底模姿态 |
-| X11 | 加入表情与姿态联动描述 |
-| X12 | 未分析用户线索就直接套用固定妆容 |
-| X13 | 错误保持素颜，导致缺少应有妆造 |
-| X14 | 仅因道具/场景/动作词而误把妆容升级 |
+| X1 | Facial offset after overlay |
+| X2 | Accessories too simple/modern (for females) |
+| X3 | Style conflicts between makeup/costume/footwear |
+| X4 | Complex scene backgrounds (warm-toned background is required) |
+| X5 | Inconsistency in costume/makeup/styling across the four views |
+| X6 | Any content other than the prompt |
+| X7 | Adding scene descriptions to character derivative assets |
+| X8 | Outputting sections such as "Quick Reference Table," "Plan," or "Suggestions" |
+| X9 | Adding any prop interaction |
+| X10 | Changing the base model pose |
+| X11 | Adding descriptions linking expression and pose |
+| X12 | Applying fixed makeup directly without analyzing user cues |
+| X13 | Incorrectly maintaining a bare face, resulting in missing required makeup/styling |
+| X14 | Incorrectly escalating makeup intensity solely due to prop/scene/action terms |

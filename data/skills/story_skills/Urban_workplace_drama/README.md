@@ -1,61 +1,61 @@
-# 都市职场 · 导演叙事手法技能包
+# Urban Workplace · Director's Narrative Techniques Skill Pack
 
-## 简介
+## Overview
 
-本技能包为 **都市职场** 类型故事提供一套完整的导演叙事手法参考，涵盖从宏观叙事规划到微观分镜执行的全流程指导。适用于任何视觉风格。
+This skill pack provides a complete reference for directorial narrative techniques for **Urban Workplace** type stories, covering the full process from macro-level narrative planning to micro-level storyboard execution. It is applicable to any visual style.
 
-## 核心理念
+## Core Concepts
 
-- **真实即力量** — 职场叙事的杀手锏是"真实感"，让观众在角色身上看到自己
-- **博弈暗涌** — 表面客气、暗地交锋，职场的冲突不在拳头上而在话语权与利益链上
-- **成长的代价** — 每一次升级都有代价（妥协/失去/自我怀疑），成长弧线不是直线上升而是螺旋
-- **小人物的光** — 最动人的不是大boss的权谋，而是普通人在体制中坚持自我的微光
+- **Authenticity is Power** — The killer feature of workplace storytelling is "authenticity," allowing the audience to see themselves in the characters
+- **Undercurrents of Strategy** — Surface politeness, hidden confrontations; workplace conflict lies not in physical blows but in power dynamics and chains of interest
+- **The Cost of Growth** — Every level-up comes with a cost (compromise/loss/self-doubt); the growth arc is not a straight line but a spiral
+- **The Light of Ordinary People** — The most moving elements are not the power schemes of big bosses, but the faint light of ordinary people maintaining their identity within the system
 
-## 文件结构
+## File Structure
 
 ```
 Urban_workplace_drama/
-├── README.md                                          ← 本文件
+├── README.md                                          ← This file
 └── driector_skills/
-    ├── director_planning_narrative.md                 ← 叙事规划手法
-    └── director_storyboard_table_narrative.md         ← 分镜表叙事手法
+    ├── director_planning_narrative.md                 ← Narrative planning techniques
+    └── director_storyboard_table_narrative.md         ← Storyboard table narrative techniques
 ```
 
-## 技能文件说明
+## Skill File Description
 
-### 1. 叙事规划手法 (`director_planning_narrative.md`)
+### 1. Narrative Planning Techniques (`director_planning_narrative.md`)
 
-导演在 **叙事规划阶段** 使用的技法参考，定义都市职场在主题立意、博弈节奏、场景张力设计与声音方向上的整体规划方法。
+Technique reference used by the director during the **Narrative Planning phase**, defining the overall planning methods for urban workplace settings in terms of thematic intent, conflict pacing, scene tension design, and sound direction.
 
-| 章节 | 内容概要 |
+| Chapter | Content Overview |
 |---|---|
-| 主题立意与职场内核 | 真实感基石、权力博弈、成长代价、小人物光芒 |
-| 叙事结构与博弈节奏 | 利益链驱动、攻守转换、信息不对称、阶段性胜负 |
-| 分场景张力设计 | 六大典型职场段落设计、空间权力隐喻、社交距离叙事 |
-| 声音与音乐方向 | 都市白噪音、沉默博弈、节奏性配乐、环境音叙事 |
-| 构图与景别叙事 | 权力构图/对峙构图/孤立构图、景别的权力表达 |
-| 镜头运动与节奏 | 纪实手持、冷静固定、压迫推移、呼吸感运镜 |
+| Thematic Intent and Workplace Core | Foundation of realism, power dynamics, the cost of growth, the light of the underdog |
+| Narrative Structure and Conflict Pacing | Interest-chain driven, offense-defense shifts, information asymmetry, phased wins and losses |
+| Scene-by-Scene Tension Design | Design of six typical workplace segments, spatial power metaphors, social distance narrative |
+| Sound and Music Direction | Urban white noise, silent conflict, rhythmic scoring, environmental sound narrative |
+| Composition and Shot Scale Narrative | Power composition / confrontation composition / isolation composition, power expression through shot scale |
+| Camera Movement and Rhythm | Documentary handheld, calm static, oppressive push, breathing-like camera movement |
 
-### 2. 分镜表叙事手法 (`director_storyboard_table_narrative.md`)
+### 2. Storyboard Table Narrative Techniques (`director_storyboard_table_narrative.md`)
 
-导演在 **分镜表制作阶段** 使用的技法参考，定义都市职场在分镜表中的景别策略、运镜节奏、时长把控、对话分镜与转场手法。
+Technique reference used by the director during the **Storyboard Table Production phase**, defining shot scale strategy, camera movement rhythm, duration control, dialogue storyboarding, and transition techniques for urban workplace settings in the storyboard table.
 
-| 章节 | 内容概要 |
+| Chapter | Content Overview |
 |---|---|
-| 分镜表定位 | 分镜表作为人物关系与权力张力核心工具的定位说明 |
-| 景别选择 | 权力景别、社交距离景别、孤立感景别 |
-| 运镜节奏 | 冷静固定为主、纪实手持、压迫缓推 |
-| 时长把控 | 对话节奏、沉默博弈时长、快节奏蒙太奇 |
-| 对话分镜设计 | 权力位对切、三角关系构图、潜台词镜头语言 |
-| 独处段落 | 下班后的真实、独自崩溃、深夜反思 |
-| 台词与潜台词 | 话中有话、沉默的攻防、职场黑话的镜头处理 |
-| 转场设计 | 时间蒙太奇/空间对比/硬切节奏/日常流转 |
+| Storyboard Table Positioning | Explanation of the storyboard table's role as a core tool for character relationships and power tension |
+| Shot Scale Selection | Power shot scale, social distance shot scale, isolation shot scale |
+| Camera Movement Rhythm | Primarily calm static, documentary handheld, oppressive slow push |
+| Duration Control | Dialogue rhythm, duration of silent conflict, fast-paced montage |
+| Dialogue Storyboard Design | Power-position cutaways, triangular relationship composition, subtext camera language |
+| Solitude Segments | Post-work realism, solo breakdown, late-night reflection |
+| Dialogue and Subtext | Words within words, silent offense-defense, camera treatment of workplace jargon |
+| Transition Design | Time montage / spatial contrast / hard cut rhythm / daily flow |
 
-## 使用方式
+## Usage
 
-本技能包作为 SandDrama 导演 AI 的叙事手法参考，在故事创作流程中自动加载，指导：
+This skill pack serves as a narrative technique reference for the SandDrama Director AI. It is automatically loaded during the story creation process to guide:
 
-1. **叙事规划** — 确定职场内核、博弈节奏曲线、场景权力关系与音效方向
-2. **分镜表生成** — 根据叙事规划输出具体的景别、运镜、时长与转场方案
+1. **Narrative Planning** — Determining the workplace core, conflict pacing curve, scene power relationships, and sound direction
+2. **Storyboard Table Generation** — Outputting specific shot scale, camera movement, duration, and transition plans based on the narrative planning
 
-两个文件分工明确、逐层递进，从"为什么这样拍"到"具体怎么拍"形成完整闭环。
+The two files have clearly defined roles and progress layer by layer, forming a complete closed loop from "why shoot it this way" to "how exactly to shoot it."

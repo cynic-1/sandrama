@@ -1,117 +1,117 @@
-# 全局美学基础 · 2D扁平风（Flat Design）
+# Global Aesthetic Foundation · 2D Flat Style (Flat Design)
 
 ---
-必须严格、完整遵循下方全部风格约束与全局规则，并严格按提示词模板格式生成提示词；仅输出提示词正文，不得附加任何解释、说明、注释、标题或其他额外文本。
-## 一、风格基因
+You must strictly and completely follow all style constraints and global rules below, and generate prompts strictly according to the prompt template format; output only the prompt body, without adding any explanations, notes, comments, titles, or other extra text.
+## I. Style DNA
 
-| 维度 | 定义 |
+| Dimension | Definition |
 |---|---|
-| **一级风格** | 2D扁平风（Flat Design） |
-| **二级风格** | 几何造型 · 纯色色块 · 无阴影无渐变 |
-| **情感基调** | 简约现代 · 明快清新 |
-| **质感锚词** | 简洁线条、纯色填充、色块对比 |
+| **Primary Style** | 2D Flat Style (Flat Design) |
+| **Secondary Style** | Geometric shapes · Solid color blocks · No shadows, no gradients |
+| **Emotional Tone** | Minimalist modern · Bright and fresh |
+| **Texture Anchor Words** | Clean lines, solid color fills, color block contrast |
 
 ---
 
-## 二、全局色彩盘（风格基线，不是硬锁）
+## II. Global Color Palette (Style Baseline, Not Hard-Locked)
 
-> 目标：统一审美而非限制创作。除「硬约束色」外，其余颜色默认优先使用，可在合理范围内偏移。
+> Goal: Unify aesthetics rather than restrict creativity. Except for "hard-constraint colors," other colors are used by default preference and can be offset within a reasonable range.
 
-### 色彩使用层级
+### Color Usage Hierarchy
 
-| 层级 | 约束强度 | 说明 |
+| Level | Constraint Strength | Description |
 |---|---|---|
-| L1 硬约束 | 高 | 仅锁定角色识别核心：肤色、发色、主服底色的审美方向 |
-| L2 软约束 | 中 | 场景色、配饰色、点缀色优先参考色盘，可按镜头与剧情微调 |
-| L3 例外机制 | 低 | 浪漫/高潮/特殊场景可临时突破局部色彩，但需保留整体扁平逻辑 |
+| L1 Hard Constraint | High | Only locks the aesthetic direction of core character identification: skin tone, hair color, and base color of main clothing |
+| L2 Soft Constraint | Medium | Scene colors, accessory colors, and accent colors preferentially reference the palette; can be fine-tuned according to shots and plot |
+| L3 Exception Mechanism | Low | Romantic/climax/special scenes can temporarily break local color rules, but must maintain the overall flat logic |
 
-| 序号 | 色名 | 色值 | 用途 |
+| No. | Color Name | Hex Code | Usage |
 |---|---|---|---|
-| C1 | 明快蓝 | #3B82F6 | 背景、服装、冷调主体 |
-| C2 | 活力橙 | #F59E0B | 暖色点缀、情感高潮 |
-| C3 | 纯净白 | #FFFFFF | 背景、留白、纯净感 |
-| C4 | 深棕发 | #4A3728 | 发色、眼瞳 |
-| C5 | 高级灰 | #8A8A8A | 中性色、次要元素 |
-| C6 | 淡紫 | #C084FC | 夜晚、梦幻、点缀 |
-| C7 | 暖粉 | #FB7185 | 浪漫、心动、点缀 |
-| C8 | 浅黄 | #FDE047 | 温暖、阳光、背景 |
-| C9 | 米白 | #FEF3C7 | 背景、留白、温暖感 |
-| C10 | 薄荷绿 | #5EEAD4 | 自然、清新、环境 |
+| C1 | Bright Blue | #3B82F6 | Background, clothing, cool-tone subjects |
+| C2 | Vibrant Orange | #F59E0B | Warm accents, emotional climaxes |
+| C3 | Pure White | #FFFFFF | Background, negative space, purity |
+| C4 | Dark Brown Hair | #4A3728 | Hair color, iris color |
+| C5 | Premium Gray | #8A8A8A | Neutral colors, secondary elements |
+| C6 | Light Purple | #C084FC | Night, dreamy, accents |
+| C7 | Warm Pink | #FB7185 | Romance, heart-flutter, accents |
+| C8 | Light Yellow | #FDE047 | Warmth, sunlight, background |
+| C9 | Off-White | #FEF3C7 | Background, negative space, warmth |
+| C10 | Mint Green | #5EEAD4 | Nature, freshness, environment |
 
-### 硬约束色（默认锁定）
+### Hard-Constraint Colors (Default Locked)
 
-| 色项 | 对应色 | 规则 |
+| Color Item | Corresponding Color | Rule |
 |---|---|---|
-| 肤色基准 | C3 纯净白 + C9 米白 | 默认优先，允许明度微调 |
-| 发色/瞳色基准 | C4 深棕发 | 默认优先，允许深棕/深褐偏移 |
+| Skin Tone Baseline | C3 Pure White + C9 Off-White | Default preference, allows brightness fine-tuning |
+| Hair/Iris Color Baseline | C4 Dark Brown Hair | Default preference, allows dark brown/dark brown offset |
 
-### 软约束色（推荐优先）
+### Soft-Constraint Colors (Recommended Preference)
 
-> C1/C2/C5/C6/C7/C8/C10 为推荐色域，用于服装、装饰、背景、暖光、环境等。可根据镜头氛围做同色相邻近调整。
+> C1/C2/C5/C6/C7/C8/C10 are the recommended color domains, used for clothing, decoration, background, warm light, environment, etc. Adjacent same-color adjustments can be made according to the shot atmosphere.
 
-### 情绪色盘（导演对齐版）
+### Emotional Color Palette (Director Alignment Version)
 
-| 情绪场景 | 主色 | 辅色 | 色块对比建议 | 画面关键词 |
+| Emotional Scene | Primary Color | Secondary Color | Color Block Contrast Suggestion | Visual Keywords |
 |---|---|---|---|---|
-| 日常温馨 | C9 米白 | C3 纯净白 + C5 高级灰 | 低对比，柔和 | 生活感、温暖、平静 |
-| 心动瞬间 | C7 暖粉 | C2 活力橙 + C9 米白 | 中对比，主色突出 | 羞涩、靠近感、暧昧 |
-| 办公/学习 | C1 明快蓝 | C3 纯净白 + C5 高级灰 | 高对比，理性 | 高效、冷静、专业 |
-| 浪漫场景 | C7 暖粉 | C2 活力橙 + C8 浅黄 | 高对比，浪漫 | 甜蜜、温暖、情感 |
-| 夜晚场景 | C6 淡紫 | C1 明快蓝 + C2 活力橙 | 冷为主，暖点缀 | 静谧、神秘、思考 |
-| 回忆/闪回 | C8 浅黄 | C5 高级灰 + C7 暖粉 | 低对比，柔和 | 怀旧、旧忆、梦幻 |
-| 离别感伤 | C5 高级灰 | C1 明快蓝 + C6 淡紫 | 高对比，冷调 | 距离感、克制、静压 |
-| 重逢释怀 | C9 米白 | C7 暖粉 + C2 活力橙 | 先冷后暖，渐进 | 回温、释然、治愈 |
+| Daily Warmth | C9 Off-White | C3 Pure White + C5 Premium Gray | Low contrast, soft | Life feel, warmth, calm |
+| Heart-Flutter Moment | C7 Warm Pink | C2 Vibrant Orange + C9 Off-White | Medium contrast, primary color prominent | Shyness, closeness, ambiguity |
+| Office/Study | C1 Bright Blue | C3 Pure White + C5 Premium Gray | High contrast, rational | Efficient, cool, professional |
+| Romantic Scene | C7 Warm Pink | C2 Vibrant Orange + C8 Light Yellow | High contrast, romantic | Sweet, warm, emotional |
+| Night Scene | C6 Light Purple | C1 Bright Blue + C2 Vibrant Orange | Cool dominant, warm accents | Serene, mysterious, contemplative |
+| Memory/Flashback | C8 Light Yellow | C5 Premium Gray + C7 Warm Pink | Low contrast, soft | Nostalgia, old memories, dreamy |
+| Parting/Sadness | C5 Premium Gray | C1 Bright Blue + C6 Light Purple | High contrast, cool tone | Distance, restraint, quiet pressure |
+| Reunion/Relief | C9 Off-White | C7 Warm Pink + C2 Vibrant Orange | Cool to warm, progressive | Warming up, relief, healing |
 
-### 情绪色盘使用规则
+### Emotional Color Palette Usage Rules
 
-| 编号 | 规则 |
+| No. | Rule |
 |---|---|
-| E1 | 每条提示词至少指定 1 个「情绪场景」并绑定主色+辅色组合 |
-| E2 | 单镜头主色不超过 2 个，避免颜色叙事失焦 |
-| E3 | 情绪切换时优先调整色相较色温，再调整饱和度 |
-| E4 | 治愈向默认遵循「暖底 + 冷暖对比」：暖色铺底，冷色用于背景/次要元素 |
-| E5 | 若与剧情冲突，以情绪色盘优先于通用推荐色，但不得突破严禁项 |
+| E1 | Each prompt must specify at least 1 "emotional scene" and bind the primary + secondary color combination |
+| E2 | No more than 2 primary colors per shot to avoid color narrative focus loss |
+| E3 | When switching emotions, prioritize adjusting hue over color temperature, then adjust saturation |
+| E4 | Healing-oriented defaults follow "warm base + cool-warm contrast": warm colors as base, cool colors for background/secondary elements |
+| E5 | If conflicting with the plot, the emotional color palette takes priority over general recommended colors, but must not violate prohibited items |
 
-### 色温约束
+### Color Temperature Constraints
 
-| 参数 | 值 | 说明 |
+| Parameter | Value | Description |
 |---|---|---|
-| 整体色温 | 中性 5500-6500K（推荐） | 简约现代主基调 |
-| 肤色色温 | 微暖 5800-6200K（推荐） | 米白但有生命感 |
-| 对比度 | 中等偏高（建议保持） | 色块对比清晰，但不过分强烈 |
-| 饱和度 | 中高 70-90%（建议区间） | 扁平风格高级色调 |
+| Overall Color Temperature | Neutral 5500-6500K (Recommended) | Minimalist modern main tone |
+| Skin Tone Color Temperature | Slightly Warm 5800-6200K (Recommended) | Off-white but with a sense of life |
+| Contrast | Medium-High (Recommended to maintain) | Clear color block contrast, but not overly strong |
+| Saturation | Medium-High 70-90% (Recommended range) | Premium tones for flat style |
 
-### 容差与例外
+### Tolerance and Exceptions
 
-| 项目 | 建议容差 |
+| Item | Suggested Tolerance |
 |---|---|
-| 色相偏移 | ±8° |
-| 饱和度偏移 | ±10% |
-| 明度偏移 | ±12% |
+| Hue Offset | ±8° |
+| Saturation Offset | ±10% |
+| Brightness Offset | ±12% |
 
-> 例外场景：浪漫、高潮、情绪转换镜头可使用更暖或更高饱和局部色块；但禁止高饱和荧光色与现代色彩语言入镜。
+> Exception scenes: Romantic, climax, and emotional transition shots can use warmer or higher saturation local color blocks; however, high-saturation fluorescent colors and modern color language are prohibited from entering the frame.
 
 ---
 
-## 三、全局约束规则
+## III. Global Constraint Rules
 
-### 必守规则（所有技能继承）
+### Mandatory Rules (Inherited by all skills)
 
-| 编号 | 规则 |
+| No. | Rule |
 |---|---|
-| R1 | 必须包含「2D扁平风 + Flat Design」风格锚定词 |
-| R2 | 必须声明「无阴影无渐变 + 纯色色块」 |
-| R3 | 面部必须使用「几何造型 + 简洁线条」 |
-| R4 | 轮廓线必须使用「清晰线条 + 均匀一致」 |
-| R5 | 色彩必须声明「纯色填充 + 色块对比清晰」 |
+| R1 | Must include "2D Flat Style + Flat Design" style anchor words |
+| R2 | Must declare "No shadows, no gradients + Solid color blocks" |
+| R3 | Faces must use "Geometric shapes + Clean lines" |
+| R4 | Outlines must use "Clear lines + Uniform consistency" |
+| R5 | Colors must declare "Solid color fills + Clear color block contrast" |
 
-### 严禁项（所有技能继承）
+### Prohibited Items (Inherited by all skills)
 
-| 编号 | 严禁内容 |
+| No. | Prohibited Content |
 |---|---|
-| X1 | 严禁「3D渲染/写实渲染/照片级真实感」 |
-| X2 | 严禁「阴影/渐变/纹理/光影」 |
-| X3 | 严禁「高饱和荧光色/霓虹色」 |
-| X4 | 严禁「面部变形/比例失调/肢体异常」倾向词 |
-| X5 | 严禁「复杂细节/精细纹理/写实背景」 |
-| X6 | 严禁「3D透视/深度感描述」 |
+| X1 | Prohibited "3D rendering/Realistic rendering/Photo-realism" |
+| X2 | Prohibited "Shadows/Gradients/Textures/Light and shadow" |
+| X3 | Prohibited "High-saturation fluorescent colors/Neon colors" |
+| X4 | Prohibited "Facial distortion/Disproportionate ratios/Abnormal limbs" tendency words |
+| X5 | Prohibited "Complex details/Fine textures/Realistic backgrounds" |
+| X6 | Prohibited "3D perspective/Depth description" |

@@ -8,22 +8,22 @@ export default router.post("/", async (req, res) => {
   try {
     const { tableName } = req.body;
     if (!tableName || typeof tableName !== "string") {
-      return res.status(400).send(error("请提供有效的表名"));
+      return res.status(400).send(error("Please provide a valid table name"));
     }
 
-    // 验证表名存在（防止SQL注入）
+    // Verify that the table name exists (to prevent SQL injection)
     const tableExists: { name: string }[] = await db.raw(
       `SELECT name FROM sqlite_master WHERE type='table' AND name=?`,
       [tableName],
     );
     if (tableExists.length === 0) {
-      return res.status(400).send(error("表不存在"));
+      return res.status(400).send(error("Table does not exist"));
     }
 
     await db.raw(`DELETE FROM "${tableName}"`);
 
-    res.status(200).send(success(`表 ${tableName} 已清空`));
+    res.status(200).send(success(`Table${tableName}Cleared`));
   } catch (err: any) {
-    res.status(500).send(error(err?.message || "清空表失败"));
+    res.status(500).send(error(err?.message || "Failed to clear the table"));
   }
 });

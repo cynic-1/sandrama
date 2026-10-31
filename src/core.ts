@@ -16,9 +16,9 @@ function fileNameToRoutePath(fileName: string): string {
 type RouteModulePair = { routePath: string; varName: string; entry: string };
 
 export default async function generateRouter(): Promise<void> {
-  // glob 得到 entries
+  // Get entries via glob
   let entries: string[] = await fg(["src/routes/**/*.ts"]);
-  // 排序
+  // Sort
   entries = entries.sort((a, b) => a.localeCompare(b));
 
   const importLines: string[] = [];

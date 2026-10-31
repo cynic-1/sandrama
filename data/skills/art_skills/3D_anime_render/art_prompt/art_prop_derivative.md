@@ -1,124 +1,124 @@
-# 3D动画渲染都市道具衍生状态生成 · 约束手册
+# 3D Animation Rendering Urban Prop Derived State Generation · Constraint Manual
 
 ---
 
-## 一、衍生原则
+## I. Derivation Principles
 
-1. **造型锚定** — 道具核心造型/轮廓在所有状态中可识别
-2. **状态可读** — 状态差异必须一目了然，观众能立即区分
-3. **叙事服务** — 每种状态变体服务于特定剧情节点
-4. **渐进退化** — 损伤/老化状态应有合理的物理逻辑（赛璐珞呈现）
-5. **纯道具独立展示** — 画面中只能出现道具本身，严禁出现任何人物、手部、肢体，道具不可处于被持有/佩戴/握持状态，必须以静物陈列方式独立呈现
-
----
-
-## 二、状态类型
-
-### 2.1 使用状态
-
-| 状态 | 描述 | 适用道具 | 提示词 |
-|---|---|---|---|
-| 崭新 | 完好无损、光泽如新 | 所有道具 | 崭新、完好无损、光泽如新 |
-| 日常使用 | 微磨损、自然使用痕迹（赛璐珞化） | 所有道具 | 日常使用痕迹、轻微磨损 |
-| 陈旧 | 明显使用感、色泽暗淡（赛璐珞化） | 器物/配件/电子 | 使用痕迹、岁月感、色泽暗淡 |
-
-### 2.2 损伤状态
-
-| 状态 | 描述 | 适用道具 | 提示词 |
-|---|---|---|---|
-| 微损 | 小裂纹/小缺口/轻微磨损（赛璐珞化） | 玻璃/陶瓷/电子设备 | 细微裂纹、轻微缺口 |
-| 破损 | 明显裂缝/断裂/破碎（赛璐珞化） | 玻璃/陶瓷/电子设备 | 裂缝明显、碎裂、断裂 |
-| 残片 | 仅剩部分/碎片（赛璐珞化） | 玻璃/陶瓷/电子设备 | 残片、碎片、仅存半块 |
-
-### 2.3 特殊状态
-
-| 状态 | 描述 | 适用道具 | 提示词 |
-|---|---|---|---|
-| 充电/工作 | 屏幕亮起/指示灯（赛璐珞化） | 电子设备 | 屏幕亮起、工作指示灯 |
-| 浸水/湿润 | 水渍、湿润反光（赛璐珞化） | 电子设备/纸张 | 浸水、表面湿润、反光 |
-| 屏幕损坏 | 屏幕裂纹/显示异常 | 电子设备 | 屏幕裂纹、显示异常 |
-| 电池耗尽 | 指示灯熄灭/电量图标 | 电子设备 | 电量耗尽、指示灯熄灭 |
-| 收纳/携带 | 收纳袋/收纳盒 | 配件/电子设备 | 收纳袋、收纳盒 |
+1. **Form Anchoring** — The core form/outline of the prop must be recognizable in all states
+2. **State Readability** — State differences must be immediately obvious, allowing the audience to distinguish them instantly
+3. **Narrative Service** — Each state variant serves a specific plot point
+4. **Progressive Degradation** — Damage/aging states must follow reasonable physical logic (celluloid presentation)
+5. **Pure Prop Independent Display** — Only the prop itself may appear in the frame. The appearance of any person, hand, or limb is strictly prohibited. The prop must not be in a held/worn/gripped state; it must be presented independently as a still-life display
 
 ---
 
-## 三、状态变体画面规范
+## II. State Types
 
-### 单状态图
+### 2.1 Usage States
 
-| 项目 | 约束 |
+| State | Description | Applicable Props | Prompt |
+|---|---|---|---|
+| Brand New | Intact, glossy as new | All props | Brand new, intact, glossy as new |
+| Daily Use | Minor wear, natural usage traces (celluloidized) | All props | Daily usage traces, minor wear |
+| Aged | Obvious usage feel, dull color (celluloidized) | Vessels/Accessories/Electronics | Usage traces, aged feel, dull color |
+
+### 2.2 Damage States
+
+| State | Description | Applicable Props | Prompt |
+|---|---|---|---|
+| Minor Damage | Small cracks/chips/minor wear (celluloidized) | Glass/Ceramics/Electronics | Fine cracks, minor chips |
+| Broken | Obvious cracks/fractures/shattering (celluloidized) | Glass/Ceramics/Electronics | Obvious cracks, shattered, fractured |
+| Fragments | Only parts/fragments remain (celluloidized) | Glass/Ceramics/Electronics | Fragments, shards, only half remains |
+
+### 2.3 Special States
+
+| State | Description | Applicable Props | Prompt |
+|---|---|---|---|
+| Charging/Working | Screen lit up/indicator lights (celluloidized) | Electronics | Screen lit up, working indicator lights |
+| Soaked/Wet | Water stains, wet reflections (celluloidized) | Electronics/Paper | Soaked, wet surface, reflections |
+| Screen Damage | Screen cracks/display anomalies | Electronics | Screen cracks, display anomalies |
+| Battery Depleted | Indicator lights off/battery icon | Electronics | Battery depleted, indicator lights off |
+| Storage/Carrying | Storage bag/storage box | Accessories/Electronics | Storage bag, storage box |
+
+---
+
+## III. State Variant Image Specifications
+
+### Single State Image
+
+| Item | Constraint |
 |---|---|
-| 背景 | 纯净中性灰 #E8E8E8（与设定图一致） |
-| 光线 | 均匀照明，无硬阴影 |
-| 角度 | 与原设定图正面图一致 |
-| 比例 | 道具占画面主体 70%+ |
+| Background | Pure neutral gray #E8E8E8 (consistent with the design sheet) |
+| Lighting | Even lighting, no hard shadows |
+| Angle | Consistent with the front view of the original design sheet |
+| Ratio | Prop occupies 70%+ of the frame |
 
-### 状态对比图
+### State Comparison Image
 
-| 项目 | 约束 |
+| Item | Constraint |
 |---|---|
-| 布局 | 同一画面并排展示 2-3 种状态 |
-| 标注 | 每种状态下方标注状态名 |
-| 一致性 | 角度/光线/背景完全一致，仅状态不同 |
+| Layout | Display 2-3 states side-by-side in the same frame |
+| Labels | Label the state name below each state |
+| Consistency | Angle/lighting/background must be completely identical; only the state differs |
 
 ---
 
-## 四、材质状态变化规则
+## IV. Material State Change Rules
 
-| 材质 | 崭新 → 日常 | 日常 → 陈旧 | 损伤表现（赛璐珞化） |
+| Material | Brand New → Daily | Daily → Aged | Damage Presentation (Celluloidized) |
 |---|---|---|---|
-| 金属 | 亮光泽 → 微划痕 | 划痕 → 色泽暗沉 | 缺口/卷刃/断裂（赛璐珞处理） |
-| 玻璃 | 透明度 → 微划痕 | 划痕 → 表面磨损 | 裂纹/碎裂/缺角（赛璐珞处理） |
-| 塑料 | 光滑 → 轻微划痕 | 划痕 → 色泽暗淡 | 开裂/断裂/磨损（赛璐珞处理） |
-| 皮革 | 光滑 → 自然褶皱 | 褶皱 → 色泽暗淡 | 磨损/裂纹/褪色（赛璐珞处理） |
-| 纸张 | 平整 → 轻微皱折 | 皱折 → 发黄 | 撕裂/磨损/墨迹晕染（赛璐珞处理） |
+| Metal | Bright gloss → Minor scratches | Scratches → Dull color | Chips/Bent edges/Fractures (celluloid treatment) |
+| Glass | Transparency → Minor scratches | Scratches → Surface wear | Cracks/Shattering/Chipped corners (celluloid treatment) |
+| Plastic | Smooth → Minor scratches | Scratches → Dull color | Cracking/Fracturing/Wear (celluloid treatment) |
+| Leather | Smooth → Natural creases | Creases → Dull color | Wear/Cracks/Fading (celluloid treatment) |
+| Paper | Flat → Minor wrinkles | Wrinkles → Yellowing | Tearing/Wear/Ink bleeding (celluloid treatment) |
 
 ---
 
-## 五、提示词模板
+## V. Prompt Templates
 
-### 单状态变体
+### Single State Variant
 
 ```
-基于{道具名}设定图，3D 动画渲染，电影级打光，活力赛璐珞质感，高细节材质，愉悦治愈氛围，卡通都市风，高细节卡通材质，适度卡通比例，暖色调配色，8K 超高清，电影级构图，柔和光影层次，明快卡通渲染风格，温馨治愈，
+Based on the {item name} setting image, 3D animation rendering, cinematic lighting, vibrant cel-shaded texture, high-detail materials, pleasant and healing atmosphere, cartoon urban style, high-detail cartoon materials, moderate cartoon proportions, warm color palette, 8K ultra-high definition, cinematic composition, soft light and shadow layers, bright cartoon rendering style, warm and healing,
 anime style, cel-shaded, 3D animation render,
-{道具类型}，{材质描述}，
-当前状态：{状态名}，{状态视觉描述}，
-{材质表面变化描述}，（赛璐珞化处理）
-纯道具静物展示，道具独立陈列，无人持有，无人佩戴，
-同一画面四宫格（2×2）：左上正面图(front view)+右上侧面图(side view)+左下背面图(back view)+右下细节特写(detail closeup)，
-纯净中性灰背景，均匀柔光，无硬阴影，
-材质纹理清晰，赛璐珞渲染，状态细节可辨，赛璐珞化处理，
-8K 超高清，电影级构图，
-图中不要有任何文字，
-画面中不能出现任何人物、手部、手指、肢体，道具不可处于被握持或佩戴状态
+{item type}, {material description},
+Current state: {state name}, {state visual description},
+{material surface change description}, (cel-shaded treatment)
+Pure item still life display, item displayed independently, not held by anyone, not worn by anyone,
+Four-panel grid in the same frame (2×2): top-left front view + top-right side view + bottom-left back view + bottom-right detail closeup,
+Pure neutral gray background, uniform soft light, no hard shadows,
+Clear material texture, cel-shaded rendering, state details distinguishable, cel-shaded treatment,
+8K ultra-high definition, cinematic composition,
+No text of any kind in the image,
+No people, hands, fingers, or limbs may appear in the frame, the item must not be in a state of being held or worn
 ```
 
 ---
 
-## 六、约束规则
+## VI. Constraint Rules
 
-### 必守
+### Mandatory
 
-| 编号 | 规则 |
+| ID | Rule |
 |---|---|
-| R1 | 道具核心造型/轮廓在所有状态中可识别 |
-| R2 | 状态变化须符合物理逻辑（赛璐珞化） |
-| R3 | 必须使用四宫格（2×2）布局：左上正面图+右上侧面图+左下背面图+右下细节特写 |
-| R4 | 必须指定「纯净中性灰背景」，均匀柔光，无硬阴影 |
-| R5 | 必须包含3D动画渲染关键词（cel-shaded, 3D animation render, anime style） |
-| R6 | 必须包含8K超高清、电影级构图关键词 |
+| R1 | The core shape/silhouette of the prop must be recognizable in all states |
+| R2 | State changes must conform to physical logic (cel-shading) |
+| R3 | A four-panel (2×2) layout must be used: top-left front view + top-right side view + bottom-left back view + bottom-right detail close-up |
+| R4 | A "pure neutral gray background" must be specified, with uniform soft lighting and no hard shadows |
+| R5 | 3D animation rendering keywords (cel-shaded, 3D animation render, anime style) must be included |
+| R6 | 8K ultra-high-definition and cinematic composition keywords must be included |
 
-### 严禁
+### Prohibited
 
-| 编号 | 严禁 |
+| ID | Prohibition |
 |---|---|
-| X1 | 状态变化后道具不可识别 |
-| X2 | 违反物理逻辑的损伤（电子产品生锈等） |
-| X3 | 过度血腥/恐怖的损伤描绘（赛璐珞化限度内） |
-| X4 | 出现任何人物形象，包括全身、半身、局部（手、手指、手臂等肢体） |
-| X5 | 道具处于被持有、握持、佩戴、使用中的状态 |
-| X6 | 出现暗示人物存在的元素（如手持痕迹、佩戴视角、使用姿态） |
-| X7 | 使用写实摄影术语（如real photography, photorealistic, RAW photo等） |
-| X8 | 过度写实损伤纹理、破坏赛璐珞风格一致性 |
-| X9 | 古代/未来元素、非现代都市风格 |
+| X1 | The prop becomes unrecognizable after state changes |
+| X2 | Damage that violates physical logic (e.g., rust on electronic devices) |
+| X3 | Excessively bloody or terrifying damage depictions (within the limits of cel-shading) |
+| X4 | Any human figures, including full body, half body, or partial views (hands, fingers, arms, or other limbs) |
+| X5 | The prop is in a state of being held, gripped, worn, or in use |
+| X6 | Elements implying the presence of a person (e.g., hand-held marks, wearing perspective, usage posture) |
+| X7 | Use of realistic photography terms (e.g., real photography, photorealistic, RAW photo, etc.) |
+| X8 | Overly realistic damage textures that break the consistency of the cel-shaded style |
+| X9 | Ancient/futuristic elements, non-modern urban style |

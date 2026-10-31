@@ -23,10 +23,10 @@ export default router.post(
       }),
     );
 
-    //获取相关资产
+    // Retrieve related assets
     const storyboardIds = storyboardData.map((s) => s.id as number);
 
-    // 修复：o_assets.id 关联 o_assets2Storyboard.assetId，按 storyboardId 过滤
+    // Fix: Join o_assets.id with o_assets2Storyboard.assetId, and filter by storyboardId
     const storyboardConfigs = await u
       .db("o_assets2Storyboard")
       .leftJoin("o_assets", "o_assets2Storyboard.assetId", "o_assets.id")
@@ -34,7 +34,7 @@ export default router.post(
       .whereIn("o_assets2Storyboard.storyboardId", storyboardIds)
       .select("o_assets2Storyboard.storyboardId", "o_assets.id as assetId", "o_assets.name", "o_assets.type", "o_image.filePath as avatar");
 
-    // 按 storyboardId 分组，生成 characters 列表
+    // Group by storyboardId and generate the characters list
     const storyboardCharactersMap = storyboardConfigs.reduce<Record<number, { name: string; type: string; avatar?: string }[]>>((acc, cur) => {
       const storyboardId = cur.storyboardId as number;
       if (!acc[storyboardId]) {
@@ -51,12 +51,12 @@ export default router.post(
       return acc;
     }, {});
 
-    // 组装最终数据，符合 Shot 接口格式
+    // Assemble the final data to conform to the Shot interface format
 
     const result = await Promise.all(
       data.map(async (item) => {
         const characters = storyboardCharactersMap[item.id as number] ?? [];
-        // 处理 characters 中的 avatar OSS 路径
+        // Process the avatar OSS path in characters
         const charactersWithUrl = await Promise.all(
           characters.map(async (c) => {
             if (c.avatar) {

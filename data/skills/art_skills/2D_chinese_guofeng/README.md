@@ -1,33 +1,33 @@
-# 国风二次元新国潮风格说明
+# Guofeng 2D New Guochao Style Description
 
-本风格专为"国风二次元新国潮"题材打造，所有美术提示词、规范和生成内容均严格限定于：
+This style is specifically designed for the "Guofeng 2D New Guochao" theme. All art prompts, specifications, and generated content are strictly limited to:
 
-- **国风二次元动画**：以中国古风文化为背景的二次元动画风格，涵盖仙侠、武侠、宫廷等题材
-- **新国潮美学**：传统东方元素与现代审美结合，古典韵味与时尚感并存
-- **日式动画渲染技法**：现代日式动画的上色与光影技术，赛璐璐平涂结合数字渲染
-- **东方古韵**：诗意氛围、留白构图、意境深远的东方美学表达
-- **细腻笔触**：清晰的线条、精细的细节、精致的角色与场景设计
-- **国风二次元电影质感**：电影级构图、光影层次、动态张力、情绪氛围
+- **Guofeng 2D Animation**: A 2D animation style set against the backdrop of traditional Chinese culture, covering themes such as xianxia, wuxia, and court intrigue
+- **New Guochao Aesthetics**: A fusion of traditional Eastern elements with modern aesthetics, where classical charm coexists with a fashionable sensibility
+- **Japanese Animation Rendering Techniques**: Modern Japanese animation coloring and lighting techniques, combining cel flat-shading with digital rendering
+- **Eastern Ancient Charm**: Poetic atmosphere, negative space composition, and profound Eastern aesthetic expression
+- **Delicate Brushwork**: Clear lines, intricate details, and refined character and scene design
+- **Guofeng 2D Cinematic Quality**: Cinematic composition, layered lighting, dynamic tension, and emotional atmosphere
 
-## 适用范围
+## Scope of Application
 
-- 国风二次元题材的AI美术生成（角色、场景、道具、分镜等）
-- 需要新国潮美学、日式动画渲染、国风意境的视觉创作
-- 国风动画、游戏美术、概念设计、插画创作
+- AI art generation for Guofeng 2D themes (characters, scenes, props, storyboards, etc.)
+- Visual creations requiring New Guochao aesthetics, Japanese animation rendering, and Guofeng ambiance
+- Guofeng animation, game art, concept design, and illustration creation
 
-## 严禁内容
+## Strictly Prohibited Content
 
-- 完全写实摄影/3D写实渲染
-- 西方奇幻/哥特/维多利亚风格
-- 赛博朋克/科幻/过度现代元素
-- 粗劣线条/模糊画质/低精度建模
-- 色彩混乱/风格不统一/审美崩坏
+- Fully realistic photography / 3D realistic rendering
+- Western fantasy / Gothic / Victorian styles
+- Cyberpunk / Sci-fi / Excessively modern elements
+- Rough lines / Blurry image quality / Low-precision modeling
+- Chaotic colors / Inconsistent style / Aesthetic breakdown
 
-## 风格体验
+## Style Experience
 
-在本风格下，您将体验到：
+Under this style, you will experience:
 
-- 角色造型二次元比例，古风服饰精致，线条细腻流畅
-- 场景充满东方意境，传统建筑细节丰富，光影渲染精致
-- 道具器物考究，材质质感清晰，色彩和谐统一
-- 分镜与渲染均强调电影质感、新国潮审美、日式动画技法
+- Characters with 2D proportions, exquisite ancient-style attire, and delicate, flowing lines
+- Scenes filled with Eastern ambiance, rich traditional architectural details, and refined lighting rendering
+- Meticulously crafted props and artifacts, clear material textures, and harmonious, unified colors
+- Storyboards and rendering that emphasize cinematic quality, New Guochao aesthetics, and Japanese animation techniques

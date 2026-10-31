@@ -13,7 +13,7 @@ const APP_VERSION: string = (() => {
   if (typeof __APP_VERSION__ !== "undefined") {
     return __APP_VERSION__;
   }
-  // 开发环境回退：从 package.json 读取
+  // Development environment rollback: Read from package.json
   const pkgPath = path.resolve(process.cwd(), "package.json");
   const pkg = JSON.parse(fs.readFileSync(pkgPath, "utf8"));
   return pkg.version;
@@ -34,20 +34,20 @@ export default router.post(
     try {
       const upstream = await fetch(getUrl);
       const body = await upstream.text();
-      if (!upstream.ok) return res.status(502).send(error(`版本服务响应异常（HTTP ${upstream.status}）`));
+      if (!upstream.ok) return res.status(502).send(error(`Version service response exception (HTTP${upstream.status}）`));
       try {
         versionInfo = JSON.parse(body);
       } catch {
-        return res.status(502).send(error("版本服务暂时不可用"));
+        return res.status(502).send(error("The version service is temporarily unavailable"));
       }
     } catch {
-      return res.status(502).send(error("无法连接版本服务"));
+      return res.status(502).send(error("Unable to connect to the version service"));
     }
-    if (!versionInfo) return res.status(502).send(error("无法获取版本信息"));
+    if (!versionInfo) return res.status(502).send(error("Unable to retrieve version information"));
     const { version: tagger, time, data } = versionInfo;
 
     const sourceData = data[source];
-    if (!sourceData) return res.status(400).send(error("无法获取该源的下载信息"));
+    if (!sourceData) return res.status(400).send(error("Unable to retrieve download information for this source"));
 
     const platformType: Record<string, string> = {
       win32: "windows",
@@ -60,23 +60,23 @@ export default router.post(
 
     const taggerList = tagger.split(".").map(Number);
     const currentVersionList = APP_VERSION.split(".").map(Number);
-    //对比Major
+    // Compare Major
     if (taggerList[0] > currentVersionList[0]) {
-      if (!installerItem) return res.status(400).send(error("该源暂无适用于当前系统的安装包"));
+      if (!installerItem) return res.status(400).send(error("No installation package is available for the current system from this source"));
       return res
         .status(200)
         .send(success({ needUpdate: true, latestVersion: tagger, reinstall: true, time, url: installerItem.url, version: tagger }));
     }
-    //对比Minor
+    // Compare Minor
     if (taggerList[1] > currentVersionList[1]) {
-      if (!installerItem) return res.status(400).send(error("该源暂无适用于当前系统的安装包"));
+      if (!installerItem) return res.status(400).send(error("No installation package is available for the current system from this source"));
       return res
         .status(200)
         .send(success({ needUpdate: true, latestVersion: tagger, reinstall: true, time, url: installerItem.url, version: tagger }));
     }
     //Patch
     if (taggerList[2] > currentVersionList[2]) {
-      if (!zipItem) return res.status(400).send(error("该源暂无增量更新包"));
+      if (!zipItem) return res.status(400).send(error("This source has no incremental update package"));
       return res.status(200).send(success({ needUpdate: true, latestVersion: tagger, reinstall: false, time, url: zipItem.url, version: tagger }));
     }
     return res.status(200).send(success({ needUpdate: false, latestVersion: tagger, reinstall: false, time, version: tagger }));

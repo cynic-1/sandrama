@@ -1,89 +1,89 @@
 ---
 name: director_storyboard_table_narrative
-description: 分镜表叙事手法 · 心理博弈 — 定义心理博弈在分镜表中的景别博弈控制、运镜心理映射、时长张力、镜头合并与转场逻辑。适用于任何视觉风格。
+description: Storyboard Narrative Technique · Psychological Game - Define the psychological game in the storyboard in terms of scene game control, psychological mapping of camera movements, duration tension, shot merging and transition logic. Works with any visual style.
 metaData: director_skills
 ---
 
-# 分镜表叙事手法 · 心理博弈 · 技法参考
+# Storyboard Narrative Technique · Psychological Game · Technical Reference
 
 ---
 
-## 一、分镜表定位
+## 1. Storyboard positioning
 
-分镜表是导演将剧本转化为镜头语言的核心工具。表单字段由导演根据项目需要自行设定（分镜号、景别、运镜、时长、人物、事件、台词、光影、情绪、转场等），以下仅提供心理博弈叙事类型下的技法参考。
-
----
-
-## 二、景别选择
-
-- **特写是读心工具** — 心理博弈叙事中特写的使用频率高于其他类型。特写用于捕捉角色"嘴上说的和心里想的不一样"的微表情破绽：眼神一瞬间的飘移、嘴角微不可察的上扬、瞳孔的收缩
-- **中景是博弈主场** — 对话博弈段落的主力景别是中景/近景，确保观众同时看到角色的表情和肢体语言。纯特写丢失肢体信息，纯远景丢失表情信息
-- **远景交代格局** — 远景用于交代博弈的"格局"：谁和谁在一起、第三方在哪里、空间中的权力位置关系
-- **大特写是线索投放** — 大特写（指尖颤抖/瞳孔变化/嘴角一闪而过的抽搐）用于向观众投放关键线索：这个人在说谎、这个人发现了什么、这个人即将行动
-- **定场要暗藏信息** — 博弈叙事的定场镜头不只交代空间，要在定场中就传递"博弈场"的属性：密闭/开阔、有无第三者、退路在哪里
+Storyboards are the core tool for directors to transform scripts into lens language. The form fields are set by the director according to the needs of the project (shot number, scene, shot movement, duration, characters, events, lines, light and shadow, emotions, transitions, etc.). The following only provides technical reference for the psychological game narrative type.
 
 ---
 
-## 三、运镜节奏
+## 2. Scene selection
 
-- **默认静止，静止即对峙** — 65% 以上镜头应为静止机位。心理博弈中镜头的静止传递"两个人在较量，谁先动谁先露破绽"的对峙感
-- **极缓推 = 逼近/施压** — 比正常缓推更慢的速度，暗示"真相在被逼近"或"一方正在施加心理压力"
-- **缓拉 = 揭示/发现** — 从角色缓慢拉开揭示角色不知道的信息（有人在身后/证据在桌上/另一个角色的反应）
-- **微妙偏移 = 天平倾斜** — 静止画面中镜头极缓地偏向一侧，暗示博弈态势正在改变
-- **快切仅用于反转** — 反转揭底瞬间允许快速景别跳切（中景→特写→大特写），模拟认知震荡。其余段落禁止快切
-
----
-
-## 四、时长把控
-
-- **对话镜头 3-5s** — 博弈对话的正反打节奏稍慢于日常对话。每句话之间的沉默间隔是"双方都在计算"的心理时间
-- **沉默对峙 4-6s** — 无台词的对视/沉默段落需要足够时长，让观众感受到"空气中在发生什么"
-- **微表情特写 2-3s** — 微表情破绽的特写时长要精确：太短观众看不到，太长变成刻意强调
-- **反转瞬间 1-2s** — 底牌翻开的关键反应镜头要短而精准，快到让观众来不及反应就被震到
-- **远景/格局交代 3-4s** — 交代博弈格局的远景不需要太长，信息到位即可
-- **黄金法则：沉默比台词长** — 心理博弈中，两句话之间的沉默应该比话本身更长。沉默是双方在"出牌"之间的博弈
+- **Close-ups are mind-reading tools** — Close-ups are used more frequently in psychological game narratives than in other types. Close-ups are used to capture the micro-expression flaws of a character's "what they say is different from what they think in their hearts": the momentary drift of the eyes, the subtle rise of the corners of the mouth, and the contraction of the pupils.
+- **Mid shot is the main scene of the game** — The main shot of the dialogue game segment is the middle shot/close shot, ensuring that the audience can see the character's expression and body language at the same time. Pure close-ups lose body information, pure long shots lose facial expression information
+- **Yuanjing explains the pattern** — Yuanjing is used to explain the "pattern" of the game: who is with whom, where the third party is, and the power position relationship in the space.
+- **Close-ups are clues** — Close-ups (trembling fingertips/pupil changes/twitching corners of the mouth) are used to throw key clues to the audience: this person is lying, this person has discovered something, this person is about to take action
+- **Information must be hidden when setting the scene** — The establishing shot of a game narrative not only explains the space, but also conveys the attributes of the "game field" in the setting: closed/open, whether there is a third party, and where to retreat.
 
 ---
 
-## 五、镜头合并策略（去 AI 感）
+## 3. Rhythm of camera movement
 
-- **对话段落保持正反打** — 与其他类型不同，心理博弈的对话段落需要精确的正反打来传递攻防节奏，不应强行合并为双人镜头。每一次切换都是"球"在两个人之间的传递
-- **博弈回合一组完成** — 一个完整的"攻防回合"（试探→回应→再试探→摊牌）应作为一组镜头整体规划，保持内部节奏的连贯
-- **叙事密度极高** — 心理博弈中每个镜头都必须承载信息（台词潜台词/微表情/肢体线索/空间暗示），不允许纯氛围镜头
-- **导演思维检验** — 写完分镜后自检：每个镜头是否都有"信息层"？观众在这个镜头中能"读到"什么？如果什么都读不到，这个镜头不该存在
-
----
-
-## 六、一镜到底（长镜头合并）
-
-- **适用条件** — 两人在空间中走位变化、权力关系随空间位置转移、从一个信息状态过渡到另一个信息状态
-- **典型场景** — 角色A站起走向窗边（从对等变为俯视）、角色围着桌子走一圈（权力展示）、从会议室走到走廊（从公开到私密）
-- **标注方式** — 在运镜字段写明完整路径（如"一镜到底：角色A起身→缓推跟随到窗前→摇镜带入角色B在座位上的反应→落幅双人构图"），画面描述中交代起幅和落幅
-- **时长放宽** — 博弈长镜头因信息密度持续更新，可突破单镜 6s 上限，但不超过 12s
-- **空间位移即心理位移** — 长镜头中角色的每一步空间移动都应对应心理博弈态势的变化
+- **Default is still, still means confrontation** — More than 65% of the shots should be static. The stillness of the camera in the psychological game conveys the sense of confrontation of "two people are competing, who makes the first move and who reveals the flaw first"
+- **Extremely slow push = approach/pressure** — Slower speed than normal push, implying that "the truth is getting closer" or "one party is exerting psychological pressure"
+- **Slow pull = reveal/discovery** — A slow pull away from a character to reveal information the character doesn't know (there's someone behind you/evidence on the table/another character's reaction)
+- **Subtle shift = tilt of the scale** — The camera tilts very slowly to one side in the still image, suggesting that the game situation is changing
+- **Quick cut is only used for reversal** — The moment of reversal reveals allows quick scene jump cuts (medium shot → close-up → large close-up) to simulate cognitive shock. Fast cutting is prohibited in the remaining paragraphs
 
 ---
 
-## 七、人物互动设计
+## 4. Duration control
 
-- **对话就是交锋** — 分镜表中博弈对话的每句台词都应标注"潜台词"或"真实意图"。台词是表面，潜台词才是博弈
-- **微动作即破绽** — 分镜表中每个博弈镜头应为角色设计一个细微的"真实反应"动作：不经意地摸耳朵 = 紧张；手指轻敲桌面 = 计算；喝水 = 拖延时间
-- **谁先开口谁先输** — 博弈对峙中沉默是武器。分镜表应标注"沉默属于谁"——谁在制造沉默（主动施压），谁在承受沉默（被动防守）
-
----
-
-## 八、台词与留白
-
-- **每句话都有两层意思** — 心理博弈中没有"普通台词"。分镜表中的台词应精简且多义，让观众在二刷时发现"原来那句话是这个意思"
-- **沉默比台词更危险** — 博弈中最危险的时刻不是争吵，而是一方突然不说话了。沉默代表"我已经想好了下一步"
-- **回答中的信息量** — 台词的信息量需要精确控制：回答太少 = 可疑（在隐瞒）；回答太多 = 可疑（在掩饰）；回答刚好 = 最可疑（太完美了）
+- **Dialogue shot 3-5s** — The forward and reverse rhythm of game dialogue is slightly slower than that of daily dialogue. The silent interval between each sentence is the psychological time "both parties are calculating"
+- **Silent Confrontation 4-6s** — The dialogue/silence passage without lines needs to be long enough to allow the audience to feel "what is happening in the air"
+- **Micro-expression close-up 2-3s** — The length of the close-up of micro-expression flaws must be precise: too short and the audience cannot see it, too long and it becomes deliberately emphasized.
+- **Reversal moment 1-2s** — The key reaction shot when the hole card is revealed should be short and precise, so fast that the audience will be shocked before they have time to react.
+- **Perspective/pattern explanation 3-4s** — The long-term explanation of the game pattern does not need to be too long, as long as the information is in place
+- **Golden Rule: Silences are longer than words** — In psychological games, the silence between two sentences should be longer than the words themselves. Silence is a game between the two parties "playing cards"
 
 ---
 
-## 九、转场设计
+## 5. Lens merging strategy (removing the sense of AI)
 
-- **默认硬切** — 同场戏内镜头间用硬切，保持博弈节奏的利落与紧张
-- **博弈回合间用短暂黑屏** — 一个博弈回合结束到下一回合开始，可用 0.3-0.5s 的短暂黑屏做"呼吸"，同时暗示"新一轮开始了"
-- **视角切换用硬切** — 从角色A视角切换到角色B视角时，用硬切制造"认知翻转"的冲击感
-- **闪回用快闪** — 博弈中角色突然回忆起关键线索时，用极短的闪回画面（0.5-1s）插入，模拟"灵光一闪"的认知体验
-- **场景切换保持紧张** — 不同场景间的转场不用柔性过渡，保持心理博弈全程的紧绷感。如需缓冲，用一个角色独处的短镜头（思考/计划下一步）做情绪过渡
+- **Dialogue paragraphs should maintain forward and reverse play** — Unlike other types, psychological game dialogue paragraphs require precise forward and reverse play to convey the rhythm of attack and defense, and should not be forcibly merged into a two-person shot. Every switch is a "ball" passing between two people
+- **Game rounds are completed in one set** — A complete "offensive and defensive round" (test → response → test again → showdown) should be planned as a group of shots to maintain the coherence of the internal rhythm
+- **Extremely high narrative density** — Every shot in the psychological game must carry information (subtext of lines/micro-expressions/body clues/spatial cues), and purely atmospheric shots are not allowed.
+- **Director's Thought Test** — Self-examination after writing the storyboard: Does each shot have an "information layer"? What can the audience "read" in this shot? If you can't read anything, this lens shouldn't exist
+
+---
+
+## 6. One shot to the end (long shot merge)
+
+- **Applicable Conditions** — The position of two people changes in space, the power relationship shifts with the spatial position, and the transition from one information state to another information state
+- **Typical Scenario** — Character A stands up and walks to the window (from peer-to-peer to overlooking), the character walks around the table (power display), and walks from the conference room to the corridor (from public to private)
+- **Annotation method** — Write the complete path in the camera movement field (such as "One shot to the end: Character A stands up → slowly pushes to follow to the window → pans to bring in character B's reaction on the seat → falling two-person composition"), explain the starting and ending angles in the picture description
+- **Relaxation of duration** — Due to the continuous updating of information density, the long shot of the game can exceed the 6s upper limit of a single shot, but not exceed 12s
+- **Spatial displacement is psychological displacement** — Every spatial movement of the character in the long shot should correspond to changes in the psychological game situation
+
+---
+
+## 7. Character interaction design
+
+- **Dialogue is Confrontation** — Every line of game dialogue in the storyboard should be marked with "subtext" or "true intention." Lines are the surface, subtext is the game
+- **Micro actions are flaws** — Each game shot in the storyboard should be designed with a subtle "real reaction" action for the character: touching the ear casually = nervousness; tapping fingers on the table = calculation; drinking water = delaying time
+- **Whoever speaks first loses** — Silence is a weapon in game confrontation. The storyboard should be marked with "Whose silence belongs to" - who is creating silence (active pressure) and who is suffering silence (passive defense)
+
+---
+
+## 8. Lines and blank spaces
+
+- **Every sentence has two meanings** — There are no "ordinary lines" in psychological games. The lines in the storyboard should be concise and have multiple meanings, so that the audience can find "this is what the original sentence meant" during the second viewing.
+- **Silence is more dangerous than words** — The most dangerous moment in a game is not the quarrel, but when one party suddenly stops talking. Silence means "I have already thought about the next step"
+- **Amount of information in the answer** — The amount of information in the lines needs to be precisely controlled: too little answer = suspicious (concealing); too many answers = suspicious (concealing); just right answer = the most suspicious (too perfect)
+
+---
+
+## 9. Transition design
+
+- **Default Hard Cut** — Use hard cuts between shots in the same scene to keep the rhythm of the game clean and tense.
+- **Use a short black screen between game rounds** - From the end of one game round to the beginning of the next round, you can use a short black screen of 0.3-0.5s to "breathe" and at the same time imply that "a new round has begun."
+- **Hard cuts are used to switch perspectives** — When switching from the perspective of character A to the perspective of character B, hard cuts are used to create the impact of a "cognitive flip"
+- **Use flash for flashback** — When a character suddenly recalls a key clue during the game, a very short flashback screen (0.5-1s) is inserted to simulate the cognitive experience of "a flash of inspiration"
+- **Maintain tension during scene switching** — There is no need for flexible transitions between different scenes to maintain a sense of tension throughout the psychological game. If you need a buffer, use a short shot of a character alone (thinking/planning their next move) as an emotional transition

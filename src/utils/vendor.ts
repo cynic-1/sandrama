@@ -108,7 +108,7 @@ export function clearModelDiscoveryCache(id?: string) {
 }
 
 export function writeCode(id: string | number, tsCode: string) {
-  // 登录用户的供应商脚本保存在其账号设置中，不能覆盖其他账号的全局脚本。
+  // The logged-in user's supplier script is stored in their account settings and cannot override the global script of other accounts.
   if (userSettings.currentUserId() !== undefined) return;
   const rootDir = u.getPath("vendor")
   fs.mkdirSync(rootDir, { recursive: true })

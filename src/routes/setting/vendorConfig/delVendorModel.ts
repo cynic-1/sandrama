@@ -18,11 +18,11 @@ export default router.post(
     if (models?.models) {
       const existingModels = JSON.parse(models.models);
       if (!existingModels.some((model: any) => model.modelName === modelName)) {
-        return res.status(400).send(error("基本模型不允许删除"));
+        return res.status(400).send(error("The base model cannot be deleted"));
       }
       const updatedModels = existingModels.filter((model: any) => model.modelName !== modelName);
       await u.userSettings.updateVendorConfig(id, { models: JSON.stringify(updatedModels) });
     }
-    res.status(200).send(success("更新成功"));
+    res.status(200).send(success("Update successful"));
   },
 );

@@ -1,110 +1,110 @@
 ---
 name: director_planning_narrative
-description: 叙事手法技法 · 甜宠言情 — 定义甜宠言情类型在主题立意、情感节奏、场景情绪设计与声音方向上的叙事规划方法。适用于任何视觉风格。
+description: Narrative Techniques · Sweet Pet Romance - defines the narrative planning method of sweet pet romance type in terms of theme conception, emotional rhythm, scene mood design and sound direction. Works with any visual style.
 metaData: director_skills
 ---
 
-# 叙事手法 · 甜宠言情 · 技法参考
+# Narrative Techniques · Sweet Pet Romance · Technical Reference
 
 ---
 
-## 一、主题立意与情感内核
+## 1. Theme conception and emotional core
 
-### 甜宠言情叙事要点
+### Key points of sweet pet romance narrative
 
-- **含蓄内敛优先** — 情感表达不靠台词铺陈，靠留白与微妙反应。主题立意应偏向克制含蓄，避免直白煽情
-- **甜的克制** — "差一点就碰到"比"黏在一起"更有效。情感主线应设计"欲说还休"的推拉节奏，甜度来自观众自行脑补
-- **以小博大** — 不追求大场面的情绪冲击，用细节打动人：一个眼神、一次欲言又止、一个被风吹乱的衣角
-- **离场感受建议方向** — 心疼 / 意难平 / 怦然心动 / 治愈。避免"爽感""热血"等与甜宠气质不匹配的方向
-- **冷中带暖、疏中见密** — 甜宠不等于甜腻。整体基调可以偏冷、偏疏，但在关键节点释放暖意，反差才是最大的甜
-
----
-
-## 二、叙事结构与节奏规划
-
-### 甜宠言情叙事要点
-
-- **慢是基本功** — 甜宠言情的情感信息密度高（眼神、微表情、肢体距离），需要给观众"感受"的时间。整体节奏偏慢，但不等于拖沓——每个段落都有情感增量
-- **情绪曲线宜缓坡** — 避免"平平平→突然爆发"。用渐进式情绪递进，每个段落比上一个段落情绪浓度高一级
-- **转折点用行动而非台词** — 关键转折点的处理方式应优先考虑行动手段（目光突变、身体距离变化、沉默、道具传递），而非依赖对白解释
-- **段落间用情绪缓冲过渡** — 段落衔接需要情绪缓冲，不要硬切。可用环境空镜、独处片段或日常碎片做呼吸空间
-- **高潮段落的"快"不是剪辑快** — 是情绪密度高。可以用更紧密的景别切换（全身→近景→特写→大特写）制造心跳加速感，而非缩短停留时间
-- **推拉节奏模型** — 甜宠言情的核心引擎是"推拉"：靠近→退缩→再靠近→误会→分离→重逢。每一轮推拉都应比上一轮更深入、更痛苦、更甜蜜
+- **Implicit and reserved first** — Emotional expression does not rely on lines, but on blank spaces and subtle reactions. The theme concept should be restrained and subtle, and avoid direct and sensationalism.
+- **Sweet Restraint** — "Almost touching" is more effective than "sticking together." The emotional main line should be designed with a push-and-pull rhythm of "stop talking before stopping", and the sweetness comes from the audience's own imagination.
+- **Small things make a big difference** — Don’t pursue the emotional impact of big scenes, use details to impress people: a look in the eye, a hesitation to speak, a corner of clothes blown by the wind
+- **Suggested directions for leaving the scene** — distressed/uneasy/thumping/healing. Avoid "cool", "hot-blooded" and other directions that do not match the temperament of your sweet pet.
+- **Warm in the cold, dense in the sparse** - Sweetness does not mean sweetness. The overall tone can be cold or sparse, but when warmth is released at key nodes, the contrast is the most sweet.
 
 ---
 
-## 三、分场景情绪设计
+## 2. Narrative structure and rhythm planning
 
-### 甜宠言情叙事要点
+### Key points of sweet pet romance narrative
 
-- **情绪目标用具象词** — 不说"开心"，说"偷偷心动后的嘴角压不住"。具象的情绪描述能更好地指导景别选择和表演细节
-- **典型情绪段落与设计** —
+- **Slowness is the basic skill** — Sweet pet romances have a high density of emotional information (eyes, micro-expressions, body distance), and the audience needs to be given time to "feel". The overall pace is slow, but that doesn’t mean it’s dragging – each paragraph has an emotional increment
+- **Emotional curve should have a gentle slope** - avoid "mediocre → sudden explosion". Use progressive emotional progression, with each paragraph having a higher emotional concentration than the previous paragraph.
+- **Turning points use actions rather than lines** - Key turning points should be handled with priority given to action methods (sudden changes in gaze, changes in physical distance, silence, props delivery) rather than relying on dialogue explanations
+- **Use emotional buffering transitions between paragraphs** — Paragraph connections need emotional buffering, not hard cuts. You can use environmental empty mirrors, solitude clips or daily fragments as breathing space.
+- **The "fast" in the climax passage does not mean fast editing** - it means high emotional density. You can use closer scene switching (full body → close-up → close-up → large close-up) to create a feeling of accelerated heartbeat instead of shortening the dwell time.
+- **Push-Pull Rhythm Model** — The core engine of sweet pet romance is "push-pull": approaching → retreating → approaching again → misunderstanding → separation → reunion. Each push and pull should be deeper, more painful, and sweeter than the last
 
-| 段落类型 | 情绪方向 | 叙事手法 | 音乐建议 |
+---
+
+## 3. Scene emotional design
+
+### Key points of sweet pet romance narrative
+
+- **Use concrete words for emotional goals** — Don't say "happy", say "I can't hold back the corners of my mouth after my heart beats secretly". Concrete emotional descriptions can better guide scene selection and performance details
+- **Typical emotional passages and designs** —
+
+| Paragraph Types | Emotional Direction | Narrative Techniques | Music Suggestions |
 |---|---|---|---|
-| 初见/亮相 | 惊艳 + 好奇 | 以旁观者视角"发现"对方，先远后近 | 留白，只用环境音制造"屏息"感 |
-| 日常暗恋 | 暗涌 + 克制 | 偷看、欲言又止、刻意保持距离 | 轻柔器乐，低音量，衬底 |
-| 误会/分离 | 心痛 + 隐忍 | 不解释、转身、独处落泪 | 悲戚独奏，或纯环境音 |
-| 坦白/和解 | 释然 + 心动 | 沉默后开口、眼神先于语言 | 从安静到温暖器乐渐入 |
-| 升温/暧昧 | 紧张 + 甜蜜 | 物理距离缩短、肢体轻触、呼吸可闻 | 节奏感轻起，暗示心跳 |
-| 高甜/大婚 | 幸福 + 庄重 | 仪式感、郑重的对视、承诺 | 丰满器乐，庄重但温柔 |
+| First meeting/appearance | Stunning + curiosity | "Discover" the other person from the perspective of a bystander, first far and then close | Leave blank and only use ambient sounds to create a "breath-holding" feeling |
+| Daily secret love | Undercurrent + restraint | Peeping, hesitating to speak, deliberately keeping a distance | Soft instrumental music, low volume, background |
+| Misunderstanding/separation | Heartache + tolerance | No explanation, turning around, crying alone | Sad solo, or pure ambient sound |
+| Confession/Reconciliation | Relief + Heartbeat | Speak after silence, eyes before words | From quiet to warm instrumental music gradually entering |
+| Heating/ambiguity | Tension + sweetness | Shortening of physical distance, light touch of body, audible breathing | Light rhythm, hinting at heartbeat |
+| High sweetness/big wedding | happiness + solemnity | sense of ceremony, solemn gazes, commitment | rich instrumental music, solemn but gentle |
 
-- **"距离感"是叙事核心工具** — 用人物间的物理距离映射关系进展：
-  - **初期**：远景/半身，物理距离大，言语客套
-  - **中期**：近景，距离缩短但有阻隔（物件/人群/犹豫）
-  - **后期**：特写/大特写，零距离，心理防线全部放下
-- **空间元素即情绪隐喻** — 善用场景元素传递情绪，减少对台词的依赖。例如：隔着帘子的模糊身影 = 隔阂；推开门看到满庭花开 = 释然；独坐雨中 = 孤寂
-- **镜头意图写"为什么"而非"怎么拍"** — "用特写是为了让观众看到她眼里的犹豫"优于"用特写拍她的脸"。意图清晰了，分镜自然能选对景别和角度
+- **"Distance" is a core narrative tool** — Use the physical distance between characters to map relationship progress:
+  - **Early stage**: long view/half body, large physical distance, polite speech
+  - **Mid stage**: Close-up, the distance is shortened but blocked (objects/crowds/hesitation)
+  - **Post-stage**: Close-up/extreme close-up, zero distance, all psychological defenses are put down
+- **Spatial elements are emotional metaphors** — Make good use of scene elements to convey emotions and reduce reliance on lines. For example: a blurry figure behind a curtain = estrangement; opening the door and seeing a garden full of flowers blooming = relief; sitting alone in the rain = loneliness
+- **The purpose of the shot is "why" instead of "how to shoot"** - "Using a close-up is to let the audience see the hesitation in her eyes" is better than "using a close-up to shoot her face". Once the intention is clear, the storyboard can naturally choose the right scenes and angles.
 
 ---
 
-## 四、声音与音乐方向
+## 4. Sound and Music Direction
 
-### 甜宠言情叙事要点
+### Key points of sweet pet romance narrative
 
-- **沉默比配乐更有力** — 关键情感瞬间（对视、泪落、转身离去）优先考虑去掉配乐，只留环境音。甜宠的"甜"往往在沉默后观众自己脑补出来
-- **配乐情绪跟着段落走** — 不逐场配乐，按段落划分给每段定一个音乐情绪基调。同段落内场景切换靠环境音变化过渡，不频繁换曲
-- **避免满配** — 全片配乐覆盖率建议不超过 60%。留白段落的"无声"与配乐段落形成呼吸感
-- **环境音是氛围一半** — 每场戏标注 1-2 个核心环境音，帮助后续音效设计。环境音层次越丰富，场景越有沉浸感
-- **音乐情绪递进模型** —
+- **Silence is more powerful than soundtrack** — For key emotional moments (looking at each other, falling into tears, turning away), priority should be given to removing the soundtrack and leaving only ambient sounds. The "sweetness" of a sweet pet is often figured out by the audience after silence.
+- **The mood of the soundtrack follows the paragraphs** - Instead of scoring scenes one by one, set a musical mood tone for each paragraph by dividing it into paragraphs. Scene switching within the same paragraph depends on the transition of environmental sound changes, and the music is not changed frequently.
+- **Avoid full soundtrack** — It is recommended that the soundtrack coverage of the entire film should not exceed 60%. The "silence" of the blank passages and the soundtrack passages create a sense of breathing
+- **Environmental sound is half the atmosphere** — Mark 1-2 core environmental sounds for each scene to help with subsequent sound effects design. The richer the levels of ambient sound, the more immersive the scene will be.
+- **Music Emotion Progressive Model** —
 
-| 情绪阶段 | 音乐策略 | 覆盖率 |
+| Emotional Stages | Music Strategy | Coverage |
 |---|---|---|
-| 平稳/日常 | 轻柔器乐衬底 | 低 |
-| 暗涌/酝酿 | 单一乐器独奏，极低音量 | 中低 |
-| 情感爆发 | 器乐渐满或突然静默 | 中高 |
-| 命运转折 | 强烈器乐或全场静默 | 极端 |
-| 回暖/治愈 | 温暖器乐缓入 | 中 |
+| Smooth/Everyday | Soft instrumental backing | Low |
+| Undercurrent/Brewing | Single instrument solo, very low volume | Mid-low |
+| Emotional explosion | Instrumental music gradually fills up or suddenly becomes silent | Medium to high |
+| Twist of fate | Strong instrumental music or total silence | Extreme |
+| Reviving/Healing | Warm instrumental music eases in | Middle |
 
-- **甜宠的"心跳感"** — 暧昧升温段落可用轻节奏打击（手鼓、木鱼、拨弦）暗示心跳加速，比直接用甜蜜旋律更高级
-
----
-
-## 五、构图与景别叙事
-
-### 甜宠言情叙事要点
-
-- **三大核心构图的叙事功能** —
-  - **大量留白** — 孤独/意境/诗意空间，传递角色的心理孤立感或情感留白
-  - **框架式构图** — 纱帘/门框/窗棂/屏风后的人影，制造"偷偷看"的暗恋视角与隔阂感
-  - **三分法** — 对话/日常/双人互动，稳定均衡，适合日常甜蜜段落
-- **中心构图的限定使用** — 中心构图留给正式亮相、仪式感场景（如大婚、正式告白）。日常不用，否则丧失仪式感的冲击力
-- **空间纵深即叙事** — 前景遮挡（帘/花枝/烟雾）+ 中景主体 + 远景环境，层次越多隔阂感越强；层次越少越亲密
-- **竖构图与横构图** — 单人特写/亮相偏竖构图（强调孤独感与身形气质）；双人/场景偏横构图（强调关系与共处空间）
-- **甜宠景别递进** — 同场戏内景别应随情感升温递进：半身→近景→特写→大特写。不要一上来就怼特写，留出情绪上升空间
-- **大特写要有理由** — 大特写（眼/唇/手）是情绪核弹，一集用 2-3 次足够。滥用会让观众疲劳
-- **远景不是过场** — 远景镜头本身就有叙事价值（孤独感、空间压迫、季节氛围）。给远景足够时长（4-6s），别急着切走
+- **Sweet Pet's "Heartbeat Feeling"** - Ambiguous heating up passages can be played with light rhythm (tambourine, wooden fish, plucked strings) to imply accelerated heartbeat, which is more advanced than directly using sweet melody
 
 ---
 
-## 六、镜头运动与节奏
+## 5. Composition and scenery narrative
 
-### 甜宠言情叙事要点
+### Key points of sweet pet romance narrative
 
-- **以静制动为主** — 60% 以上镜头应为静止机位，让画面细节和情绪自己说话
-- **缓推 = 靠近/心动** — "观众靠近角色"的心理暗示，适合心动、发现、窥视
-- **缓拉 = 抽离/孤独** — "观众退开"的心理暗示，适合离别、孤独、揭示全貌
-- **快切碎剪不兼容** — 快速剪辑与甜宠言情的气质不兼容。即使在高潮段落，也应通过景别递进而非快切来制造节奏感
-- **摇镜与跟镜** — 慢摇适合展示场景全貌或追随角色行走；跟镜适合仪式/行走场景。速度均应克制
-- **运镜即情绪** — 镜头运动不是技术选择，是情绪选择。静止 = 沉稳/压抑；缓推 = 靠近/心动；缓拉 = 抽离/孤独；缓摇 = 展示/庄重
-- **甜宠"心跳运镜"** — 暧昧升温段落可用微幅缓推配合景别递进（半身→近景→特写），模拟心跳加速时"注意力收窄"的生理感受
+- **Narrative function of three core compositions** —
+  - **A lot of blank space** — loneliness/artistic/poetic space, conveying the character’s psychological isolation or emotional blank space
+  - **Frame composition** — The figure behind the gauze curtain/door frame/window lattice/screen creates a "peeping" perspective of secret love and a sense of isolation
+  - **Rule of Thirds** — dialogue/daily/two-person interaction, stable and balanced, suitable for daily sweet paragraphs
+- **Limited use of central composition** — The central composition is reserved for formal appearances and ceremonial scenes (such as weddings and formal confessions). Do not use it daily, otherwise the impact of the ritual will be lost.
+- **Depth of space is narrative** — foreground occlusion (curtain/flower branches/smoke) + mid-range subject + long-range environment. The more layers, the stronger the sense of isolation; the fewer layers, the more intimate
+- **Vertical composition and horizontal composition** — A close-up of a single person/appearance is in a vertical composition (emphasis on loneliness and body shape); a pair/scene is in a horizontal composition (emphasis on relationships and shared space)
+- **Sweet Pet Scenes Progressive** — The scenes in the same scene should progress as the emotions heat up: half-length → close-up → close-up → large close-up. Don’t start off with close-ups, leave room for your emotions to rise.
+- **There must be a reason for close-ups** — Close-ups (eyes/lips/hands) are emotional bombs, 2-3 times in an episode is enough. Overuse fatigues the audience
+- **Long shot is not a cut scene** — Long shot itself has narrative value (sense of loneliness, spatial oppression, seasonal atmosphere). Give the vision enough time (4-6s), don’t rush away
+
+---
+
+## 6. Camera movement and rhythm
+
+### Key points of sweet pet romance narrative
+
+- **Static shooting is the main priority** — More than 60% of the shots should be in a static position, allowing the details and emotions of the picture to speak for themselves
+- **Slow push = approach/heartbeat** — The psychological suggestion of "the audience is approaching the character", suitable for excitement, discovery, and peeping
+- **Slow pull = withdrawal/loneliness** — the psychological suggestion of "audience retreating", suitable for parting, loneliness, and revealing the whole picture
+- **Quick Cut Not Compatible** — Quick cut is not compatible with the temperament of Sweet Pet Romance. Even in climactic passages, a sense of rhythm should be created through scene progression rather than quick cuts.
+- **Panning and following camera** — Slow panning is suitable for showing the whole scene or following the characters walking; following camera is suitable for ceremony/walking scenes. Speed should be controlled
+- **Camera movement is emotion** — Camera movement is not a technical choice, it is an emotional choice. Still = calm/suppressed; Slow push = approach/heartbeat; Slow pull = pull away/solitude; Slow shake = display/dignity
+- **Sweet Pet "Heartbeat Movement Mirror"** - The ambiguous heating passage can be slightly pushed slowly and combined with the scene progression (half-body → close-up → close-up) to simulate the physiological feeling of "narrowing of attention" when the heartbeat accelerates.

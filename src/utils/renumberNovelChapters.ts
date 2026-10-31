@@ -1,6 +1,6 @@
 import db from "@/utils/db";
 
-/** 将项目内小说章节序号按当前顺序重排为连续的 1..N。 */
+/** Reorder the novel chapter numbers within the project to be consecutive 1..N according to the current order.*/
 export default async function renumberNovelChapters(projectId: number): Promise<void> {
   const rows = await db("o_novel")
     .where("projectId", projectId)

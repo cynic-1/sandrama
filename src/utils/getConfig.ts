@@ -13,7 +13,7 @@ interface TextResData extends BaseConfig {
   manufacturer: "deepseek" | "openAi" | "doubao" | "other";
 }
 
-// 图像模型配置接口
+// Image model configuration interface
 interface ImageResData extends BaseConfig {
   manufacturer: "gemini" | "volcengine" | "kling" | "vidu" | "runninghub" | "apimart" | "other";
 }
@@ -30,9 +30,9 @@ type ResDataMap = {
 };
 
 const errorMessages: Record<AIType, string> = {
-  text: "文本模型配置不存在",
-  image: "图像模型配置不存在",
-  video: "视频模型配置不存在",
+  text: "The text model configuration does not exist",
+  image: "The image model configuration does not exist",
+  video: "The video model configuration does not exist",
 };
 
 const needBaseURL: AIType[] = ["text", "video", "image"];

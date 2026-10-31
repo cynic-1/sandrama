@@ -5,7 +5,7 @@ import { success } from "@/lib/responseFormat";
 import { validateFields } from "@/middleware/middleware";
 const router = express.Router();
 
-// 新增资产
+// Add New Asset
 export default router.post(
   "/",
   validateFields({
@@ -65,13 +65,13 @@ export default router.post(
         filePath: item.src,
         type: "audio",
         assetsId,
-        state: "已完成",
+        state: "Completed",
       });
       await u.db("o_assets").where("id", assetsId).update({
         imageId,
       });
     }
 
-    res.status(200).send(success({ message: "新增资产成功" }));
+    res.status(200).send(success({ message: "Asset added successfully" }));
   },
 );

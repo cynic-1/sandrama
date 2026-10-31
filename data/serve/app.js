@@ -20936,16 +20936,16 @@ var require_router = __commonJS({
         return new Router(options);
       }
       const opts = options || {};
-      function router175(req, res, next) {
-        router175.handle(req, res, next);
+      function router176(req, res, next) {
+        router176.handle(req, res, next);
       }
-      Object.setPrototypeOf(router175, this);
-      router175.caseSensitive = opts.caseSensitive;
-      router175.mergeParams = opts.mergeParams;
-      router175.params = {};
-      router175.strict = opts.strict;
-      router175.stack = [];
-      return router175;
+      Object.setPrototypeOf(router176, this);
+      router176.caseSensitive = opts.caseSensitive;
+      router176.mergeParams = opts.mergeParams;
+      router176.params = {};
+      router176.strict = opts.strict;
+      router176.stack = [];
+      return router176;
     }
     Router.prototype = function() {
     };
@@ -21333,7 +21333,7 @@ var require_application = __commonJS({
     var app2 = exports2 = module2.exports = {};
     var trustProxyDefaultSymbol = "@@symbol:trust_proxy_default";
     app2.init = function init() {
-      var router175 = null;
+      var router176 = null;
       this.cache = /* @__PURE__ */ Object.create(null);
       this.engines = /* @__PURE__ */ Object.create(null);
       this.settings = /* @__PURE__ */ Object.create(null);
@@ -21342,13 +21342,13 @@ var require_application = __commonJS({
         configurable: true,
         enumerable: true,
         get: function getrouter() {
-          if (router175 === null) {
-            router175 = new Router({
+          if (router176 === null) {
+            router176 = new Router({
               caseSensitive: this.enabled("case sensitive routing"),
               strict: this.enabled("strict routing")
             });
           }
-          return router175;
+          return router176;
         }
       });
     };
@@ -21419,15 +21419,15 @@ var require_application = __commonJS({
       if (fns.length === 0) {
         throw new TypeError("app.use() requires a middleware function");
       }
-      var router175 = this.router;
+      var router176 = this.router;
       fns.forEach(function(fn2) {
         if (!fn2 || !fn2.handle || !fn2.set) {
-          return router175.use(path33, fn2);
+          return router176.use(path33, fn2);
         }
         debug(".use app under %s", path33);
         fn2.mountpath = path33;
         fn2.parent = this;
-        router175.use(path33, function mounted_app(req, res, next) {
+        router176.use(path33, function mounted_app(req, res, next) {
           var orig = req.app;
           fn2.handle(req, res, function(err) {
             Object.setPrototypeOf(req, orig.request);
@@ -48834,8 +48834,8 @@ var require_lib4 = __commonJS({
         getWss: function getWss() {
           return wsServer;
         },
-        applyTo: function applyTo(router175) {
-          (0, _addWsMethod2.default)(router175);
+        applyTo: function applyTo(router176) {
+          (0, _addWsMethod2.default)(router176);
         }
       };
     }
@@ -55589,7 +55589,7 @@ var init_getPath = __esm({
           dbPath2 = import_path2.default.resolve(basePath, fileName);
         }
         if (!isPathInside(dbPath2, basePath) && dbPath2 !== basePath) {
-          throw new Error("\u8DEF\u5F84\u9003\u9038\u9519\u8BEF\uFF0C\u8DEF\u5F84\u5FC5\u987B\u5728\u6570\u636E\u76EE\u5F55\u5185");
+          throw new Error("Path traversal error, the path must be within the data directory");
         }
         return dbPath2;
       }
@@ -80267,6 +80267,615 @@ var require_knex = __commonJS({
   }
 });
 
+// src/lib/defaultPrompts.ts
+var eventExtractionPrompt, scriptAssetExtractionPrompt, videoPromptGenerationPrompt, audioBindPrompt;
+var init_defaultPrompts = __esm({
+  "src/lib/defaultPrompts.ts"() {
+    "use strict";
+    eventExtractionPrompt = `# Event Extraction Instructions
+
+You are a novel-analysis assistant. For each chapter the user supplies, extract structured event information.
+
+## Output constraints (highest priority \u2014 violating any rule is a failure)
+
+1. Your **entire reply** is exactly one line that starts with \`|\` and ends with \`|\`, containing exactly 7 fields.
+2. The **first character** must be \`|\` and the **last character** must be \`|\`.
+3. Nothing may precede the first \`|\` \u2014 no preamble, explanation, "based on", or "the following".
+4. Nothing may follow the last \`|\` \u2014 no summary, notes, or adaptation advice.
+5. Do not output a header row, separators, Markdown headings, emoji, or code fences.
+
+## Output format
+
+\`\`\`
+| Chapter {number}: {title} | Characters | Core event | Main plot relation | Information density | Estimated length | Emotional intensity |
+\`\`\`
+
+### Field specification
+
+| Field | Requirement | Example |
+|------|----------|------|
+| Chapter | \`Chapter {number}: {title}\` | \`Chapter 1: Career Crisis and a Wish\` |
+| Characters | Characters with actual screen time, comma separated | \`Lin Yi, Bai Yourong\` |
+| Core event | 30-60 words; must include action and outcome | \`Lin Yi's career collapses after a debunking scandal; while despondent he wishes for magic and binds a magic system\` |
+| Main plot relation | **Must** be \`Strong/Medium/Weak (3-8 word reason)\` | \`Strong (motivation established + system activated)\` |
+| Information density | \`High\` / \`Medium\` / \`Low\` | \`High\` |
+| Estimated length | **Must** be \`X seconds\`; minutes are not allowed | \`50 seconds\` |
+| Emotional intensity | Text tags joined by \`+\`; no stars or numbers | \`Twist+Suspense\` |
+
+**Main plot relation**: Strong = directly advances the protagonist's arc; Medium = adds worldbuilding, relationships, or foreshadowing; Weak = transition or atmosphere.
+
+**Estimated length guide**: high density + high emotion \u2192 45-60 seconds; medium \u2192 35-45 seconds; low \u2192 25-35 seconds.
+
+**Allowed emotion tags**: \`Conflict\`, \`Horror\`, \`Emotion\`, \`Twist\`, \`Climax\`, \`Flat\`, \`Comedy\`, \`Suspense\`, \`Emotional breakdown\`.
+
+## Output examples
+
+The two examples below show a **complete reply** \u2014 nothing except this one line:
+
+\`\`\`
+| Chapter 1: Career Crisis and a Wish | Lin Yi | Professional magician Lin Yi loses his career to a debunking trend; in despair he wishes he could use magic and unexpectedly binds a magic system | Strong (protagonist motivation established + system activated) | High | 50 seconds | Twist+Suspense |
+\`\`\`
+\`\`\`
+| Chapter 12: A Rest in the Mountains | Ling Xuan, Su Wanqing | Ling Xuan and Su Wanqing rest in the mountains; Su Wanqing recalls childhood memories and their relationship softens without real progress | Weak (atmospheric transition) | Low | 25 seconds | Flat+Emotion |
+\`\`\`
+
+## Extraction rules
+
+- Stay faithful to the source. Do not speculate, invent, or add events that are not present.
+- Use each character's primary name consistently.
+- When several parallel event lines exist, choose the one with the greatest impact on the protagonist and summarize the rest briefly.
+- For dialogue-heavy chapters, describe what the dialogue caused rather than retelling it.
+`;
+    scriptAssetExtractionPrompt = `---
+name: universal_agent
+description: Extracts the assets used by a script (characters, scenes, props) and returns a structured asset list.
+---
+
+# Script Asset Extraction
+
+You are a professional script-analysis assistant. Identify every asset used in the script text (characters, locations, props) and produce a structured description and prompt for each asset that downstream production can use.
+
+## When to use
+
+The user provides script content. Read it section by section and extract every asset (characters, locations, props) into a structured asset list. The resulting descriptions feed AI image generation and production.
+
+## Relationship to the system
+
+- Asset types:
+  - \`role\` \u2014 character (maps to \`o_assets.type = "role"\`)
+  - \`scene\` \u2014 location (maps to \`o_assets.type = "scene"\`)
+  - \`tool\` \u2014 prop (maps to \`o_assets.type = "tool"\`)
+- Downstream use: asset prompt generation \u2192 AI asset image generation \u2192 storyboard production
+
+## Output requirements
+
+**You must return results through the \`resultTool\` tool.** Never emit the asset list as plain text, a Markdown table, or a JSON code block.
+The \`resultTool\` schema strictly validates field types and enum values. Follow the field definitions below exactly so the payload is complete and correctly typed.
+
+Each asset object has these fields:
+
+| Field | Type | Required | Description |
+| ---- | ---- | ---- | ---- |
+| \`name\` | string | yes | Asset name using the wording from the script; do not add extra description |
+| \`desc\` | string | yes | Visual description of the asset, 30-80 characters |
+| \`prompt\` | string | yes | English generation prompt for AI image generation |
+| \`type\` | enum | yes | Asset type: \`role\` / \`scene\` / \`tool\` |
+
+## Extraction rules
+
+### Characters (role)
+
+- Extract every named character that appears in the script.
+- \`desc\`: include gender, appearance, costume style, posture, and presence.
+- \`prompt\`: an English prompt describing appearance, suitable for AI character images.
+- If a character has several names, use the most common one for \`name\`.
+- Skip unnamed extras (for example "passerby" or "soldier") unless their look matters visually to the story.
+
+### Scenes (scene)
+
+- Extract every location that appears in the script.
+- \`desc\`: include spatial structure, lighting, key set dressing, and color palette.
+- \`prompt\`: an English prompt describing the overall visual style, suitable for AI scene images.
+- Do not extract the same location twice for different times of day; note the variation in \`desc\`.
+
+### Props (tool)
+
+- Extract important props and objects that appear in the script.
+- \`desc\`: include shape, color, material, scale, and special effects.
+- \`prompt\`: an English prompt describing visual details, suitable for AI prop images.
+- Extract only props that carry visual meaning or drive the story; skip generic items.
+
+## Prompt writing guidelines
+
+- Use comma-separated keywords or short phrases.
+- Describe **visual traits** first and avoid abstract concepts.
+- Include style keywords (for example anime style, manga style) according to the project style.
+- Character example: \`a young man, sharp eyebrows, black hair, pale skin, wearing a gray Taoist robe, slender build, cold expression\`
+- Scene example: \`dark cave interior, glowing crystals on walls, misty atmosphere, dim blue lighting, stone altar in center\`
+- Prop example: \`ancient jade pendant, oval shape, translucent green, carved dragon pattern, glowing faintly\`
+
+## Extraction workflow
+
+1. Read the whole script and identify every character, scene, and prop.
+2. Produce structured \`name\`, \`desc\`, \`prompt\`, and \`type\` values for each asset.
+3. De-duplicate: never extract the same asset twice.
+4. **Call \`resultTool\` once with the complete asset list.** Do not split it across calls; put every asset in the \`assetsList\` array.
+
+## Principles
+
+1. **Faithful**: base everything on the actual script; never invent assets that are not present.
+2. **Visual first**: descriptions and prompts focus on visual traits so images can be generated.
+3. **Lean and useful**: extract only assets that matter to production.
+4. **Correct classification**: use role/scene/tool strictly.
+5. **Prompt quality**: English prompts must be specific, actionable, and ready for AI image generation.
+
+## Notes
+
+- Do **not** include script content itself in the asset list; extract only the assets used.
+- A character's personal item that drives the plot should also be extracted as a separate prop.
+- Fixed set dressing in a scene does not need its own prop unless it has an independent story function.
+`;
+    videoPromptGenerationPrompt = `# Video Prompt Generation Skill
+
+You are the **video prompt generation agent**. Given the selected AI video model, read storyboard information and output a video prompt in the format that model expects.
+
+---
+
+## Input format
+
+### 1. Model and mode (required)
+
+#### Mode routing
+
+| Condition | Mode | Notes |
+|------|----------|------|
+| Model name is \`Seedance2.0\` / \`seedance 2.0\` / \`Dreamina 2.0\` | **Seedance 2.0** | Fixed mode regardless of the multi-reference flag |
+| Model name is \`Wan2.6\` / \`wan 2.6\` / \`Wanxiang 2.6\` | **Wan 2.6** | Fixed mode: single first-frame image plus narrative text, no last frame |
+| Any other model with \`multi-reference: yes\` | **General multi-reference mode** | Character/scene/storyboard image references |
+| Any other model with \`multi-reference: no\` | **General first/last-frame mode** | First or first/last frames plus plain text |
+
+> Model names are recorded only for reference; the prompt format follows the matched mode. Seedance 2.0 and Wan 2.6 determine the mode from the model name alone.
+
+### 2. Asset information
+
+\`\`\`
+asset info [id, type, name], [id, type, name], ...
+\`\`\`
+
+- \`id\`: unique asset identifier (for example \`A001\`)
+- \`type\`: asset type \u2014 \`character\` / \`scene\` / \`prop\`
+- \`name\`: asset name (for example \`Shen Ci\`, \`City Wall\`, \`Long Sword\`)
+
+### 3. Storyboard information
+
+Storyboards arrive as a list of \`<storyboardItem>\` XML elements:
+
+\`\`\`xml
+<storyboardItem
+  videoDesc='(visual description, scene, related asset names, duration, shot size, camera movement, character action, emotion, lighting, dialogue, sound effects, related asset IDs)'
+  prompt='to be generated'
+  track='group'
+  duration='recommended video duration'
+  associateAssetsIds="[asset IDs required by this shot]"
+  shouldGenerateImage="true"
+></storyboardItem>
+\`\`\`
+
+#### Input fields
+
+| Attribute | Description | Source |
+|------|------|------|
+| \`videoDesc\` | **Primary input**: structured description of the shot, including visual description, scene, related asset names, duration, shot size, camera movement, character action, emotion, lighting, dialogue, sound effects, related asset IDs | User or upstream system |
+| \`prompt\` | **Existing field**: storyboard image prompt generated upstream, used only as context, **do not modify** | Upstream system |
+| \`track\` | Storyboard grouping label | User or upstream system |
+| \`duration\` | Recommended video duration in seconds | User or upstream system |
+| \`associateAssetsIds\` | Asset IDs linked to this shot | User or upstream system |
+| \`shouldGenerateImage\` | Whether a storyboard image exists; defaults to \`true\` | User or upstream system |
+
+---
+
+## Goal
+
+Read every \`<storyboardItem>\`, combine it with the asset information, and merge all shots into one complete video prompt in the format required by the selected model.
+
+---
+
+## Output shape
+
+Produce **one complete video prompt**, not one prompt per shot:
+
+| Mode | Merging strategy |
+|------|----------|
+| **General multi-reference** | \`[References]\` lists every \`@Image N\` reference; \`[Instruction]\` describes the full sequence in chronological order |
+| **General first/last frame** | Plain text in five dimensions (Visual / Motion / Camera / Audio / Narrative), no \`@Image N\` references, continuous timeline (\`[Motion]\` 0s \u2192 total duration, minimum 1 second per segment), one continuous shot with no cuts |
+| **Seedance 2.0** | \`Generate a video made of the following N shots\`, one \`Shot N {duration}\` block per storyboard item |
+| **Wan 2.6** | Single first-frame mode: one storyboard item per request, one narrative English prompt (style \u2192 subject action + environment + lighting \u2192 camera close), no \`@Image N\` references |
+
+- Output only the video prompt text. No XML, no explanations.
+
+---
+
+## Parsing videoDesc
+
+Extract these structured fields from \`videoDesc\` (comma separated inside parentheses):
+
+\`\`\`
+(visual description, scene, related asset names, duration, shot size, camera movement, character action, emotion, lighting, dialogue, sound effects, related asset IDs)
+\`\`\`
+
+| # | Field | Purpose | Example |
+|------|------|------|------|
+| 1 | Visual description | Narrative backbone of the prompt | Shen Ci stands alone on the city wall gazing across the land |
+| 2 | Scene | Match the scene asset | City Wall |
+| 3 | Related asset names | Match character and prop assets | Shen Ci / City Wall |
+| 4 | Duration | Controls duration parameters | 4s |
+| 5 | Shot size | Controls framing | wide shot |
+| 6 | Camera movement | Controls camera behavior | static |
+| 7 | Character action | Action description | hands clasped behind back, robes billowing |
+| 8 | Emotion | Emotional tone | resolute |
+| 9 | Lighting | Lighting description | dusk, cool side-backlight |
+| 10 | Dialogue | Dialogue or audio segment | No dialogue / exact line |
+| 11 | Sound effects | Sound description | wind, fabric rustling |
+| 12 | Related asset IDs | Maps asset IDs to reference labels | A001/A002 |
+
+---
+
+## Reference numbering
+
+All models use the \`@Image N\` form for asset and storyboard image references, numbered in input order:
+
+1. **Assets**: number in the order the \`[id, type, name]\` entries appear, starting at \`@Image 1\` (regardless of character/scene/prop type). Type order is not fixed, so always number by position.
+2. **Storyboard images**: each \`<storyboardItem>\` maps to one image, continuing the numbering after the assets.
+3. **Skip missing images**: when \`shouldGenerateImage="false"\`, that shot has no image; do not allocate a number and continue with the next one.
+
+#### Example
+
+Three assets and two shots:
+\`\`\`
+asset info [A001, character, Shen Ci], [A002, character, Su Jin], [A003, scene, City Wall]
+\`\`\`
+\`\`\`xml
+<storyboardItem ...>  <!-- shot 1 -->
+<storyboardItem ...>  <!-- shot 2 -->
+\`\`\`
+
+| Input | Reference | Meaning |
+|--------|----------|------|
+| [A001, character, Shen Ci] | \`@Image 1\` | Character Shen Ci reference |
+| [A002, character, Su Jin] | \`@Image 2\` | Character Su Jin reference |
+| [A003, scene, City Wall] | \`@Image 3\` | Scene City Wall reference |
+| first storyboard item | \`@Image 4\` | Storyboard image 1 |
+| second storyboard item | \`@Image 5\` | Storyboard image 2 |
+
+---
+
+## Model prompt rules
+
+### 1. General multi-reference mode
+
+#### Principles
+- Multimodal fusion: natural language and image references share one semantic space.
+- The storyboard image sequence carries action, timing, and composition; scene references keep the environment consistent.
+- Reference every asset and storyboard image as \`@Image N\`.
+- **Follow videoDesc strictly**: base the prompt on the visual description, duration, shot size, camera movement, character action, emotion, lighting, dialogue, and sound effects; never invent content.
+- **Never omit dialogue**: any shot with dialogue must mention it in \`[Instruction]\`.
+- **Label dialogue type**: dialogue, inner monologue (OS), or voiceover (VO), in parentheses.
+
+#### Template
+
+\`\`\`
+[References]
+@Image 1 : [reference image of {asset 1}]
+@Image 2 : [reference image of {asset 2}]
+@Image 3 : [reference image of {scene}]
+@Image 4 : [storyboard image 1]
+
+[Instruction]
+Based on the storyboard @Image 4 :
+@Image 1 {action and state in English},
+@Image 2 {action and state in English},
+set in the {scene description in English} of @Image 3 ,
+{camera and movement in English},
+{emotional tone in English},
+{dialogue in English with dialogue/OS/VO label, or "No dialogue"},
+{sound effects in English}.
+\`\`\`
+
+#### Constraints
+1. \`[Instruction]\` must be written in English.
+2. Follow videoDesc strictly; do not add information.
+3. Take character action from the videoDesc action field and render it as concise English.
+4. Never omit dialogue; keep the original language of the line (do not translate it).
+5. Label dialogue as \`(dialogue)\`, inner monologue as \`(inner monologue, OS)\`, voiceover as \`(voiceover, VO)\`.
+6. Use standard camera tags: \`cinematic\` / \`wide-angle\` / \`close-up\` / \`slow motion\` / \`surround shooting\` / \`handheld\`.
+7. Use standard spatial verbs: \`wearing\` / \`holding\` / \`standing on\` / \`following behind\` / \`sitting in\`.
+8. One shot maps to one \`@Image N\`; do not describe multiple frames in one reference.
+9. Do not describe character appearance; reference images already define it.
+10. Do not add duration; the model infers it.
+11. When \`shouldGenerateImage="false"\`, omit that storyboard image from \`[References]\` and do not reference it in \`[Instruction]\`; describe the frame in plain text instead.
+
+#### Complete example (KlingOmni)
+
+\`\`\`
+[References]
+@Image 1 : [Shen Ci reference image]
+@Image 2 : [Su Jin reference image]
+@Image 3 : [City Wall reference image]
+@Image 4 : [storyboard image 1]
+@Image 5 : [storyboard image 2]
+
+[Instruction]
+Based on the storyboard from @Image 4 to @Image 5 :
+@Image 1 standing alone atop the city wall, hands clasped behind back, robes billowing in the wind, gazing across the vast land,
+@Image 2 ascending the steps toward @Image 1 , expression worried,
+set in the ancient city wall environment of @Image 3 ,
+wide shot transitioning to medium tracking shot, cinematic,
+resolute determination shifting to concerned anticipation, dusk cold-toned side-backlit atmosphere fading,
+no dialogue,
+wind howling, fabric flapping, footsteps on stone.
+\`\`\`
+
+---
+
+### 2. General first/last-frame mode
+
+#### Principles
+- **Plain-text prompt**: no \`@Image N\` references at all.
+- **Five dimensions**: Visual / Motion / Camera / Audio / Narrative.
+- **Follow videoDesc strictly**: no invented content.
+- **Never omit dialogue**: reproduce it in \`[Audio]\`.
+- **Label dialogue type**: dialogue with lip-sync, inner monologue (OS) with closed lips, voiceover (VO) with closed lips.
+- **Mark silent subjects** as \`silent\` to avoid false lip movement.
+- **One continuous shot** from start to finish, no cuts.
+- **Timeline segments** of at least 1 second, written as \`0s-Xs\`.
+
+#### Template
+
+\`\`\`
+[Visual]
+{Subject A}: {brief appearance}, {position/pose}, {speaking/silent}.
+{Subject B}: {brief appearance}, {position/pose}, {speaking/silent}.
+{Scene description}, {prop description}.
+{Visual style tags}.
+
+[Motion]
+0s-{X}s: {Subject A} {action segment 1}.
+{X}s-{Y}s: {Subject B} {action segment 2}.
+
+[Camera]
+{Shot type}, {camera movement}, {single continuous take description}.
+
+[Audio]
+{Xs-Ys}: "{dialogue}" \u2014 {speaker} ({dialogue / inner monologue OS / voiceover VO}), {lip-sync active / silent lips}.
+{Sound effects}.
+
+[Narrative]
+{Plot summary}, {narrative position}.
+\`\`\`
+
+#### Constraints
+1. Write everything in English.
+2. Use no \`@Image N\` references.
+3. Describe subjects in words (costume, hair, and other identifying traits).
+4. Follow videoDesc strictly.
+5. Mark each subject as \`speaking\`, \`silent\`, or \`speaking simultaneously\`.
+6. Never omit dialogue; keep its original language.
+7. Label dialogue as \`dialogue, lip-sync active\`, inner monologue as \`inner monologue (OS), silent lips\`, voiceover as \`voiceover (VO), silent lips\`.
+8. Each Motion segment lasts at least 1 second and never exceeds the total duration.
+9. Camera describes one continuous shot with no cuts.
+10. Follow the visual style guidance of the assistant context.
+11. Allowed shot types: \`Wide establishing shot / Over-the-shoulder / Medium shot / Close-up / Wide shot / POV / Dutch angle / Crane up / Dolly right / Whip pan / Handheld / Slow motion\`.
+
+---
+
+### 3. Seedance 2.0
+
+#### Principles
+- Structured encoding with \`@Image N\` references and durations in seconds.
+- Define the image mapping up front, then use subject names in the shot body.
+- Describe voice with nine dimensions whenever there is dialogue.
+- Minimum 1 second per shot.
+- **Write the prompt in English.**
+- Follow videoDesc strictly and never omit dialogue.
+- Label dialogue as ordinary speech, inner monologue (OS), or voiceover (VO), matching the mouth state.
+
+#### Template
+
+\`\`\`
+Visual style and type: {style}, {color palette}, {type}
+
+Image definitions:
+@Image 1: {asset 1 name}, {short description}
+@Image 2: {asset 2 name}, {short description}
+@Image N: {asset N name}, {short description}
+
+Generate a video made of the following 1 shot:
+
+Scene:
+Transition: none
+
+Shot 1 {N}s: Time: {day/night/dawn/dusk}, Scene: {scene name}, Shot: {shot size}, {angle}, {camera movement}, {character name} {action / expression / gaze / position}. {Dialogue and voice description if any}. {Background notes}. {Lighting}. {Camera notes}.
+\`\`\`
+
+For multiple shots, repeat the \`Shot N {duration}s\` block for every storyboard item.
+
+#### Voice rules
+
+Dialogue format: \`{character name} says: "{line}" Voice: {nine dimensions}\`
+
+Nine dimensions, in order:
+\`\`\`
+{gender}, {age timbre}, {pitch}, {texture}, {weight}, {articulation}, {breath}, {pace}, {special quality}
+\`\`\`
+
+When the asset description does not specify a voice, infer from these defaults:
+
+| Character type | Default voice |
+|------------|---------|
+| Authoritative male | male, middle-aged, low pitch, full and powerful, heavy, standard articulation, very steady breath, slow pace |
+| Gentle or sweet female | female, young, medium-high pitch, bright and crisp, clear and soft, steady breath, warm and sincere |
+| Young or ordinary male | male, young, medium pitch, clean, medium weight, clear articulation, steady breath, medium pace |
+| Lively or outgoing female | female, young, higher pitch, bright and lively, light, energetic, faster pace, smiling and engaging |
+| Villain or cold character | male, middle-aged, low pitch, dry and dark, gravelly, steady breath, very slow pace, threatening |
+
+#### Shots without dialogue
+- Do not write a speech segment or voice description.
+- Add "No dialogue" after the action description.
+
+#### Dialogue types
+
+| Type | Format | Mouth state |
+|----------|------|----------|
+| Dialogue | \`{character} says: "{line}" Voice: {nine dimensions}\` | mouth opens and closes |
+| Inner monologue | \`{character} inner monologue (OS): "{line}" Voice: {nine dimensions}\` | mouth stays closed |
+| Voiceover | \`{character} voiceover (VO): "{line}" Voice: {nine dimensions}\` | mouth stays closed, or the character is off screen |
+
+#### Constraints
+1. Write the prompt in English.
+2. Output only the video prompt; no analysis, reasoning, model matching, numbering tables, or separators. The first line must be \`Visual style and type:\`.
+3. Follow videoDesc strictly.
+4. Never omit dialogue or its voice description.
+5. Label dialogue, inner monologue, and voiceover correctly.
+6. Define the image mapping first, then write the shots.
+7. Do not use \`@Image N\` inside the shot body; use character and scene names.
+8. Minimum shot duration is 1 second.
+9. Use the duration from videoDesc in \`{N}s\` form, never below 1s.
+
+---
+
+### 4. Wan 2.6
+
+#### Principles
+- **Single first-frame mode**: like first/last-frame mode, but with only the first frame.
+- **One storyboard item per request**: input one \`<storyboardItem>\` and its assets, output one narrative prompt.
+- **Narrative English prompt**: write like prose, not a tag list.
+- **Three-part structure**: style statement \u2192 subject action + environment + lighting \u2192 camera close.
+- **Plain text**: no \`@Image N\` references.
+- **Follow videoDesc strictly** and never omit dialogue.
+- Label dialogue as dialogue, inner monologue (OS), or voiceover (VO) in parentheses.
+
+#### Template
+
+Each request outputs one complete prompt with no numbering prefix:
+
+\`\`\`
+{one-sentence style statement},
+{subject name} {brief appearance}, {action and pose}, {emotion implied through action}.
+{Scene and background}, {environment details}, {sense of space}, {time and weather}.
+{Light direction and color temperature} {texture}, {emotion-implying light}.
+{dialogue if any with dialogue/OS/VO label, otherwise "No dialogue"}.
+{Sound effects}.
+{Shot type}, {shot size}, {angle}, {camera movement}.
+\`\`\`
+
+#### Narrative writing guidelines
+
+| Principle | Guidance |
+|------|------|
+| Style first | State the overall mood in one sentence, e.g. \`A cinematic epic scene\` |
+| Bind subject and action | Put the action immediately after the subject and weave appearance into the description |
+| Imply emotion through action | Do not state "he is sad"; describe lowered head and slumped shoulders |
+| Weave in the environment | Do not list environment properties; describe them as part of the scene |
+| Light as its own sentence | Direction, color temperature, texture, and mood |
+| Close with camera language | one sentence describing the shot |
+| Avoid tag piles | Do not write \`4K, cinematic, high quality\`; keep "cinematic" in the style statement |
+
+#### Constraints
+1. Write in English.
+2. Use no \`@Image N\` references.
+3. Write narratively; no checklists or tag piles.
+4. Describe subjects in words.
+5. Follow videoDesc strictly.
+6. Never omit dialogue; keep the original language of the line.
+7. Label dialogue as \`(dialogue)\`, inner monologue as \`(inner monologue, OS)\`, voiceover as \`(voiceover, VO)\`.
+8. One storyboard item in, one prompt out.
+9. Do not include duration; the model controls it.
+10. Describe the camera in full sentences rather than bracket tags.
+11. Follow the visual style guidance of the assistant context.
+
+---
+
+## Shot size and camera movement mapping
+
+| videoDesc shot size | Reference label |
+|------|------|
+| long shot | an extreme wide shot capturing the vast expanse |
+| wide shot | a wide establishing shot |
+| medium shot | a medium shot |
+| close shot | a close-up shot |
+| close-up | a close-up capturing fine detail |
+| extreme close-up | an extreme close-up |
+
+| videoDesc camera movement | Reference label |
+|------|------|
+| static | static camera, locked off |
+| push in | camera slowly pushing in |
+| pull back | camera gently pulling back |
+| tracking | tracking shot following the subject |
+| pan | smooth pan across the scene |
+| whip pan | whip pan |
+| crane | crane rising or descending |
+| orbit | orbiting around the subject |
+
+---
+
+## Workflow
+
+1. **Parse the input**: read the model name and multi-reference flag, match the mode, and extract the asset list.
+2. **Build the reference table**: number assets in input order from \`@Image 1\`, then storyboard images; skip items with \`shouldGenerateImage="false"\`.
+3. **Parse each \`<storyboardItem>\`**: extract the twelve videoDesc fields and combine them with \`duration\` and \`associateAssetsIds\`.
+4. **Merge into one prompt** in the target model format.
+5. **Output the video prompt**.
+
+---
+
+## Global constraints
+
+- **Output only the video prompt**: no explanations, comments, reasoning, model notes, numbering tables, separators, or extra text.
+- **Follow videoDesc** in every mode.
+- **Never omit dialogue** in every mode.
+- **Keep dialogue in its original language**: never translate the line itself.
+- **Label dialogue type** in every mode: dialogue, inner monologue (OS), or voiceover (VO).
+- **Minimum time segment is 1 second** in every mode.
+- **Do not redefine visual style**: follow the assistant's visual style guidance.
+- **Use only the matched mode's format**; never mix formats.
+- **Do not modify the input**: never rewrite \`<storyboardItem>\` fields; the existing \`prompt\` is reference only.
+- **Never invent assets or dialogue**: use only the supplied assets; write "No dialogue" when there is none.
+- **Duration units**: Seedance 2.0 uses seconds with a 1s minimum.
+`;
+    audioBindPrompt = `You are a voice-matching assistant.
+Given the name and description of a character asset, select the most suitable voice from the candidate audio list.
+Matching rules:
+1. Prefer semantic matches between voice descriptions and character traits such as gender, age, and personality.
+2. Match no more than one voice to each character.
+3. If no candidate is suitable, do not return an audioId.
+`;
+  }
+});
+
+// src/utils/englishPrompts.ts
+function englishBuiltinPrompt(type, value) {
+  return type === "audioBindPrompt" && value === originalVoicePrompt ? englishVoicePrompt : value;
+}
+var originalVoicePrompt, englishVoicePrompt;
+var init_englishPrompts = __esm({
+  "src/utils/englishPrompts.ts"() {
+    "use strict";
+    originalVoicePrompt = `You are a voice matching assistant.
+Your task is: Based on the name and description of the given character asset, select the most suitable voice from the candidate audio list.
+Matching rules:
+1. Prioritize semantic matching based on the character's gender, age, personality, and other characteristics against the voice descriptions;
+2. Each character can only be matched with one voice;
+3. If there is no suitable voice in the candidate list, do not return an audioId.`;
+    englishVoicePrompt = `You are a voice-matching assistant.
+Given the name and description of a character asset, select the most suitable voice from the candidate audio list.
+Matching rules:
+1. Prefer semantic matches between voice descriptions and character traits such as gender, age, and personality.
+2. Match no more than one voice to each character.
+3. If no candidate is suitable, do not return an audioId.`;
+  }
+});
+
 // src/utils/userSettings.ts
 function runWithUser(userId, callback) {
   return userContext.run(Number(userId), callback);
@@ -80321,7 +80930,7 @@ async function save(userId, data) {
   await db_default("o_user").where("id", userId).update({ settings: JSON.stringify(data) });
 }
 async function ensureUserSettings(userId = currentUserId()) {
-  if (!userId) throw new Error("\u672A\u627E\u5230\u5F53\u524D\u7528\u6237");
+  if (!userId) throw new Error("Current user not found");
   const id = Number(userId);
   const cached3 = cache.get(id);
   if (cached3) return cached3;
@@ -80457,18 +81066,28 @@ async function deleteVendorConfig(id, userId = currentUserId()) {
   await save(Number(userId), data);
 }
 async function getPromptRows(userId = currentUserId()) {
-  if (!userId) return db_default("o_prompt").select("*");
+  if (!userId) return (await db_default("o_prompt").select("*")).map(localizeBuiltinPrompt);
   const data = await ensureUserSettings(userId);
   const globalRows = await db_default("o_prompt").select("*");
   let changed = false;
   for (const row of globalRows) {
-    if (row.id !== void 0 && !data.prompts[String(row.id)]) {
+    if (row.id === void 0) continue;
+    const existing = data.prompts[String(row.id)];
+    if (!existing) {
       data.prompts[String(row.id)] = { ...row };
+      changed = true;
+      continue;
+    }
+    if (existing.data !== row.data || existing.name !== row.name) {
+      data.prompts[String(row.id)] = { ...existing, data: row.data, name: row.name, type: row.type };
       changed = true;
     }
   }
   if (changed) await save(Number(userId), data);
-  return Object.values(data.prompts);
+  return Object.values(data.prompts).map(localizeBuiltinPrompt);
+}
+function localizeBuiltinPrompt(row) {
+  return { ...row, data: englishBuiltinPrompt(row.type, row.data) };
 }
 async function getPromptById(id, userId = currentUserId()) {
   if (!userId) return db_default("o_prompt").where("id", id).first();
@@ -80564,6 +81183,7 @@ var init_userSettings = __esm({
     "use strict";
     import_node_async_hooks = require("node:async_hooks");
     init_db();
+    init_englishPrompts();
     userContext = new import_node_async_hooks.AsyncLocalStorage();
     cache = /* @__PURE__ */ new Map();
     userSettings_default = {
@@ -80613,7 +81233,7 @@ async function initEmbedding() {
   let modelDtype = modelObj?.modelDtype ?? "fp16";
   const onnxPath = import_path3.default.join(getPath_default("models"), ...modelOnnxFile);
   if (!import_fs.default.existsSync(onnxPath)) {
-    throw new Error(`Embedding \u6A21\u578B\u6587\u4EF6\u4E0D\u5B58\u5728: ${onnxPath}`);
+    throw new Error(`Embedding model file does not exist:${onnxPath}`);
   }
   import_transformers.env.allowRemoteModels = false;
   import_transformers.env.allowLocalModels = true;
@@ -80646,8 +81266,8 @@ var init_embedding = __esm({
 
 // src/utils/auth.ts
 async function hashPassword(password) {
-  if (typeof password !== "string" || password.length < 8) {
-    throw new Error("\u5BC6\u7801\u81F3\u5C11\u9700\u8981 8 \u4E2A\u5B57\u7B26");
+  if (typeof password !== "string" || password.length < 6) {
+    throw new Error("Password must be at least 6 characters");
   }
   const salt = import_node_crypto.default.randomBytes(16);
   const derivedKey = await scryptAsync(password, salt, KEY_LENGTH, {
@@ -80710,11 +81330,12 @@ var initDB_default;
 var init_initDB = __esm({
   "src/lib/initDB.ts"() {
     "use strict";
+    init_defaultPrompts();
     init_embedding();
     init_auth();
     initDB_default = async (knex3, forceInit = false) => {
       const tables = [
-        // 用户表
+        // User table
         {
           name: "o_user",
           builder: (table) => {
@@ -80735,7 +81356,7 @@ var init_initDB = __esm({
             const now2 = Date.now();
             const initialAdminPassword = process.env.SANDRAMA_ADMIN_PASSWORD || "opensand@2026";
             if (!process.env.SANDRAMA_ADMIN_PASSWORD) {
-              console.warn("[\u5B89\u5168\u63D0\u793A] \u5F53\u524D\u4F7F\u7528\u9ED8\u8BA4\u7BA1\u7406\u5458\u5BC6\u7801\uFF0C\u8BF7\u901A\u8FC7 SANDRAMA_ADMIN_PASSWORD \u8BBE\u7F6E\u6B63\u5F0F\u5BC6\u7801\u5E76\u91CD\u65B0\u521D\u59CB\u5316\u6570\u636E\u5E93\u3002");
+              console.warn("[Security Notice] The default administrator password is currently in use. Please set a proper password via SANDRAMA_ADMIN_PASSWORD and reinitialize the database.");
             }
             await knex4("o_user").insert([
               {
@@ -80751,7 +81372,7 @@ var init_initDB = __esm({
             ]);
           }
         },
-        //项目表
+        // Project Table
         {
           name: "o_project",
           builder: (table) => {
@@ -80773,7 +81394,7 @@ var init_initDB = __esm({
             table.unique(["id"]);
           }
         },
-        //风格表
+        // Style Table
         {
           name: "o_artStyle",
           builder: (table) => {
@@ -80788,7 +81409,7 @@ var init_initDB = __esm({
           initData: async (knex4) => {
           }
         },
-        //Agent配置表
+        // Agent Configuration Table
         {
           name: "o_agentDeploy",
           builder: (table) => {
@@ -80812,8 +81433,8 @@ var init_initDB = __esm({
                 modelName: "",
                 vendorId: null,
                 key: "scriptAgent",
-                name: "\u5267\u672CAgent",
-                desc: "\u7528\u4E8E\u8BFB\u53D6\u539F\u6587\u751F\u6210\u6545\u4E8B\u9AA8\u67B6\u3001\u6539\u7F16\u7B56\u7565\uFF0C\u5EFA\u8BAE\u4F7F\u7528\u5177\u5907\u5F3A\u5927\u6587\u672C\u7406\u89E3\u548C\u751F\u6210\u80FD\u529B\u7684\u6A21\u578B",
+                name: "Script Agent",
+                desc: "Used to read the original text and generate the story skeleton and adaptation strategy; it is recommended to use a model with strong text understanding and generation capabilities.",
                 disabled: false
               },
               {
@@ -80821,8 +81442,8 @@ var init_initDB = __esm({
                 modelName: "",
                 vendorId: null,
                 key: "productionAgent",
-                name: "\u751F\u4EA7Agent",
-                desc: "\u5BF9\u5DE5\u4F5C\u6D41\u8FDB\u884C\u8C03\u5EA6\u548C\u7BA1\u7406\uFF0C\u5EFA\u8BAE\u4F7F\u7528\u5177\u5907\u8F83\u5F3A\u7684\u903B\u8F91\u63A8\u7406\u548C\u4EFB\u52A1\u7BA1\u7406\u80FD\u529B\u7684\u6A21\u578B",
+                name: "Production Agent",
+                desc: "Schedule and manage workflows; it is recommended to use a model with strong logical reasoning and task management capabilities.",
                 disabled: false
               },
               {
@@ -80830,8 +81451,8 @@ var init_initDB = __esm({
                 modelName: "",
                 vendorId: null,
                 key: "universalAi",
-                name: "\u901A\u7528AI",
-                desc: "\u7528\u4E8E\u5C0F\u8BF4\u4E8B\u4EF6\u63D0\u53D6\u3001\u8D44\u4EA7\u63D0\u793A\u8BCD\u751F\u6210\u3001\u53F0\u8BCD\u63D0\u53D6\u7B49\u8FB9\u7F18\u529F\u80FD\uFF0C\u5EFA\u8BAE\u4F7F\u7528\u5177\u5907\u8F83\u5F3A\u6587\u672C\u5904\u7406\u80FD\u529B\u7684\u6A21\u578B",
+                name: "General AI",
+                desc: "For peripheral features such as novel event extraction, asset prompt generation, and dialogue extraction, it is recommended to use a model with strong text processing capabilities.",
                 disabled: false
               },
               {
@@ -80839,8 +81460,8 @@ var init_initDB = __esm({
                 modelName: "",
                 vendorId: null,
                 key: "ttsDubbing",
-                name: "TTS\u914D\u97F3",
-                desc: "\u6839\u636E\u5267\u672C\u5185\u5BB9\u751F\u6210\u89D2\u8272\u914D\u97F3\uFF0C\u652F\u6301\u591A\u79CD\u58F0\u97F3\u98CE\u683C\u548C\u60C5\u7EEA",
+                name: "TTS voiceover",
+                desc: "Generate character voiceovers based on the script content, supporting multiple voice styles and emotions",
                 disabled: true
               },
               {
@@ -80848,8 +81469,8 @@ var init_initDB = __esm({
                 modelName: "",
                 vendorId: null,
                 key: "scriptAgent:decisionAgent",
-                name: "\u5267\u672CAgent:\u51B3\u7B56\u5C42",
-                desc: "\u51B3\u7B56\u5C42",
+                name: "Script Agent: Decision Layer",
+                desc: "Decision-making level",
                 temperature: 1,
                 maxOutputTokens: 0,
                 disabled: false
@@ -80859,8 +81480,8 @@ var init_initDB = __esm({
                 modelName: "",
                 vendorId: null,
                 key: "scriptAgent:supervisionAgent",
-                name: "\u5267\u672CAgent:\u76D1\u7763\u5C42",
-                desc: "\u76D1\u7763\u5C42",
+                name: "Script Agent: Supervision Layer",
+                desc: "Supervisory layer",
                 temperature: 1,
                 maxOutputTokens: 0,
                 disabled: false
@@ -80870,8 +81491,8 @@ var init_initDB = __esm({
                 modelName: "",
                 vendorId: null,
                 key: "scriptAgent:storySkeletonAgent",
-                name: "\u5267\u672CAgent:\u6545\u4E8B\u9AA8\u67B6",
-                desc: "\u6545\u4E8B\u9AA8\u67B6\u751F\u6210",
+                name: "Script Agent: Story Skeleton",
+                desc: "Story Skeleton Generation",
                 temperature: 1,
                 maxOutputTokens: 0,
                 disabled: false
@@ -80881,8 +81502,8 @@ var init_initDB = __esm({
                 modelName: "",
                 vendorId: null,
                 key: "scriptAgent:adaptationStrategyAgent",
-                name: "\u5267\u672CAgent:\u6539\u7F16\u7B56\u7565",
-                desc: "\u6539\u7F16\u7B56\u7565\u751F\u6210",
+                name: "Script Agent: Adaptation Strategy",
+                desc: "Adaptation Strategy Generation",
                 temperature: 1,
                 maxOutputTokens: 0,
                 disabled: false
@@ -80892,8 +81513,8 @@ var init_initDB = __esm({
                 modelName: "",
                 vendorId: null,
                 key: "scriptAgent:scriptAgent",
-                name: "\u5267\u672CAgent:\u5267\u672C\u751F\u6210",
-                desc: "\u5267\u672C\u751F\u6210",
+                name: "Script Agent: Script Generation",
+                desc: "Script Generation",
                 temperature: 1,
                 maxOutputTokens: 0,
                 disabled: false
@@ -80903,8 +81524,8 @@ var init_initDB = __esm({
                 modelName: "",
                 vendorId: null,
                 key: "productionAgent:decisionAgent",
-                name: "\u751F\u4EA7Agent:\u51B3\u7B56\u5C42",
-                desc: "\u51B3\u7B56\u5C42",
+                name: "Production Agent: Decision Layer",
+                desc: "Decision-making level",
                 temperature: 1,
                 maxOutputTokens: 0,
                 disabled: false
@@ -80914,8 +81535,8 @@ var init_initDB = __esm({
                 modelName: "",
                 vendorId: null,
                 key: "productionAgent:supervisionAgent",
-                name: "\u751F\u4EA7Agent:\u76D1\u7763\u5C42",
-                desc: "\u76D1\u7763\u5C42",
+                name: "Production Agent: Supervision Layer",
+                desc: "Supervisory layer",
                 temperature: 1,
                 maxOutputTokens: 0,
                 disabled: false
@@ -80925,8 +81546,8 @@ var init_initDB = __esm({
                 modelName: "",
                 vendorId: null,
                 key: "productionAgent:deriveAssetsAgent",
-                name: "\u751F\u4EA7Agent:\u884D\u751F\u8D44\u4EA7",
-                desc: "\u884D\u751F\u8D44\u4EA7",
+                name: "Production Agent: Derivative Assets",
+                desc: "Derivative assets",
                 temperature: 1,
                 maxOutputTokens: 0,
                 disabled: false
@@ -80936,8 +81557,8 @@ var init_initDB = __esm({
                 modelName: "",
                 vendorId: null,
                 key: "productionAgent:generateAssetsAgent",
-                name: "\u751F\u4EA7Agent:\u751F\u6210\u8D44\u4EA7",
-                desc: "\u751F\u6210\u8D44\u4EA7",
+                name: "Production Agent: Generate Assets",
+                desc: "Generate assets",
                 temperature: 1,
                 maxOutputTokens: 0,
                 disabled: false
@@ -80947,8 +81568,8 @@ var init_initDB = __esm({
                 modelName: "",
                 vendorId: null,
                 key: "productionAgent:directorPlanAgent",
-                name: "\u751F\u4EA7Agent:\u5BFC\u6F14\u89C4\u5212",
-                desc: "\u5BFC\u6F14\u89C4\u5212",
+                name: "Production Agent: Director Planning",
+                desc: "Director's Plan",
                 temperature: 1,
                 maxOutputTokens: 0,
                 disabled: false
@@ -80958,8 +81579,8 @@ var init_initDB = __esm({
                 modelName: "",
                 vendorId: null,
                 key: "productionAgent:storyboardGenAgent",
-                name: "\u751F\u4EA7Agent:\u5206\u955C\u751F\u6210",
-                desc: "\u5206\u955C\u751F\u6210",
+                name: "Production Agent: Storyboard Generation",
+                desc: "Storyboard generation",
                 temperature: 1,
                 maxOutputTokens: 0,
                 disabled: false
@@ -80969,8 +81590,8 @@ var init_initDB = __esm({
                 modelName: "",
                 vendorId: null,
                 key: "productionAgent:storyboardPanelAgent",
-                name: "\u751F\u4EA7Agent:\u5206\u955C\u9762\u677F",
-                desc: "\u5206\u955C\u9762\u677F\u751F\u6210",
+                name: "Production Agent: Storyboard Panel",
+                desc: "Storyboard panel generation",
                 temperature: 1,
                 maxOutputTokens: 0,
                 disabled: false
@@ -80980,8 +81601,8 @@ var init_initDB = __esm({
                 modelName: "",
                 vendorId: null,
                 key: "productionAgent:storyboardTableAgent",
-                name: "\u751F\u4EA7Agent:\u5206\u955C\u8868\u683C",
-                desc: "\u5206\u955C\u8868\u683C\u751F\u6210",
+                name: "Production Agent: Storyboard Table",
+                desc: "Storyboard Table Generation",
                 temperature: 1,
                 maxOutputTokens: 0,
                 disabled: false
@@ -80989,7 +81610,7 @@ var init_initDB = __esm({
             ]);
           }
         },
-        //设置表
+        // Settings table
         {
           name: "o_setting",
           builder: (table) => {
@@ -81043,7 +81664,7 @@ var init_initDB = __esm({
             ]);
           }
         },
-        //任务中心表
+        // Task Center Table
         {
           name: "o_tasks",
           builder: (table) => {
@@ -81062,7 +81683,7 @@ var init_initDB = __esm({
           initData: async (knex4) => {
           }
         },
-        //提示词表
+        // Prompt Table
         {
           name: "o_prompt",
           builder: (table) => {
@@ -81077,731 +81698,29 @@ var init_initDB = __esm({
           initData: async (knex4) => {
             await knex4("o_prompt").insert([
               {
-                name: "\u4E8B\u4EF6\u63D0\u53D6",
+                name: "Event Extraction",
                 type: "eventExtraction",
-                data: `# \u4E8B\u4EF6\u63D0\u53D6\u6307\u4EE4
-
-\u4F60\u662F\u5C0F\u8BF4\u6587\u672C\u5206\u6790\u52A9\u624B\u3002\u7528\u6237\u6BCF\u6B21\u63D0\u4F9B\u4E00\u4E2A\u7AE0\u8282\u7684\u539F\u6587\uFF0C\u4F60\u63D0\u53D6\u8BE5\u7AE0\u7684\u7ED3\u6784\u5316\u4E8B\u4EF6\u4FE1\u606F\u3002
-
-## \u26A0\uFE0F \u8F93\u51FA\u7EA6\u675F\uFF08\u6700\u9AD8\u4F18\u5148\u7EA7\uFF0C\u8FDD\u53CD\u4EFB\u4F55\u4E00\u6761\u5373\u4E3A\u5931\u8D25\uFF09
-
-1. \u4F60\u7684**\u5B8C\u6574\u56DE\u590D**\u53EA\u6709\u4E00\u884C\uFF0C\u4EE5 \`|\` \u5F00\u5934\u3001\u4EE5 \`|\` \u7ED3\u5C3E\uFF0C\u6070\u597D 7 \u4E2A\u5B57\u6BB5
-2. \u56DE\u590D\u7684**\u7B2C\u4E00\u4E2A\u5B57\u7B26**\u5FC5\u987B\u662F \`|\`\uFF0C**\u6700\u540E\u4E00\u4E2A\u5B57\u7B26**\u5FC5\u987B\u662F \`|\`
-3. \`|\` \u4E4B\u524D\u4E0D\u8BB8\u6709\u4EFB\u4F55\u5B57\u7B26\u2014\u2014\u6CA1\u6709\u5F15\u5BFC\u8BED\u3001\u6CA1\u6709\u89E3\u91CA\u3001\u6CA1\u6709"\u6839\u636E\u2026\u2026"\u3001\u6CA1\u6709"\u4EE5\u4E0B\u662F\u2026\u2026"
-4. \`|\` \u4E4B\u540E\u4E0D\u8BB8\u6709\u4EFB\u4F55\u5B57\u7B26\u2014\u2014\u6CA1\u6709\u603B\u7ED3\u3001\u6CA1\u6709\u63D0\u53D6\u8BF4\u660E\u3001\u6CA1\u6709\u6539\u7F16\u5EFA\u8BAE
-5. \u4E0D\u8F93\u51FA\u8868\u5934\u884C\u3001\u5206\u9694\u7EBF\u3001Markdown \u6807\u9898\u3001emoji\u3001\u4EE3\u7801\u5757\u6807\u8BB0
-
-## \u8F93\u51FA\u683C\u5F0F
-
-\`\`\`
-| \u7B2CX\u7AE0 {\u7AE0\u8282\u6807\u9898} | {\u6D89\u53CA\u89D2\u8272} | {\u6838\u5FC3\u4E8B\u4EF6} | {\u4E3B\u7EBF\u5173\u7CFB} | {\u4FE1\u606F\u5BC6\u5EA6} | {\u9884\u4F30\u96C6\u957F} | {\u60C5\u7EEA\u5F3A\u5EA6} |
-\`\`\`
-
-### \u5B57\u6BB5\u89C4\u8303
-
-| \u5B57\u6BB5 | \u683C\u5F0F\u8981\u6C42 | \u793A\u4F8B |
-|------|----------|------|
-| \u7AE0\u8282 | \`\u7B2CX\u7AE0 {\u7AE0\u8282\u6807\u9898}\` | \`\u7B2C1\u7AE0 \u804C\u4E1A\u5371\u673A\u4E0E\u8BB8\u613F\` |
-| \u6D89\u53CA\u89D2\u8272 | \u6709\u5B9E\u9645\u620F\u4EFD\u7684\u89D2\u8272\uFF0C\u987F\u53F7\u5206\u9694 | \`\u6797\u9038\u3001\u767D\u6709\u5BB9\` |
-| \u6838\u5FC3\u4E8B\u4EF6 | 30-60\u5B57\uFF0C\u5FC5\u987B\u542B\u52A8\u4F5C+\u7ED3\u679C | \`\u6797\u9038\u56E0\u89E3\u5BC6\u98CE\u6F6E\u4E8B\u4E1A\u5D29\u584C\uFF0C\u9893\u5E9F\u4E2D\u8BB8\u613F\u89E6\u53D1\u9B54\u6CD5\u7CFB\u7EDF\u7ED1\u5B9A\` |
-| \u4E3B\u7EBF\u5173\u7CFB | **\u5FC5\u987B**\u4E3A \`\u5F3A/\u4E2D/\u5F31\uFF083-8\u5B57\u7406\u7531\uFF09\` | \`\u5F3A\uFF08\u52A8\u673A\u5EFA\u7ACB+\u7CFB\u7EDF\u6FC0\u6D3B\uFF09\` |
-| \u4FE1\u606F\u5BC6\u5EA6 | \`\u9AD8\` / \`\u4E2D\` / \`\u4F4E\` | \`\u9AD8\` |
-| \u9884\u4F30\u96C6\u957F | **\u5FC5\u987B**\u4E3A \`X\u79D2\`\uFF0C\u7981\u6B62\u7528\u5206\u949F | \`50\u79D2\` |
-| \u60C5\u7EEA\u5F3A\u5EA6 | \u6587\u5B57\u6807\u7B7E\uFF0C\`+\` \u8FDE\u63A5\uFF0C\u7981\u6B62\u661F\u7EA7/\u6570\u5B57 | \`\u8F6C\u6298+\u60AC\u7591\` |
-
-**\u4E3B\u7EBF\u5173\u7CFB\u5224\u5B9A**\uFF1A\u5F3A\uFF1D\u76F4\u63A5\u63A8\u52A8\u4E3B\u89D2\u5F27\u7EBF\uFF1B\u4E2D\uFF1D\u8865\u5145\u4E16\u754C\u89C2/\u4EBA\u7269\u5173\u7CFB/\u4F0F\u7B14\uFF1B\u5F31\uFF1D\u8FC7\u6E21/\u6C14\u6C1B\u3002
-
-**\u9884\u4F30\u96C6\u957F\u53C2\u8003**\uFF1A\u9AD8\u5BC6\u5EA6+\u9AD8\u60C5\u7EEA\u219245-60\u79D2\uFF1B\u4E2D\u219235-45\u79D2\uFF1B\u4F4E\u219225-35\u79D2\u3002
-
-**\u53EF\u7528\u60C5\u7EEA\u6807\u7B7E**\uFF1A\`\u51B2\u7A81\`\u3001\`\u6050\u6016\`\u3001\`\u60C5\u611F\`\u3001\`\u8F6C\u6298\`\u3001\`\u9AD8\u6F6E\`\u3001\`\u5E73\u94FA\`\u3001\`\u559C\u5267\`\u3001\`\u60AC\u7591\`\u3001\`\u60C5\u611F\u5D29\u6E83\`\u3002
-
-## \u8F93\u51FA\u793A\u4F8B
-
-\u4EE5\u4E0B\u4E24\u4E2A\u793A\u4F8B\u5C55\u793A\u7684\u662F**\u5B8C\u6574\u56DE\u590D**\u2014\u2014\u9664\u8FD9\u4E00\u884C\u5916\u6CA1\u6709\u4EFB\u4F55\u5176\u4ED6\u5185\u5BB9\uFF1A
-
-\`\`\`
-| \u7B2C1\u7AE0 \u804C\u4E1A\u5371\u673A\u4E0E\u8BB8\u613F | \u6797\u9038 | \u804C\u4E1A\u9B54\u672F\u5E08\u6797\u9038\u56E0\u89E3\u5BC6\u6253\u5047\u98CE\u6F6E\u5BFC\u81F4\u4E8B\u4E1A\u5D29\u584C\uFF0C\u9893\u5E9F\u4E2D\u611F\u6168"\u5982\u679C\u4F1A\u9B54\u6CD5\u5C31\u597D\u4E86"\uFF0C\u610F\u5916\u89E6\u53D1\u795E\u5947\u9B54\u6CD5\u7CFB\u7EDF\u7ED1\u5B9A | \u5F3A\uFF08\u4E3B\u89D2\u52A8\u673A\u5EFA\u7ACB+\u7CFB\u7EDF\u6FC0\u6D3B\uFF09 | \u9AD8 | 50\u79D2 | \u8F6C\u6298+\u60AC\u7591 |
-\`\`\`
-\`\`\`
-| \u7B2C12\u7AE0 \u5C71\u95F4\u5C0F\u61A9 | \u51CC\u7384\u3001\u82CF\u665A\u537F | \u51CC\u7384\u4E0E\u82CF\u665A\u537F\u5728\u5C71\u95F4\u6B47\u811A\uFF0C\u82CF\u665A\u537F\u56DE\u5FC6\u5E7C\u65F6\u5F80\u4E8B\uFF0C\u4E24\u4EBA\u5173\u7CFB\u7565\u6709\u7F13\u548C\u4F46\u672A\u5B9E\u8D28\u63A8\u8FDB | \u5F31\uFF08\u6C14\u6C1B\u8FC7\u6E21\uFF09 | \u4F4E | 25\u79D2 | \u5E73\u94FA+\u60C5\u611F |
-\`\`\`
-
-## \u63D0\u53D6\u89C4\u5219
-
-- \u5FE0\u4E8E\u539F\u6587\uFF0C\u4E0D\u63A8\u6D4B\u3001\u4E0D\u8111\u8865\u3001\u4E0D\u52A0\u5165\u539F\u6587\u672A\u51FA\u73B0\u7684\u60C5\u8282
-- \u89D2\u8272\u4F7F\u7528\u6587\u4E2D\u4E3B\u8981\u79F0\u547C\uFF0C\u4FDD\u6301\u4E00\u81F4
-- \u591A\u6761\u5E73\u884C\u4E8B\u4EF6\u7EBF\u65F6\uFF0C\u9009\u5BF9\u4E3B\u89D2\u5F71\u54CD\u6700\u5927\u7684\u4E00\u6761\uFF0C\u5176\u4F59\u7B80\u8981\u5E26\u8FC7
-- \u5BF9\u8BDD\u5BC6\u96C6\u7AE0\u8282\uFF0C\u5173\u6CE8\u5BF9\u8BDD\u63A8\u52A8\u4E86\u4EC0\u4E48\u7ED3\u679C\uFF0C\u800C\u975E\u590D\u8FF0\u5BF9\u8BDD\u5185\u5BB9`
+                data: eventExtractionPrompt
               },
               {
-                name: "\u5267\u672C\u8D44\u4EA7\u63D0\u53D6",
+                name: "Script Asset Extraction",
                 type: "scriptAssetExtraction",
-                data: `---
-name: universal_agent
-description: \u4E13\u6CE8\u4E8E\u4ECE\u5267\u672C\u5185\u5BB9\u4E2D\u63D0\u53D6\u6240\u4F7F\u7528\u7684\u8D44\u4EA7\uFF08\u89D2\u8272\u3001\u573A\u666F\u3001\u9053\u5177\uFF09\u5E76\u751F\u6210\u7ED3\u6784\u5316\u8D44\u4EA7\u5217\u8868\u7684\u52A9\u624B\u3002
----
-
-# Script Assets Extract
-
-\u4F60\u662F\u4E00\u4E2A\u4E13\u4E1A\u7684\u5267\u672C\u5185\u5BB9\u5206\u6790\u52A9\u624B\uFF0C\u4E13\u6CE8\u4E8E\u4ECE\u5267\u672C\u6587\u672C\u4E2D\u8BC6\u522B\u548C\u63D0\u53D6\u6240\u6709\u6D89\u53CA\u7684\u8D44\u4EA7\uFF08\u89D2\u8272\u3001\u573A\u666F\u3001\u9053\u5177\uFF09\uFF0C\u5E76\u4E3A\u6BCF\u9879\u8D44\u4EA7\u751F\u6210\u53EF\u4F9B\u4E0B\u6E38\u5236\u4F5C\u6D41\u7A0B\u4F7F\u7528\u7684\u7ED3\u6784\u5316\u63CF\u8FF0\u548C\u63D0\u793A\u8BCD\u3002
-
-## \u4F55\u65F6\u4F7F\u7528
-
-\u7528\u6237\u63D0\u4F9B\u5267\u672C\u5185\u5BB9\uFF0C\u4F60\u9700\u8981\u9010\u6BB5\u9605\u8BFB\u5E76\u63D0\u53D6\u5176\u4E2D\u6D89\u53CA\u7684\u6240\u6709\u8D44\u4EA7\uFF08\u4EBA\u7269\u89D2\u8272\u3001\u573A\u666F\u5730\u70B9\u3001\u9053\u5177\u7269\u4EF6\uFF09\uFF0C\u8F93\u51FA\u4E3A\u7ED3\u6784\u5316\u7684\u8D44\u4EA7\u5217\u8868\u3002\u4EA7\u51FA\u7684\u8D44\u4EA7\u63CF\u8FF0\u5C06\u7528\u4E8E\u540E\u7EED AI \u56FE\u7247\u751F\u6210\u548C\u5236\u4F5C\u6D41\u7A0B\u3002
-
-## \u4E0E\u7CFB\u7EDF\u7684\u5BF9\u5E94\u5173\u7CFB
-
-- \u8D44\u4EA7\u7C7B\u578B\uFF1A
-  - \`role\` \u2014 \u89D2\u8272\uFF08\u5BF9\u5E94 \`o_assets.type = "role"\`\uFF09
-  - \`scene\` \u2014 \u573A\u666F\uFF08\u5BF9\u5E94 \`o_assets.type = "scene"\`\uFF09
-  - \`tool\` \u2014 \u9053\u5177\uFF08\u5BF9\u5E94 \`o_assets.type = "tool"\`\uFF09
-- \u4E0B\u6E38\u7528\u9014\uFF1A\u8D44\u4EA7\u63D0\u793A\u8BCD\u751F\u6210 \u2192 AI \u8D44\u4EA7\u56FE\u751F\u6210 \u2192 \u5206\u955C\u5236\u4F5C
-
-## \u8F93\u51FA\u8981\u6C42
-
-**\u5FC5\u987B\u901A\u8FC7\u8C03\u7528 \`resultTool\` \u5DE5\u5177\u8FD4\u56DE\u7ED3\u679C**\uFF0C\u7981\u6B62\u4EE5\u7EAF\u6587\u672C\u3001Markdown \u8868\u683C\u6216 JSON \u4EE3\u7801\u5757\u7B49\u5F62\u5F0F\u76F4\u63A5\u8F93\u51FA\u8D44\u4EA7\u5217\u8868\u3002
-\`resultTool\` \u7684 schema \u4F1A\u5BF9\u5B57\u6BB5\u7C7B\u578B\u548C\u679A\u4E3E\u503C\u505A\u5F3A\u6821\u9A8C\uFF0C\u8C03\u7528\u65F6\u8BF7\u4E25\u683C\u6309\u7167\u4E0B\u65B9\u5B57\u6BB5\u5B9A\u4E49\u586B\u5199\uFF0C\u786E\u4FDD\u6570\u636E\u7ED3\u6784\u6B63\u786E\u3001\u5B57\u6BB5\u5B8C\u6574\u3001\u7C7B\u578B\u5339\u914D\u3002
-
-\u6BCF\u4E2A\u8D44\u4EA7\u5BF9\u8C61\u5305\u542B\u4EE5\u4E0B\u5B57\u6BB5\uFF1A
-
-| \u5B57\u6BB5 | \u7C7B\u578B | \u5FC5\u586B | \u8BF4\u660E |
-| ---- | ---- | ---- | ---- |
-| \`name\` | string | \u662F | \u8D44\u4EA7\u540D\u79F0\uFF0C\u4F7F\u7528\u5267\u672C\u4E2D\u7684\u539F\u59CB\u79F0\u547C,\u4E0D\u505A\u5176\u4ED6\u591A\u4F59\u63CF\u8FF0 |
-| \`desc\` | string | \u662F | \u8D44\u4EA7\u63CF\u8FF0\uFF0C30-80 \u5B57\u7684\u89C6\u89C9\u5316\u63CF\u8FF0 |
-| \`prompt\` | string | \u662F | \u751F\u6210\u63D0\u793A\u8BCD\uFF0C\u82F1\u6587\uFF0C\u7528\u4E8E AI \u56FE\u7247\u751F\u6210 |
-| \`type\` | enum | \u662F | \u8D44\u4EA7\u7C7B\u578B\uFF1A\`role\` / \`scene\` / \`tool\`  |
-
-## \u63D0\u53D6\u89C4\u5219
-
-### \u89D2\u8272\uFF08role\uFF09
-
-- \u63D0\u53D6\u5267\u672C\u4E2D\u51FA\u73B0\u7684\u6240\u6709\u6709\u540D\u5B57\u7684\u89D2\u8272
-- \`desc\`\uFF1A\u5305\u542B\u5916\u8C8C\u7279\u5F81\u3001\u670D\u9970\u98CE\u683C\u3001\u4F53\u6001\u6C14\u8D28\u7B49\u89C6\u89C9\u8981\u7D20
-- \`prompt\`\uFF1A\u82F1\u6587\u63D0\u793A\u8BCD\uFF0C\u63CF\u8FF0\u89D2\u8272\u7684\u5916\u89C2\u7279\u5F81\uFF0C\u9002\u7528\u4E8E AI \u89D2\u8272\u56FE\u751F\u6210
-- \u540C\u4E00\u89D2\u8272\u6709\u591A\u4E2A\u79F0\u547C\u65F6\uFF0C\u53D6\u6700\u5E38\u7528\u7684\u4F5C\u4E3A \`name\`
-- \u65E0\u540D\u9F99\u5957\uFF08\u5982"\u8DEF\u4EBA\u7532"\u3001"\u58EB\u5175"\uFF09\u53EF\u8DF3\u8FC7\uFF0C\u9664\u975E\u5176\u9020\u578B\u5BF9\u5267\u60C5\u6709\u91CD\u8981\u89C6\u89C9\u610F\u4E49
-
-### \u573A\u666F\uFF08scene\uFF09
-
-- \u63D0\u53D6\u5267\u672C\u4E2D\u51FA\u73B0\u7684\u6240\u6709\u573A\u666F/\u5730\u70B9
-- \`desc\`\uFF1A\u5305\u542B\u7A7A\u95F4\u7ED3\u6784\u3001\u5149\u7167\u6C1B\u56F4\u3001\u5173\u952E\u9648\u8BBE\u3001\u8272\u8C03\u57FA\u8C03\u7B49\u89C6\u89C9\u8981\u7D20
-- \`prompt\`\uFF1A\u82F1\u6587\u63D0\u793A\u8BCD\uFF0C\u63CF\u8FF0\u573A\u666F\u7684\u6574\u4F53\u89C6\u89C9\u98CE\u683C\uFF0C\u9002\u7528\u4E8E AI \u573A\u666F\u56FE\u751F\u6210
-- \u540C\u4E00\u573A\u666F\u7684\u4E0D\u540C\u72B6\u6001\uFF08\u5982\u767D\u5929/\u591C\u665A\uFF09\u4E0D\u91CD\u590D\u63D0\u53D6\uFF0C\u5728 \`desc\` \u4E2D\u6CE8\u660E\u5373\u53EF
-
-### \u9053\u5177\uFF08tool\uFF09
-
-- \u63D0\u53D6\u5267\u672C\u4E2D\u51FA\u73B0\u7684\u91CD\u8981\u9053\u5177/\u7269\u54C1
-- \`desc\`\uFF1A\u5305\u542B\u5916\u89C2\u5F62\u72B6\u3001\u989C\u8272\u6750\u8D28\u3001\u5C3A\u5BF8\u53C2\u8003\u3001\u7279\u6B8A\u6548\u679C\u7B49\u89C6\u89C9\u8981\u7D20
-- \`prompt\`\uFF1A\u82F1\u6587\u63D0\u793A\u8BCD\uFF0C\u63CF\u8FF0\u9053\u5177\u7684\u5916\u89C2\u7EC6\u8282\uFF0C\u9002\u7528\u4E8E AI \u9053\u5177\u56FE\u751F\u6210
-- \u4EC5\u63D0\u53D6\u6709\u72EC\u7ACB\u89C6\u89C9\u610F\u4E49\u6216\u5267\u60C5\u529F\u80FD\u7684\u9053\u5177\uFF0C\u901A\u7528\u7269\u54C1\u53EF\u8DF3\u8FC7
-
-
-## \u63D0\u793A\u8BCD\uFF08prompt\uFF09\u751F\u6210\u89C4\u8303
-
-- \u91C7\u7528\u9017\u53F7\u5206\u9694\u7684\u5173\u952E\u8BCD/\u77ED\u8BED\u683C\u5F0F
-- \u4F18\u5148\u63CF\u8FF0**\u89C6\u89C9\u7279\u5F81**\uFF0C\u907F\u514D\u62BD\u8C61\u6982\u5FF5
-- \u5305\u542B\u98CE\u683C\u5173\u952E\u8BCD\uFF08\u5982 anime style, manga style \u7B49\uFF0C\u6839\u636E\u9879\u76EE\u98CE\u683C\u51B3\u5B9A\uFF09
-- \u89D2\u8272 prompt \u793A\u4F8B\uFF1A\`a young man, sharp eyebrows, black hair, pale skin, wearing a gray Taoist robe, slender build, cold expression\`
-- \u573A\u666F prompt \u793A\u4F8B\uFF1A\`dark cave interior, glowing crystals on walls, misty atmosphere, dim blue lighting, stone altar in center\`
-- \u9053\u5177 prompt \u793A\u4F8B\uFF1A\`ancient jade pendant, oval shape, translucent green, carved dragon pattern, glowing faintly\`
-
-## \u63D0\u53D6\u6D41\u7A0B
-
-1. \u901A\u8BFB\u5267\u672C\u5168\u6587\uFF0C\u8BC6\u522B\u6240\u6709\u51FA\u73B0\u7684\u89D2\u8272\u3001\u573A\u666F\u3001\u9053\u5177
-2. \u5BF9\u6BCF\u4E2A\u8D44\u4EA7\u751F\u6210\u7ED3\u6784\u5316\u7684 \`name\`\u3001\`desc\`\u3001\`prompt\`\u3001\`type\`
-3. \u53BB\u91CD\uFF1A\u540C\u4E00\u8D44\u4EA7\u4E0D\u91CD\u590D\u63D0\u53D6
-4. **\u5FC5\u987B\u901A\u8FC7\u8C03\u7528 \`resultTool\` \u5DE5\u5177\u8F93\u51FA\u5B8C\u6574\u8D44\u4EA7\u5217\u8868**\uFF0C\u4E0D\u8981\u5206\u591A\u6B21\u8C03\u7528\uFF0C\u4E00\u6B21\u6027\u5C06\u6240\u6709\u8D44\u4EA7\u653E\u5165 \`assetsList\` \u6570\u7EC4\u4E2D\u63D0\u4EA4
-
-## \u63D0\u53D6\u539F\u5219
-
-1. **\u5FE0\u4E8E\u5267\u672C**\uFF1A\u6240\u6709\u63D0\u53D6\u57FA\u4E8E\u5267\u672C\u4E2D\u7684\u5B9E\u9645\u5185\u5BB9\uFF0C\u4E0D\u81C6\u9020\u672A\u51FA\u73B0\u7684\u8D44\u4EA7
-2. **\u89C6\u89C9\u4F18\u5148**\uFF1A\u63CF\u8FF0\u548C\u63D0\u793A\u8BCD\u805A\u7126\u89C6\u89C9\u7279\u5F81\uFF0C\u4FBF\u4E8E AI \u56FE\u7247\u751F\u6210
-3. **\u7CBE\u7B80\u5B9E\u7528**\uFF1A\u53EA\u63D0\u53D6\u5BF9\u5236\u4F5C\u6709\u5B9E\u9645\u610F\u4E49\u7684\u8D44\u4EA7\uFF0C\u907F\u514D\u8FC7\u5EA6\u63D0\u53D6
-4. **\u5206\u7C7B\u51C6\u786E**\uFF1A\u4E25\u683C\u6309\u7167 role/scene/tool \u5206\u7C7B\uFF0C\u4E0D\u6DF7\u6DC6
-5. **\u63D0\u793A\u8BCD\u8D28\u91CF**\uFF1A\u82F1\u6587\u63D0\u793A\u8BCD\u5E94\u5177\u4F53\u3001\u53EF\u6267\u884C\uFF0C\u80FD\u76F4\u63A5\u7528\u4E8E AI \u56FE\u7247\u751F\u6210
-
-## \u6CE8\u610F\u4E8B\u9879
-
-- \u8D44\u4EA7\u5217\u8868\u4E2D**\u4E0D\u8981\u5305\u542B\u5267\u672C\u5185\u5BB9\u672C\u8EAB**\uFF0C\u4EC5\u63D0\u53D6\u6240\u4F7F\u7528\u5230\u7684\u8D44\u4EA7
-- \u89D2\u8272\u7684\u968F\u8EAB\u7269\u54C1\u5982\u679C\u6709\u72EC\u7ACB\u5267\u60C5\u529F\u80FD\uFF0C\u5E94\u5355\u72EC\u4F5C\u4E3A\u9053\u5177\u63D0\u53D6
-- \u573A\u666F\u4E2D\u7684\u56FA\u5B9A\u9648\u8BBE\u4E0D\u9700\u8981\u5355\u72EC\u63D0\u53D6\u4E3A\u9053\u5177\uFF0C\u9664\u975E\u8BE5\u7269\u4EF6\u6709\u72EC\u7ACB\u5267\u60C5\u4F5C\u7528`
+                data: scriptAssetExtractionPrompt
               },
               {
-                name: "\u89C6\u9891\u63D0\u793A\u8BCD\u751F\u6210",
+                name: "Video Prompt Generation",
                 type: "videoPromptGeneration",
-                data: `# \u89C6\u9891\u63D0\u793A\u8BCD\u751F\u6210 Skill
-
-\u4F60\u662F**\u89C6\u9891\u63D0\u793A\u8BCD\u751F\u6210 Agent**\uFF0C\u4E13\u95E8\u8D1F\u8D23\u6839\u636E\u6307\u5B9A\u7684 AI \u89C6\u9891\u6A21\u578B\uFF0C\u8BFB\u53D6\u5206\u955C\u4FE1\u606F\u5E76\u8F93\u51FA\u8BE5\u6A21\u578B\u5BF9\u5E94\u683C\u5F0F\u7684\u89C6\u9891\u63D0\u793A\u8BCD\u3002
-
----
-
-## \u8F93\u5165\u683C\u5F0F
-
-### 1. \u6A21\u578B\u4E0E\u6A21\u5F0F\uFF08\u5FC5\u9009\uFF09
-
-
-#### \u6A21\u5F0F\u8DEF\u7531\u89C4\u5219
-
-| \u6761\u4EF6 | \u5339\u914D\u6A21\u5F0F | \u8BF4\u660E |
-|------|----------|------|
-| \u6A21\u578B\u540D\u4E3A \`Seedance2.0\` / \`seedance 2.0\` / \`\u5373\u68A62.0\` | **Seedance 2.0** | \u56FA\u5B9A\u6A21\u5F0F\uFF0C\u65E0\u8BBA\u591A\u53C2\u6807\u5FD7\u5982\u4F55 |
-| \u6A21\u578B\u540D\u4E3A \`Wan2.6\` / \`wan 2.6\` / \`\u4E07\u8C612.6\` | **Wan 2.6** | \u56FA\u5B9A\u6A21\u5F0F\uFF0C\u5355\u56FE\uFF08\u9996\u5E27\uFF09+ \u53D9\u4E8B\u6587\u672C\uFF0C\u65E0\u5C3E\u5E27 |
-| \u5176\u4ED6\u4EFB\u4F55\u6A21\u578B + \`\u591A\u53C2:\u662F\` | **\u901A\u7528\u591A\u53C2\u6A21\u5F0F** | \u652F\u6301\u89D2\u8272/\u573A\u666F/\u5206\u955C\u56FE\u591A\u53C2\u5F15\u7528 |
-| \u5176\u4ED6\u4EFB\u4F55\u6A21\u578B + \`\u591A\u53C2:\u5426\` | **\u901A\u7528\u9996\u5C3E\u5E27\u6A21\u5F0F** | \u9996\u5E27/\u9996\u5C3E\u5E27 + \u7EAF\u6587\u672C\u63CF\u8FF0 |
-
-> \u6A21\u578B\u540D\u4EC5\u7528\u4E8E\u8BB0\u5F55\uFF0C\u5B9E\u9645\u63D0\u793A\u8BCD\u683C\u5F0F\u7531\u5339\u914D\u5230\u7684\u6A21\u5F0F\u51B3\u5B9A\u3002Seedance 2.0 \u548C Wan 2.6 \u662F\u6307\u5B9A\u6A21\u578B\u540D\u5373\u786E\u5B9A\u6A21\u5F0F\u7684\u7279\u4F8B\u3002
-
-### 2. \u8D44\u4EA7\u4FE1\u606F
-
-\`\`\`
-\u8D44\u4EA7\u4FE1\u606F[id, type, name], [id, type, name], ...
-\`\`\`
-
-- \`id\`\uFF1A\u8D44\u4EA7\u552F\u4E00\u6807\u8BC6\uFF08\u5982 \`A001\`\uFF09
-- \`type\`\uFF1A\u8D44\u4EA7\u7C7B\u578B\uFF0C\u53D6\u503C \`character\`\uFF08\u89D2\u8272\uFF09/ \`scene\`\uFF08\u573A\u666F\uFF09/ \`prop\`\uFF08\u9053\u5177\uFF09
-- \`name\`\uFF1A\u8D44\u4EA7\u540D\u79F0\uFF08\u5982 \`\u6C88\u8F9E\`\u3001\`\u57CE\u697C\`\u3001\`\u957F\u5251\`\uFF09
-
-### 3. \u5206\u955C\u4FE1\u606F
-
-\u5206\u955C\u4EE5 \`<storyboardItem>\` XML \u6807\u7B7E\u5217\u8868\u7684\u5F62\u5F0F\u4F20\u5165\uFF0C\u6BCF\u6761\u5206\u955C\u7ED3\u6784\u5982\u4E0B\uFF1A
-
-\`\`\`xml
-<storyboardItem
-  videoDesc='\uFF08\u753B\u9762\u63CF\u8FF0\u3001\u573A\u666F\u3001\u5173\u8054\u8D44\u4EA7\u540D\u79F0\u3001\u65F6\u957F\u3001\u666F\u522B\u3001\u8FD0\u955C\u3001\u89D2\u8272\u52A8\u4F5C\u3001\u60C5\u7EEA\u3001\u5149\u5F71\u6C1B\u56F4\u3001\u53F0\u8BCD\u3001\u97F3\u6548\u3001\u5173\u8054\u8D44\u4EA7ID\uFF09'
-  prompt='\u5F85\u751F\u6210'
-  track='\u5206\u7EC4'
-  duration='\u89C6\u9891\u63A8\u8350\u65F6\u95F4'
-  associateAssetsIds="[\u8BE5\u5206\u955C\u6240\u9700\u7684\u8D44\u4EA7ID\u5217\u8868]"
-  shouldGenerateImage="true"
-></storyboardItem>
-\`\`\`
-
-#### \u8F93\u5165\u5B57\u6BB5\u8BF4\u660E
-
-| \u5C5E\u6027 | \u8BF4\u660E | \u6765\u6E90 |
-|------|------|------|
-| \`videoDesc\` | **\u6838\u5FC3\u8F93\u5165**\uFF1A\u5206\u955C\u7684\u7ED3\u6784\u5316\u753B\u9762\u63CF\u8FF0\uFF0C\u5305\u542B\u753B\u9762\u63CF\u8FF0\u3001\u573A\u666F\u3001\u5173\u8054\u8D44\u4EA7\u540D\u79F0\u3001\u65F6\u957F\u3001\u666F\u522B\u3001\u8FD0\u955C\u3001\u89D2\u8272\u52A8\u4F5C\u3001\u60C5\u7EEA\u3001\u5149\u5F71\u6C1B\u56F4\u3001\u53F0\u8BCD\u3001\u97F3\u6548\u3001\u5173\u8054\u8D44\u4EA7ID | \u7528\u6237/\u4E0A\u6E38\u7CFB\u7EDF\u586B\u5199 |
-| \`prompt\` | **\u5DF2\u6709\u5B57\u6BB5**\uFF1A\u4E0A\u6E38\u751F\u6210\u7684\u5206\u955C\u56FE\u63D0\u793A\u8BCD\uFF0C\u4F5C\u4E3A\u8F85\u52A9\u53C2\u8003\u4E0A\u4E0B\u6587\uFF0C**\u4E0D\u4FEE\u6539** | \u4E0A\u6E38\u7CFB\u7EDF\u5DF2\u586B\u5199 |
-| \`track\` | \u5206\u955C\u5206\u7EC4\u6807\u8BC6 | \u7528\u6237/\u4E0A\u6E38\u7CFB\u7EDF\u586B\u5199 |
-| \`duration\` | \u89C6\u9891\u63A8\u8350\u65F6\u957F\uFF08\u79D2\uFF09 | \u7528\u6237/\u4E0A\u6E38\u7CFB\u7EDF\u586B\u5199 |
-| \`associateAssetsIds\` | \u8BE5\u5206\u955C\u5173\u8054\u7684\u8D44\u4EA7ID\u5217\u8868 | \u7528\u6237/\u4E0A\u6E38\u7CFB\u7EDF\u586B\u5199 |
-| \`shouldGenerateImage\` | \u662F\u5426\u9700\u8981\u751F\u6210\u5206\u955C\u56FE\u7247\uFF0C\u9ED8\u8BA4 \`true\` | \u7528\u6237/\u4E0A\u6E38\u7CFB\u7EDF\u586B\u5199 |
-
----
-
-## \u4EFB\u52A1\u76EE\u6807
-
-\u8BFB\u53D6\u6240\u6709 \`<storyboardItem>\` \u7684\u5C5E\u6027\uFF0C\u7ED3\u5408\u8D44\u4EA7\u4FE1\u606F\uFF0C\u6839\u636E\u6307\u5B9A\u6A21\u578B\u7684\u63D0\u793A\u8BCD\u683C\u5F0F\uFF0C\u5C06\u5168\u90E8\u5206\u955C\u6574\u5408\u4E3A\u4E00\u4E2A\u5B8C\u6574\u7684\u89C6\u9891\u63D0\u793A\u8BCD\u3002
-
----
-
-## \u8F93\u51FA\u683C\u5F0F
-
-\u5C06\u6240\u6709\u5206\u955C\u6574\u5408\u4E3A**\u4E00\u4E2A\u5B8C\u6574\u7684\u89C6\u9891\u63D0\u793A\u8BCD**\u8F93\u51FA\uFF08\u975E\u9010\u6761\u72EC\u7ACB\uFF09\uFF1A
-
-| \u6A21\u5F0F | \u6574\u5408\u65B9\u5F0F |
-|------|----------|
-| **\u901A\u7528\u591A\u53C2\u6A21\u5F0F** | \`[References]\` \u6C47\u603B\u6240\u6709 \`@\u56FEN \` \u5F15\u7528\uFF1B\`[Instruction]\` \u6309\u65F6\u95F4\u987A\u5E8F\u63CF\u8FF0\u5B8C\u6574\u53D9\u4E8B |
-| **\u901A\u7528\u9996\u5C3E\u5E27\u6A21\u5F0F** | \u7EAF\u6587\u672C\u4E94\u7EF4\u5EA6\uFF08Visual / Motion / Camera / Audio / Narrative\uFF09\uFF0C\u4E0D\u4F7F\u7528\u4EFB\u4F55 \`@\u56FEN \` \u5F15\u7528\uFF0C\u6309\u65F6\u95F4\u8F74\u8FDE\u7EED\u7F16\u6392\uFF08\`[Motion]\` 0s \u2192 \u603B\u65F6\u957F\uFF0C\u6BCF\u6BB5\u6700\u4F4E 1 \u79D2\uFF09\uFF0C\u5168\u7A0B\u5355\u4E00\u8FDE\u8D2F\u955C\u5934\uFF0C\u4E0D\u5207\u955C |
-| **Seedance 2.0** | \`\u751F\u6210\u4E00\u4E2A\u7531\u4EE5\u4E0B N \u4E2A\u5206\u955C\u7EC4\u6210\u7684\u89C6\u9891\`\uFF0C\u6BCF\u6761\u5BF9\u5E94 \`\u5206\u955CN<duration-ms>\` \u6BB5\u843D |
-| **Wan 2.6** | \u5355\u56FE\u9996\u5E27\u6A21\u5F0F\uFF0C\u6BCF\u6B21\u4EC5\u8F93\u5165\u4E00\u6761\u5206\u955C\uFF0C\u8F93\u51FA\u4E00\u6BB5\u53D9\u4E8B\u5F0F\u82F1\u6587\u63D0\u793A\u8BCD\uFF08\u4E09\u6BB5\u5F0F\uFF1A\u98CE\u683C\u57FA\u8C03 \u2192 \u4E3B\u4F53\u52A8\u4F5C+\u573A\u666F\u73AF\u5883+\u5149\u7EBF\u6C1B\u56F4 \u2192 \u955C\u5934\u6536\u5C3E\uFF09\uFF0C\u4E0D\u4F7F\u7528 \`@\u56FEN \` \u5F15\u7528 |
-
-- \u4EC5\u8F93\u51FA\u89C6\u9891\u63D0\u793A\u8BCD\u6587\u672C\uFF0C\u4E0D\u8F93\u51FA XML \u6807\u7B7E\uFF0C\u4E0D\u9644\u52A0\u89E3\u91CA
-
----
-
-## videoDesc \u89E3\u6790\u89C4\u5219
-
-\u4ECE \`videoDesc\` \u62EC\u53F7\u5185\u6309\u987F\u53F7\u5206\u9694\u63D0\u53D6\u4EE5\u4E0B\u7ED3\u6784\u5316\u5B57\u6BB5\uFF1A
-
-\`\`\`
-\uFF08{\u753B\u9762\u63CF\u8FF0}\u3001{\u573A\u666F}\u3001{\u5173\u8054\u8D44\u4EA7\u540D\u79F0}\u3001{\u65F6\u957F}\u3001{\u666F\u522B}\u3001{\u8FD0\u955C}\u3001{\u89D2\u8272\u52A8\u4F5C}\u3001{\u60C5\u7EEA}\u3001{\u5149\u5F71\u6C1B\u56F4}\u3001{\u53F0\u8BCD}\u3001{\u97F3\u6548}\u3001{\u5173\u8054\u8D44\u4EA7ID}\uFF09
-\`\`\`
-
-| \u5E8F\u53F7 | \u5B57\u6BB5 | \u7528\u9014 | \u793A\u4F8B |
-|------|------|------|------|
-| 1 | \u753B\u9762\u63CF\u8FF0 | prompt \u7684\u53D9\u4E8B\u4E3B\u5E72 | \u6C88\u8F9E\u72EC\u7ACB\u57CE\u697C\u8FDC\u773A\u82CD\u832B\u5927\u5730 |
-| 2 | \u573A\u666F | \u5339\u914D\u573A\u666F\u8D44\u4EA7 | \u57CE\u697C |
-| 3 | \u5173\u8054\u8D44\u4EA7\u540D\u79F0 | \u5339\u914D\u89D2\u8272/\u9053\u5177\u8D44\u4EA7 | \u6C88\u8F9E/\u57CE\u697C |
-| 4 | \u65F6\u957F | \u63A7\u5236\u65F6\u957F\u53C2\u6570 | 4s |
-| 5 | \u666F\u522B | \u63A7\u5236\u955C\u5934\u666F\u522B | \u5168\u666F |
-| 6 | \u8FD0\u955C | \u63A7\u5236\u8FD0\u955C\u65B9\u5F0F | \u9759\u6B62 |
-| 7 | \u89D2\u8272\u52A8\u4F5C | prompt \u52A8\u4F5C\u63CF\u5199 | \u8D1F\u624B\u800C\u7ACB\u8863\u8882\u968F\u98CE\u98D8\u626C |
-| 8 | \u60C5\u7EEA | prompt \u60C5\u7EEA\u6C1B\u56F4 | \u575A\u5B9A\u51B3\u7EDD |
-| 9 | \u5149\u5F71\u6C1B\u56F4 | prompt \u5149\u5F71\u63CF\u5199 | \u9EC4\u660F\u51B7\u8C03\u4FA7\u9006\u5149 |
-| 10 | \u53F0\u8BCD | prompt \u53F0\u8BCD/\u97F3\u9891\u6BB5 | \u65E0\u53F0\u8BCD / \u5177\u4F53\u53F0\u8BCD\u5185\u5BB9 |
-| 11 | \u97F3\u6548 | prompt \u97F3\u6548\u63CF\u5199 | \u98CE\u58F0\u8863\u8882\u58F0 |
-| 12 | \u5173\u8054\u8D44\u4EA7ID | \u7528\u4E8E\u8D44\u4EA7ID\u2194\u89D2\u8272\u6807\u7B7E\u6620\u5C04 | A001/A002 |
-
----
-
-## \u8D44\u4EA7\u5F15\u7528\u7F16\u53F7\u89C4\u5219
-
-\u6240\u6709\u6A21\u578B\u7EDF\u4E00\u4F7F\u7528 \`@\u56FEN \` \u683C\u5F0F\u5F15\u7528\u8D44\u4EA7\u548C\u5206\u955C\u56FE\uFF0C\u7F16\u53F7\u6309\u8F93\u5165\u987A\u5E8F\u8FDE\u7EED\u9012\u589E\uFF1A
-
-1. **\u8D44\u4EA7**\uFF1A\u6309\u8D44\u4EA7\u4FE1\u606F\u4E2D \`[id, type, name]\` \u7684\u51FA\u73B0\u987A\u5E8F\uFF0C\u4ECE \`@\u56FE1 \` \u5F00\u59CB\u7F16\u53F7\uFF08\u4E0D\u533A\u5206 character / scene / prop\uFF09
-2. **\u5206\u955C\u56FE**\uFF1A\u6BCF\u6761 \`<storyboardItem>\` \u5BF9\u5E94\u4E00\u5F20\u5206\u955C\u56FE\uFF0C\u7F16\u53F7\u63A5\u7EED\u8D44\u4EA7\u4E4B\u540E
-3. **\u8DF3\u8FC7\u65E0\u5206\u955C\u56FE\u7684\u6761\u76EE**\uFF1A\u5F53 \`shouldGenerateImage="false"\` \u65F6\uFF0C\u8BE5\u5206\u955C\u672A\u751F\u6210\u56FE\u7247\uFF0C**\u4E0D\u5206\u914D**\u5206\u955C\u56FE\u7F16\u53F7\uFF0C\u540E\u7EED\u7F16\u53F7\u987A\u5EF6
-
-#### \u793A\u4F8B
-
-\u8F93\u5165 3 \u4E2A\u8D44\u4EA7 + 2 \u6761\u5206\u955C\uFF1A
-\`\`\`
-\u8D44\u4EA7\u4FE1\u606F[A001, character, \u6C88\u8F9E], [A002, character, \u82CF\u9526], [A003, scene, \u57CE\u697C]
-\`\`\`
-\`\`\`xml
-<storyboardItem ...>  <!-- \u5206\u955C1 -->
-<storyboardItem ...>  <!-- \u5206\u955C2 -->
-\`\`\`
-
-\u7F16\u53F7\u7ED3\u679C\uFF1A
-
-| \u8F93\u5165\u9879 | \u5F15\u7528\u6807\u7B7E | \u8BF4\u660E |
-|--------|----------|------|
-| [A001, character, \u6C88\u8F9E] | \`@\u56FE1 \` | \u89D2\u8272\xB7\u6C88\u8F9E \u53C2\u8003\u56FE |
-| [A002, character, \u82CF\u9526] | \`@\u56FE2 \` | \u89D2\u8272\xB7\u82CF\u9526 \u53C2\u8003\u56FE |
-| [A003, scene, \u57CE\u697C] | \`@\u56FE3 \` | \u573A\u666F\xB7\u57CE\u697C \u53C2\u8003\u56FE |
-| storyboardItem \u7B2C1\u6761 | \`@\u56FE4 \` | \u5206\u955C\u56FE1 |
-| storyboardItem \u7B2C2\u6761 | \`@\u56FE5 \` | \u5206\u955C\u56FE2 |
-
----
-
-## \u6A21\u578B\u63D0\u793A\u8BCD\u751F\u6210\u89C4\u5219
-
-### \u4E00\u3001\u901A\u7528\u591A\u53C2\u6A21\u5F0F
-
-#### \u6838\u5FC3\u539F\u5219
-- MVL \u591A\u6A21\u6001\u878D\u5408\uFF1A\u81EA\u7136\u8BED\u8A00 + \u56FE\u50CF\u5F15\u7528\u5728\u540C\u4E00\u8BED\u4E49\u7A7A\u95F4
-- \u5206\u955C\u56FE\u5E8F\u5217\u8D1F\u8D23\u52A8\u4F5C/\u65F6\u95F4\u8F74/\u6784\u56FE\uFF0C\u573A\u666F\u53C2\u8003\u56FE\u8D1F\u8D23\u73AF\u5883\u4E00\u81F4\u6027
-- \u6240\u6709\u8D44\u4EA7\u548C\u5206\u955C\u56FE\u7EDF\u4E00\u7528 \`@\u56FEN \` \u5F15\u7528
-- **\u4E25\u683C\u9075\u5FAA videoDesc**\uFF1A\u63D0\u793A\u8BCD\u5185\u5BB9\u4E25\u683C\u57FA\u4E8E videoDesc \u4E2D\u7684\u753B\u9762\u63CF\u8FF0\u3001\u65F6\u957F\u3001\u666F\u522B\u3001\u8FD0\u955C\u3001\u89D2\u8272\u52A8\u4F5C\u3001\u60C5\u7EEA\u3001\u5149\u5F71\u6C1B\u56F4\u3001\u53F0\u8BCD\u3001\u97F3\u6548\u5B57\u6BB5\u751F\u6210\uFF0C\u4E0D\u7F16\u9020\u989D\u5916\u5185\u5BB9
-- **\u53F0\u8BCD\u4E0D\u53EF\u7F3A\u5931**\uFF1AvideoDesc \u4E2D\u6709\u53F0\u8BCD\u7684\u5206\u955C\uFF0C\u5FC5\u987B\u5728 Instruction \u4E2D\u4F53\u73B0\u53F0\u8BCD\u76F8\u5173\u63CF\u8FF0
-- **\u53F0\u8BCD\u7C7B\u578B\u6807\u6CE8**\uFF1A\u533A\u5206\u666E\u901A\u5BF9\u767D\uFF08dialogue\uFF09\u3001\u5185\u5FC3\u72EC\u767D\uFF08inner monologue OS\uFF09\u3001\u753B\u5916\u97F3\uFF08voiceover VO\uFF09\uFF0C\u5728 Instruction \u4E2D\u7528\u62EC\u53F7\u6807\u6CE8
-
-#### prompt \u751F\u6210\u6A21\u677F
-
-\`\`\`
-[References]
-@\u56FE1 : [{\u89D2\u8272A\u540D}\u53C2\u8003\u56FE]
-@\u56FE2 : [{\u89D2\u8272B\u540D}\u53C2\u8003\u56FE]
-@\u56FE3 : [{\u573A\u666F\u540D}\u53C2\u8003\u56FE]
-@\u56FE4 : [\u5206\u955C\u56FE1]
-
-[Instruction]
-Based on the storyboard @\u56FE4 :
-@\u56FE1 {\u52A8\u4F5C/\u72B6\u6001\u63CF\u8FF0\uFF08\u82F1\u6587\uFF09},
-@\u56FE2 {\u52A8\u4F5C/\u72B6\u6001\u63CF\u8FF0\uFF08\u82F1\u6587\uFF09},
-set in the {\u573A\u666F\u63CF\u8FF0\uFF08\u82F1\u6587\uFF09} of @\u56FE3 ,
-{\u955C\u5934/\u8FD0\u955C\u63CF\u8FF0\uFF08\u82F1\u6587\uFF09},
-{\u60C5\u611F\u57FA\u8C03\uFF08\u82F1\u6587\uFF09},
-{\u53F0\u8BCD\u63CF\u8FF0\uFF08\u82F1\u6587\uFF0C\u542B dialogue/OS/VO \u6807\u6CE8\uFF09/ No dialogue},
-{\u97F3\u6548\u63CF\u8FF0\uFF08\u82F1\u6587\uFF09}.
-\`\`\`
-
-#### \u751F\u6210\u7EA6\u675F
-1. **Instruction \u5FC5\u987B\u7528\u82F1\u6587**
-2. **\u4E25\u683C\u9075\u5FAA videoDesc**\uFF1A\u63D0\u793A\u8BCD\u5185\u5BB9\u4E25\u683C\u57FA\u4E8E videoDesc \u7684\u753B\u9762\u63CF\u8FF0\u3001\u65F6\u957F\u3001\u666F\u522B\u3001\u8FD0\u955C\u3001\u89D2\u8272\u52A8\u4F5C\u3001\u60C5\u7EEA\u3001\u5149\u5F71\u6C1B\u56F4\u3001\u53F0\u8BCD\u3001\u97F3\u6548\u5B57\u6BB5\uFF0C\u4E0D\u7F16\u9020\u989D\u5916\u4FE1\u606F
-3. **\u89D2\u8272\u52A8\u4F5C**\u4ECE videoDesc \u7684\u300C\u89D2\u8272\u52A8\u4F5C\u300D\u5B57\u6BB5\u63D0\u53D6\uFF0C\u7FFB\u8BD1\u4E3A\u7B80\u6D01\u82F1\u6587\u52A8\u4F5C\u63CF\u8FF0
-4. **\u53F0\u8BCD\u4E0D\u53EF\u7F3A\u5931**\uFF1AvideoDesc \u4E2D\u6709\u53F0\u8BCD\u7684\u5206\u955C\uFF0C\u5FC5\u987B\u5728 Instruction \u4E2D\u4F53\u73B0\u53F0\u8BCD\u5185\u5BB9\uFF08\u4FDD\u6301\u539F\u59CB\u8BED\u8A00\uFF0C\u4E0D\u7FFB\u8BD1\uFF09
-5. **\u53F0\u8BCD\u7C7B\u578B\u6807\u6CE8**\uFF1A\u666E\u901A\u5BF9\u767D\u6807\u6CE8 \`(dialogue)\`\uFF1B\u5185\u5FC3\u72EC\u767D\u6807\u6CE8 \`(inner monologue, OS)\`\uFF1B\u753B\u5916\u97F3\u6807\u6CE8 \`(voiceover, VO)\`
-6. **\u955C\u5934\u98CE\u683C**\u4F7F\u7528\u6807\u51C6\u6807\u7B7E\uFF1A\`cinematic\` / \`wide-angle\` / \`close-up\` / \`slow motion\` / \`surround shooting\` / \`handheld\`
-7. **\u7A7A\u95F4\u5173\u7CFB**\u4F7F\u7528\u6807\u51C6\u52A8\u8BCD\uFF1A\`wearing\` / \`holding\` / \`standing on\` / \`following behind\` / \`sitting in\`
-8. \u5355\u6761\u5206\u955C\u5BF9\u5E94\u5355\u4E2A \`@\u56FEN \`\uFF0C\u4E0D\u505A\u591A\u5E27\u8DE8\u955C\u63CF\u8FF0
-9. \u65E0\u9700\u63CF\u8FF0\u89D2\u8272\u5916\u89C2\uFF08\u7531\u53C2\u8003\u56FE\u8D1F\u8D23\uFF09
-10. \u65E0\u65F6\u957F\u6807\u6CE8\uFF08\u7531\u6A21\u578B\u63A8\u65AD\uFF09
-11. **\u65E0\u5206\u955C\u56FE\u65F6**\uFF1A\u5F53 \`shouldGenerateImage="false"\` \u65F6\uFF0C\u8BE5\u5206\u955C\u65E0\u5206\u955C\u56FE\uFF0C\`[References]\` \u4E2D\u4E0D\u5217\u51FA\u8BE5\u5206\u955C\u56FE\uFF0C\`[Instruction]\` \u4E2D\u4E0D\u4F7F\u7528 \`@\u56FEN \` \u5F15\u7528\u8BE5\u5206\u955C\u56FE\uFF0C\u6539\u4E3A\u7EAF\u6587\u672C\u63CF\u8FF0\u753B\u9762\u5185\u5BB9
-
-#### KlingOmni \u5B8C\u6574\u793A\u4F8B
-
-\u8F93\u5165\uFF1A
-\`\`\`
-\u6A21\u578B\uFF1AKlingOmni
-\u8D44\u4EA7\u4FE1\u606F[A001, character, \u6C88\u8F9E], [A002, character, \u82CF\u9526], [A003, scene, \u57CE\u697C]
-\`\`\`
-\`\`\`xml
-<storyboardItem videoDesc='\uFF08\u6C88\u8F9E\u72EC\u7ACB\u57CE\u697C\u8FDC\u773A\u82CD\u832B\u5927\u5730\u3001\u57CE\u697C\u3001\u6C88\u8F9E/\u57CE\u697C\u30014s\u3001\u5168\u666F\u3001\u9759\u6B62\u3001\u8D1F\u624B\u800C\u7ACB\u8863\u8882\u968F\u98CE\u98D8\u626C\u3001\u575A\u5B9A\u51B3\u7EDD\u3001\u9EC4\u660F\u51B7\u8C03\u4FA7\u9006\u5149\u3001\u65E0\u53F0\u8BCD\u3001\u98CE\u58F0\u8863\u8882\u58F0\u3001A001/A003\uFF09' prompt='\u5168\u666F\uFF0C\u5E73\u89C6\u7565\u4EF0\uFF0C\u57CE\u697C\u4E4B\u4E0A\uFF0C\u6C88\u8F9E\u8D1F\u624B\u800C\u7ACB\uFF0C\u8863\u8882\u98D8\u626C\uFF0C\u9EC4\u660F\u51B7\u8C03\u4FA7\u9006\u5149...' track='main' duration='4' associateAssetsIds="[&quot;A001&quot;,&quot;A003&quot;]" shouldGenerateImage="true" ></storyboardItem>
-<storyboardItem videoDesc='\uFF08\u82CF\u9526\u767B\u4E0A\u57CE\u697C\u8D70\u5411\u6C88\u8F9E\u3001\u57CE\u697C\u3001\u82CF\u9526/\u6C88\u8F9E/\u57CE\u697C\u30014s\u3001\u4E2D\u666F\u3001\u8DDF\u8E2A\u3001\u82CF\u9526\u62FE\u7EA7\u800C\u4E0A\u8D70\u5411\u6C88\u8F9E\u3001\u62C5\u5FE7\u3001\u9EC4\u660F\u4F59\u6656\u6E10\u6697\u3001\u65E0\u53F0\u8BCD\u3001\u811A\u6B65\u58F0\u98CE\u58F0\u3001A001/A002/A003\uFF09' prompt='\u4E2D\u666F\uFF0C\u8DDF\u8E2A\uFF0C\u82CF\u9526\u62FE\u7EA7\u800C\u4E0A\u8D70\u5411\u57CE\u697C\u4E0A\u7684\u6C88\u8F9E...' track='main' duration='4' associateAssetsIds="[&quot;A001&quot;,&quot;A002&quot;,&quot;A003&quot;]" shouldGenerateImage="true" ></storyboardItem>
-\`\`\`
-
-\u8F93\u51FA\uFF1A
-\`\`\`
-[References]
-@\u56FE1 : [\u6C88\u8F9E\u53C2\u8003\u56FE]
-@\u56FE2 : [\u82CF\u9526\u53C2\u8003\u56FE]
-@\u56FE3 : [\u57CE\u697C\u53C2\u8003\u56FE]
-@\u56FE4 : [\u5206\u955C\u56FE1]
-@\u56FE5 : [\u5206\u955C\u56FE2]
-
-[Instruction]
-Based on the storyboard from @\u56FE4 to @\u56FE5 :
-@\u56FE1 standing alone atop the city wall, hands clasped behind back, robes billowing in the wind, gazing across the vast land,
-@\u56FE2 ascending the steps toward @\u56FE1 , expression worried,
-set in the ancient city wall environment of @\u56FE3 ,
-wide shot transitioning to medium tracking shot, cinematic,
-resolute determination shifting to concerned anticipation, dusk cold-toned side-backlit atmosphere fading,
-no dialogue,
-wind howling, fabric flapping, footsteps on stone.
-\`\`\`
-
----
-
-### \u4E8C\u3001\u901A\u7528\u9996\u5C3E\u5E27\u6A21\u5F0F
-
-#### \u6838\u5FC3\u539F\u5219
-- **\u7EAF\u6587\u672C\u63D0\u793A\u8BCD**\uFF1A\u63D0\u793A\u8BCD\u5185**\u4E0D\u4F7F\u7528\u4EFB\u4F55 \`@\u56FEN \` \u5F15\u7528**\uFF08\u4E0D\u5F15\u7528\u89D2\u8272\u8D44\u4EA7\u3001\u573A\u666F\u8D44\u4EA7\u3001\u4E5F\u4E0D\u5F15\u7528\u5206\u955C\u56FE\uFF09\uFF0C\u5168\u90E8\u5185\u5BB9\u7528\u7EAF\u6587\u672C\u63CF\u8FF0
-- **\u4E94\u7EF4\u5EA6\u7ED3\u6784**\uFF1AVisual / Motion / Camera / Audio / Narrative
-- **\u4E25\u683C\u9075\u5FAA videoDesc**\uFF1A\u63D0\u793A\u8BCD\u5185\u5BB9\u4E25\u683C\u57FA\u4E8E videoDesc \u4E2D\u7684\u753B\u9762\u63CF\u8FF0\u3001\u65F6\u957F\u3001\u666F\u522B\u3001\u8FD0\u955C\u3001\u89D2\u8272\u52A8\u4F5C\u3001\u60C5\u7EEA\u3001\u5149\u5F71\u6C1B\u56F4\u3001\u53F0\u8BCD\u3001\u97F3\u6548\u5B57\u6BB5\u751F\u6210\uFF0C\u4E0D\u7F16\u9020\u989D\u5916\u5185\u5BB9
-- **\u53F0\u8BCD\u4E0D\u53EF\u7F3A\u5931**\uFF1AvideoDesc \u4E2D\u6709\u53F0\u8BCD\u7684\u5206\u955C\uFF0C\u5FC5\u987B\u5728 \`[Audio]\` \u4E2D\u5B8C\u6574\u8F93\u51FA\u53F0\u8BCD\u5185\u5BB9
-- **\u53F0\u8BCD\u7C7B\u578B\u6807\u6CE8**\uFF1A\u533A\u5206\u666E\u901A\u5BF9\u767D\uFF08dialogue, lip-sync active\uFF09\u3001\u5185\u5FC3\u72EC\u767D\uFF08inner monologue OS, silent lips\uFF09\u3001\u753B\u5916\u97F3\uFF08voiceover VO, silent lips\uFF09\uFF0C\u5E76\u5728 \`[Audio]\` \u4E2D\u660E\u786E\u6807\u6CE8
-- **\u4E0D\u8BF4\u8BDD\u7684\u4E3B\u4F53\u6807\u6CE8 \`silent\`** \u2014 \u9632\u6B62\u8BEF\u751F\u53E3\u578B
-- **\u5168\u7A0B\u5355\u4E00\u8FDE\u8D2F\u955C\u5934**\uFF1A\u4ECE\u5934\u5230\u5C3E\u4E00\u4E2A\u955C\u5934\uFF0C\u4E0D\u5B58\u5728\u5207\u955C
-- **\u65F6\u95F4\u8F74\u5206\u6BB5**\uFF1A\u6BCF\u6BB5\u6700\u4F4E 1 \u79D2\uFF0C\u7528 \`0s-Xs\` \u6807\u6CE8
-
-#### prompt \u751F\u6210\u6A21\u677F
-
-\`\`\`
-[Visual]
-{\u4E3B\u4F53A\u540D}: {\u5916\u89C2\u7B80\u8FF0}, {\u7AD9\u4F4D/\u59FF\u6001}, {\u8BF4\u8BDD\u72B6\u6001 speaking/silent}.
-{\u4E3B\u4F53B\u540D}: {\u5916\u89C2\u7B80\u8FF0}, {\u7AD9\u4F4D/\u59FF\u6001}, {\u8BF4\u8BDD\u72B6\u6001}.
-{\u573A\u666F\u63CF\u8FF0}, {\u9053\u5177\u63CF\u8FF0}.
-{\u89C6\u89C9\u98CE\u683C\u6807\u7B7E}.
-
-[Motion]
-0s-{X}s: {\u4E3B\u4F53A\u540D} {\u52A8\u4F5C\u63CF\u8FF0\u6BB51}.
-{X}s-{Y}s: {\u4E3B\u4F53B\u540D} {\u52A8\u4F5C\u63CF\u8FF0\u6BB52}.
-
-[Camera]
-{\u955C\u5934\u7C7B\u578B}, {\u8FD0\u955C\u65B9\u5F0F}, {\u5168\u7A0B\u5355\u4E00\u8FDE\u8D2F\u955C\u5934\u63CF\u8FF0}.
-
-[Audio]
-{Xs-Ys}: "{\u53F0\u8BCD\u5185\u5BB9}" \u2014 {\u8BF4\u8BDD\u8005\u540D} ({dialogue / inner monologue OS / voiceover VO}), {lip-sync active / silent lips}.
-{\u97F3\u6548\u63CF\u8FF0}.
-
-[Narrative]
-{\u60C5\u8282\u70B9\u6982\u8FF0}, {\u53D9\u4E8B\u4F4D\u7F6E}.
-\`\`\`
-
-#### \u751F\u6210\u7EA6\u675F
-1. **\u5168\u90E8\u7528\u82F1\u6587**
-2. **\u4E0D\u4F7F\u7528\u4EFB\u4F55 \`@\u56FEN \` \u5F15\u7528**\uFF1A\u63D0\u793A\u8BCD\u5185\u4E0D\u5F15\u7528\u89D2\u8272\u8D44\u4EA7\u3001\u573A\u666F\u8D44\u4EA7\u3001\u5206\u955C\u56FE\uFF0C\u5168\u90E8\u5185\u5BB9\u7528\u7EAF\u6587\u672C\u63CF\u8FF0
-3. **\u4E3B\u4F53\u7528\u6587\u5B57\u63CF\u8FF0**\uFF1A\u5728 [Visual] \u4E2D\u7B80\u8981\u63CF\u8FF0\u4E3B\u4F53\u5916\u89C2\u7279\u5F81\uFF08\u5982\u670D\u9970\u3001\u53D1\u578B\u7B49\u5173\u952E\u8FA8\u8BC6\u7279\u5F81\uFF09
-4. **\u4E25\u683C\u9075\u5FAA videoDesc**\uFF1A\u63D0\u793A\u8BCD\u5185\u5BB9\u4E25\u683C\u57FA\u4E8E videoDesc \u4E2D\u7684\u753B\u9762\u63CF\u8FF0\u3001\u65F6\u957F\u3001\u666F\u522B\u3001\u8FD0\u955C\u3001\u89D2\u8272\u52A8\u4F5C\u3001\u60C5\u7EEA\u3001\u5149\u5F71\u6C1B\u56F4\u3001\u53F0\u8BCD\u3001\u97F3\u6548\u5B57\u6BB5\uFF0C\u4E0D\u7F16\u9020\u989D\u5916\u4FE1\u606F
-5. **\u6BCF\u4E2A\u4E3B\u4F53\u5FC5\u987B\u6807\u6CE8\u8BF4\u8BDD\u72B6\u6001**\uFF1A\`speaking\` / \`silent\` / \`speaking simultaneously\`
-6. **\u53F0\u8BCD\u4E0D\u53EF\u7F3A\u5931**\uFF1AvideoDesc \u4E2D\u6709\u53F0\u8BCD\u7684\u5206\u955C\uFF0C\u5FC5\u987B\u5728 \`[Audio]\` \u4E2D\u5B8C\u6574\u8F93\u51FA\u53F0\u8BCD\u5185\u5BB9\uFF08\u4FDD\u6301\u539F\u59CB\u8BED\u8A00\uFF0C\u4E0D\u7FFB\u8BD1\uFF09
-7. **\u53F0\u8BCD\u7C7B\u578B\u6807\u6CE8**\uFF1A\u666E\u901A\u5BF9\u767D\u6807\u6CE8 \`dialogue, lip-sync active\`\uFF1B\u5185\u5FC3\u72EC\u767D\u6807\u6CE8 \`inner monologue (OS), silent lips\`\uFF1B\u753B\u5916\u97F3\u6807\u6CE8 \`voiceover (VO), silent lips\`
-8. **Motion \u65F6\u95F4\u8F74**\u6BCF\u6BB5\u6700\u4F4E 1 \u79D2\uFF0C\u4E0D\u8D85\u8FC7\u603B\u65F6\u957F
-9. **\u5168\u7A0B\u5355\u4E00\u8FDE\u8D2F\u955C\u5934**\uFF1ACamera \u6BB5\u843D\u63CF\u8FF0\u4ECE\u5934\u5230\u5C3E\u7684\u4E00\u4E2A\u955C\u5934\uFF0C\u7EDD\u4E0D\u5207\u955C
-10. **\u89C6\u89C9\u98CE\u683C**\u53C2\u8003 Assistant \u4E2D\u7684\u300C\u89C6\u89C9\u98CE\u683C\u7EA6\u675F\u300D\u90E8\u5206\u5185\u5BB9
-11. **\u955C\u5934\u7C7B\u578B**\u4ECE\u4EE5\u4E0B\u9009\u53D6\uFF1A\`Wide establishing shot / Over-the-shoulder / Medium shot / Close-up / Wide shot / POV / Dutch angle / Crane up / Dolly right / Whip pan / Handheld / Slow motion\`
-
-#### Seedance 1.5 Pro \u5B8C\u6574\u793A\u4F8B
-
-\u8F93\u5165\uFF1A
-\`\`\`
-\u6A21\u578B\uFF1ASeedance1.5
-\u8D44\u4EA7\u4FE1\u606F[A001, character, \u6C88\u8F9E], [A002, character, \u82CF\u9526], [A003, scene, \u57CE\u697C]
-\`\`\`
-\`\`\`xml
-<storyboardItem videoDesc='\uFF08\u6C88\u8F9E\u72EC\u7ACB\u57CE\u697C\u8FDC\u773A\u82CD\u832B\u5927\u5730\u3001\u57CE\u697C\u3001\u6C88\u8F9E/\u57CE\u697C\u30014s\u3001\u5168\u666F\u3001\u9759\u6B62\u3001\u8D1F\u624B\u800C\u7ACB\u8863\u8882\u968F\u98CE\u98D8\u626C\u3001\u575A\u5B9A\u51B3\u7EDD\u3001\u9EC4\u660F\u51B7\u8C03\u4FA7\u9006\u5149\u3001\u65E0\u53F0\u8BCD\u3001\u98CE\u58F0\u8863\u8882\u58F0\u3001A001/A003\uFF09' prompt='\u5168\u666F\uFF0C\u5E73\u89C6\u7565\u4EF0\uFF0C\u57CE\u697C\u4E4B\u4E0A\uFF0C\u6C88\u8F9E\u8D1F\u624B\u800C\u7ACB\uFF0C\u8863\u8882\u98D8\u626C\uFF0C\u9EC4\u660F\u51B7\u8C03\u4FA7\u9006\u5149...' track='main' duration='4' associateAssetsIds="[&quot;A001&quot;,&quot;A003&quot;]" shouldGenerateImage="true" ></storyboardItem>
-<storyboardItem videoDesc='\uFF08\u82CF\u9526\u767B\u4E0A\u57CE\u697C\u8D70\u5411\u6C88\u8F9E\u3001\u57CE\u697C\u3001\u82CF\u9526/\u6C88\u8F9E/\u57CE\u697C\u30014s\u3001\u4E2D\u666F\u3001\u8DDF\u8E2A\u3001\u82CF\u9526\u62FE\u7EA7\u800C\u4E0A\u8D70\u5411\u6C88\u8F9E\u3001\u62C5\u5FE7\u3001\u9EC4\u660F\u4F59\u6656\u6E10\u6697\u3001\u65E0\u53F0\u8BCD\u3001\u811A\u6B65\u58F0\u98CE\u58F0\u3001A001/A002/A003\uFF09' prompt='\u4E2D\u666F\uFF0C\u8DDF\u8E2A\uFF0C\u82CF\u9526\u62FE\u7EA7\u800C\u4E0A\u8D70\u5411\u57CE\u697C\u4E0A\u7684\u6C88\u8F9E...' track='main' duration='4' associateAssetsIds="[&quot;A001&quot;,&quot;A002&quot;,&quot;A003&quot;]" shouldGenerateImage="true" ></storyboardItem>
-\`\`\`
-
-\u8F93\u51FA\uFF1A
-\`\`\`
-[Visual]
-Shen Ci: male, dark flowing robes, hair tied up, standing alone atop city wall, hands clasped behind back, robes billowing, silent.
-Su Jin: female, light-colored dress, hair partially down, ascending steps toward Shen Ci, expression worried, silent.
-Ancient city wall, vast open land beyond, dusk sky fading.
-Cinematic, photorealistic, 4K, high contrast, desaturated tones, shallow depth of field.
-
-[Motion]
-0s-4s: Shen Ci stands still on city wall edge, robes flutter in wind, hair sways gently. Gaze fixed on distant horizon.
-4s-8s: Su Jin climbs the last few steps onto the wall, walks toward Shen Ci. Shen Ci remains still, unaware. Su Jin slows as she approaches.
-
-[Camera]
-Wide establishing shot, static for first 4 seconds capturing the lone figure. Then smooth transition to medium tracking shot following the woman ascending steps, single continuous take throughout, no cuts.
-
-[Audio]
-0s-4s: Wind howling across wall, fabric flapping rhythmically. No dialogue.
-4s-8s: Footsteps on stone, robes rustling. No dialogue.
-Shen Ci \u2014 silent. Su Jin \u2014 silent.
-
-[Narrative]
-Lone figure on city wall, then arrival of a companion. Tension between determination and concern. Single continuous take.
-\`\`\`
-
----
-
-### \u4E09\u3001Seedance 2.0
-
-#### \u6838\u5FC3\u539F\u5219
-- **\u7ED3\u6784\u531612\u7EF4\u7F16\u7801**\uFF1A\u7EDF\u4E00\u7528 \`@\u56FEN \` \u5F15\u7528\u8D44\u4EA7\u548C\u5206\u955C\u56FE\uFF0C\u65F6\u957F \`<duration-ms>\`
-- **\u97F3\u8272\u53C2\u65709\u7EF4\u5EA6\u7CBE\u7EC6\u63CF\u8FF0**\uFF08\u6709\u53F0\u8BCD\u65F6\u5FC5\u586B\uFF09
-- **\u6BEB\u79D2\u7EA7\u65F6\u957F\u63A7\u5236**\uFF1A\u5355\u5206\u955C\u65F6\u957F\u6700\u4F4E 1000ms\uFF081 \u79D2\uFF09
-- **\u4E2D\u6587\u63D0\u793A\u8BCD**
-- **\u4E25\u683C\u9075\u5FAA videoDesc**\uFF1A\u6BCF\u6761\u5206\u955C\u7684\u63CF\u8FF0\u5185\u5BB9\u4E25\u683C\u57FA\u4E8E videoDesc \u4E2D\u7684\u753B\u9762\u63CF\u8FF0\u3001\u65F6\u957F\u3001\u666F\u522B\u3001\u8FD0\u955C\u3001\u89D2\u8272\u52A8\u4F5C\u3001\u60C5\u7EEA\u3001\u5149\u5F71\u6C1B\u56F4\u3001\u53F0\u8BCD\u3001\u97F3\u6548\u5B57\u6BB5\u751F\u6210\uFF0C\u4E0D\u7F16\u9020\u989D\u5916\u5185\u5BB9
-- **\u53F0\u8BCD\u4E0D\u53EF\u7F3A\u5931**\uFF1AvideoDesc \u4E2D\u6709\u53F0\u8BCD\u7684\u5206\u955C\uFF0C\u5FC5\u987B\u5B8C\u6574\u8F93\u51FA\u53F0\u8BCD\u548C\u97F3\u8272\u63CF\u8FF0
-- **\u53F0\u8BCD\u7C7B\u578B\u6807\u6CE8**\uFF1A\u533A\u5206\u666E\u901A\u5BF9\u767D\uFF08\u76F4\u63A5\u4F7F\u7528\u300C\u8BF4\uFF1A\u300D\uFF09\u3001\u5185\u5FC3\u72EC\u767D\uFF08\u4F7F\u7528\u300C\u5185\u5FC3OS\uFF1A\u300D\uFF09\u3001\u753B\u5916\u97F3\uFF08\u4F7F\u7528\u300C\u753B\u5916\u97F3VO\uFF1A\u300D\uFF09\uFF0C\u5E76\u5339\u914D\u5BF9\u5E94\u7684\u5634\u578B\u72B6\u6001\u63CF\u8FF0
-
-#### prompt \u751F\u6210\u6A21\u677F
-
-**\u5355\u5206\u955C\u6A21\u677F\uFF1A**
-\`\`\`
-\u753B\u9762\u98CE\u683C\u548C\u7C7B\u578B: {\u98CE\u683C}, {\u8272\u8C03}, {\u7C7B\u578B}
-
-\u751F\u6210\u4E00\u4E2A\u7531\u4EE5\u4E0B 1 \u4E2A\u5206\u955C\u7EC4\u6210\u7684\u89C6\u9891:
-
-\u573A\u666F:
-\u5206\u955C\u8FC7\u6E21: \u65E0
-
-\u5206\u955C1<duration-ms>{\u6BEB\u79D2\u6570}</duration-ms>: \u65F6\u95F4\uFF1A{\u65E5/\u591C/\u6668/\u9EC4\u660F}\uFF0C\u573A\u666F\u56FE\u7247\uFF1A@\u56FE{\u573A\u666F\u7F16\u53F7} \uFF0C\u955C\u5934\uFF1A{\u666F\u522B}\uFF0C{\u89D2\u5EA6}\uFF0C{\u8FD0\u955C}\uFF0C@\u56FE{\u89D2\u8272\u7F16\u53F7} {\u52A8\u4F5C/\u8868\u60C5/\u89C6\u7EBF\u671D\u5411/\u7AD9\u4F4D\u63CF\u8FF0}\u3002{\u53F0\u8BCD\u4E0E\u97F3\u8272\u63CF\u8FF0\uFF08\u5982\u6709\uFF09}\u3002{\u80CC\u666F\u73AF\u5883\u8865\u5145}\u3002{\u5149\u5F71\u6C1B\u56F4}\u3002{\u8FD0\u955C\u8865\u5145}\u3002
-\`\`\`
-
-**\u591A\u5206\u955C\u6A21\u677F\uFF1A**
-\`\`\`
-\u753B\u9762\u98CE\u683C\u548C\u7C7B\u578B: {\u98CE\u683C}, {\u8272\u8C03}, {\u7C7B\u578B}
-
-\u751F\u6210\u4E00\u4E2A\u7531\u4EE5\u4E0B {N} \u4E2A\u5206\u955C\u7EC4\u6210\u7684\u89C6\u9891:
-
-\u573A\u666F:
-\u5206\u955C\u8FC7\u6E21: {\u5168\u5C40\u8FC7\u6E21\u63CF\u8FF0}
-
-\u5206\u955C1<duration-ms>{\u6BEB\u79D2\u6570}</duration-ms>: \u65F6\u95F4\uFF1A{...}\uFF0C\u573A\u666F\u56FE\u7247\uFF1A@\u56FE{\u573A\u666F\u7F16\u53F7} \uFF0C\u955C\u5934\uFF1A{...}\uFF0C@\u56FE{\u89D2\u8272\u7F16\u53F7} {...}\u3002{...}\u3002
-\u5206\u955C2<duration-ms>{\u6BEB\u79D2\u6570}</duration-ms>: ...
-...
-\`\`\`
-
-#### \u97F3\u8272\u751F\u6210\u89C4\u5219\uFF08\u6709\u53F0\u8BCD\u65F6\u5FC5\u586B\uFF09
-
-\u53F0\u8BCD\u683C\u5F0F\uFF1A\`@\u56FE{\u89D2\u8272\u7F16\u53F7} \u8BF4\uFF1A\u300C{\u53F0\u8BCD\u5185\u5BB9}\u300D\u97F3\u8272\uFF1A{9\u7EF4\u5EA6\u63CF\u8FF0}\`
-
-9\u7EF4\u5EA6\u6309\u987A\u5E8F\u586B\u5199\uFF1A
-\`\`\`
-{\u6027\u522B}\uFF0C{\u5E74\u9F84\u97F3\u8272}\uFF0C{\u97F3\u8C03}\uFF0C{\u97F3\u8272\u8D28\u611F}\uFF0C{\u58F0\u97F3\u539A\u5EA6}\uFF0C{\u53D1\u97F3\u65B9\u5F0F}\uFF0C{\u6C14\u606F}\uFF0C{\u8BED\u901F}\uFF0C{\u7279\u6B8A\u8D28\u611F}
-\`\`\`
-
-> \u5F53 desc \u4E2D\u672A\u660E\u786E\u97F3\u8272\u4FE1\u606F\u65F6\uFF0C\u6839\u636E\u89D2\u8272\u7C7B\u578B\u4ECE\u4EE5\u4E0B\u53C2\u8003\u8868\u63A8\u65AD\uFF1A
-
-| \u89D2\u8272\u7C7B\u578B\u7279\u5F81 | \u9ED8\u8BA4\u97F3\u8272 |
-|------------|---------|
-| \u7537\u6027\u6743\u5A01/\u9738\u6C14\u89D2\u8272 | \u7537\u58F0\uFF0C\u4E2D\u5E74\u97F3\u8272\uFF0C\u97F3\u8C03\u4F4E\u6C89\uFF0C\u97F3\u8272\u6D51\u539A\u6709\u529B\uFF0C\u58F0\u97F3\u539A\u91CD\uFF0C\u53D1\u97F3\u6807\u51C6\uFF0C\u6C14\u606F\u6781\u5176\u6C89\u7A33\uFF0C\u8BED\u901F\u504F\u6162 |
-| \u5973\u6027\u6E29\u67D4/\u751C\u7F8E\u89D2\u8272 | \u5973\u58F0\uFF0C\u9752\u5E74\u97F3\u8272\uFF0C\u97F3\u8C03\u4E2D\u7B49\u504F\u9AD8\uFF0C\u97F3\u8272\u8D28\u611F\u660E\u4EAE\u6E05\u8106\uFF0C\u58F0\u97F3\u6E05\u4EAE\u67D4\u548C\uFF0C\u6C14\u606F\u5145\u6C9B\u5E73\u7A33\uFF0C\u5E26\u6E29\u5A49\u771F\u8BDA\u611F |
-| \u7537\u6027\u5E74\u8F7B/\u666E\u901A\u89D2\u8272 | \u7537\u58F0\uFF0C\u9752\u5E74\u97F3\u8272\uFF0C\u97F3\u8C03\u4E2D\u7B49\uFF0C\u97F3\u8272\u5E72\u51C0\uFF0C\u58F0\u97F3\u539A\u5EA6\u9002\u4E2D\uFF0C\u53D1\u97F3\u6E05\u6670\uFF0C\u6C14\u606F\u5E73\u7A33\uFF0C\u8BED\u901F\u9002\u4E2D |
-| \u5973\u6027\u6D3B\u6CFC/\u5916\u5411\u89D2\u8272 | \u5973\u58F0\uFF0C\u9752\u5E74\u97F3\u8272\uFF0C\u97F3\u8C03\u504F\u9AD8\uFF0C\u97F3\u8272\u6E05\u8106\u6D3B\u6CFC\uFF0C\u58F0\u97F3\u8F7B\u76C8\uFF0C\u6C14\u606F\u5145\u6C9B\uFF0C\u8BED\u901F\u504F\u5FEB\uFF0C\u5E26\u7B11\u610F\u548C\u611F\u67D3\u529B |
-| \u53CD\u6D3E/\u51B7\u9177\u89D2\u8272 | \u7537\u58F0\uFF0C\u4E2D\u5E74\u97F3\u8272\uFF0C\u97F3\u8C03\u4F4E\u6C89\uFF0C\u97F3\u8272\u8D28\u611F\u5E72\u71E5\u504F\u6697\uFF0C\u58F0\u97F3\u5E26\u6C99\u783E\u611F\uFF0C\u6C14\u606F\u5E73\u7A33\uFF0C\u8BED\u901F\u6781\u6162\uFF0C\u6709\u5A01\u80C1\u611F |
-
-#### \u65E0\u53F0\u8BCD\u5206\u955C\u5904\u7406
-- \u4E0D\u5199 \`\u8BF4\uFF1A\` \u548C\u97F3\u8272\u6BB5\u843D
-- \u5728\u52A8\u4F5C\u63CF\u8FF0\u540E\u6807\u6CE8 \`\u65E0\u53F0\u8BCD\`
-
-#### \u53F0\u8BCD\u7C7B\u578B\u683C\u5F0F
-
-| \u53F0\u8BCD\u7C7B\u578B | \u683C\u5F0F | \u5634\u578B\u63CF\u8FF0 |
-|----------|------|----------|
-| \u666E\u901A\u5BF9\u767D | \`@\u56FE{\u89D2\u8272\u7F16\u53F7} \u8BF4\uFF1A\u300C{\u53F0\u8BCD}\u300D\u97F3\u8272\uFF1A{9\u7EF4\u5EA6}\` | \u89D2\u8272\u5634\u90E8\u5F00\u5408\u8BF4\u8BDD |
-| \u5185\u5FC3\u72EC\u767D | \`@\u56FE{\u89D2\u8272\u7F16\u53F7} \u5185\u5FC3OS\uFF1A\u300C{\u53F0\u8BCD}\u300D\u97F3\u8272\uFF1A{9\u7EF4\u5EA6}\` | \u89D2\u8272\u5634\u90E8\u7D27\u95ED\u4E0D\u52A8 |
-| \u753B\u5916\u97F3 | \`@\u56FE{\u89D2\u8272\u7F16\u53F7} \u753B\u5916\u97F3VO\uFF1A\u300C{\u53F0\u8BCD}\u300D\u97F3\u8272\uFF1A{9\u7EF4\u5EA6}\` | \u89D2\u8272\u5634\u90E8\u7D27\u95ED\u4E0D\u52A8\uFF08\u6216\u89D2\u8272\u4E0D\u5728\u753B\u9762\u4E2D\uFF09 |
-
-#### \u751F\u6210\u7EA6\u675F
-1. **\u4E2D\u6587\u63D0\u793A\u8BCD**
-2. **\u4E25\u683C\u9075\u5FAA videoDesc**\uFF1A\u6BCF\u6761\u5206\u955C\u5185\u5BB9\u4E25\u683C\u57FA\u4E8E videoDesc \u7684\u753B\u9762\u63CF\u8FF0\u3001\u65F6\u957F\u3001\u666F\u522B\u3001\u8FD0\u955C\u3001\u89D2\u8272\u52A8\u4F5C\u3001\u60C5\u7EEA\u3001\u5149\u5F71\u6C1B\u56F4\u3001\u53F0\u8BCD\u3001\u97F3\u6548\u5B57\u6BB5\uFF0C\u4E0D\u7F16\u9020\u989D\u5916\u4FE1\u606F
-3. **\u53F0\u8BCD\u4E0D\u53EF\u7F3A\u5931**\uFF1AvideoDesc \u4E2D\u6709\u53F0\u8BCD\u7684\u5206\u955C\uFF0C\u5FC5\u987B\u5B8C\u6574\u8F93\u51FA\u53F0\u8BCD\u548C\u97F3\u8272
-4. **\u53F0\u8BCD\u7C7B\u578B\u6B63\u786E\u6807\u6CE8**\uFF1A\u666E\u901A\u5BF9\u767D\u7528\u300C\u8BF4\uFF1A\u300D\uFF0C\u5185\u5FC3\u72EC\u767D\u7528\u300C\u5185\u5FC3OS\uFF1A\u300D\uFF0C\u753B\u5916\u97F3\u7528\u300C\u753B\u5916\u97F3VO\uFF1A\u300D
-5. **\u5355\u5206\u955C\u65F6\u957F\u6700\u4F4E 1000ms\uFF081 \u79D2\uFF09**
-6. **\u65F6\u957F\u5355\u4F4D**\uFF1A\u5C06 videoDesc \u4E2D\u7684\u79D2 \xD7 1000 \u8F6C\u4E3A\u6BEB\u79D2\u586B\u5165 \`<duration-ms>\`
-
-#### Seedance 2.0 \u5B8C\u6574\u793A\u4F8B
-
-\u8F93\u5165\uFF1A
-\`\`\`
-\u6A21\u578B\uFF1ASeedance2.0
-\u8D44\u4EA7\u4FE1\u606F[A001, character, \u6C88\u8F9E], [A002, character, \u82CF\u9526], [A003, scene, \u57CE\u697C]
-\`\`\`
-\`\`\`xml
-<storyboardItem videoDesc='\uFF08\u6C88\u8F9E\u72EC\u7ACB\u57CE\u697C\u8FDC\u773A\u82CD\u832B\u5927\u5730\u3001\u57CE\u697C\u3001\u6C88\u8F9E/\u57CE\u697C\u30014s\u3001\u5168\u666F\u3001\u9759\u6B62\u3001\u8D1F\u624B\u800C\u7ACB\u8863\u8882\u968F\u98CE\u98D8\u626C\u3001\u575A\u5B9A\u51B3\u7EDD\u3001\u9EC4\u660F\u51B7\u8C03\u4FA7\u9006\u5149\u3001\u65E0\u53F0\u8BCD\u3001\u98CE\u58F0\u8863\u8882\u58F0\u3001A001/A003\uFF09' prompt='\u5168\u666F\uFF0C\u5E73\u89C6\u7565\u4EF0\uFF0C\u57CE\u697C\u4E4B\u4E0A\uFF0C\u6C88\u8F9E\u8D1F\u624B\u800C\u7ACB\uFF0C\u8863\u8882\u98D8\u626C\uFF0C\u9EC4\u660F\u51B7\u8C03\u4FA7\u9006\u5149...' track='main' duration='4' associateAssetsIds="[&quot;A001&quot;,&quot;A003&quot;]" shouldGenerateImage="true" ></storyboardItem>
-<storyboardItem videoDesc='\uFF08\u82CF\u9526\u767B\u4E0A\u57CE\u697C\u8D70\u5411\u6C88\u8F9E\u3001\u57CE\u697C\u3001\u82CF\u9526/\u6C88\u8F9E/\u57CE\u697C\u30014s\u3001\u4E2D\u666F\u3001\u8DDF\u8E2A\u3001\u82CF\u9526\u62FE\u7EA7\u800C\u4E0A\u8D70\u5411\u6C88\u8F9E\u3001\u62C5\u5FE7\u3001\u9EC4\u660F\u4F59\u6656\u6E10\u6697\u3001\u82CF\u9526\u8BF4\uFF1A\u4F60\u53C8\u4E00\u4E2A\u4EBA\u5728\u8FD9\u91CC\u3001\u811A\u6B65\u58F0\u98CE\u58F0\u3001A001/A002/A003\uFF09' prompt='\u4E2D\u666F\uFF0C\u8DDF\u8E2A\uFF0C\u82CF\u9526\u62FE\u7EA7\u800C\u4E0A\u8D70\u5411\u57CE\u697C\u4E0A\u7684\u6C88\u8F9E...' track='main' duration='4' associateAssetsIds="[&quot;A001&quot;,&quot;A002&quot;,&quot;A003&quot;]" shouldGenerateImage="true" ></storyboardItem>
-\`\`\`
-
-\u8F93\u51FA\uFF1A
-\`\`\`
-\u753B\u9762\u98CE\u683C\u548C\u7C7B\u578B: \u771F\u4EBA\u5199\u5B9E, \u7535\u5F71\u98CE\u683C, \u51B7\u8C03, \u53E4\u98CE
-
-\u751F\u6210\u4E00\u4E2A\u7531\u4EE5\u4E0B 2 \u4E2A\u5206\u955C\u7EC4\u6210\u7684\u89C6\u9891:
-
-\u573A\u666F:
-\u5206\u955C\u8FC7\u6E21: \u955C\u5934\u5E73\u6ED1\u5207\u6362\uFF0C\u4ECE\u5168\u666F\u8FC7\u6E21\u5230\u4E2D\u666F\u8DDF\u8E2A\uFF0C\u7126\u70B9\u4ECE\u6C88\u8F9E\u72EC\u5904\u8F6C\u5411\u82CF\u9526\u5230\u6765\u3002
-
-\u5206\u955C1<duration-ms>4000</duration-ms>: \u65F6\u95F4\uFF1A\u9EC4\u660F\uFF0C\u573A\u666F\u56FE\u7247\uFF1A@\u56FE3 \uFF0C\u955C\u5934\uFF1A\u5168\u666F\uFF0C\u5E73\u89C6\u7565\u4EF0\uFF0C\u9759\u6B62\u955C\u5934\uFF0C@\u56FE1 \u72EC\u7ACB\u57CE\u697C\u4E4B\u4E0A\uFF0C\u8D1F\u624B\u800C\u7ACB\uFF0C\u8863\u8882\u968F\u98CE\u98D8\u626C\uFF0C\u76EE\u5149\u8FDC\u773A\u82CD\u832B\u5927\u5730\uFF0C\u795E\u60C5\u8083\u7136\u9762\u5BB9\u6C89\u7740\uFF0C\u773C\u795E\u575A\u5B9A\u76EE\u5149\u6E05\u51BD\uFF0C\u7709\u773C\u6C89\u9759\u6C14\u8D28\u51DB\u7136\u3002\u65E0\u53F0\u8BCD\u3002\u80CC\u666F\u662F\u53E4\u57CE\u697C\u7816\u77F3\u7EB9\u7406\u6E05\u6670\uFF0C\u8FDC\u65B9\u5927\u5730\u82CD\u832B\u8FBD\u9614\uFF0C\u5929\u9645\u7EBF\u51B7\u6696\u4EA4\u66FF\u3002\u9EC4\u660F\u659C\u5C04\u4F59\u6656\u4FA7\u9006\u5149\uFF0C\u51B7\u8C03\u4E3A\u4E3B\uFF0C\u957F\u5F71\u62C9\u4F38\uFF0C\u8F6E\u5ED3\u5149\u5FAE\u52FE\u52D2\u4EBA\u7269\u8FB9\u7F18\uFF0C\u5149\u611F\u8BD7\u610F\u3002\u955C\u5934\u9759\u6B62\u3002
-
-\u5206\u955C2<duration-ms>4000</duration-ms>: \u65F6\u95F4\uFF1A\u9EC4\u660F\uFF0C\u573A\u666F\u56FE\u7247\uFF1A@\u56FE3 \uFF0C\u955C\u5934\uFF1A\u4E2D\u666F\uFF0C\u5E73\u89C6\uFF0C\u8DDF\u8E2A\u62CD\u6444\uFF0C@\u56FE2 \u62FE\u7EA7\u800C\u4E0A\uFF0C\u8D70\u5411\u57CE\u697C\u4E0A\u7684@\u56FE1 \uFF0C\u9762\u90E8\u671D\u5411@\u56FE1 \u65B9\u5411\uFF0C\u795E\u60C5\u5FAE\u6123\u9762\u8272\u5FAE\u53D8\uFF0C\u773C\u795E\u4E2D\u5E26\u7740\u62C5\u5FE7\uFF0C@\u56FE2 \u8BF4\uFF1A\u300C\u4F60\u53C8\u4E00\u4E2A\u4EBA\u5728\u8FD9\u91CC\u3002\u300D\u97F3\u8272\uFF1A\u5973\u58F0\uFF0C\u9752\u5E74\u97F3\u8272\uFF0C\u97F3\u8C03\u4E2D\u7B49\u504F\u9AD8\uFF0C\u97F3\u8272\u8D28\u611F\u660E\u4EAE\u6E05\u8106\uFF0C\u58F0\u97F3\u6E05\u4EAE\u67D4\u548C\uFF0C\u53D1\u97F3\u65B9\u5F0F\u5E72\u51C0\uFF0C\u6C14\u606F\u5145\u6C9B\u5E73\u7A33\uFF0C\u8BED\u901F\u9002\u4E2D\uFF0C\u5E26\u6E29\u5A49\u771F\u8BDA\u611F\u3002\u80CC\u666F\u57CE\u697C\u53F0\u9636\u7EB9\u7406\u6E05\u6670\uFF0C\u4F59\u6656\u6E10\u6697\uFF0C\u5929\u9645\u7EBF\u51B7\u6696\u4EA4\u66FF\u52A0\u6DF1\u3002\u955C\u5934\u8DDF\u8E2A\u82CF\u9526\u79FB\u52A8\u3002
-\`\`\`
-
----
-
-### \u56DB\u3001Wan 2.6
-
-#### \u6838\u5FC3\u539F\u5219
-- **\u5355\u56FE\u9996\u5E27\u6A21\u5F0F**\uFF1A\u5F52\u7C7B\u4E3A\u9996\u5C3E\u5E27\u6A21\u5F0F\uFF0C\u4F46\u4EC5\u6709\u9996\u5E27\uFF08\u5206\u955C\u56FE\uFF09\uFF0C\u65E0\u5C3E\u5E27
-- **\u5355\u6761\u5206\u955C\u8F93\u5165/\u8F93\u51FA**\uFF1A\u6BCF\u6B21\u4EC5\u8F93\u5165\u4E00\u6761 \`<storyboardItem>\` \u53CA\u5176\u5173\u8054\u8D44\u4EA7\u4FE1\u606F\uFF0C\u8F93\u51FA\u4E5F\u4EC5\u4E3A\u4E00\u6BB5\u5B8C\u6574\u7684\u53D9\u4E8B\u5F0F\u63D0\u793A\u8BCD
-- **\u53D9\u4E8B\u5F0F\u82F1\u6587\u63D0\u793A\u8BCD**\uFF1A\u50CF\u5199\u5C0F\u8BF4\u4E00\u6837\u63CF\u5199\u753B\u9762\uFF0C\u4E0D\u4F7F\u7528\u6807\u7B7E\u7F57\u5217\uFF08\u4E0D\u5199 \`4K, cinematic, high quality\` \u8FD9\u7C7B\u5806\u780C\uFF09
-- **\u4E09\u6BB5\u5F0F\u7ED3\u6784**\uFF1A\u98CE\u683C\u57FA\u8C03 \u2192 \u4E3B\u4F53\u52A8\u4F5C + \u573A\u666F\u73AF\u5883 + \u5149\u7EBF\u6C1B\u56F4 \u2192 \u955C\u5934\u6536\u5C3E
-- **\u7EAF\u6587\u672C\u63D0\u793A\u8BCD**\uFF1A\u63D0\u793A\u8BCD\u5185**\u4E0D\u4F7F\u7528\u4EFB\u4F55 \`@\u56FEN \` \u5F15\u7528**\uFF0C\u5168\u90E8\u5185\u5BB9\u7528\u7EAF\u6587\u672C\u63CF\u8FF0
-- **\u4E25\u683C\u9075\u5FAA videoDesc**\uFF1A\u63D0\u793A\u8BCD\u5185\u5BB9\u4E25\u683C\u57FA\u4E8E videoDesc \u4E2D\u7684\u753B\u9762\u63CF\u8FF0\u3001\u65F6\u957F\u3001\u666F\u522B\u3001\u8FD0\u955C\u3001\u89D2\u8272\u52A8\u4F5C\u3001\u60C5\u7EEA\u3001\u5149\u5F71\u6C1B\u56F4\u3001\u53F0\u8BCD\u3001\u97F3\u6548\u5B57\u6BB5\u751F\u6210\uFF0C\u4E0D\u7F16\u9020\u989D\u5916\u5185\u5BB9
-- **\u53F0\u8BCD\u4E0D\u53EF\u7F3A\u5931**\uFF1AvideoDesc \u4E2D\u6709\u53F0\u8BCD\u7684\u5206\u955C\uFF0C\u5FC5\u987B\u5728\u63D0\u793A\u8BCD\u4E2D\u4F53\u73B0\u53F0\u8BCD\u76F8\u5173\u63CF\u8FF0
-- **\u53F0\u8BCD\u7C7B\u578B\u6807\u6CE8**\uFF1A\u533A\u5206\u666E\u901A\u5BF9\u767D\uFF08dialogue\uFF09\u3001\u5185\u5FC3\u72EC\u767D\uFF08inner monologue OS\uFF09\u3001\u753B\u5916\u97F3\uFF08voiceover VO\uFF09\uFF0C\u5728\u63D0\u793A\u8BCD\u4E2D\u7528\u62EC\u53F7\u6807\u6CE8
-
-#### prompt \u751F\u6210\u6A21\u677F
-
-\u6BCF\u6B21\u8F93\u5165\u4E00\u6761\u5206\u955C\uFF0C\u8F93\u51FA\u4E00\u6BB5\u5B8C\u6574\u63D0\u793A\u8BCD\uFF08\u65E0\u7F16\u53F7\u524D\u7F00\uFF09\uFF0C\u683C\u5F0F\u5982\u4E0B\uFF1A
-
-\`\`\`
-{\u98CE\u683C\u57FA\u8C03\u4E00\u53E5\u8BDD\u5B9A\u6027},
-{\u4E3B\u4F53\u540D} {\u5916\u89C2\u7B80\u8FF0}, {\u5177\u4F53\u52A8\u4F5C/\u59FF\u6001\u63CF\u8FF0}, {\u60C5\u7EEA/\u8868\u60C5\u7528\u52A8\u4F5C\u6697\u793A}.
-{\u573A\u666F\u80CC\u666F\u4E3B\u4F53}, {\u5177\u4F53\u73AF\u5883\u7269\u4EF6}, {\u7A7A\u95F4\u611F}, {\u65F6\u95F4/\u5929\u6C14}.
-{\u5149\u7EBF\u65B9\u5411/\u8272\u6E29} {\u8D28\u611F\u63CF\u8FF0}, {\u60C5\u7EEA\u6697\u793A\u5149\u5F71}.
-{\u53F0\u8BCD\u63CF\u8FF0\uFF08\u5982\u6709\uFF0C\u542B dialogue/OS/VO \u6807\u6CE8\uFF09/ No dialogue}.
-{\u97F3\u6548\u63CF\u8FF0}.
-{\u62CD\u6444\u65B9\u5F0F}, {\u666F\u522B}, {\u89C6\u89D2}, {\u8FD0\u955C\u65B9\u5F0F}.
-\`\`\`
-
-#### \u53D9\u4E8B\u5F0F\u5199\u6CD5\u8981\u70B9
-
-| \u539F\u5219 | \u8BF4\u660E | \u793A\u4F8B |
-|------|------|------|
-| \u98CE\u683C\u57FA\u8C03\u653E\u6700\u524D | \u4E00\u53E5\u8BDD\u5B9A\u6027\u6574\u4F53\u6C14\u8D28 | \`A cinematic epic scene\` / \`A melancholic cinematic scene\` |
-| \u4E3B\u4F53+\u52A8\u4F5C\u7D27\u5BC6\u7ED1\u5B9A | \u4E3B\u4F53\u540E\u9762\u76F4\u63A5\u8DDF\u52A8\u4F5C\uFF0C\u5916\u89C2\u7EC6\u8282\u5D4C\u5165\u4E3B\u4F53\u63CF\u8FF0 | \`A young man in dark flowing robes stands alone atop the city wall, hands clasped behind back\` |
-| \u60C5\u7EEA\u7528\u52A8\u4F5C\u6697\u793A | \u4E0D\u76F4\u63A5\u9648\u8FF0\u300C\u4ED6\u5F88\u60B2\u4F24\u300D | \u274C \`He is sad.\` \u2192 \u2705 \`head drops slowly, shoulders slumped\` |
-| \u73AF\u5883\u878D\u5165\u53D9\u4E8B | \u4E0D\u7F57\u5217\u73AF\u5883\u5C5E\u6027 | \u274C \`The sky is blue. The grass is green.\` \u2192 \u2705 \`hazy blue sky stretches over the emerald valley\` |
-| \u5149\u7EBF\u5355\u72EC\u6210\u53E5 | \u5149\u7EBF\u65B9\u5411+\u8272\u6E29+\u8D28\u611F+\u60C5\u7EEA | \`Warm golden hour light streams from behind, casting long shadows across the stone floor\` |
-| \u955C\u5934\u8BED\u8A00\u6536\u5C3E | \u4E00\u53E5\u8BDD\u70B9\u775B | \`Captured in a wide establishing shot from a low-angle perspective, static camera\` |
-| \u7981\u6B62\u6807\u7B7E\u5806\u780C | \u4E0D\u5199 \`4K, cinematic, high quality\` | \`cinematic\` \u878D\u5165\u98CE\u683C\u57FA\u8C03\u5373\u53EF |
-
-#### \u751F\u6210\u7EA6\u675F
-1. **\u5168\u90E8\u7528\u82F1\u6587**
-2. **\u4E0D\u4F7F\u7528\u4EFB\u4F55 \`@\u56FEN \` \u5F15\u7528**\uFF1A\u63D0\u793A\u8BCD\u5185\u4E0D\u5F15\u7528\u89D2\u8272\u8D44\u4EA7\u3001\u573A\u666F\u8D44\u4EA7\u3001\u5206\u955C\u56FE\uFF0C\u5168\u90E8\u5185\u5BB9\u7528\u7EAF\u6587\u672C\u63CF\u8FF0
-3. **\u53D9\u4E8B\u5F0F\u63CF\u5199**\uFF1A\u50CF\u5199\u5C0F\u8BF4\u4E00\u6837\u6784\u5EFA\u753B\u9762\uFF0C\u7981\u6B62\u6807\u7B7E\u7F57\u5217\u548C\u914D\u7F6E\u6E05\u5355\u5F0F\u5199\u6CD5
-4. **\u4E3B\u4F53\u7528\u6587\u5B57\u63CF\u8FF0**\uFF1A\u7B80\u8981\u63CF\u8FF0\u4E3B\u4F53\u5916\u89C2\u7279\u5F81\uFF08\u5982\u670D\u9970\u3001\u53D1\u578B\u7B49\u5173\u952E\u8FA8\u8BC6\u7279\u5F81\uFF09\uFF0C\u5D4C\u5165\u4E3B\u4F53\u63CF\u8FF0\u4E2D
-5. **\u4E25\u683C\u9075\u5FAA videoDesc**\uFF1A\u63D0\u793A\u8BCD\u5185\u5BB9\u4E25\u683C\u57FA\u4E8E videoDesc \u4E2D\u7684\u753B\u9762\u63CF\u8FF0\u3001\u65F6\u957F\u3001\u666F\u522B\u3001\u8FD0\u955C\u3001\u89D2\u8272\u52A8\u4F5C\u3001\u60C5\u7EEA\u3001\u5149\u5F71\u6C1B\u56F4\u3001\u53F0\u8BCD\u3001\u97F3\u6548\u5B57\u6BB5\uFF0C\u4E0D\u7F16\u9020\u989D\u5916\u4FE1\u606F
-6. **\u53F0\u8BCD\u4E0D\u53EF\u7F3A\u5931**\uFF1AvideoDesc \u4E2D\u6709\u53F0\u8BCD\u7684\u5206\u955C\uFF0C\u5FC5\u987B\u5728\u63D0\u793A\u8BCD\u4E2D\u5B8C\u6574\u8F93\u51FA\u53F0\u8BCD\u5185\u5BB9\uFF08\u4FDD\u6301\u539F\u59CB\u8BED\u8A00\uFF0C\u4E0D\u7FFB\u8BD1\uFF09
-7. **\u53F0\u8BCD\u7C7B\u578B\u6807\u6CE8**\uFF1A\u666E\u901A\u5BF9\u767D\u6807\u6CE8 \`(dialogue)\`\uFF1B\u5185\u5FC3\u72EC\u767D\u6807\u6CE8 \`(inner monologue, OS)\`\uFF1B\u753B\u5916\u97F3\u6807\u6CE8 \`(voiceover, VO)\`
-8. **\u5355\u6761\u8F93\u5165/\u8F93\u51FA**\uFF1A\u6BCF\u6B21\u4EC5\u5904\u7406\u4E00\u6761\u5206\u955C\uFF0C\u8F93\u51FA\u4E00\u6BB5\u63D0\u793A\u8BCD\uFF0C\u65E0\u7F16\u53F7\u524D\u7F00
-9. **\u65E0\u9700\u6807\u6CE8\u65F6\u957F**\uFF1A\u65F6\u957F\u7531\u6A21\u578B\u4FA7\u63A7\u5236\uFF0C\u63D0\u793A\u8BCD\u4E2D\u4E0D\u5199\u65F6\u957F\u53C2\u6570
-10. **\u955C\u5934\u63CF\u8FF0\u878D\u5165\u53D9\u4E8B**\uFF1A\u4E0D\u7528\u65B9\u62EC\u53F7\u6807\u7B7E\uFF0C\u7528\u5B8C\u6574\u53E5\u5B50\u63CF\u8FF0\u955C\u5934
-11. **\u89C6\u89C9\u98CE\u683C**\u53C2\u8003 Assistant \u4E2D\u7684\u300C\u89C6\u89C9\u98CE\u683C\u7EA6\u675F\u300D\u90E8\u5206\u5185\u5BB9
-
-#### Wan 2.6 \u5B8C\u6574\u793A\u4F8B
-
-**\u793A\u4F8B1\uFF1A\u65E0\u53F0\u8BCD\u5206\u955C**
-
-\u8F93\u5165\uFF1A
-\`\`\`
-\u6A21\u578B\uFF1AWan2.6
-\u8D44\u4EA7\u4FE1\u606F[A001, character, \u6C88\u8F9E], [A003, scene, \u57CE\u697C]
-\`\`\`
-\`\`\`xml
-<storyboardItem videoDesc='\uFF08\u6C88\u8F9E\u72EC\u7ACB\u57CE\u697C\u8FDC\u773A\u82CD\u832B\u5927\u5730\u3001\u57CE\u697C\u3001\u6C88\u8F9E/\u57CE\u697C\u30014s\u3001\u5168\u666F\u3001\u9759\u6B62\u3001\u8D1F\u624B\u800C\u7ACB\u8863\u8882\u968F\u98CE\u98D8\u626C\u3001\u575A\u5B9A\u51B3\u7EDD\u3001\u9EC4\u660F\u51B7\u8C03\u4FA7\u9006\u5149\u3001\u65E0\u53F0\u8BCD\u3001\u98CE\u58F0\u8863\u8882\u58F0\u3001A001/A003\uFF09' prompt='\u5168\u666F\uFF0C\u5E73\u89C6\u7565\u4EF0\uFF0C\u57CE\u697C\u4E4B\u4E0A\uFF0C\u6C88\u8F9E\u8D1F\u624B\u800C\u7ACB\uFF0C\u8863\u8882\u98D8\u626C\uFF0C\u9EC4\u660F\u51B7\u8C03\u4FA7\u9006\u5149...' track='main' duration='4' associateAssetsIds="[&quot;A001&quot;,&quot;A003&quot;]" shouldGenerateImage="true" ></storyboardItem>
-\`\`\`
-
-\u8F93\u51FA\uFF1A
-\`\`\`
-A cinematic epic scene with a cold, desaturated palette,
-A lone man in dark flowing robes stands atop an ancient city wall, hands clasped behind his back, robes and hair billowing in the wind, gaze fixed on the vast land stretching to the horizon, jaw set firm, eyes unwavering.
-The weathered stone battlements frame the endless expanse below, rolling terrain fading into haze beneath a heavy dusk sky, clouds layered in muted golds and slate greys.
-Cold side-backlight from the setting sun carves a sharp silhouette, long shadows stretching across the stone floor, a faint warm rim outlining the figure against the cool atmosphere.
-No dialogue.
-Wind howling across the open wall, fabric flapping rhythmically.
-Captured in a wide establishing shot from a slightly low angle, static camera, single continuous take.
-\`\`\`
-
-**\u793A\u4F8B2\uFF1A\u6709\u53F0\u8BCD\u5206\u955C**
-
-\u8F93\u5165\uFF1A
-\`\`\`
-\u6A21\u578B\uFF1AWan2.6
-\u8D44\u4EA7\u4FE1\u606F[A001, character, \u6C88\u8F9E], [A002, character, \u82CF\u9526], [A003, scene, \u57CE\u697C]
-\`\`\`
-\`\`\`xml
-<storyboardItem videoDesc='\uFF08\u82CF\u9526\u767B\u4E0A\u57CE\u697C\u8D70\u5411\u6C88\u8F9E\u3001\u57CE\u697C\u3001\u82CF\u9526/\u6C88\u8F9E/\u57CE\u697C\u30014s\u3001\u4E2D\u666F\u3001\u8DDF\u8E2A\u3001\u82CF\u9526\u62FE\u7EA7\u800C\u4E0A\u8D70\u5411\u6C88\u8F9E\u3001\u62C5\u5FE7\u3001\u9EC4\u660F\u4F59\u6656\u6E10\u6697\u3001\u82CF\u9526\u8BF4\uFF1A\u4F60\u53C8\u4E00\u4E2A\u4EBA\u5728\u8FD9\u91CC\u3001\u811A\u6B65\u58F0\u98CE\u58F0\u3001A001/A002/A003\uFF09' prompt='\u4E2D\u666F\uFF0C\u8DDF\u8E2A\uFF0C\u82CF\u9526\u62FE\u7EA7\u800C\u4E0A\u8D70\u5411\u57CE\u697C\u4E0A\u7684\u6C88\u8F9E...' track='main' duration='4' associateAssetsIds="[&quot;A001&quot;,&quot;A002&quot;,&quot;A003&quot;]" shouldGenerateImage="true" ></storyboardItem>
-\`\`\`
-
-\u8F93\u51FA\uFF1A
-\`\`\`
-A melancholic cinematic scene, dusk tones deepening,
-A young woman in a light-colored dress ascends the final stone steps onto the city wall, her gaze locked on the lone figure ahead, brow slightly furrowed, pace slowing as she approaches, lips parting softly.
-The ancient city wall stretches behind her, weathered stairs leading up from below, the distant skyline dimming as the last traces of golden hour fade into twilight.
-Fading warm light mingles with rising cool blue tones, the contrast between the two figures softened by the diffused remnants of sunset.
-"\u4F60\u53C8\u4E00\u4E2A\u4EBA\u5728\u8FD9\u91CC\u3002" \u2014 Su Jin (dialogue).
-Footsteps on stone, wind sweeping across the battlements, fabric rustling.
-A medium tracking shot follows the woman from behind as she ascends and approaches, handheld camera with subtle movement, single continuous take.
-\`\`\`
-
----
-
-## \u666F\u522B \u2192 \u955C\u5934\u6807\u7B7E\u6620\u5C04
-
-| videoDesc \u4E2D\u7684\u666F\u522B | KlingOmni\uFF08\u82F1\u6587\u6807\u7B7E\uFF09 | Seedance 1.5\uFF08\u82F1\u6587\u6807\u7B7E\uFF09 | Seedance 2.0\uFF08\u4E2D\u6587\u63CF\u8FF0\uFF09 | Wan 2.6\uFF08\u82F1\u6587\u53D9\u4E8B\u5F0F\uFF09 |
-|------|------|------|------|------|
-| \u8FDC\u666F | extreme wide shot | Extreme wide shot | \u8FDC\u666F | an extreme wide shot capturing the vast expanse |
-| \u5168\u666F | wide shot | Wide establishing shot | \u5168\u666F | a wide establishing shot |
-| \u4E2D\u666F | medium shot | Medium shot | \u4E2D\u666F | a medium shot |
-| \u8FD1\u666F | close-up | Close-up | \u8FD1\u666F | a close-up shot |
-| \u7279\u5199 | close-up | Close-up | \u7279\u5199 | a close-up capturing fine detail |
-| \u5927\u7279\u5199 | extreme close-up | Extreme close-up | \u5927\u7279\u5199 | an extreme close-up |
-
-## \u8FD0\u955C \u2192 \u955C\u5934\u6807\u7B7E\u6620\u5C04
-
-| videoDesc \u4E2D\u7684\u8FD0\u955C | KlingOmni\uFF08\u82F1\u6587\u6807\u7B7E\uFF09 | Seedance 1.5\uFF08\u82F1\u6587\u6807\u7B7E\uFF09 | Seedance 2.0\uFF08\u4E2D\u6587\u63CF\u8FF0\uFF09 | Wan 2.6\uFF08\u82F1\u6587\u53D9\u4E8B\u5F0F\uFF09 |
-|------|------|------|------|------|
-| \u9759\u6B62 | static camera | Static, no camera movement | \u955C\u5934\u9759\u6B62 | static camera, locked off |
-| \u63A8\u8FDB | dolly in / push in | Slow dolly forward | \u955C\u5934\u7F13\u6162\u5411\u524D\u63A8\u8FDB | camera slowly pushing in |
-| \u62C9\u8FDC | dolly out / pull back | Slow dolly backward pull | \u955C\u5934\u7F13\u6162\u5411\u540E\u62C9\u8FDC | camera gently pulling back |
-| \u8DDF\u8E2A | tracking shot | Tracking shot, handheld | \u8DDF\u8E2A\u62CD\u6444 | tracking shot following the subject |
-| \u6447\u955C | pan left/right | Slow pan | \u955C\u5934\u7F13\u6162\u6447\u79FB | smooth pan across the scene |
-| \u7529\u955C | whip pan | Whip pan | \u5FEB\u901F\u7529\u955C | whip pan |
-| \u5347\u964D | crane up/down | Crane up/down | \u955C\u5934\u5347\u964D | crane rising / descending |
-| \u73AF\u7ED5 | surround shooting | Orbiting shot | \u73AF\u7ED5\u62CD\u6444 | orbiting around the subject |
-
----
-
-## \u6267\u884C\u6D41\u7A0B
-
-1. **\u89E3\u6790\u8F93\u5165**\uFF1A\u63D0\u53D6\u6A21\u578B\u540D\u548C\u591A\u53C2\u6807\u5FD7\uFF0C\u6309\u8DEF\u7531\u89C4\u5219\u5339\u914D\u6A21\u5F0F\uFF1B\u63D0\u53D6\u8D44\u4EA7\u5217\u8868
-2. **\u6784\u5EFA @\u56FEN \u7F16\u53F7\u8868**\uFF1A\u8D44\u4EA7\u6309\u8F93\u5165\u987A\u5E8F\u4ECE \`@\u56FE1 \` \u8D77\u7F16\u53F7\uFF0C\u5206\u955C\u56FE\u63A5\u7EED\u7F16\u53F7\uFF1B\`shouldGenerateImage="false"\` \u7684\u5206\u955C\u4E0D\u5206\u914D\u5206\u955C\u56FE\u7F16\u53F7
-3. **\u9010\u6761\u89E3\u6790 \`<storyboardItem>\`**\uFF1A\u6309 videoDesc \u89E3\u6790\u89C4\u5219\u63D0\u53D612\u4E2A\u5B57\u6BB5\uFF0C\u7ED3\u5408 \`duration\`\u3001\`associateAssetsIds\` \u5EFA\u7ACB\u6807\u7B7E\u6620\u5C04
-4. **\u6574\u5408\u4E3A\u4E00\u4E2A\u5B8C\u6574\u7684\u89C6\u9891\u63D0\u793A\u8BCD**\uFF1A\u6309\u76EE\u6807\u6A21\u578B\u683C\u5F0F\u7F16\u6392\u5168\u90E8\u5206\u955C
-5. **\u8F93\u51FA\u89C6\u9891\u63D0\u793A\u8BCD**
-
----
-
-## \u7EA6\u675F
-
-- **\u4EC5\u8F93\u51FA\u89C6\u9891\u63D0\u793A\u8BCD**\uFF1A\u4E0D\u9644\u52A0\u4EFB\u4F55\u89E3\u91CA\u3001\u6CE8\u91CA\u6216\u989D\u5916\u8BF4\u660E\uFF0C\u53EA\u8F93\u51FA\u89C6\u9891\u63D0\u793A\u8BCD\u6587\u672C
-- **\u4E25\u683C\u9075\u5FAA videoDesc**\uFF08\u5168\u6A21\u5F0F\u901A\u7528\uFF09\uFF1A\u63D0\u793A\u8BCD\u5185\u5BB9\u4E25\u683C\u57FA\u4E8E videoDesc \u4E2D\u7684\u753B\u9762\u63CF\u8FF0\u3001\u65F6\u957F\u3001\u666F\u522B\u3001\u8FD0\u955C\u3001\u89D2\u8272\u52A8\u4F5C\u3001\u60C5\u7EEA\u3001\u5149\u5F71\u6C1B\u56F4\u3001\u53F0\u8BCD\u3001\u97F3\u6548\u5B57\u6BB5\u751F\u6210\uFF0C\u4E0D\u7F16\u9020\u989D\u5916\u5185\u5BB9
-- **\u53F0\u8BCD\u4E0D\u53EF\u7F3A\u5931**\uFF08\u5168\u6A21\u5F0F\u901A\u7528\uFF09\uFF1AvideoDesc \u4E2D\u6709\u53F0\u8BCD\u7684\u5206\u955C\uFF0C\u5FC5\u987B\u5728\u63D0\u793A\u8BCD\u4E2D\u5B8C\u6574\u4F53\u73B0\u53F0\u8BCD\u5185\u5BB9\uFF0C\u4E0D\u5F97\u9057\u6F0F
-- **\u53F0\u8BCD\u4FDD\u6301\u539F\u59CB\u8F93\u5165**\uFF08\u5168\u6A21\u5F0F\u901A\u7528\uFF09\uFF1A\u53F0\u8BCD\u5185\u5BB9\u4E25\u7981\u7FFB\u8BD1\uFF0C\u5FC5\u987B\u4FDD\u6301 videoDesc \u4E2D\u7684\u539F\u59CB\u8BED\u8A00\u539F\u6837\u8F93\u51FA
-- **\u53F0\u8BCD\u7C7B\u578B\u6807\u6CE8**\uFF08\u5168\u6A21\u5F0F\u901A\u7528\uFF09\uFF1A\u5FC5\u987B\u533A\u5206\u666E\u901A\u5BF9\u767D\uFF08dialogue / \u8BF4\uFF09\u3001\u5185\u5FC3\u72EC\u767D\uFF08OS / \u5185\u5FC3OS\uFF09\u3001\u753B\u5916\u97F3\uFF08VO / \u753B\u5916\u97F3VO\uFF09\uFF0C\u5E76\u5728\u63D0\u793A\u8BCD\u4E2D\u6B63\u786E\u6807\u6CE8
-- **\u65F6\u95F4\u8DE8\u5EA6\u6700\u4F4E 1 \u79D2**\uFF08\u5168\u6A21\u5F0F\u901A\u7528\uFF09\uFF1A\u6240\u6709\u6A21\u5F0F\u4E2D\u6D89\u53CA\u65F6\u95F4\u5206\u6BB5\uFF08Motion \u65F6\u95F4\u8F74 / duration-ms\uFF09\u7684\u6700\u5C0F\u7C92\u5EA6\u4E3A 1 \u79D2\uFF081000ms\uFF09\uFF0C\u7981\u6B62\u51FA\u73B0 0.5 \u79D2\u7B49\u4F4E\u4E8E 1 \u79D2\u7684\u95F4\u9694
-- **\u89C6\u89C9\u98CE\u683C**\uFF1A\u98CE\u683C\u76F8\u5173\u63CF\u8FF0\u53C2\u8003 Assistant \u4E2D\u7684\u300C\u89C6\u89C9\u98CE\u683C\u7EA6\u675F\u300D\u90E8\u5206\u5185\u5BB9\uFF0C\u4E0D\u5728\u672C Skill \u5185\u81EA\u884C\u5B9A\u4E49\u98CE\u683C
-- **\u4E25\u683C\u6309\u5339\u914D\u5230\u7684\u6A21\u5F0F\u683C\u5F0F**\uFF0C\u4E0D\u6DF7\u7528\u4E0D\u540C\u6A21\u5F0F\u7684\u683C\u5F0F
-- **\u4E0D\u4FEE\u6539\u539F\u59CB\u8F93\u5165**\uFF1A\u4E0D\u6539\u5199 \`<storyboardItem>\` \u7684\u4EFB\u4F55\u5B57\u6BB5\uFF1B\`prompt\` \u5DF2\u6709\u7684\u5206\u955C\u56FE\u63D0\u793A\u8BCD\u4EC5\u4F5C\u753B\u9762\u53C2\u8003
-- **\u4E0D\u7F16\u9020\u8D44\u4EA7\u6216\u53F0\u8BCD**\uFF1A\u53EA\u4F7F\u7528\u8F93\u5165\u4E2D\u7684\u8D44\u4EA7\u4FE1\u606F\uFF1B\u65E0\u53F0\u8BCD\u5219\u6807\u6CE8\u300C\u65E0\u53F0\u8BCD\u300D/ \`No dialogue\`
-- **\u65F6\u957F\u5355\u4F4D\u8F6C\u6362**\uFF1ASeedance 2.0 \u7684 \`<duration-ms>\` \u9700\u5C06\u79D2 \xD7 1000 \u8F6C\u4E3A\u6BEB\u79D2
-`
+                data: videoPromptGenerationPrompt
               },
               {
-                name: "\u97F3\u8272\u7ED1\u5B9A",
+                name: "Voice Matching",
                 type: "audioBindPrompt",
-                data: `\u4F60\u662F\u4E00\u4E2A\u97F3\u8272\u5339\u914D\u52A9\u624B\u3002
-\u4F60\u7684\u4EFB\u52A1\u662F\uFF1A\u6839\u636E\u7ED9\u5B9A\u89D2\u8272\u8D44\u4EA7\u7684\u540D\u79F0\u4E0E\u63CF\u8FF0\uFF0C\u4ECE\u5019\u9009\u97F3\u9891\u5217\u8868\u4E2D\u9009\u51FA\u6700\u5408\u9002\u7684\u97F3\u8272\u3002
-\u5339\u914D\u89C4\u5219\uFF1A
-1. \u4F18\u5148\u6839\u636E\u89D2\u8272\u6027\u522B\u3001\u5E74\u9F84\u3001\u6027\u683C\u7B49\u7279\u5F81\u4E0E\u97F3\u8272\u63CF\u8FF0\u8FDB\u884C\u8BED\u4E49\u5339\u914D\uFF1B
-2. \u540C\u4E00\u89D2\u8272\u4EC5\u53EF\u5339\u914D\u4E00\u4E2A\u97F3\u8272\uFF1B
-3. \u82E5\u5019\u9009\u5217\u8868\u4E2D\u6CA1\u6709\u5408\u9002\u7684\u97F3\u8272\uFF0C\u5219\u65E0\u9700\u8FD4\u56DE audioId\uFF1B`
+                data: audioBindPrompt
               }
             ]);
           }
         },
-        //模型绑定提示词表
+        // Model Binding Prompt Table
         {
           name: "o_modelPrompt",
           builder: (table) => {
@@ -81816,7 +81735,7 @@ A medium tracking shot follows the woman from behind as she ascends and approach
           initData: async (knex4) => {
           }
         },
-        //小说原文表
+        // Novel Original Text Table
         {
           name: "o_novel",
           builder: (table) => {
@@ -81834,7 +81753,7 @@ A medium tracking shot follows the woman from behind as she ascends and approach
             table.unique(["id"]);
           }
         },
-        //小说事件表
+        // Novel Event Table
         {
           name: "o_event",
           builder: (table) => {
@@ -81846,7 +81765,7 @@ A medium tracking shot follows the woman from behind as she ascends and approach
             table.unique(["id"]);
           }
         },
-        //事件-章节表
+        // Event-Chapter Table
         {
           name: "o_eventChapter",
           builder: (table) => {
@@ -81857,7 +81776,7 @@ A medium tracking shot follows the woman from behind as she ascends and approach
             table.unique(["id"]);
           }
         },
-        //剧本
+        // Script
         {
           name: "o_script",
           builder: (table) => {
@@ -81872,7 +81791,7 @@ A medium tracking shot follows the woman from behind as she ascends and approach
             table.unique(["id"]);
           }
         },
-        //资产表
+        // Asset Table
         {
           name: "o_assets",
           builder: (table) => {
@@ -81897,7 +81816,7 @@ A medium tracking shot follows the woman from behind as she ascends and approach
           initData: async (knex4) => {
           }
         },
-        //生成图片表
+        // Generate an image table
         {
           name: "o_image",
           builder: (table) => {
@@ -81913,7 +81832,7 @@ A medium tracking shot follows the woman from behind as she ascends and approach
             table.unique(["id"]);
           }
         },
-        //分镜
+        // Storyboard
         {
           name: "o_storyboard",
           builder: (table) => {
@@ -81936,7 +81855,7 @@ A medium tracking shot follows the woman from behind as she ascends and approach
             table.unique(["id"]);
           }
         },
-        //flowData-剧本
+        // flowData-Script
         {
           name: "o_agentWorkData",
           builder: (table) => {
@@ -81951,7 +81870,7 @@ A medium tracking shot follows the woman from behind as she ascends and approach
             table.unique(["id"]);
           }
         },
-        //视频
+        // Video
         {
           name: "o_video",
           builder: (table) => {
@@ -81967,7 +81886,7 @@ A medium tracking shot follows the woman from behind as she ascends and approach
             table.unique(["id"]);
           }
         },
-        // 视频轨道
+        // Video track
         {
           name: "o_videoTrack",
           builder: (table) => {
@@ -81984,7 +81903,7 @@ A medium tracking shot follows the woman from behind as she ascends and approach
             table.unique(["id"]);
           }
         },
-        //供应商配置表
+        // Supplier Configuration Table
         {
           name: "o_vendorConfig",
           builder: (table) => {
@@ -82042,7 +81961,7 @@ A medium tracking shot follows the woman from behind as she ascends and approach
             ]);
           }
         },
-        //图片工作流表
+        // Image workflow table
         {
           name: "o_imageFlow",
           builder: (table) => {
@@ -82176,7 +82095,7 @@ A medium tracking shot follows the woman from behind as she ascends and approach
                 md5: "efccb0464cfd472861b49ebf737d4820",
                 path: "references/event_extract.md",
                 name: "event_extract",
-                description: "\u4E13\u4E3A\u5C0F\u8BF4\u6539\u7F16\u77ED\u5267\u8BBE\u8BA1\u7684\u6587\u672C\u5206\u6790\u52A9\u624B\uFF0C\u9010\u7AE0\u63D0\u53D6\u6D89\u53CA\u89D2\u8272\u3001\u6838\u5FC3\u4E8B\u4EF6\u3001\u4E3B\u7EBF\u5173\u7CFB\u3001\u4FE1\u606F\u5BC6\u5EA6\u3001\u9884\u4F30\u96C6\u957F\u53CA\u60C5\u7EEA\u5F3A\u5EA6\u7B49\u7ED3\u6784\u5316\u4FE1\u606F\uFF0C\u4EE5Markdown\u8868\u683C\u5F62\u5F0F\u8F93\u51FA\uFF0C\u5E76\u9644\u6C47\u603B\u7EDF\u8BA1\uFF0C\u8F85\u52A9\u77ED\u5267\u5236\u4F5C\u7684\u5185\u5BB9\u89C4\u5212\u4E0E\u65F6\u957F\u4F30\u7B97\u3002",
+                description: "Text-analysis assistants who tailor short-play designs for novels, extract chapter by chapter structured information on roles, core events, main-line relationships, information density, estimated concentration and emotional intensity, and produce them in Mark-Advanced Tables, with aggregate statistics, supporting content planning and time-out estimation for short-line production.",
                 embedding: "",
                 type: "references",
                 createTime: 1774447310118,
@@ -82188,7 +82107,7 @@ A medium tracking shot follows the woman from behind as she ascends and approach
                 md5: "783678aaab829b34e7c30a414c356bf6",
                 path: "references/novel_character_extract.md",
                 name: "novel_character_extract",
-                description: "\u4E13\u4E3A\u5C0F\u8BF4\u5185\u5BB9\u5206\u6790\u8BBE\u8BA1\u7684\u89D2\u8272\u63D0\u53D6\u52A9\u624B\uFF0C\u4ECE\u539F\u6587\u4E2D\u8BC6\u522B\u5E76\u7ED3\u6784\u5316\u8F93\u51FA\u6240\u6709\u91CD\u8981\u89D2\u8272\u7684\u89C6\u89C9\u63CF\u8FF0\u4FE1\u606F\uFF0C\u5305\u62EC\u5916\u8C8C\u3001\u670D\u9970\u3001\u4F53\u6001\u3001\u72B6\u6001\u53D8\u4F53\u7B49\u5B57\u6BB5\uFF0C\u4F9B\u7F8E\u672F\u5236\u4F5C\u548CAI\u89D2\u8272\u56FE\u751F\u6210\u4F7F\u7528\u3002",
+                description: "The role extraction assistant designed for novel content analysis identifies and structures visual description information from the original text for all important roles, including physical appearance, clothing, physical appearance and state variants, for use in fine arts production and AI role chart generation.",
                 embedding: "",
                 type: "references",
                 createTime: 1774447310118,
@@ -82200,7 +82119,7 @@ A medium tracking shot follows the woman from behind as she ascends and approach
                 md5: "10544d12c4ef011e6b3b63a99b8c7fa8",
                 path: "references/novel_props_extract.md",
                 name: "novel_props_extract",
-                description: "\u4E13\u6CE8\u4E8E\u4ECE\u5C0F\u8BF4\u539F\u6587\u4E2D\u63D0\u53D6\u9053\u5177\u7269\u54C1\u4FE1\u606F\u7684\u5206\u6790\u52A9\u624B\uFF0C\u80FD\u8BC6\u522B\u6B66\u5668\u3001\u6CD5\u5668\u3001\u836F\u7269\u7B49\u5404\u7C7B\u9053\u5177\uFF0C\u751F\u6210\u5305\u542B\u5916\u89C2\u3001\u6750\u8D28\u3001\u5C3A\u5BF8\u3001\u529F\u80FD\u53CA\u72B6\u6001\u53D8\u4F53\u7684\u7ED3\u6784\u5316\u89C6\u89C9\u63CF\u8FF0\u8868\u683C\uFF0C\u4F9B\u7F8E\u672F\u5236\u4F5C\u548CAI\u7ED8\u56FE\u4F7F\u7528\u3002",
+                description: "An analytical assistant who focuses on extracting props from the original novel can identify various props, such as weapons, instruments, drugs, and produce structured visual descriptions of the shape, material, dimensions, function and state variants for fine arts and AI mapping.",
                 embedding: "",
                 type: "references",
                 createTime: 1774447310118,
@@ -82212,7 +82131,7 @@ A medium tracking shot follows the woman from behind as she ascends and approach
                 md5: "65603aa495a541f54c55b7f30e149f45",
                 path: "references/novel_scene_extract.md",
                 name: "novel_scene_extract",
-                description: "\u4E13\u6CE8\u4E8E\u4ECE\u5C0F\u8BF4\u539F\u6587\u4E2D\u63D0\u53D6\u5E76\u7ED3\u6784\u5316\u573A\u666F\u4FE1\u606F\u7684\u5206\u6790\u52A9\u624B\uFF0C\u53EF\u8BC6\u522B\u5404\u7C7B\u573A\u666F\u5730\u70B9\uFF0C\u8F93\u51FA\u5305\u542B\u7A7A\u95F4\u63CF\u8FF0\u3001\u5149\u7167\u6C1B\u56F4\u3001\u5173\u952E\u9648\u8BBE\u3001\u8272\u8C03\u57FA\u8C03\u7B49\u5B57\u6BB5\u7684\u6807\u51C6\u5316\u573A\u666F\u8D44\u4EA7\u8868\uFF0C\u7528\u4E8E\u7F8E\u672F\u5236\u4F5C\u548CAI\u7ED8\u56FE\u7684\u573A\u666F\u6982\u5FF5\u56FE\u751F\u6210\u3002",
+                description: "An analytical assistant who focuses on extracting and stubbling scenario information from the original novel can identify the various scene locations and export standardized landscape asset sheets containing space descriptions, a photo-sight atmosphere, key displays, colour tone sections for fine arts and the conceptual production of scenes for AI mapping.",
                 embedding: "",
                 type: "references",
                 createTime: 1774447310118,
@@ -82224,7 +82143,7 @@ A medium tracking shot follows the woman from behind as she ascends and approach
                 md5: "830559e8f2cd5d0fa8e6df48a164fe2d",
                 path: "references/video_dialogue_extract.md",
                 name: "video_dialogue_extract",
-                description: "\u8FD9\u662F\u4E00\u4E2A\u4E13\u95E8\u4ECE\u89C6\u9891\u5206\u955C\u63D0\u793A\u8BCD\u4E2D\u63D0\u53D6\u7ED3\u6784\u5316\u53F0\u8BCD\u3001\u65C1\u767D\u4E0E\u97F3\u6548\u4FE1\u606F\u7684AI\u52A9\u624B\u914D\u7F6E\u6587\u6863\uFF0C\u5B9A\u4E49\u4E86\u5B8C\u6574\u7684\u8F93\u51FA\u683C\u5F0F\uFF08\u542B\u955C\u53F7\u3001\u89D2\u8272\u3001\u53F0\u8BCD\u7C7B\u578B\u3001\u8868\u6F14\u6307\u5BFC\u7B49\u5B57\u6BB5\uFF09\u3001\u63D0\u53D6\u89C4\u5219\u53CA\u5904\u7406\u6D41\u7A0B\uFF0C\u7528\u4E8E\u5C06\u89C6\u9891\u5206\u955C\u63CF\u8FF0\u8F6C\u5316\u4E3A\u6807\u51C6\u5316\u53F0\u8BCD\u8868\u3002",
+                description: "This is an AI assistant configuration document that extracts structured lines, adjectives and audio messages from video partitions, defining complete output formats (with mirror numbers, characters, lines, performance guides), extraction rules and processing processes for converting video partition descriptions into standardized phrases.",
                 embedding: "",
                 type: "references",
                 createTime: 1774447310118,
@@ -82236,7 +82155,7 @@ A medium tracking shot follows the woman from behind as she ascends and approach
                 md5: "43e63450efe0c9af8a3a40b036d36cb4",
                 path: "references/pipeline.md",
                 name: "pipeline",
-                description: "\u9762\u5411\u77ED\u5267\u6539\u7F16\u9879\u76EE\u7684\u56DB\u9636\u6BB5\u6D41\u6C34\u7EBF\u8BF4\u660E\u6587\u6863\uFF0C\u6DB5\u76D6\u4E8B\u4EF6\u63D0\u53D6\u3001\u6545\u4E8B\u9AA8\u67B6\u3001\u6539\u7F16\u7B56\u7565\u3001\u5267\u672C\u7F16\u5199\u7684\u4E32\u884C\u6267\u884C\u6D41\u7A0B\uFF0C\u5B9A\u4E49\u4E86\u51B3\u7B56\u5C42\u3001\u6267\u884C\u5C42\u3001\u76D1\u7763\u5C42\u7684\u534F\u4F5C\u89C4\u8303\u53CA\u6D3E\u53D1\u3001\u5BA1\u6838\u3001\u4FEE\u590D\u7684\u4EA4\u4E92\u683C\u5F0F\u4E0E\u8D28\u91CF\u95E8\u63A7\u6807\u51C6\u3002",
+                description: "The four-stage waterline description document for the short-term adaptation project, covering event extraction, storyline skeletons, adaptation strategies, serial execution processes prepared in scripts, defines the decision-making, enforcement, monitoring, collaboration norms and dispatch, audit, repair interactive format and quality door control standards.",
                 embedding: "",
                 type: "references",
                 createTime: 1774451946248,
@@ -82248,7 +82167,7 @@ A medium tracking shot follows the woman from behind as she ascends and approach
                 md5: "7d353be4bab7a794436d9abff2b9c6ee",
                 path: "references/adaptation_format.md",
                 name: "adaptation_format",
-                description: "\u672C\u6587\u6863\u89C4\u5B9A\u4E86\u6539\u7F16\u7B56\u7565\u8F93\u51FA\u7684\u6807\u51C6\u683C\u5F0F\uFF0C\u5305\u62EC\u6838\u5FC3\u6539\u7F16\u539F\u5219\u3001\u5220\u9664\u51B3\u7B56\u548C\u4E16\u754C\u89C2\u5448\u73B0\u7B56\u7565\u4E09\u5927\u6A21\u5757\u7684\u4E66\u5199\u89C4\u8303\uFF0C\u660E\u786E\u5404\u6A21\u5757\u6240\u9700\u6DB5\u76D6\u7684\u7EF4\u5EA6\u4E0E\u8981\u7D20\uFF0C\u7528\u4E8E\u6307\u5BFC\u7AD6\u5C4F\u77ED\u5267\u7B49\u8F7D\u4F53\u7684\u6587\u5B66\u6539\u7F16\u5DE5\u4F5C\u3002",
+                description: "This document sets out standard formats for adapting the output of the strategy, including core adaptation principles, deletion of writing specifications for the three modules of the policy-making and worldview presentation strategy, and clarification of the dimensions and elements to be covered by the modules to guide the literary adaptation of carriers such as the screenplay.",
                 embedding: "",
                 type: "references",
                 createTime: 1774452010535,
@@ -82260,7 +82179,7 @@ A medium tracking shot follows the woman from behind as she ascends and approach
                 md5: "2ef08a7479f29d74986999ceb02092c8",
                 path: "references/event_format.md",
                 name: "event_format",
-                description: "\u672C\u6587\u6863\u89C4\u5B9A\u4E86\u5F71\u89C6\u6539\u7F16\u9879\u76EE\u4E2D\u4E8B\u4EF6\u8868\u7684\u6807\u51C6\u8F93\u51FA\u683C\u5F0F\uFF0C\u5305\u62EC\u6587\u4EF6\u5934\u3001\u4E8B\u4EF6\u8868\u683C\u3001\u5404\u5B57\u6BB5\u586B\u5199\u89C4\u8303\uFF08\u7AE0\u8282\u3001\u89D2\u8272\u3001\u6838\u5FC3\u4E8B\u4EF6\u3001\u4E3B\u7EBF\u5173\u7CFB\u3001\u60C5\u7EEA\u5F3A\u5EA6\u3001\u9884\u4F30\u65F6\u957F\uFF09\u53CA\u6C47\u603B\u7EDF\u8BA1\u6A21\u677F\uFF0C\u7528\u4E8E\u6307\u5BFC\u4ECE\u539F\u8457\u63D0\u53D6\u4E8B\u4EF6\u5E76\u8BC4\u4F30\u6539\u7F16\u96C6\u6570\u4E0E\u538B\u7F29\u6BD4\u7684\u7B2C\u4E00\u9636\u6BB5\u5DE5\u4F5C\u3002",
+                description: "This document sets out the standard output format for the event sheet in the project for visual adaptation, including headlines, event forms, field filling specifications (chapters, roles, core events, mainline relationships, emotional intensity, estimated length) and a statistical template for the first phase of the process of extracting the event from the original and assessing the number of adaptations to the compression ratio.",
                 embedding: "",
                 type: "references",
                 createTime: 1774452010535,
@@ -82272,7 +82191,7 @@ A medium tracking shot follows the woman from behind as she ascends and approach
                 md5: "f5e7fe6db7e05db69d5dc327c4c538f2",
                 path: "references/script_format.md",
                 name: "script_format",
-                description: "\u672C\u6587\u6863\u4E3A\u7AD6\u5C4F\u77ED\u5267\u5267\u672C\u7684\u8F93\u51FA\u683C\u5F0F\u89C4\u8303\uFF0C\u5B9A\u4E49\u4E86\u6587\u4EF6\u5934\u3001\u8282\u62CD\u7ED3\u6784\u3001\u5206\u955C\u811A\u672C\u3001\u753B\u9762\u63CF\u8FF0\u3001\u53F0\u8BCD\u3001\u8F6C\u573A\u6807\u6CE8\u7B49\u6807\u51C6\u683C\u5F0F\u8981\u6C42\uFF0C\u5E76\u9644\u6709\u65F6\u957F\u63A7\u5236\u53C2\u6570\u4E0E\u81EA\u67E5\u6E05\u5355\uFF0C\u4F9BAI\u89C6\u9891\u751F\u6210\u548C\u5BFC\u6F14\u5236\u4F5C\u4F7F\u7528\u3002",
+                description: "This document is an output format specification for the screen shortplay, defining standard format requirements such as headlines, beat structure, split scripts, image description, lines, switch mark, etc., with time control parameters and self-check lists for use in AI video generation and director production.",
                 embedding: "",
                 type: "references",
                 createTime: 1774452010535,
@@ -82284,7 +82203,7 @@ A medium tracking shot follows the woman from behind as she ascends and approach
                 md5: "a587532c737ce15022e1522021f099bb",
                 path: "references/skeleton_format.md",
                 name: "skeleton_format",
-                description: "\u672C\u6587\u6863\u5B9A\u4E49\u4E86\u6545\u4E8B\u9AA8\u67B6\u6587\u4EF6\uFF08skeleton.md\uFF09\u7684\u6807\u51C6\u5316\u8F93\u51FA\u683C\u5F0F\uFF0C\u6DB5\u76D6\u6545\u4E8B\u6838\u3001\u4EBA\u7269\u6210\u957F\u9690\u7EBF\u3001\u4E09\u5E55\u7ED3\u6784\u3001\u5206\u96C6\u51B3\u7B56\u6A21\u677F\u3001\u5168\u5C40\u5220\u51CF\u8BB0\u5F55\u3001\u4ED8\u8D39\u5361\u70B9\u8BBE\u8BA1\u53CA\u81EA\u67E5\u6E05\u5355\uFF0C\u7528\u4E8E\u6307\u5BFC\u7F16\u5267\u5C06\u7AE0\u8282\u4E8B\u4EF6\u5217\u8868\u8F6C\u5316\u4E3A\u7ED3\u6784\u5B8C\u6574\u7684\u5267\u96C6\u6539\u7F16\u65B9\u6848\u3002",
+                description: "This document defines a standardized output format for storyline files (skolington.md) covering story cores, the growth of people hidden, three-screen structures, a decision template for splits, global de-records, pay card site designs and self-check lists, which guide the scripts to transform the list of chapter events into a complete set of structured adaptations.",
                 embedding: "",
                 type: "references",
                 createTime: 1774452010535,
@@ -82296,7 +82215,7 @@ A medium tracking shot follows the woman from behind as she ascends and approach
                 md5: "120b3c856f1b2a8a429e11319e8c95fe",
                 path: "references/quality_criteria.md",
                 name: "quality_criteria",
-                description: "\u672C\u6587\u6863\u4E3A\u5F71\u89C6/\u77ED\u5267\u9879\u76EE\u7684\u8D28\u91CF\u5BA1\u6838\u6807\u51C6\u624B\u518C\uFF0C\u6DB5\u76D6\u4E8B\u4EF6\u8868\u3001\u6545\u4E8B\u9AA8\u67B6\u3001\u6539\u7F16\u7B56\u7565\u548C\u5267\u672C\u56DB\u5927\u6A21\u5757\u7684\u8BE6\u7EC6\u5BA1\u6838\u89C4\u5219\uFF0C\u89C4\u5B9A\u4E86\u683C\u5F0F\u89C4\u8303\u3001\u89D2\u8272\u540D\u79F0\u7EDF\u4E00\u3001\u65F6\u957F\u5408\u7406\u6027\u3001\u753B\u9762\u53EF\u6267\u884C\u6027\u53CA\u573A\u666F\u6C1B\u56F4\u4E00\u81F4\u6027\u7B49\u5BA1\u6838\u8981\u6C42\uFF0C\u7528\u4E8E\u786E\u4FDD\u5404\u9636\u6BB5\u4EA7\u51FA\u7269\u7684\u5185\u5BB9\u51C6\u786E\u6027\u4E0E\u5236\u4F5C\u53EF\u884C\u6027\u3002",
+                description: "This document is a standard manual for quality audit of visual/sphere projects, covering detailed audit rules for the four modules of the event sheet, story skeleton, adaptation strategy and script, and sets out audit requirements for formatting, uniform role names, time-long reasonableness, image enforceability and scene-scenario consistency, which are used to ensure the accuracy of content and production feasibility of outputs at various stages.",
                 embedding: "",
                 type: "references",
                 createTime: 1774452068093,
@@ -82308,7 +82227,7 @@ A medium tracking shot follows the woman from behind as she ascends and approach
                 md5: "c710ab7d237e1f0c5aa3d208e0f5b484",
                 path: "references/plan.md",
                 name: "plan",
-                description: "\u8BE5\u6587\u6863\u5B9A\u4E49\u4E86AI\u4EE3\u7406\u751F\u6210\u6267\u884C\u8BA1\u5212\u7684\u89C4\u8303\uFF0C\u5305\u62EC\u4EFB\u52A1\u603B\u89C8\u3001\u6B65\u9AA4\u5217\u8868\uFF08\u542B\u7F16\u53F7\u3001\u540D\u79F0\u3001\u8BE6\u7EC6\u5185\u5BB9\u3001\u9884\u671F\u8F93\u51FA\u53CA\u4F9D\u8D56\u5173\u7CFB\uFF09\u548C\u6267\u884C\u987A\u5E8F\u6807\u6CE8\uFF0C\u5E76\u63D0\u4F9B\u6807\u51C6\u56DE\u590D\u6A21\u677F\uFF0C\u7528\u4E8E\u5C06\u7528\u6237\u9700\u6C42\u62C6\u89E3\u4E3A\u53EF\u76F4\u63A5\u4F20\u5165\u5B50\u4EE3\u7406\u5DE5\u5177\u6267\u884C\u7684\u5177\u4F53\u6B65\u9AA4\u3002",
+                description: "The document defines the specifications for AI proxy generation implementation plans, including the task overview, the list of steps (with numbers, names, details, expected outputs and dependency) and the sequence of implementation labels, and provides a standard response template for decomposing user needs into concrete steps to be implemented by the direct feed-in subagent tool.",
                 embedding: "",
                 type: "references",
                 createTime: 1774452098447,
@@ -82320,7 +82239,7 @@ A medium tracking shot follows the woman from behind as she ascends and approach
                 md5: "6045d76873fd58b8b87a914a21a38439",
                 path: "references/derive_assets_extraction.md",
                 name: "derive_assets_extraction",
-                description: "\u672C\u6587\u6863\u662F\u4E00\u4EFD\u6280\u672F\u64CD\u4F5C\u6307\u5357\uFF0C\u8BF4\u660E\u5982\u4F55\u6839\u636E\u5267\u672C\u5185\u5BB9\u548C\u5DF2\u6709\u8D44\u4EA7\u5217\u8868\uFF0C\u63D0\u53D6\u6BCF\u4E2A\u8D44\u4EA7\u5728\u5267\u60C5\u4E2D\u51FA\u73B0\u7684\u4E0D\u540C\u89C6\u89C9\u72B6\u6001\u53D8\u4F53\uFF08derive\uFF09\uFF0C\u5E76\u901A\u8FC7\u5DE5\u5177\u51FD\u6570\u8BFB\u53D6\u548C\u5199\u5165\u6570\u636E\uFF0C\u7528\u4E8E\u540E\u7EED\u56FE\u7247\u751F\u6210\u53C2\u8003\u3002",
+                description: "This document is a technical operating guide on how to extract the different visual variants (derive) that appear in each asset in the plot based on the script and the list of assets already in existence, and to read and write the data through tool functions for subsequent photo generation reference.",
                 embedding: "",
                 type: "references",
                 createTime: 1774452119499,
@@ -82332,7 +82251,7 @@ A medium tracking shot follows the woman from behind as she ascends and approach
                 md5: "a3b3432854970f22949ba47236a6532f",
                 path: "references/storyboard_generation.md",
                 name: "storyboard_generation",
-                description: "\u6839\u636E\u5267\u672C\u548C\u8D44\u4EA7\u5217\u8868\u751F\u6210\u7ED3\u6784\u5316\u5206\u955C\u9762\u677F\u7684\u5DE5\u5177\u6307\u5357\uFF0C\u6DB5\u76D6\u5206\u955C\u62C6\u5206\u539F\u5219\u3001\u5B57\u6BB5\u586B\u5199\u89C4\u8303\u53CA\u5DE5\u5177\u8C03\u7528\u6D41\u7A0B\uFF0C\u7528\u4E8E\u5C06\u5267\u672C\u8F6C\u5316\u4E3A\u542B\u753B\u9762\u63CF\u8FF0\u3001\u955C\u5934\u8BED\u8A00\u3001\u53F0\u8BCD\u548CAI\u7ED8\u56FE\u63D0\u793A\u8BCD\u7684\u5206\u955C\u6570\u636E\u3002",
+                description: "A tool guide to generate structured mirror panels based on scripts and asset lists covers the split mirror principles, field entry specifications and tool calls processes that transform scripts into semiscope data with image descriptions, lens language, lines and AI drawing tips.",
                 embedding: "",
                 type: "references",
                 createTime: 1774452119499,
@@ -82418,7 +82337,7 @@ A medium tracking shot follows the woman from behind as she ascends and approach
             ]);
           }
         },
-        //记忆表（message=原始消息, summary=压缩摘要）
+        // Memory table (message = original message, summary = compressed summary)
         {
           name: "memories",
           builder: (table) => {
@@ -82452,14 +82371,14 @@ A medium tracking shot follows the woman from behind as she ascends and approach
         if (!tableExists || forceInit) {
           if (tableExists && forceInit) {
             await knex3.schema.dropTable(t.name);
-            console.log("[\u521D\u59CB\u5316\u6570\u636E\u5E93] \u5DF2\u5B58\u5728\u8868\u5220\u9664\u5E76\u91CD\u5EFA:", t.name);
+            console.log("[Initialize Database] Existing tables dropped and recreated:", t.name);
           } else {
-            console.log("[\u521D\u59CB\u5316\u6570\u636E\u5E93] \u521B\u5EFA\u6570\u636E\u8868:", t.name);
+            console.log("[Initialize Database] Create data table:", t.name);
           }
           await knex3.schema.createTable(t.name, t.builder);
           if (t.initData) {
             await t.initData(knex3);
-            console.log("[\u521D\u59CB\u5316\u6570\u636E\u5E93] \u8868\u6570\u636E\u521D\u59CB\u5316:", t.name);
+            console.log("[Initialize Database] Table data initialization:", t.name);
           }
         }
       }
@@ -106101,6 +106020,7 @@ var import_path4, import_fs2, import_sucrase, vendorData, fixDB_default;
 var init_fixDB = __esm({
   "src/lib/fixDB.ts"() {
     "use strict";
+    init_defaultPrompts();
     init_utils3();
     import_path4 = __toESM(require("path"));
     import_fs2 = __toESM(require("fs"));
@@ -106158,27 +106078,27 @@ var init_fixDB = __esm({
       }
       await db_default("o_novel").where("eventState", 0).update({
         eventState: -1,
-        errorReason: "\u8F6F\u4EF6\u9000\u51FA\u5BFC\u81F4\u5931\u8D25"
+        errorReason: "Software exit caused failure"
       });
       await db_default("o_script").where("extractState", 0).update({
         extractState: -1,
-        errorReason: "\u8F6F\u4EF6\u9000\u51FA\u5BFC\u81F4\u5931\u8D25"
+        errorReason: "Software exit caused failure"
       });
-      await db_default("o_assets").where("promptState", "\u751F\u6210\u4E2D").update({
-        promptState: "\u751F\u6210\u5931\u8D25",
-        promptErrorReason: "\u8F6F\u4EF6\u9000\u51FA\u5BFC\u81F4\u5931\u8D25"
+      await db_default("o_assets").where("promptState", "Generating").update({
+        promptState: "Generation failed",
+        promptErrorReason: "Software exit caused failure"
       });
-      await db_default("o_image").where("state", "\u751F\u6210\u4E2D").update({
-        state: "\u751F\u6210\u5931\u8D25",
-        errorReason: "\u8F6F\u4EF6\u9000\u51FA\u5BFC\u81F4\u5931\u8D25"
+      await db_default("o_image").where("state", "Generating").update({
+        state: "Generation failed",
+        errorReason: "Software exit caused failure"
       });
-      await db_default("o_storyboard").where("state", "\u751F\u6210\u4E2D").update({
-        state: "\u751F\u6210\u5931\u8D25",
-        reason: "\u8F6F\u4EF6\u9000\u51FA\u5BFC\u81F4\u5931\u8D25"
+      await db_default("o_storyboard").where("state", "Generating").update({
+        state: "Generation failed",
+        reason: "Software exit caused failure"
       });
-      await db_default("o_video").where("state", "\u751F\u6210\u4E2D").update({
-        state: "\u751F\u6210\u5931\u8D25",
-        errorReason: "\u8F6F\u4EF6\u9000\u51FA\u5BFC\u81F4\u5931\u8D25"
+      await db_default("o_video").where("state", "Generating").update({
+        state: "Generation failed",
+        errorReason: "Software exit caused failure"
       });
       await addColumn("o_prompt", "useData", "text");
       await addColumn("o_agentDeploy", "type", "string");
@@ -106207,14 +106127,9 @@ var init_fixDB = __esm({
       const existAudioPrompt = await db_default("o_prompt").where("type", "audioBindPrompt").first();
       if (!existAudioPrompt)
         await db_default("o_prompt").insert({
-          name: "\u97F3\u8272\u7ED1\u5B9A",
+          name: "Voice Matching",
           type: "audioBindPrompt",
-          data: `\u4F60\u662F\u4E00\u4E2A\u97F3\u8272\u5339\u914D\u52A9\u624B\u3002
-\u4F60\u7684\u4EFB\u52A1\u662F\uFF1A\u6839\u636E\u7ED9\u5B9A\u89D2\u8272\u8D44\u4EA7\u7684\u540D\u79F0\u4E0E\u63CF\u8FF0\uFF0C\u4ECE\u5019\u9009\u97F3\u9891\u5217\u8868\u4E2D\u9009\u51FA\u6700\u5408\u9002\u7684\u97F3\u8272\u3002
-\u5339\u914D\u89C4\u5219\uFF1A
-1. \u4F18\u5148\u6839\u636E\u89D2\u8272\u6027\u522B\u3001\u5E74\u9F84\u3001\u6027\u683C\u7B49\u7279\u5F81\u4E0E\u97F3\u8272\u63CF\u8FF0\u8FDB\u884C\u8BED\u4E49\u5339\u914D\uFF1B
-2. \u540C\u4E00\u89D2\u8272\u4EC5\u53EF\u5339\u914D\u4E00\u4E2A\u97F3\u8272\uFF1B
-3. \u82E5\u5019\u9009\u5217\u8868\u4E2D\u6CA1\u6709\u5408\u9002\u7684\u97F3\u8272\uFF0C\u5219\u65E0\u9700\u8FD4\u56DE audioId\uFF1B`
+          data: audioBindPrompt
         });
       const agentUserMode = await utils_default.db("o_setting").where("key", "agentUseMode").first();
       if (!agentUserMode) {
@@ -106227,19 +106142,19 @@ var init_fixDB = __esm({
         });
       }
       const advancedAgentList = [
-        { key: "scriptAgent:decisionAgent", name: "\u5267\u672CAgent:\u51B3\u7B56\u5C42", desc: "\u51B3\u7B56\u5C42" },
-        { key: "scriptAgent:supervisionAgent", name: "\u5267\u672CAgent:\u76D1\u7763\u5C42", desc: "\u76D1\u7763\u5C42" },
-        { key: "scriptAgent:storySkeletonAgent", name: "\u5267\u672CAgent:\u6545\u4E8B\u9AA8\u67B6", desc: "\u6545\u4E8B\u9AA8\u67B6\u751F\u6210" },
-        { key: "scriptAgent:adaptationStrategyAgent", name: "\u5267\u672CAgent:\u6539\u7F16\u7B56\u7565", desc: "\u6539\u7F16\u7B56\u7565\u751F\u6210" },
-        { key: "scriptAgent:scriptAgent", name: "\u5267\u672CAgent:\u5267\u672C\u751F\u6210", desc: "\u5267\u672C\u751F\u6210" },
-        { key: "productionAgent:decisionAgent", name: "\u751F\u4EA7Agent:\u51B3\u7B56\u5C42", desc: "\u51B3\u7B56\u5C42" },
-        { key: "productionAgent:supervisionAgent", name: "\u751F\u4EA7Agent:\u76D1\u7763\u5C42", desc: "\u76D1\u7763\u5C42" },
-        { key: "productionAgent:deriveAssetsAgent", name: "\u751F\u4EA7Agent:\u884D\u751F\u8D44\u4EA7", desc: "\u884D\u751F\u8D44\u4EA7" },
-        { key: "productionAgent:generateAssetsAgent", name: "\u751F\u4EA7Agent:\u751F\u6210\u8D44\u4EA7", desc: "\u751F\u6210\u8D44\u4EA7" },
-        { key: "productionAgent:directorPlanAgent", name: "\u751F\u4EA7Agent:\u5BFC\u6F14\u89C4\u5212", desc: "\u5BFC\u6F14\u89C4\u5212" },
-        { key: "productionAgent:storyboardGenAgent", name: "\u751F\u4EA7Agent:\u5206\u955C\u751F\u6210", desc: "\u5206\u955C\u751F\u6210" },
-        { key: "productionAgent:storyboardPanelAgent", name: "\u751F\u4EA7Agent:\u5206\u955C\u9762\u677F", desc: "\u5206\u955C\u9762\u677F\u751F\u6210" },
-        { key: "productionAgent:storyboardTableAgent", name: "\u751F\u4EA7Agent:\u5206\u955C\u8868\u683C", desc: "\u5206\u955C\u8868\u683C\u751F\u6210" }
+        { key: "scriptAgent:decisionAgent", name: "Script Agent: Decision Layer", desc: "Decision-making level" },
+        { key: "scriptAgent:supervisionAgent", name: "Script Agent: Supervision Layer", desc: "Supervisory layer" },
+        { key: "scriptAgent:storySkeletonAgent", name: "Script Agent: Story Skeleton", desc: "Story Skeleton Generation" },
+        { key: "scriptAgent:adaptationStrategyAgent", name: "Script Agent: Adaptation Strategy", desc: "Adaptation Strategy Generation" },
+        { key: "scriptAgent:scriptAgent", name: "Script Agent: Script Generation", desc: "Script Generation" },
+        { key: "productionAgent:decisionAgent", name: "Production Agent: Decision Layer", desc: "Decision-making level" },
+        { key: "productionAgent:supervisionAgent", name: "Production Agent: Supervision Layer", desc: "Supervisory layer" },
+        { key: "productionAgent:deriveAssetsAgent", name: "Production Agent: Derivative Assets", desc: "Derivative assets" },
+        { key: "productionAgent:generateAssetsAgent", name: "Production Agent: Generate Assets", desc: "Generate assets" },
+        { key: "productionAgent:directorPlanAgent", name: "Production Agent: Director Planning", desc: "Director's Plan" },
+        { key: "productionAgent:storyboardGenAgent", name: "Production Agent: Storyboard Generation", desc: "Storyboard generation" },
+        { key: "productionAgent:storyboardPanelAgent", name: "Production Agent: Storyboard Panel", desc: "Storyboard panel generation" },
+        { key: "productionAgent:storyboardTableAgent", name: "Production Agent: Storyboard Table", desc: "Storyboard Table Generation" }
       ];
       for (const agent of advancedAgentList) {
         const exists = await db_default("o_agentDeploy").where("key", agent.key).select("*").first();
@@ -106257,705 +106172,20 @@ var init_fixDB = __esm({
           });
         }
       }
-      await db_default("o_prompt").where("type", "scriptAssetExtraction").update({
-        data: `---
-name: universal_agent
-description: \u4E13\u6CE8\u4E8E\u4ECE\u5267\u672C\u5185\u5BB9\u4E2D\u63D0\u53D6\u6240\u4F7F\u7528\u7684\u8D44\u4EA7\uFF08\u89D2\u8272\u3001\u573A\u666F\u3001\u9053\u5177\uFF09\u5E76\u751F\u6210\u7ED3\u6784\u5316\u8D44\u4EA7\u5217\u8868\u7684\u52A9\u624B\u3002
----
-
-# Script Assets Extract
-
-\u4F60\u662F\u4E00\u4E2A\u4E13\u4E1A\u7684\u5267\u672C\u5185\u5BB9\u5206\u6790\u52A9\u624B\uFF0C\u4E13\u6CE8\u4E8E\u4ECE\u5267\u672C\u6587\u672C\u4E2D\u8BC6\u522B\u548C\u63D0\u53D6\u6240\u6709\u6D89\u53CA\u7684\u8D44\u4EA7\uFF08\u89D2\u8272\u3001\u573A\u666F\u3001\u9053\u5177\uFF09\uFF0C\u5E76\u4E3A\u6BCF\u9879\u8D44\u4EA7\u751F\u6210\u53EF\u4F9B\u4E0B\u6E38\u5236\u4F5C\u6D41\u7A0B\u4F7F\u7528\u7684\u7ED3\u6784\u5316\u63CF\u8FF0\u548C\u63D0\u793A\u8BCD\u3002
-
-## \u4F55\u65F6\u4F7F\u7528
-
-\u7528\u6237\u63D0\u4F9B\u5267\u672C\u5185\u5BB9\uFF0C\u4F60\u9700\u8981\u9010\u6BB5\u9605\u8BFB\u5E76\u63D0\u53D6\u5176\u4E2D\u6D89\u53CA\u7684\u6240\u6709\u8D44\u4EA7\uFF08\u4EBA\u7269\u89D2\u8272\u3001\u573A\u666F\u5730\u70B9\u3001\u9053\u5177\u7269\u4EF6\uFF09\uFF0C\u8F93\u51FA\u4E3A\u7ED3\u6784\u5316\u7684\u8D44\u4EA7\u5217\u8868\u3002\u4EA7\u51FA\u7684\u8D44\u4EA7\u63CF\u8FF0\u5C06\u7528\u4E8E\u540E\u7EED AI \u56FE\u7247\u751F\u6210\u548C\u5236\u4F5C\u6D41\u7A0B\u3002
-
-## \u4E0E\u7CFB\u7EDF\u7684\u5BF9\u5E94\u5173\u7CFB
-
-- \u8D44\u4EA7\u7C7B\u578B\uFF1A
-  - \`role\` \u2014 \u89D2\u8272\uFF08\u5BF9\u5E94 \`o_assets.type = "role"\`\uFF09
-  - \`scene\` \u2014 \u573A\u666F\uFF08\u5BF9\u5E94 \`o_assets.type = "scene"\`\uFF09
-  - \`tool\` \u2014 \u9053\u5177\uFF08\u5BF9\u5E94 \`o_assets.type = "tool"\`\uFF09
-- \u4E0B\u6E38\u7528\u9014\uFF1A\u8D44\u4EA7\u63D0\u793A\u8BCD\u751F\u6210 \u2192 AI \u8D44\u4EA7\u56FE\u751F\u6210 \u2192 \u5206\u955C\u5236\u4F5C
-
-## \u8F93\u51FA\u8981\u6C42
-
-**\u5FC5\u987B\u901A\u8FC7\u8C03\u7528 \`resultTool\` \u5DE5\u5177\u8FD4\u56DE\u7ED3\u679C**\uFF0C\u7981\u6B62\u4EE5\u7EAF\u6587\u672C\u3001Markdown \u8868\u683C\u6216 JSON \u4EE3\u7801\u5757\u7B49\u5F62\u5F0F\u76F4\u63A5\u8F93\u51FA\u8D44\u4EA7\u5217\u8868\u3002
-\`resultTool\` \u7684 schema \u4F1A\u5BF9\u5B57\u6BB5\u7C7B\u578B\u548C\u679A\u4E3E\u503C\u505A\u5F3A\u6821\u9A8C\uFF0C\u8C03\u7528\u65F6\u8BF7\u4E25\u683C\u6309\u7167\u4E0B\u65B9\u5B57\u6BB5\u5B9A\u4E49\u586B\u5199\uFF0C\u786E\u4FDD\u6570\u636E\u7ED3\u6784\u6B63\u786E\u3001\u5B57\u6BB5\u5B8C\u6574\u3001\u7C7B\u578B\u5339\u914D\u3002
-
-\u6BCF\u4E2A\u8D44\u4EA7\u5BF9\u8C61\u5305\u542B\u4EE5\u4E0B\u5B57\u6BB5\uFF1A
-
-| \u5B57\u6BB5 | \u7C7B\u578B | \u5FC5\u586B | \u8BF4\u660E |
-| ---- | ---- | ---- | ---- |
-| \`name\` | string | \u662F | \u8D44\u4EA7\u540D\u79F0\uFF0C\u4F7F\u7528\u5267\u672C\u4E2D\u7684\u539F\u59CB\u79F0\u547C,\u4E0D\u505A\u5176\u4ED6\u591A\u4F59\u63CF\u8FF0 |
-| \`desc\` | string | \u662F | \u8D44\u4EA7\u63CF\u8FF0\uFF0C30-80 \u5B57\u7684\u89C6\u89C9\u5316\u63CF\u8FF0 |
-| \`prompt\` | string | \u662F | \u751F\u6210\u63D0\u793A\u8BCD\uFF0C\u82F1\u6587\uFF0C\u7528\u4E8E AI \u56FE\u7247\u751F\u6210 |
-| \`type\` | enum | \u662F | \u8D44\u4EA7\u7C7B\u578B\uFF1A\`role\` / \`scene\` / \`tool\`  |
-
-## \u63D0\u53D6\u89C4\u5219
-
-### \u89D2\u8272\uFF08role\uFF09
-
-- \u63D0\u53D6\u5267\u672C\u4E2D\u51FA\u73B0\u7684\u6240\u6709\u6709\u540D\u5B57\u7684\u89D2\u8272
-- \`desc\`\uFF1A\u5305\u542B\u6027\u522B\u3001\u5916\u8C8C\u7279\u5F81\u3001\u670D\u9970\u98CE\u683C\u3001\u4F53\u6001\u6C14\u8D28\u7B49\u89C6\u89C9\u8981\u7D20\uFF0C\u9700\u5728\u63CF\u8FF0\u5F00\u5934\u660E\u786E\u6807\u6CE8\u89D2\u8272\u6027\u522B\uFF08\u5982"\u7537\u6027\uFF0C\u2026\u2026"\u6216"\u5973\u6027\uFF0C\u2026\u2026"\uFF09
-- \`prompt\`\uFF1A\u82F1\u6587\u63D0\u793A\u8BCD\uFF0C\u63CF\u8FF0\u89D2\u8272\u7684\u5916\u89C2\u7279\u5F81\uFF0C\u9700\u4EE5\u6027\u522B\u8BCD\u5F00\u5934\uFF08\u5982 \`a young man, ...\` \u6216 \`a young woman, ...\`\uFF09\uFF0C\u9002\u7528\u4E8E AI \u89D2\u8272\u56FE\u751F\u6210
-- \u540C\u4E00\u89D2\u8272\u6709\u591A\u4E2A\u79F0\u547C\u65F6\uFF0C\u53D6\u6700\u5E38\u7528\u7684\u4F5C\u4E3A \`name\`
-- \u65E0\u540D\u9F99\u5957\uFF08\u5982"\u8DEF\u4EBA\u7532"\u3001"\u58EB\u5175"\uFF09\u53EF\u8DF3\u8FC7\uFF0C\u9664\u975E\u5176\u9020\u578B\u5BF9\u5267\u60C5\u6709\u91CD\u8981\u89C6\u89C9\u610F\u4E49
-
-### \u573A\u666F\uFF08scene\uFF09
-
-- \u63D0\u53D6\u5267\u672C\u4E2D\u51FA\u73B0\u7684\u6240\u6709\u573A\u666F/\u5730\u70B9
-- \`desc\`\uFF1A\u5305\u542B\u7A7A\u95F4\u7ED3\u6784\u3001\u5149\u7167\u6C1B\u56F4\u3001\u5173\u952E\u9648\u8BBE\u3001\u8272\u8C03\u57FA\u8C03\u7B49\u89C6\u89C9\u8981\u7D20
-- \`prompt\`\uFF1A\u82F1\u6587\u63D0\u793A\u8BCD\uFF0C\u63CF\u8FF0\u573A\u666F\u7684\u6574\u4F53\u89C6\u89C9\u98CE\u683C\uFF0C\u9002\u7528\u4E8E AI \u573A\u666F\u56FE\u751F\u6210
-- \u540C\u4E00\u573A\u666F\u7684\u4E0D\u540C\u72B6\u6001\uFF08\u5982\u767D\u5929/\u591C\u665A\uFF09\u4E0D\u91CD\u590D\u63D0\u53D6\uFF0C\u5728 \`desc\` \u4E2D\u6CE8\u660E\u5373\u53EF
-
-### \u9053\u5177\uFF08tool\uFF09
-
-- \u63D0\u53D6\u5267\u672C\u4E2D\u51FA\u73B0\u7684\u91CD\u8981\u9053\u5177/\u7269\u54C1
-- \`desc\`\uFF1A\u5305\u542B\u5916\u89C2\u5F62\u72B6\u3001\u989C\u8272\u6750\u8D28\u3001\u5C3A\u5BF8\u53C2\u8003\u3001\u7279\u6B8A\u6548\u679C\u7B49\u89C6\u89C9\u8981\u7D20
-- \`prompt\`\uFF1A\u82F1\u6587\u63D0\u793A\u8BCD\uFF0C\u63CF\u8FF0\u9053\u5177\u7684\u5916\u89C2\u7EC6\u8282\uFF0C\u9002\u7528\u4E8E AI \u9053\u5177\u56FE\u751F\u6210
-- \u4EC5\u63D0\u53D6\u6709\u72EC\u7ACB\u89C6\u89C9\u610F\u4E49\u6216\u5267\u60C5\u529F\u80FD\u7684\u9053\u5177\uFF0C\u901A\u7528\u7269\u54C1\u53EF\u8DF3\u8FC7
-
-
-## \u63D0\u793A\u8BCD\uFF08prompt\uFF09\u751F\u6210\u89C4\u8303
-
-- \u91C7\u7528\u9017\u53F7\u5206\u9694\u7684\u5173\u952E\u8BCD/\u77ED\u8BED\u683C\u5F0F
-- \u4F18\u5148\u63CF\u8FF0**\u89C6\u89C9\u7279\u5F81**\uFF0C\u907F\u514D\u62BD\u8C61\u6982\u5FF5
-- \u5305\u542B\u98CE\u683C\u5173\u952E\u8BCD\uFF08\u5982 anime style, manga style \u7B49\uFF0C\u6839\u636E\u9879\u76EE\u98CE\u683C\u51B3\u5B9A\uFF09
-- \u89D2\u8272 prompt \u793A\u4F8B\uFF1A\`a young man, sharp eyebrows, black hair, pale skin, wearing a gray Taoist robe, slender build, cold expression\`
-- \u573A\u666F prompt \u793A\u4F8B\uFF1A\`dark cave interior, glowing crystals on walls, misty atmosphere, dim blue lighting, stone altar in center\`
-- \u9053\u5177 prompt \u793A\u4F8B\uFF1A\`ancient jade pendant, oval shape, translucent green, carved dragon pattern, glowing faintly\`
-
-## \u63D0\u53D6\u6D41\u7A0B
-
-1. \u901A\u8BFB\u5267\u672C\u5168\u6587\uFF0C\u8BC6\u522B\u6240\u6709\u51FA\u73B0\u7684\u89D2\u8272\u3001\u573A\u666F\u3001\u9053\u5177
-2. \u5BF9\u6BCF\u4E2A\u8D44\u4EA7\u751F\u6210\u7ED3\u6784\u5316\u7684 \`name\`\u3001\`desc\`\u3001\`prompt\`\u3001\`type\`
-3. \u53BB\u91CD\uFF1A\u540C\u4E00\u8D44\u4EA7\u4E0D\u91CD\u590D\u63D0\u53D6
-4. **\u5FC5\u987B\u901A\u8FC7\u8C03\u7528 \`resultTool\` \u5DE5\u5177\u8F93\u51FA\u5B8C\u6574\u8D44\u4EA7\u5217\u8868**\uFF0C\u4E0D\u8981\u5206\u591A\u6B21\u8C03\u7528\uFF0C\u4E00\u6B21\u6027\u5C06\u6240\u6709\u8D44\u4EA7\u653E\u5165 \`assetsList\` \u6570\u7EC4\u4E2D\u63D0\u4EA4
-
-## \u63D0\u53D6\u539F\u5219
-
-1. **\u5FE0\u4E8E\u5267\u672C**\uFF1A\u6240\u6709\u63D0\u53D6\u57FA\u4E8E\u5267\u672C\u4E2D\u7684\u5B9E\u9645\u5185\u5BB9\uFF0C\u4E0D\u81C6\u9020\u672A\u51FA\u73B0\u7684\u8D44\u4EA7
-2. **\u89C6\u89C9\u4F18\u5148**\uFF1A\u63CF\u8FF0\u548C\u63D0\u793A\u8BCD\u805A\u7126\u89C6\u89C9\u7279\u5F81\uFF0C\u4FBF\u4E8E AI \u56FE\u7247\u751F\u6210
-3. **\u7CBE\u7B80\u5B9E\u7528**\uFF1A\u53EA\u63D0\u53D6\u5BF9\u5236\u4F5C\u6709\u5B9E\u9645\u610F\u4E49\u7684\u8D44\u4EA7\uFF0C\u907F\u514D\u8FC7\u5EA6\u63D0\u53D6
-4. **\u5206\u7C7B\u51C6\u786E**\uFF1A\u4E25\u683C\u6309\u7167 role/scene/tool \u5206\u7C7B\uFF0C\u4E0D\u6DF7\u6DC6
-5. **\u63D0\u793A\u8BCD\u8D28\u91CF**\uFF1A\u82F1\u6587\u63D0\u793A\u8BCD\u5E94\u5177\u4F53\u3001\u53EF\u6267\u884C\uFF0C\u80FD\u76F4\u63A5\u7528\u4E8E AI \u56FE\u7247\u751F\u6210
-
-## \u6CE8\u610F\u4E8B\u9879
-
-- \u8D44\u4EA7\u5217\u8868\u4E2D**\u4E0D\u8981\u5305\u542B\u5267\u672C\u5185\u5BB9\u672C\u8EAB**\uFF0C\u4EC5\u63D0\u53D6\u6240\u4F7F\u7528\u5230\u7684\u8D44\u4EA7
-- \u89D2\u8272\u7684\u968F\u8EAB\u7269\u54C1\u5982\u679C\u6709\u72EC\u7ACB\u5267\u60C5\u529F\u80FD\uFF0C\u5E94\u5355\u72EC\u4F5C\u4E3A\u9053\u5177\u63D0\u53D6
-- \u573A\u666F\u4E2D\u7684\u56FA\u5B9A\u9648\u8BBE\u4E0D\u9700\u8981\u5355\u72EC\u63D0\u53D6\u4E3A\u9053\u5177\uFF0C\u9664\u975E\u8BE5\u7269\u4EF6\u6709\u72EC\u7ACB\u5267\u60C5\u4F5C\u7528`
-      });
-      await db_default("o_prompt").where("type", "videoPromptGeneration").update({
-        data: `# \u89C6\u9891\u63D0\u793A\u8BCD\u751F\u6210 Skill
-
-\u4F60\u662F**\u89C6\u9891\u63D0\u793A\u8BCD\u751F\u6210 Agent**\uFF0C\u4E13\u95E8\u8D1F\u8D23\u6839\u636E\u6307\u5B9A\u7684 AI \u89C6\u9891\u6A21\u578B\uFF0C\u8BFB\u53D6\u5206\u955C\u4FE1\u606F\u5E76\u8F93\u51FA\u8BE5\u6A21\u578B\u5BF9\u5E94\u683C\u5F0F\u7684\u89C6\u9891\u63D0\u793A\u8BCD\u3002
-
----
-
-## \u8F93\u5165\u683C\u5F0F
-
-### 1. \u6A21\u578B\u4E0E\u6A21\u5F0F\uFF08\u5FC5\u9009\uFF09
-
-
-#### \u6A21\u5F0F\u8DEF\u7531\u89C4\u5219
-
-| \u6761\u4EF6 | \u5339\u914D\u6A21\u5F0F | \u8BF4\u660E |
-|------|----------|------|
-| \u6A21\u578B\u540D\u4E3A \`seedance-2-0\` + \`\u591A\u53C2:\u662F\` / \`seedance 2.0\` + \`\u591A\u53C2:\u662F\` / \`\u5373\u68A62.0\` + \`\u591A\u53C2:\u662F\` | **seedance-2-0*\uFF0C\u4E0D\u5305\u542B\u5176\u4ED6\u7248\u672C\u6BD4\u5982seedance-1-5/seedance-1-0 | \u652F\u6301\u89D2\u8272/\u573A\u666F/\u5206\u955C\u56FE\u591A\u53C2\u5F15\u7528 |
-| \u6A21\u578B\u540D\u4E3A \`Wan2.6\` / \`wan 2.6\` / \`\u4E07\u8C612.6\` | **Wan 2.6** | \u56FA\u5B9A\u6A21\u5F0F\uFF0C\u5355\u56FE\uFF08\u9996\u5E27\uFF09+ \u53D9\u4E8B\u6587\u672C\uFF0C\u65E0\u5C3E\u5E27 |
-| \u5176\u4ED6\u4EFB\u4F55\u6A21\u578B + \`\u591A\u53C2:\u662F\` | **\u901A\u7528\u591A\u53C2\u6A21\u5F0F** | \u652F\u6301\u89D2\u8272/\u573A\u666F/\u5206\u955C\u56FE\u591A\u53C2\u5F15\u7528 |
-| \u5176\u4ED6\u4EFB\u4F55\u6A21\u578B/seedance-1-5/seedance-1-0 + \`\u591A\u53C2:\u5426\` | **\u901A\u7528\u9996\u5C3E\u5E27\u6A21\u5F0F** | \u9996\u5E27/\u9996\u5C3E\u5E27 + \u7EAF\u6587\u672C\u63CF\u8FF0 |
-
-> \u6A21\u578B\u540D\u4EC5\u7528\u4E8E\u8BB0\u5F55\uFF0C\u5B9E\u9645\u63D0\u793A\u8BCD\u683C\u5F0F\u7531\u5339\u914D\u5230\u7684\u6A21\u5F0F\u51B3\u5B9A\u3002Seedance 2.0 \u548C Wan 2.6 \u662F\u6307\u5B9A\u6A21\u578B\u540D\u5373\u786E\u5B9A\u6A21\u5F0F\u7684\u7279\u4F8B\u3002
-
-### 2. \u8D44\u4EA7\u4FE1\u606F
-
-\`\`\`
-\u8D44\u4EA7\u4FE1\u606F[id, type, name], [id, type, name], ...
-\`\`\`
-
-- \`id\`\uFF1A\u8D44\u4EA7\u552F\u4E00\u6807\u8BC6\uFF08\u5982 \`A001\`\uFF09
-- \`type\`\uFF1A\u8D44\u4EA7\u7C7B\u578B\uFF0C\u53D6\u503C \`role\`\uFF08\u89D2\u8272\uFF09/ \`scene\`\uFF08\u573A\u666F\uFF09/ \`prop\`\uFF08\u9053\u5177\uFF09
-- \`name\`\uFF1A\u8D44\u4EA7\u540D\u79F0\uFF08\u5982 \`\u6C88\u8F9E\`\u3001\`\u57CE\u697C\`\u3001\`\u957F\u5251\`\uFF09
-
-### 3. \u5206\u955C\u4FE1\u606F
-
-\u5206\u955C\u4EE5 \`<storyboardItem>\` XML \u6807\u7B7E\u5217\u8868\u7684\u5F62\u5F0F\u4F20\u5165\uFF0C\u6BCF\u6761\u5206\u955C\u7ED3\u6784\u5982\u4E0B\uFF1A
-
-\`\`\`xml
-<storyboardItem
-  videoDesc='\uFF08\u753B\u9762\u63CF\u8FF0\u3001\u573A\u666F\u3001\u5173\u8054\u8D44\u4EA7\u540D\u79F0\u3001\u65F6\u957F\u3001\u666F\u522B\u3001\u8FD0\u955C\u3001\u89D2\u8272\u52A8\u4F5C\u3001\u60C5\u7EEA\u3001\u5149\u5F71\u6C1B\u56F4\u3001\u53F0\u8BCD\u3001\u97F3\u6548\u3001\u5173\u8054\u8D44\u4EA7ID\uFF09'
-  prompt='\u5F85\u751F\u6210'
-  track='\u5206\u7EC4'
-  duration='\u89C6\u9891\u63A8\u8350\u65F6\u95F4'
-  associateAssetsIds="[\u8BE5\u5206\u955C\u6240\u9700\u7684\u8D44\u4EA7ID\u5217\u8868]"
-  shouldGenerateImage="true"
-></storyboardItem>
-\`\`\`
-
-#### \u8F93\u5165\u5B57\u6BB5\u8BF4\u660E
-
-| \u5C5E\u6027 | \u8BF4\u660E | \u6765\u6E90 |
-|------|------|------|
-| \`videoDesc\` | **\u6838\u5FC3\u8F93\u5165**\uFF1A\u5206\u955C\u7684\u7ED3\u6784\u5316\u753B\u9762\u63CF\u8FF0\uFF0C\u5305\u542B\u753B\u9762\u63CF\u8FF0\u3001\u573A\u666F\u3001\u5173\u8054\u8D44\u4EA7\u540D\u79F0\u3001\u65F6\u957F\u3001\u666F\u522B\u3001\u8FD0\u955C\u3001\u89D2\u8272\u52A8\u4F5C\u3001\u60C5\u7EEA\u3001\u5149\u5F71\u6C1B\u56F4\u3001\u53F0\u8BCD\u3001\u97F3\u6548\u3001\u5173\u8054\u8D44\u4EA7ID | \u7528\u6237/\u4E0A\u6E38\u7CFB\u7EDF\u586B\u5199 |
-| \`prompt\` | **\u5DF2\u6709\u5B57\u6BB5**\uFF1A\u4E0A\u6E38\u751F\u6210\u7684\u5206\u955C\u56FE\u63D0\u793A\u8BCD\uFF0C\u4F5C\u4E3A\u8F85\u52A9\u53C2\u8003\u4E0A\u4E0B\u6587\uFF0C**\u4E0D\u4FEE\u6539** | \u4E0A\u6E38\u7CFB\u7EDF\u5DF2\u586B\u5199 |
-| \`track\` | \u5206\u955C\u5206\u7EC4\u6807\u8BC6 | \u7528\u6237/\u4E0A\u6E38\u7CFB\u7EDF\u586B\u5199 |
-| \`duration\` | \u89C6\u9891\u63A8\u8350\u65F6\u957F\uFF08\u79D2\uFF09 | \u7528\u6237/\u4E0A\u6E38\u7CFB\u7EDF\u586B\u5199 |
-| \`associateAssetsIds\` | \u8BE5\u5206\u955C\u5173\u8054\u7684\u8D44\u4EA7ID\u5217\u8868 | \u7528\u6237/\u4E0A\u6E38\u7CFB\u7EDF\u586B\u5199 |
-| \`shouldGenerateImage\` | \u662F\u5426\u9700\u8981\u751F\u6210\u5206\u955C\u56FE\u7247\uFF0C\u9ED8\u8BA4 \`true\` | \u7528\u6237/\u4E0A\u6E38\u7CFB\u7EDF\u586B\u5199 |
-
----
-
-## \u4EFB\u52A1\u76EE\u6807
-
-\u8BFB\u53D6\u6240\u6709 \`<storyboardItem>\` \u7684\u5C5E\u6027\uFF0C\u7ED3\u5408\u8D44\u4EA7\u4FE1\u606F\uFF0C\u6839\u636E\u6307\u5B9A\u6A21\u578B\u7684\u63D0\u793A\u8BCD\u683C\u5F0F\uFF0C\u5C06\u5168\u90E8\u5206\u955C\u6574\u5408\u4E3A\u4E00\u4E2A\u5B8C\u6574\u7684\u89C6\u9891\u63D0\u793A\u8BCD\u3002
-
----
-
-## \u8F93\u51FA\u683C\u5F0F
-
-\u5C06\u6240\u6709\u5206\u955C\u6574\u5408\u4E3A**\u4E00\u4E2A\u5B8C\u6574\u7684\u89C6\u9891\u63D0\u793A\u8BCD**\u8F93\u51FA\uFF08\u975E\u9010\u6761\u72EC\u7ACB\uFF09\uFF1A
-
-| \u6A21\u5F0F | \u6574\u5408\u65B9\u5F0F |
-|------|----------|
-| **\u901A\u7528\u591A\u53C2\u6A21\u5F0F** | \`[References]\` \u6C47\u603B\u6240\u6709 \`@\u56FEN \` \u5F15\u7528\uFF1B\`[Instruction]\` \u6309\u65F6\u95F4\u987A\u5E8F\u63CF\u8FF0\u5B8C\u6574\u53D9\u4E8B |
-| **\u901A\u7528\u9996\u5C3E\u5E27\u6A21\u5F0F** | \u7EAF\u6587\u672C\u4E94\u7EF4\u5EA6\uFF08Visual / Motion / Camera / Audio / Narrative\uFF09\uFF0C\u4E0D\u4F7F\u7528\u4EFB\u4F55 \`@\u56FEN \` \u5F15\u7528\uFF0C\u6309\u65F6\u95F4\u8F74\u8FDE\u7EED\u7F16\u6392\uFF08\`[Motion]\` 0s \u2192 \u603B\u65F6\u957F\uFF0C\u6BCF\u6BB5\u6700\u4F4E 1 \u79D2\uFF09\uFF0C\u5168\u7A0B\u5355\u4E00\u8FDE\u8D2F\u955C\u5934\uFF0C\u4E0D\u5207\u955C |
-| **Seedance 2.0** | \`\u751F\u6210\u4E00\u4E2A\u7531\u4EE5\u4E0B N \u4E2A\u5206\u955C\u7EC4\u6210\u7684\u89C6\u9891\`\uFF0C\u6BCF\u6761\u5BF9\u5E94 \`\u5206\u955CN{N}s\` \u6BB5\u843D |
-| **Wan 2.6** | \u5355\u56FE\u9996\u5E27\u6A21\u5F0F\uFF0C\u6BCF\u6B21\u4EC5\u8F93\u5165\u4E00\u6761\u5206\u955C\uFF0C\u8F93\u51FA\u4E00\u6BB5\u53D9\u4E8B\u5F0F\u82F1\u6587\u63D0\u793A\u8BCD\uFF08\u4E09\u6BB5\u5F0F\uFF1A\u98CE\u683C\u57FA\u8C03 \u2192 \u4E3B\u4F53\u52A8\u4F5C+\u573A\u666F\u73AF\u5883+\u5149\u7EBF\u6C1B\u56F4 \u2192 \u955C\u5934\u6536\u5C3E\uFF09\uFF0C\u4E0D\u4F7F\u7528 \`@\u56FEN \` \u5F15\u7528 |
-
-- \u4EC5\u8F93\u51FA\u89C6\u9891\u63D0\u793A\u8BCD\u6587\u672C\uFF0C\u4E0D\u8F93\u51FA XML \u6807\u7B7E\uFF0C\u4E0D\u9644\u52A0\u89E3\u91CA
-
----
-
-## videoDesc \u89E3\u6790\u89C4\u5219
-
-\u4ECE \`videoDesc\` \u62EC\u53F7\u5185\u6309\u987F\u53F7\u5206\u9694\u63D0\u53D6\u4EE5\u4E0B\u7ED3\u6784\u5316\u5B57\u6BB5\uFF1A
-
-\`\`\`
-\uFF08{\u753B\u9762\u63CF\u8FF0}\u3001{\u573A\u666F}\u3001{\u5173\u8054\u8D44\u4EA7\u540D\u79F0}\u3001{\u65F6\u957F}\u3001{\u666F\u522B}\u3001{\u8FD0\u955C}\u3001{\u89D2\u8272\u52A8\u4F5C}\u3001{\u60C5\u7EEA}\u3001{\u5149\u5F71\u6C1B\u56F4}\u3001{\u53F0\u8BCD}\u3001{\u97F3\u6548}\u3001{\u5173\u8054\u8D44\u4EA7ID}\uFF09
-\`\`\`
-
-| \u5E8F\u53F7 | \u5B57\u6BB5 | \u7528\u9014 | \u793A\u4F8B |
-|------|------|------|------|
-| 1 | \u753B\u9762\u63CF\u8FF0 | prompt \u7684\u53D9\u4E8B\u4E3B\u5E72 | \u6C88\u8F9E\u72EC\u7ACB\u57CE\u697C\u8FDC\u773A\u82CD\u832B\u5927\u5730 |
-| 2 | \u573A\u666F | \u5339\u914D\u573A\u666F\u8D44\u4EA7 | \u57CE\u697C |
-| 3 | \u5173\u8054\u8D44\u4EA7\u540D\u79F0 | \u5339\u914D\u89D2\u8272/\u9053\u5177\u8D44\u4EA7 | \u6C88\u8F9E/\u57CE\u697C |
-| 4 | \u65F6\u957F | \u63A7\u5236\u65F6\u957F\u53C2\u6570 | 4s |
-| 5 | \u666F\u522B | \u63A7\u5236\u955C\u5934\u666F\u522B | \u5168\u666F |
-| 6 | \u8FD0\u955C | \u63A7\u5236\u8FD0\u955C\u65B9\u5F0F | \u9759\u6B62 |
-| 7 | \u89D2\u8272\u52A8\u4F5C | prompt \u52A8\u4F5C\u63CF\u5199 | \u8D1F\u624B\u800C\u7ACB\u8863\u8882\u968F\u98CE\u98D8\u626C |
-| 8 | \u60C5\u7EEA | prompt \u60C5\u7EEA\u6C1B\u56F4 | \u575A\u5B9A\u51B3\u7EDD |
-| 9 | \u5149\u5F71\u6C1B\u56F4 | prompt \u5149\u5F71\u63CF\u5199 | \u9EC4\u660F\u51B7\u8C03\u4FA7\u9006\u5149 |
-| 10 | \u53F0\u8BCD | prompt \u53F0\u8BCD/\u97F3\u9891\u6BB5 | \u65E0\u53F0\u8BCD / \u5177\u4F53\u53F0\u8BCD\u5185\u5BB9 |
-| 11 | \u97F3\u6548 | prompt \u97F3\u6548\u63CF\u5199 | \u98CE\u58F0\u8863\u8882\u58F0 |
-| 12 | \u5173\u8054\u8D44\u4EA7ID | \u7528\u4E8E\u8D44\u4EA7ID\u2194\u89D2\u8272\u6807\u7B7E\u6620\u5C04 | A001/A002 |
-
----
-
-## \u8D44\u4EA7\u5F15\u7528\u7F16\u53F7\u89C4\u5219
-
-\u6240\u6709\u6A21\u578B\u7EDF\u4E00\u4F7F\u7528 \`@\u56FEN \` \u683C\u5F0F\u5F15\u7528\u8D44\u4EA7\u548C\u5206\u955C\u56FE\uFF0C\u7F16\u53F7\u6309\u8F93\u5165\u987A\u5E8F\u8FDE\u7EED\u9012\u589E\uFF1A
-
-1. **\u8D44\u4EA7**\uFF1A\u6309\u8D44\u4EA7\u4FE1\u606F\u4E2D \`[id, type, name]\` \u7684\u51FA\u73B0\u987A\u5E8F\uFF0C\u4ECE \`@\u56FE1 \` \u5F00\u59CB\u7F16\u53F7\uFF08\u4E0D\u533A\u5206 role / scene / prop\uFF09\u3002**\u8D44\u4EA7\u7C7B\u578B\u7684\u51FA\u73B0\u987A\u5E8F\u4E0D\u56FA\u5B9A**\u2014\u2014\u53EF\u80FD\u5148 scene \u540E character\uFF0C\u4E5F\u53EF\u80FD prop \u5728\u524D\u3001character \u5728\u540E\uFF0C\u6216\u4EFB\u610F\u4EA4\u66FF\u51FA\u73B0\uFF0C\u7F16\u53F7\u4E25\u683C\u6309\u8F93\u5165\u4F4D\u7F6E\u5206\u914D\uFF0C\u4E0D\u6309\u7C7B\u578B\u5F52\u7EC4
-2. **\u5206\u955C\u56FE**\uFF1A\u6BCF\u6761 \`<storyboardItem>\` \u5BF9\u5E94\u4E00\u5F20\u5206\u955C\u56FE\uFF0C\u7F16\u53F7\u63A5\u7EED\u8D44\u4EA7\u4E4B\u540E
-3. **\u8DF3\u8FC7\u65E0\u5206\u955C\u56FE\u7684\u6761\u76EE**\uFF1A\u5F53 \`shouldGenerateImage="false"\` \u65F6\uFF0C\u8BE5\u5206\u955C\u672A\u751F\u6210\u56FE\u7247\uFF0C**\u4E0D\u5206\u914D**\u5206\u955C\u56FE\u7F16\u53F7\uFF0C\u540E\u7EED\u7F16\u53F7\u987A\u5EF6
-
-#### \u793A\u4F8B
-
-\u8F93\u5165 3 \u4E2A\u8D44\u4EA7 + 2 \u6761\u5206\u955C\uFF1A
-\`\`\`
-\u8D44\u4EA7\u4FE1\u606F[A001, role, \u6C88\u8F9E], [A002, role, \u82CF\u9526], [A003, scene, \u57CE\u697C]
-\`\`\`
-\`\`\`xml
-<storyboardItem ...>  <!-- \u5206\u955C1 -->
-<storyboardItem ...>  <!-- \u5206\u955C2 -->
-\`\`\`
-
-\u7F16\u53F7\u7ED3\u679C\uFF1A
-
-| \u8F93\u5165\u9879 | \u5F15\u7528\u6807\u7B7E | \u8BF4\u660E |
-|--------|----------|------|
-| [A001, role, \u6C88\u8F9E] | \`@\u56FE1 \` | \u89D2\u8272\xB7\u6C88\u8F9E \u53C2\u8003\u56FE |
-| [A002, role, \u82CF\u9526] | \`@\u56FE2 \` | \u89D2\u8272\xB7\u82CF\u9526 \u53C2\u8003\u56FE |
-| [A003, scene, \u57CE\u697C] | \`@\u56FE3 \` | \u573A\u666F\xB7\u57CE\u697C \u53C2\u8003\u56FE |
-| storyboardItem \u7B2C1\u6761 | \`@\u56FE4 \` | \u5206\u955C\u56FE1 |
-| storyboardItem \u7B2C2\u6761 | \`@\u56FE5 \` | \u5206\u955C\u56FE2 |
-
-**\u6DF7\u5408\u987A\u5E8F\u793A\u4F8B**
-
-\u8F93\u5165 3 \u4E2A\u8D44\u4EA7\uFF08\u573A\u666F\u5728\u524D\uFF09+ 2 \u6761\u5206\u955C\uFF1A
-\`\`\`
-\u8D44\u4EA7\u4FE1\u606F[A003, scene, \u57CE\u697C], [A001, role, \u6C88\u8F9E], [A002, role, \u82CF\u9526]
-\`\`\`
-\`\`\`xml
-<storyboardItem ...>  <!-- \u5206\u955C1 -->
-<storyboardItem ...>  <!-- \u5206\u955C2 -->
-\`\`\`
-
-\u7F16\u53F7\u7ED3\u679C\uFF1A
-
-| \u8F93\u5165\u9879 | \u5F15\u7528\u6807\u7B7E | \u8BF4\u660E |
-|--------|----------|------|
-| [A003, scene, \u57CE\u697C] | \`@\u56FE1 \` | \u573A\u666F\xB7\u57CE\u697C \u53C2\u8003\u56FE |
-| [A001, role, \u6C88\u8F9E] | \`@\u56FE2 \` | \u89D2\u8272\xB7\u6C88\u8F9E \u53C2\u8003\u56FE |
-| [A002, role, \u82CF\u9526] | \`@\u56FE3 \` | \u89D2\u8272\xB7\u82CF\u9526 \u53C2\u8003\u56FE |
-| storyboardItem \u7B2C1\u6761 | \`@\u56FE4 \` | \u5206\u955C\u56FE1 |
-| storyboardItem \u7B2C2\u6761 | \`@\u56FE5 \` | \u5206\u955C\u56FE2 |
-
-> **\u5173\u952E**\uFF1A\u6B64\u4F8B\u4E2D \`@\u56FE1 \` \u662F\u573A\u666F\u800C\u975E\u89D2\u8272\uFF0C\`@\u56FE2 \` \`@\u56FE3 \` \u624D\u662F\u89D2\u8272\u3002\u751F\u6210\u63D0\u793A\u8BCD\u65F6\uFF0C\u5FC5\u987B\u6839\u636E\u8D44\u4EA7\u7684\u5B9E\u9645 \`type\` \u5B57\u6BB5\u786E\u5B9A\u5F15\u7528\u65B9\u5F0F\uFF0C\u800C\u975E\u6839\u636E\u7F16\u53F7\u5927\u5C0F\u5047\u5B9A\u7C7B\u578B\u3002
-
----
-
-## \u6A21\u578B\u63D0\u793A\u8BCD\u751F\u6210\u89C4\u5219
-
-### \u4E00\u3001\u901A\u7528\u591A\u53C2\u6A21\u5F0F
-
-#### \u6838\u5FC3\u539F\u5219
-- MVL \u591A\u6A21\u6001\u878D\u5408\uFF1A\u81EA\u7136\u8BED\u8A00 + \u56FE\u50CF\u5F15\u7528\u5728\u540C\u4E00\u8BED\u4E49\u7A7A\u95F4
-- \u5206\u955C\u56FE\u5E8F\u5217\u8D1F\u8D23\u52A8\u4F5C/\u65F6\u95F4\u8F74/\u6784\u56FE\uFF0C\u573A\u666F\u53C2\u8003\u56FE\u8D1F\u8D23\u73AF\u5883\u4E00\u81F4\u6027
-- \u6240\u6709\u8D44\u4EA7\u548C\u5206\u955C\u56FE\u7EDF\u4E00\u7528 \`@\u56FEN \` \u5F15\u7528
-- **\u4E25\u683C\u9075\u5FAA videoDesc**\uFF1A\u63D0\u793A\u8BCD\u5185\u5BB9\u4E25\u683C\u57FA\u4E8E videoDesc \u4E2D\u7684\u753B\u9762\u63CF\u8FF0\u3001\u65F6\u957F\u3001\u666F\u522B\u3001\u8FD0\u955C\u3001\u89D2\u8272\u52A8\u4F5C\u3001\u60C5\u7EEA\u3001\u5149\u5F71\u6C1B\u56F4\u3001\u53F0\u8BCD\u3001\u97F3\u6548\u5B57\u6BB5\u751F\u6210\uFF0C\u4E0D\u7F16\u9020\u989D\u5916\u5185\u5BB9
-- **\u53F0\u8BCD\u4E0D\u53EF\u7F3A\u5931**\uFF1AvideoDesc \u4E2D\u6709\u53F0\u8BCD\u7684\u5206\u955C\uFF0C\u5FC5\u987B\u5728 Instruction \u4E2D\u4F53\u73B0\u53F0\u8BCD\u76F8\u5173\u63CF\u8FF0
-- **\u53F0\u8BCD\u7C7B\u578B\u6807\u6CE8**\uFF1A\u533A\u5206\u666E\u901A\u5BF9\u767D\uFF08dialogue\uFF09\u3001\u5185\u5FC3\u72EC\u767D\uFF08inner monologue OS\uFF09\u3001\u753B\u5916\u97F3\uFF08voiceover VO\uFF09\uFF0C\u5728 Instruction \u4E2D\u7528\u62EC\u53F7\u6807\u6CE8
-
-#### prompt \u751F\u6210\u6A21\u677F
-
-> **\u6CE8\u610F**\uFF1A\`[References]\` \u4E2D\u7684 \`@\u56FEN\` \u7F16\u53F7\u4E25\u683C\u6309\u8D44\u4EA7\u8F93\u5165\u987A\u5E8F\u5206\u914D\uFF0C\u89D2\u8272/\u573A\u666F/\u9053\u5177\u53EF\u80FD\u51FA\u73B0\u5728\u4EFB\u610F\u7F16\u53F7\u4F4D\u7F6E\u3002\u751F\u6210\u65F6\u9700\u6839\u636E\u6BCF\u4E2A\u8D44\u4EA7\u7684 \`type\` \u5B57\u6BB5\u786E\u5B9A\u5176\u5F15\u7528\u65B9\u5F0F\uFF0C\u4E0D\u53EF\u5047\u5B9A\u56FA\u5B9A\u7684\u7C7B\u578B-\u7F16\u53F7\u5BF9\u5E94\u5173\u7CFB\u3002
-
-\`\`\`
-[References]
-@\u56FE{\u8D44\u4EA71\u7F16\u53F7} : [{\u8D44\u4EA71\u540D\u79F0}\u53C2\u8003\u56FE]   \u2190 \u53EF\u80FD\u662F role/scene/prop \u4E2D\u7684\u4EFB\u610F\u7C7B\u578B
-@\u56FE{\u8D44\u4EA72\u7F16\u53F7} : [{\u8D44\u4EA72\u540D\u79F0}\u53C2\u8003\u56FE]
-@\u56FE{\u8D44\u4EA73\u7F16\u53F7} : [{\u8D44\u4EA73\u540D\u79F0}\u53C2\u8003\u56FE]
-...
-@\u56FE{\u5206\u955C\u56FE\u7F16\u53F7} : [\u5206\u955C\u56FE1]            \u2190 \u5206\u955C\u56FE\u7F16\u53F7\u63A5\u7EED\u8D44\u4EA7\u4E4B\u540E
-
-[Instruction]
-Based on the storyboard @\u56FE{\u5206\u955C\u56FE\u7F16\u53F7} :
-@\u56FE{\u89D2\u8272\u8D44\u4EA7\u7F16\u53F7} {\u52A8\u4F5C/\u72B6\u6001\u63CF\u8FF0\uFF08\u82F1\u6587\uFF09},
-set in the {\u573A\u666F\u63CF\u8FF0\uFF08\u82F1\u6587\uFF09} of @\u56FE{\u573A\u666F\u8D44\u4EA7\u7F16\u53F7} ,
-{\u955C\u5934/\u8FD0\u955C\u63CF\u8FF0\uFF08\u82F1\u6587\uFF09},
-{\u60C5\u611F\u57FA\u8C03\uFF08\u82F1\u6587\uFF09},
-{\u53F0\u8BCD\u63CF\u8FF0\uFF08\u82F1\u6587\uFF0C\u542B dialogue/OS/VO \u6807\u6CE8\uFF09/ No dialogue},
-{\u97F3\u6548\u63CF\u8FF0\uFF08\u82F1\u6587\uFF09}.
-\`\`\`
-
-#### \u751F\u6210\u7EA6\u675F
-1. **Instruction \u5FC5\u987B\u7528\u82F1\u6587**
-2. **\u4E25\u683C\u9075\u5FAA videoDesc**\uFF1A\u63D0\u793A\u8BCD\u5185\u5BB9\u4E25\u683C\u57FA\u4E8E videoDesc \u7684\u753B\u9762\u63CF\u8FF0\u3001\u65F6\u957F\u3001\u666F\u522B\u3001\u8FD0\u955C\u3001\u89D2\u8272\u52A8\u4F5C\u3001\u60C5\u7EEA\u3001\u5149\u5F71\u6C1B\u56F4\u3001\u53F0\u8BCD\u3001\u97F3\u6548\u5B57\u6BB5\uFF0C\u4E0D\u7F16\u9020\u989D\u5916\u4FE1\u606F
-3. **\u89D2\u8272\u52A8\u4F5C**\u4ECE videoDesc \u7684\u300C\u89D2\u8272\u52A8\u4F5C\u300D\u5B57\u6BB5\u63D0\u53D6\uFF0C\u7FFB\u8BD1\u4E3A\u7B80\u6D01\u82F1\u6587\u52A8\u4F5C\u63CF\u8FF0
-4. **\u53F0\u8BCD\u4E0D\u53EF\u7F3A\u5931**\uFF1AvideoDesc \u4E2D\u6709\u53F0\u8BCD\u7684\u5206\u955C\uFF0C\u5FC5\u987B\u5728 Instruction \u4E2D\u4F53\u73B0\u53F0\u8BCD\u5185\u5BB9\uFF08\u4FDD\u6301\u539F\u59CB\u8BED\u8A00\uFF0C\u4E0D\u7FFB\u8BD1\uFF09
-5. **\u53F0\u8BCD\u7C7B\u578B\u6807\u6CE8**\uFF1A\u666E\u901A\u5BF9\u767D\u6807\u6CE8 \`(dialogue)\`\uFF1B\u5185\u5FC3\u72EC\u767D\u6807\u6CE8 \`(inner monologue, OS)\`\uFF1B\u753B\u5916\u97F3\u6807\u6CE8 \`(voiceover, VO)\`
-6. **\u955C\u5934\u98CE\u683C**\u4F7F\u7528\u6807\u51C6\u6807\u7B7E\uFF1A\`cinematic\` / \`wide-angle\` / \`close-up\` / \`slow motion\` / \`surround shooting\` / \`handheld\`
-7. **\u7A7A\u95F4\u5173\u7CFB**\u4F7F\u7528\u6807\u51C6\u52A8\u8BCD\uFF1A\`wearing\` / \`holding\` / \`standing on\` / \`following behind\` / \`sitting in\`
-8. \u5355\u6761\u5206\u955C\u5BF9\u5E94\u5355\u4E2A \`@\u56FEN \`\uFF0C\u4E0D\u505A\u591A\u5E27\u8DE8\u955C\u63CF\u8FF0
-9. \u65E0\u9700\u63CF\u8FF0\u89D2\u8272\u5916\u89C2\uFF08\u7531\u53C2\u8003\u56FE\u8D1F\u8D23\uFF09
-10. \u65E0\u65F6\u957F\u6807\u6CE8\uFF08\u7531\u6A21\u578B\u63A8\u65AD\uFF09
-11. **\u65E0\u5206\u955C\u56FE\u65F6**\uFF1A\u5F53 \`shouldGenerateImage="false"\` \u65F6\uFF0C\u8BE5\u5206\u955C\u65E0\u5206\u955C\u56FE\uFF0C\`[References]\` \u4E2D\u4E0D\u5217\u51FA\u8BE5\u5206\u955C\u56FE\uFF0C\`[Instruction]\` \u4E2D\u4E0D\u4F7F\u7528 \`@\u56FEN \` \u5F15\u7528\u8BE5\u5206\u955C\u56FE\uFF0C\u6539\u4E3A\u7EAF\u6587\u672C\u63CF\u8FF0\u753B\u9762\u5185\u5BB9
-
-#### KlingOmni \u5B8C\u6574\u793A\u4F8B
-
-\u8F93\u5165\uFF1A
-\`\`\`
-\u6A21\u578B\uFF1AKlingOmni
-\u8D44\u4EA7\u4FE1\u606F[A001, role, \u6C88\u8F9E], [A002, role, \u82CF\u9526], [A003, scene, \u57CE\u697C]
-\`\`\`
-\`\`\`xml
-<storyboardItem videoDesc='\uFF08\u6C88\u8F9E\u72EC\u7ACB\u57CE\u697C\u8FDC\u773A\u82CD\u832B\u5927\u5730\u3001\u57CE\u697C\u3001\u6C88\u8F9E/\u57CE\u697C\u30014s\u3001\u5168\u666F\u3001\u9759\u6B62\u3001\u8D1F\u624B\u800C\u7ACB\u8863\u8882\u968F\u98CE\u98D8\u626C\u3001\u575A\u5B9A\u51B3\u7EDD\u3001\u9EC4\u660F\u51B7\u8C03\u4FA7\u9006\u5149\u3001\u65E0\u53F0\u8BCD\u3001\u98CE\u58F0\u8863\u8882\u58F0\u3001A001/A003\uFF09' prompt='\u5168\u666F\uFF0C\u5E73\u89C6\u7565\u4EF0\uFF0C\u57CE\u697C\u4E4B\u4E0A\uFF0C\u6C88\u8F9E\u8D1F\u624B\u800C\u7ACB\uFF0C\u8863\u8882\u98D8\u626C\uFF0C\u9EC4\u660F\u51B7\u8C03\u4FA7\u9006\u5149...' track='main' duration='4' associateAssetsIds="[&quot;A001&quot;,&quot;A003&quot;]" shouldGenerateImage="true" ></storyboardItem>
-<storyboardItem videoDesc='\uFF08\u82CF\u9526\u767B\u4E0A\u57CE\u697C\u8D70\u5411\u6C88\u8F9E\u3001\u57CE\u697C\u3001\u82CF\u9526/\u6C88\u8F9E/\u57CE\u697C\u30014s\u3001\u4E2D\u666F\u3001\u8DDF\u8E2A\u3001\u82CF\u9526\u62FE\u7EA7\u800C\u4E0A\u8D70\u5411\u6C88\u8F9E\u3001\u62C5\u5FE7\u3001\u9EC4\u660F\u4F59\u6656\u6E10\u6697\u3001\u65E0\u53F0\u8BCD\u3001\u811A\u6B65\u58F0\u98CE\u58F0\u3001A001/A002/A003\uFF09' prompt='\u4E2D\u666F\uFF0C\u8DDF\u8E2A\uFF0C\u82CF\u9526\u62FE\u7EA7\u800C\u4E0A\u8D70\u5411\u57CE\u697C\u4E0A\u7684\u6C88\u8F9E...' track='main' duration='4' associateAssetsIds="[&quot;A001&quot;,&quot;A002&quot;,&quot;A003&quot;]" shouldGenerateImage="true" ></storyboardItem>
-\`\`\`
-
-\u8F93\u51FA\uFF1A
-\`\`\`
-[References]
-@\u56FE1 : [\u6C88\u8F9E\u53C2\u8003\u56FE]
-@\u56FE2 : [\u82CF\u9526\u53C2\u8003\u56FE]
-@\u56FE3 : [\u57CE\u697C\u53C2\u8003\u56FE]
-@\u56FE4 : [\u5206\u955C\u56FE1]
-@\u56FE5 : [\u5206\u955C\u56FE2]
-
-[Instruction]
-Based on the storyboard from @\u56FE4 to @\u56FE5 :
-@\u56FE1 standing alone atop the city wall, hands clasped behind back, robes billowing in the wind, gazing across the vast land,
-@\u56FE2 ascending the steps toward @\u56FE1 , expression worried,
-set in the ancient city wall environment of @\u56FE3 ,
-wide shot transitioning to medium tracking shot, cinematic,
-resolute determination shifting to concerned anticipation, dusk cold-toned side-backlit atmosphere fading,
-no dialogue,
-wind howling, fabric flapping, footsteps on stone.
-\`\`\`
-
----
-
-### \u4E8C\u3001\u901A\u7528\u9996\u5C3E\u5E27\u6A21\u5F0F
-
-#### \u6838\u5FC3\u539F\u5219
-- **\u7EAF\u6587\u672C\u63D0\u793A\u8BCD**\uFF1A\u63D0\u793A\u8BCD\u5185**\u4E0D\u4F7F\u7528\u4EFB\u4F55 \`@\u56FEN \` \u5F15\u7528**\uFF08\u4E0D\u5F15\u7528\u89D2\u8272\u8D44\u4EA7\u3001\u573A\u666F\u8D44\u4EA7\u3001\u4E5F\u4E0D\u5F15\u7528\u5206\u955C\u56FE\uFF09\uFF0C\u5168\u90E8\u5185\u5BB9\u7528\u7EAF\u6587\u672C\u63CF\u8FF0
-- **\u4E94\u7EF4\u5EA6\u7ED3\u6784**\uFF1AVisual / Motion / Camera / Audio / Narrative
-- **\u4E25\u683C\u9075\u5FAA videoDesc**\uFF1A\u63D0\u793A\u8BCD\u5185\u5BB9\u4E25\u683C\u57FA\u4E8E videoDesc \u4E2D\u7684\u753B\u9762\u63CF\u8FF0\u3001\u65F6\u957F\u3001\u666F\u522B\u3001\u8FD0\u955C\u3001\u89D2\u8272\u52A8\u4F5C\u3001\u60C5\u7EEA\u3001\u5149\u5F71\u6C1B\u56F4\u3001\u53F0\u8BCD\u3001\u97F3\u6548\u5B57\u6BB5\u751F\u6210\uFF0C\u4E0D\u7F16\u9020\u989D\u5916\u5185\u5BB9
-- **\u53F0\u8BCD\u4E0D\u53EF\u7F3A\u5931**\uFF1AvideoDesc \u4E2D\u6709\u53F0\u8BCD\u7684\u5206\u955C\uFF0C\u5FC5\u987B\u5728 \`[Audio]\` \u4E2D\u5B8C\u6574\u8F93\u51FA\u53F0\u8BCD\u5185\u5BB9
-- **\u53F0\u8BCD\u7C7B\u578B\u6807\u6CE8**\uFF1A\u533A\u5206\u666E\u901A\u5BF9\u767D\uFF08dialogue, lip-sync active\uFF09\u3001\u5185\u5FC3\u72EC\u767D\uFF08inner monologue OS, silent lips\uFF09\u3001\u753B\u5916\u97F3\uFF08voiceover VO, silent lips\uFF09\uFF0C\u5E76\u5728 \`[Audio]\` \u4E2D\u660E\u786E\u6807\u6CE8
-- **\u4E0D\u8BF4\u8BDD\u7684\u4E3B\u4F53\u6807\u6CE8 \`silent\`** \u2014 \u9632\u6B62\u8BEF\u751F\u53E3\u578B
-- **\u5168\u7A0B\u5355\u4E00\u8FDE\u8D2F\u955C\u5934**\uFF1A\u4ECE\u5934\u5230\u5C3E\u4E00\u4E2A\u955C\u5934\uFF0C\u4E0D\u5B58\u5728\u5207\u955C
-- **\u65F6\u95F4\u8F74\u5206\u6BB5**\uFF1A\u6BCF\u6BB5\u6700\u4F4E 1 \u79D2\uFF0C\u7528 \`0s-Xs\` \u6807\u6CE8
-
-#### prompt \u751F\u6210\u6A21\u677F
-
-\`\`\`
-[Visual]
-{\u4E3B\u4F53A\u540D}: {\u5916\u89C2\u7B80\u8FF0}, {\u7AD9\u4F4D/\u59FF\u6001}, {\u8BF4\u8BDD\u72B6\u6001 speaking/silent}.
-{\u4E3B\u4F53B\u540D}: {\u5916\u89C2\u7B80\u8FF0}, {\u7AD9\u4F4D/\u59FF\u6001}, {\u8BF4\u8BDD\u72B6\u6001}.
-{\u573A\u666F\u63CF\u8FF0}, {\u9053\u5177\u63CF\u8FF0}.
-{\u89C6\u89C9\u98CE\u683C\u6807\u7B7E}.
-
-[Motion]
-0s-{X}s: {\u4E3B\u4F53A\u540D} {\u52A8\u4F5C\u63CF\u8FF0\u6BB51}.
-{X}s-{Y}s: {\u4E3B\u4F53B\u540D} {\u52A8\u4F5C\u63CF\u8FF0\u6BB52}.
-
-[Camera]
-{\u955C\u5934\u7C7B\u578B}, {\u8FD0\u955C\u65B9\u5F0F}, {\u5168\u7A0B\u5355\u4E00\u8FDE\u8D2F\u955C\u5934\u63CF\u8FF0}.
-
-[Audio]
-{Xs-Ys}: "{\u53F0\u8BCD\u5185\u5BB9}" \u2014 {\u8BF4\u8BDD\u8005\u540D} ({dialogue / inner monologue OS / voiceover VO}), {lip-sync active / silent lips}.
-{\u97F3\u6548\u63CF\u8FF0}.
-
-[Narrative]
-{\u60C5\u8282\u70B9\u6982\u8FF0}, {\u53D9\u4E8B\u4F4D\u7F6E}.
-\`\`\`
-
-#### \u751F\u6210\u7EA6\u675F
-1. **\u5168\u90E8\u7528\u82F1\u6587**
-2. **\u4E0D\u4F7F\u7528\u4EFB\u4F55 \`@\u56FEN \` \u5F15\u7528**\uFF1A\u63D0\u793A\u8BCD\u5185\u4E0D\u5F15\u7528\u89D2\u8272\u8D44\u4EA7\u3001\u573A\u666F\u8D44\u4EA7\u3001\u5206\u955C\u56FE\uFF0C\u5168\u90E8\u5185\u5BB9\u7528\u7EAF\u6587\u672C\u63CF\u8FF0
-3. **\u4E3B\u4F53\u7528\u6587\u5B57\u63CF\u8FF0**\uFF1A\u5728 [Visual] \u4E2D\u7B80\u8981\u63CF\u8FF0\u4E3B\u4F53\u5916\u89C2\u7279\u5F81\uFF08\u5982\u670D\u9970\u3001\u53D1\u578B\u7B49\u5173\u952E\u8FA8\u8BC6\u7279\u5F81\uFF09
-4. **\u4E25\u683C\u9075\u5FAA videoDesc**\uFF1A\u63D0\u793A\u8BCD\u5185\u5BB9\u4E25\u683C\u57FA\u4E8E videoDesc \u4E2D\u7684\u753B\u9762\u63CF\u8FF0\u3001\u65F6\u957F\u3001\u666F\u522B\u3001\u8FD0\u955C\u3001\u89D2\u8272\u52A8\u4F5C\u3001\u60C5\u7EEA\u3001\u5149\u5F71\u6C1B\u56F4\u3001\u53F0\u8BCD\u3001\u97F3\u6548\u5B57\u6BB5\uFF0C\u4E0D\u7F16\u9020\u989D\u5916\u4FE1\u606F
-5. **\u6BCF\u4E2A\u4E3B\u4F53\u5FC5\u987B\u6807\u6CE8\u8BF4\u8BDD\u72B6\u6001**\uFF1A\`speaking\` / \`silent\` / \`speaking simultaneously\`
-6. **\u53F0\u8BCD\u4E0D\u53EF\u7F3A\u5931**\uFF1AvideoDesc \u4E2D\u6709\u53F0\u8BCD\u7684\u5206\u955C\uFF0C\u5FC5\u987B\u5728 \`[Audio]\` \u4E2D\u5B8C\u6574\u8F93\u51FA\u53F0\u8BCD\u5185\u5BB9\uFF08\u4FDD\u6301\u539F\u59CB\u8BED\u8A00\uFF0C\u4E0D\u7FFB\u8BD1\uFF09
-7. **\u53F0\u8BCD\u7C7B\u578B\u6807\u6CE8**\uFF1A\u666E\u901A\u5BF9\u767D\u6807\u6CE8 \`dialogue, lip-sync active\`\uFF1B\u5185\u5FC3\u72EC\u767D\u6807\u6CE8 \`inner monologue (OS), silent lips\`\uFF1B\u753B\u5916\u97F3\u6807\u6CE8 \`voiceover (VO), silent lips\`
-8. **Motion \u65F6\u95F4\u8F74**\u6BCF\u6BB5\u6700\u4F4E 1 \u79D2\uFF0C\u4E0D\u8D85\u8FC7\u603B\u65F6\u957F
-9. **\u5168\u7A0B\u5355\u4E00\u8FDE\u8D2F\u955C\u5934**\uFF1ACamera \u6BB5\u843D\u63CF\u8FF0\u4ECE\u5934\u5230\u5C3E\u7684\u4E00\u4E2A\u955C\u5934\uFF0C\u7EDD\u4E0D\u5207\u955C
-10. **\u89C6\u89C9\u98CE\u683C**\u53C2\u8003 Assistant \u4E2D\u7684\u300C\u89C6\u89C9\u98CE\u683C\u7EA6\u675F\u300D\u90E8\u5206\u5185\u5BB9
-11. **\u955C\u5934\u7C7B\u578B**\u4ECE\u4EE5\u4E0B\u9009\u53D6\uFF1A\`Wide establishing shot / Over-the-shoulder / Medium shot / Close-up / Wide shot / POV / Dutch angle / Crane up / Dolly right / Whip pan / Handheld / Slow motion\`
-
-#### Seedance 1.5 Pro \u5B8C\u6574\u793A\u4F8B
-
-\u8F93\u5165\uFF1A
-\`\`\`
-\u6A21\u578B\uFF1ASeedance1.5
-\u8D44\u4EA7\u4FE1\u606F[A001, role, \u6C88\u8F9E], [A002, role, \u82CF\u9526], [A003, scene, \u57CE\u697C]
-\`\`\`
-\`\`\`xml
-<storyboardItem videoDesc='\uFF08\u6C88\u8F9E\u72EC\u7ACB\u57CE\u697C\u8FDC\u773A\u82CD\u832B\u5927\u5730\u3001\u57CE\u697C\u3001\u6C88\u8F9E/\u57CE\u697C\u30014s\u3001\u5168\u666F\u3001\u9759\u6B62\u3001\u8D1F\u624B\u800C\u7ACB\u8863\u8882\u968F\u98CE\u98D8\u626C\u3001\u575A\u5B9A\u51B3\u7EDD\u3001\u9EC4\u660F\u51B7\u8C03\u4FA7\u9006\u5149\u3001\u65E0\u53F0\u8BCD\u3001\u98CE\u58F0\u8863\u8882\u58F0\u3001A001/A003\uFF09' prompt='\u5168\u666F\uFF0C\u5E73\u89C6\u7565\u4EF0\uFF0C\u57CE\u697C\u4E4B\u4E0A\uFF0C\u6C88\u8F9E\u8D1F\u624B\u800C\u7ACB\uFF0C\u8863\u8882\u98D8\u626C\uFF0C\u9EC4\u660F\u51B7\u8C03\u4FA7\u9006\u5149...' track='main' duration='4' associateAssetsIds="[&quot;A001&quot;,&quot;A003&quot;]" shouldGenerateImage="true" ></storyboardItem>
-<storyboardItem videoDesc='\uFF08\u82CF\u9526\u767B\u4E0A\u57CE\u697C\u8D70\u5411\u6C88\u8F9E\u3001\u57CE\u697C\u3001\u82CF\u9526/\u6C88\u8F9E/\u57CE\u697C\u30014s\u3001\u4E2D\u666F\u3001\u8DDF\u8E2A\u3001\u82CF\u9526\u62FE\u7EA7\u800C\u4E0A\u8D70\u5411\u6C88\u8F9E\u3001\u62C5\u5FE7\u3001\u9EC4\u660F\u4F59\u6656\u6E10\u6697\u3001\u65E0\u53F0\u8BCD\u3001\u811A\u6B65\u58F0\u98CE\u58F0\u3001A001/A002/A003\uFF09' prompt='\u4E2D\u666F\uFF0C\u8DDF\u8E2A\uFF0C\u82CF\u9526\u62FE\u7EA7\u800C\u4E0A\u8D70\u5411\u57CE\u697C\u4E0A\u7684\u6C88\u8F9E...' track='main' duration='4' associateAssetsIds="[&quot;A001&quot;,&quot;A002&quot;,&quot;A003&quot;]" shouldGenerateImage="true" ></storyboardItem>
-\`\`\`
-
-\u8F93\u51FA\uFF1A
-\`\`\`
-[Visual]
-Shen Ci: male, dark flowing robes, hair tied up, standing alone atop city wall, hands clasped behind back, robes billowing, silent.
-Su Jin: female, light-colored dress, hair partially down, ascending steps toward Shen Ci, expression worried, silent.
-Ancient city wall, vast open land beyond, dusk sky fading.
-Cinematic, photorealistic, 4K, high contrast, desaturated tones, shallow depth of field.
-
-[Motion]
-0s-4s: Shen Ci stands still on city wall edge, robes flutter in wind, hair sways gently. Gaze fixed on distant horizon.
-4s-8s: Su Jin climbs the last few steps onto the wall, walks toward Shen Ci. Shen Ci remains still, unaware. Su Jin slows as she approaches.
-
-[Camera]
-Wide establishing shot, static for first 4 seconds capturing the lone figure. Then smooth transition to medium tracking shot following the woman ascending steps, single continuous take throughout, no cuts.
-
-[Audio]
-0s-4s: Wind howling across wall, fabric flapping rhythmically. No dialogue.
-4s-8s: Footsteps on stone, robes rustling. No dialogue.
-Shen Ci \u2014 silent. Su Jin \u2014 silent.
-
-[Narrative]
-Lone figure on city wall, then arrival of a companion. Tension between determination and concern. Single continuous take.
-\`\`\`
-
----
-
-### \u4E09\u3001Seedance 2.0
-
-#### \u6838\u5FC3\u539F\u5219
-- **\u7ED3\u6784\u531612\u7EF4\u7F16\u7801**\uFF1A\u7EDF\u4E00\u7528 \`@\u56FEN \` \u5F15\u7528\u8D44\u4EA7\u548C\u5206\u955C\u56FE\uFF0C\u65F6\u957F \`{N}s\`
-- **\u6700\u524D\u9762\u5148\u5B9A\u4E49\u56FE\u7247\u6620\u5C04**\uFF1A\u5148\u8F93\u51FA\u201C\u56FE\u7247\u5B9A\u4E49\u201D\u6BB5\uFF0C\u96C6\u4E2D\u58F0\u660E \`@\u56FEN : \u4E3B\u4F53\u540D\u5B57/\u573A\u666F\u540D\u5B57\uFF0C\u7B80\u8FF0\`\uFF1B\u540E\u7EED\u5206\u955C\u6B63\u6587\u53EA\u4F7F\u7528\u4E3B\u4F53\u540D\u5B57\uFF0C\u4E0D\u518D\u5199 \`@\u56FEN \`
-- **\u97F3\u8272\u53C2\u65709\u7EF4\u5EA6\u7CBE\u7EC6\u63CF\u8FF0**\uFF08\u6709\u53F0\u8BCD\u65F6\u5FC5\u586B\uFF09
-- **\u79D2\u7EA7\u65F6\u957F\u63A7\u5236**\uFF1A\u5355\u5206\u955C\u65F6\u957F\u6700\u4F4E 1s
-- **\u4E2D\u6587\u63D0\u793A\u8BCD**
-- **\u4E25\u683C\u9075\u5FAA videoDesc**\uFF1A\u6BCF\u6761\u5206\u955C\u7684\u63CF\u8FF0\u5185\u5BB9\u4E25\u683C\u57FA\u4E8E videoDesc \u4E2D\u7684\u753B\u9762\u63CF\u8FF0\u3001\u65F6\u957F\u3001\u666F\u522B\u3001\u8FD0\u955C\u3001\u89D2\u8272\u52A8\u4F5C\u3001\u60C5\u7EEA\u3001\u5149\u5F71\u6C1B\u56F4\u3001\u53F0\u8BCD\u3001\u97F3\u6548\u5B57\u6BB5\u751F\u6210\uFF0C\u4E0D\u7F16\u9020\u989D\u5916\u5185\u5BB9
-- **\u53F0\u8BCD\u4E0D\u53EF\u7F3A\u5931**\uFF1AvideoDesc \u4E2D\u6709\u53F0\u8BCD\u7684\u5206\u955C\uFF0C\u5FC5\u987B\u5B8C\u6574\u8F93\u51FA\u53F0\u8BCD\u548C\u97F3\u8272\u63CF\u8FF0
-- **\u53F0\u8BCD\u7C7B\u578B\u6807\u6CE8**\uFF1A\u533A\u5206\u666E\u901A\u5BF9\u767D\uFF08\u76F4\u63A5\u4F7F\u7528\u300C\u8BF4\uFF1A\u300D\uFF09\u3001\u5185\u5FC3\u72EC\u767D\uFF08\u4F7F\u7528\u300C\u5185\u5FC3OS\uFF1A\u300D\uFF09\u3001\u753B\u5916\u97F3\uFF08\u4F7F\u7528\u300C\u753B\u5916\u97F3VO\uFF1A\u300D\uFF09\uFF0C\u5E76\u5339\u914D\u5BF9\u5E94\u7684\u5634\u578B\u72B6\u6001\u63CF\u8FF0
-
-#### prompt \u751F\u6210\u6A21\u677F
-
-> **\u6CE8\u610F**\uFF1A\`@\u56FE{\u7F16\u53F7}\` \u4EC5\u7528\u4E8E\u6700\u524D\u9762\u7684\u201C\u56FE\u7247\u5B9A\u4E49\u201D\u6BB5\u3002\u5206\u955C\u6B63\u6587\u4E2D\u7981\u6B62\u518D\u5199 \`@\u56FE{\u7F16\u53F7}\`\uFF0C\u7EDF\u4E00\u6539\u7528\u4E3B\u4F53\u540D\u5B57/\u573A\u666F\u540D\u5B57\u3002
-
-**\u5355\u5206\u955C\u6A21\u677F\uFF1A**
-\`\`\`
-\u753B\u9762\u98CE\u683C\u548C\u7C7B\u578B: {\u98CE\u683C}, {\u8272\u8C03}, {\u7C7B\u578B}
-
-\u56FE\u7247\u5B9A\u4E49:
-@\u56FE1: {\u8D44\u4EA71\u540D\u5B57}\uFF0C{\u7B80\u8FF0}
-@\u56FE2: {\u8D44\u4EA72\u540D\u5B57}\uFF0C{\u7B80\u8FF0}
-@\u56FEN: {\u8D44\u4EA7N\u540D\u5B57}\uFF0C{\u7B80\u8FF0}
-...
-
-\u751F\u6210\u4E00\u4E2A\u7531\u4EE5\u4E0B 1 \u4E2A\u5206\u955C\u7EC4\u6210\u7684\u89C6\u9891:
-
-\u573A\u666F:
-\u5206\u955C\u8FC7\u6E21: \u65E0
-
-\u5206\u955C1 {N}s: \u65F6\u95F4\uFF1A{\u65E5/\u591C/\u6668/\u9EC4\u660F}\uFF0C\u573A\u666F\uFF1A{\u573A\u666F\u540D\u5B57}\uFF0C\u955C\u5934\uFF1A{\u666F\u522B}\uFF0C{\u89D2\u5EA6}\uFF0C{\u8FD0\u955C}\uFF0C{\u89D2\u8272\u540D\u5B57} {\u52A8\u4F5C/\u8868\u60C5/\u89C6\u7EBF\u671D\u5411/\u7AD9\u4F4D\u63CF\u8FF0}\u3002{\u53F0\u8BCD\u4E0E\u97F3\u8272\u63CF\u8FF0\uFF08\u5982\u6709\uFF09}\u3002{\u80CC\u666F\u73AF\u5883\u8865\u5145}\u3002{\u5149\u5F71\u6C1B\u56F4}\u3002{\u8FD0\u955C\u8865\u5145}\u3002
-\`\`\`
-
-**\u591A\u5206\u955C\u6A21\u677F\uFF1A**
-\`\`\`
-\u753B\u9762\u98CE\u683C\u548C\u7C7B\u578B: {\u98CE\u683C}, {\u8272\u8C03}, {\u7C7B\u578B}
-
-\u56FE\u7247\u5B9A\u4E49:
-@\u56FE1: {\u8D44\u4EA71\u540D\u5B57}\uFF0C{\u7B80\u8FF0}
-@\u56FE2: {\u8D44\u4EA72\u540D\u5B57}\uFF0C{\u7B80\u8FF0}
-@\u56FEN: {\u8D44\u4EA7N\u540D\u5B57}\uFF0C{\u7B80\u8FF0}
-...
-
-\u751F\u6210\u4E00\u4E2A\u7531\u4EE5\u4E0B {N} \u4E2A\u5206\u955C\u7EC4\u6210\u7684\u89C6\u9891:
-
-\u573A\u666F:
-\u5206\u955C\u8FC7\u6E21: {\u5168\u5C40\u8FC7\u6E21\u63CF\u8FF0}
-
-\u5206\u955C1 {N}s: \u65F6\u95F4\uFF1A{...}\uFF0C\u573A\u666F\uFF1A{\u573A\u666F\u540D\u5B57}\uFF0C\u955C\u5934\uFF1A{...}\uFF0C{\u89D2\u8272\u540D\u5B57} {...}\u3002{...}\u3002
-\u5206\u955C2{N}s: ...
-...
-\`\`\`
-
-#### \u97F3\u8272\u751F\u6210\u89C4\u5219\uFF08\u6709\u53F0\u8BCD\u65F6\u5FC5\u586B\uFF09
-
-\u53F0\u8BCD\u683C\u5F0F\uFF1A\`{\u89D2\u8272\u540D\u5B57} \u8BF4\uFF1A\u300C{\u53F0\u8BCD\u5185\u5BB9}\u300D\u97F3\u8272\uFF1A{9\u7EF4\u5EA6\u63CF\u8FF0}\`
-
-9\u7EF4\u5EA6\u6309\u987A\u5E8F\u586B\u5199\uFF1A
-\`\`\`
-{\u6027\u522B}\uFF0C{\u5E74\u9F84\u97F3\u8272}\uFF0C{\u97F3\u8C03}\uFF0C{\u97F3\u8272\u8D28\u611F}\uFF0C{\u58F0\u97F3\u539A\u5EA6}\uFF0C{\u53D1\u97F3\u65B9\u5F0F}\uFF0C{\u6C14\u606F}\uFF0C{\u8BED\u901F}\uFF0C{\u7279\u6B8A\u8D28\u611F}
-\`\`\`
-
-> \u5F53 desc \u4E2D\u672A\u660E\u786E\u97F3\u8272\u4FE1\u606F\u65F6\uFF0C\u6839\u636E\u89D2\u8272\u7C7B\u578B\u4ECE\u4EE5\u4E0B\u53C2\u8003\u8868\u63A8\u65AD\uFF1A
-
-| \u89D2\u8272\u7C7B\u578B\u7279\u5F81 | \u9ED8\u8BA4\u97F3\u8272 |
-|------------|---------|
-| \u7537\u6027\u6743\u5A01/\u9738\u6C14\u89D2\u8272 | \u7537\u58F0\uFF0C\u4E2D\u5E74\u97F3\u8272\uFF0C\u97F3\u8C03\u4F4E\u6C89\uFF0C\u97F3\u8272\u6D51\u539A\u6709\u529B\uFF0C\u58F0\u97F3\u539A\u91CD\uFF0C\u53D1\u97F3\u6807\u51C6\uFF0C\u6C14\u606F\u6781\u5176\u6C89\u7A33\uFF0C\u8BED\u901F\u504F\u6162 |
-| \u5973\u6027\u6E29\u67D4/\u751C\u7F8E\u89D2\u8272 | \u5973\u58F0\uFF0C\u9752\u5E74\u97F3\u8272\uFF0C\u97F3\u8C03\u4E2D\u7B49\u504F\u9AD8\uFF0C\u97F3\u8272\u8D28\u611F\u660E\u4EAE\u6E05\u8106\uFF0C\u58F0\u97F3\u6E05\u4EAE\u67D4\u548C\uFF0C\u6C14\u606F\u5145\u6C9B\u5E73\u7A33\uFF0C\u5E26\u6E29\u5A49\u771F\u8BDA\u611F |
-| \u7537\u6027\u5E74\u8F7B/\u666E\u901A\u89D2\u8272 | \u7537\u58F0\uFF0C\u9752\u5E74\u97F3\u8272\uFF0C\u97F3\u8C03\u4E2D\u7B49\uFF0C\u97F3\u8272\u5E72\u51C0\uFF0C\u58F0\u97F3\u539A\u5EA6\u9002\u4E2D\uFF0C\u53D1\u97F3\u6E05\u6670\uFF0C\u6C14\u606F\u5E73\u7A33\uFF0C\u8BED\u901F\u9002\u4E2D |
-| \u5973\u6027\u6D3B\u6CFC/\u5916\u5411\u89D2\u8272 | \u5973\u58F0\uFF0C\u9752\u5E74\u97F3\u8272\uFF0C\u97F3\u8C03\u504F\u9AD8\uFF0C\u97F3\u8272\u6E05\u8106\u6D3B\u6CFC\uFF0C\u58F0\u97F3\u8F7B\u76C8\uFF0C\u6C14\u606F\u5145\u6C9B\uFF0C\u8BED\u901F\u504F\u5FEB\uFF0C\u5E26\u7B11\u610F\u548C\u611F\u67D3\u529B |
-| \u53CD\u6D3E/\u51B7\u9177\u89D2\u8272 | \u7537\u58F0\uFF0C\u4E2D\u5E74\u97F3\u8272\uFF0C\u97F3\u8C03\u4F4E\u6C89\uFF0C\u97F3\u8272\u8D28\u611F\u5E72\u71E5\u504F\u6697\uFF0C\u58F0\u97F3\u5E26\u6C99\u783E\u611F\uFF0C\u6C14\u606F\u5E73\u7A33\uFF0C\u8BED\u901F\u6781\u6162\uFF0C\u6709\u5A01\u80C1\u611F |
-
-#### \u65E0\u53F0\u8BCD\u5206\u955C\u5904\u7406
-- \u4E0D\u5199 \`\u8BF4\uFF1A\` \u548C\u97F3\u8272\u6BB5\u843D
-- \u5728\u52A8\u4F5C\u63CF\u8FF0\u540E\u6807\u6CE8 \`\u65E0\u53F0\u8BCD\`
-
-#### \u53F0\u8BCD\u7C7B\u578B\u683C\u5F0F
-
-| \u53F0\u8BCD\u7C7B\u578B | \u683C\u5F0F | \u5634\u578B\u63CF\u8FF0 |
-|----------|------|----------|
-| \u666E\u901A\u5BF9\u767D | \`{\u89D2\u8272\u540D\u5B57} \u8BF4\uFF1A\u300C{\u53F0\u8BCD}\u300D\u97F3\u8272\uFF1A{9\u7EF4\u5EA6}\` | \u89D2\u8272\u5634\u90E8\u5F00\u5408\u8BF4\u8BDD |
-| \u5185\u5FC3\u72EC\u767D | \`{\u89D2\u8272\u540D\u5B57} \u5185\u5FC3OS\uFF1A\u300C{\u53F0\u8BCD}\u300D\u97F3\u8272\uFF1A{9\u7EF4\u5EA6}\` | \u89D2\u8272\u5634\u90E8\u7D27\u95ED\u4E0D\u52A8 |
-| \u753B\u5916\u97F3 | \`{\u89D2\u8272\u540D\u5B57} \u753B\u5916\u97F3VO\uFF1A\u300C{\u53F0\u8BCD}\u300D\u97F3\u8272\uFF1A{9\u7EF4\u5EA6}\` | \u89D2\u8272\u5634\u90E8\u7D27\u95ED\u4E0D\u52A8\uFF08\u6216\u89D2\u8272\u4E0D\u5728\u753B\u9762\u4E2D\uFF09 |
-
-#### \u751F\u6210\u7EA6\u675F
-1. **\u4E2D\u6587\u63D0\u793A\u8BCD**
-2. **\u76F4\u63A5\u8F93\u51FA\u89C6\u9891\u63D0\u793A\u8BCD**\uFF1A\u7981\u6B62\u8F93\u51FA\u4EFB\u4F55\u5206\u6790\u8FC7\u7A0B\u3001\u63A8\u7406\u6B65\u9AA4\u3001\u6A21\u578B\u5339\u914D\u8BF4\u660E\u3001\u8D44\u4EA7\u7F16\u53F7\u8868\u3001\u5206\u9694\u7EBF\u7B49\u975E\u63D0\u793A\u8BCD\u5185\u5BB9\u3002\u7B2C\u4E00\u884C\u5FC5\u987B\u662F \`\u753B\u9762\u98CE\u683C\u548C\u7C7B\u578B:\`
-3. **\u4E25\u683C\u9075\u5FAA videoDesc**\uFF1A\u6BCF\u6761\u5206\u955C\u5185\u5BB9\u4E25\u683C\u57FA\u4E8E videoDesc \u7684\u753B\u9762\u63CF\u8FF0\u3001\u65F6\u957F\u3001\u666F\u522B\u3001\u8FD0\u955C\u3001\u89D2\u8272\u52A8\u4F5C\u3001\u60C5\u7EEA\u3001\u5149\u5F71\u6C1B\u56F4\u3001\u53F0\u8BCD\u3001\u97F3\u6548\u5B57\u6BB5\uFF0C\u4E0D\u7F16\u9020\u989D\u5916\u4FE1\u606F
-4. **\u53F0\u8BCD\u4E0D\u53EF\u7F3A\u5931**\uFF1AvideoDesc \u4E2D\u6709\u53F0\u8BCD\u7684\u5206\u955C\uFF0C\u5FC5\u987B\u5B8C\u6574\u8F93\u51FA\u53F0\u8BCD\u548C\u97F3\u8272
-5. **\u53F0\u8BCD\u7C7B\u578B\u6B63\u786E\u6807\u6CE8**\uFF1A\u666E\u901A\u5BF9\u767D\u7528\u300C\u8BF4\uFF1A\u300D\uFF0C\u5185\u5FC3\u72EC\u767D\u7528\u300C\u5185\u5FC3OS\uFF1A\u300D\uFF0C\u753B\u5916\u97F3\u7528\u300C\u753B\u5916\u97F3VO\uFF1A\u300D
-6. **\u5148\u56FE\u7247\u5B9A\u4E49\uFF0C\u540E\u5199\u5206\u955C**\uFF1A\u6700\u524D\u9762\u5FC5\u987B\u5148\u8F93\u51FA"\u56FE\u7247\u5B9A\u4E49"\u6BB5\uFF0C\u5217\u51FA \`@\u56FEN : \u540D\u5B57\uFF0C\u63CF\u8FF0\`
-7. **\u5206\u955C\u6B63\u6587\u7981\u7528 \`@\u56FEN \`**\uFF1A\u6B63\u6587\u7EDF\u4E00\u4F7F\u7528\u89D2\u8272\u540D/\u573A\u666F\u540D\uFF0C\u4E0D\u5199 \`@\u56FE1/@\u56FE2\` \u7B49\u7F16\u53F7
-8. **\u5355\u5206\u955C\u65F6\u957F\u6700\u4F4E 1s**
-9. **\u65F6\u957F\u5355\u4F4D**\uFF1A\u76F4\u63A5\u4F7F\u7528 videoDesc \u4E2D\u7684\u79D2\u6570\uFF0C\u683C\u5F0F\u4E3A \`{N}s\`\uFF08\u5982 \`4s\`\uFF09\uFF0C\u6700\u4F4E 1s
-
-#### Seedance 2.0 \u5B8C\u6574\u793A\u4F8B
-
-\u8F93\u5165\uFF1A
-\`\`\`
-\u6A21\u578B\uFF1ASeedance2.0
-\u8D44\u4EA7\u4FE1\u606F[A001, role, \u6C88\u8F9E], [A002, role, \u82CF\u9526], [A003, scene, \u57CE\u697C]
-\`\`\`
-\`\`\`xml
-<storyboardItem videoDesc='\uFF08\u6C88\u8F9E\u72EC\u7ACB\u57CE\u697C\u8FDC\u773A\u82CD\u832B\u5927\u5730\u3001\u57CE\u697C\u3001\u6C88\u8F9E/\u57CE\u697C\u30014s\u3001\u5168\u666F\u3001\u9759\u6B62\u3001\u8D1F\u624B\u800C\u7ACB\u8863\u8882\u968F\u98CE\u98D8\u626C\u3001\u575A\u5B9A\u51B3\u7EDD\u3001\u9EC4\u660F\u51B7\u8C03\u4FA7\u9006\u5149\u3001\u65E0\u53F0\u8BCD\u3001\u98CE\u58F0\u8863\u8882\u58F0\u3001A001/A003\uFF09' prompt='\u5168\u666F\uFF0C\u5E73\u89C6\u7565\u4EF0\uFF0C\u57CE\u697C\u4E4B\u4E0A\uFF0C\u6C88\u8F9E\u8D1F\u624B\u800C\u7ACB\uFF0C\u8863\u8882\u98D8\u626C\uFF0C\u9EC4\u660F\u51B7\u8C03\u4FA7\u9006\u5149...' track='main' duration='4' associateAssetsIds="[&quot;A001&quot;,&quot;A003&quot;]" shouldGenerateImage="true" ></storyboardItem>
-<storyboardItem videoDesc='\uFF08\u82CF\u9526\u767B\u4E0A\u57CE\u697C\u8D70\u5411\u6C88\u8F9E\u3001\u57CE\u697C\u3001\u82CF\u9526/\u6C88\u8F9E/\u57CE\u697C\u30014s\u3001\u4E2D\u666F\u3001\u8DDF\u8E2A\u3001\u82CF\u9526\u62FE\u7EA7\u800C\u4E0A\u8D70\u5411\u6C88\u8F9E\u3001\u62C5\u5FE7\u3001\u9EC4\u660F\u4F59\u6656\u6E10\u6697\u3001\u82CF\u9526\u8BF4\uFF1A\u4F60\u53C8\u4E00\u4E2A\u4EBA\u5728\u8FD9\u91CC\u3001\u811A\u6B65\u58F0\u98CE\u58F0\u3001A001/A002/A003\uFF09' prompt='\u4E2D\u666F\uFF0C\u8DDF\u8E2A\uFF0C\u82CF\u9526\u62FE\u7EA7\u800C\u4E0A\u8D70\u5411\u57CE\u697C\u4E0A\u7684\u6C88\u8F9E...' track='main' duration='4' associateAssetsIds="[&quot;A001&quot;,&quot;A002&quot;,&quot;A003&quot;]" shouldGenerateImage="true" ></storyboardItem>
-\`\`\`
-
-\u8F93\u51FA\uFF1A
-\`\`\`
-\u753B\u9762\u98CE\u683C\u548C\u7C7B\u578B: \u771F\u4EBA\u5199\u5B9E, \u7535\u5F71\u98CE\u683C, \u51B7\u8C03, \u53E4\u98CE
-
-\u53C2\u8003\u5B9A\u4E49:
-@\u56FE1: \u6C88\u8F9E\uFF0C\u9ED1\u8272\u957F\u888D\uFF0C\u6C14\u8D28\u51B7\u5CFB\u7684\u9752\u5E74\u7537\u6027
-@\u56FE2: \u82CF\u9526\uFF0C\u6D45\u8272\u8863\u88D9\uFF0C\u795E\u60C5\u7EC6\u817B\u7684\u9752\u5E74\u5973\u6027
-@\u56FE3: \u57CE\u697C\uFF0C\u53E4\u4EE3\u7816\u77F3\u57CE\u697C\u4E0E\u53F0\u9636\u573A\u666F
-
-\u751F\u6210\u4E00\u4E2A\u7531\u4EE5\u4E0B 2 \u4E2A\u5206\u955C\u7EC4\u6210\u7684\u89C6\u9891:
-
-\u573A\u666F:
-\u5206\u955C\u8FC7\u6E21: \u955C\u5934\u5E73\u6ED1\u5207\u6362\uFF0C\u4ECE\u5168\u666F\u8FC7\u6E21\u5230\u4E2D\u666F\u8DDF\u8E2A\uFF0C\u7126\u70B9\u4ECE\u6C88\u8F9E\u72EC\u5904\u8F6C\u5411\u82CF\u9526\u5230\u6765\u3002
-
-\u5206\u955C1 4s: \u65F6\u95F4\uFF1A\u9EC4\u660F\uFF0C\u573A\u666F\uFF1A\u57CE\u697C\uFF0C\u955C\u5934\uFF1A\u5168\u666F\uFF0C\u5E73\u89C6\u7565\u4EF0\uFF0C\u9759\u6B62\u955C\u5934\uFF0C\u6C88\u8F9E\u72EC\u7ACB\u57CE\u697C\u4E4B\u4E0A\uFF0C\u8D1F\u624B\u800C\u7ACB\uFF0C\u8863\u8882\u968F\u98CE\u98D8\u626C\uFF0C\u76EE\u5149\u8FDC\u773A\u82CD\u832B\u5927\u5730\uFF0C\u795E\u60C5\u8083\u7136\u9762\u5BB9\u6C89\u7740\uFF0C\u773C\u795E\u575A\u5B9A\u76EE\u5149\u6E05\u51BD\uFF0C\u7709\u773C\u6C89\u9759\u6C14\u8D28\u51DB\u7136\u3002\u65E0\u53F0\u8BCD\u3002\u80CC\u666F\u662F\u53E4\u57CE\u697C\u7816\u77F3\u7EB9\u7406\u6E05\u6670\uFF0C\u8FDC\u65B9\u5927\u5730\u82CD\u832B\u8FBD\u9614\uFF0C\u5929\u9645\u7EBF\u51B7\u6696\u4EA4\u66FF\u3002\u9EC4\u660F\u659C\u5C04\u4F59\u6656\u4FA7\u9006\u5149\uFF0C\u51B7\u8C03\u4E3A\u4E3B\uFF0C\u957F\u5F71\u62C9\u4F38\uFF0C\u8F6E\u5ED3\u5149\u5FAE\u52FE\u52D2\u4EBA\u7269\u8FB9\u7F18\uFF0C\u5149\u611F\u8BD7\u610F\u3002\u955C\u5934\u9759\u6B62\u3002
-
-\u5206\u955C2 4s: \u65F6\u95F4\uFF1A\u9EC4\u660F\uFF0C\u573A\u666F\uFF1A\u57CE\u697C\uFF0C\u955C\u5934\uFF1A\u4E2D\u666F\uFF0C\u5E73\u89C6\uFF0C\u8DDF\u8E2A\u62CD\u6444\uFF0C\u82CF\u9526\u62FE\u7EA7\u800C\u4E0A\uFF0C\u8D70\u5411\u57CE\u697C\u4E0A\u7684\u6C88\u8F9E\uFF0C\u9762\u90E8\u671D\u5411\u6C88\u8F9E\u65B9\u5411\uFF0C\u795E\u60C5\u5FAE\u6123\u9762\u8272\u5FAE\u53D8\uFF0C\u773C\u795E\u4E2D\u5E26\u7740\u62C5\u5FE7\uFF0C\u82CF\u9526\u8BF4\uFF1A\u300C\u4F60\u53C8\u4E00\u4E2A\u4EBA\u5728\u8FD9\u91CC\u3002\u300D\u97F3\u8272\uFF1A\u5973\u58F0\uFF0C\u9752\u5E74\u97F3\u8272\uFF0C\u97F3\u8C03\u4E2D\u7B49\u504F\u9AD8\uFF0C\u97F3\u8272\u8D28\u611F\u660E\u4EAE\u6E05\u8106\uFF0C\u58F0\u97F3\u6E05\u4EAE\u67D4\u548C\uFF0C\u53D1\u97F3\u65B9\u5F0F\u5E72\u51C0\uFF0C\u6C14\u606F\u5145\u6C9B\u5E73\u7A33\uFF0C\u8BED\u901F\u9002\u4E2D\uFF0C\u5E26\u6E29\u5A49\u771F\u8BDA\u611F\u3002\u80CC\u666F\u57CE\u697C\u53F0\u9636\u7EB9\u7406\u6E05\u6670\uFF0C\u4F59\u6656\u6E10\u6697\uFF0C\u5929\u9645\u7EBF\u51B7\u6696\u4EA4\u66FF\u52A0\u6DF1\u3002\u955C\u5934\u8DDF\u8E2A\u82CF\u9526\u79FB\u52A8\u3002
-\`\`\`
-
----
-
-### \u56DB\u3001Wan 2.6
-
-#### \u6838\u5FC3\u539F\u5219
-- **\u5355\u56FE\u9996\u5E27\u6A21\u5F0F**\uFF1A\u5F52\u7C7B\u4E3A\u9996\u5C3E\u5E27\u6A21\u5F0F\uFF0C\u4F46\u4EC5\u6709\u9996\u5E27\uFF08\u5206\u955C\u56FE\uFF09\uFF0C\u65E0\u5C3E\u5E27
-- **\u5355\u6761\u5206\u955C\u8F93\u5165/\u8F93\u51FA**\uFF1A\u6BCF\u6B21\u4EC5\u8F93\u5165\u4E00\u6761 \`<storyboardItem>\` \u53CA\u5176\u5173\u8054\u8D44\u4EA7\u4FE1\u606F\uFF0C\u8F93\u51FA\u4E5F\u4EC5\u4E3A\u4E00\u6BB5\u5B8C\u6574\u7684\u53D9\u4E8B\u5F0F\u63D0\u793A\u8BCD
-- **\u53D9\u4E8B\u5F0F\u82F1\u6587\u63D0\u793A\u8BCD**\uFF1A\u50CF\u5199\u5C0F\u8BF4\u4E00\u6837\u63CF\u5199\u753B\u9762\uFF0C\u4E0D\u4F7F\u7528\u6807\u7B7E\u7F57\u5217\uFF08\u4E0D\u5199 \`4K, cinematic, high quality\` \u8FD9\u7C7B\u5806\u780C\uFF09
-- **\u4E09\u6BB5\u5F0F\u7ED3\u6784**\uFF1A\u98CE\u683C\u57FA\u8C03 \u2192 \u4E3B\u4F53\u52A8\u4F5C + \u573A\u666F\u73AF\u5883 + \u5149\u7EBF\u6C1B\u56F4 \u2192 \u955C\u5934\u6536\u5C3E
-- **\u7EAF\u6587\u672C\u63D0\u793A\u8BCD**\uFF1A\u63D0\u793A\u8BCD\u5185**\u4E0D\u4F7F\u7528\u4EFB\u4F55 \`@\u56FEN \` \u5F15\u7528**\uFF0C\u5168\u90E8\u5185\u5BB9\u7528\u7EAF\u6587\u672C\u63CF\u8FF0
-- **\u4E25\u683C\u9075\u5FAA videoDesc**\uFF1A\u63D0\u793A\u8BCD\u5185\u5BB9\u4E25\u683C\u57FA\u4E8E videoDesc \u4E2D\u7684\u753B\u9762\u63CF\u8FF0\u3001\u65F6\u957F\u3001\u666F\u522B\u3001\u8FD0\u955C\u3001\u89D2\u8272\u52A8\u4F5C\u3001\u60C5\u7EEA\u3001\u5149\u5F71\u6C1B\u56F4\u3001\u53F0\u8BCD\u3001\u97F3\u6548\u5B57\u6BB5\u751F\u6210\uFF0C\u4E0D\u7F16\u9020\u989D\u5916\u5185\u5BB9
-- **\u53F0\u8BCD\u4E0D\u53EF\u7F3A\u5931**\uFF1AvideoDesc \u4E2D\u6709\u53F0\u8BCD\u7684\u5206\u955C\uFF0C\u5FC5\u987B\u5728\u63D0\u793A\u8BCD\u4E2D\u4F53\u73B0\u53F0\u8BCD\u76F8\u5173\u63CF\u8FF0
-- **\u53F0\u8BCD\u7C7B\u578B\u6807\u6CE8**\uFF1A\u533A\u5206\u666E\u901A\u5BF9\u767D\uFF08dialogue\uFF09\u3001\u5185\u5FC3\u72EC\u767D\uFF08inner monologue OS\uFF09\u3001\u753B\u5916\u97F3\uFF08voiceover VO\uFF09\uFF0C\u5728\u63D0\u793A\u8BCD\u4E2D\u7528\u62EC\u53F7\u6807\u6CE8
-
-#### prompt \u751F\u6210\u6A21\u677F
-
-\u6BCF\u6B21\u8F93\u5165\u4E00\u6761\u5206\u955C\uFF0C\u8F93\u51FA\u4E00\u6BB5\u5B8C\u6574\u63D0\u793A\u8BCD\uFF08\u65E0\u7F16\u53F7\u524D\u7F00\uFF09\uFF0C\u683C\u5F0F\u5982\u4E0B\uFF1A
-
-\`\`\`
-{\u98CE\u683C\u57FA\u8C03\u4E00\u53E5\u8BDD\u5B9A\u6027},
-{\u4E3B\u4F53\u540D} {\u5916\u89C2\u7B80\u8FF0}, {\u5177\u4F53\u52A8\u4F5C/\u59FF\u6001\u63CF\u8FF0}, {\u60C5\u7EEA/\u8868\u60C5\u7528\u52A8\u4F5C\u6697\u793A}.
-{\u573A\u666F\u80CC\u666F\u4E3B\u4F53}, {\u5177\u4F53\u73AF\u5883\u7269\u4EF6}, {\u7A7A\u95F4\u611F}, {\u65F6\u95F4/\u5929\u6C14}.
-{\u5149\u7EBF\u65B9\u5411/\u8272\u6E29} {\u8D28\u611F\u63CF\u8FF0}, {\u60C5\u7EEA\u6697\u793A\u5149\u5F71}.
-{\u53F0\u8BCD\u63CF\u8FF0\uFF08\u5982\u6709\uFF0C\u542B dialogue/OS/VO \u6807\u6CE8\uFF09/ No dialogue}.
-{\u97F3\u6548\u63CF\u8FF0}.
-{\u62CD\u6444\u65B9\u5F0F}, {\u666F\u522B}, {\u89C6\u89D2}, {\u8FD0\u955C\u65B9\u5F0F}.
-\`\`\`
-
-#### \u53D9\u4E8B\u5F0F\u5199\u6CD5\u8981\u70B9
-
-| \u539F\u5219 | \u8BF4\u660E | \u793A\u4F8B |
-|------|------|------|
-| \u98CE\u683C\u57FA\u8C03\u653E\u6700\u524D | \u4E00\u53E5\u8BDD\u5B9A\u6027\u6574\u4F53\u6C14\u8D28 | \`A cinematic epic scene\` / \`A melancholic cinematic scene\` |
-| \u4E3B\u4F53+\u52A8\u4F5C\u7D27\u5BC6\u7ED1\u5B9A | \u4E3B\u4F53\u540E\u9762\u76F4\u63A5\u8DDF\u52A8\u4F5C\uFF0C\u5916\u89C2\u7EC6\u8282\u5D4C\u5165\u4E3B\u4F53\u63CF\u8FF0 | \`A young man in dark flowing robes stands alone atop the city wall, hands clasped behind back\` |
-| \u60C5\u7EEA\u7528\u52A8\u4F5C\u6697\u793A | \u4E0D\u76F4\u63A5\u9648\u8FF0\u300C\u4ED6\u5F88\u60B2\u4F24\u300D | \u274C \`He is sad.\` \u2192 \u2705 \`head drops slowly, shoulders slumped\` |
-| \u73AF\u5883\u878D\u5165\u53D9\u4E8B | \u4E0D\u7F57\u5217\u73AF\u5883\u5C5E\u6027 | \u274C \`The sky is blue. The grass is green.\` \u2192 \u2705 \`hazy blue sky stretches over the emerald valley\` |
-| \u5149\u7EBF\u5355\u72EC\u6210\u53E5 | \u5149\u7EBF\u65B9\u5411+\u8272\u6E29+\u8D28\u611F+\u60C5\u7EEA | \`Warm golden hour light streams from behind, casting long shadows across the stone floor\` |
-| \u955C\u5934\u8BED\u8A00\u6536\u5C3E | \u4E00\u53E5\u8BDD\u70B9\u775B | \`Captured in a wide establishing shot from a low-angle perspective, static camera\` |
-| \u7981\u6B62\u6807\u7B7E\u5806\u780C | \u4E0D\u5199 \`4K, cinematic, high quality\` | \`cinematic\` \u878D\u5165\u98CE\u683C\u57FA\u8C03\u5373\u53EF |
-
-#### \u751F\u6210\u7EA6\u675F
-1. **\u5168\u90E8\u7528\u82F1\u6587**
-2. **\u4E0D\u4F7F\u7528\u4EFB\u4F55 \`@\u56FEN \` \u5F15\u7528**\uFF1A\u63D0\u793A\u8BCD\u5185\u4E0D\u5F15\u7528\u89D2\u8272\u8D44\u4EA7\u3001\u573A\u666F\u8D44\u4EA7\u3001\u5206\u955C\u56FE\uFF0C\u5168\u90E8\u5185\u5BB9\u7528\u7EAF\u6587\u672C\u63CF\u8FF0
-3. **\u53D9\u4E8B\u5F0F\u63CF\u5199**\uFF1A\u50CF\u5199\u5C0F\u8BF4\u4E00\u6837\u6784\u5EFA\u753B\u9762\uFF0C\u7981\u6B62\u6807\u7B7E\u7F57\u5217\u548C\u914D\u7F6E\u6E05\u5355\u5F0F\u5199\u6CD5
-4. **\u4E3B\u4F53\u7528\u6587\u5B57\u63CF\u8FF0**\uFF1A\u7B80\u8981\u63CF\u8FF0\u4E3B\u4F53\u5916\u89C2\u7279\u5F81\uFF08\u5982\u670D\u9970\u3001\u53D1\u578B\u7B49\u5173\u952E\u8FA8\u8BC6\u7279\u5F81\uFF09\uFF0C\u5D4C\u5165\u4E3B\u4F53\u63CF\u8FF0\u4E2D
-5. **\u4E25\u683C\u9075\u5FAA videoDesc**\uFF1A\u63D0\u793A\u8BCD\u5185\u5BB9\u4E25\u683C\u57FA\u4E8E videoDesc \u4E2D\u7684\u753B\u9762\u63CF\u8FF0\u3001\u65F6\u957F\u3001\u666F\u522B\u3001\u8FD0\u955C\u3001\u89D2\u8272\u52A8\u4F5C\u3001\u60C5\u7EEA\u3001\u5149\u5F71\u6C1B\u56F4\u3001\u53F0\u8BCD\u3001\u97F3\u6548\u5B57\u6BB5\uFF0C\u4E0D\u7F16\u9020\u989D\u5916\u4FE1\u606F
-6. **\u53F0\u8BCD\u4E0D\u53EF\u7F3A\u5931**\uFF1AvideoDesc \u4E2D\u6709\u53F0\u8BCD\u7684\u5206\u955C\uFF0C\u5FC5\u987B\u5728\u63D0\u793A\u8BCD\u4E2D\u5B8C\u6574\u8F93\u51FA\u53F0\u8BCD\u5185\u5BB9\uFF08\u4FDD\u6301\u539F\u59CB\u8BED\u8A00\uFF0C\u4E0D\u7FFB\u8BD1\uFF09
-7. **\u53F0\u8BCD\u7C7B\u578B\u6807\u6CE8**\uFF1A\u666E\u901A\u5BF9\u767D\u6807\u6CE8 \`(dialogue)\`\uFF1B\u5185\u5FC3\u72EC\u767D\u6807\u6CE8 \`(inner monologue, OS)\`\uFF1B\u753B\u5916\u97F3\u6807\u6CE8 \`(voiceover, VO)\`
-8. **\u5355\u6761\u8F93\u5165/\u8F93\u51FA**\uFF1A\u6BCF\u6B21\u4EC5\u5904\u7406\u4E00\u6761\u5206\u955C\uFF0C\u8F93\u51FA\u4E00\u6BB5\u63D0\u793A\u8BCD\uFF0C\u65E0\u7F16\u53F7\u524D\u7F00
-9. **\u65E0\u9700\u6807\u6CE8\u65F6\u957F**\uFF1A\u65F6\u957F\u7531\u6A21\u578B\u4FA7\u63A7\u5236\uFF0C\u63D0\u793A\u8BCD\u4E2D\u4E0D\u5199\u65F6\u957F\u53C2\u6570
-10. **\u955C\u5934\u63CF\u8FF0\u878D\u5165\u53D9\u4E8B**\uFF1A\u4E0D\u7528\u65B9\u62EC\u53F7\u6807\u7B7E\uFF0C\u7528\u5B8C\u6574\u53E5\u5B50\u63CF\u8FF0\u955C\u5934
-11. **\u89C6\u89C9\u98CE\u683C**\u53C2\u8003 Assistant \u4E2D\u7684\u300C\u89C6\u89C9\u98CE\u683C\u7EA6\u675F\u300D\u90E8\u5206\u5185\u5BB9
-
-#### Wan 2.6 \u5B8C\u6574\u793A\u4F8B
-
-**\u793A\u4F8B1\uFF1A\u65E0\u53F0\u8BCD\u5206\u955C**
-
-\u8F93\u5165\uFF1A
-\`\`\`
-\u6A21\u578B\uFF1AWan2.6
-\u8D44\u4EA7\u4FE1\u606F[A001, role, \u6C88\u8F9E], [A003, scene, \u57CE\u697C]
-\`\`\`
-\`\`\`xml
-<storyboardItem videoDesc='\uFF08\u6C88\u8F9E\u72EC\u7ACB\u57CE\u697C\u8FDC\u773A\u82CD\u832B\u5927\u5730\u3001\u57CE\u697C\u3001\u6C88\u8F9E/\u57CE\u697C\u30014s\u3001\u5168\u666F\u3001\u9759\u6B62\u3001\u8D1F\u624B\u800C\u7ACB\u8863\u8882\u968F\u98CE\u98D8\u626C\u3001\u575A\u5B9A\u51B3\u7EDD\u3001\u9EC4\u660F\u51B7\u8C03\u4FA7\u9006\u5149\u3001\u65E0\u53F0\u8BCD\u3001\u98CE\u58F0\u8863\u8882\u58F0\u3001A001/A003\uFF09' prompt='\u5168\u666F\uFF0C\u5E73\u89C6\u7565\u4EF0\uFF0C\u57CE\u697C\u4E4B\u4E0A\uFF0C\u6C88\u8F9E\u8D1F\u624B\u800C\u7ACB\uFF0C\u8863\u8882\u98D8\u626C\uFF0C\u9EC4\u660F\u51B7\u8C03\u4FA7\u9006\u5149...' track='main' duration='4' associateAssetsIds="[&quot;A001&quot;,&quot;A003&quot;]" shouldGenerateImage="true" ></storyboardItem>
-\`\`\`
-
-\u8F93\u51FA\uFF1A
-\`\`\`
-A cinematic epic scene with a cold, desaturn\`ated palette,
-A lone man in dark flowing robes stands atop an ancient city wall, hands clasped behind his back, robes and hair billowing in the wind, gaze fixed on the vast land stretching to the horizon, jaw set firm, eyes unwavering.
-The weathered stone battlements frame the endless expanse below, rolling terrain fading into haze beneath a heavy dusk sky, clouds layered in muted golds and slate greys.
-Cold side-backlight from the setting sun carves a sharp silhouette, long shadows stretching across the stone floor, a faint warm rim outlining the figure against the cool atmosphere.
-No dialogue.
-Wind howling across the open wall, fabric flapping rhythmically.
-Captured in a wide establishing shot from a slightly low angle, static camera, single continuous take.
-\`\`\`
-
-**\u793A\u4F8B2\uFF1A\u6709\u53F0\u8BCD\u5206\u955C**
-
-\u8F93\u5165\uFF1A
-\`\`\`
-\u6A21\u578B\uFF1AWan2.6
-\u8D44\u4EA7\u4FE1\u606F[A001, role, \u6C88\u8F9E], [A002, role, \u82CF\u9526], [A003, scene, \u57CE\u697C]
-\`\`\`
-\`\`\`xml
-<storyboardItem videoDesc='\uFF08\u82CF\u9526\u767B\u4E0A\u57CE\u697C\u8D70\u5411\u6C88\u8F9E\u3001\u57CE\u697C\u3001\u82CF\u9526/\u6C88\u8F9E/\u57CE\u697C\u30014s\u3001\u4E2D\u666F\u3001\u8DDF\u8E2A\u3001\u82CF\u9526\u62FE\u7EA7\u800C\u4E0A\u8D70\u5411\u6C88\u8F9E\u3001\u62C5\u5FE7\u3001\u9EC4\u660F\u4F59\u6656\u6E10\u6697\u3001\u82CF\u9526\u8BF4\uFF1A\u4F60\u53C8\u4E00\u4E2A\u4EBA\u5728\u8FD9\u91CC\u3001\u811A\u6B65\u58F0\u98CE\u58F0\u3001A001/A002/A003\uFF09' prompt='\u4E2D\u666F\uFF0C\u8DDF\u8E2A\uFF0C\u82CF\u9526\u62FE\u7EA7\u800C\u4E0A\u8D70\u5411\u57CE\u697C\u4E0A\u7684\u6C88\u8F9E...' track='main' duration='4' associateAssetsIds="[&quot;A001&quot;,&quot;A002&quot;,&quot;A003&quot;]" shouldGenerateImage="true" ></storyboardItem>
-\`\`\`
-
-\u8F93\u51FA\uFF1A
-\`\`\`
-A melancholic cinematic scene, dusk tones deepening,
-A young woman in a light-colored dress ascends the final stone steps onto the city wall, her gaze locked on the lone figure ahead, brow slightly furrowed, pace slowing as she approaches, lips parting softly.
-The ancient city wall stretches behind her, weathered stairs leading up from below, the distant skyline dimming as the last traces of golden hour fade into twilight.
-Fading warm light mingles with rising cool blue tones, the contrast between the two figures softened by the diffused remnants of sunset.
-"\u4F60\u53C8\u4E00\u4E2A\u4EBA\u5728\u8FD9\u91CC\u3002" \u2014 Su Jin (dialogue).
-Footsteps on stone, wind sweeping across the battlements, fabric rustling.
-A medium tracking shot follows the woman from behind as she ascends and approaches, handheld camera with subtle movement, single continuous take.
-\`\`\`
-
----
-
-## \u666F\u522B \u2192 \u955C\u5934\u6807\u7B7E\u6620\u5C04
-
-| videoDesc \u4E2D\u7684\u666F\u522B | KlingOmni\uFF08\u82F1\u6587\u6807\u7B7E\uFF09 | Seedance 1.5\uFF08\u82F1\u6587\u6807\u7B7E\uFF09 | Seedance 2.0\uFF08\u4E2D\u6587\u63CF\u8FF0\uFF09 | Wan 2.6\uFF08\u82F1\u6587\u53D9\u4E8B\u5F0F\uFF09 |
-|------|------|------|------|------|
-| \u8FDC\u666F | extreme wide shot | Extreme wide shot | \u8FDC\u666F | an extreme wide shot capturing the vast expanse |
-| \u5168\u666F | wide shot | Wide establishing shot | \u5168\u666F | a wide establishing shot |
-| \u4E2D\u666F | medium shot | Medium shot | \u4E2D\u666F | a medium shot |
-| \u8FD1\u666F | close-up | Close-up | \u8FD1\u666F | a close-up shot |
-| \u7279\u5199 | close-up | Close-up | \u7279\u5199 | a close-up capturing fine detail |
-| \u5927\u7279\u5199 | extreme close-up | Extreme close-up | \u5927\u7279\u5199 | an extreme close-up |
-
-## \u8FD0\u955C \u2192 \u955C\u5934\u6807\u7B7E\u6620\u5C04
-
-| videoDesc \u4E2D\u7684\u8FD0\u955C | KlingOmni\uFF08\u82F1\u6587\u6807\u7B7E\uFF09 | Seedance 1.5\uFF08\u82F1\u6587\u6807\u7B7E\uFF09 | Seedance 2.0\uFF08\u4E2D\u6587\u63CF\u8FF0\uFF09 | Wan 2.6\uFF08\u82F1\u6587\u53D9\u4E8B\u5F0F\uFF09 |
-|------|------|------|------|------|
-| \u9759\u6B62 | static camera | Static, no camera movement | \u955C\u5934\u9759\u6B62 | static camera, locked off |
-| \u63A8\u8FDB | dolly in / push in | Slow dolly forward | \u955C\u5934\u7F13\u6162\u5411\u524D\u63A8\u8FDB | camera slowly pushing in |
-| \u62C9\u8FDC | dolly out / pull back | Slow dolly backward pull | \u955C\u5934\u7F13\u6162\u5411\u540E\u62C9\u8FDC | camera gently pulling back |
-| \u8DDF\u8E2A | tracking shot | Tracking shot, handheld | \u8DDF\u8E2A\u62CD\u6444 | tracking shot following the subject |
-| \u6447\u955C | pan left/right | Slow pan | \u955C\u5934\u7F13\u6162\u6447\u79FB | smooth pan across the scene |
-| \u7529\u955C | whip pan | Whip pan | \u5FEB\u901F\u7529\u955C | whip pan |
-| \u5347\u964D | crane up/down | Crane up/down | \u955C\u5934\u5347\u964D | crane rising / descending |
-| \u73AF\u7ED5 | surround shooting | Orbiting shot | \u73AF\u7ED5\u62CD\u6444 | orbiting around the subject |
-
----
-
-## \u6267\u884C\u6D41\u7A0B
-
-1. **\u89E3\u6790\u8F93\u5165**\uFF1A\u63D0\u53D6\u6A21\u578B\u540D\u548C\u591A\u53C2\u6807\u5FD7\uFF0C\u6309\u8DEF\u7531\u89C4\u5219\u5339\u914D\u6A21\u5F0F\uFF1B\u63D0\u53D6\u8D44\u4EA7\u5217\u8868
-2. **\u6784\u5EFA @\u56FEN \u7F16\u53F7\u8868**\uFF1A\u8D44\u4EA7\u6309\u8F93\u5165\u987A\u5E8F\u4ECE \`@\u56FE1 \` \u8D77\u7F16\u53F7\uFF0C\u5206\u955C\u56FE\u63A5\u7EED\u7F16\u53F7\uFF1B\`shouldGenerateImage="false"\` \u7684\u5206\u955C\u4E0D\u5206\u914D\u5206\u955C\u56FE\u7F16\u53F7
-3. **\u9010\u6761\u89E3\u6790 \`<storyboardItem>\`**\uFF1A\u6309 videoDesc \u89E3\u6790\u89C4\u5219\u63D0\u53D612\u4E2A\u5B57\u6BB5\uFF0C\u7ED3\u5408 \`duration\`\u3001\`associateAssetsIds\` \u5EFA\u7ACB\u6807\u7B7E\u6620\u5C04
-4. **\u6574\u5408\u4E3A\u4E00\u4E2A\u5B8C\u6574\u7684\u89C6\u9891\u63D0\u793A\u8BCD**\uFF1A\u6309\u76EE\u6807\u6A21\u578B\u683C\u5F0F\u7F16\u6392\u5168\u90E8\u5206\u955C
-5. **\u8F93\u51FA\u89C6\u9891\u63D0\u793A\u8BCD**
-
----
-
-## \u7EA6\u675F
-
-- **\u4EC5\u8F93\u51FA\u89C6\u9891\u63D0\u793A\u8BCD**\uFF1A\u4E0D\u9644\u52A0\u4EFB\u4F55\u89E3\u91CA\u3001\u6CE8\u91CA\u3001\u5206\u6790\u8FC7\u7A0B\u3001\u63A8\u7406\u6B65\u9AA4\u3001\u6A21\u578B\u5339\u914D\u8BF4\u660E\u3001\u8D44\u4EA7\u7F16\u53F7\u8868\u3001\u5206\u9694\u7EBF\uFF08\`---\`\uFF09\u6216\u989D\u5916\u8BF4\u660E\uFF0C\u53EA\u8F93\u51FA\u89C6\u9891\u63D0\u793A\u8BCD\u6587\u672C\u3002\u7981\u6B62\u5728\u63D0\u793A\u8BCD\u524D\u540E\u8F93\u51FA\u4EFB\u4F55\u975E\u63D0\u793A\u8BCD\u5185\u5BB9
-- **\u4E25\u683C\u9075\u5FAA videoDesc**\uFF08\u5168\u6A21\u5F0F\u901A\u7528\uFF09\uFF1A\u63D0\u793A\u8BCD\u5185\u5BB9\u4E25\u683C\u57FA\u4E8E videoDesc \u4E2D\u7684\u753B\u9762\u63CF\u8FF0\u3001\u65F6\u957F\u3001\u666F\u522B\u3001\u8FD0\u955C\u3001\u89D2\u8272\u52A8\u4F5C\u3001\u60C5\u7EEA\u3001\u5149\u5F71\u6C1B\u56F4\u3001\u53F0\u8BCD\u3001\u97F3\u6548\u5B57\u6BB5\u751F\u6210\uFF0C\u4E0D\u7F16\u9020\u989D\u5916\u5185\u5BB9
-- **\u53F0\u8BCD\u4E0D\u53EF\u7F3A\u5931**\uFF08\u5168\u6A21\u5F0F\u901A\u7528\uFF09\uFF1AvideoDesc \u4E2D\u6709\u53F0\u8BCD\u7684\u5206\u955C\uFF0C\u5FC5\u987B\u5728\u63D0\u793A\u8BCD\u4E2D\u5B8C\u6574\u4F53\u73B0\u53F0\u8BCD\u5185\u5BB9\uFF0C\u4E0D\u5F97\u9057\u6F0F
-- **\u53F0\u8BCD\u4FDD\u6301\u539F\u59CB\u8F93\u5165**\uFF08\u5168\u6A21\u5F0F\u901A\u7528\uFF09\uFF1A\u53F0\u8BCD\u5185\u5BB9\u4E25\u7981\u7FFB\u8BD1\uFF0C\u5FC5\u987B\u4FDD\u6301 videoDesc \u4E2D\u7684\u539F\u59CB\u8BED\u8A00\u539F\u6837\u8F93\u51FA
-- **\u53F0\u8BCD\u7C7B\u578B\u6807\u6CE8**\uFF08\u5168\u6A21\u5F0F\u901A\u7528\uFF09\uFF1A\u5FC5\u987B\u533A\u5206\u666E\u901A\u5BF9\u767D\uFF08dialogue / \u8BF4\uFF09\u3001\u5185\u5FC3\u72EC\u767D\uFF08OS / \u5185\u5FC3OS\uFF09\u3001\u753B\u5916\u97F3\uFF08VO / \u753B\u5916\u97F3VO\uFF09\uFF0C\u5E76\u5728\u63D0\u793A\u8BCD\u4E2D\u6B63\u786E\u6807\u6CE8
-- **\u65F6\u95F4\u8DE8\u5EA6\u6700\u4F4E 1 \u79D2**\uFF08\u5168\u6A21\u5F0F\u901A\u7528\uFF09\uFF1A\u6240\u6709\u6A21\u5F0F\u4E2D\u6D89\u53CA\u65F6\u95F4\u5206\u6BB5\uFF08Motion \u65F6\u95F4\u8F74 / Seedance 2.0 \u5206\u955C\u65F6\u957F {N}s\uFF09\u7684\u6700\u5C0F\u7C92\u5EA6\u4E3A 1 \u79D2\uFF081s\uFF09\uFF0C\u7981\u6B62\u51FA\u73B0 0.5 \u79D2\u7B49\u4F4E\u4E8E 1 \u79D2\u7684\u95F4\u9694
-- **\u89C6\u89C9\u98CE\u683C**\uFF1A\u98CE\u683C\u76F8\u5173\u63CF\u8FF0\u53C2\u8003 Assistant \u4E2D\u7684\u300C\u89C6\u89C9\u98CE\u683C\u7EA6\u675F\u300D\u90E8\u5206\u5185\u5BB9\uFF0C\u4E0D\u5728\u672C Skill \u5185\u81EA\u884C\u5B9A\u4E49\u98CE\u683C
-- **\u4E25\u683C\u6309\u5339\u914D\u5230\u7684\u6A21\u5F0F\u683C\u5F0F**\uFF0C\u4E0D\u6DF7\u7528\u4E0D\u540C\u6A21\u5F0F\u7684\u683C\u5F0F
-- **\u4E0D\u4FEE\u6539\u539F\u59CB\u8F93\u5165**\uFF1A\u4E0D\u6539\u5199 \`<storyboardItem>\` \u7684\u4EFB\u4F55\u5B57\u6BB5\uFF1B\`prompt\` \u5DF2\u6709\u7684\u5206\u955C\u56FE\u63D0\u793A\u8BCD\u4EC5\u4F5C\u753B\u9762\u53C2\u8003
-- **\u4E0D\u7F16\u9020\u8D44\u4EA7\u6216\u53F0\u8BCD**\uFF1A\u53EA\u4F7F\u7528\u8F93\u5165\u4E2D\u7684\u8D44\u4EA7\u4FE1\u606F\uFF1B\u65E0\u53F0\u8BCD\u5219\u6807\u6CE8\u300C\u65E0\u53F0\u8BCD\u300D/ \`No dialogue\`
-- **\u65F6\u957F\u5355\u4F4D**\uFF1ASeedance 2.0 \u7684\u5206\u955C\u65F6\u957F\u76F4\u63A5\u4F7F\u7528\u79D2\uFF0C\u683C\u5F0F\u4E3A \`{N}s\`\uFF08\u5982 \`4s\`\uFF09\uFF0C\u6700\u4F4E 1s
-`
-      });
+      const skillRows = await db_default("o_skillList").select("id", "description");
+      for (const row of skillRows) {
+        if (typeof row.description === "string" && /[\u3400-\u9fff]/.test(row.description)) {
+          await db_default("o_skillList").where("id", row.id).update({ description: "", state: -1 });
+        }
+      }
+      for (const [type, data2] of [
+        ["eventExtraction", eventExtractionPrompt],
+        ["scriptAssetExtraction", scriptAssetExtractionPrompt],
+        ["videoPromptGeneration", videoPromptGenerationPrompt],
+        ["audioBindPrompt", audioBindPrompt]
+      ]) {
+        await db_default("o_prompt").where("type", type).update({ data: data2 });
+      }
       const data = await knex3("o_vendorConfig").select("*");
       for (const item of data) {
         let { id, code } = item;
@@ -116507,7 +115737,7 @@ async function initKnexType(knexDb) {
   }).fetchDatabase(knexDb);
   const declarations = await dbClient2.toTypescript();
   const dbObject = await dbClient2.toObject();
-  const customHeader = `//\u8BE5\u6587\u4EF6\u7531\u811A\u672C\u81EA\u52A8\u751F\u6210\uFF0C\u8BF7\u52FF\u624B\u52A8\u4FEE\u6539`;
+  const customHeader = `// This file is automatically generated by a script. Do not modify it manually.`;
   let declBody = declarations.replace(/^\/\*[\s\S]*?\*\/\s*/, "");
   declBody = declBody.replace(/(\n\s*)\/\*([^*][\s\S]*?)\*\//g, "$1/**$2*/");
   const tableInterfaces = dbObject.schemas.flatMap((schema) => schema.tables.map((table) => table.interfaceName));
@@ -116551,7 +115781,7 @@ var init_db = __esm({
     import_crypto2 = __toESM(require("crypto"));
     init_fixDB();
     dbPath = getPath_default("db2.sqlite");
-    console.log("\u6570\u636E\u5E93\u76EE\u5F55:", dbPath);
+    console.log("Database directory:", dbPath);
     dbDir = import_path5.default.dirname(dbPath);
     if (!import_fs3.default.existsSync(dbDir)) {
       import_fs3.default.mkdirSync(dbDir, { recursive: true });
@@ -116586,7 +115816,7 @@ function resolveSafeLocalPath(userPath, rootDir) {
   const safePath = normalizeUserPath(userPath);
   const absPath = import_node_path2.default.join(rootDir, safePath);
   if (!isPathInside(absPath, rootDir)) {
-    throw new Error(`${userPath} \u4E0D\u5728 OSS \u6839\u76EE\u5F55\u5185`);
+    throw new Error(`${userPath}Not in the OSS root directory`);
   }
   return absPath;
 }
@@ -116609,16 +115839,16 @@ var init_oss = __esm({
         });
       }
       /**
-       * 等待根目录初始化完成。用于保证所有文件操作在目录已创建后执行。
+       * Wait for the root directory initialization to complete. Ensures all file operations are executed after the directory has been created.
        * @private
        */
       async ensureInit() {
         await this.initPromise;
       }
       /**
-       * 获取指定相对路径文件的访问 URL。
-       * @param userRelPath 用户传入的相对文件路径（使用 / 作为分隔符）
-       * @returns 文件的 http 链接（本地服务地址）
+       * Get the access URL for a file at the specified relative path.
+       * @param userRelPath Relative file path provided by the user (using / as the separator)
+       * @returns The HTTP link of the file (local service address)
        */
       async getFileUrl(userRelPath, prefix) {
         if (!prefix) prefix = "oss";
@@ -116635,27 +115865,27 @@ var init_oss = __esm({
         return `${url4}${publicPath}?sd_expires=${expires}&sd_access=${signature}`;
       }
       /**
-       * 读取指定路径的文件内容为 Buffer。
-       * @param userRelPath 用户传入的相对文件路径（使用 / 作为分隔符）
-       * @returns 文件内容的 Buffer
-       * @throws 路径不在 OSS 根目录内、文件不存在等错误
+       * Read the file content at the specified path into a Buffer.
+       * @param userRelPath Relative file path provided by the user (using / as the separator)
+       * @returns Buffer of the file content
+       * @throws Errors such as the path not being within the OSS root directory, or the file not existing.
        */
       async getFile(userRelPath) {
         await this.ensureInit();
         return import_promises3.default.readFile(resolveSafeLocalPath(userRelPath, this.rootDir));
       }
       /**
-       * 读取图片文件并转换为 base64 编码的 Data URL。
-       * @param userRelPath 用户传入的相对文件路径（使用 / 作为分隔符）
-       * @returns base64 编码的 Data URL (例如: data:image/png;base64,iVBORw0KGgo...)
-       * @throws 路径不在 OSS 根目录内、文件不存在、不是图片文件等错误
+       * Read the image file and convert it to a base64-encoded Data URL.
+       * @param userRelPath Relative file path provided by the user (using / as the separator)
+       * @returns A base64-encoded Data URL (e.g., data:image/png;base64,iVBORw0KGgo...)
+       * @throws Errors such as the path not being within the OSS root directory, the file not existing, or the file not being an image
        */
       async getImageBase64(userRelPath) {
         await this.ensureInit();
         const absPath = resolveSafeLocalPath(userRelPath, this.rootDir);
         const stat = await import_promises3.default.stat(absPath);
         if (!stat.isFile()) {
-          throw new Error(`${userRelPath} \u4E0D\u662F\u6587\u4EF6`);
+          throw new Error(`${userRelPath}Not a file`);
         }
         const ext = import_node_path2.default.extname(userRelPath).toLowerCase();
         const mimeTypes = {
@@ -116674,41 +115904,41 @@ var init_oss = __esm({
         };
         const mimeType = mimeTypes[ext];
         if (!mimeType) {
-          throw new Error(`\u4E0D\u652F\u6301\u7684\u56FE\u7247\u683C\u5F0F: ${ext}\u3002\u652F\u6301\u7684\u683C\u5F0F: ${Object.keys(mimeTypes).join(", ")}`);
+          throw new Error(`Unsupported image format:${ext}Supported formats:{Object.keys(mimeTypes).join(", ")}`);
         }
         const data = await import_promises3.default.readFile(absPath);
         const base644 = data.toString("base64");
         return `data:${mimeType};base64,${base644}`;
       }
       /**
-       * 删除指定路径的文件。
-       * @param userRelPath 用户传入的相对文件路径（使用 / 作为分隔符）
-       * @throws 路径不在 OSS 根目录内、文件不存在等错误
+       * Delete the file at the specified path.
+       * @param userRelPath Relative file path provided by the user (using / as the separator)
+       * @throws Errors such as the path not being within the OSS root directory, or the file not existing.
        */
       async deleteFile(userRelPath) {
         await this.ensureInit();
         await import_promises3.default.unlink(resolveSafeLocalPath(userRelPath, this.rootDir));
       }
       /**
-       * 删除指定路径的文件夹及其所有内容。
-       * @param userRelPath 用户传入的相对文件夹路径（使用 / 作为分隔符）
-       * @throws 路径不在 OSS 根目录内、文件夹不存在、目标是文件而非文件夹等错误
+       * Delete the specified folder and all its contents.
+       * @param userRelPath Relative folder path provided by the user (using / as the separator)
+       * @throws Errors such as the path not being within the OSS root directory, the folder not existing, or the target being a file instead of a folder
        */
       async deleteDirectory(userRelPath) {
         await this.ensureInit();
         const absPath = resolveSafeLocalPath(userRelPath, this.rootDir);
         const stat = await import_promises3.default.stat(absPath);
         if (!stat.isDirectory()) {
-          throw new Error(`${userRelPath} \u4E0D\u662F\u6587\u4EF6\u5939`);
+          throw new Error(`${userRelPath}Not a folder`);
         }
         await import_promises3.default.rm(absPath, { recursive: true, force: true });
       }
       /**
-       * 将数据写入指定路径的新文件或覆盖已有文件。
-       * 写入前自动创建所需的父文件夹。
-       * @param userRelPath 用户传入的相对文件路径（使用 / 作为分隔符）
-       * @param data 要写入的数据，可以为 Buffer 或字符串
-       * @throws 路径不在 OSS 根目录内等错误
+       * Write data to a new file at the specified path or overwrite an existing file.
+       * Automatically create required parent folders before writing.
+       * @param userRelPath Relative file path provided by the user (using / as the separator)
+       * @param data The data to write, which can be a Buffer or a string
+       * @throws Errors such as the path not being within the OSS root directory
        */
       async writeFile(userRelPath, data) {
         await this.ensureInit();
@@ -116718,9 +115948,9 @@ var init_oss = __esm({
         await import_promises3.default.writeFile(absPath, buffer);
       }
       /**
-       * 检查指定路径文件是否存在。
-       * @param userRelPath 用户传入的相对文件路径（使用 / 作为分隔符）
-       * @returns 文件存在返回 true，否则 false
+       * Check whether the file at the specified path exists.
+       * @param userRelPath Relative file path provided by the user (using / as the separator)
+       * @returns true if the file exists, otherwise false
        */
       async fileExists(userRelPath) {
         await this.ensureInit();
@@ -116732,12 +115962,12 @@ var init_oss = __esm({
         }
       }
       /**
-       * 获取图片的缩略图 URL（最长边不超过 512px，等比缩放）。
-       * 缩略图保存在原路径同目录下的 smallImage 子文件夹中。
-       * 若缩略图已存在则直接返回其 URL；若不存在则同步生成并保存后返回缩略图 URL，
-       * 生成失败时返回原图 URL。
-       * @param userRelPath 用户传入的相对文件路径（使用 / 作为分隔符）
-       * @returns 缩略图 URL（已存在或生成成功）或原图 URL（生成失败时）
+       * Get the thumbnail URL of the image (longest side ≤ 512px, scaled proportionally).
+       * Thumbnails are saved in the `smallImage` subfolder within the same directory as the original path.
+       * If the thumbnail already exists, return its URL directly; otherwise, generate and save it synchronously, then return the thumbnail URL.
+       * Return the original image URL when generation fails.
+       * @param userRelPath Relative file path provided by the user (using / as the separator)
+       * @returns Thumbnail URL (if it already exists or was generated successfully) or the original image URL (if generation failed)
        */
       async getSmallImageUrl(userRelPath) {
         const url4 = await this.getFileUrl(userRelPath);
@@ -116777,9 +116007,9 @@ var init_getConfig = __esm({
     "use strict";
     init_utils3();
     errorMessages = {
-      text: "\u6587\u672C\u6A21\u578B\u914D\u7F6E\u4E0D\u5B58\u5728",
-      image: "\u56FE\u50CF\u6A21\u578B\u914D\u7F6E\u4E0D\u5B58\u5728",
-      video: "\u89C6\u9891\u6A21\u578B\u914D\u7F6E\u4E0D\u5B58\u5728"
+      text: "The text model configuration does not exist",
+      image: "The image model configuration does not exist",
+      video: "The video model configuration does not exist"
     };
     needBaseURL = ["text", "video", "image"];
   }
@@ -131198,7 +130428,7 @@ function normalizeError(error71) {
     const serialized = serializeError(error71);
     return {
       name: serialized.name || "Error",
-      message: serialized.message || "\u672A\u77E5\u9519\u8BEF",
+      message: serialized.message || "Unknown error",
       code: serialized.code,
       stack: serialized.stack,
       cause: error71.cause ? normalizeError(error71.cause) : void 0,
@@ -131251,7 +130481,7 @@ var init_cleanNovel = __esm({
     init_stripThink();
     CleanNovel = class {
       emitter;
-      /** 最大并发数 */
+      /** Maximum concurrency*/
       concurrency;
       constructor(concurrency = 5) {
         this.emitter = new import_events2.EventEmitter();
@@ -131272,7 +130502,7 @@ var init_cleanNovel = __esm({
             messages: [
               {
                 role: "user",
-                content: "\u8BF7\u6839\u636E\u4EE5\u4E0B\u5C0F\u8BF4\u7AE0\u8282\u6570\uFF1A" + novel.chapterIndex + "\u5C0F\u8BF4\u7AE0\u8282\u5238\uFF1A" + novel.reel + "\u5C0F\u8BF4\u7AE0\u8282\u540D\u79F0\uFF1A" + novel.chapter + "\u3001\u5C0F\u8BF4\u7AE0\u8282\u5185\u5BB9\u751F\u6210\u4E8B\u4EF6\u6458\u8981\uFF1A\n" + novel.chapterData
+                content: "Please provide the following novel chapter numbers:" + novel.chapterIndex + "Novel chapter coupon:" + novel.reel + "Novel chapter title:" + novel.chapter + "Novel chapter content generation event summary:" + novel.chapterData
               }
             ]
           });
@@ -152577,18 +151807,18 @@ function convertToOpenAIChatMessages({
   systemMessageMode = "system"
 }) {
   var _a31;
-  const messages = [];
+  const messages2 = [];
   const warnings = [];
   for (const { role, content } of prompt) {
     switch (role) {
       case "system": {
         switch (systemMessageMode) {
           case "system": {
-            messages.push({ role: "system", content });
+            messages2.push({ role: "system", content });
             break;
           }
           case "developer": {
-            messages.push({ role: "developer", content });
+            messages2.push({ role: "developer", content });
             break;
           }
           case "remove": {
@@ -152609,10 +151839,10 @@ function convertToOpenAIChatMessages({
       }
       case "user": {
         if (content.length === 1 && content[0].type === "text") {
-          messages.push({ role: "user", content: content[0].text });
+          messages2.push({ role: "user", content: content[0].text });
           break;
         }
-        messages.push({
+        messages2.push({
           role: "user",
           content: content.map((part, index) => {
             var _a211, _b27, _c;
@@ -152709,7 +151939,7 @@ function convertToOpenAIChatMessages({
             }
           }
         }
-        messages.push({
+        messages2.push({
           role: "assistant",
           content: text2,
           tool_calls: toolCalls.length > 0 ? toolCalls : void 0
@@ -152737,7 +151967,7 @@ function convertToOpenAIChatMessages({
               contentValue = JSON.stringify(output.value);
               break;
           }
-          messages.push({
+          messages2.push({
             role: "tool",
             tool_call_id: toolResponse.toolCallId,
             content: contentValue
@@ -152751,7 +151981,7 @@ function convertToOpenAIChatMessages({
       }
     }
   }
-  return { messages, warnings };
+  return { messages: messages2, warnings };
 }
 function getResponseMetadata({
   id,
@@ -154484,7 +153714,7 @@ var init_dist6 = __esm({
         if (topK != null) {
           warnings.push({ type: "unsupported", feature: "topK" });
         }
-        const { messages, warnings: messageWarnings } = convertToOpenAIChatMessages(
+        const { messages: messages2, warnings: messageWarnings } = convertToOpenAIChatMessages(
           {
             prompt,
             systemMessageMode: (_c = openaiOptions.systemMessageMode) != null ? _c : isReasoningModel ? "developer" : modelCapabilities.systemMessageMode
@@ -154531,7 +153761,7 @@ var init_dist6 = __esm({
           prompt_cache_retention: openaiOptions.promptCacheRetention,
           safety_identifier: openaiOptions.safetyIdentifier,
           // messages:
-          messages
+          messages: messages2
         };
         if (isReasoningModel) {
           if (openaiOptions.reasoningEffort !== "none" || !modelCapabilities.supportsNonReasoningParameters) {
@@ -159142,16 +158372,16 @@ function convertToDeepSeekChatMessages({
   responseFormat
 }) {
   var _a31;
-  const messages = [];
+  const messages2 = [];
   const warnings = [];
   if ((responseFormat == null ? void 0 : responseFormat.type) === "json") {
     if (responseFormat.schema == null) {
-      messages.push({
+      messages2.push({
         role: "system",
         content: "Return JSON."
       });
     } else {
-      messages.push({
+      messages2.push({
         role: "system",
         content: "Return JSON that conforms to the following schema: " + JSON.stringify(responseFormat.schema)
       });
@@ -159174,7 +158404,7 @@ function convertToDeepSeekChatMessages({
     index++;
     switch (role) {
       case "system": {
-        messages.push({ role: "system", content });
+        messages2.push({ role: "system", content });
         break;
       }
       case "user": {
@@ -159189,7 +158419,7 @@ function convertToDeepSeekChatMessages({
             });
           }
         }
-        messages.push({
+        messages2.push({
           role: "user",
           content: userContent
         });
@@ -159229,7 +158459,7 @@ function convertToDeepSeekChatMessages({
             }
           }
         }
-        messages.push({
+        messages2.push({
           role: "assistant",
           content: text2,
           reasoning_content: reasoning,
@@ -159258,7 +158488,7 @@ function convertToDeepSeekChatMessages({
               contentValue = JSON.stringify(output.value);
               break;
           }
-          messages.push({
+          messages2.push({
             role: "tool",
             tool_call_id: toolResponse.toolCallId,
             content: contentValue
@@ -159275,7 +158505,7 @@ function convertToDeepSeekChatMessages({
       }
     }
   }
-  return { messages, warnings };
+  return { messages: messages2, warnings };
 }
 function convertDeepSeekUsage(usage) {
   var _a31, _b27, _c, _d, _e;
@@ -159572,7 +158802,7 @@ var init_dist7 = __esm({
           providerOptions,
           schema: deepseekLanguageModelOptions
         })) != null ? _a31 : {};
-        const { messages, warnings } = convertToDeepSeekChatMessages({
+        const { messages: messages2, warnings } = convertToDeepSeekChatMessages({
           prompt,
           responseFormat
         });
@@ -159600,7 +158830,7 @@ var init_dist7 = __esm({
             presence_penalty: presencePenalty,
             response_format: (responseFormat == null ? void 0 : responseFormat.type) === "json" ? { type: "json_object" } : void 0,
             stop: stopSequences,
-            messages,
+            messages: messages2,
             tools: deepseekTools,
             tool_choice: deepseekToolChoices,
             thinking: ((_b27 = deepseekOptions.thinking) == null ? void 0 : _b27.type) != null ? { type: deepseekOptions.thinking.type } : void 0
@@ -164480,28 +163710,28 @@ function date42(params) {
   return /* @__PURE__ */ _coercedDate2(ZodDate3, params);
 }
 function convertToZhipuChatMessages(prompt) {
-  const messages = [];
+  const messages2 = [];
   for (let i = 0; i < prompt.length; i++) {
     const { role, content } = prompt[i];
     const isLastMessage = i === prompt.length - 1;
     switch (role) {
       case "system": {
-        messages.push({ role: "system", content });
+        messages2.push({ role: "system", content });
         break;
       }
       case "user": {
         if (content.length === 1 && content[0].type === "text") {
-          messages.push({ role: "user", content: content[0].text });
+          messages2.push({ role: "user", content: content[0].text });
           break;
         }
         if (content.every((part) => part.type === "text")) {
-          messages.push({
+          messages2.push({
             role: "user",
             content: content.map((part) => part.text).join("")
           });
           break;
         }
-        messages.push({
+        messages2.push({
           role: "user",
           content: content.map((part) => {
             var _a37;
@@ -164564,7 +163794,7 @@ function convertToZhipuChatMessages(prompt) {
             }
           }
         }
-        messages.push({
+        messages2.push({
           role: "assistant",
           content: text2,
           prefix: isLastMessage ? true : void 0,
@@ -164587,7 +163817,7 @@ function convertToZhipuChatMessages(prompt) {
               contentValue = JSON.stringify(output.value);
               break;
           }
-          messages.push({
+          messages2.push({
             role: "tool",
             content: contentValue,
             tool_call_id: toolResponse.toolCallId
@@ -164601,7 +163831,7 @@ function convertToZhipuChatMessages(prompt) {
       }
     }
   }
-  return messages;
+  return messages2;
 }
 function mapZhipuFinishReason(finishReason) {
   switch (finishReason) {
@@ -197023,13 +196253,13 @@ var require_dist8 = __commonJS({
       ].filter((line) => line != null).join("\n");
     }
     function injectJsonInstructionIntoMessages({
-      messages,
+      messages: messages2,
       schema,
       schemaPrefix,
       schemaSuffix
     }) {
       var _a211, _b28;
-      const systemMessage = ((_a211 = messages[0]) == null ? void 0 : _a211.role) === "system" ? { ...messages[0] } : { role: "system", content: "" };
+      const systemMessage = ((_a211 = messages2[0]) == null ? void 0 : _a211.role) === "system" ? { ...messages2[0] } : { role: "system", content: "" };
       systemMessage.content = injectJsonInstruction({
         prompt: systemMessage.content,
         schema,
@@ -197038,7 +196268,7 @@ var require_dist8 = __commonJS({
       });
       return [
         systemMessage,
-        ...((_b28 = messages[0]) == null ? void 0 : _b28.role) === "system" ? messages.slice(1) : messages
+        ...((_b28 = messages2[0]) == null ? void 0 : _b28.role) === "system" ? messages2.slice(1) : messages2
       ];
     }
     function isNonNullable3(value) {
@@ -199005,24 +198235,24 @@ var require_dist9 = __commonJS({
       return (_b27 = (_a31 = message == null ? void 0 : message.providerOptions) == null ? void 0 : _a31.qwen) != null ? _b27 : {};
     }
     function convertToQwenChatMessages(prompt) {
-      const messages = [];
+      const messages2 = [];
       for (const { role, content, ...message } of prompt) {
         const options = getQwenOptions({ ...message });
         switch (role) {
           case "system": {
-            messages.push({ role: "system", content, ...options });
+            messages2.push({ role: "system", content, ...options });
             break;
           }
           case "user": {
             if (content.length === 1 && content[0].type === "text") {
-              messages.push({
+              messages2.push({
                 role: "user",
                 content: content[0].text,
                 ...getQwenOptions(content[0])
               });
               break;
             }
-            messages.push({
+            messages2.push({
               role: "user",
               content: content.map((part) => {
                 const partOptions = getQwenOptions(part);
@@ -199104,7 +198334,7 @@ var require_dist9 = __commonJS({
                 }
               }
             }
-            messages.push({
+            messages2.push({
               role: "assistant",
               content: text2,
               tool_calls: toolCalls.length > 0 ? toolCalls : void 0,
@@ -199127,7 +198357,7 @@ var require_dist9 = __commonJS({
               } else {
                 toolContent = JSON.stringify({ type: output.type, reason: output.reason });
               }
-              messages.push({
+              messages2.push({
                 role: "tool",
                 tool_call_id: toolResponse.toolCallId,
                 content: toolContent,
@@ -199142,7 +198372,7 @@ var require_dist9 = __commonJS({
           }
         }
       }
-      return messages;
+      return messages2;
     }
     function getResponseMetadata8({
       id,
@@ -199182,13 +198412,13 @@ var require_dist9 = __commonJS({
       };
     }
     var import_provider_utils210 = require_dist8();
-    var import_zod154 = require_zod();
-    var qwenErrorDataSchema = import_zod154.z.object({
-      object: import_zod154.z.literal("error"),
-      message: import_zod154.z.string(),
-      type: import_zod154.z.string(),
-      param: import_zod154.z.string().nullable(),
-      code: import_zod154.z.string().nullable()
+    var import_zod155 = require_zod();
+    var qwenErrorDataSchema = import_zod155.z.object({
+      object: import_zod155.z.literal("error"),
+      message: import_zod155.z.string(),
+      type: import_zod155.z.string(),
+      param: import_zod155.z.string().nullable(),
+      code: import_zod155.z.string().nullable()
     });
     var qwenFailedResponseHandler = (0, import_provider_utils210.createJsonErrorResponseHandler)({
       errorSchema: qwenErrorDataSchema,
@@ -203514,7 +202744,7 @@ async function convertToAnthropicMessagesPrompt({
   const blocks = groupIntoBlocks(prompt);
   const validator2 = cacheControlValidator || new CacheControlValidator();
   let system = void 0;
-  const messages = [];
+  const messages2 = [];
   async function shouldEnableCitations(providerMetadata) {
     var _a211, _b28;
     const anthropicOptions = await parseProviderOptions({
@@ -203780,7 +203010,7 @@ async function convertToAnthropicMessagesPrompt({
             }
           }
         }
-        messages.push({ role: "user", content: anthropicContent });
+        messages2.push({ role: "user", content: anthropicContent });
         break;
       }
       case "assistant": {
@@ -204226,7 +203456,7 @@ async function convertToAnthropicMessagesPrompt({
             }
           }
         }
-        messages.push({ role: "assistant", content: anthropicContent });
+        messages2.push({ role: "assistant", content: anthropicContent });
         break;
       }
       default: {
@@ -204236,7 +203466,7 @@ async function convertToAnthropicMessagesPrompt({
     }
   }
   return {
-    prompt: { system, messages },
+    prompt: { system, messages: messages2 },
     betas
   };
 }
@@ -208212,24 +207442,24 @@ function getAudioFormat(mediaType) {
 }
 function convertToOpenAICompatibleChatMessages(prompt) {
   var _a31, _b27, _c;
-  const messages = [];
+  const messages2 = [];
   for (const { role, content, ...message } of prompt) {
     const metadata = getOpenAIMetadata({ ...message });
     switch (role) {
       case "system": {
-        messages.push({ role: "system", content, ...metadata });
+        messages2.push({ role: "system", content, ...metadata });
         break;
       }
       case "user": {
         if (content.length === 1 && content[0].type === "text") {
-          messages.push({
+          messages2.push({
             role: "user",
             content: content[0].text,
             ...getOpenAIMetadata(content[0])
           });
           break;
         }
-        messages.push({
+        messages2.push({
           role: "user",
           content: content.map((part) => {
             var _a211;
@@ -208343,7 +207573,7 @@ function convertToOpenAICompatibleChatMessages(prompt) {
             }
           }
         }
-        messages.push({
+        messages2.push({
           role: "assistant",
           content: text2,
           ...reasoning.length > 0 ? { reasoning_content: reasoning } : {},
@@ -208374,7 +207604,7 @@ function convertToOpenAICompatibleChatMessages(prompt) {
               break;
           }
           const toolResponseMetadata = getOpenAIMetadata(toolResponse);
-          messages.push({
+          messages2.push({
             role: "tool",
             tool_call_id: toolResponse.toolCallId,
             content: contentValue,
@@ -208389,7 +207619,7 @@ function convertToOpenAICompatibleChatMessages(prompt) {
       }
     }
   }
-  return messages;
+  return messages2;
 }
 function getResponseMetadata5({
   id,
@@ -209808,20 +209038,20 @@ var init_dist14 = __esm({
 // node_modules/@ai-sdk/xai/dist/index.mjs
 function convertToXaiChatMessages(prompt) {
   var _a31;
-  const messages = [];
+  const messages2 = [];
   const warnings = [];
   for (const { role, content } of prompt) {
     switch (role) {
       case "system": {
-        messages.push({ role: "system", content });
+        messages2.push({ role: "system", content });
         break;
       }
       case "user": {
         if (content.length === 1 && content[0].type === "text") {
-          messages.push({ role: "user", content: content[0].text });
+          messages2.push({ role: "user", content: content[0].text });
           break;
         }
-        messages.push({
+        messages2.push({
           role: "user",
           content: content.map((part) => {
             switch (part.type) {
@@ -209870,7 +209100,7 @@ function convertToXaiChatMessages(prompt) {
             }
           }
         }
-        messages.push({
+        messages2.push({
           role: "assistant",
           content: text2,
           tool_calls: toolCalls.length > 0 ? toolCalls : void 0
@@ -209898,7 +209128,7 @@ function convertToXaiChatMessages(prompt) {
               contentValue = JSON.stringify(output.value);
               break;
           }
-          messages.push({
+          messages2.push({
             role: "tool",
             tool_call_id: toolResponse.toolCallId,
             content: contentValue
@@ -209912,7 +209142,7 @@ function convertToXaiChatMessages(prompt) {
       }
     }
   }
-  return { messages, warnings };
+  return { messages: messages2, warnings };
 }
 function convertXaiChatUsage(usage) {
   var _a31, _b27, _c, _d;
@@ -210601,7 +209831,7 @@ var init_dist15 = __esm({
         if (stopSequences != null) {
           warnings.push({ type: "unsupported", feature: "stopSequences" });
         }
-        const { messages, warnings: messageWarnings } = convertToXaiChatMessages(prompt);
+        const { messages: messages2, warnings: messageWarnings } = convertToXaiChatMessages(prompt);
         warnings.push(...messageWarnings);
         const {
           tools: xaiTools2,
@@ -210669,7 +209899,7 @@ var init_dist15 = __esm({
             })
           } : void 0,
           // messages in xai format
-          messages,
+          messages: messages2,
           // tools in xai format
           tools: xaiTools2,
           tool_choice: xaiToolChoice
@@ -215198,7 +214428,7 @@ async function convertToAnthropicMessagesPrompt2({
   const blocks = groupIntoBlocks2(prompt);
   const validator2 = cacheControlValidator || new CacheControlValidator2();
   let system = void 0;
-  const messages = [];
+  const messages2 = [];
   async function shouldEnableCitations(providerMetadata) {
     var _a211, _b28;
     const anthropicOptions = await parseProviderOptions2({
@@ -215449,7 +214679,7 @@ async function convertToAnthropicMessagesPrompt2({
             }
           }
         }
-        messages.push({ role: "user", content: anthropicContent });
+        messages2.push({ role: "user", content: anthropicContent });
         break;
       }
       case "assistant": {
@@ -215855,7 +215085,7 @@ async function convertToAnthropicMessagesPrompt2({
             }
           }
         }
-        messages.push({ role: "assistant", content: anthropicContent });
+        messages2.push({ role: "assistant", content: anthropicContent });
         break;
       }
       default: {
@@ -215865,7 +215095,7 @@ async function convertToAnthropicMessagesPrompt2({
     }
   }
   return {
-    prompt: { system, messages },
+    prompt: { system, messages: messages2 },
     betas
   };
 }
@@ -220981,24 +220211,24 @@ function getMinimaxMetadata(message) {
   return message?.providerOptions?.minimax ?? {};
 }
 function convertToMinimaxChatMessages(prompt) {
-  const messages = [];
+  const messages2 = [];
   for (const { role, content, ...message } of prompt) {
     const metadata = getOpenAIMetadata2({ ...message });
     switch (role) {
       case "system": {
-        messages.push({ role: "system", content, ...metadata });
+        messages2.push({ role: "system", content, ...metadata });
         break;
       }
       case "user": {
         if (content.length === 1 && content[0].type === "text") {
-          messages.push({
+          messages2.push({
             role: "user",
             content: content[0].text,
             ...getOpenAIMetadata2(content[0])
           });
           break;
         }
-        messages.push({
+        messages2.push({
           role: "user",
           content: content.map((part) => {
             const partMetadata = getOpenAIMetadata2(part);
@@ -221069,7 +220299,7 @@ function convertToMinimaxChatMessages(prompt) {
         if (reasoningDetails) {
           messageObj.reasoning_details = reasoningDetails;
         }
-        messages.push(messageObj);
+        messages2.push(messageObj);
         break;
       }
       case "tool": {
@@ -221094,7 +220324,7 @@ function convertToMinimaxChatMessages(prompt) {
               break;
           }
           const toolResponseMetadata = getOpenAIMetadata2(toolResponse);
-          messages.push({
+          messages2.push({
             role: "tool",
             tool_call_id: toolResponse.toolCallId,
             content: contentValue,
@@ -221109,7 +220339,7 @@ function convertToMinimaxChatMessages(prompt) {
       }
     }
   }
-  return messages;
+  return messages2;
 }
 function mapMinimaxFinishReason(finishReason) {
   switch (finishReason) {
@@ -225655,7 +224885,7 @@ async function pollTask(fn, interval = 3e3, timeout = 3e6) {
 }
 async function mergeImages(imageBase64List, maxSize = "10mb") {
   if (imageBase64List.length === 0) {
-    throw new Error("\u56FE\u7247\u5217\u8868\u4E0D\u80FD\u4E3A\u7A7A");
+    throw new Error("The image list cannot be empty");
   }
   const maxBytes = parseSize(maxSize);
   const imageBuffers = imageBase64List.map(base64ToBuffer);
@@ -225691,7 +224921,7 @@ async function mergeImages(imageBase64List, maxSize = "10mb") {
 function parseSize(size) {
   const match = size.toLowerCase().match(/^(\d+(?:\.\d+)?)\s*(kb|mb|gb|b)?$/);
   if (!match) {
-    throw new Error(`\u65E0\u6548\u7684\u5927\u5C0F\u683C\u5F0F: ${size}`);
+    throw new Error(`Invalid size format:${size}`);
   }
   const value = parseFloat(match[1]);
   const unit = match[2] || "b";
@@ -225757,7 +224987,7 @@ async function taskRecord(projectId, taskClass, modelName, opts = {}) {
   } else if (typeof content === "string") {
     opteorContent = content;
   } else if (typeof content === "function") {
-    throw new Error("\u4E0D\u652F\u6301\u7684\u7C7B\u578B");
+    throw new Error("Unsupported type");
   } else {
     try {
       opteorContent = JSON.stringify(content);
@@ -225787,9 +225017,9 @@ var init_taskRecord = __esm({
     "use strict";
     init_db();
     taskStateMap = {
-      "0": "\u8FDB\u884C\u4E2D",
-      "1": "\u5DF2\u5B8C\u6210",
-      "-1": "\u751F\u6210\u5931\u8D25"
+      "0": "In progress",
+      "1": "Completed",
+      "-1": "Generation failed"
     };
   }
 });
@@ -229323,7 +228553,7 @@ async function convertToLanguageModelPrompt({
       }
     }
   }
-  const messages = [
+  const messages2 = [
     ...prompt.system != null ? typeof prompt.system === "string" ? [{ role: "system", content: prompt.system }] : asArray(prompt.system).map((message) => ({
       role: "system",
       content: message.content,
@@ -229334,7 +228564,7 @@ async function convertToLanguageModelPrompt({
     )
   ];
   const combinedMessages = [];
-  for (const message of messages) {
+  for (const message of messages2) {
     if (message.role !== "tool") {
       combinedMessages.push(message);
       continue;
@@ -229523,8 +228753,8 @@ function convertToLanguageModelMessage({
     }
   }
 }
-async function downloadAssets(messages, download2, supportedUrls) {
-  const plannedDownloads = messages.filter((message) => message.role === "user").map((message) => message.content).filter(
+async function downloadAssets(messages2, download2, supportedUrls) {
+  const plannedDownloads = messages2.filter((message) => message.role === "user").map((message) => message.content).filter(
     (content) => Array.isArray(content)
   ).flat().filter(
     (part) => part.type === "image" || part.type === "file"
@@ -229828,27 +229058,27 @@ async function standardizePrompt(prompt) {
       message: "system must be a string, SystemModelMessage, or array of SystemModelMessage"
     });
   }
-  let messages;
+  let messages2;
   if (prompt.prompt != null && typeof prompt.prompt === "string") {
-    messages = [{ role: "user", content: prompt.prompt }];
+    messages2 = [{ role: "user", content: prompt.prompt }];
   } else if (prompt.prompt != null && Array.isArray(prompt.prompt)) {
-    messages = prompt.prompt;
+    messages2 = prompt.prompt;
   } else if (prompt.messages != null) {
-    messages = prompt.messages;
+    messages2 = prompt.messages;
   } else {
     throw new InvalidPromptError({
       prompt,
       message: "prompt or messages must be defined"
     });
   }
-  if (messages.length === 0) {
+  if (messages2.length === 0) {
     throw new InvalidPromptError({
       prompt,
       message: "messages must not be empty"
     });
   }
   const validationResult = await safeValidateTypes({
-    value: messages,
+    value: messages2,
     schema: external_exports.array(modelMessageSchema)
   });
   if (!validationResult.success) {
@@ -229859,7 +229089,7 @@ async function standardizePrompt(prompt) {
     });
   }
   return {
-    messages,
+    messages: messages2,
     system: prompt.system
   };
 }
@@ -230310,9 +229540,9 @@ function prepareRetries({
   };
 }
 function collectToolApprovals({
-  messages
+  messages: messages2
 }) {
-  const lastMessage = messages.at(-1);
+  const lastMessage = messages2.at(-1);
   if ((lastMessage == null ? void 0 : lastMessage.role) != "tool") {
     return {
       approvedToolApprovals: [],
@@ -230320,7 +229550,7 @@ function collectToolApprovals({
     };
   }
   const toolCallsByToolCallId = {};
-  for (const message of messages) {
+  for (const message of messages2) {
     if (message.role === "assistant" && typeof message.content !== "string") {
       const content = message.content;
       for (const part of content) {
@@ -230331,7 +229561,7 @@ function collectToolApprovals({
     }
   }
   const toolApprovalRequestsByApprovalId = {};
-  for (const message of messages) {
+  for (const message of messages2) {
     if (message.role === "assistant" && typeof message.content !== "string") {
       const content = message.content;
       for (const part of content) {
@@ -230391,7 +229621,7 @@ async function executeToolCall({
   tools,
   tracer,
   telemetry,
-  messages,
+  messages: messages2,
   abortSignal,
   experimental_context,
   stepNumber,
@@ -230409,7 +229639,7 @@ async function executeToolCall({
     stepNumber,
     model,
     toolCall,
-    messages,
+    messages: messages2,
     abortSignal,
     functionId: telemetry == null ? void 0 : telemetry.functionId,
     metadata: telemetry == null ? void 0 : telemetry.metadata,
@@ -230442,7 +229672,7 @@ async function executeToolCall({
           input,
           options: {
             toolCallId,
-            messages,
+            messages: messages2,
             abortSignal,
             experimental_context
           }
@@ -230534,7 +229764,7 @@ function extractTextContent(content) {
 async function isApprovalNeeded({
   tool: tool22,
   toolCall,
-  messages,
+  messages: messages2,
   experimental_context
 }) {
   if (tool22.needsApproval == null) {
@@ -230545,7 +229775,7 @@ async function isApprovalNeeded({
   }
   return await tool22.needsApproval(toolCall.input, {
     toolCallId: toolCall.toolCallId,
-    messages,
+    messages: messages2,
     experimental_context
   });
 }
@@ -230884,7 +230114,7 @@ async function parseToolCall({
   tools,
   repairToolCall,
   system,
-  messages
+  messages: messages2
 }) {
   var _a212;
   try {
@@ -230910,7 +230140,7 @@ async function parseToolCall({
             return await asSchema(inputSchema).jsonSchema;
           },
           system,
-          messages,
+          messages: messages2,
           error: error71
         });
       } catch (repairError) {
@@ -231170,7 +230400,7 @@ async function generateText({
   toolChoice,
   system,
   prompt,
-  messages,
+  messages: messages2,
   maxRetries: maxRetriesArg,
   abortSignal,
   timeout,
@@ -231227,7 +230457,7 @@ async function generateText({
   const initialPrompt = await standardizePrompt({
     system,
     prompt,
-    messages
+    messages: messages2
   });
   const globalTelemetry = createGlobalTelemetry(telemetry == null ? void 0 : telemetry.integrations);
   await notify({
@@ -231235,7 +230465,7 @@ async function generateText({
       model: modelInfo,
       system,
       prompt,
-      messages,
+      messages: messages2,
       tools,
       toolChoice,
       activeTools,
@@ -231281,7 +230511,7 @@ async function generateText({
           "ai.model.id": model.modelId,
           // specific settings that only make sense on the outer level:
           "ai.prompt": {
-            input: () => JSON.stringify({ system, prompt, messages })
+            input: () => JSON.stringify({ system, prompt, messages: messages2 })
           }
         }
       }),
@@ -231834,7 +231064,7 @@ async function executeTools({
   tools,
   tracer,
   telemetry,
-  messages,
+  messages: messages2,
   abortSignal,
   experimental_context,
   stepNumber,
@@ -231849,7 +231079,7 @@ async function executeTools({
         tools,
         tracer,
         telemetry,
-        messages,
+        messages: messages2,
         abortSignal,
         experimental_context,
         stepNumber,
@@ -232949,7 +232179,7 @@ function runToolsTransformation({
   tracer,
   telemetry,
   system,
-  messages,
+  messages: messages2,
   abortSignal,
   repairToolCall,
   experimental_context,
@@ -233046,7 +232276,7 @@ function runToolsTransformation({
               tools,
               repairToolCall,
               system,
-              messages
+              messages: messages2
             });
             toolCallsByToolCallId.set(toolCall.toolCallId, toolCall);
             controller.enqueue(toolCall);
@@ -233070,7 +232300,7 @@ function runToolsTransformation({
               await tool22.onInputAvailable({
                 input: toolCall.input,
                 toolCallId: toolCall.toolCallId,
-                messages,
+                messages: messages2,
                 abortSignal,
                 experimental_context
               });
@@ -233078,7 +232308,7 @@ function runToolsTransformation({
             if (await isApprovalNeeded({
               tool: tool22,
               toolCall,
-              messages,
+              messages: messages2,
               experimental_context
             })) {
               toolResultsStreamController.enqueue({
@@ -233097,7 +232327,7 @@ function runToolsTransformation({
                 tools,
                 tracer,
                 telemetry,
-                messages,
+                messages: messages2,
                 abortSignal,
                 experimental_context,
                 stepNumber,
@@ -233194,7 +232424,7 @@ function streamText({
   toolChoice,
   system,
   prompt,
-  messages,
+  messages: messages2,
   maxRetries,
   abortSignal,
   timeout,
@@ -233250,7 +232480,7 @@ function streamText({
     chunkAbortController,
     system,
     prompt,
-    messages,
+    messages: messages2,
     tools,
     toolChoice,
     transforms: asArray(transform8),
@@ -234992,7 +234222,7 @@ var init_dist22 = __esm({
         chunkAbortController,
         system,
         prompt,
-        messages,
+        messages: messages2,
         tools,
         toolChoice,
         transforms,
@@ -235373,7 +234603,7 @@ var init_dist22 = __esm({
               ...baseTelemetryAttributes,
               // specific settings that only make sense on the outer level:
               "ai.prompt": {
-                input: () => JSON.stringify({ system, prompt, messages })
+                input: () => JSON.stringify({ system, prompt, messages: messages2 })
               }
             }
           }),
@@ -235384,14 +234614,14 @@ var init_dist22 = __esm({
             const initialPrompt = await standardizePrompt({
               system,
               prompt,
-              messages
+              messages: messages2
             });
             await notify({
               event: {
                 model: modelInfo,
                 system,
                 prompt,
-                messages,
+                messages: messages2,
                 tools,
                 toolChoice,
                 activeTools,
@@ -237284,13 +236514,13 @@ async function resolveModelName(value) {
     const agentUseModeVal = await utils_default.userSettings.getSetting("agentUseMode");
     if (agentUseModeVal?.value == "1") {
       const agentDeployData2 = await utils_default.userSettings.getAgentDeployByKey(value);
-      if (!agentDeployData2?.modelName) throw new Error(`\u9AD8\u7EA7\u914D\u7F6E\u6A21\u5F0F\u4E0B\uFF0C\u672A\u627E\u5230\u5BF9\u5E94\u7684\u6A21\u578B\u914D\u7F6E ${value}`);
+      if (!agentDeployData2?.modelName) throw new Error(`In advanced configuration mode, the corresponding model configuration was not found.${value}`);
       return agentDeployData2?.modelName;
     }
     if (agentUseModeVal?.value == "0") {
       const [mainly] = value.split(/:(.+)/);
       const mainlyData = await utils_default.userSettings.getAgentDeployByKey(mainly);
-      if (!mainlyData?.modelName) throw new Error(`\u7B80\u6613\u914D\u7F6E\u6A21\u5F0F\u4E0B\uFF0C\u672A\u627E\u5230\u90E8\u7F72\u914D\u7F6E ${value}`);
+      if (!mainlyData?.modelName) throw new Error(`In simple configuration mode, the deployment configuration was not found.${value}`);
       return mainlyData?.modelName;
     }
     const agentDeployData = await utils_default.userSettings.getAgentDeployByKey(value);
@@ -237298,7 +236528,7 @@ async function resolveModelName(value) {
     if (!agentDeployData?.modelName) {
       const [mainly] = agentDeployData.key.split(/:(.+)/);
       const mainlyData = await utils_default.userSettings.getAgentDeployByKey(mainly);
-      if (!mainlyData?.modelName) throw new Error(`\u672A\u627E\u5230\u90E8\u7F72\u914D\u7F6E ${value}`);
+      if (!mainlyData?.modelName) throw new Error(`Deployment configuration not found${value}`);
       modelName = mainlyData.modelName;
     }
     modelName = agentDeployData?.modelName || modelName;
@@ -237311,20 +236541,20 @@ async function getModelConfig(value) {
     const agentUseModeVal = await utils_default.userSettings.getSetting("agentUseMode");
     if (agentUseModeVal?.value == "1") {
       const agentDeployData2 = await utils_default.userSettings.getAgentDeployByKey(value);
-      if (!agentDeployData2?.modelName) throw new Error(`\u9AD8\u7EA7\u914D\u7F6E\u6A21\u5F0F\u4E0B\uFF0C\u672A\u627E\u5230\u5BF9\u5E94\u7684\u6A21\u578B\u914D\u7F6E ${value}`);
+      if (!agentDeployData2?.modelName) throw new Error(`In advanced configuration mode, the corresponding model configuration was not found.${value}`);
       return agentDeployData2;
     }
     if (agentUseModeVal?.value == "0") {
       const [mainly] = value.split(/:(.+)/);
       const mainlyData = await utils_default.userSettings.getAgentDeployByKey(mainly);
-      if (!mainlyData?.modelName) throw new Error(`\u7B80\u6613\u914D\u7F6E\u6A21\u5F0F\u4E0B\uFF0C\u672A\u627E\u5230\u90E8\u7F72\u914D\u7F6E ${value}`);
+      if (!mainlyData?.modelName) throw new Error(`In simple configuration mode, the deployment configuration was not found.${value}`);
       return mainlyData;
     }
     const agentDeployData = await utils_default.userSettings.getAgentDeployByKey(value);
     if (!agentDeployData?.modelName) {
       const [mainly] = agentDeployData.key.split(/:(.+)/);
       const mainlyData = await utils_default.userSettings.getAgentDeployByKey(mainly);
-      if (!mainlyData?.modelName) throw new Error(`\u672A\u627E\u5230\u90E8\u7F72\u914D\u7F6E ${value}`);
+      if (!mainlyData?.modelName) throw new Error(`Deployment configuration not found${value}`);
       return mainlyData;
     }
     return agentDeployData;
@@ -237334,10 +236564,10 @@ async function getModelConfig(value) {
 async function getVendorTemplateFn(fnName, modelName) {
   const [id, name28] = modelName.split(/:(.+)/);
   const vendorConfigData = await utils_default.userSettings.getVendorConfig(id);
-  if (!vendorConfigData) throw new Error(`\u672A\u627E\u5230\u4F9B\u5E94\u5546\u914D\u7F6E id=${id}`);
+  if (!vendorConfigData) throw new Error(`Supplier configuration not found id=${id}`);
   const modelList = await utils_default.vendor.getModelList(id);
   const selectedModel = modelList.find((i) => i.modelName == name28);
-  if (!selectedModel) throw new Error(`\u672A\u627E\u5230\u6A21\u578B ${name28} id=${id}`);
+  if (!selectedModel) throw new Error(`Model not found${name28} id=${id}`);
   const code = utils_default.vendor.getCode(id);
   const jsCode = (0, import_sucrase2.transform)(code, { transforms: ["typescript"] }).code;
   const running = utils_default.vm(jsCode);
@@ -237346,7 +236576,7 @@ async function getVendorTemplateFn(fnName, modelName) {
     running.vendor.models = modelList;
   }
   const fn = running[fnName];
-  if (!fn) throw new Error(`\u672A\u627E\u5230\u4F9B\u5E94\u5546\u914D\u7F6E\u4E2D\u7684\u51FD\u6570 ${fnName} id=${id}`);
+  if (!fn) throw new Error(`Function not found in supplier configuration${fnName} id=${id}`);
   if (fnName == "textRequest")
     return (think, thinkLevel = 0) => {
       const effectiveThink = think ?? !!selectedModel.think;
@@ -237552,67 +236782,12 @@ var init_ai = __esm({
 
 // src/utils/getPrompts.ts
 async function getPrompts(type) {
-  if (type == "event") {
-    return `
-# \u4E8B\u4EF6\u63D0\u53D6\u6307\u4EE4
-
-\u4F60\u662F\u5C0F\u8BF4\u6587\u672C\u5206\u6790\u52A9\u624B\u3002\u7528\u6237\u6BCF\u6B21\u63D0\u4F9B\u4E00\u4E2A\u7AE0\u8282\u7684\u539F\u6587\uFF0C\u4F60\u63D0\u53D6\u8BE5\u7AE0\u7684\u7ED3\u6784\u5316\u4E8B\u4EF6\u4FE1\u606F\u3002
-
-## \u26A0\uFE0F \u8F93\u51FA\u7EA6\u675F\uFF08\u6700\u9AD8\u4F18\u5148\u7EA7\uFF0C\u8FDD\u53CD\u4EFB\u4F55\u4E00\u6761\u5373\u4E3A\u5931\u8D25\uFF09
-
-1. \u4F60\u7684**\u5B8C\u6574\u56DE\u590D**\u53EA\u6709\u4E00\u884C\uFF0C\u4EE5 \`|\` \u5F00\u5934\u3001\u4EE5 \`|\` \u7ED3\u5C3E\uFF0C\u6070\u597D 7 \u4E2A\u5B57\u6BB5
-2. \u56DE\u590D\u7684**\u7B2C\u4E00\u4E2A\u5B57\u7B26**\u5FC5\u987B\u662F \`|\`\uFF0C**\u6700\u540E\u4E00\u4E2A\u5B57\u7B26**\u5FC5\u987B\u662F \`|\`
-3. \`|\` \u4E4B\u524D\u4E0D\u8BB8\u6709\u4EFB\u4F55\u5B57\u7B26\u2014\u2014\u6CA1\u6709\u5F15\u5BFC\u8BED\u3001\u6CA1\u6709\u89E3\u91CA\u3001\u6CA1\u6709"\u6839\u636E\u2026\u2026"\u3001\u6CA1\u6709"\u4EE5\u4E0B\u662F\u2026\u2026"
-4. \`|\` \u4E4B\u540E\u4E0D\u8BB8\u6709\u4EFB\u4F55\u5B57\u7B26\u2014\u2014\u6CA1\u6709\u603B\u7ED3\u3001\u6CA1\u6709\u63D0\u53D6\u8BF4\u660E\u3001\u6CA1\u6709\u6539\u7F16\u5EFA\u8BAE
-5. \u4E0D\u8F93\u51FA\u8868\u5934\u884C\u3001\u5206\u9694\u7EBF\u3001Markdown \u6807\u9898\u3001emoji\u3001\u4EE3\u7801\u5757\u6807\u8BB0
-
-## \u8F93\u51FA\u683C\u5F0F
-
-\`\`\`
-| \u7B2CX\u7AE0 {\u7AE0\u8282\u6807\u9898} | {\u6D89\u53CA\u89D2\u8272} | {\u6838\u5FC3\u4E8B\u4EF6} | {\u4E3B\u7EBF\u5173\u7CFB} | {\u4FE1\u606F\u5BC6\u5EA6} | {\u9884\u4F30\u96C6\u957F} | {\u60C5\u7EEA\u5F3A\u5EA6} |
-\`\`\`
-
-### \u5B57\u6BB5\u89C4\u8303
-
-| \u5B57\u6BB5 | \u683C\u5F0F\u8981\u6C42 | \u793A\u4F8B |
-|------|----------|------|
-| \u7AE0\u8282 | \`\u7B2CX\u7AE0 {\u7AE0\u8282\u6807\u9898}\` | \`\u7B2C1\u7AE0 \u804C\u4E1A\u5371\u673A\u4E0E\u8BB8\u613F\` |
-| \u6D89\u53CA\u89D2\u8272 | \u6709\u5B9E\u9645\u620F\u4EFD\u7684\u89D2\u8272\uFF0C\u987F\u53F7\u5206\u9694 | \`\u6797\u9038\u3001\u767D\u6709\u5BB9\` |
-| \u6838\u5FC3\u4E8B\u4EF6 | 30-60\u5B57\uFF0C\u5FC5\u987B\u542B\u52A8\u4F5C+\u7ED3\u679C | \`\u6797\u9038\u56E0\u89E3\u5BC6\u98CE\u6F6E\u4E8B\u4E1A\u5D29\u584C\uFF0C\u9893\u5E9F\u4E2D\u8BB8\u613F\u89E6\u53D1\u9B54\u6CD5\u7CFB\u7EDF\u7ED1\u5B9A\` |
-| \u4E3B\u7EBF\u5173\u7CFB | **\u5FC5\u987B**\u4E3A \`\u5F3A/\u4E2D/\u5F31\uFF083-8\u5B57\u7406\u7531\uFF09\` | \`\u5F3A\uFF08\u52A8\u673A\u5EFA\u7ACB+\u7CFB\u7EDF\u6FC0\u6D3B\uFF09\` |
-| \u4FE1\u606F\u5BC6\u5EA6 | \`\u9AD8\` / \`\u4E2D\` / \`\u4F4E\` | \`\u9AD8\` |
-| \u9884\u4F30\u96C6\u957F | **\u5FC5\u987B**\u4E3A \`X\u79D2\`\uFF0C\u7981\u6B62\u7528\u5206\u949F | \`50\u79D2\` |
-| \u60C5\u7EEA\u5F3A\u5EA6 | \u6587\u5B57\u6807\u7B7E\uFF0C\`+\` \u8FDE\u63A5\uFF0C\u7981\u6B62\u661F\u7EA7/\u6570\u5B57 | \`\u8F6C\u6298+\u60AC\u7591\` |
-
-**\u4E3B\u7EBF\u5173\u7CFB\u5224\u5B9A**\uFF1A\u5F3A\uFF1D\u76F4\u63A5\u63A8\u52A8\u4E3B\u89D2\u5F27\u7EBF\uFF1B\u4E2D\uFF1D\u8865\u5145\u4E16\u754C\u89C2/\u4EBA\u7269\u5173\u7CFB/\u4F0F\u7B14\uFF1B\u5F31\uFF1D\u8FC7\u6E21/\u6C14\u6C1B\u3002
-
-**\u9884\u4F30\u96C6\u957F\u53C2\u8003**\uFF1A\u9AD8\u5BC6\u5EA6+\u9AD8\u60C5\u7EEA\u219245-60\u79D2\uFF1B\u4E2D\u219235-45\u79D2\uFF1B\u4F4E\u219225-35\u79D2\u3002
-
-**\u53EF\u7528\u60C5\u7EEA\u6807\u7B7E**\uFF1A\`\u51B2\u7A81\`\u3001\`\u6050\u6016\`\u3001\`\u60C5\u611F\`\u3001\`\u8F6C\u6298\`\u3001\`\u9AD8\u6F6E\`\u3001\`\u5E73\u94FA\`\u3001\`\u559C\u5267\`\u3001\`\u60AC\u7591\`\u3001\`\u60C5\u611F\u5D29\u6E83\`\u3002
-
-## \u8F93\u51FA\u793A\u4F8B
-
-\u4EE5\u4E0B\u4E24\u4E2A\u793A\u4F8B\u5C55\u793A\u7684\u662F**\u5B8C\u6574\u56DE\u590D**\u2014\u2014\u9664\u8FD9\u4E00\u884C\u5916\u6CA1\u6709\u4EFB\u4F55\u5176\u4ED6\u5185\u5BB9\uFF1A
-
-\`\`\`
-| \u7B2C1\u7AE0 \u804C\u4E1A\u5371\u673A\u4E0E\u8BB8\u613F | \u6797\u9038 | \u804C\u4E1A\u9B54\u672F\u5E08\u6797\u9038\u56E0\u89E3\u5BC6\u6253\u5047\u98CE\u6F6E\u5BFC\u81F4\u4E8B\u4E1A\u5D29\u584C\uFF0C\u9893\u5E9F\u4E2D\u611F\u6168"\u5982\u679C\u4F1A\u9B54\u6CD5\u5C31\u597D\u4E86"\uFF0C\u610F\u5916\u89E6\u53D1\u795E\u5947\u9B54\u6CD5\u7CFB\u7EDF\u7ED1\u5B9A | \u5F3A\uFF08\u4E3B\u89D2\u52A8\u673A\u5EFA\u7ACB+\u7CFB\u7EDF\u6FC0\u6D3B\uFF09 | \u9AD8 | 50\u79D2 | \u8F6C\u6298+\u60AC\u7591 |
-\`\`\`
-\`\`\`
-| \u7B2C12\u7AE0 \u5C71\u95F4\u5C0F\u61A9 | \u51CC\u7384\u3001\u82CF\u665A\u537F | \u51CC\u7384\u4E0E\u82CF\u665A\u537F\u5728\u5C71\u95F4\u6B47\u811A\uFF0C\u82CF\u665A\u537F\u56DE\u5FC6\u5E7C\u65F6\u5F80\u4E8B\uFF0C\u4E24\u4EBA\u5173\u7CFB\u7565\u6709\u7F13\u548C\u4F46\u672A\u5B9E\u8D28\u63A8\u8FDB | \u5F31\uFF08\u6C14\u6C1B\u8FC7\u6E21\uFF09 | \u4F4E | 25\u79D2 | \u5E73\u94FA+\u60C5\u611F |
-\`\`\`
-
-## \u63D0\u53D6\u89C4\u5219
-
-- \u5FE0\u4E8E\u539F\u6587\uFF0C\u4E0D\u63A8\u6D4B\u3001\u4E0D\u8111\u8865\u3001\u4E0D\u52A0\u5165\u539F\u6587\u672A\u51FA\u73B0\u7684\u60C5\u8282
-- \u89D2\u8272\u4F7F\u7528\u6587\u4E2D\u4E3B\u8981\u79F0\u547C\uFF0C\u4FDD\u6301\u4E00\u81F4
-- \u591A\u6761\u5E73\u884C\u4E8B\u4EF6\u7EBF\u65F6\uFF0C\u9009\u5BF9\u4E3B\u89D2\u5F71\u54CD\u6700\u5927\u7684\u4E00\u6761\uFF0C\u5176\u4F59\u7B80\u8981\u5E26\u8FC7
-- \u5BF9\u8BDD\u5BC6\u96C6\u7AE0\u8282\uFF0C\u5173\u6CE8\u5BF9\u8BDD\u63A8\u52A8\u4E86\u4EC0\u4E48\u7ED3\u679C\uFF0C\u800C\u975E\u590D\u8FF0\u5BF9\u8BDD\u5185\u5BB9
-`;
-  }
+  if (type == "event") return eventExtractionPrompt;
 }
 var init_getPrompts = __esm({
   "src/utils/getPrompts.ts"() {
     "use strict";
+    init_defaultPrompts();
   }
 });
 
@@ -238083,7 +237258,7 @@ var init_p_limit = __esm({
 
 // src/utils/derivativeAssetImageGeneration.ts
 function getErrorMessage6(error71) {
-  return utils_default.error(error71).message || "\u884D\u751F\u8D44\u4EA7\u56FE\u7247\u751F\u6210\u5931\u8D25";
+  return utils_default.error(error71).message || "Failed to generate the derivative asset image";
 }
 function getPromptRecord(artStyle) {
   const style = artStyle || "";
@@ -238096,12 +237271,12 @@ function getPromptRecord(artStyle) {
 async function markPendingImagesFailed(imageIds, reason) {
   if (!imageIds.length) return;
   try {
-    await utils_default.db("o_image").whereIn("id", imageIds).andWhere("state", "\u751F\u6210\u4E2D").update({
-      state: "\u751F\u6210\u5931\u8D25",
+    await utils_default.db("o_image").whereIn("id", imageIds).andWhere("state", "Generating").update({
+      state: "Generation failed",
       errorReason: reason
     });
   } catch (error71) {
-    console.error("[derivativeAssets] \u6807\u8BB0\u6279\u91CF\u5931\u8D25\u72B6\u6001\u5931\u8D25:", getErrorMessage6(error71));
+    console.error("[derivativeAssets] Marking batch failure status failed:", getErrorMessage6(error71));
   }
 }
 async function generateSingleDerivativeAsset(item, imageId, settings, promptRecord, imageUrlRecord, projectId, scriptId) {
@@ -238112,14 +237287,12 @@ async function generateSingleDerivativeAsset(item, imageId, settings, promptReco
       messages: [
         {
           role: "user",
-          content: `
-            \u7236\u7EA7\u8D44\u4EA7\u63CF\u8FF0: ${item.parentDescribe || "\u65E0\u8BE6\u7EC6\u63CF\u8FF0"}
-            \u5F53\u524D\u8D44\u4EA7\u63CF\u8FF0: ${item.describe || "\u65E0\u8BE6\u7EC6\u63CF\u8FF0"}`
+          content: `Parent asset description:${item.parentDescribe || "No detailed description"}Current asset description:{item.describe || "No detailed description"}`
         }
       ]
     });
     const prompt = String(text2 || "").trim();
-    if (!prompt) throw new Error("universalAi \u672A\u8FD4\u56DE\u6709\u6548\u7684\u884D\u751F\u8D44\u4EA7\u63D0\u793A\u8BCD");
+    if (!prompt) throw new Error("universalAi did not return a valid derivative asset prompt");
     await utils_default.db("o_assets").where("id", item.id).update({ prompt });
     const imageBase64 = imageUrlRecord[item.assetsId || -1] ? await utils_default.oss.getImageBase64(imageUrlRecord[item.assetsId || -1]) : null;
     const imageConfig = {
@@ -238133,8 +237306,8 @@ async function generateSingleDerivativeAsset(item, imageId, settings, promptReco
         ...imageConfig
       },
       {
-        taskClass: "\u751F\u6210\u56FE\u7247",
-        describe: "\u884D\u751F\u8D44\u4EA7\u56FE\u7247\u751F\u6210",
+        taskClass: "Generate image",
+        describe: "Derivative Asset Image Generation",
         relatedObjects: JSON.stringify({ assetId: item.id, ...imageConfig }),
         projectId
       }
@@ -238142,31 +237315,31 @@ async function generateSingleDerivativeAsset(item, imageId, settings, promptReco
     const savePath = `/${projectId}/assets/${scriptId}/${item.type}/${utils_default.uuid()}.jpg`;
     await imageCls.save(savePath);
     await utils_default.db("o_image").where({ id: imageId }).update({
-      state: "\u5DF2\u5B8C\u6210",
+      state: "Completed",
       filePath: savePath,
       errorReason: null
     });
     return {
       id: item.id,
       imageId,
-      state: "\u5DF2\u5B8C\u6210",
+      state: "Completed",
       src: await utils_default.oss.getSmallImageUrl(savePath)
     };
   } catch (error71) {
     const errorReason = getErrorMessage6(error71);
     try {
       await utils_default.db("o_image").where({ id: imageId }).update({
-        state: "\u751F\u6210\u5931\u8D25",
+        state: "Generation failed",
         errorReason
       });
     } catch (updateError) {
-      console.error(`[derivativeAssets] \u8D44\u4EA7 ${item.id} \u66F4\u65B0\u5931\u8D25\u72B6\u6001\u5931\u8D25:`, getErrorMessage6(updateError));
+      console.error(`[derivativeAssets] Assets${item.id}Failed to update the failure status:`, getErrorMessage6(updateError));
     }
-    console.error(`[derivativeAssets] \u8D44\u4EA7 ${item.id} \u751F\u6210\u5931\u8D25:`, errorReason);
+    console.error(`[derivativeAssets] Assets${item.id}Generation failed:`, errorReason);
     return {
       id: item.id,
       imageId,
-      state: "\u751F\u6210\u5931\u8D25",
+      state: "Generation failed",
       src: "",
       errorReason
     };
@@ -238194,17 +237367,17 @@ async function startDerivativeAssetImageGeneration(options) {
   const { projectId, scriptId } = options;
   const assetIds = [...new Set(options.assetIds)];
   const concurrentCount = Math.max(1, Math.floor(options.concurrentCount ?? 5));
-  if (!assetIds.length) throw new Error("\u672A\u63D0\u4F9B\u9700\u8981\u751F\u6210\u7684\u884D\u751F\u8D44\u4EA7");
+  if (!assetIds.length) throw new Error("No derivative asset to be generated was provided");
   const settings = await utils_default.db("o_project").where("id", projectId).select("imageModel", "imageQuality", "artStyle").first();
-  if (!settings) throw new Error(`\u9879\u76EE\u4E0D\u5B58\u5728\uFF0CID: ${projectId}`);
-  if (!settings.imageModel) throw new Error("\u9879\u76EE\u672A\u914D\u7F6E\u56FE\u50CF\u6A21\u578B");
+  if (!settings) throw new Error(`Project does not exist, ID:${projectId}`);
+  if (!settings.imageModel) throw new Error("The project is not configured with an image model");
   if (!settings.imageQuality || !imageQualityValues.has(settings.imageQuality)) {
-    throw new Error("\u9879\u76EE\u672A\u914D\u7F6E\u6709\u6548\u7684\u56FE\u50CF\u5206\u8FA8\u7387\uFF081K\u30012K \u6216 4K\uFF09");
+    throw new Error("The project is not configured with a valid image resolution (1K, 2K, or 4K).");
   }
   const assets = await utils_default.db("o_assets").whereIn("id", assetIds).select("id", "describe", "name", "type", "assetsId");
   const foundIds = new Set(assets.map((item) => item.id));
   const missingIds = assetIds.filter((id) => !foundIds.has(id));
-  if (missingIds.length) throw new Error(`\u884D\u751F\u8D44\u4EA7\u4E0D\u5B58\u5728\uFF1A${missingIds.join(", ")}`);
+  if (missingIds.length) throw new Error(`Derived asset does not exist:${missingIds.join(", ")}`);
   const parentIds = [...new Set(assets.map((item) => item.assetsId).filter((id) => id !== null))];
   const parentAssets = parentIds.length ? await utils_default.db("o_assets").leftJoin("o_image", "o_assets.imageId", "o_image.id").whereIn("o_assets.id", parentIds).select("o_assets.id", "o_image.filePath", "o_assets.describe") : [];
   const parentById = new Map(parentAssets.map((item) => [item.id, item]));
@@ -238223,14 +237396,14 @@ async function startDerivativeAssetImageGeneration(options) {
     const [imageId] = await utils_default.db("o_image").insert({
       assetsId: item.id,
       type: item.type,
-      state: "\u751F\u6210\u4E2D",
+      state: "Generating",
       resolution: settings.imageQuality,
       model: settings.imageModel,
       errorReason: null
     });
     imageIdMap[item.id] = imageId;
     await utils_default.db("o_assets").where("id", item.id).update({ imageId });
-    accepted.push({ id: item.id, imageId, state: "\u751F\u6210\u4E2D", src: "" });
+    accepted.push({ id: item.id, imageId, state: "Generating", src: "" });
   }
   const imageIds = accepted.map((item) => item.imageId);
   void runDerivativeAssetGeneration(
@@ -238244,7 +237417,7 @@ async function startDerivativeAssetImageGeneration(options) {
     concurrentCount
   ).catch(async (error71) => {
     const errorReason = getErrorMessage6(error71);
-    console.error("[derivativeAssets] \u6279\u91CF\u751F\u6210\u5F02\u5E38:", errorReason);
+    console.error("[derivativeAssets] Batch generation error:", errorReason);
     await markPendingImagesFailed(imageIds, errorReason);
   });
   return accepted;
@@ -238284,20 +237457,20 @@ async function authenticateStaticRequest(req, res, next) {
   return authenticateRequest(req, res, next);
 }
 async function authenticateRequest(req, res, next) {
-  if (req.path === "/login/login") return next();
+  if (req.path === "/login/login" || req.path === "/login/register") return next();
   const setting = await db_default("o_setting").where("key", "tokenKey").select("value").first();
-  if (!setting?.value) return res.status(503).send({ message: "\u670D\u52A1\u5668\u672A\u5B8C\u6210\u521D\u59CB\u5316\uFF0C\u8BF7\u8054\u7CFB\u7BA1\u7406\u5458" });
+  if (!setting?.value) return res.status(503).send({ message: "Server is not initialized. Please contact administrator." });
   const cookieToken = String(req.headers.cookie ?? "").split(";").map((part) => part.trim()).find((part) => part.startsWith("sd_token="))?.slice("sd_token=".length);
   const rawToken = req.headers.authorization || req.query.token || cookieToken || "";
   const token = rawToken.replace(/^Bearer\s+/i, "").trim();
-  if (!token) return res.status(401).send({ message: "\u672A\u63D0\u4F9Btoken" });
+  if (!token) return res.status(401).send({ message: "Authentication token required" });
   try {
     const decoded = import_jsonwebtoken5.default.verify(token, String(setting.value));
-    if (!decoded?.id) return res.status(401).send({ message: "\u65E0\u6548\u7684token" });
+    if (!decoded?.id) return res.status(401).send({ message: "Invalid authentication token" });
     const user = await db_default("o_user").where("id", decoded.id).select("id", "name", "role", "disabled", "tokenVersion").first();
-    if (!user || Number(user.disabled) === 1) return res.status(401).send({ message: "\u7528\u6237\u4E0D\u5B58\u5728\u6216\u5DF2\u88AB\u7981\u7528" });
+    if (!user || Number(user.disabled) === 1) return res.status(401).send({ message: "Account not found or disabled" });
     if (decoded.tokenVersion !== void 0 && Number(decoded.tokenVersion) !== Number(user.tokenVersion ?? 0)) {
-      return res.status(401).send({ message: "\u767B\u5F55\u72B6\u6001\u5DF2\u5931\u6548\uFF0C\u8BF7\u91CD\u65B0\u767B\u5F55" });
+      return res.status(401).send({ message: "Session expired. Please sign in again." });
     }
     req.user = {
       id: Number(user.id),
@@ -238308,11 +237481,11 @@ async function authenticateRequest(req, res, next) {
     };
     return runWithUser(Number(user.id), () => next());
   } catch {
-    return res.status(401).send({ message: "\u65E0\u6548\u7684token" });
+    return res.status(401).send({ message: "Invalid authentication token" });
   }
 }
 function requireAdmin(req, res, next) {
-  if (!isAdmin(currentUser(req))) return res.status(403).send({ message: "\u4EC5\u7BA1\u7406\u5458\u53EF\u6267\u884C\u6B64\u64CD\u4F5C" });
+  if (!isAdmin(currentUser(req))) return res.status(403).send({ message: "Administrator privileges required" });
   return next();
 }
 function firstValue(value) {
@@ -238399,7 +237572,7 @@ async function projectIdFromReference(req) {
 }
 async function enforceProjectAccess(req, res, next) {
   const user = currentUser(req);
-  if (!user || req.path === "/login/login") return next();
+  if (!user || req.path === "/login/login" || req.path === "/login/register") return next();
   const destructiveSettingPath = /\/setting\/(dbConfig\/(clearData|clearTable|importData)|memoryConfig\/delAllMemory)/.test(req.path);
   const globalSettingPath = /^\/setting\/(dbConfig|skillManagement|fileManagement)\//.test(req.path);
   if (destructiveSettingPath || globalSettingPath) return requireAdmin(req, res, next);
@@ -238408,8 +237581,8 @@ async function enforceProjectAccess(req, res, next) {
   const projectId = await projectIdFromReference(req);
   if (projectId === void 0 || !Number.isFinite(projectId)) return next();
   const project = await db_default("o_project").where("id", projectId).select("id", "userId").first();
-  if (!project) return res.status(404).send({ message: "\u9879\u76EE\u4E0D\u5B58\u5728" });
-  if (!isAdmin(user) && Number(project.userId ?? 1) !== user.id) return res.status(403).send({ message: "\u65E0\u6743\u8BBF\u95EE\u8BE5\u9879\u76EE" });
+  if (!project) return res.status(404).send({ message: "Project not found" });
+  if (!isAdmin(user) && Number(project.userId ?? 1) !== user.id) return res.status(403).send({ message: "Access denied to this project" });
   return next();
 }
 async function enforceStaticProjectAccess(req, res, next) {
@@ -238433,24 +237606,108 @@ var init_auth2 = __esm({
   }
 });
 
+// src/lib/englishMessages.ts
+function englishMessage(message) {
+  return messages[message] ?? message;
+}
+var messages;
+var init_englishMessages = __esm({
+  "src/lib/englishMessages.ts"() {
+    "use strict";
+    messages = {
+      "Success": "Success",
+      "Unsupported type": "Unsupported type",
+      "Visual manual undefined": "Visual manual is not defined",
+      "The asset does not exist": "Asset not found",
+      "The project is empty": "Project is empty",
+      "Please select a script first": "Select a script first",
+      "Start extracting assets": "Asset extraction started",
+      "Upload successful": "Upload successful",
+      "Failed to update storyboard sorting": "Failed to update storyboard order",
+      "Update successful": "Updated successfully",
+      "The name cannot contain path separators or be purely numeric": "Names cannot contain path separators or consist only of digits",
+      "[Delete Visual Manual] Deletion failed:": "[Delete visual manual] Deletion failed:",
+      "Model not found": "Model not found",
+      "Do not fill in visual manuals with duplicate names": "A visual manual with this name already exists",
+      "The director's manual does not exist": "Director manual not found",
+      "The visual manual does not exist": "Visual manual not found",
+      "Art style editing successful": "Art style updated successfully",
+      "Art style added successfully": "Art style added successfully",
+      "No audio has been configured yet. Please go to the Asset Center to upload an audio file first.": "No audio is available. Upload audio in the asset center first",
+      "Only one voice can be bound": "Only one voice can be assigned",
+      "Please select the content to be deleted": "Select items to delete first",
+      "Start generating the prompt": "Prompt generation started",
+      "The current storyboard has no available reference media. Please generate the storyboard image first.": "No reference media is available for this storyboard. Generate an image first",
+      "The project is not configured with a video model": "No video model is configured for this project",
+      "Please select the storyboard first": "Select a storyboard first",
+      "The currently selected storyboard does not exist": "The selected storyboard no longer exists",
+      "No storyboard data found": "Storyboard data not found",
+      "Storyboard not found": "Storyboard not found",
+      "storyboardIds cannot be empty": "storyboardIds cannot be empty",
+      "Image model not configured": "No image model is configured",
+      "The selected image model is unavailable. Please select another one.": "The selected image model is unavailable. Choose another model",
+      "Unsupported file type": "Unsupported file type",
+      "Invalid path": "Invalid path",
+      "File does not exist": "File not found",
+      "Settings saved successfully": "Settings saved successfully",
+      "Configuration successful": "Configuration saved successfully",
+      "Batch configuration successful": "Batch configuration saved successfully",
+      "Supplier configuration not found": "Provider configuration not found",
+      "Model configuration data not found": "Model configuration not found",
+      "One-click fill successful": "Configuration filled successfully",
+      "The KEY is invalid. Please re-enter it.": "Invalid API key. Please try again",
+      "The database has been cleared and reinitialized": "Database cleared and reinitialized",
+      "Please provide a valid table name": "Provide a valid table name",
+      "Table does not exist": "Table not found",
+      "Invalid import data format": "Invalid import data format",
+      "Database import successful": "Database imported successfully",
+      "The version service is temporarily unavailable": "Version service is temporarily unavailable",
+      "Unable to connect to the version service": "Could not connect to the version service",
+      "Unable to retrieve version information": "Could not retrieve version information",
+      "Unable to retrieve download information for this source": "Could not retrieve download information from this source",
+      "No installation package is available for the current system from this source": "No installer for this system is available from this source",
+      "This source has no incremental update package": "No incremental update is available from this source",
+      "Please manually download and install the latest version in your browser": "Download and install the latest version in your browser",
+      "Binding successful": "Binding successful",
+      "Saved successfully": "Saved successfully",
+      "Deletion successful": "Deleted successfully",
+      "Model list not found": "Model list not found",
+      "The model did not return a result": "The model returned no result",
+      "The script file must export an object": "The script must export an object",
+      "The script file must export a text request object": "The script must export a text request object",
+      "The script file must export the image request object": "The script must export an image request object",
+      "The script file must export the video request object": "The script must export a video request object",
+      "The script file must export the vendor object": "The script must export a vendor object",
+      "The id cannot contain English colons": "The ID cannot contain a colon",
+      "Supplier ID already exists": "A provider with this ID already exists",
+      "The base model cannot be deleted": "Built-in models cannot be deleted",
+      "Only supports opening folders on the client": "Opening folders is only supported by the desktop app",
+      "The folder was opened successfully": "Folder opened successfully",
+      "No corresponding chapter": "No matching chapter found",
+      "Event generated successfully": "Events generated successfully"
+    };
+  }
+});
+
 // src/lib/responseFormat.ts
-function success3(data = null, message = "\u6210\u529F") {
+function success3(data = null, message = "Success") {
   return {
     code: 200,
     data,
-    message
+    message: englishMessage(message)
   };
 }
 function error50(message = "", data = null) {
   return {
     code: 400,
     data,
-    message
+    message: englishMessage(message)
   };
 }
 var init_responseFormat = __esm({
   "src/lib/responseFormat.ts"() {
     "use strict";
+    init_englishMessages();
   }
 });
 
@@ -238469,9 +237726,9 @@ function validateFields(shape, source = "body") {
     const data = req[source];
     const parseResult = schema.safeParse(data);
     if (!parseResult.success) {
-      const errors = parseResult.error.issues.map((issue3) => `\u5B57\u6BB5 ${issue3.path.join(".")} ${issue3.message}`);
+      const errors = parseResult.error.issues.map((issue3) => `Field ${issue3.path.join(".")}: ${issue3.message}`);
       console.error(errors);
-      return res.status(400).json({ message: "\u53C2\u6570\u9519\u8BEF", errors });
+      return res.status(400).json({ message: errors[0] || "Invalid request parameters", errors });
     }
     next();
   };
@@ -238481,7 +237738,7 @@ var init_middleware = __esm({
     "use strict";
     init_zod();
     init_locales2();
-    external_exports.config(zh_CN_default());
+    external_exports.config(en_default());
   }
 });
 
@@ -238593,7 +237850,7 @@ var init_addArtStyle = __esm({
           label: name28,
           prompt
         });
-        res.status(200).send(success3("\u827A\u672F\u98CE\u683C\u6DFB\u52A0\u6210\u529F"));
+        res.status(200).send(success3("Art style added successfully"));
       }
     );
   }
@@ -238631,7 +237888,7 @@ var init_editArtStyle = __esm({
           label: name28,
           prompt
         }).where("id", id);
-        res.status(200).send(success3("\u827A\u672F\u98CE\u683C\u7F16\u8F91\u6210\u529F"));
+        res.status(200).send(success3("Art style editing successful"));
       }
     );
   }
@@ -238657,7 +237914,7 @@ var init_extractStylePrompt = __esm({
         const { images } = req.body;
         try {
           const resText = await utils_default.Ai.Text("universalAi").invoke({
-            system: '\u8BF7\u6839\u636E\u4EE5\u4E0B\u56FE\u7247\u6570\u636E\uFF0C\u63D0\u53D6\u51FA\u56FE\u7247\u7684\u753B\u98CE\u63D0\u793A\u8BCD\uFF0C\u7528\u4E8E\u751F\u6210\u56FE\u7247\u65F6\u6307\u5B9A\u98CE\u683C\uFF0C\u8981\u6C42\u7B80\u6D01\u4E14\u5177\u6709\u827A\u672F\u6027,\u53EA\u9700\u8981\u753B\u98CE\u63D0\u793A\u8BCD\uFF0C\u4E0D\u9700\u8981\u5176\u4ED6\u5185\u5BB9\uFF1A"\u6BD4\u5982\uFF1A`(\u753B\u98CE\uFF1A2D\u52A8\u6F2B\u98CE\u683C,2d animation style)`,`(\u753B\u98CE\uFF1A\u7167\u7247\u7EA7\u771F\u4EBA\u8D85\u5199\u5B9E,photorealistic, lifelike, ultra detailed)`\uFF0C`(\u753B\u98CE\uFF1A3D\u56FD\u521B,Chinese 3D animation style)`\u7B49,\u5982\u679C\u56FE\u7247\u98CE\u683C\u65E0\u6CD5\u63CF\u8FF0\uFF0C\u53EF\u4EE5\u8FD4\u56DE`\u65E0\u6CD5\u63CF\u8FF0`,\u591A\u5F20\u56FE\u7247\u65F6\uFF0C\u53EA\u8F93\u51FA\u4E00\u4E2A\u7EFC\u5408\u7684\u753B\u98CE\u63D0\u793A\u8BCD\uFF0C\u8981\u6C42\u5305\u542B\u6240\u6709\u56FE\u7247\u7684\u5171\u540C\u98CE\u683C\u7279\u5F81\uFF0C\u8F93\u51FA\u683C\u5F0F\u5FC5\u987B\u4E25\u683C\u6309\u7167\u793A\u4F8B\u4E2D\u7684\u683C\u5F0F\uFF0C\u5FC5\u987B\u5305\u542B`\u753B\u98CE`\u4E8C\u5B57\uFF0C\u4E14\u5FC5\u987B\u4F7F\u7528\u62EC\u53F7\u62EC\u8D77\u6765\uFF0C\u62EC\u53F7\u5185\u5FC5\u987B\u5305\u542B\u4E2D\u6587\u548C\u82F1\u6587\u7684\u753B\u98CE\u63CF\u8FF0\uFF0C\u5E76\u7528\u9017\u53F7\u5206\u9694\uFF0C\u82F1\u6587\u90E8\u5206\u9700\u8981\u7FFB\u8BD1\u6210\u5730\u9053\u7684\u82F1\u6587\u63D0\u793A\u8BCD',
+            system: "Based on the following image data, extract the art style prompt for specifying the style when generating images. The prompt should be concise and artistic. Only the art style prompt is required; no other content is needed. For example: `(Art Style: 2D anime style, 2d animation style)`, `(Art Style: photorealistic human, photorealistic, lifelike, ultra detailed)`, `(Art Style: 3D Chinese animation, Chinese 3D animation style)`, etc. If the image style cannot be described, return `Unable to describe`. For multiple images, output only one comprehensive art style prompt that includes the common style features of all images. The output format must strictly follow the format in the example, must include the two characters `Art style`, and must be enclosed in parentheses. The content within the parentheses must include both Chinese and English art style descriptions, separated by commas. The English part must be translated into idiomatic English prompts.",
             messages: [
               {
                 role: "user",
@@ -238734,7 +237991,7 @@ var init_addAssets = __esm({
           prompt,
           startTime: Date.now()
         });
-        res.status(200).send(success3({ message: "\u65B0\u589E\u8D44\u4EA7\u6210\u529F" }));
+        res.status(200).send(success3({ message: "Asset added successfully" }));
       }
     );
   }
@@ -238809,13 +238066,13 @@ var init_addAudioAssets = __esm({
             filePath: item.src,
             type: "audio",
             assetsId,
-            state: "\u5DF2\u5B8C\u6210"
+            state: "Completed"
           });
           await utils_default.db("o_assets").where("id", assetsId).update({
             imageId
           });
         }
-        res.status(200).send(success3({ message: "\u65B0\u589E\u8D44\u4EA7\u6210\u529F" }));
+        res.status(200).send(success3({ message: "Asset added successfully" }));
       }
     );
   }
@@ -238840,7 +238097,7 @@ var init_batchDelete = __esm({
       async (req, res) => {
         const { id } = req.body;
         await utils_default.db("o_assets").whereIn("id", id).delete();
-        res.status(200).send(success3({ message: "\u5220\u9664\u8D44\u4EA7\u6210\u529F" }));
+        res.status(200).send(success3({ message: "Asset deleted successfully" }));
       }
     );
   }
@@ -238918,7 +238175,7 @@ var init_delAssets = __esm({
         await utils_default.db("o_image").where({ assetsId: id }).delete();
         await utils_default.db("o_assets").where({ id }).delete();
         await utils_default.db("o_assets").where("assetsId", id).delete();
-        res.status(200).send(success3({ message: "\u5220\u9664\u8D44\u4EA7\u6210\u529F" }));
+        res.status(200).send(success3({ message: "Asset deleted successfully" }));
       }
     );
   }
@@ -238948,7 +238205,7 @@ var init_delImage = __esm({
         await utils_default.db("o_image").where({ id }).delete();
         const assetsData = await utils_default.db("o_image").where("id", id);
         await Promise.all(assetsData.map((i) => i.filePath && utils_default.oss.deleteFile(i.filePath)));
-        res.status(200).send(success3({ message: "\u8D44\u4EA7\u56FE\u7247\u5220\u9664\u6210\u529F" }));
+        res.status(200).send(success3({ message: "Asset image deleted successfully" }));
       }
     );
   }
@@ -239086,14 +238343,14 @@ var init_getMaterialData = __esm({
         const ending = await utils_default.oss.getFileUrl("/ending.mp4", "assets");
         data.push({
           id: 0,
-          name: "SandDrama\u7247\u5C3E",
+          name: "SandDrama ending",
           filePath: ending,
           type: "clip"
         });
         const trackRows = await utils_default.db("o_videoTrack").where("o_videoTrack.scriptId", scriptId).andWhere("o_videoTrack.projectId", projectId).select("o_videoTrack.id as trackId", "o_videoTrack.videoId");
         const video = await Promise.all(
           trackRows.map(async (track) => {
-            const videoItems = await utils_default.db("o_video").where("o_video.videoTrackId", track.trackId).andWhere("o_video.state", "\u751F\u6210\u6210\u529F").select("*");
+            const videoItems = await utils_default.db("o_video").where("o_video.videoTrackId", track.trackId).andWhere("o_video.state", "Generation successful").select("*");
             const videoList = await Promise.all(
               videoItems.map(async (v) => ({
                 id: v.id,
@@ -239132,7 +238389,7 @@ var init_pollingImageAssets = __esm({
       }),
       async (req, res) => {
         const { ids } = req.body;
-        const data = await utils_default.db("o_assets").leftJoin("o_image", "o_assets.imageId", "o_image.id").whereIn("o_assets.id", ids).whereNot("o_image.state", "\u751F\u6210\u4E2D").select("o_image.state", "o_assets.id", "o_image.filePath");
+        const data = await utils_default.db("o_assets").leftJoin("o_image", "o_assets.imageId", "o_image.id").whereIn("o_assets.id", ids).whereNot("o_image.state", "Generating").select("o_image.state", "o_assets.id", "o_image.filePath");
         const result = await Promise.all(
           data.map(async (item) => ({
             ...item,
@@ -239163,7 +238420,7 @@ var init_pollingPromptAssets = __esm({
       }),
       async (req, res) => {
         const { ids } = req.body;
-        const data = await utils_default.db("o_assets").whereIn("id", ids).whereNot("promptState", "\u751F\u6210\u4E2D").select("*");
+        const data = await utils_default.db("o_assets").whereIn("id", ids).whereNot("promptState", "Generating").select("*");
         res.status(200).send(success3(data));
       }
     );
@@ -239203,7 +238460,7 @@ var init_saveAssets = __esm({
             assetsId: id,
             filePath: savePath,
             type,
-            state: "\u5DF2\u5B8C\u6210"
+            state: "Completed"
           });
           await utils_default.db("o_assets").where("id", id).update({
             prompt: prompt ?? "",
@@ -239215,7 +238472,7 @@ var init_saveAssets = __esm({
             imageId
           });
         }
-        res.status(200).send(success3({ message: "\u4FDD\u5B58\u8D44\u4EA7\u56FE\u7247\u6210\u529F" }));
+        res.status(200).send(success3({ message: "Asset image saved successfully" }));
       }
     );
   }
@@ -239249,7 +238506,7 @@ var init_updateAssets = __esm({
           remark,
           prompt
         });
-        res.status(200).send(success3({ message: "\u66F4\u65B0\u8D44\u4EA7\u6210\u529F" }));
+        res.status(200).send(success3({ message: "Asset updated successfully" }));
       }
     );
   }
@@ -239351,14 +238608,14 @@ var init_updateAudioAssets = __esm({
               filePath: item.src,
               type: "audio",
               assetsId,
-              state: "\u5DF2\u5B8C\u6210"
+              state: "Completed"
             });
             await utils_default.db("o_assets").where("id", assetsId).update({
               imageId
             });
           }
         }
-        res.status(200).send(success3({ message: "\u65B0\u589E\u8D44\u4EA7\u6210\u529F" }));
+        res.status(200).send(success3({ message: "Asset added successfully" }));
       }
     );
   }
@@ -239368,15 +238625,15 @@ var init_updateAudioAssets = __esm({
 function getExtFromBase64(base64Data) {
   const mime = base64Data.match(/^data:([^;]+);base64,/)?.[1] ?? "";
   const mimeMap = {
-    // 图片
+    // Image
     "image/jpeg": "jpeg",
     "image/jpg": "jpg",
     "image/png": "png",
-    // 音频
+    // Audio
     "audio/mpeg": "mp3",
     "audio/mp3": "mp3",
     "audio/wav": "wav",
-    // 视频
+    // Video
     "video/mp4": "mp4",
     "video/webm": "webm"
   };
@@ -239416,12 +238673,12 @@ var init_uploadClip = __esm({
           filePath: savePath,
           type,
           assetsId: id,
-          state: "\u5DF2\u5B8C\u6210"
+          state: "Completed"
         });
         await utils_default.db("o_assets").where("id", id).update({
           imageId
         });
-        res.status(200).send(success3("\u4E0A\u4F20\u6210\u529F"));
+        res.status(200).send(success3("Upload successful"));
       }
     );
   }
@@ -239429,17 +238686,16 @@ var init_uploadClip = __esm({
 
 // src/routes/assetsGenerate/batchGenerateImageAssets.ts
 function buildPrompt(cfg, artStyle, name28, prompt) {
-  return `
-    \u8BF7\u6839\u636E\u4EE5\u4E0B\u53C2\u6570\u751F\u6210${cfg.promptTitle}\uFF1A
+  return `Please generate based on the following parameters${cfg.promptTitle}:
 
-    **\u57FA\u7840\u53C2\u6570\uFF1A**
-    - \u753B\u98CE\u98CE\u683C: ${artStyle || "\u672A\u6307\u5B9A"}
+    **Basic Parameters:**
+    - Art Style:{artStyle || "Not specified"}
 
-    **${cfg.label}\u8BBE\u5B9A\uFF1A**
-    - \u540D\u79F0:${name28},
-    - \u63D0\u793A\u8BCD:${prompt},
+    **${cfg.label}Setting:
+    - Name:{name},
+    - Prompt:{prompt},
 
-    \u8BF7\u4E25\u683C\u6309\u7167\u7CFB\u7EDF\u89C4\u8303\u751F\u6210${cfg.promptEnd}\u3002
+    Please generate strictly in accordance with the system specifications{cfg.promptEnd}\u3002
   `;
 }
 var import_express22, router22, assetTypeConfig, requestSchema, batchGenerateImageAssets_default;
@@ -239456,25 +238712,25 @@ var init_batchGenerateImageAssets = __esm({
     router22 = import_express22.default.Router();
     assetTypeConfig = {
       role: {
-        label: "\u89D2\u8272",
-        taskClass: "\u89D2\u8272\u56FE\u751F\u6210",
+        label: "Role",
+        taskClass: "Character image generation",
         dir: "role",
-        promptTitle: "\u89D2\u8272\u6807\u51C6\u56DB\u89C6\u56FE",
-        promptEnd: "\u4EBA\u7269\u89D2\u8272\u56DB\u89C6\u56FE"
+        promptTitle: "Character Standard Four-View",
+        promptEnd: "Character Four-View"
       },
       scene: {
-        label: "\u573A\u666F",
-        taskClass: "\u573A\u666F\u56FE\u751F\u6210",
+        label: "Scene",
+        taskClass: "Scene graph generation",
         dir: "scene",
-        promptTitle: "\u6807\u51C6\u573A\u666F\u56FE",
-        promptEnd: "\u6807\u51C6\u573A\u666F\u56FE"
+        promptTitle: "Standard scene graph",
+        promptEnd: "Standard scene graph"
       },
       tool: {
-        label: "\u9053\u5177",
-        taskClass: "\u9053\u5177\u56FE\u751F\u6210",
+        label: "Props",
+        taskClass: "Prop image generation",
         dir: "props",
-        promptTitle: "\u6807\u51C6\u9053\u5177\u56FE",
-        promptEnd: "\u6807\u51C6\u9053\u5177\u56FE"
+        promptTitle: "Standard prop image",
+        promptEnd: "Standard prop image"
       }
     };
     requestSchema = {
@@ -239495,12 +238751,12 @@ var init_batchGenerateImageAssets = __esm({
     batchGenerateImageAssets_default = router22.post("/", validateFields(requestSchema), async (req, res) => {
       const { projectId, model, resolution, concurrentCount, items } = req.body;
       const project = await utils_default.db("o_project").where("id", projectId).select("artStyle", "type", "intro").first();
-      if (!project) return res.status(500).send(error50("\u9879\u76EE\u4E3A\u7A7A"));
+      if (!project) return res.status(500).send(error50("The project is empty"));
       const totalNovelId = [];
       for (const item of items) {
         const [imageId] = await utils_default.db("o_image").insert({
           type: item.type,
-          state: "\u751F\u6210\u4E2D",
+          state: "Generating",
           assetsId: item.id
         });
         await utils_default.db("o_assets").where("id", item.id).update({ imageId });
@@ -239511,7 +238767,7 @@ var init_batchGenerateImageAssets = __esm({
         (item, index) => limit(async () => {
           const imageId = totalNovelId[index];
           const data = await utils_default.db("o_image").where("id", imageId).select("state").first();
-          if (data?.state === "\u751F\u6210\u5931\u8D25") {
+          if (data?.state === "Generation failed") {
             return;
           }
           const cfg = assetTypeConfig[item.type];
@@ -239519,7 +238775,7 @@ var init_batchGenerateImageAssets = __esm({
           await utils_default.db("o_assets").where("id", item.id).update({ imageId });
           const imagePath = `/${projectId}/${cfg.dir}/${v4_default()}.jpg`;
           const userPrompt = buildPrompt(cfg, project.artStyle ?? "", item.name, item.prompt);
-          const describe4 = `\u751F\u6210${cfg.label}\u56FE\uFF0C\u540D\u79F0\uFF1A${item.name}\uFF0C\u63D0\u793A\u8BCD\uFF1A${item.prompt}`;
+          const describe4 = `Generate${cfg.label}Figure, Name:{item.name}, Prompt:{item.prompt}`;
           const relatedObjects = { id: item.id, projectId, type: cfg.label };
           try {
             const aiImage = utils_default.Ai.Image(model);
@@ -239539,11 +238795,11 @@ var init_batchGenerateImageAssets = __esm({
             );
             aiImage.save(imagePath);
             const imageData = await utils_default.db("o_image").where("id", imageId).select("*").first();
-            if (!imageData) return res.status(500).send("\u8D44\u4EA7\u5DF2\u88AB\u5220\u9664");
+            if (!imageData) return res.status(500).send("The asset has been deleted");
             if (!imageData) return;
-            if (imageData.state === "\u751F\u6210\u5931\u8D25") return;
+            if (imageData.state === "Generation failed") return;
             await utils_default.db("o_image").where("id", imageId).update({
-              state: "\u5DF2\u5B8C\u6210",
+              state: "Completed",
               filePath: imagePath,
               type: item.type,
               model: model.split(/:(.+)/)[1],
@@ -239551,7 +238807,7 @@ var init_batchGenerateImageAssets = __esm({
             });
             await utils_default.db("o_assets").where("id", item.id).update({ imageId });
           } catch (e) {
-            await utils_default.db("o_image").where("id", imageId).update({ state: "\u751F\u6210\u5931\u8D25", errorReason: utils_default.error(e).message });
+            await utils_default.db("o_image").where("id", imageId).update({ state: "Generation failed", errorReason: utils_default.error(e).message });
           }
         })
       );
@@ -239592,32 +238848,32 @@ var init_batchPolishAssetsPrompt = __esm({
       async (req, res) => {
         const { projectId, items, concurrentCount, otherTextPrompt } = req.body;
         const project = await utils_default.db("o_project").where("id", projectId).select("artStyle", "type", "intro").first();
-        if (!project) return res.status(500).send(success3({ message: "\u9879\u76EE\u4E3A\u7A7A" }));
+        if (!project) return res.status(500).send(success3({ message: "The project is empty" }));
         const assetsIds = items.map((item) => item.assetsId);
         const assetsDataList = await utils_default.db("o_assets").whereIn("id", assetsIds).select("id", "assetsId");
-        if (!assetsDataList || assetsDataList.length === 0) return res.status(500).send(error50("\u8D44\u4EA7\u4E0D\u5B58\u5728"));
+        if (!assetsDataList || assetsDataList.length === 0) return res.status(500).send(error50("The asset does not exist"));
         const assetsDataMap = new Map(assetsDataList.map((a) => [a.id, a]));
-        await utils_default.db("o_assets").whereIn("id", assetsIds).update({ promptState: "\u751F\u6210\u4E2D" });
+        await utils_default.db("o_assets").whereIn("id", assetsIds).update({ promptState: "Generating" });
         const getTypeConfig = (isDerivative) => ({
           role: {
             promptKey: "role-polish",
             itemType: "characters",
-            label: "\u89D2\u8272\u6807\u51C6\u56DB\u89C6\u56FE",
-            nameLabel: "\u89D2\u8272",
+            label: "Character Standard Four-View",
+            nameLabel: "Role",
             visualManual: isDerivative ? "art_character_derivative" : "art_character"
           },
           scene: {
             promptKey: "scene-polish",
             itemType: "scenes",
-            label: "\u573A\u666F\u56FE",
-            nameLabel: "\u573A\u666F",
+            label: "Scene graph",
+            nameLabel: "Scene",
             visualManual: isDerivative ? "art_scene_derivative" : "art_scene"
           },
           tool: {
             promptKey: "tool-polish",
             itemType: "props",
-            label: "\u9053\u5177\u56FE",
-            nameLabel: "\u9053\u5177",
+            label: "Prop image",
+            nameLabel: "Props",
             visualManual: isDerivative ? "art_prop_derivative" : "art_prop"
           }
         });
@@ -239631,7 +238887,7 @@ var init_batchPolishAssetsPrompt = __esm({
             if (!config3) return;
             const visualManual = await utils_default.getArtPrompt(project.artStyle, "art_skills", config3.visualManual);
             if (!visualManual) {
-              await utils_default.db("o_assets").where("id", item.assetsId).update({ promptState: "\u751F\u6210\u5931\u8D25", promptErrorReason: "\u89C6\u89C9\u624B\u518C\u672A\u5B9A\u4E49" });
+              await utils_default.db("o_assets").where("id", item.assetsId).update({ promptState: "Generation failed", promptErrorReason: "Visual manual undefined" });
               return;
             }
             const systemPrompt = visualManual;
@@ -239641,21 +238897,18 @@ var init_batchPolishAssetsPrompt = __esm({
                 messages: [
                   {
                     role: "user",
-                    content: `
-                    **\u57FA\u7840\u53C2\u6570\uFF1A**
-      **${config3.nameLabel}\u8BBE\u5B9A\uFF1A**
-      - ${config3.nameLabel}\u540D\u79F0:${item.name},
-      - ${config3.nameLabel}\u63CF\u8FF0:${item.describe},`
+                    content: `**Basic parameters:**${config3.nameLabel}Setting: **{config.nameLabel}Name:{item.name},
+      - ${config3.nameLabel}Description:{item.describe},`
                   }
                 ]
               });
               if (!_output) {
-                await utils_default.db("o_assets").where("id", item.assetsId).update({ promptState: "\u751F\u6210\u5931\u8D25" });
+                await utils_default.db("o_assets").where("id", item.assetsId).update({ promptState: "Generation failed" });
                 return;
               }
-              await utils_default.db("o_assets").where("id", item.assetsId).update({ prompt: _output, promptState: "\u5DF2\u5B8C\u6210" });
+              await utils_default.db("o_assets").where("id", item.assetsId).update({ prompt: _output, promptState: "Completed" });
             } catch (e) {
-              await utils_default.db("o_assets").where("id", item.assetsId).update({ promptState: "\u5931\u8D25", promptErrorReason: utils_default.error(e).message });
+              await utils_default.db("o_assets").where("id", item.assetsId).update({ promptState: "Failed", promptErrorReason: utils_default.error(e).message });
             }
           })
         );
@@ -239687,9 +238940,9 @@ var init_cancelGenerate = __esm({
       async (req, res) => {
         const { id } = req.body;
         await utils_default.db("o_image").where("id", id).update({
-          state: "\u751F\u6210\u5931\u8D25"
+          state: "Generation failed"
         });
-        res.status(200).send(success3({ message: "\u53D6\u6D88\u6210\u529F" }));
+        res.status(200).send(success3({ message: "Cancellation successful" }));
       }
     );
   }
@@ -239697,17 +238950,16 @@ var init_cancelGenerate = __esm({
 
 // src/routes/assetsGenerate/generateAssets.ts
 function buildPrompt2(cfg, artStyle, name28, prompt) {
-  return `
-    \u8BF7\u6839\u636E\u4EE5\u4E0B\u53C2\u6570\u751F\u6210${cfg.promptTitle}\uFF1A
+  return `Please generate based on the following parameters${cfg.promptTitle}:
 
-    **\u57FA\u7840\u53C2\u6570\uFF1A**
-    - \u753B\u98CE\u98CE\u683C: ${artStyle || "\u672A\u6307\u5B9A"}
+    **Basic Parameters:**
+    - Art Style:{artStyle || "Not specified"}
 
-    **${cfg.label}\u8BBE\u5B9A\uFF1A**
-    - \u540D\u79F0:${name28},
-    - \u63D0\u793A\u8BCD:${prompt},
+    **${cfg.label}Setting:
+    - Name:{name},
+    - Prompt:{prompt},
 
-    \u8BF7\u4E25\u683C\u6309\u7167\u7CFB\u7EDF\u89C4\u8303\u751F\u6210${cfg.promptEnd}\u3002
+    Please generate strictly in accordance with the system specifications{cfg.promptEnd}\u3002
   `;
 }
 var import_express25, router25, assetTypeConfig2, requestSchema2, generateAssets_default;
@@ -239723,25 +238975,25 @@ var init_generateAssets = __esm({
     router25 = import_express25.default.Router();
     assetTypeConfig2 = {
       role: {
-        label: "\u89D2\u8272",
-        taskClass: "\u89D2\u8272\u56FE\u751F\u6210",
+        label: "Role",
+        taskClass: "Character image generation",
         dir: "role",
-        promptTitle: "\u89D2\u8272\u6807\u51C6\u56DB\u89C6\u56FE",
-        promptEnd: "\u4EBA\u7269\u89D2\u8272\u56DB\u89C6\u56FE"
+        promptTitle: "Character Standard Four-View",
+        promptEnd: "Character Four-View"
       },
       scene: {
-        label: "\u573A\u666F",
-        taskClass: "\u573A\u666F\u56FE\u751F\u6210",
+        label: "Scene",
+        taskClass: "Scene graph generation",
         dir: "scene",
-        promptTitle: "\u6807\u51C6\u573A\u666F\u56FE",
-        promptEnd: "\u6807\u51C6\u573A\u666F\u56FE"
+        promptTitle: "Standard scene graph",
+        promptEnd: "Standard scene graph"
       },
       tool: {
-        label: "\u9053\u5177",
-        taskClass: "\u9053\u5177\u56FE\u751F\u6210",
+        label: "Props",
+        taskClass: "Prop image generation",
         dir: "props",
-        promptTitle: "\u6807\u51C6\u9053\u5177\u56FE",
-        promptEnd: "\u6807\u51C6\u9053\u5177\u56FE"
+        promptTitle: "Standard prop image",
+        promptEnd: "Standard prop image"
       }
     };
     requestSchema2 = {
@@ -239757,12 +239009,12 @@ var init_generateAssets = __esm({
     generateAssets_default = router25.post("/", validateFields(requestSchema2), async (req, res) => {
       const { projectId, model, resolution, id, type, name: name28, prompt, base64: base644 } = req.body;
       const project = await utils_default.db("o_project").where("id", projectId).select("artStyle", "type", "intro").first();
-      if (!project) return res.status(500).send(success3({ message: "\u9879\u76EE\u4E3A\u7A7A" }));
+      if (!project) return res.status(500).send(success3({ message: "The project is empty" }));
       const cfg = assetTypeConfig2[type];
-      if (!cfg) return res.status(400).send(error50("\u4E0D\u652F\u6301\u7684\u7C7B\u578B"));
+      if (!cfg) return res.status(400).send(error50("Unsupported type"));
       const [imageId] = await utils_default.db("o_image").insert({
         type,
-        state: "\u751F\u6210\u4E2D",
+        state: "Generating",
         assetsId: id,
         model: model.split(/:(.+)/)[1],
         resolution
@@ -239770,7 +239022,7 @@ var init_generateAssets = __esm({
       await utils_default.db("o_assets").where("id", id).update({ imageId });
       const imagePath = `/${projectId}/${cfg.dir}/${v4_default()}.jpg`;
       const userPrompt = buildPrompt2(cfg, project.artStyle, name28, prompt);
-      const describe4 = `\u751F\u6210${cfg.label}\u56FE\uFF0C\u540D\u79F0\uFF1A${name28}\uFF0C\u63D0\u793A\u8BCD\uFF1A${prompt}`;
+      const describe4 = `Generate${cfg.label}Figure, Name:{name}, Prompt:{prompt}`;
       const relatedObjects = { id, projectId, type: cfg.label };
       try {
         const aiImage = utils_default.Ai.Image(model);
@@ -239790,10 +239042,10 @@ var init_generateAssets = __esm({
         );
         aiImage.save(imagePath);
         const imageData = await utils_default.db("o_image").where("id", imageId).select("*").first();
-        if (!imageData) return res.status(500).send("\u8D44\u4EA7\u5DF2\u88AB\u5220\u9664");
-        if (imageData.state === "\u751F\u6210\u5931\u8D25") return;
+        if (!imageData) return res.status(500).send("The asset has been deleted");
+        if (imageData.state === "Generation failed") return;
         await utils_default.db("o_image").where("id", imageId).update({
-          state: "\u5DF2\u5B8C\u6210",
+          state: "Completed",
           filePath: imagePath,
           type,
           model: model.split(/:(.+)/)[1],
@@ -239803,8 +239055,8 @@ var init_generateAssets = __esm({
         await utils_default.db("o_assets").where("id", id).update({ imageId });
         return res.status(200).send(success3({ path: path33, assetsId: id }));
       } catch (e) {
-        await utils_default.db("o_image").where("id", imageId).update({ state: "\u751F\u6210\u5931\u8D25", errorReason: utils_default.error(e).message });
-        return res.status(400).send(error50(utils_default.error(e).message || "\u56FE\u7247\u751F\u6210\u5931\u8D25"));
+        await utils_default.db("o_image").where("id", imageId).update({ state: "Generation failed", errorReason: utils_default.error(e).message });
+        return res.status(400).send(error50(utils_default.error(e).message || "Image generation failed"));
       }
     });
   }
@@ -239833,38 +239085,38 @@ var init_polishAssetsPrompt = __esm({
       async (req, res) => {
         const { assetsId, projectId, type, name: name28, describe: describe4 } = req.body;
         const project = await utils_default.db("o_project").where("id", projectId).select("artStyle", "type", "intro").first();
-        if (!project) return res.status(500).send(success3({ message: "\u9879\u76EE\u4E3A\u7A7A" }));
-        await utils_default.db("o_assets").where("id", assetsId).update({ promptState: "\u751F\u6210\u4E2D" });
+        if (!project) return res.status(500).send(success3({ message: "The project is empty" }));
+        await utils_default.db("o_assets").where("id", assetsId).update({ promptState: "Generating" });
         const assetsData = await utils_default.db("o_assets").where("id", assetsId).select("assetsId").first();
-        if (!assetsData) return { code: 500, message: "\u8D44\u4EA7\u4E0D\u5B58\u5728" };
+        if (!assetsData) return { code: 500, message: "The asset does not exist" };
         const typeConfig = {
           role: {
             promptKey: "role-polish",
             itemType: "characters",
-            label: "\u89D2\u8272\u6807\u51C6\u56DB\u89C6\u56FE",
-            nameLabel: "\u89D2\u8272",
+            label: "Character Standard Four-View",
+            nameLabel: "Role",
             visualManual: assetsData.assetsId ? "art_character_derivative" : "art_character"
           },
           scene: {
             promptKey: "scene-polish",
             itemType: "scenes",
-            label: "\u573A\u666F\u56FE",
-            nameLabel: "\u573A\u666F",
+            label: "Scene graph",
+            nameLabel: "Scene",
             visualManual: assetsData.assetsId ? "art_scene_derivative" : "art_scene"
           },
           tool: {
             promptKey: "tool-polish",
             itemType: "props",
-            label: "\u9053\u5177\u56FE",
-            nameLabel: "\u9053\u5177",
+            label: "Prop image",
+            nameLabel: "Props",
             visualManual: assetsData.assetsId ? "art_prop_derivative" : "art_prop"
           }
         };
         const config3 = typeConfig[type];
-        if (!config3) return res.status(500).send(error50("\u4E0D\u652F\u6301\u7684\u7C7B\u578B"));
-        if (!config3.visualManual) return res.status(500).send(error50("\u89C6\u89C9\u624B\u518C\u672A\u5B9A\u4E49"));
+        if (!config3) return res.status(500).send(error50("Unsupported type"));
+        if (!config3.visualManual) return res.status(500).send(error50("Visual manual undefined"));
         const visualManual = await utils_default.getArtPrompt(project.artStyle, "art_skills", config3.visualManual);
-        if (!visualManual) return res.status(500).send(error50("\u89C6\u89C9\u624B\u518C\u672A\u5B9A\u4E49"));
+        if (!visualManual) return res.status(500).send(error50("Visual manual undefined"));
         const systemPrompt = visualManual;
         try {
           const { _output } = await utils_default.Ai.Text("universalAi").invoke({
@@ -239872,19 +239124,17 @@ var init_polishAssetsPrompt = __esm({
             messages: [
               {
                 role: "user",
-                content: `**\u57FA\u7840\u53C2\u6570\uFF1A**
-      **${config3.nameLabel}\u8BBE\u5B9A\uFF1A**
-      - ${config3.nameLabel}\u540D\u79F0:${name28},
-      - ${config3.nameLabel}\u63CF\u8FF0:${describe4},`
+                content: `**Basic parameters:**${config3.nameLabel}Setting: **{config.nameLabel}Name:{name},
+      - ${config3.nameLabel}Description:{describe},`
               }
             ]
           });
-          if (!_output) return res.status(500).send("\u5931\u8D25");
-          await utils_default.db("o_assets").where("id", assetsId).update({ prompt: _output, promptState: "\u5DF2\u5B8C\u6210" });
+          if (!_output) return res.status(500).send("Failed");
+          await utils_default.db("o_assets").where("id", assetsId).update({ prompt: _output, promptState: "Completed" });
           res.status(200).send(success3({ prompt: _output, assetsId }));
         } catch (e) {
-          await utils_default.db("o_assets").where("id", assetsId).update({ promptState: "\u5931\u8D25", promptErrorReason: utils_default.error(e).message });
-          return res.status(500).send(error50(e?.data?.error?.message ?? e?.message ?? "\u751F\u6210\u5931\u8D25"));
+          await utils_default.db("o_assets").where("id", assetsId).update({ promptState: "Failed", promptErrorReason: utils_default.error(e).message });
+          return res.status(500).send(error50(e?.data?.error?.message ?? e?.message ?? "Generation failed"));
         }
       }
     );
@@ -239942,56 +239192,51 @@ var init_batchBindAudio = __esm({
         const { projectId, assetsIds, concurrentCount } = req.body;
         const assetsData = await utils_default.db("o_assets").whereIn("id", assetsIds).andWhere("projectId", projectId).select("id", "name", "describe", "type");
         const audioData = await utils_default.db("o_assets").where("type", "audio").whereNull("assetsId").andWhere("projectId", projectId).select("id", "name", "describe");
-        if (!audioData.length) return res.status(400).send(error50("\u6682\u65E0\u8BBE\u7F6E\u97F3\u9891\uFF0C\u8BF7\u5148\u524D\u5F80\u8D44\u4EA7\u4E2D\u5FC3\u4E0A\u4F20\u97F3\u9891"));
+        if (!audioData.length) return res.status(400).send(error50("No audio has been configured yet. Please go to the Asset Center to upload an audio file first."));
         const batchSize = concurrentCount ?? 1;
         async function processAsset(asset) {
           try {
             const resultTool = tool({
-              description: "\u5339\u914D\u5B8C\u6210\u540E\u5FC5\u987B\u8C03\u7528\u6B64\u5DE5\u5177\u63D0\u4EA4\u7ED3\u679C",
+              description: "After matching is complete, you must call this tool to submit the results",
               inputSchema: jsonSchema(
                 external_exports.object({
-                  audioId: external_exports.number().nullable().optional().describe("\u4E0E\u8BE5\u8D44\u4EA7\u5339\u914D\u7684\u97F3\u9891ID\u5217\u8868\uFF0C\u82E5\u65E0\u5408\u9002\u5339\u914D\u5219\u8FD4\u56DE\u7A7A\u6570\u7EC4")
+                  audioId: external_exports.number().nullable().optional().describe("List of audio IDs matching the asset; return an empty array if no suitable match is found")
                 }).toJSONSchema()
               ),
               execute: async (result) => {
                 await utils_default.db("o_assetsRole2Audio").where("assetsRoleId", asset.id).delete();
                 if (result?.audioId) await utils_default.db("o_assetsRole2Audio").insert({ assetsRoleId: asset.id, assetsAudioId: result.audioId });
-                await utils_default.db("o_assets").where("id", asset.id).update("audioBindState", "\u5DF2\u5B8C\u6210");
-                return "\u65E0\u9700\u56DE\u590D\u7528\u6237\u4EFB\u4F55\u5185\u5BB9";
+                await utils_default.db("o_assets").where("id", asset.id).update("audioBindState", "Completed");
+                return "No need to reply to the user with any content";
               }
             });
-            const audioList = audioData.map((i) => `- ID:${i.id} | \u540D\u79F0:${i.name} | \u63CF\u8FF0:${i.describe ?? "\u65E0"}`).join("\n");
+            const audioList = audioData.map((i) => `- ID:${i.id}| Name:{i.name}| Description:{i.describe ?? "None"}`).join("\n");
             const promptData = await utils_default.userSettings.getPromptByType("audioBindPrompt");
-            let audioBindPrompt = "";
+            let audioBindPrompt2 = "";
             if (promptData && promptData.useData) {
-              audioBindPrompt = promptData.useData;
+              audioBindPrompt2 = promptData.useData;
             } else {
-              audioBindPrompt = promptData?.data ?? void 0;
+              audioBindPrompt2 = promptData?.data ?? void 0;
             }
             const { text: text2 } = await utils_default.Ai.Text("universalAi").invoke({
               messages: [
                 {
                   role: "system",
                   content: `
-              ${audioBindPrompt}
+              ${audioBindPrompt2}
               `
                 },
                 {
                   role: "user",
-                  content: `
-                ## \u5019\u9009\u97F3\u9891\u5217\u8868
-                ${audioList}
-                ## \u5F85\u5339\u914D\u8D44\u4EA7
-                - ID:${asset.id} | \u540D\u79F0:${asset.name} | \u63CF\u8FF0:${asset.describe ?? "\u65E0"} | \u7C7B\u578B\uFF1A${asset.type}
-                \u8BF7\u4ECE\u5019\u9009\u97F3\u9891\u5217\u8868\u4E2D\u4E3A\u8BE5\u8D44\u4EA7\u9009\u51FA\u6765\u4E00\u4E2A\u6700\u7B26\u5408\u8BE5\u89D2\u8272\u8BBE\u5B9A\u7684\u97F3\u8272\uFF0C\u5E76\u8C03\u7528 resultTool \u63D0\u4EA4\u7ED3\u679C\u3002
-           `
+                  content: `## Candidate Audio List${audioList}## Assets to be matched
+                - ID:{asset.id}| Name:{asset.name}| Description:{asset.describe ?? "None"}| Type:{asset.type}Please select the most suitable voice from the candidate audio list that matches the character's setting for this asset, and call resultTool to submit the result.`
                 }
               ],
               tools: { resultTool }
             });
           } catch (e) {
-            await utils_default.db("o_assets").where("id", asset.id).update("audioBindState", "\u751F\u6210\u5931\u8D25");
-            console.error(`[bindAudio] \u8D44\u4EA7 ${asset.id} \u5904\u7406\u5931\u8D25:`, e);
+            await utils_default.db("o_assets").where("id", asset.id).update("audioBindState", "Generation failed");
+            console.error(`[bindAudio] Asset${asset.id}Processing failed:`, e);
           }
         }
         async function runWithConcurrency() {
@@ -240003,7 +239248,7 @@ var init_batchBindAudio = __esm({
         await utils_default.db("o_assets").whereIn(
           "id",
           assetsData.map((i) => i.id)
-        ).update("audioBindState", "\u751F\u6210\u4E2D");
+        ).update("audioBindState", "Generating");
         runWithConcurrency();
         res.status(200).send(success3());
       }
@@ -240052,7 +239297,7 @@ var init_getAllAssets = __esm({
         });
         const result = await Promise.all(
           data.map(async (parent) => {
-            const historyImages = await utils_default.db("o_image").where("assetsId", parent.id).andWhere("state", "\u5DF2\u5B8C\u6210").select("id", "filePath");
+            const historyImages = await utils_default.db("o_image").where("assetsId", parent.id).andWhere("state", "Completed").select("id", "filePath");
             const historyImagesWithUrl = await Promise.all(
               historyImages.map(async (img) => ({
                 id: img.id,
@@ -240091,7 +239336,7 @@ var init_pollingAudio = __esm({
       }),
       async (req, res) => {
         const { ids } = req.body;
-        const data = await utils_default.db("o_assets").whereIn("id", ids).whereNot("audioBindState", "\u751F\u6210\u4E2D").select("*");
+        const data = await utils_default.db("o_assets").whereIn("id", ids).whereNot("audioBindState", "Generating").select("*");
         res.status(200).send(success3(data));
       }
     );
@@ -240117,12 +239362,12 @@ var init_updateAssetsAudio = __esm({
       }),
       async (req, res) => {
         const { assetsId, audioIds } = req.body;
-        if (audioIds && audioIds.length > 1) return res.status(400).send(error50("\u4EC5\u53EF\u7ED1\u5B9A\u4E00\u4E2A\u97F3\u8272"));
+        if (audioIds && audioIds.length > 1) return res.status(400).send(error50("Only one voice can be bound"));
         await utils_default.db("o_assetsRole2Audio").where("assetsRoleId", assetsId).delete();
         if (audioIds && audioIds.length) {
           await utils_default.db("o_assetsRole2Audio").insert({ assetsRoleId: assetsId, assetsAudioId: audioIds[0] });
         }
-        res.status(200).send(success3({ message: "\u66F4\u65B0\u97F3\u9891\u6210\u529F" }));
+        res.status(200).send(success3({ message: "Audio updated successfully" }));
       }
     );
   }
@@ -240148,10 +239393,10 @@ var init_generalStatistics = __esm({
         const { projectId } = req.body;
         const scripts = await utils_default.db("o_script").where("projectId", projectId).select("id");
         const scriptIds = scripts.map((item) => item.id);
-        const roleCount = await utils_default.db("o_assets").where("projectId", projectId).where("type", "\u89D2\u8272").count("* as total").first();
+        const roleCount = await utils_default.db("o_assets").where("projectId", projectId).where("type", "Role").count("* as total").first();
         const scriptCount = await utils_default.db("o_script").where("projectId", projectId).count("* as total").first();
         const videoCount = await utils_default.db("o_video").whereIn("scriptId", scriptIds).count("* as total").first();
-        const storyboardCount = await utils_default.db("o_assets").whereIn("scriptId", scriptIds).where("type", "\u5206\u955C").count("* as total").first();
+        const storyboardCount = await utils_default.db("o_assets").whereIn("scriptId", scriptIds).where("type", "Storyboard").count("* as total").first();
         const data = {
           roleCount: roleCount?.total || 0,
           scriptCount: scriptCount?.total || 0,
@@ -240223,7 +239468,7 @@ var init_updateProject = __esm({
           videoRatio,
           projectType
         });
-        res.status(200).send(success3({ message: "\u4FEE\u6539\u6210\u529F" }));
+        res.status(200).send(success3({ message: "Modification successful" }));
       }
     );
   }
@@ -240232,7 +239477,7 @@ var init_updateProject = __esm({
 // src/routes/login/login.ts
 function setToken(payload, expiresIn, secret) {
   if (!payload || typeof secret !== "string" || !secret) {
-    throw new Error("\u53C2\u6570\u4E0D\u5408\u6CD5");
+    throw new Error("Invalid token parameters");
   }
   return import_jsonwebtoken6.default.sign(payload, secret, { expiresIn });
 }
@@ -240272,18 +239517,18 @@ var init_login = __esm({
         const attemptKey = `${req.ip}:${username.toLowerCase()}`;
         const attempt = failedAttempts.get(attemptKey);
         if (attempt && Date.now() - attempt.firstAttemptAt < LOGIN_WINDOW_MS && attempt.count >= MAX_LOGIN_ATTEMPTS) {
-          return res.status(429).send(error50("\u767B\u5F55\u5931\u8D25\u6B21\u6570\u8FC7\u591A\uFF0C\u8BF7 10 \u5206\u949F\u540E\u518D\u8BD5"));
+          return res.status(429).send(error50("Too many failed login attempts. Please try again in 10 minutes."));
         }
         if (attempt && Date.now() - attempt.firstAttemptAt >= LOGIN_WINDOW_MS) failedAttempts.delete(attemptKey);
-        const data = await utils_default.db("o_user").where("name", "=", username).first();
+        const data = await utils_default.db("o_user").whereRaw("LOWER(name) = LOWER(?)", [username]).first();
         if (!data || Number(data.disabled) === 1) {
           registerFailedAttempt(attemptKey);
-          return res.status(400).send(error50("\u7528\u6237\u540D\u6216\u5BC6\u7801\u9519\u8BEF"));
+          return res.status(400).send(error50("Invalid username or password"));
         }
         if (await verifyPassword(password, String(data.password))) {
           failedAttempts.delete(attemptKey);
           const tokenData = await utils_default.db("o_setting").where("key", "tokenKey").first();
-          if (!tokenData) return res.status(400).send(error50("\u672A\u627E\u5230tokenKey"));
+          if (!tokenData) return res.status(400).send(error50("Server tokenKey not initialized"));
           const tokenVersion = Number(data.tokenVersion ?? 0);
           const token = setToken(
             {
@@ -240305,11 +239550,11 @@ var init_login = __esm({
             maxAge: 12 * 60 * 60 * 1e3
           });
           return res.status(200).send(
-            success3({ token: "Bearer " + token, name: data.name, id: data.id, role: data.role === "admin" ? "admin" : "user" }, "\u767B\u5F55\u6210\u529F")
+            success3({ token: "Bearer " + token, name: data.name, id: data.id, role: data.role === "admin" ? "admin" : "user" }, "Login successful")
           );
         } else {
           registerFailedAttempt(attemptKey);
-          return res.status(400).send(error50("\u7528\u6237\u540D\u6216\u5BC6\u7801\u9519\u8BEF"));
+          return res.status(400).send(error50("Invalid username or password"));
         }
       }
     );
@@ -240326,23 +239571,141 @@ var init_logout = __esm({
     router36 = import_express36.default.Router();
     logout_default = router36.post("/", (_req, res) => {
       res.clearCookie("sd_token", { httpOnly: true, sameSite: "lax" });
-      res.status(200).send(success3("\u5DF2\u9000\u51FA\u767B\u5F55"));
+      res.status(200).send(success3("Logged out successfully"));
     });
   }
 });
 
+// src/utils/userId.ts
+async function allocateUserId(trx) {
+  const key = "userIdSequence";
+  const sequence = await trx("o_setting").where("key", key).first();
+  const highest = await trx("o_user").max("id as maxId").first();
+  const id = Math.max(Number(sequence?.value ?? 0) + 1, Number(highest?.maxId ?? 0) + 1, Date.now());
+  if (!Number.isSafeInteger(id)) throw new Error("User ID sequence exhausted");
+  if (sequence)
+    await trx("o_setting").where("key", key).update({ value: String(id) });
+  else await trx("o_setting").insert({ key, value: String(id) });
+  return id;
+}
+var init_userId = __esm({
+  "src/utils/userId.ts"() {
+    "use strict";
+  }
+});
+
+// src/routes/login/register.ts
+var import_express37, router37, registerAttempts, MAX_REGISTER_ATTEMPTS, REGISTER_WINDOW_MS, register_default;
+var init_register = __esm({
+  "src/routes/login/register.ts"() {
+    "use strict";
+    import_express37 = __toESM(require_express2());
+    init_utils3();
+    init_db();
+    init_responseFormat();
+    init_middleware();
+    init_zod();
+    init_auth();
+    init_login();
+    init_userId();
+    router37 = import_express37.default.Router();
+    registerAttempts = /* @__PURE__ */ new Map();
+    MAX_REGISTER_ATTEMPTS = 8;
+    REGISTER_WINDOW_MS = 10 * 60 * 1e3;
+    register_default = router37.post(
+      "/",
+      validateFields({
+        username: external_exports.string().trim().min(2).max(32),
+        password: external_exports.string().min(6).max(128)
+      }),
+      async (req, res) => {
+        const username = String(req.body.username).trim();
+        const { password } = req.body;
+        if (!/^[a-zA-Z0-9_\u4e00-\u9fa5.-]{2,32}$/.test(username)) {
+          return res.status(400).send(error50("Username must be 2-32 characters (letters, numbers, _, ., -)"));
+        }
+        const attemptKey = `reg:${req.ip}`;
+        const now2 = Date.now();
+        const attempt = registerAttempts.get(attemptKey);
+        if (attempt && now2 - attempt.firstAttemptAt < REGISTER_WINDOW_MS && attempt.count >= MAX_REGISTER_ATTEMPTS) {
+          return res.status(429).send(error50("Too many registration attempts. Please try again in 10 minutes."));
+        }
+        if (!attempt || now2 - attempt.firstAttemptAt >= REGISTER_WINDOW_MS) {
+          registerAttempts.set(attemptKey, { count: 1, firstAttemptAt: now2 });
+        } else {
+          attempt.count += 1;
+        }
+        const hashedPassword = await hashPassword(String(password));
+        const account = await db.transaction(async (trx) => {
+          const exists = await trx("o_user").whereRaw("lower(name) = lower(?)", [username]).first();
+          if (exists) return null;
+          const count = await trx("o_user").count("id as count").first();
+          const role2 = Number(count?.count ?? 0) === 0 ? "admin" : "user";
+          const id2 = await allocateUserId(trx);
+          await trx("o_user").insert({
+            id: id2,
+            name: username,
+            password: hashedPassword,
+            role: role2,
+            disabled: 0,
+            tokenVersion: 0,
+            createdAt: now2,
+            updatedAt: now2,
+            lastLoginAt: now2
+          });
+          return { id: id2, role: role2 };
+        });
+        if (!account) return res.status(400).send(error50("Username already exists"));
+        const { id, role } = account;
+        const tokenData = await utils_default.db("o_setting").where("key", "tokenKey").first();
+        if (!tokenData?.value) {
+          return res.status(500).send(error50("Server tokenKey not initialized"));
+        }
+        const userId = Number(id);
+        const token = setToken(
+          {
+            id: userId,
+            name: username,
+            role,
+            tokenVersion: 0
+          },
+          "12h",
+          String(tokenData.value)
+        );
+        res.cookie("sd_token", token, {
+          httpOnly: true,
+          sameSite: "lax",
+          secure: process.env.NODE_ENV === "prod" && process.env.HTTPS === "1",
+          maxAge: 12 * 60 * 60 * 1e3
+        });
+        return res.status(200).send(
+          success3(
+            {
+              token: "Bearer " + token,
+              name: username,
+              id: userId,
+              role
+            },
+            "Registration successful"
+          )
+        );
+      }
+    );
+  }
+});
+
 // src/routes/modelSelect/getModelDetail.ts
-var import_express37, router37, getModelDetail_default;
+var import_express38, router38, getModelDetail_default;
 var init_getModelDetail = __esm({
   "src/routes/modelSelect/getModelDetail.ts"() {
     "use strict";
-    import_express37 = __toESM(require_express2());
+    import_express38 = __toESM(require_express2());
     init_utils3();
     init_zod();
     init_responseFormat();
     init_middleware();
-    router37 = import_express37.default.Router();
-    getModelDetail_default = router37.post(
+    router38 = import_express38.default.Router();
+    getModelDetail_default = router38.post(
       "/",
       validateFields({
         modelId: external_exports.string()
@@ -240359,17 +239722,17 @@ var init_getModelDetail = __esm({
 });
 
 // src/routes/modelSelect/getModelList.ts
-var import_express38, router38, getModelList_default;
+var import_express39, router39, getModelList_default;
 var init_getModelList = __esm({
   "src/routes/modelSelect/getModelList.ts"() {
     "use strict";
-    import_express38 = __toESM(require_express2());
+    import_express39 = __toESM(require_express2());
     init_utils3();
     init_zod();
     init_responseFormat();
     init_middleware();
-    router38 = import_express38.default.Router();
-    getModelList_default = router38.post(
+    router39 = import_express39.default.Router();
+    getModelList_default = router39.post(
       "/",
       validateFields({
         type: external_exports.enum(["text", "image", "video", "all"])
@@ -240402,17 +239765,17 @@ var init_getModelList = __esm({
 });
 
 // src/routes/novel/addNovel.ts
-var import_express39, router39, addNovel_default;
+var import_express40, router40, addNovel_default;
 var init_addNovel = __esm({
   "src/routes/novel/addNovel.ts"() {
     "use strict";
-    import_express39 = __toESM(require_express2());
+    import_express40 = __toESM(require_express2());
     init_utils3();
     init_zod();
     init_responseFormat();
     init_middleware();
-    router39 = import_express39.default.Router();
-    addNovel_default = router39.post(
+    router40 = import_express40.default.Router();
+    addNovel_default = router40.post(
       "/",
       validateFields({
         projectId: external_exports.number(),
@@ -240451,7 +239814,7 @@ var init_addNovel = __esm({
           await utils_default.db("o_novel").where("id", item.id).update({ event: item.event, eventState: item.event ? 1 : -1, errorReason: item?.errReason ?? null });
         });
         novelClass.start(chapterAllList, projectId);
-        res.status(200).send(success3({ message: "\u65B0\u589E\u539F\u6587\u6210\u529F" }));
+        res.status(200).send(success3({ message: "Successfully added the original text" }));
       }
     );
   }
@@ -240472,18 +239835,18 @@ var init_renumberNovelChapters = __esm({
 });
 
 // src/routes/novel/batchDeleteNovel.ts
-var import_express40, router40, batchDeleteNovel_default;
+var import_express41, router41, batchDeleteNovel_default;
 var init_batchDeleteNovel = __esm({
   "src/routes/novel/batchDeleteNovel.ts"() {
     "use strict";
-    import_express40 = __toESM(require_express2());
+    import_express41 = __toESM(require_express2());
     init_utils3();
     init_zod();
     init_responseFormat();
     init_middleware();
     init_renumberNovelChapters();
-    router40 = import_express40.default.Router();
-    batchDeleteNovel_default = router40.post(
+    router41 = import_express41.default.Router();
+    batchDeleteNovel_default = router41.post(
       "/",
       validateFields({
         ids: external_exports.array(external_exports.number())
@@ -240491,7 +239854,7 @@ var init_batchDeleteNovel = __esm({
       async (req, res) => {
         const { ids } = req.body;
         if (!ids.length) {
-          return res.status(400).send(error50("\u8BF7\u5148\u9009\u62E9\u9700\u8981\u5220\u9664\u7684\u5185\u5BB9"));
+          return res.status(400).send(error50("Please select the content to be deleted"));
         }
         const novels = await utils_default.db("o_novel").whereIn("id", ids).select("id", "projectId");
         const projectIds = [...new Set(novels.map((novel) => Number(novel.projectId)).filter(Number.isFinite))];
@@ -240501,25 +239864,25 @@ var init_batchDeleteNovel = __esm({
         if (eventIds.length) await utils_default.db("o_event").whereIn("id", eventIds).delete();
         await utils_default.db("o_novel").whereIn("id", ids).del();
         for (const projectId of projectIds) await renumberNovelChapters(projectId);
-        res.status(200).send(success3({ message: "\u5220\u9664\u539F\u6587\u6210\u529F" }));
+        res.status(200).send(success3({ message: "The original text was successfully deleted" }));
       }
     );
   }
 });
 
 // src/routes/novel/delNovel.ts
-var import_express41, router41, delNovel_default;
+var import_express42, router42, delNovel_default;
 var init_delNovel = __esm({
   "src/routes/novel/delNovel.ts"() {
     "use strict";
-    import_express41 = __toESM(require_express2());
+    import_express42 = __toESM(require_express2());
     init_utils3();
     init_zod();
     init_responseFormat();
     init_middleware();
     init_renumberNovelChapters();
-    router41 = import_express41.default.Router();
-    delNovel_default = router41.post(
+    router42 = import_express42.default.Router();
+    delNovel_default = router42.post(
       "/",
       validateFields({
         id: external_exports.number()
@@ -240528,7 +239891,7 @@ var init_delNovel = __esm({
         const { id } = req.body;
         const novel = await utils_default.db("o_novel").where("id", id).select("projectId").first();
         if (!novel) {
-          return res.status(404).send({ code: 404, data: null, message: "\u539F\u6587\u4E0D\u5B58\u5728" });
+          return res.status(404).send({ code: 404, data: null, message: "The original text does not exist" });
         }
         const chapterData = await utils_default.db("o_eventChapter").where("novelId", id);
         await utils_default.db("o_eventChapter").where("novelId", id).delete();
@@ -240536,24 +239899,24 @@ var init_delNovel = __esm({
         if (eventIds.length) await utils_default.db("o_event").whereIn("id", eventIds).delete();
         await utils_default.db("o_novel").where("id", id).del();
         await renumberNovelChapters(Number(novel.projectId));
-        res.status(200).send(success3({ message: "\u5220\u9664\u539F\u6587\u6210\u529F" }));
+        res.status(200).send(success3({ message: "The original text was successfully deleted" }));
       }
     );
   }
 });
 
 // src/routes/novel/event/batchDeleteEvent.ts
-var import_express42, router42, batchDeleteEvent_default;
+var import_express43, router43, batchDeleteEvent_default;
 var init_batchDeleteEvent = __esm({
   "src/routes/novel/event/batchDeleteEvent.ts"() {
     "use strict";
-    import_express42 = __toESM(require_express2());
+    import_express43 = __toESM(require_express2());
     init_utils3();
     init_zod();
     init_responseFormat();
     init_middleware();
-    router42 = import_express42.default.Router();
-    batchDeleteEvent_default = router42.post(
+    router43 = import_express43.default.Router();
+    batchDeleteEvent_default = router43.post(
       "/",
       validateFields({
         ids: external_exports.array(external_exports.number())
@@ -240562,24 +239925,24 @@ var init_batchDeleteEvent = __esm({
         const { ids } = req.body;
         await utils_default.db("o_event").whereIn("id", ids).del();
         await utils_default.db("o_eventChapter").whereIn("eventId", ids).del();
-        res.status(200).send(success3({ message: "\u5220\u9664\u4E8B\u4EF6\u6210\u529F" }));
+        res.status(200).send(success3({ message: "Event deleted successfully" }));
       }
     );
   }
 });
 
 // src/routes/novel/event/deletEvent.ts
-var import_express43, router43, deletEvent_default;
+var import_express44, router44, deletEvent_default;
 var init_deletEvent = __esm({
   "src/routes/novel/event/deletEvent.ts"() {
     "use strict";
-    import_express43 = __toESM(require_express2());
+    import_express44 = __toESM(require_express2());
     init_utils3();
     init_zod();
     init_responseFormat();
     init_middleware();
-    router43 = import_express43.default.Router();
-    deletEvent_default = router43.post(
+    router44 = import_express44.default.Router();
+    deletEvent_default = router44.post(
       "/",
       validateFields({
         id: external_exports.number()
@@ -240588,24 +239951,24 @@ var init_deletEvent = __esm({
         const { id } = req.body;
         await utils_default.db("o_event").where("id", id).del();
         await utils_default.db("o_eventChapter").where("eventId", id).del();
-        res.status(200).send(success3({ message: "\u5220\u9664\u4E8B\u4EF6\u6210\u529F" }));
+        res.status(200).send(success3({ message: "Event deleted successfully" }));
       }
     );
   }
 });
 
 // src/routes/novel/event/generateEvents.ts
-var import_express44, router44, generateEvents_default;
+var import_express45, router45, generateEvents_default;
 var init_generateEvents = __esm({
   "src/routes/novel/event/generateEvents.ts"() {
     "use strict";
-    import_express44 = __toESM(require_express2());
+    import_express45 = __toESM(require_express2());
     init_utils3();
     init_zod();
     init_responseFormat();
     init_middleware();
-    router44 = import_express44.default.Router();
-    generateEvents_default = router44.post(
+    router45 = import_express45.default.Router();
+    generateEvents_default = router45.post(
       "/",
       validateFields({
         projectId: external_exports.number(),
@@ -240619,32 +239982,32 @@ var init_generateEvents = __esm({
           Promise.resolve(new utils_default.cleanNovel(concurrentCount))
         ]);
         if (allChapters.length === 0) {
-          return res.status(400).send(success3("\u6CA1\u6709\u5BF9\u5E94\u7AE0\u8282"));
+          return res.status(400).send(success3("No corresponding chapter"));
         }
         await utils_default.db("o_novel").where("projectId", projectId).whereIn("id", novelIds).update({ eventState: 0, event: null });
         novel.emitter.on("item", async (item) => {
           await utils_default.db("o_novel").where("id", item.id).update({ event: item.event, eventState: item.event ? 1 : -1, errorReason: item?.errorReason ?? null });
         });
         novel.start(allChapters, projectId);
-        return res.status(200).send(success3("\u751F\u6210\u4E8B\u4EF6\u6210\u529F"));
+        return res.status(200).send(success3("Event generated successfully"));
       }
     );
   }
 });
 
 // src/routes/novel/event/getEvent.ts
-var import_express45, router45, getEvent_default;
+var import_express46, router46, getEvent_default;
 var init_getEvent = __esm({
   "src/routes/novel/event/getEvent.ts"() {
     "use strict";
-    import_express45 = __toESM(require_express2());
+    import_express46 = __toESM(require_express2());
     init_utils3();
     init_db();
     init_zod();
     init_responseFormat();
     init_middleware();
-    router45 = import_express45.default.Router();
-    getEvent_default = router45.post(
+    router46 = import_express46.default.Router();
+    getEvent_default = router46.post(
       "/",
       validateFields({
         projectId: external_exports.number(),
@@ -240678,17 +240041,17 @@ var init_getEvent = __esm({
 });
 
 // src/routes/novel/getNovel.ts
-var import_express46, router46, getNovel_default;
+var import_express47, router47, getNovel_default;
 var init_getNovel = __esm({
   "src/routes/novel/getNovel.ts"() {
     "use strict";
-    import_express46 = __toESM(require_express2());
+    import_express47 = __toESM(require_express2());
     init_utils3();
     init_zod();
     init_responseFormat();
     init_middleware();
-    router46 = import_express46.default.Router();
-    getNovel_default = router46.post(
+    router47 = import_express47.default.Router();
+    getNovel_default = router47.post(
       "/",
       validateFields({
         projectId: external_exports.number(),
@@ -240716,17 +240079,17 @@ var init_getNovel = __esm({
 });
 
 // src/routes/novel/getNovelData.ts
-var import_express47, router47, getNovelData_default;
+var import_express48, router48, getNovelData_default;
 var init_getNovelData = __esm({
   "src/routes/novel/getNovelData.ts"() {
     "use strict";
-    import_express47 = __toESM(require_express2());
+    import_express48 = __toESM(require_express2());
     init_utils3();
     init_zod();
     init_responseFormat();
     init_middleware();
-    router47 = import_express47.default.Router();
-    getNovelData_default = router47.post(
+    router48 = import_express48.default.Router();
+    getNovelData_default = router48.post(
       "/",
       validateFields({
         projectId: external_exports.number()
@@ -240741,17 +240104,17 @@ var init_getNovelData = __esm({
 });
 
 // src/routes/novel/getNovelEventState.ts
-var import_express48, router48, getNovelEventState_default;
+var import_express49, router49, getNovelEventState_default;
 var init_getNovelEventState = __esm({
   "src/routes/novel/getNovelEventState.ts"() {
     "use strict";
-    import_express48 = __toESM(require_express2());
+    import_express49 = __toESM(require_express2());
     init_utils3();
     init_zod();
     init_responseFormat();
     init_middleware();
-    router48 = import_express48.default.Router();
-    getNovelEventState_default = router48.post(
+    router49 = import_express49.default.Router();
+    getNovelEventState_default = router49.post(
       "/",
       validateFields({
         ids: external_exports.array(external_exports.number())
@@ -240766,17 +240129,17 @@ var init_getNovelEventState = __esm({
 });
 
 // src/routes/novel/getNovelIndex.ts
-var import_express49, router49, getNovelIndex_default;
+var import_express50, router50, getNovelIndex_default;
 var init_getNovelIndex = __esm({
   "src/routes/novel/getNovelIndex.ts"() {
     "use strict";
-    import_express49 = __toESM(require_express2());
+    import_express50 = __toESM(require_express2());
     init_utils3();
     init_zod();
     init_responseFormat();
     init_middleware();
-    router49 = import_express49.default.Router();
-    getNovelIndex_default = router49.post(
+    router50 = import_express50.default.Router();
+    getNovelIndex_default = router50.post(
       "/",
       validateFields({
         projectId: external_exports.number()
@@ -240791,17 +240154,17 @@ var init_getNovelIndex = __esm({
 });
 
 // src/routes/novel/updateNovel.ts
-var import_express50, router50, updateNovel_default;
+var import_express51, router51, updateNovel_default;
 var init_updateNovel = __esm({
   "src/routes/novel/updateNovel.ts"() {
     "use strict";
-    import_express50 = __toESM(require_express2());
+    import_express51 = __toESM(require_express2());
     init_utils3();
     init_zod();
     init_responseFormat();
     init_middleware();
-    router50 = import_express50.default.Router();
-    updateNovel_default = router50.post(
+    router51 = import_express51.default.Router();
+    updateNovel_default = router51.post(
       "/",
       validateFields({
         id: external_exports.number(),
@@ -240820,42 +240183,42 @@ var init_updateNovel = __esm({
           chapterData,
           event
         });
-        res.status(200).send(success3({ message: "\u66F4\u65B0\u539F\u6587\u6210\u529F" }));
+        res.status(200).send(success3({ message: "The original text was updated successfully" }));
       }
     );
   }
 });
 
 // src/routes/other/deleteAllData.ts
-var import_express51, router51, deleteAllData_default;
+var import_express52, router52, deleteAllData_default;
 var init_deleteAllData = __esm({
   "src/routes/other/deleteAllData.ts"() {
     "use strict";
-    import_express51 = __toESM(require_express2());
+    import_express52 = __toESM(require_express2());
     init_initDB();
     init_db();
     init_responseFormat();
-    router51 = import_express51.default.Router();
-    deleteAllData_default = router51.post(
+    router52 = import_express52.default.Router();
+    deleteAllData_default = router52.post(
       "/",
       async (req, res) => {
         await initDB_default(db, true);
-        res.status(200).send(success3({ message: "\u6E05\u7A7A\u6570\u636E\u8868\u6210\u529F" }));
+        res.status(200).send(success3({ message: "Data table cleared successfully" }));
       }
     );
   }
 });
 
 // src/routes/other/getVersion.ts
-var import_express52, router52, getVersion_default;
+var import_express53, router53, getVersion_default;
 var init_getVersion = __esm({
   "src/routes/other/getVersion.ts"() {
     "use strict";
-    import_express52 = __toESM(require_express2());
+    import_express53 = __toESM(require_express2());
     init_responseFormat();
     init_writeVersion();
-    router52 = import_express52.default.Router();
-    getVersion_default = router52.get("/", async (req, res) => {
+    router53 = import_express53.default.Router();
+    getVersion_default = router53.get("/", async (req, res) => {
       const version3 = await getVersion();
       res.status(200).send(success3(version3));
     });
@@ -240863,17 +240226,17 @@ var init_getVersion = __esm({
 });
 
 // src/routes/production/assets/batchGenerateAssetsImage.ts
-var import_express53, router53, batchGenerateAssetsImage_default;
+var import_express54, router54, batchGenerateAssetsImage_default;
 var init_batchGenerateAssetsImage = __esm({
   "src/routes/production/assets/batchGenerateAssetsImage.ts"() {
     "use strict";
-    import_express53 = __toESM(require_express2());
+    import_express54 = __toESM(require_express2());
     init_zod();
     init_responseFormat();
     init_middleware();
     init_derivativeAssetImageGeneration();
-    router53 = import_express53.default.Router();
-    batchGenerateAssetsImage_default = router53.post(
+    router54 = import_express54.default.Router();
+    batchGenerateAssetsImage_default = router54.post(
       "/",
       validateFields({
         assetIds: external_exports.array(external_exports.number()),
@@ -240884,7 +240247,7 @@ var init_batchGenerateAssetsImage = __esm({
       async (req, res) => {
         try {
           const result = await startDerivativeAssetImageGeneration(req.body);
-          return res.status(200).send(success3(result, "\u5DF2\u5F00\u59CB\u751F\u6210\u8D44\u4EA7\u56FE\u7247"));
+          return res.status(200).send(success3(result, "Asset image generation has started"));
         } catch (error71) {
           const message = error71 instanceof Error ? error71.message : String(error71);
           return res.status(400).send({ code: 400, data: null, message });
@@ -240895,17 +240258,17 @@ var init_batchGenerateAssetsImage = __esm({
 });
 
 // src/routes/production/assets/deleteAssetsDireve.ts
-var import_express54, router54, deleteAssetsDireve_default;
+var import_express55, router55, deleteAssetsDireve_default;
 var init_deleteAssetsDireve = __esm({
   "src/routes/production/assets/deleteAssetsDireve.ts"() {
     "use strict";
-    import_express54 = __toESM(require_express2());
+    import_express55 = __toESM(require_express2());
     init_utils3();
     init_zod();
     init_responseFormat();
     init_middleware();
-    router54 = import_express54.default.Router();
-    deleteAssetsDireve_default = router54.post(
+    router55 = import_express55.default.Router();
+    deleteAssetsDireve_default = router55.post(
       "/",
       validateFields({
         id: external_exports.number(),
@@ -240915,36 +240278,36 @@ var init_deleteAssetsDireve = __esm({
         const { id, projectId } = req.body;
         const assetsFirstData = await utils_default.db("o_assets").where("id", id).first();
         if (!assetsFirstData) {
-          return res.status(404).send({ error: "\u8D44\u6E90\u672A\u627E\u5230" });
+          return res.status(404).send({ error: "Resource not found" });
         }
         if (assetsFirstData?.flowId) await utils_default.db("o_imageFlow").where("id", assetsFirstData?.flowId).delete();
         await utils_default.db("o_assets").where("id", id).delete();
         await utils_default.db("o_assets2Storyboard").where("assetId", id).delete();
-        res.status(200).send(success3({ message: "\u89C6\u9891\u5220\u9664\u6210\u529F" }));
+        res.status(200).send(success3({ message: "Video deleted successfully" }));
       }
     );
   }
 });
 
 // src/routes/production/assets/pollingImage.ts
-var import_express55, router55, pollingImage_default;
+var import_express56, router56, pollingImage_default;
 var init_pollingImage = __esm({
   "src/routes/production/assets/pollingImage.ts"() {
     "use strict";
-    import_express55 = __toESM(require_express2());
+    import_express56 = __toESM(require_express2());
     init_utils3();
     init_zod();
     init_responseFormat();
     init_middleware();
-    router55 = import_express55.default.Router();
-    pollingImage_default = router55.post(
+    router56 = import_express56.default.Router();
+    pollingImage_default = router56.post(
       "/",
       validateFields({
         ids: external_exports.array(external_exports.number())
       }),
       async (req, res) => {
         const { ids } = req.body;
-        const data = await utils_default.db("o_assets").leftJoin("o_image", "o_assets.imageId", "o_image.id").whereIn("o_assets.id", ids).whereNot("o_image.state", "\u751F\u6210\u4E2D").select("o_image.state", "o_assets.id", "o_image.filePath", "o_image.errorReason", "o_assets.prompt");
+        const data = await utils_default.db("o_assets").leftJoin("o_image", "o_assets.imageId", "o_image.id").whereIn("o_assets.id", ids).whereNot("o_image.state", "Generating").select("o_image.state", "o_assets.id", "o_image.filePath", "o_image.errorReason", "o_assets.prompt");
         const result = await Promise.all(
           data.map(async (item) => ({
             ...item,
@@ -240958,17 +240321,17 @@ var init_pollingImage = __esm({
 });
 
 // src/routes/production/assets/updateAssetsUrl.ts
-var import_express56, router56, updateAssetsUrl_default;
+var import_express57, router57, updateAssetsUrl_default;
 var init_updateAssetsUrl = __esm({
   "src/routes/production/assets/updateAssetsUrl.ts"() {
     "use strict";
-    import_express56 = __toESM(require_express2());
+    import_express57 = __toESM(require_express2());
     init_utils3();
     init_zod();
     init_responseFormat();
     init_middleware();
-    router56 = import_express56.default.Router();
-    updateAssetsUrl_default = router56.post(
+    router57 = import_express57.default.Router();
+    updateAssetsUrl_default = router57.post(
       "/",
       validateFields({
         id: external_exports.number(),
@@ -240979,11 +240342,11 @@ var init_updateAssetsUrl = __esm({
         const { id, url: url4, flowId } = req.body;
         const [imageId] = await utils_default.db("o_image").insert({
           filePath: utils_default.replaceUrl(url4),
-          state: "\u5DF2\u5B8C\u6210",
+          state: "Completed",
           assetsId: id
         });
         await utils_default.db("o_assets").where({ id }).update({ flowId, imageId });
-        res.status(200).send(success3({ message: "\u66F4\u65B0\u63D0\u793A\u8BCD\u6210\u529F" }));
+        res.status(200).send(success3({ message: "Prompt updated successfully" }));
       }
     );
   }
@@ -241000,18 +240363,18 @@ async function urlToBase643(imageUrl) {
   const base644 = Buffer.from(response.data, "binary").toString("base64");
   return `data:${contentType};base64,${base644}`;
 }
-var import_express57, router57, generateFlowImage_default;
+var import_express58, router58, generateFlowImage_default;
 var init_generateFlowImage = __esm({
   "src/routes/production/editImage/generateFlowImage.ts"() {
     "use strict";
-    import_express57 = __toESM(require_express2());
+    import_express58 = __toESM(require_express2());
     init_utils3();
     init_zod();
     init_responseFormat();
     init_middleware();
     init_axios2();
-    router57 = import_express57.default.Router();
-    generateFlowImage_default = router57.post(
+    router58 = import_express58.default.Router();
+    generateFlowImage_default = router58.post(
       "/",
       validateFields({
         model: external_exports.string(),
@@ -241038,8 +240401,8 @@ var init_generateFlowImage = __esm({
               aspectRatio: ratio
             },
             {
-              taskClass: "\u5DE5\u4F5C\u6D41\u56FE\u7247\u751F\u6210",
-              describe: "\u5DE5\u4F5C\u6D41\u56FE\u7247\u751F\u6210",
+              taskClass: "Workflow image generation",
+              describe: "Workflow image generation",
               relatedObjects: JSON.stringify(req.body),
               projectId
             }
@@ -241057,17 +240420,17 @@ var init_generateFlowImage = __esm({
 });
 
 // src/routes/production/editImage/getImageDefaultModle.ts
-var import_express58, router58, getImageDefaultModle_default;
+var import_express59, router59, getImageDefaultModle_default;
 var init_getImageDefaultModle = __esm({
   "src/routes/production/editImage/getImageDefaultModle.ts"() {
     "use strict";
-    import_express58 = __toESM(require_express2());
+    import_express59 = __toESM(require_express2());
     init_utils3();
     init_zod();
     init_responseFormat();
     init_middleware();
-    router58 = import_express58.default.Router();
-    getImageDefaultModle_default = router58.post(
+    router59 = import_express59.default.Router();
+    getImageDefaultModle_default = router59.post(
       "/",
       validateFields({
         projectId: external_exports.number()
@@ -241082,17 +240445,17 @@ var init_getImageDefaultModle = __esm({
 });
 
 // src/routes/production/editImage/getImageFlow.ts
-var import_express59, router59, getImageFlow_default;
+var import_express60, router60, getImageFlow_default;
 var init_getImageFlow = __esm({
   "src/routes/production/editImage/getImageFlow.ts"() {
     "use strict";
-    import_express59 = __toESM(require_express2());
+    import_express60 = __toESM(require_express2());
     init_utils3();
     init_zod();
     init_responseFormat();
     init_middleware();
-    router59 = import_express59.default.Router();
-    getImageFlow_default = router59.post(
+    router60 = import_express60.default.Router();
+    getImageFlow_default = router60.post(
       "/",
       validateFields({
         id: external_exports.number()
@@ -241125,17 +240488,17 @@ var init_getImageFlow = __esm({
 });
 
 // src/routes/production/editImage/saveImageFlow.ts
-var import_express60, router60, saveImageFlow_default;
+var import_express61, router61, saveImageFlow_default;
 var init_saveImageFlow = __esm({
   "src/routes/production/editImage/saveImageFlow.ts"() {
     "use strict";
-    import_express60 = __toESM(require_express2());
+    import_express61 = __toESM(require_express2());
     init_utils3();
     init_zod();
     init_responseFormat();
     init_middleware();
-    router60 = import_express60.default.Router();
-    saveImageFlow_default = router60.post(
+    router61 = import_express61.default.Router();
+    saveImageFlow_default = router61.post(
       "/",
       validateFields({
         edges: external_exports.any(),
@@ -241164,17 +240527,17 @@ var init_saveImageFlow = __esm({
 });
 
 // src/routes/production/editImage/updateImageFlow.ts
-var import_express61, router61, updateImageFlow_default;
+var import_express62, router62, updateImageFlow_default;
 var init_updateImageFlow = __esm({
   "src/routes/production/editImage/updateImageFlow.ts"() {
     "use strict";
-    import_express61 = __toESM(require_express2());
+    import_express62 = __toESM(require_express2());
     init_utils3();
     init_zod();
     init_responseFormat();
     init_middleware();
-    router61 = import_express61.default.Router();
-    updateImageFlow_default = router61.post(
+    router62 = import_express62.default.Router();
+    updateImageFlow_default = router62.post(
       "/",
       validateFields({
         edges: external_exports.any(),
@@ -241204,18 +240567,18 @@ var init_updateImageFlow = __esm({
 });
 
 // src/routes/production/editImage/uploadImage.ts
-var import_express62, router62, uploadImage_default;
+var import_express63, router63, uploadImage_default;
 var init_uploadImage = __esm({
   "src/routes/production/editImage/uploadImage.ts"() {
     "use strict";
-    import_express62 = __toESM(require_express2());
+    import_express63 = __toESM(require_express2());
     init_utils3();
     init_responseFormat();
     init_middleware();
     init_zod();
     init_dist_node();
-    router62 = import_express62.default.Router();
-    uploadImage_default = router62.post(
+    router63 = import_express63.default.Router();
+    uploadImage_default = router63.post(
       "/",
       validateFields({
         projectId: external_exports.number(),
@@ -241227,15 +240590,15 @@ var init_uploadImage = __esm({
         function getExtFromBase642(base64Data2) {
           const mime = base64Data2.match(/^data:([^;]+);base64,/)?.[1] ?? "";
           const mimeMap = {
-            // 图片
+            // Image
             "image/jpeg": "jpeg",
             "image/jpg": "jpg",
             "image/png": "png",
-            // 音频
+            // Audio
             "audio/mpeg": "mp3",
             "audio/mp3": "mp3",
             "audio/wav": "wav",
-            // 视频
+            // Video
             "video/mp4": "mp4",
             "video/webm": "webm"
           };
@@ -241243,7 +240606,7 @@ var init_uploadImage = __esm({
         }
         const ext = getExtFromBase642(base64Data);
         if (!["jpeg", "jpg", "png"].includes(ext)) {
-          return res.status(400).send(error50("\u4E0D\u652F\u6301\u7684\u6587\u4EF6\u7C7B\u578B"));
+          return res.status(400).send(error50("Unsupported file type"));
         }
         const savePath = `/${projectId}/imageFlow/${scriptId}/${v4_default()}.${ext}`;
         await utils_default.oss.writeFile(savePath, Buffer.from(base64Data.match(/base64,([A-Za-z0-9+/=]+)/)[1] ?? "", "base64"));
@@ -241255,17 +240618,17 @@ var init_uploadImage = __esm({
 });
 
 // src/routes/production/getFlowData.ts
-var import_express63, router63, getFlowData_default;
+var import_express64, router64, getFlowData_default;
 var init_getFlowData = __esm({
   "src/routes/production/getFlowData.ts"() {
     "use strict";
-    import_express63 = __toESM(require_express2());
+    import_express64 = __toESM(require_express2());
     init_utils3();
     init_zod();
     init_responseFormat();
     init_middleware();
-    router63 = import_express63.default.Router();
-    getFlowData_default = router63.post(
+    router64 = import_express64.default.Router();
+    getFlowData_default = router64.post(
       "/",
       validateFields({
         projectId: external_exports.number(),
@@ -241300,20 +240663,20 @@ var init_getFlowData = __esm({
                     prompt: child.prompt,
                     desc: child.describe ?? "",
                     src: child.filePath && await utils_default.oss.getSmallImageUrl(child.filePath),
-                    state: child.state ?? "\u672A\u751F\u6210"
-                    //todo：矫正状态值
+                    state: child.state ?? "Not generated"
+                    // todo: Correct the status value
                   }))
                 )
               }))
             ),
             storyboardTable: "",
             storyboard: [],
-            //todo：矫正workbench数据
+            // todo: Correct workbench data
             //@ts-ignore
             workbench: {
               videoList: []
             }
-            // //todo：矫正封面数据
+            // //todo: Correct cover data
             // poster: {
             //   items: [],
             // },
@@ -241363,7 +240726,7 @@ var init_getFlowData = __esm({
                     type: child.type,
                     desc: child.describe ?? "",
                     src: child.filePath && await utils_default.oss.getSmallImageUrl(child.filePath),
-                    state: child.state ?? "\u672A\u751F\u6210",
+                    state: child.state ?? "Not generated",
                     errorReason: child?.errorReason ?? "",
                     flowId: child.flowId
                   }))
@@ -241395,17 +240758,17 @@ var init_getFlowData = __esm({
 });
 
 // src/routes/production/getStoryboardData.ts
-var import_express64, router64, getStoryboardData_default;
+var import_express65, router65, getStoryboardData_default;
 var init_getStoryboardData = __esm({
   "src/routes/production/getStoryboardData.ts"() {
     "use strict";
-    import_express64 = __toESM(require_express2());
+    import_express65 = __toESM(require_express2());
     init_utils3();
     init_zod();
     init_responseFormat();
     init_middleware();
-    router64 = import_express64.default.Router();
-    getStoryboardData_default = router64.post(
+    router65 = import_express65.default.Router();
+    getStoryboardData_default = router65.post(
       "/",
       validateFields({
         scriptId: external_exports.number(),
@@ -241469,17 +240832,17 @@ var init_getStoryboardData = __esm({
 });
 
 // src/routes/production/saveFlowData.ts
-var import_express65, router65, saveFlowData_default;
+var import_express66, router66, saveFlowData_default;
 var init_saveFlowData = __esm({
   "src/routes/production/saveFlowData.ts"() {
     "use strict";
-    import_express65 = __toESM(require_express2());
+    import_express66 = __toESM(require_express2());
     init_utils3();
     init_zod();
     init_responseFormat();
     init_middleware();
-    router65 = import_express65.default.Router();
-    saveFlowData_default = router65.post(
+    router66 = import_express66.default.Router();
+    saveFlowData_default = router66.post(
       "/",
       validateFields({
         projectId: external_exports.number(),
@@ -241505,7 +240868,7 @@ var init_saveFlowData = __esm({
                 })
               );
             } catch (error71) {
-              console.error("\u66F4\u65B0\u5206\u955C\u6392\u5E8F\u5931\u8D25", error71);
+              console.error("Failed to update storyboard sorting", error71);
             }
           }
         }
@@ -241528,17 +240891,17 @@ var init_saveFlowData = __esm({
 });
 
 // src/routes/production/storyboard/addStoryboard.ts
-var import_express66, router66, addStoryboard_default;
+var import_express67, router67, addStoryboard_default;
 var init_addStoryboard = __esm({
   "src/routes/production/storyboard/addStoryboard.ts"() {
     "use strict";
-    import_express66 = __toESM(require_express2());
+    import_express67 = __toESM(require_express2());
     init_utils3();
     init_zod();
     init_responseFormat();
     init_middleware();
-    router66 = import_express66.default.Router();
-    addStoryboard_default = router66.post(
+    router67 = import_express67.default.Router();
+    addStoryboard_default = router67.post(
       "/",
       validateFields({
         prompt: external_exports.string(),
@@ -241576,17 +240939,17 @@ var init_addStoryboard = __esm({
 });
 
 // src/routes/production/storyboard/batchAddStoryboardInfo.ts
-var import_express67, router67, batchAddStoryboardInfo_default;
+var import_express68, router68, batchAddStoryboardInfo_default;
 var init_batchAddStoryboardInfo = __esm({
   "src/routes/production/storyboard/batchAddStoryboardInfo.ts"() {
     "use strict";
-    import_express67 = __toESM(require_express2());
+    import_express68 = __toESM(require_express2());
     init_utils3();
     init_zod();
     init_responseFormat();
     init_middleware();
-    router67 = import_express67.default.Router();
-    batchAddStoryboardInfo_default = router67.post(
+    router68 = import_express68.default.Router();
+    batchAddStoryboardInfo_default = router68.post(
       "/",
       validateFields({
         data: external_exports.array(
@@ -241606,7 +240969,7 @@ var init_batchAddStoryboardInfo = __esm({
       }),
       async (req, res) => {
         const { data, scriptId, projectId } = req.body;
-        if (!data.length) return res.status(400).send({ success: false, message: "\u6570\u636E\u4E0D\u80FD\u4E3A\u7A7A" });
+        if (!data.length) return res.status(400).send({ success: false, message: "Data cannot be empty" });
         for (const item of data) {
           const [id] = await utils_default.db("o_storyboard").insert({
             prompt: item.prompt,
@@ -241630,7 +240993,7 @@ var init_batchAddStoryboardInfo = __esm({
           item.id = id;
         }
         const lastStoryboard = await utils_default.db("o_storyboard").where("scriptId", scriptId);
-        if (!lastStoryboard || !lastStoryboard.length) return res.status(400).send(error50("\u672A\u67E5\u5230\u5206\u955C\u6570\u636E"));
+        if (!lastStoryboard || !lastStoryboard.length) return res.status(400).send(error50("No storyboard data found"));
         const storyboardGroupByTrack = {};
         lastStoryboard.forEach((item) => {
           if (!storyboardGroupByTrack[item.track]) {
@@ -241681,17 +241044,17 @@ var init_batchAddStoryboardInfo = __esm({
 });
 
 // src/routes/production/storyboard/batchDelete.ts
-var import_express68, router68, batchDelete_default2;
+var import_express69, router69, batchDelete_default2;
 var init_batchDelete2 = __esm({
   "src/routes/production/storyboard/batchDelete.ts"() {
     "use strict";
-    import_express68 = __toESM(require_express2());
+    import_express69 = __toESM(require_express2());
     init_utils3();
     init_zod();
     init_responseFormat();
     init_middleware();
-    router68 = import_express68.default.Router();
-    batchDelete_default2 = router68.post(
+    router69 = import_express69.default.Router();
+    batchDelete_default2 = router69.post(
       "/",
       validateFields({
         ids: external_exports.array(external_exports.number()),
@@ -241699,16 +241062,16 @@ var init_batchDelete2 = __esm({
       }),
       async (req, res) => {
         const { ids, projectId } = req.body;
-        if (!ids.length) return res.status(400).send(error50("\u8BF7\u5148\u9009\u62E9\u5206\u955C"));
+        if (!ids.length) return res.status(400).send(error50("Please select the storyboard first"));
         const storyboardDataList = await utils_default.db("o_storyboard").whereIn("id", ids).where("projectId", projectId).select("id", "track", "trackId", "flowId");
-        if (!storyboardDataList.length) return res.status(400).send(error50("\u5F53\u524D\u9009\u62E9\u5206\u955C\u4E0D\u5B58\u5728"));
+        if (!storyboardDataList.length) return res.status(400).send(error50("The currently selected storyboard does not exist"));
         const flowIds = storyboardDataList.map((i) => i.flowId);
         const storyBoardIds = storyboardDataList.map((i) => i.id);
         if (flowIds.length)
           await utils_default.db("o_imageFlow").whereIn("id", flowIds).delete();
         await utils_default.db("o_storyboard").whereIn("id", storyBoardIds).delete();
         await utils_default.db("o_assets2Storyboard").whereIn("storyboardId", storyBoardIds).delete();
-        res.status(200).send(success3({ message: "\u89C6\u9891\u5220\u9664\u6210\u529F" }));
+        res.status(200).send(success3({ message: "Video deleted successfully" }));
       }
     );
   }
@@ -241737,17 +241100,17 @@ async function getAssetsImageBase64(imageIds) {
   );
   return imageUrls.filter(Boolean).map((url4) => ({ type: "image", base64: url4 }));
 }
-var import_express69, router69, batchGenerateImage_default;
+var import_express70, router70, batchGenerateImage_default;
 var init_batchGenerateImage = __esm({
   "src/routes/production/storyboard/batchGenerateImage.ts"() {
     "use strict";
-    import_express69 = __toESM(require_express2());
+    import_express70 = __toESM(require_express2());
     init_utils3();
     init_zod();
     init_responseFormat();
     init_middleware();
-    router69 = import_express69.default.Router();
-    batchGenerateImage_default = router69.post(
+    router70 = import_express70.default.Router();
+    batchGenerateImage_default = router70.post(
       "/",
       validateFields({
         storyboardIds: external_exports.array(external_exports.number()),
@@ -241766,22 +241129,22 @@ var init_batchGenerateImage = __esm({
           compulsory = false,
           imageModel
         } = req.body;
-        if (!storyboardIds || storyboardIds.length === 0) return res.status(400).send(error50("storyboardIds\u4E0D\u80FD\u4E3A\u7A7A"));
+        if (!storyboardIds || storyboardIds.length === 0) return res.status(400).send(error50("storyboardIds cannot be empty"));
         let finalStoryboardIds = storyboardIds || [];
         const storyboardData = await utils_default.db("o_storyboard").where("scriptId", scriptId).where("projectId", projectId).whereIn("id", finalStoryboardIds);
-        if (!storyboardData.length) return res.status(500).send(error50("\u672A\u67E5\u5230\u5206\u955C\u6570\u636E"));
+        if (!storyboardData.length) return res.status(500).send(error50("No storyboard data found"));
         const storyIds = storyboardData.map((i) => i.id);
         const projectSettingData = await utils_default.db("o_project").where("id", projectId).select("imageModel", "imageQuality", "artStyle", "videoRatio").first();
         const selectedImageModel = imageModel?.trim() || projectSettingData?.imageModel;
-        if (!selectedImageModel) return res.status(400).send(error50("\u672A\u914D\u7F6E\u56FE\u50CF\u6A21\u578B"));
+        if (!selectedImageModel) return res.status(400).send(error50("Image model not configured"));
         const [vendorId, modelName] = selectedImageModel.split(/:(.+)/);
         const selectedModel = (await utils_default.vendor.getModelList(vendorId)).find((model) => model.modelName === modelName && model.type === "image");
-        if (!selectedModel) return res.status(400).send(error50("\u6240\u9009\u56FE\u50CF\u6A21\u578B\u4E0D\u53EF\u7528\uFF0C\u8BF7\u91CD\u65B0\u9009\u62E9"));
+        if (!selectedModel) return res.status(400).send(error50("The selected image model is unavailable. Please select another one."));
         if (compulsory) {
-          await utils_default.db("o_storyboard").whereIn("id", storyIds).where("scriptId", scriptId).update({ state: "\u751F\u6210\u4E2D", shouldGenerateImage: 1 });
+          await utils_default.db("o_storyboard").whereIn("id", storyIds).where("scriptId", scriptId).update({ state: "Generating", shouldGenerateImage: 1 });
         } else {
-          await utils_default.db("o_storyboard").whereIn("id", storyIds).where("scriptId", scriptId).where("shouldGenerateImage", 0).update({ state: "\u672A\u751F\u6210" });
-          await utils_default.db("o_storyboard").whereIn("id", storyIds).where("scriptId", scriptId).where("shouldGenerateImage", 1).update({ state: "\u751F\u6210\u4E2D" });
+          await utils_default.db("o_storyboard").whereIn("id", storyIds).where("scriptId", scriptId).where("shouldGenerateImage", 0).update({ state: "Not generated" });
+          await utils_default.db("o_storyboard").whereIn("id", storyIds).where("scriptId", scriptId).where("shouldGenerateImage", 1).update({ state: "Generating" });
         }
         const assets2StoryboardRows = await utils_default.db("o_assets2Storyboard").whereIn("storyboardId", storyIds).orderBy("rowid").select("storyboardId", "assetId");
         const allAssetIds = [...new Set(assets2StoryboardRows.map((r) => r.assetId))];
@@ -241823,8 +241186,8 @@ var init_batchGenerateImage = __esm({
           if (!imagePrompt) {
             await utils_default.db("o_storyboard").where("id", item.id).update({
               filePath: "",
-              reason: "\u5206\u955C\u63D0\u793A\u8BCD\u548C\u753B\u9762\u63CF\u8FF0\u5747\u4E3A\u7A7A\uFF0C\u65E0\u6CD5\u751F\u6210\u56FE\u7247",
-              state: "\u751F\u6210\u5931\u8D25"
+              reason: "The storyboard prompt and scene description are both empty, so the image cannot be generated.",
+              state: "Generation failed"
             });
             return;
           }
@@ -241843,8 +241206,8 @@ var init_batchGenerateImage = __esm({
                 ...repeloadObj
               },
               {
-                taskClass: "\u751F\u6210\u5206\u955C\u56FE\u7247",
-                describe: "\u5206\u955C\u56FE\u7247\u751F\u6210",
+                taskClass: "Generate storyboard images",
+                describe: "Storyboard image generation",
                 relatedObjects: JSON.stringify(repeloadObj),
                 projectId
               }
@@ -241853,13 +241216,13 @@ var init_batchGenerateImage = __esm({
             await imageCls.save(savePath);
             await utils_default.db("o_storyboard").where("id", item.id).update({
               filePath: savePath,
-              state: "\u5DF2\u5B8C\u6210"
+              state: "Completed"
             });
           } catch (e) {
             utils_default.db("o_storyboard").where("id", item.id).update({
               filePath: "",
               reason: utils_default.error(e).message,
-              state: "\u751F\u6210\u5931\u8D25"
+              state: "Generation failed"
             });
           }
         };
@@ -241879,17 +241242,17 @@ var init_batchGenerateImage = __esm({
 });
 
 // src/routes/production/storyboard/downPreviewImage.ts
-var import_express70, import_sharp3, router70, downPreviewImage_default;
+var import_express71, import_sharp3, router71, downPreviewImage_default;
 var init_downPreviewImage = __esm({
   "src/routes/production/storyboard/downPreviewImage.ts"() {
     "use strict";
-    import_express70 = __toESM(require_express2());
+    import_express71 = __toESM(require_express2());
     init_utils3();
     init_zod();
     import_sharp3 = __toESM(require("sharp"));
     init_middleware();
-    router70 = import_express70.default.Router();
-    downPreviewImage_default = router70.post(
+    router71 = import_express71.default.Router();
+    downPreviewImage_default = router71.post(
       "/",
       validateFields({
         storyboardIds: external_exports.array(external_exports.number())
@@ -241975,17 +241338,17 @@ var init_downPreviewImage = __esm({
 });
 
 // src/routes/production/storyboard/editStoryboardInfo.ts
-var import_express71, router71, editStoryboardInfo_default;
+var import_express72, router72, editStoryboardInfo_default;
 var init_editStoryboardInfo = __esm({
   "src/routes/production/storyboard/editStoryboardInfo.ts"() {
     "use strict";
-    import_express71 = __toESM(require_express2());
+    import_express72 = __toESM(require_express2());
     init_utils3();
     init_zod();
     init_responseFormat();
     init_middleware();
-    router71 = import_express71.default.Router();
-    editStoryboardInfo_default = router71.post(
+    router72 = import_express72.default.Router();
+    editStoryboardInfo_default = router72.post(
       "/",
       validateFields({
         id: external_exports.number(),
@@ -241998,24 +241361,24 @@ var init_editStoryboardInfo = __esm({
           prompt,
           videoDesc
         });
-        res.status(200).send(success3({ message: "\u66F4\u65B0\u63D0\u793A\u8BCD\u6210\u529F" }));
+        res.status(200).send(success3({ message: "Prompt updated successfully" }));
       }
     );
   }
 });
 
 // src/routes/production/storyboard/getStoryboardData.ts
-var import_express72, router72, getStoryboardData_default2;
+var import_express73, router73, getStoryboardData_default2;
 var init_getStoryboardData2 = __esm({
   "src/routes/production/storyboard/getStoryboardData.ts"() {
     "use strict";
-    import_express72 = __toESM(require_express2());
+    import_express73 = __toESM(require_express2());
     init_utils3();
     init_zod();
     init_responseFormat();
     init_middleware();
-    router72 = import_express72.default.Router();
-    getStoryboardData_default2 = router72.post(
+    router73 = import_express73.default.Router();
+    getStoryboardData_default2 = router73.post(
       "/",
       validateFields({
         scriptId: external_exports.number(),
@@ -242053,24 +241416,24 @@ var init_getStoryboardData2 = __esm({
 });
 
 // src/routes/production/storyboard/pollingImage.ts
-var import_express73, router73, pollingImage_default2;
+var import_express74, router74, pollingImage_default2;
 var init_pollingImage2 = __esm({
   "src/routes/production/storyboard/pollingImage.ts"() {
     "use strict";
-    import_express73 = __toESM(require_express2());
+    import_express74 = __toESM(require_express2());
     init_utils3();
     init_zod();
     init_responseFormat();
     init_middleware();
-    router73 = import_express73.default.Router();
-    pollingImage_default2 = router73.post(
+    router74 = import_express74.default.Router();
+    pollingImage_default2 = router74.post(
       "/",
       validateFields({
         ids: external_exports.array(external_exports.number())
       }),
       async (req, res) => {
         const { ids } = req.body;
-        const data = await utils_default.db("o_storyboard").whereIn("id", ids).whereNot("state", "\u751F\u6210\u4E2D").select("id", "state", "reason", "filePath", "prompt");
+        const data = await utils_default.db("o_storyboard").whereIn("id", ids).whereNot("state", "Generating").select("id", "state", "reason", "filePath", "prompt");
         const result = await Promise.all(
           data.map(async (item) => ({
             ...item,
@@ -242084,18 +241447,18 @@ var init_pollingImage2 = __esm({
 });
 
 // src/routes/production/storyboard/previewImage.ts
-var import_express74, import_sharp4, router74, previewImage_default;
+var import_express75, import_sharp4, router75, previewImage_default;
 var init_previewImage = __esm({
   "src/routes/production/storyboard/previewImage.ts"() {
     "use strict";
-    import_express74 = __toESM(require_express2());
+    import_express75 = __toESM(require_express2());
     init_utils3();
     init_zod();
     import_sharp4 = __toESM(require("sharp"));
     init_responseFormat();
     init_middleware();
-    router74 = import_express74.default.Router();
-    previewImage_default = router74.post(
+    router75 = import_express75.default.Router();
+    previewImage_default = router75.post(
       "/",
       validateFields({
         storyboardIds: external_exports.array(external_exports.number())
@@ -242192,40 +241555,9 @@ var init_previewImage = __esm({
 });
 
 // src/routes/production/storyboard/removeFrame.ts
-var import_express75, router75, removeFrame_default;
+var import_express76, router76, removeFrame_default;
 var init_removeFrame = __esm({
   "src/routes/production/storyboard/removeFrame.ts"() {
-    "use strict";
-    import_express75 = __toESM(require_express2());
-    init_utils3();
-    init_zod();
-    init_responseFormat();
-    init_middleware();
-    router75 = import_express75.default.Router();
-    removeFrame_default = router75.post(
-      "/",
-      validateFields({
-        id: external_exports.number()
-      }),
-      async (req, res) => {
-        const { id } = req.body;
-        const storyboardData = await utils_default.db("o_storyboard").where("id", id).select("id", "track", "trackId", "flowId").first();
-        if (!storyboardData) return res.status(400).send(error50("\u672A\u627E\u5230\u8BE5\u5206\u955C"));
-        if (storyboardData?.flowId) await utils_default.db("o_imageFlow").where("id", storyboardData?.flowId).delete();
-        const trackData = await utils_default.db("o_storyboard").where("track", storyboardData.track).select("id");
-        if (trackData.length == 1) await utils_default.db("o_videoTrack").where("id", storyboardData.trackId).delete();
-        await utils_default.db("o_storyboard").where("id", id).delete();
-        await utils_default.db("o_assets2Storyboard").where("storyboardId", id).delete();
-        res.status(200).send(success3({ message: "\u89C6\u9891\u5220\u9664\u6210\u529F" }));
-      }
-    );
-  }
-});
-
-// src/routes/production/storyboard/updateStoryboardUrl.ts
-var import_express76, router76, updateStoryboardUrl_default;
-var init_updateStoryboardUrl = __esm({
-  "src/routes/production/storyboard/updateStoryboardUrl.ts"() {
     "use strict";
     import_express76 = __toESM(require_express2());
     init_utils3();
@@ -242233,7 +241565,38 @@ var init_updateStoryboardUrl = __esm({
     init_responseFormat();
     init_middleware();
     router76 = import_express76.default.Router();
-    updateStoryboardUrl_default = router76.post(
+    removeFrame_default = router76.post(
+      "/",
+      validateFields({
+        id: external_exports.number()
+      }),
+      async (req, res) => {
+        const { id } = req.body;
+        const storyboardData = await utils_default.db("o_storyboard").where("id", id).select("id", "track", "trackId", "flowId").first();
+        if (!storyboardData) return res.status(400).send(error50("Storyboard not found"));
+        if (storyboardData?.flowId) await utils_default.db("o_imageFlow").where("id", storyboardData?.flowId).delete();
+        const trackData = await utils_default.db("o_storyboard").where("track", storyboardData.track).select("id");
+        if (trackData.length == 1) await utils_default.db("o_videoTrack").where("id", storyboardData.trackId).delete();
+        await utils_default.db("o_storyboard").where("id", id).delete();
+        await utils_default.db("o_assets2Storyboard").where("storyboardId", id).delete();
+        res.status(200).send(success3({ message: "Video deleted successfully" }));
+      }
+    );
+  }
+});
+
+// src/routes/production/storyboard/updateStoryboardUrl.ts
+var import_express77, router77, updateStoryboardUrl_default;
+var init_updateStoryboardUrl = __esm({
+  "src/routes/production/storyboard/updateStoryboardUrl.ts"() {
+    "use strict";
+    import_express77 = __toESM(require_express2());
+    init_utils3();
+    init_zod();
+    init_responseFormat();
+    init_middleware();
+    router77 = import_express77.default.Router();
+    updateStoryboardUrl_default = router77.post(
       "/",
       validateFields({
         id: external_exports.number(),
@@ -242245,27 +241608,27 @@ var init_updateStoryboardUrl = __esm({
         await utils_default.db("o_storyboard").where({ id }).update({
           filePath: utils_default.replaceUrl(url4),
           flowId,
-          state: "\u5DF2\u5B8C\u6210",
+          state: "Completed",
           shouldGenerateImage: url4 ? 1 : 0
         });
-        res.status(200).send(success3({ message: "\u66F4\u65B0\u5206\u955C\u6210\u529F" }));
+        res.status(200).send(success3({ message: "Storyboard updated successfully" }));
       }
     );
   }
 });
 
 // src/routes/production/workbench/addTrack.ts
-var import_express77, router77, addTrack_default;
+var import_express78, router78, addTrack_default;
 var init_addTrack = __esm({
   "src/routes/production/workbench/addTrack.ts"() {
     "use strict";
-    import_express77 = __toESM(require_express2());
+    import_express78 = __toESM(require_express2());
     init_utils3();
     init_zod();
     init_responseFormat();
     init_middleware();
-    router77 = import_express77.default.Router();
-    addTrack_default = router77.post(
+    router78 = import_express78.default.Router();
+    addTrack_default = router78.post(
       "/",
       validateFields({
         projectId: external_exports.number(),
@@ -242299,8 +241662,8 @@ function normalizeSource(source) {
 }
 function normalizeType(type) {
   const normalized = String(type || "image").toLowerCase();
-  if (normalized.includes("audio") || normalized.includes("\u97F3\u9891")) return "audio";
-  if (normalized.includes("video") || normalized.includes("\u89C6\u9891")) return "video";
+  if (normalized.includes("audio") || normalized.includes("Audio")) return "audio";
+  if (normalized.includes("video") || normalized.includes("Video")) return "video";
   return "image";
 }
 function parseMode(mode) {
@@ -242454,11 +241817,11 @@ var init_videoReferenceResolver = __esm({
 });
 
 // src/routes/production/workbench/batchGeneratePrompt.ts
-var import_express78, import_promises5, import_path12, router78, batchGeneratePrompt_default;
+var import_express79, import_promises5, import_path12, router79, batchGeneratePrompt_default;
 var init_batchGeneratePrompt = __esm({
   "src/routes/production/workbench/batchGeneratePrompt.ts"() {
     "use strict";
-    import_express78 = __toESM(require_express2());
+    import_express79 = __toESM(require_express2());
     init_utils3();
     init_p_limit();
     init_zod();
@@ -242467,8 +241830,8 @@ var init_batchGeneratePrompt = __esm({
     import_promises5 = __toESM(require("fs/promises"));
     import_path12 = __toESM(require("path"));
     init_videoReferenceResolver();
-    router78 = import_express78.default.Router();
-    batchGeneratePrompt_default = router78.post(
+    router79 = import_express79.default.Router();
+    batchGeneratePrompt_default = router79.post(
       "/",
       validateFields({
         projectId: external_exports.number(),
@@ -242486,7 +241849,7 @@ var init_batchGeneratePrompt = __esm({
         mode: external_exports.string(),
         model: external_exports.string(),
         concurrentCount: external_exports.number().optional()
-        //并发数
+        // Concurrent connections
       }),
       async (req, res) => {
         const { trackData, projectId, mode, model, concurrentCount = 5 } = req.body;
@@ -242536,12 +241899,12 @@ var init_batchGeneratePrompt = __esm({
               videoPromptGeneration = videoPrompt?.data ?? void 0;
             }
           }
-          const artStyle = projectData?.artStyle || "\u65E0";
+          const artStyle = projectData?.artStyle || "None";
           const visualManual = utils_default.getArtPrompt(artStyle, "art_skills", "art_storyboard_video");
           await utils_default.db("o_videoTrack").whereIn(
             "id",
             trackData.map((t) => t.trackId)
-          ).update({ state: "\u751F\u6210\u4E2D" });
+          ).update({ state: "Generating" });
           const limit = pLimit(concurrentCount ?? 5);
           const tasks = trackData.map(
             (track) => limit(async () => {
@@ -242598,9 +241961,9 @@ var init_batchGeneratePrompt = __esm({
                   });
               }
               const content = `
-          **\u6A21\u578B\u540D\u79F0**\uFF1A${modelData},
-          **\u8D44\u4EA7\u4FE1\u606F**\uFF08\u89D2\u8272\u3001\u573A\u666F\u3001\u9053\u5177\u3001\u97F3\u9891):${assets.filter((i) => i.filePath).map((i) => `[${i.id},${i.type},${i.name}]`).join("\uFF0C")},
-          **\u5206\u955C\u4FE1\u606F**\uFF1A${storyboard.map(
+          **Model Name**\uFF1A${modelData},
+          **Asset information** (character, scene, prop, audio): ${assets.filter((i) => i.filePath).map((i) => `[${i.id},${i.type},${i.name}]`).join(", ")},
+          **Storyboard information**: ${storyboard.map(
                 (i) => `<storyboardItem
   videoDesc='${i.videoDesc}'
   duration='${i.duration}'
@@ -242623,16 +241986,16 @@ var init_batchGeneratePrompt = __esm({
                 });
                 await utils_default.db("o_videoTrack").where({ id: track.trackId }).update({
                   prompt: text2,
-                  state: "\u5DF2\u5B8C\u6210"
+                  state: "Completed"
                 });
                 return { trackId: track.trackId, text: text2 };
               } catch (e) {
-                await utils_default.db("o_videoTrack").where({ id: track.trackId }).update({ state: "\u751F\u6210\u5931\u8D25", reason: utils_default.error(e).message });
+                await utils_default.db("o_videoTrack").where({ id: track.trackId }).update({ state: "Generation failed", reason: utils_default.error(e).message });
               }
             })
           );
           Promise.all(tasks);
-          res.status(200).send(success3("\u5F00\u59CB\u751F\u6210\u63D0\u793A\u8BCD"));
+          res.status(200).send(success3("Start generating the prompt"));
         } catch (e) {
           res.status(400).send(error50(utils_default.error(e).message));
         }
@@ -242642,19 +242005,19 @@ var init_batchGeneratePrompt = __esm({
 });
 
 // src/routes/production/workbench/batchGenerateVideo.ts
-var import_express79, router79, batchGenerateVideo_default;
+var import_express80, router80, batchGenerateVideo_default;
 var init_batchGenerateVideo = __esm({
   "src/routes/production/workbench/batchGenerateVideo.ts"() {
     "use strict";
-    import_express79 = __toESM(require_express2());
+    import_express80 = __toESM(require_express2());
     init_utils3();
     init_zod();
     init_dist_node();
     init_responseFormat();
     init_middleware();
     init_videoReferenceResolver();
-    router79 = import_express79.default.Router();
-    batchGenerateVideo_default = router79.post(
+    router80 = import_express80.default.Router();
+    batchGenerateVideo_default = router80.post(
       "/",
       validateFields({
         projectId: external_exports.number(),
@@ -242692,13 +242055,13 @@ var init_batchGenerateVideo = __esm({
               mode: modeData
             });
             if (modeData !== "text" && references.references.length === 0) {
-              throw new Error(`\u8F68\u9053 ${trackId} \u6CA1\u6709\u53EF\u7528\u7684\u53C2\u8003\u5A92\u4F53\uFF0C\u8BF7\u5148\u751F\u6210\u5206\u955C\u56FE`);
+              throw new Error(`Orbit${trackId}No reference media is available. Please generate the storyboard images first.`);
             }
             const videoPath = `/${projectId}/video/${v4_default()}.mp4`;
             const [videoId] = await utils_default.db("o_video").insert({
               filePath: videoPath,
               time: Date.now(),
-              state: "\u751F\u6210\u4E2D",
+              state: "Generating",
               scriptId,
               projectId,
               videoTrackId: trackId
@@ -242715,7 +242078,7 @@ var init_batchGenerateVideo = __esm({
               sourceType: "base64"
             }))
           );
-          const relatedObjects = { projectId, videoId, scriptId, type: "\u89C6\u9891" };
+          const relatedObjects = { projectId, videoId, scriptId, type: "Video" };
           const aiVideo = utils_default.Ai.Video(model);
           aiVideo.run(
             {
@@ -242729,13 +242092,13 @@ var init_batchGenerateVideo = __esm({
             },
             {
               projectId,
-              taskClass: "\u89C6\u9891\u751F\u6210",
-              describe: "\u6839\u636E\u63D0\u793A\u8BCD\u751F\u6210\u89C6\u9891",
+              taskClass: "Video generation",
+              describe: "Generate a video based on the prompt",
               relatedObjects: JSON.stringify(relatedObjects)
             }
-          ).then(async () => await aiVideo.save(videoPath)).then(async () => await utils_default.db("o_video").where("id", videoId).update({ state: "\u751F\u6210\u6210\u529F" })).catch(async (error71) => {
+          ).then(async () => await aiVideo.save(videoPath)).then(async () => await utils_default.db("o_video").where("id", videoId).update({ state: "Generation successful" })).catch(async (error71) => {
             await utils_default.db("o_video").where("id", videoId).update({
-              state: "\u751F\u6210\u5931\u8D25",
+              state: "Generation failed",
               errorReason: utils_default.error(error71).message
             });
           });
@@ -242746,17 +242109,17 @@ var init_batchGenerateVideo = __esm({
 });
 
 // src/routes/production/workbench/checkVideoPrompt.ts
-var import_express80, router80, checkVideoPrompt_default;
+var import_express81, router81, checkVideoPrompt_default;
 var init_checkVideoPrompt = __esm({
   "src/routes/production/workbench/checkVideoPrompt.ts"() {
     "use strict";
-    import_express80 = __toESM(require_express2());
+    import_express81 = __toESM(require_express2());
     init_utils3();
     init_zod();
     init_responseFormat();
     init_middleware();
-    router80 = import_express80.default.Router();
-    checkVideoPrompt_default = router80.post(
+    router81 = import_express81.default.Router();
+    checkVideoPrompt_default = router81.post(
       "/",
       validateFields({
         projectId: external_exports.number(),
@@ -242765,7 +242128,7 @@ var init_checkVideoPrompt = __esm({
       }),
       async (req, res) => {
         const { projectId, scriptId, trackIds } = req.body;
-        const promptList = await utils_default.db("o_videoTrack").where("projectId", projectId).where("scriptId", scriptId).whereIn("id", trackIds).whereIn("state", ["\u5DF2\u5B8C\u6210", "\u751F\u6210\u5931\u8D25"]).select("id", "state", "reason", "prompt");
+        const promptList = await utils_default.db("o_videoTrack").where("projectId", projectId).where("scriptId", scriptId).whereIn("id", trackIds).whereIn("state", ["Completed", "Generation failed"]).select("id", "state", "reason", "prompt");
         res.status(200).send(success3(promptList));
       }
     );
@@ -242773,17 +242136,17 @@ var init_checkVideoPrompt = __esm({
 });
 
 // src/routes/production/workbench/checkVideoStateList.ts
-var import_express81, router81, checkVideoStateList_default;
+var import_express82, router82, checkVideoStateList_default;
 var init_checkVideoStateList = __esm({
   "src/routes/production/workbench/checkVideoStateList.ts"() {
     "use strict";
-    import_express81 = __toESM(require_express2());
+    import_express82 = __toESM(require_express2());
     init_utils3();
     init_zod();
     init_responseFormat();
     init_middleware();
-    router81 = import_express81.default.Router();
-    checkVideoStateList_default = router81.post(
+    router82 = import_express82.default.Router();
+    checkVideoStateList_default = router82.post(
       "/",
       validateFields({
         projectId: external_exports.number(),
@@ -242792,7 +242155,7 @@ var init_checkVideoStateList = __esm({
       }),
       async (req, res) => {
         const { projectId, scriptId, videoIds } = req.body;
-        const videoList = await utils_default.db("o_video").whereIn("id", videoIds).whereIn("state", ["\u751F\u6210\u6210\u529F", "\u751F\u6210\u5931\u8D25"]).select("id", "state", "errorReason", "filePath");
+        const videoList = await utils_default.db("o_video").whereIn("id", videoIds).whereIn("state", ["Generation successful", "Generation failed"]).select("id", "state", "errorReason", "filePath");
         res.status(200).send(
           success3(
             await Promise.all(
@@ -242809,17 +242172,17 @@ var init_checkVideoStateList = __esm({
 });
 
 // src/routes/production/workbench/deleteTrack.ts
-var import_express82, router82, deleteTrack_default;
+var import_express83, router83, deleteTrack_default;
 var init_deleteTrack = __esm({
   "src/routes/production/workbench/deleteTrack.ts"() {
     "use strict";
-    import_express82 = __toESM(require_express2());
+    import_express83 = __toESM(require_express2());
     init_utils3();
     init_zod();
     init_responseFormat();
     init_middleware();
-    router82 = import_express82.default.Router();
-    deleteTrack_default = router82.post(
+    router83 = import_express83.default.Router();
+    deleteTrack_default = router83.post(
       "/",
       validateFields({
         id: external_exports.number()
@@ -242830,24 +242193,24 @@ var init_deleteTrack = __esm({
         await utils_default.db("o_storyboard").where("trackId", id).update({
           trackId: null
         });
-        res.status(200).send(success3({ message: "\u89C6\u9891\u6BB5\u5220\u9664\u6210\u529F" }));
+        res.status(200).send(success3({ message: "Video segment deleted successfully" }));
       }
     );
   }
 });
 
 // src/routes/production/workbench/delVideo.ts
-var import_express83, router83, delVideo_default;
+var import_express84, router84, delVideo_default;
 var init_delVideo = __esm({
   "src/routes/production/workbench/delVideo.ts"() {
     "use strict";
-    import_express83 = __toESM(require_express2());
+    import_express84 = __toESM(require_express2());
     init_utils3();
     init_zod();
     init_responseFormat();
     init_middleware();
-    router83 = import_express83.default.Router();
-    delVideo_default = router83.post(
+    router84 = import_express84.default.Router();
+    delVideo_default = router84.post(
       "/",
       validateFields({
         id: external_exports.number()
@@ -242858,26 +242221,26 @@ var init_delVideo = __esm({
         await utils_default.db("o_videoTrack").where("videoId", id).update({
           videoId: null
         });
-        res.status(200).send(success3({ message: "\u89C6\u9891\u5220\u9664\u6210\u529F" }));
+        res.status(200).send(success3({ message: "Video deleted successfully" }));
       }
     );
   }
 });
 
 // src/routes/production/workbench/generateVideo.ts
-var import_express84, router84, generateVideo_default;
+var import_express85, router85, generateVideo_default;
 var init_generateVideo = __esm({
   "src/routes/production/workbench/generateVideo.ts"() {
     "use strict";
-    import_express84 = __toESM(require_express2());
+    import_express85 = __toESM(require_express2());
     init_utils3();
     init_zod();
     init_dist_node();
     init_responseFormat();
     init_middleware();
     init_videoReferenceResolver();
-    router84 = import_express84.default.Router();
-    generateVideo_default = router84.post(
+    router85 = import_express85.default.Router();
+    generateVideo_default = router85.post(
       "/",
       validateFields({
         projectId: external_exports.number(),
@@ -242916,12 +242279,12 @@ var init_generateVideo = __esm({
           }))
         );
         if (modeData !== "text" && base644.length === 0) {
-          return res.status(400).send(error50("\u5F53\u524D\u5206\u955C\u6CA1\u6709\u53EF\u7528\u7684\u53C2\u8003\u5A92\u4F53\uFF0C\u8BF7\u5148\u751F\u6210\u5206\u955C\u56FE"));
+          return res.status(400).send(error50("The current storyboard has no available reference media. Please generate the storyboard image first."));
         }
         const [videoId] = await utils_default.db("o_video").insert({
           filePath: videoPath,
           time: Date.now(),
-          state: "\u751F\u6210\u4E2D",
+          state: "Generating",
           scriptId,
           projectId,
           videoTrackId: trackId
@@ -242931,7 +242294,7 @@ var init_generateVideo = __esm({
           projectId,
           videoId,
           scriptId,
-          type: "\u89C6\u9891"
+          type: "Video"
         };
         const aiVideo = utils_default.Ai.Video(model);
         aiVideo.run(
@@ -242946,13 +242309,13 @@ var init_generateVideo = __esm({
           },
           {
             projectId,
-            taskClass: "\u89C6\u9891\u751F\u6210",
-            describe: "\u6839\u636E\u63D0\u793A\u8BCD\u751F\u6210\u89C6\u9891",
+            taskClass: "Video generation",
+            describe: "Generate a video based on the prompt",
             relatedObjects: JSON.stringify(relatedObjects)
           }
-        ).then(async () => await aiVideo.save(videoPath)).then(async () => await utils_default.db("o_video").where("id", videoId).update({ state: "\u751F\u6210\u6210\u529F" })).catch(async (error71) => {
+        ).then(async () => await aiVideo.save(videoPath)).then(async () => await utils_default.db("o_video").where("id", videoId).update({ state: "Generation successful" })).catch(async (error71) => {
           await utils_default.db("o_video").where("id", videoId).update({
-            state: "\u751F\u6210\u5931\u8D25",
+            state: "Generation failed",
             errorReason: utils_default.error(error71).message
           });
         });
@@ -242962,11 +242325,11 @@ var init_generateVideo = __esm({
 });
 
 // src/routes/production/workbench/generateVideoPrompt.ts
-var import_express85, import_promises6, import_path13, router85, generateVideoPrompt_default;
+var import_express86, import_promises6, import_path13, router86, generateVideoPrompt_default;
 var init_generateVideoPrompt = __esm({
   "src/routes/production/workbench/generateVideoPrompt.ts"() {
     "use strict";
-    import_express85 = __toESM(require_express2());
+    import_express86 = __toESM(require_express2());
     init_utils3();
     init_zod();
     init_responseFormat();
@@ -242974,8 +242337,8 @@ var init_generateVideoPrompt = __esm({
     import_promises6 = __toESM(require("fs/promises"));
     import_path13 = __toESM(require("path"));
     init_videoReferenceResolver();
-    router85 = import_express85.default.Router();
-    generateVideoPrompt_default = router85.post(
+    router86 = import_express86.default.Router();
+    generateVideoPrompt_default = router86.post(
       "/",
       validateFields({
         trackId: external_exports.number(),
@@ -243001,7 +242364,7 @@ var init_generateVideoPrompt = __esm({
         });
         const referenceInfo = parseVideoMode(mode) === "text" ? info : automaticReferences.references.map(({ id: id2, sources }) => ({ id: id2, sources }));
         await utils_default.db("o_videoTrack").where({ id: trackId }).update({
-          state: "\u751F\u6210\u4E2D"
+          state: "Generating"
         });
         const images = await Promise.all(
           referenceInfo.map(async (item) => {
@@ -243013,7 +242376,7 @@ var init_generateVideoPrompt = __esm({
                 ...storyboard2,
                 associateAssetsIds,
                 _type: "storyboard"
-                // 标记类型，便于后续区分
+                // Mark the type for easier distinction later
               };
             }
             if (item.sources === "assets") {
@@ -243021,7 +242384,7 @@ var init_generateVideoPrompt = __esm({
               return {
                 ...assetsData,
                 _type: "assets"
-                // 标记类型
+                // Marker type
               };
             }
           })
@@ -243097,13 +242460,13 @@ var init_generateVideoPrompt = __esm({
             videoPromptGeneration = videoPrompt?.data ?? void 0;
           }
         }
-        const artStyle = projectData?.artStyle || "\u65E0";
+        const artStyle = projectData?.artStyle || "None";
         const visualManual = utils_default.getArtPrompt(artStyle, "art_skills", "art_storyboard_video");
         const content = `
-          **\u6A21\u578B\u540D\u79F0**\uFF1A${modelData},
+          **Model Name**\uFF1A${modelData},
 
-          **\u8D44\u4EA7\u4FE1\u606F**\uFF08\u89D2\u8272\u3001\u573A\u666F\u3001\u9053\u5177\u3001\u97F3\u9891):${assets.filter((i) => i.filePath).map((i) => `[${i.id},${i.type},${i.name} ${assetsAudioRecord[i.id] ? `audio:${assetsAudioRecord[i.id]}` : ""} ] `).join("\uFF0C")},
-          **\u5206\u955C\u4FE1\u606F**\uFF1A${storyboard.map(
+          **Asset information** (character, scene, prop, audio): ${assets.filter((i) => i.filePath).map((i) => `[${i.id},${i.type},${i.name} ${assetsAudioRecord[i.id] ? `audio:${assetsAudioRecord[i.id]}` : ""} ] `).join(", ")},
+          **Storyboard information**: ${storyboard.map(
           (i) => `<storyboardItem
   videoDesc='${i.videoDesc}'
   duration='${i.duration}'
@@ -243125,7 +242488,7 @@ var init_generateVideoPrompt = __esm({
             ]
           });
           await utils_default.db("o_videoTrack").where({ id: trackId }).update({
-            state: "\u5DF2\u5B8C\u6210",
+            state: "Completed",
             prompt: text2
           });
           const displayReferences = await Promise.all(
@@ -243145,7 +242508,7 @@ var init_generateVideoPrompt = __esm({
           );
         } catch (e) {
           await utils_default.db("o_videoTrack").where({ id: trackId }).update({
-            state: "\u751F\u6210\u5931\u8D25",
+            state: "Generation failed",
             reason: utils_default.error(e).message
           });
           res.status(400).send(error50(utils_default.error(e).message));
@@ -243156,17 +242519,17 @@ var init_generateVideoPrompt = __esm({
 });
 
 // src/routes/production/workbench/getAudioBindAssetsList.ts
-var import_express86, router86, getAudioBindAssetsList_default;
+var import_express87, router87, getAudioBindAssetsList_default;
 var init_getAudioBindAssetsList = __esm({
   "src/routes/production/workbench/getAudioBindAssetsList.ts"() {
     "use strict";
-    import_express86 = __toESM(require_express2());
+    import_express87 = __toESM(require_express2());
     init_utils3();
     init_zod();
     init_responseFormat();
     init_middleware();
-    router86 = import_express86.default.Router();
-    getAudioBindAssetsList_default = router86.post(
+    router87 = import_express87.default.Router();
+    getAudioBindAssetsList_default = router87.post(
       "/",
       validateFields({
         assetsIds: external_exports.array(external_exports.number())
@@ -243200,19 +242563,19 @@ var init_getAudioBindAssetsList = __esm({
 });
 
 // src/routes/production/workbench/getFileUrl.ts
-var import_express87, router87, getFileUrl_default;
+var import_express88, router88, getFileUrl_default;
 var init_getFileUrl = __esm({
   "src/routes/production/workbench/getFileUrl.ts"() {
     "use strict";
-    import_express87 = __toESM(require_express2());
+    import_express88 = __toESM(require_express2());
     init_utils3();
     init_zod();
     init_responseFormat();
     init_middleware();
     init_auth2();
     init_auth();
-    router87 = import_express87.default.Router();
-    getFileUrl_default = router87.post(
+    router88 = import_express88.default.Router();
+    getFileUrl_default = router88.post(
       "/",
       validateFields({
         items: external_exports.array(external_exports.object({
@@ -243232,7 +242595,7 @@ var init_getFileUrl = __esm({
           ]);
           for (const row of [...storyboards, ...assets]) {
             const project = await utils_default.db("o_project").where("id", row.projectId).select("userId").first();
-            if (!project || Number(project.userId ?? 1) !== user.id) return res.status(403).send({ message: "\u65E0\u6743\u8BBF\u95EE\u6587\u4EF6" });
+            if (!project || Number(project.userId ?? 1) !== user.id) return res.status(403).send({ message: "Access to the file is denied" });
           }
         }
         const result = {};
@@ -243259,17 +242622,17 @@ var init_getFileUrl = __esm({
 });
 
 // src/routes/production/workbench/getGenerateData.ts
-var import_express88, router88, getGenerateData_default;
+var import_express89, router89, getGenerateData_default;
 var init_getGenerateData = __esm({
   "src/routes/production/workbench/getGenerateData.ts"() {
     "use strict";
-    import_express88 = __toESM(require_express2());
+    import_express89 = __toESM(require_express2());
     init_utils3();
     init_zod();
     init_responseFormat();
     init_middleware();
-    router88 = import_express88.default.Router();
-    getGenerateData_default = router88.post(
+    router89 = import_express89.default.Router();
+    getGenerateData_default = router89.post(
       "/",
       validateFields({
         projectId: external_exports.number(),
@@ -243279,7 +242642,7 @@ var init_getGenerateData = __esm({
         const { projectId, scriptId } = req.body;
         const projectData = await utils_default.db("o_project").where("id", projectId).select("id", "videoModel", "mode").first();
         if (!projectData?.videoModel) {
-          return res.status(400).json(success3("\u9879\u76EE\u672A\u914D\u7F6E\u89C6\u9891\u6A21\u578B"));
+          return res.status(400).json(success3("The project is not configured with a video model"));
         }
         let videoMode = "";
         try {
@@ -243387,7 +242750,7 @@ var init_getGenerateData = __esm({
             id: trackId,
             duration: item?.duration ?? 0,
             prompt: item?.prompt || "",
-            state: item?.state ?? "\u672A\u751F\u6210",
+            state: item?.state ?? "Not generated",
             reason: item?.reason ?? "",
             selectVideoId: Number(item?.videoId),
             medias: (() => {
@@ -243415,7 +242778,7 @@ var init_getGenerateData = __esm({
               videoList.filter((v) => v.videoTrackId === trackId).map(async (v) => ({
                 id: v.id,
                 src: v.filePath ? await utils_default.oss.getFileUrl(v.filePath) : "",
-                state: v.state === "\u5DF2\u5B8C\u6210" ? "\u5DF2\u5B8C\u6210" : v.state === "\u751F\u6210\u4E2D" ? "\u751F\u6210\u4E2D" : v.state === "\u751F\u6210\u5931\u8D25" ? "\u751F\u6210\u5931\u8D25" : "\u672A\u751F\u6210",
+                state: v.state === "Completed" ? "Completed" : v.state === "Generating" ? "Generating" : v.state === "Generation failed" ? "Generation failed" : "Not generated",
                 errorReason: v?.errorReason ?? ""
               }))
             )
@@ -243438,17 +242801,17 @@ var init_getGenerateData = __esm({
 });
 
 // src/routes/production/workbench/getVideoList.ts
-var import_express89, router89, getVideoList_default;
+var import_express90, router90, getVideoList_default;
 var init_getVideoList = __esm({
   "src/routes/production/workbench/getVideoList.ts"() {
     "use strict";
-    import_express89 = __toESM(require_express2());
+    import_express90 = __toESM(require_express2());
     init_utils3();
     init_zod();
     init_responseFormat();
     init_middleware();
-    router89 = import_express89.default.Router();
-    getVideoList_default = router89.post(
+    router90 = import_express90.default.Router();
+    getVideoList_default = router90.post(
       "/",
       validateFields({
         projectId: external_exports.number(),
@@ -243477,17 +242840,17 @@ var init_getVideoList = __esm({
 });
 
 // src/routes/production/workbench/selectVideo.ts
-var import_express90, router90, selectVideo_default;
+var import_express91, router91, selectVideo_default;
 var init_selectVideo = __esm({
   "src/routes/production/workbench/selectVideo.ts"() {
     "use strict";
-    import_express90 = __toESM(require_express2());
+    import_express91 = __toESM(require_express2());
     init_utils3();
     init_zod();
     init_responseFormat();
     init_middleware();
-    router90 = import_express90.default.Router();
-    selectVideo_default = router90.post(
+    router91 = import_express91.default.Router();
+    selectVideo_default = router91.post(
       "/",
       validateFields({
         trackId: external_exports.number(),
@@ -243498,24 +242861,24 @@ var init_selectVideo = __esm({
         await utils_default.db("o_videoTrack").where("id", trackId).update({
           videoId
         });
-        res.status(200).send(success3({ message: "\u89C6\u9891\u9009\u62E9\u6210\u529F" }));
+        res.status(200).send(success3({ message: "Video selection successful" }));
       }
     );
   }
 });
 
 // src/routes/production/workbench/updateVideoDuration.ts
-var import_express91, router91, updateVideoDuration_default;
+var import_express92, router92, updateVideoDuration_default;
 var init_updateVideoDuration = __esm({
   "src/routes/production/workbench/updateVideoDuration.ts"() {
     "use strict";
-    import_express91 = __toESM(require_express2());
+    import_express92 = __toESM(require_express2());
     init_utils3();
     init_zod();
     init_responseFormat();
     init_middleware();
-    router91 = import_express91.default.Router();
-    updateVideoDuration_default = router91.post(
+    router92 = import_express92.default.Router();
+    updateVideoDuration_default = router92.post(
       "/",
       validateFields({
         id: external_exports.number(),
@@ -243526,24 +242889,24 @@ var init_updateVideoDuration = __esm({
         await utils_default.db("o_videoTrack").where("id", id).update({
           duration: duration4
         });
-        res.status(200).send(success3("\u66F4\u65B0\u6210\u529F"));
+        res.status(200).send(success3("Update successful"));
       }
     );
   }
 });
 
 // src/routes/production/workbench/updateVideoPrompt.ts
-var import_express92, router92, updateVideoPrompt_default;
+var import_express93, router93, updateVideoPrompt_default;
 var init_updateVideoPrompt = __esm({
   "src/routes/production/workbench/updateVideoPrompt.ts"() {
     "use strict";
-    import_express92 = __toESM(require_express2());
+    import_express93 = __toESM(require_express2());
     init_utils3();
     init_zod();
     init_responseFormat();
     init_middleware();
-    router92 = import_express92.default.Router();
-    updateVideoPrompt_default = router92.post(
+    router93 = import_express93.default.Router();
+    updateVideoPrompt_default = router93.post(
       "/",
       validateFields({
         id: external_exports.number(),
@@ -243554,26 +242917,26 @@ var init_updateVideoPrompt = __esm({
         await utils_default.db("o_videoTrack").where("id", id).update({
           prompt
         });
-        res.status(200).send(success3("\u66F4\u65B0\u6210\u529F"));
+        res.status(200).send(success3("Update successful"));
       }
     );
   }
 });
 
 // src/routes/project/addDirectorManual.ts
-var import_express93, import_fs8, import_path14, router93, addDirectorManual_default;
+var import_express94, import_fs8, import_path14, router94, addDirectorManual_default;
 var init_addDirectorManual = __esm({
   "src/routes/project/addDirectorManual.ts"() {
     "use strict";
-    import_express93 = __toESM(require_express2());
+    import_express94 = __toESM(require_express2());
     init_utils3();
     init_responseFormat();
     import_fs8 = __toESM(require("fs"));
     import_path14 = __toESM(require("path"));
     init_middleware();
     init_zod();
-    router93 = import_express93.default.Router();
-    addDirectorManual_default = router93.post(
+    router94 = import_express94.default.Router();
+    addDirectorManual_default = router94.post(
       "/",
       validateFields({
         name: external_exports.string(),
@@ -243591,12 +242954,12 @@ var init_addDirectorManual = __esm({
         try {
           const { name: name28, images, data, directorManual } = req.body;
           if (name28.includes("/") || name28.includes("\\") || name28 === "." || name28 === ".." || /^\d+$/.test(name28)) {
-            res.status(400).send(error50("\u540D\u79F0\u4E0D\u80FD\u5305\u542B\u8DEF\u5F84\u5206\u9694\u7B26\u6216\u4E3A\u7EAF\u6570\u5B57"));
+            res.status(400).send(error50("The name cannot contain path separators or be purely numeric"));
             return;
           }
           const mainPath = utils_default.getPath(["skills", "story_skills", directorManual]);
           if (import_fs8.default.existsSync(mainPath)) {
-            return res.status(400).send(error50("\u8BF7\u52FF\u586B\u5199\u91CD\u590D\u540D\u79F0\u7684\u89C6\u89C9\u624B\u518C"));
+            return res.status(400).send(error50("Do not fill in visual manuals with duplicate names"));
           }
           const DATA_MAP3 = [
             { value: "README" },
@@ -243651,18 +243014,18 @@ var init_addDirectorManual = __esm({
 });
 
 // src/routes/project/addProject.ts
-var import_express94, router94, addProject_default;
+var import_express95, router95, addProject_default;
 var init_addProject = __esm({
   "src/routes/project/addProject.ts"() {
     "use strict";
-    import_express94 = __toESM(require_express2());
+    import_express95 = __toESM(require_express2());
     init_utils3();
     init_zod();
     init_responseFormat();
     init_middleware();
     init_auth2();
-    router94 = import_express94.default.Router();
-    addProject_default = router94.post(
+    router95 = import_express95.default.Router();
+    addProject_default = router95.post(
       "/",
       validateFields({
         projectType: external_exports.string(),
@@ -243697,26 +243060,26 @@ var init_addProject = __esm({
           imageQuality,
           mode
         });
-        res.status(200).send(success3({ message: "\u65B0\u589E\u9879\u76EE\u6210\u529F", projectId }));
+        res.status(200).send(success3({ message: "Project added successfully", projectId }));
       }
     );
   }
 });
 
 // src/routes/project/addVisualManual.ts
-var import_express95, import_fs9, import_path15, router95, addVisualManual_default;
+var import_express96, import_fs9, import_path15, router96, addVisualManual_default;
 var init_addVisualManual = __esm({
   "src/routes/project/addVisualManual.ts"() {
     "use strict";
-    import_express95 = __toESM(require_express2());
+    import_express96 = __toESM(require_express2());
     init_utils3();
     init_responseFormat();
     import_fs9 = __toESM(require("fs"));
     import_path15 = __toESM(require("path"));
     init_middleware();
     init_zod();
-    router95 = import_express95.default.Router();
-    addVisualManual_default = router95.post(
+    router96 = import_express96.default.Router();
+    addVisualManual_default = router96.post(
       "/",
       validateFields({
         name: external_exports.string(),
@@ -243734,12 +243097,12 @@ var init_addVisualManual = __esm({
         try {
           const { name: name28, images, data, stylePath } = req.body;
           if (name28.includes("/") || name28.includes("\\") || name28 === "." || name28 === ".." || /^\d+$/.test(name28)) {
-            res.status(400).send(error50("\u540D\u79F0\u4E0D\u80FD\u5305\u542B\u8DEF\u5F84\u5206\u9694\u7B26\u6216\u4E3A\u7EAF\u6570\u5B57"));
+            res.status(400).send(error50("The name cannot contain path separators or be purely numeric"));
             return;
           }
           const mainPath = utils_default.getPath(["skills", "art_skills", stylePath]);
           if (import_fs9.default.existsSync(mainPath)) {
-            return res.status(400).send(error50("\u8BF7\u52FF\u586B\u5199\u91CD\u590D\u540D\u79F0\u7684\u89C6\u89C9\u624B\u518C"));
+            return res.status(400).send(error50("Do not fill in visual manuals with duplicate names"));
           }
           const DATA_MAP3 = [
             { value: "README" },
@@ -243803,18 +243166,18 @@ var init_addVisualManual = __esm({
 });
 
 // src/routes/project/deleteDirectorManual.ts
-var import_express96, import_promises7, router96, deleteDirectorManual_default;
+var import_express97, import_promises7, router97, deleteDirectorManual_default;
 var init_deleteDirectorManual = __esm({
   "src/routes/project/deleteDirectorManual.ts"() {
     "use strict";
-    import_express96 = __toESM(require_express2());
+    import_express97 = __toESM(require_express2());
     init_utils3();
     import_promises7 = __toESM(require("node:fs/promises"));
     init_zod();
     init_responseFormat();
     init_middleware();
-    router96 = import_express96.default.Router();
-    deleteDirectorManual_default = router96.post(
+    router97 = import_express97.default.Router();
+    deleteDirectorManual_default = router97.post(
       "/",
       validateFields({
         name: external_exports.string()
@@ -243823,22 +243186,22 @@ var init_deleteDirectorManual = __esm({
         try {
           const { name: name28 } = req.body;
           if (name28.includes("/") || name28.includes("\\") || name28 === "." || name28 === ".." || /^\d+$/.test(name28)) {
-            res.status(400).send(error50("\u540D\u79F0\u4E0D\u80FD\u5305\u542B\u8DEF\u5F84\u5206\u9694\u7B26\u6216\u4E3A\u7EAF\u6570\u5B57"));
+            res.status(400).send(error50("The name cannot contain path separators or be purely numeric"));
             return;
           }
           const artPromptsDir = utils_default.getPath(["skills", "story_skills", name28]);
           try {
             const stat = await import_promises7.default.stat(artPromptsDir);
             if (!stat.isDirectory()) {
-              throw new Error(`${artPromptsDir} \u4E0D\u662F\u6587\u4EF6\u5939`);
+              throw new Error(`${artPromptsDir}Not a folder`);
             }
             await import_promises7.default.rm(artPromptsDir, { recursive: true, force: true });
           } catch (e) {
-            console.error("[\u5220\u9664\u89C6\u89C9\u624B\u518C] \u5220\u9664\u5931\u8D25:", artPromptsDir, e);
+            console.error("[Delete Visual Manual] Deletion failed:", artPromptsDir, e);
           }
-          res.status(200).send(success3({ message: "\u5220\u9664\u6210\u529F" }));
+          res.status(200).send(success3({ message: "Deletion successful" }));
         } catch (err) {
-          res.status(500).send(error50(utils_default.error(err).message || "\u5220\u9664\u5931\u8D25"));
+          res.status(500).send(error50(utils_default.error(err).message || "Deletion failed"));
         }
       }
     );
@@ -243846,18 +243209,18 @@ var init_deleteDirectorManual = __esm({
 });
 
 // src/routes/project/deleteVisualManual.ts
-var import_express97, import_promises8, router97, deleteVisualManual_default;
+var import_express98, import_promises8, router98, deleteVisualManual_default;
 var init_deleteVisualManual = __esm({
   "src/routes/project/deleteVisualManual.ts"() {
     "use strict";
-    import_express97 = __toESM(require_express2());
+    import_express98 = __toESM(require_express2());
     init_utils3();
     import_promises8 = __toESM(require("node:fs/promises"));
     init_zod();
     init_responseFormat();
     init_middleware();
-    router97 = import_express97.default.Router();
-    deleteVisualManual_default = router97.post(
+    router98 = import_express98.default.Router();
+    deleteVisualManual_default = router98.post(
       "/",
       validateFields({
         name: external_exports.string()
@@ -243866,22 +243229,22 @@ var init_deleteVisualManual = __esm({
         try {
           const { name: name28 } = req.body;
           if (name28.includes("/") || name28.includes("\\") || name28 === "." || name28 === ".." || /^\d+$/.test(name28)) {
-            res.status(400).send(error50("\u540D\u79F0\u4E0D\u80FD\u5305\u542B\u8DEF\u5F84\u5206\u9694\u7B26\u6216\u4E3A\u7EAF\u6570\u5B57"));
+            res.status(400).send(error50("The name cannot contain path separators or be purely numeric"));
             return;
           }
           const artPromptsDir = utils_default.getPath(["skills", "art_skills", name28]);
           try {
             const stat = await import_promises8.default.stat(artPromptsDir);
             if (!stat.isDirectory()) {
-              throw new Error(`${artPromptsDir} \u4E0D\u662F\u6587\u4EF6\u5939`);
+              throw new Error(`${artPromptsDir}Not a folder`);
             }
             await import_promises8.default.rm(artPromptsDir, { recursive: true, force: true });
           } catch (e) {
-            console.error("[\u5220\u9664\u89C6\u89C9\u624B\u518C] \u5220\u9664\u5931\u8D25:", artPromptsDir, e);
+            console.error("[Delete Visual Manual] Deletion failed:", artPromptsDir, e);
           }
-          res.status(200).send(success3({ message: "\u5220\u9664\u6210\u529F" }));
+          res.status(200).send(success3({ message: "Deletion successful" }));
         } catch (err) {
-          res.status(500).send(error50(utils_default.error(err).message || "\u5220\u9664\u5931\u8D25"));
+          res.status(500).send(error50(utils_default.error(err).message || "Deletion failed"));
         }
       }
     );
@@ -243889,19 +243252,19 @@ var init_deleteVisualManual = __esm({
 });
 
 // src/routes/project/delProject.ts
-var import_express98, router98, delProject_default;
+var import_express99, router99, delProject_default;
 var init_delProject = __esm({
   "src/routes/project/delProject.ts"() {
     "use strict";
-    import_express98 = __toESM(require_express2());
+    import_express99 = __toESM(require_express2());
     init_utils3();
     init_zod();
     init_responseFormat();
     init_middleware();
     init_auth2();
     init_auth();
-    router98 = import_express98.default.Router();
-    delProject_default = router98.post(
+    router99 = import_express99.default.Router();
+    delProject_default = router99.post(
       "/",
       validateFields({
         id: external_exports.number()
@@ -243911,7 +243274,7 @@ var init_delProject = __esm({
         const projectQuery = utils_default.db("o_project").where("id", id);
         if (!isAdmin(currentUser(req))) projectQuery.andWhere("userId", currentUser(req).id);
         const project = await projectQuery.select("id").first();
-        if (!project) return res.status(404).send({ message: "\u9879\u76EE\u4E0D\u5B58\u5728\u6216\u65E0\u6743\u8BBF\u95EE" });
+        if (!project) return res.status(404).send({ message: "The project does not exist or you do not have access permission" });
         await utils_default.db("o_project").where("id", id).delete();
         await utils_default.db("o_agentWorkData").where("projectId", id).delete();
         await utils_default.db("o_novel").where("projectId", id).delete();
@@ -243940,30 +243303,30 @@ var init_delProject = __esm({
         await utils_default.db("memories").where("isolationKey", "like", `${id}:%`).delete();
         try {
           await utils_default.oss.deleteDirectory(`${id}/`);
-          console.log(`\u9879\u76EE ${id} \u7684OSS\u6587\u4EF6\u5939\u5220\u9664\u6210\u529F`);
+          console.log(`Project${id}The OSS folder was deleted successfully`);
         } catch (error71) {
-          console.log(`\u9879\u76EE ${id} \u6CA1\u6709\u5BF9\u5E94\u7684OSS\u6587\u4EF6\u5939\uFF0C\u8DF3\u8FC7\u5220\u9664`);
+          console.log(`Project${id}No corresponding OSS folder, skipping deletion`);
         }
-        res.status(200).send(success3({ message: "\u5220\u9664\u9879\u76EE\u6210\u529F" }));
+        res.status(200).send(success3({ message: "Project deleted successfully" }));
       }
     );
   }
 });
 
 // src/routes/project/editDirectorlManual.ts
-var import_express99, import_fs10, import_path16, router99, editDirectorlManual_default;
+var import_express100, import_fs10, import_path16, router100, editDirectorlManual_default;
 var init_editDirectorlManual = __esm({
   "src/routes/project/editDirectorlManual.ts"() {
     "use strict";
-    import_express99 = __toESM(require_express2());
+    import_express100 = __toESM(require_express2());
     init_utils3();
     init_responseFormat();
     import_fs10 = __toESM(require("fs"));
     import_path16 = __toESM(require("path"));
     init_middleware();
     init_zod();
-    router99 = import_express99.default.Router();
-    editDirectorlManual_default = router99.post(
+    router100 = import_express100.default.Router();
+    editDirectorlManual_default = router100.post(
       "/",
       validateFields({
         name: external_exports.string(),
@@ -243981,12 +243344,12 @@ var init_editDirectorlManual = __esm({
         try {
           const { name: name28, directorManual, images, data } = req.body;
           if (name28.includes("/") || name28.includes("\\") || name28 === "." || name28 === ".." || /^\d+$/.test(name28)) {
-            res.status(400).send(error50("\u540D\u79F0\u4E0D\u80FD\u5305\u542B\u8DEF\u5F84\u5206\u9694\u7B26\u6216\u4E3A\u7EAF\u6570\u5B57"));
+            res.status(400).send(error50("The name cannot contain path separators or be purely numeric"));
             return;
           }
           const mainPath = utils_default.getPath(["skills", "story_skills", directorManual]);
           if (!import_fs10.default.existsSync(mainPath)) {
-            return res.status(400).send(error50("\u5BFC\u6F14\u624B\u518C\u4E0D\u5B58\u5728"));
+            return res.status(400).send(error50("The director's manual does not exist"));
           }
           const DATA_MAP3 = [
             { value: "README" },
@@ -244043,19 +243406,19 @@ ${item.data}` : item.data;
 });
 
 // src/routes/project/editProject.ts
-var import_express100, router100, editProject_default;
+var import_express101, router101, editProject_default;
 var init_editProject = __esm({
   "src/routes/project/editProject.ts"() {
     "use strict";
-    import_express100 = __toESM(require_express2());
+    import_express101 = __toESM(require_express2());
     init_utils3();
     init_zod();
     init_responseFormat();
     init_middleware();
     init_auth2();
     init_auth();
-    router100 = import_express100.default.Router();
-    editProject_default = router100.post(
+    router101 = import_express101.default.Router();
+    editProject_default = router101.post(
       "/",
       validateFields({
         id: external_exports.number(),
@@ -244088,27 +243451,27 @@ var init_editProject = __esm({
           projectType,
           mode
         });
-        if (!updated) return res.status(404).send({ message: "\u9879\u76EE\u4E0D\u5B58\u5728\u6216\u65E0\u6743\u8BBF\u95EE" });
-        res.status(200).send(success3({ message: "\u7F16\u8F91\u9879\u76EE\u6210\u529F" }));
+        if (!updated) return res.status(404).send({ message: "The project does not exist or you do not have access permission" });
+        res.status(200).send(success3({ message: "Project edited successfully" }));
       }
     );
   }
 });
 
 // src/routes/project/editVisualManual.ts
-var import_express101, import_fs11, import_path17, router101, editVisualManual_default;
+var import_express102, import_fs11, import_path17, router102, editVisualManual_default;
 var init_editVisualManual = __esm({
   "src/routes/project/editVisualManual.ts"() {
     "use strict";
-    import_express101 = __toESM(require_express2());
+    import_express102 = __toESM(require_express2());
     init_utils3();
     init_responseFormat();
     import_fs11 = __toESM(require("fs"));
     import_path17 = __toESM(require("path"));
     init_middleware();
     init_zod();
-    router101 = import_express101.default.Router();
-    editVisualManual_default = router101.post(
+    router102 = import_express102.default.Router();
+    editVisualManual_default = router102.post(
       "/",
       validateFields({
         name: external_exports.string(),
@@ -244126,12 +243489,12 @@ var init_editVisualManual = __esm({
         try {
           const { name: name28, stylePath, images, data } = req.body;
           if (name28.includes("/") || name28.includes("\\") || name28 === "." || name28 === ".." || /^\d+$/.test(name28)) {
-            res.status(400).send(error50("\u540D\u79F0\u4E0D\u80FD\u5305\u542B\u8DEF\u5F84\u5206\u9694\u7B26\u6216\u4E3A\u7EAF\u6570\u5B57"));
+            res.status(400).send(error50("The name cannot contain path separators or be purely numeric"));
             return;
           }
           const mainPath = utils_default.getPath(["skills", "art_skills", stylePath]);
           if (!import_fs11.default.existsSync(mainPath)) {
-            return res.status(400).send(error50("\u89C6\u89C9\u624B\u518C\u4E0D\u5B58\u5728"));
+            return res.status(400).send(error50("The visual manual does not exist"));
           }
           const DATA_MAP3 = [
             { value: "README" },
@@ -244197,17 +243560,17 @@ ${item.data}` : item.data;
 });
 
 // src/routes/project/getModelDetails.ts
-var import_express102, router102, getModelDetails_default;
+var import_express103, router103, getModelDetails_default;
 var init_getModelDetails = __esm({
   "src/routes/project/getModelDetails.ts"() {
     "use strict";
-    import_express102 = __toESM(require_express2());
+    import_express103 = __toESM(require_express2());
     init_responseFormat();
     init_utils3();
     init_zod();
     init_middleware();
-    router102 = import_express102.default.Router();
-    getModelDetails_default = router102.post(
+    router103 = import_express103.default.Router();
+    getModelDetails_default = router103.post(
       "/",
       validateFields({
         key: external_exports.enum(["scriptAgent", "productionAgent"])
@@ -244218,7 +243581,7 @@ var init_getModelDetails = __esm({
         const [id, modelName] = data ? data.modelName.split(/:(.+)/) : [];
         const models = await utils_default.vendor.getModelList(id);
         const model = models.find((m) => m.modelName === modelName);
-        if (!model) return res.status(400).send(error50("\u672A\u627E\u5230\u6A21\u578B"));
+        if (!model) return res.status(400).send(error50("Model not found"));
         res.status(200).send(success3(model));
       }
     );
@@ -244226,17 +243589,17 @@ var init_getModelDetails = __esm({
 });
 
 // src/routes/project/getProject.ts
-var import_express103, router103, getProject_default;
+var import_express104, router104, getProject_default;
 var init_getProject = __esm({
   "src/routes/project/getProject.ts"() {
     "use strict";
-    import_express103 = __toESM(require_express2());
+    import_express104 = __toESM(require_express2());
     init_utils3();
     init_responseFormat();
     init_auth2();
     init_auth();
-    router103 = import_express103.default.Router();
-    getProject_default = router103.post("/", async (req, res) => {
+    router104 = import_express104.default.Router();
+    getProject_default = router104.post("/", async (req, res) => {
       const user = currentUser(req);
       const query = utils_default.db("o_project").select("*");
       if (!isAdmin(user)) query.where("userId", user.id);
@@ -244268,31 +243631,31 @@ async function readAllImages(imagesDir) {
     return [];
   }
 }
-var import_express104, import_fs12, import_path18, router104, DATA_MAP, getVisualManual_default;
+var import_express105, import_fs12, import_path18, router105, DATA_MAP, getVisualManual_default;
 var init_getVisualManual = __esm({
   "src/routes/project/getVisualManual.ts"() {
     "use strict";
-    import_express104 = __toESM(require_express2());
+    import_express105 = __toESM(require_express2());
     init_utils3();
     init_responseFormat();
     import_fs12 = __toESM(require("fs"));
     import_path18 = __toESM(require("path"));
-    router104 = import_express104.default.Router();
+    router105 = import_express105.default.Router();
     DATA_MAP = [
       { label: "README", value: "README" },
-      { label: "\u524D\u7F00", value: "prefix" },
-      { label: "\u89D2\u8272", value: "art_character", subDir: "art_prompt" },
-      { label: "\u89D2\u8272\u884D\u751F", value: "art_character_derivative", subDir: "art_prompt" },
-      { label: "\u9053\u5177", value: "art_prop", subDir: "art_prompt" },
-      { label: "\u9053\u5177\u884D\u751F", value: "art_prop_derivative", subDir: "art_prompt" },
-      { label: "\u573A\u666F", value: "art_scene", subDir: "art_prompt" },
-      { label: "\u573A\u666F\u884D\u751F", value: "art_scene_derivative", subDir: "art_prompt" },
-      { label: "\u5206\u955C", value: "director_storyboard", subDir: "driector_skills" },
-      { label: "\u5206\u955C\u89C6\u9891", value: "art_storyboard_video", subDir: "art_prompt" },
-      { label: "\u6280\u6CD5-\u5BFC\u6F14\u89C4\u5212", value: "director_planning_style", subDir: "driector_skills" },
-      { label: "\u6280\u6CD5-\u5206\u955C\u8868\u8BBE\u8BA1", value: "director_storyboard_table_style", subDir: "driector_skills" }
+      { label: "Prefix", value: "prefix" },
+      { label: "Role", value: "art_character", subDir: "art_prompt" },
+      { label: "Character Derivatives", value: "art_character_derivative", subDir: "art_prompt" },
+      { label: "Props", value: "art_prop", subDir: "art_prompt" },
+      { label: "Prop Derivatives", value: "art_prop_derivative", subDir: "art_prompt" },
+      { label: "Scene", value: "art_scene", subDir: "art_prompt" },
+      { label: "Scene Derivation", value: "art_scene_derivative", subDir: "art_prompt" },
+      { label: "Storyboard", value: "director_storyboard", subDir: "driector_skills" },
+      { label: "Storyboard video", value: "art_storyboard_video", subDir: "art_prompt" },
+      { label: "Technique - Director's Plan", value: "director_planning_style", subDir: "driector_skills" },
+      { label: "Technique - Storyboard Design", value: "director_storyboard_table_style", subDir: "driector_skills" }
     ];
-    getVisualManual_default = router104.post("/", async (req, res) => {
+    getVisualManual_default = router105.post("/", async (req, res) => {
       try {
         const artPromptsDir = utils_default.getPath(["skills", "art_skills"]);
         const styleDirs = import_fs12.default.readdirSync(artPromptsDir, { withFileTypes: true }).filter((d) => d.isDirectory()).map((d) => d.name);
@@ -244354,22 +243717,22 @@ async function readAllImages2(imagesDir) {
     return [];
   }
 }
-var import_express105, import_fs13, import_path19, router105, DATA_MAP2, queryDirectorManual_default;
+var import_express106, import_fs13, import_path19, router106, DATA_MAP2, queryDirectorManual_default;
 var init_queryDirectorManual = __esm({
   "src/routes/project/queryDirectorManual.ts"() {
     "use strict";
-    import_express105 = __toESM(require_express2());
+    import_express106 = __toESM(require_express2());
     init_utils3();
     init_responseFormat();
     import_fs13 = __toESM(require("fs"));
     import_path19 = __toESM(require("path"));
-    router105 = import_express105.default.Router();
+    router106 = import_express106.default.Router();
     DATA_MAP2 = [
       { label: "README", value: "README" },
-      { label: "\u5BFC\u6F14\u89C4\u5212", value: "director_planning_narrative", subDir: "driector_skills" },
-      { label: "\u5206\u955C\u8868", value: "director_storyboard_table_narrative", subDir: "driector_skills" }
+      { label: "Director's Plan", value: "director_planning_narrative", subDir: "driector_skills" },
+      { label: "Storyboard", value: "director_storyboard_table_narrative", subDir: "driector_skills" }
     ];
-    queryDirectorManual_default = router105.post("/", async (req, res) => {
+    queryDirectorManual_default = router106.post("/", async (req, res) => {
       try {
         const artPromptsDir = utils_default.getPath(["skills", "story_skills"]);
         const styleDirs = import_fs13.default.readdirSync(artPromptsDir, { withFileTypes: true }).filter((d) => d.isDirectory()).map((d) => d.name);
@@ -244410,19 +243773,19 @@ var init_queryDirectorManual = __esm({
 });
 
 // src/routes/project/visualManual.ts
-var import_express106, import_fs14, import_path20, router106, visualManual_default;
+var import_express107, import_fs14, import_path20, router107, visualManual_default;
 var init_visualManual = __esm({
   "src/routes/project/visualManual.ts"() {
     "use strict";
-    import_express106 = __toESM(require_express2());
+    import_express107 = __toESM(require_express2());
     init_zod();
     init_responseFormat();
     init_middleware();
     init_getPath();
     import_fs14 = __toESM(require("fs"));
     import_path20 = __toESM(require("path"));
-    router106 = import_express106.default.Router();
-    visualManual_default = router106.post(
+    router107 = import_express107.default.Router();
+    visualManual_default = router107.post(
       "/",
       validateFields({
         type: external_exports.string()
@@ -244445,7 +243808,7 @@ var init_visualManual = __esm({
         };
         const filePath = findFile(basePath, `${type}.md`);
         if (!filePath) {
-          res.status(404).json({ error: `\u672A\u627E\u5230\u5BF9\u5E94\u7684\u6587\u4EF6: ${type}.md` });
+          res.status(404).json({ error: `No corresponding file found:${type}.md` });
           return;
         }
         const content = import_fs14.default.readFileSync(filePath, "utf-8");
@@ -244456,17 +243819,17 @@ var init_visualManual = __esm({
 });
 
 // src/routes/script/addScript.ts
-var import_express107, router107, addScript_default;
+var import_express108, router108, addScript_default;
 var init_addScript = __esm({
   "src/routes/script/addScript.ts"() {
     "use strict";
-    import_express107 = __toESM(require_express2());
+    import_express108 = __toESM(require_express2());
     init_utils3();
     init_zod();
     init_responseFormat();
     init_middleware();
-    router107 = import_express107.default.Router();
-    addScript_default = router107.post(
+    router108 = import_express108.default.Router();
+    addScript_default = router108.post(
       "/",
       validateFields({
         name: external_exports.string(),
@@ -244495,24 +243858,24 @@ var init_addScript = __esm({
             await utils_default.db("o_scriptAssets").insert(insertData);
           }
         }
-        res.status(200).send(success3({ message: "\u6DFB\u52A0\u5267\u672C\u6210\u529F" }));
+        res.status(200).send(success3({ message: "Script added successfully" }));
       }
     );
   }
 });
 
 // src/routes/script/batchAddScript.ts
-var import_express108, router108, batchAddScript_default;
+var import_express109, router109, batchAddScript_default;
 var init_batchAddScript = __esm({
   "src/routes/script/batchAddScript.ts"() {
     "use strict";
-    import_express108 = __toESM(require_express2());
+    import_express109 = __toESM(require_express2());
     init_utils3();
     init_zod();
     init_responseFormat();
     init_middleware();
-    router108 = import_express108.default.Router();
-    batchAddScript_default = router108.post(
+    router109 = import_express109.default.Router();
+    batchAddScript_default = router109.post(
       "/",
       validateFields({
         data: external_exports.array(
@@ -244535,24 +243898,24 @@ var init_batchAddScript = __esm({
             };
           })
         );
-        res.status(200).send(success3({ message: "\u6DFB\u52A0\u5267\u672C\u6210\u529F" }));
+        res.status(200).send(success3({ message: "Script added successfully" }));
       }
     );
   }
 });
 
 // src/routes/script/delScript.ts
-var import_express109, router109, delScript_default;
+var import_express110, router110, delScript_default;
 var init_delScript = __esm({
   "src/routes/script/delScript.ts"() {
     "use strict";
-    import_express109 = __toESM(require_express2());
+    import_express110 = __toESM(require_express2());
     init_utils3();
     init_zod();
     init_responseFormat();
     init_middleware();
-    router109 = import_express109.default.Router();
-    delScript_default = router109.post(
+    router110 = import_express110.default.Router();
+    delScript_default = router110.post(
       "/",
       validateFields({
         ids: external_exports.array(external_exports.number())
@@ -244581,7 +243944,7 @@ var init_delScript = __esm({
         await utils_default.db("o_script").whereIn("id", ids).delete();
         await utils_default.db("o_storyboard").whereIn("scriptId", ids).delete();
         await utils_default.db("o_video").whereIn("scriptId", ids).delete();
-        res.status(200).send(success3({ message: "\u5220\u9664\u5267\u672C\u6210\u529F" }));
+        res.status(200).send(success3({ message: "Script deleted successfully" }));
       }
     );
   }
@@ -254759,17 +254122,17 @@ var require_compressing = __commonJS({
 });
 
 // src/routes/script/exportScript.ts
-var import_express110, import_compressing, router110, exportScript_default;
+var import_express111, import_compressing, router111, exportScript_default;
 var init_exportScript = __esm({
   "src/routes/script/exportScript.ts"() {
     "use strict";
-    import_express110 = __toESM(require_express2());
+    import_express111 = __toESM(require_express2());
     init_utils3();
     init_zod();
     import_compressing = __toESM(require_compressing());
     init_middleware();
-    router110 = import_express110.default.Router();
-    exportScript_default = router110.post(
+    router111 = import_express111.default.Router();
+    exportScript_default = router111.post(
       "/",
       validateFields({
         id: external_exports.array(external_exports.number())
@@ -254802,33 +254165,33 @@ function chunkArray(arr, groupSize) {
   }
   return groupChunks;
 }
-var import_express111, router111, NewAssetSchema, ExistingAssetRefSchema, AssetSchema, extractAssets_default;
+var import_express112, router112, NewAssetSchema, ExistingAssetRefSchema, AssetSchema, extractAssets_default;
 var init_extractAssets = __esm({
   "src/routes/script/extractAssets.ts"() {
     "use strict";
-    import_express111 = __toESM(require_express2());
+    import_express112 = __toESM(require_express2());
     init_utils3();
     init_zod();
     init_responseFormat();
     init_middleware();
     init_dist22();
-    router111 = import_express111.default.Router();
+    router112 = import_express112.default.Router();
     NewAssetSchema = external_exports.object({
-      name: external_exports.string().describe("\u8D44\u4EA7\u540D\u79F0,\u4EC5\u4E3A\u540D\u79F0\u4E0D\u505A\u5176\u4ED6\u4EFB\u4F55\u8868\u8FF0"),
-      desc: external_exports.string().describe("\u8D44\u4EA7\u63CF\u8FF0"),
-      type: external_exports.enum(["role", "tool", "scene"]).describe("\u8D44\u4EA7\u7C7B\u578B"),
-      scriptIds: external_exports.array(external_exports.number()).describe("\u4F7F\u7528\u8BE5\u8D44\u4EA7\u7684\u5267\u672Cid\u6570\u7EC4")
+      name: external_exports.string().describe("Asset name, name only, no other description"),
+      desc: external_exports.string().describe("Asset Description"),
+      type: external_exports.enum(["role", "tool", "scene"]).describe("Asset Type"),
+      scriptIds: external_exports.array(external_exports.number()).describe("The array of script IDs for this asset")
     });
     ExistingAssetRefSchema = external_exports.object({
-      name: external_exports.string().describe("\u5DF2\u6709\u8D44\u4EA7\u7684\u540D\u79F0,\u5FC5\u987B\u4E0E\u5DF2\u6709\u8D44\u4EA7\u5217\u8868\u4E2D\u7684\u540D\u79F0\u5B8C\u5168\u4E00\u81F4"),
-      scriptIds: external_exports.array(external_exports.number()).describe("\u4F7F\u7528\u8BE5\u8D44\u4EA7\u7684\u5267\u672Cid\u6570\u7EC4")
+      name: external_exports.string().describe("The name of an existing asset must exactly match the name in the existing asset list."),
+      scriptIds: external_exports.array(external_exports.number()).describe("The array of script IDs for this asset")
     });
     AssetSchema = external_exports.object({
-      name: external_exports.string().describe("\u8D44\u4EA7\u540D\u79F0,\u4EC5\u4E3A\u540D\u79F0\u4E0D\u505A\u5176\u4ED6\u4EFB\u4F55\u8868\u8FF0"),
-      desc: external_exports.string().describe("\u8D44\u4EA7\u63CF\u8FF0"),
-      type: external_exports.enum(["role", "tool", "scene"]).describe("\u8D44\u4EA7\u7C7B\u578B")
+      name: external_exports.string().describe("Asset name, name only, no other description"),
+      desc: external_exports.string().describe("Asset Description"),
+      type: external_exports.enum(["role", "tool", "scene"]).describe("Asset Type")
     });
-    extractAssets_default = router111.post(
+    extractAssets_default = router112.post(
       "/",
       validateFields({
         scriptIds: external_exports.array(external_exports.number()),
@@ -254837,7 +254200,7 @@ var init_extractAssets = __esm({
       }),
       async (req, res) => {
         const { scriptIds, projectId, groupSize = 5 } = req.body;
-        if (!scriptIds.length) return res.status(400).send(error50("\u8BF7\u5148\u9009\u62E9\u5267\u672C"));
+        if (!scriptIds.length) return res.status(400).send(error50("Please select a script first"));
         const scripts = await utils_default.db("o_script").whereIn("id", scriptIds);
         const scriptMap = new Map(scripts.map((s) => [s.id, s]));
         await utils_default.db("o_script").whereIn("id", scriptIds).update({
@@ -254893,7 +254256,7 @@ var init_extractAssets = __esm({
             errorReason: null
           });
         }
-        res.send(success3("\u5F00\u59CB\u63D0\u53D6\u8D44\u4EA7"));
+        res.send(success3("Start extracting assets"));
         function processGroup(group) {
           group.map(async (itemIds) => {
             const validScripts = [];
@@ -254901,8 +254264,8 @@ var init_extractAssets = __esm({
               for (const scriptId of scriptIds2) {
                 const script = scriptMap.get(scriptId);
                 if (!script) {
-                  errors.push({ scriptId, error: "\u672A\u627E\u5230\u5BF9\u5E94\u5267\u672C" });
-                  await utils_default.db("o_script").where("id", scriptId).where("projectId", projectId).update({ extractState: -1, errorReason: "\u672A\u627E\u5230\u5BF9\u5E94\u5267\u672C" });
+                  errors.push({ scriptId, error: "No corresponding script found" });
+                  await utils_default.db("o_script").where("id", scriptId).where("projectId", projectId).update({ extractState: -1, errorReason: "No corresponding script found" });
                 } else {
                   const item = await utils_default.db("o_script").where("projectId", projectId).where("id", scriptId).select("extractState").first();
                   if (item?.extractState == 2) {
@@ -254915,27 +254278,27 @@ var init_extractAssets = __esm({
             const validScriptIds = validScripts.map((v) => v.id);
             await utils_default.db("o_script").where("projectId", projectId).whereIn("id", validScriptIds).update({
               extractState: 0
-              // 正在提取
+              // extracting
             });
             const existingAssets = await utils_default.db("o_assets").where("projectId", projectId).select("name", "type");
             const existingAssetsList = existingAssets.map((a) => `${a.name}(${a.type})`).join("\u3001");
-            const scriptsContent = validScripts.map(({ id, script }) => `===== \u3010\u5267\u672CID: ${id}\u3011${script.name || ""} =====
+            const scriptsContent = validScripts.map(({ id, script }) => `===== \u3010Script ID:${id}\u3011${script.name || ""} =====
 ${script.content}`).join("\n\n");
             let collectedNew = [];
             let collectedExisting = [];
             try {
               const resultTool = tool({
-                description: "\u8FD4\u56DE\u7ED3\u679C\u65F6\u5FC5\u987B\u8C03\u7528\u8FD9\u4E2A\u5DE5\u5177",
+                description: "When returning results, you must call this tool",
                 inputSchema: jsonSchema(
                   external_exports.object({
-                    newAssets: external_exports.array(NewAssetSchema).describe("\u65B0\u53D1\u73B0\u7684\u8D44\u4EA7\u5217\u8868\uFF08\u4E0D\u5728\u5DF2\u6709\u8D44\u4EA7\u5217\u8868\u4E2D\u7684\uFF09\uFF0C\u9700\u8981\u5B8C\u6574\u7684 prompt\u3001name\u3001desc\u3001type \u548C\u4F7F\u7528\u8BE5\u8D44\u4EA7\u7684 scriptIds"),
-                    existingAssetRefs: external_exports.array(ExistingAssetRefSchema).describe("\u5DF2\u6709\u8D44\u4EA7\u7684\u5F15\u7528\u5217\u8868\uFF08\u5728\u5DF2\u6709\u8D44\u4EA7\u5217\u8868\u4E2D\u5DF2\u5B58\u5728\u7684\uFF09\uFF0C\u53EA\u9700\u7ED9\u51FA\u8D44\u4EA7\u540D\u79F0\u548C\u4F7F\u7528\u8BE5\u8D44\u4EA7\u7684 scriptIds")
+                    newAssets: external_exports.array(NewAssetSchema).describe("The list of newly discovered assets (not in the existing asset list) requires the complete prompt, name, desc, type, and the scriptIds that use the asset"),
+                    existingAssetRefs: external_exports.array(ExistingAssetRefSchema).describe("The list of references to existing assets (those already present in the existing assets list). Only provide the asset names and the scriptIds that use those assets.")
                   }).toJSONSchema()
                 ),
                 execute: async ({ newAssets, existingAssetRefs }) => {
                   if (newAssets?.length) collectedNew = newAssets;
                   if (existingAssetRefs?.length) collectedExisting = existingAssetRefs;
-                  return "\u65E0\u9700\u56DE\u590D\u7528\u6237\u4EFB\u4F55\u5185\u5BB9";
+                  return "No need to reply to the user with any content";
                 }
               });
               const promptData = await utils_default.userSettings.getPromptByType("scriptAssetExtraction");
@@ -254945,23 +254308,16 @@ ${script.content}`).join("\n\n");
               } else {
                 scriptAssetExtraction = promptData?.data ?? void 0;
               }
-              const existingHint = existingAssetsList ? `
-
-\u3010\u5DF2\u6709\u8D44\u4EA7\u5217\u8868\u3011\uFF1A${existingAssetsList}
-\u5BF9\u4E8E\u5DF2\u6709\u8D44\u4EA7\uFF0C\u5982\u679C\u5728\u5267\u672C\u4E2D\u51FA\u73B0\uFF0C\u53EA\u9700\u5728 existingAssetRefs \u4E2D\u7ED9\u51FA\u8D44\u4EA7\u540D\u79F0\u548C\u5BF9\u5E94\u7684 scriptIds \u6570\u7EC4\u5373\u53EF\uFF0C\u65E0\u9700\u91CD\u590D\u751F\u6210 desc/type\u3002\u5BF9\u4E8E\u65B0\u53D1\u73B0\u7684\u8D44\u4EA7\uFF08\u4E0D\u5728\u5DF2\u6709\u5217\u8868\u4E2D\uFF09\uFF0C\u8BF7\u5728 newAssets \u4E2D\u7ED9\u51FA\u5B8C\u6574\u4FE1\u606F\u3002` : "";
+              const existingHint = existingAssetsList ? `\u3010Existing Asset List\u3011:${existingAssetsList}For existing assets, if they appear in the script, you only need to provide the asset name and the corresponding scriptIds array in existingAssetRefs; there is no need to regenerate desc/type. For newly discovered assets (not in the existing list), please provide complete information in newAssets.` : "";
               const output = await utils_default.Ai.Text("universalAi").invoke({
                 messages: [
                   {
                     role: "system",
-                    content: scriptAssetExtraction + "\n\n\u63D0\u53D6\u5267\u672C\u4E2D\u6D89\u53CA\u7684\u8D44\u4EA7\uFF08\u89D2\u8272\u3001\u573A\u666F\u3001\u9053\u5177\uFF09\uFF0C\u53C2\u8003\u6280\u80FD script_assets_extract \u89C4\u8303\uFF0C\u7ED3\u679C\u5FC5\u987B\u901A\u8FC7 resultTool \u5DE5\u5177\u8FD4\u56DE\u3002\n\n\u6CE8\u610F\uFF1A\u672C\u6B21\u4F1A\u540C\u65F6\u63D0\u4F9B\u591A\u96C6\u5267\u672C\uFF0C\u6BCF\u96C6\u5267\u672C\u4EE5 ===== \u3010\u5267\u672CID: xxx\u3011 ===== \u5206\u9694\u3002\u4F60\u9700\u8981\u5206\u6790\u6BCF\u96C6\u5267\u672C\u4F7F\u7528\u4E86\u54EA\u4E9B\u8D44\u4EA7\uFF0C\u5E76\u5728\u8F93\u51FA\u4E2D\u7528 scriptIds \u6570\u7EC4\u6807\u660E\u6BCF\u4E2A\u8D44\u4EA7\u5728\u54EA\u4E9B\u5267\u672C\u4E2D\u51FA\u73B0\u3002"
+                    content: scriptAssetExtraction + "Extract the assets (characters, scenes, props) involved in the script, referring to the script_assets_extract skill specification. The result must be returned via the resultTool tool.Note: Multiple script episodes will be provided simultaneously, with each episode separated by ===== \u3010Script ID: xxx\u3011 =====. You need to analyze which assets are used in each episode and indicate in the output, using a scriptIds array, which scripts each asset appears in."
                   },
                   {
                     role: "user",
-                    content: `\u5F53\u524D\u5DF2\u6709\u8D44\u4EA7\u5217\u8868\uFF1A${existingHint}
-
-\u8BF7\u6839\u636E\u4EE5\u4E0B${validScripts.length}\u96C6\u5267\u672C\u63D0\u53D6\u5BF9\u5E94\u7684\u5267\u672C\u8D44\u4EA7\uFF08\u89D2\u8272\u3001\u573A\u666F\u3001\u9053\u5177\uFF09:
-
-${scriptsContent}`
+                    content: `Current existing asset list:${existingHint}Please{validScripts.length}Collect the script and extract the corresponding script assets (characters, scenes, props):{scriptsContent}`
                   }
                 ],
                 tools: { resultTool }
@@ -254972,7 +254328,7 @@ ${scriptsContent}`
                 existingRefs: collectedExisting
               });
             } catch (e) {
-              console.error(`[extractAssets] group=[${validScriptIds.join(",")}] \u63D0\u53D6\u5931\u8D25:`, e);
+              console.error(`[extractAssets] group=[${validScriptIds.join(",")}] Extraction failed:`, e);
               for (const { id, script } of validScripts) {
                 errors.push({ scriptId: id, error: (script.name || "") + ":" + utils_default.error(e).message });
                 await utils_default.db("o_script").where("id", id).where("projectId", projectId).update({ extractState: -1, errorReason: utils_default.error(e).message });
@@ -254981,8 +254337,8 @@ ${scriptsContent}`
             }
             if (!collectedNew.length && !collectedExisting.length) {
               for (const { id } of validScripts) {
-                errors.push({ scriptId: id, error: "AI \u672A\u8FD4\u56DE\u4EFB\u4F55\u8D44\u4EA7" });
-                await utils_default.db("o_script").where("id", id).where("projectId", projectId).update({ extractState: -1, errorReason: "AI \u672A\u8FD4\u56DE\u4EFB\u4F55\u8D44\u4EA7" });
+                errors.push({ scriptId: id, error: "AI did not return any assets" });
+                await utils_default.db("o_script").where("id", id).where("projectId", projectId).update({ extractState: -1, errorReason: "AI did not return any assets" });
               }
               return;
             }
@@ -254995,31 +254351,26 @@ ${scriptsContent}`
 });
 
 // src/routes/script/getAiRegex.ts
-var import_express112, router112, getAiRegex_default;
+var import_express113, router113, getAiRegex_default;
 var init_getAiRegex = __esm({
   "src/routes/script/getAiRegex.ts"() {
     "use strict";
-    import_express112 = __toESM(require_express2());
+    import_express113 = __toESM(require_express2());
     init_utils3();
     init_zod();
     init_responseFormat();
     init_middleware();
-    router112 = import_express112.default.Router();
-    getAiRegex_default = router112.post(
+    router113 = import_express113.default.Router();
+    getAiRegex_default = router113.post(
       "/",
       validateFields({
         content: external_exports.string()
       }),
       async (req, res) => {
         const { content } = req.body;
-        const systemPrompt = `\u4F60\u662F\u4E00\u4E2A\u6B63\u5219\u8868\u8FBE\u5F0F\u4E13\u5BB6\u3002\u7528\u6237\u4F1A\u63D0\u4F9B\u4E00\u6BB5\u5267\u672C\u6587\u672C\uFF0C\u4F60\u9700\u8981\u5206\u6790\u5176\u4E2D\u7684\u96C6/\u7AE0\u8282\u5206\u9694\u6A21\u5F0F\uFF0C\u8FD4\u56DE\u4E00\u4E2AJavaScript\u6B63\u5219\u8868\u8FBE\u5F0F\u5B57\u7B26\u4E32\u3002
+        const systemPrompt = `/Chapters*([0-9one two three four five six seven eight nine ten hundred thousand million]+)s*Sets*([^
 
-\u8981\u6C42\uFF1A
-1. \u6B63\u5219\u5FC5\u987B\u5305\u542B\u4E24\u4E2A\u6355\u83B7\u7EC4\uFF1A\u7B2C\u4E00\u4E2A\u6355\u83B7\u7EC4\u5339\u914D\u96C6\u6570/\u7AE0\u8282\u7F16\u53F7\uFF08\u6570\u5B57\u6216\u4E2D\u6587\u6570\u5B57\uFF09\uFF0C\u7B2C\u4E8C\u4E2A\u6355\u83B7\u7EC4\u5339\u914D\u8BE5\u96C6\u7684\u6807\u9898/\u540D\u79F0\uFF08scriptName\uFF09\u3002
-2. \u8FD4\u56DE\u683C\u5F0F\u4E3A /\u6B63\u5219\u8868\u8FBE\u5F0F/g\uFF0C\u4F8B\u5982\uFF1A/\u7B2Cs*([0-9\u4E00\u4E8C\u4E09\u56DB\u4E94\u516D\u4E03\u516B\u4E5D\u5341\u767E\u5343\u4E07]+)s*\u96C6s*([^
-\r]*)/g
-3. \u53EA\u8FD4\u56DE\u6B63\u5219\u8868\u8FBE\u5F0F\u5B57\u7B26\u4E32\u672C\u8EAB\uFF0C\u4E0D\u8981\u6709\u4EFB\u4F55\u5176\u4ED6\u89E3\u91CA\u6587\u5B57\u6216markdown\u683C\u5F0F\u3002
-4. \u5982\u679C\u6587\u672C\u4E2D\u6CA1\u6709\u660E\u663E\u7684\u7AE0\u8282\u5206\u9694\u6A21\u5F0F\uFF0C\u8FD4\u56DE\u7A7A\u5B57\u7B26\u4E32\u3002`;
+]*)/g`;
         const resText = await utils_default.Ai.Text("universalAi").invoke({
           system: systemPrompt,
           messages: [
@@ -255037,17 +254388,17 @@ var init_getAiRegex = __esm({
 });
 
 // src/routes/script/getScrptApi.ts
-var import_express113, router113, getScrptApi_default;
+var import_express114, router114, getScrptApi_default;
 var init_getScrptApi = __esm({
   "src/routes/script/getScrptApi.ts"() {
     "use strict";
-    import_express113 = __toESM(require_express2());
+    import_express114 = __toESM(require_express2());
     init_utils3();
     init_zod();
     init_responseFormat();
     init_middleware();
-    router113 = import_express113.default.Router();
-    getScrptApi_default = router113.post(
+    router114 = import_express114.default.Router();
+    getScrptApi_default = router114.post(
       "/",
       validateFields({
         projectId: external_exports.number(),
@@ -255088,34 +254439,9 @@ var init_getScrptApi = __esm({
 });
 
 // src/routes/script/pollScriptAssets.ts
-var import_express114, router114, pollScriptAssets_default;
+var import_express115, router115, pollScriptAssets_default;
 var init_pollScriptAssets = __esm({
   "src/routes/script/pollScriptAssets.ts"() {
-    "use strict";
-    import_express114 = __toESM(require_express2());
-    init_utils3();
-    init_zod();
-    init_responseFormat();
-    init_middleware();
-    router114 = import_express114.default.Router();
-    pollScriptAssets_default = router114.post(
-      "/",
-      validateFields({
-        ids: external_exports.array(external_exports.number())
-      }),
-      async (req, res) => {
-        const { ids } = req.body;
-        const data = await utils_default.db("o_script").whereIn("id", ids).whereNot("extractState", "\u751F\u6210\u4E2D").select("id", "extractState", "errorReason");
-        res.status(200).send(success3(data));
-      }
-    );
-  }
-});
-
-// src/routes/script/updateScript.ts
-var import_express115, router115, updateScript_default;
-var init_updateScript = __esm({
-  "src/routes/script/updateScript.ts"() {
     "use strict";
     import_express115 = __toESM(require_express2());
     init_utils3();
@@ -255123,7 +254449,32 @@ var init_updateScript = __esm({
     init_responseFormat();
     init_middleware();
     router115 = import_express115.default.Router();
-    updateScript_default = router115.post(
+    pollScriptAssets_default = router115.post(
+      "/",
+      validateFields({
+        ids: external_exports.array(external_exports.number())
+      }),
+      async (req, res) => {
+        const { ids } = req.body;
+        const data = await utils_default.db("o_script").whereIn("id", ids).whereNot("extractState", "Generating").select("id", "extractState", "errorReason");
+        res.status(200).send(success3(data));
+      }
+    );
+  }
+});
+
+// src/routes/script/updateScript.ts
+var import_express116, router116, updateScript_default;
+var init_updateScript = __esm({
+  "src/routes/script/updateScript.ts"() {
+    "use strict";
+    import_express116 = __toESM(require_express2());
+    init_utils3();
+    init_zod();
+    init_responseFormat();
+    init_middleware();
+    router116 = import_express116.default.Router();
+    updateScript_default = router116.post(
       "/",
       validateFields({
         id: external_exports.number(),
@@ -255150,24 +254501,24 @@ var init_updateScript = __esm({
             await utils_default.db("o_scriptAssets").insert(insertData);
           }
         }
-        res.status(200).send(success3({ message: "\u7F16\u8F91\u5267\u672C\u6210\u529F" }));
+        res.status(200).send(success3({ message: "Script edited successfully" }));
       }
     );
   }
 });
 
 // src/routes/scriptAgent/getPlanData.ts
-var import_express116, router116, getPlanData_default;
+var import_express117, router117, getPlanData_default;
 var init_getPlanData = __esm({
   "src/routes/scriptAgent/getPlanData.ts"() {
     "use strict";
-    import_express116 = __toESM(require_express2());
+    import_express117 = __toESM(require_express2());
     init_responseFormat();
     init_utils3();
     init_zod();
     init_middleware();
-    router116 = import_express116.default.Router();
-    getPlanData_default = router116.post(
+    router117 = import_express117.default.Router();
+    getPlanData_default = router117.post(
       "/",
       validateFields({
         projectId: external_exports.number(),
@@ -255204,17 +254555,17 @@ var init_getPlanData = __esm({
 });
 
 // src/routes/scriptAgent/setPlanData.ts
-var import_express117, router117, setPlanData_default;
+var import_express118, router118, setPlanData_default;
 var init_setPlanData = __esm({
   "src/routes/scriptAgent/setPlanData.ts"() {
     "use strict";
-    import_express117 = __toESM(require_express2());
+    import_express118 = __toESM(require_express2());
     init_responseFormat();
     init_utils3();
     init_zod();
     init_middleware();
-    router117 = import_express117.default.Router();
-    setPlanData_default = router117.post(
+    router118 = import_express118.default.Router();
+    setPlanData_default = router118.post(
       "/",
       validateFields({
         projectId: external_exports.number(),
@@ -255254,17 +254605,17 @@ var init_setPlanData = __esm({
 });
 
 // src/routes/scriptAgent/updateData.ts
-var import_express118, router118, updateData_default;
+var import_express119, router119, updateData_default;
 var init_updateData = __esm({
   "src/routes/scriptAgent/updateData.ts"() {
     "use strict";
-    import_express118 = __toESM(require_express2());
+    import_express119 = __toESM(require_express2());
     init_responseFormat();
     init_utils3();
     init_zod();
     init_middleware();
-    router118 = import_express118.default.Router();
-    updateData_default = router118.post(
+    router119 = import_express119.default.Router();
+    updateData_default = router119.post(
       "/",
       validateFields({
         id: external_exports.number(),
@@ -255284,24 +254635,24 @@ var init_updateData = __esm({
         await utils_default.db("o_agentWorkData").where({ id }).update({
           data: JSON.stringify(data)
         });
-        res.status(200).send(success3("\u66F4\u65B0\u6210\u529F"));
+        res.status(200).send(success3("Update successful"));
       }
     );
   }
 });
 
 // src/routes/setting/about/checkUpdate.ts
-var import_express119, import_fs15, import_path21, router119, APP_VERSION2, checkUpdate_default;
+var import_express120, import_fs15, import_path21, router120, APP_VERSION2, checkUpdate_default;
 var init_checkUpdate = __esm({
   "src/routes/setting/about/checkUpdate.ts"() {
     "use strict";
-    import_express119 = __toESM(require_express2());
+    import_express120 = __toESM(require_express2());
     init_responseFormat();
     init_middleware();
     init_zod();
     import_fs15 = __toESM(require("fs"));
     import_path21 = __toESM(require("path"));
-    router119 = import_express119.default.Router();
+    router120 = import_express120.default.Router();
     APP_VERSION2 = (() => {
       if (true) {
         return "1.1.8";
@@ -255310,7 +254661,7 @@ var init_checkUpdate = __esm({
       const pkg = JSON.parse(import_fs15.default.readFileSync(pkgPath, "utf8"));
       return pkg.version;
     })();
-    checkUpdate_default = router119.post(
+    checkUpdate_default = router120.post(
       "/",
       validateFields({
         source: external_exports.enum(["sanddrama", "github", "gitee", "atomgit"]),
@@ -255323,19 +254674,19 @@ var init_checkUpdate = __esm({
         try {
           const upstream = await fetch(getUrl);
           const body = await upstream.text();
-          if (!upstream.ok) return res.status(502).send(error50(`\u7248\u672C\u670D\u52A1\u54CD\u5E94\u5F02\u5E38\uFF08HTTP ${upstream.status}\uFF09`));
+          if (!upstream.ok) return res.status(502).send(error50(`Version service response exception (HTTP${upstream.status}\uFF09`));
           try {
             versionInfo = JSON.parse(body);
           } catch {
-            return res.status(502).send(error50("\u7248\u672C\u670D\u52A1\u6682\u65F6\u4E0D\u53EF\u7528"));
+            return res.status(502).send(error50("The version service is temporarily unavailable"));
           }
         } catch {
-          return res.status(502).send(error50("\u65E0\u6CD5\u8FDE\u63A5\u7248\u672C\u670D\u52A1"));
+          return res.status(502).send(error50("Unable to connect to the version service"));
         }
-        if (!versionInfo) return res.status(502).send(error50("\u65E0\u6CD5\u83B7\u53D6\u7248\u672C\u4FE1\u606F"));
+        if (!versionInfo) return res.status(502).send(error50("Unable to retrieve version information"));
         const { version: tagger, time: time4, data } = versionInfo;
         const sourceData = data[source];
-        if (!sourceData) return res.status(400).send(error50("\u65E0\u6CD5\u83B7\u53D6\u8BE5\u6E90\u7684\u4E0B\u8F7D\u4FE1\u606F"));
+        if (!sourceData) return res.status(400).send(error50("Unable to retrieve download information for this source"));
         const platformType = {
           win32: "windows",
           darwin: "macos",
@@ -255346,15 +254697,15 @@ var init_checkUpdate = __esm({
         const taggerList = tagger.split(".").map(Number);
         const currentVersionList = APP_VERSION2.split(".").map(Number);
         if (taggerList[0] > currentVersionList[0]) {
-          if (!installerItem) return res.status(400).send(error50("\u8BE5\u6E90\u6682\u65E0\u9002\u7528\u4E8E\u5F53\u524D\u7CFB\u7EDF\u7684\u5B89\u88C5\u5305"));
+          if (!installerItem) return res.status(400).send(error50("No installation package is available for the current system from this source"));
           return res.status(200).send(success3({ needUpdate: true, latestVersion: tagger, reinstall: true, time: time4, url: installerItem.url, version: tagger }));
         }
         if (taggerList[1] > currentVersionList[1]) {
-          if (!installerItem) return res.status(400).send(error50("\u8BE5\u6E90\u6682\u65E0\u9002\u7528\u4E8E\u5F53\u524D\u7CFB\u7EDF\u7684\u5B89\u88C5\u5305"));
+          if (!installerItem) return res.status(400).send(error50("No installation package is available for the current system from this source"));
           return res.status(200).send(success3({ needUpdate: true, latestVersion: tagger, reinstall: true, time: time4, url: installerItem.url, version: tagger }));
         }
         if (taggerList[2] > currentVersionList[2]) {
-          if (!zipItem) return res.status(400).send(error50("\u8BE5\u6E90\u6682\u65E0\u589E\u91CF\u66F4\u65B0\u5305"));
+          if (!zipItem) return res.status(400).send(error50("This source has no incremental update package"));
           return res.status(200).send(success3({ needUpdate: true, latestVersion: tagger, reinstall: false, time: time4, url: zipItem.url, version: tagger }));
         }
         return res.status(200).send(success3({ needUpdate: false, latestVersion: tagger, reinstall: false, time: time4, version: tagger }));
@@ -255364,11 +254715,11 @@ var init_checkUpdate = __esm({
 });
 
 // src/routes/setting/about/downloadApp.ts
-var import_express120, import_fs16, import_compressing2, router120, downloadApp_default;
+var import_express121, import_fs16, import_compressing2, router121, downloadApp_default;
 var init_downloadApp = __esm({
   "src/routes/setting/about/downloadApp.ts"() {
     "use strict";
-    import_express120 = __toESM(require_express2());
+    import_express121 = __toESM(require_express2());
     init_zod();
     init_middleware();
     init_utils3();
@@ -255376,8 +254727,8 @@ var init_downloadApp = __esm({
     init_axios2();
     import_compressing2 = __toESM(require_compressing());
     init_responseFormat();
-    router120 = import_express120.default.Router();
-    downloadApp_default = router120.post(
+    router121 = import_express121.default.Router();
+    downloadApp_default = router121.post(
       "/",
       validateFields({
         url: zod_default.url(),
@@ -255387,7 +254738,7 @@ var init_downloadApp = __esm({
       async (req, res) => {
         const { reinstall, url: url4, version: version3 } = req.body;
         if (reinstall) {
-          res.status(200).send(success3("\u8BF7\u5728\u6D4F\u89C8\u5668\u4E2D\u624B\u52A8\u4E0B\u8F7D\u5E76\u5B89\u88C5\u6700\u65B0\u7248\u672C"));
+          res.status(200).send(success3("Please manually download and install the latest version in your browser"));
         } else {
           const rootDir = utils_default.getPath(["temp"]);
           import_fs16.default.mkdirSync(rootDir, { recursive: true });
@@ -255397,7 +254748,7 @@ var init_downloadApp = __esm({
           const dataDir = utils_default.getPath();
           import_fs16.default.cpSync(rootDir, dataDir, { recursive: true, force: true });
           import_fs16.default.rmSync(rootDir, { recursive: true, force: true });
-          res.status(200).send(success3(`\u66F4\u65B0${version3}\u6210\u529F\uFF0C5\u79D2\u540E\u91CD\u542F`));
+          res.status(200).send(success3(`Update${version3}Success, restarting in 5 seconds`));
         }
       }
     );
@@ -255405,17 +254756,17 @@ var init_downloadApp = __esm({
 });
 
 // src/routes/setting/agentDeploy/agentSetKey.ts
-var import_express121, router121, agentSetKey_default;
+var import_express122, router122, agentSetKey_default;
 var init_agentSetKey = __esm({
   "src/routes/setting/agentDeploy/agentSetKey.ts"() {
     "use strict";
-    import_express121 = __toESM(require_express2());
+    import_express122 = __toESM(require_express2());
     init_responseFormat();
     init_utils3();
     init_zod();
     init_middleware();
-    router121 = import_express121.default.Router();
-    agentSetKey_default = router121.post(
+    router122 = import_express122.default.Router();
+    agentSetKey_default = router122.post(
       "/",
       validateFields({
         key: external_exports.string().optional()
@@ -255423,14 +254774,14 @@ var init_agentSetKey = __esm({
       async (req, res) => {
         const { key } = req.body;
         const vendorConfigData = await utils_default.userSettings.getVendorConfig("sanddrama");
-        if (!vendorConfigData) return res.status(500).send(error50("\u672A\u627E\u5230\u8BE5\u4F9B\u5E94\u5546\u914D\u7F6E"));
-        if (!vendorConfigData.inputValues) return res.status(500).send(error50("\u672A\u627E\u5230\u6A21\u578B\u914D\u7F6E\u6570\u636E"));
+        if (!vendorConfigData) return res.status(500).send(error50("Supplier configuration not found"));
+        if (!vendorConfigData.inputValues) return res.status(500).send(error50("Model configuration data not found"));
         const inputValue = JSON.parse(vendorConfigData.inputValues);
         inputValue.apiKey = key;
         await utils_default.userSettings.updateVendorConfig("sanddrama", { inputValues: JSON.stringify(inputValue) });
         try {
           const resText = await utils_default.Ai.Text(`sanddrama:claude-haiku-4-5-20251001`).invoke({
-            prompt: "1+1\u7B49\u4E8E\u51E0\uFF1F,\u8BF7\u76F4\u63A5\u56DE\u7B542\uFF0C\u4E0D\u8981\u89E3\u91CA"
+            prompt: "What is 1+1? Please answer 2 directly, without explanation"
           });
           if (resText.text) {
             for (const [agentKey, values] of [
@@ -255441,13 +254792,13 @@ var init_agentSetKey = __esm({
               const agent = await utils_default.userSettings.getAgentDeployByKey(agentKey);
               if (agent?.id !== void 0) await utils_default.userSettings.updateAgentDeploy(Number(agent.id), values);
             }
-            res.status(200).send(success3("\u4E00\u952E\u586B\u5165\u6210\u529F"));
+            res.status(200).send(success3("One-click fill successful"));
           }
         } catch (err) {
           console.error(err);
           inputValue.apiKey = "";
           await utils_default.userSettings.updateVendorConfig("sanddrama", { inputValues: JSON.stringify(inputValue) });
-          res.status(400).send(error50("KEY\u65E0\u6548\uFF0C\u8BF7\u91CD\u65B0\u8F93\u5165"));
+          res.status(400).send(error50("The KEY is invalid. Please re-enter it."));
         }
       }
     );
@@ -255455,17 +254806,17 @@ var init_agentSetKey = __esm({
 });
 
 // src/routes/setting/agentDeploy/deployAgentModel.ts
-var import_express122, router122, deployAgentModel_default;
+var import_express123, router123, deployAgentModel_default;
 var init_deployAgentModel = __esm({
   "src/routes/setting/agentDeploy/deployAgentModel.ts"() {
     "use strict";
-    import_express122 = __toESM(require_express2());
+    import_express123 = __toESM(require_express2());
     init_responseFormat();
     init_utils3();
     init_zod();
     init_middleware();
-    router122 = import_express122.default.Router();
-    deployAgentModel_default = router122.post(
+    router123 = import_express123.default.Router();
+    deployAgentModel_default = router123.post(
       "/",
       validateFields({
         items: external_exports.array(
@@ -255487,40 +254838,137 @@ var init_deployAgentModel = __esm({
           const { id, name: name28, model, modelName, vendorId, desc, temperature, maxOutputTokens } = item;
           await utils_default.userSettings.updateAgentDeploy(id, { name: name28, model, modelName, vendorId, desc, temperature, maxOutputTokens });
         }
-        res.status(200).send(success3("\u6279\u91CF\u914D\u7F6E\u6210\u529F"));
+        res.status(200).send(success3("Batch configuration successful"));
       }
     );
   }
 });
 
+// src/utils/englishLabels.ts
+function englishBuiltinLabel(value) {
+  return typeof value === "string" ? labels[value] ?? value : value;
+}
+var labels;
+var init_englishLabels = __esm({
+  "src/utils/englishLabels.ts"() {
+    "use strict";
+    labels = {
+      "\u5267\u672CAgent": "Script Agent",
+      "\u751F\u4EA7Agent": "Production Agent",
+      "\u901A\u7528AI": "General AI",
+      "TTS\u914D\u97F3": "Text-to-Speech",
+      "\u4E8B\u4EF6\u63D0\u53D6": "Event Extraction",
+      "\u5267\u672C\u8D44\u4EA7\u63D0\u53D6": "Script Asset Extraction",
+      "\u89C6\u9891\u63D0\u793A\u8BCD\u751F\u6210": "Video Prompt Generation",
+      "\u97F3\u8272\u7ED1\u5B9A": "Voice Matching",
+      "OpenAI\u6807\u51C6\u63A5\u53E3": "OpenAI-compatible API",
+      "\u706B\u5C71\u5F15\u64CE(\u8C46\u5305)": "Volcengine (Doubao)",
+      "MiniMax(\u6D77\u87BAAI)": "MiniMax (Hailuo AI)",
+      "\u53EF\u7075AI": "Kling AI",
+      "Vidu \u5F00\u653E\u5E73\u53F0": "Vidu Open Platform",
+      "\u7A7A\u6A21\u677F": "Empty Template",
+      "\u706B\u5C71\u5F15\u64CEsd2.0\u771F\u4EBA": "Volcengine Seedance 2.0 Live Action",
+      "API\u5BC6\u94A5": "API Key",
+      "\u8BF7\u6C42\u5730\u5740": "API URL",
+      "\u63A5\u53E3\u8DEF\u5F84": "API URL",
+      "\u6587\u672C\u57FA\u5730\u5740": "Text API Base URL",
+      "\u5A92\u4F53\u57FA\u5730\u5740": "Media API Base URL",
+      "\u706B\u5C71 Access Key ID": "Volcengine Access Key ID",
+      "\u706B\u5C71 Secret Access Key": "Volcengine Secret Access Key",
+      "\u8D44\u4EA7\u7EC4ID": "Asset Group ID",
+      "\u706B\u5C71TOS Endpoint": "Volcengine TOS Endpoint",
+      "\u706B\u5C71TOS Bucket": "Volcengine TOS Bucket",
+      "\u4EE5v1\u7ED3\u675F\uFF0C\u793A\u4F8B\uFF1Ahttps://api.openai.com/v1": "End with v1, e.g. https://api.openai.com/v1",
+      "\u793A\u4F8B\uFF1Ahttps://api.openai.com/v1": "Example: https://api.openai.com/v1",
+      "\u793A\u4F8B\uFF1Ahttps://api.deepseek.com": "Example: https://api.deepseek.com",
+      "\u793A\u4F8B\uFF1Ahttps://api.minimaxi.com": "Example: https://api.minimaxi.com",
+      "\u793A\u4F8B\uFF1Ahttps://grsai.dakka.com.cn": "Example: https://grsai.dakka.com.cn",
+      "\u4EE5v3\u7ED3\u675F\uFF0C\u793A\u4F8B\uFF1Ahttps://ark.cn-beijing.volces.com/api/v3": "End with v3, e.g. https://ark.cn-beijing.volces.com/api/v3",
+      "\u706B\u5C71\u5F15\u64CEAPI Key": "Volcengine API Key",
+      "\u8BF7\u8F93\u5165\u53EF\u7075AI\u7684Access Key": "Enter your Kling AI Access Key",
+      "\u8BF7\u8F93\u5165\u53EF\u7075AI\u7684Secret Key": "Enter your Kling AI Secret Key",
+      "\u9ED8\u8BA4\uFF1Ahttps://api-beijing.klingai.com": "Default: https://api-beijing.klingai.com",
+      "\u8BF7\u5230Vidu\u5B98\u65B9\u7533\u8BF7": "Obtain a key from Vidu",
+      "\u706B\u5C71\u5F15\u64CE/OSS API\u8BBF\u95EE\u5BC6\u94A5": "Volcengine / OSS access key",
+      "\u706B\u5C71\u5F15\u64CE/OSS Secret Access Key": "Volcengine / OSS secret access key",
+      "\u706B\u5C71\u5F15\u64CE\u8D44\u4EA7\u7EC4ID": "Volcengine asset group ID",
+      "\u5982 tos-cn-beijing.volces.com": "e.g. tos-cn-beijing.volces.com",
+      "Bucket \u540D\u79F0": "Bucket name",
+      "OpenAI\u6807\u51C6\u683C\u5F0F\u63A5\u53E3\uFF0C\u53EF\u4FEE\u6539\u8BF7\u6C42\u5730\u5740\u5E76\u624B\u52A8\u6DFB\u52A0\u6A21\u578B\u3002": "OpenAI-compatible API. You can change the API URL and add models manually.",
+      "DeepSeek \u5B98\u65B9\u63A5\u53E3\u9002\u914D\uFF0C\u652F\u6301 V4 \u7CFB\u5217\u6A21\u578B\u4E0E\u601D\u8003\u6A21\u5F0F\uFF08\u601D\u7EF4\u94FE\u8F93\u51FA\uFF09\u3002\n\n[\u524D\u5F80\u5E73\u53F0](https://platform.deepseek.com/)": "Official DeepSeek integration with V4 models and reasoning mode.\n\n[Open platform](https://platform.deepseek.com/)",
+      "AtlasCloud \u5168\u6A21\u6001\u5E73\u53F0\u63A5\u5165 SandDrama\u3002\u9ED8\u8BA4\u6309\u5B98\u65B9\u6587\u6863\u586B\u5199\u6587\u672C\u3001\u56FE\u7247\u3001\u89C6\u9891\u4E0E\u4EFB\u52A1\u8F6E\u8BE2\u8DEF\u5F84\u3002": "Connect AtlasCloud's multimodal platform. Text, image, video and polling endpoints follow its documentation.",
+      "\u706B\u5C71\u5F15\u64CE\u8C46\u5305\u5927\u6A21\u578B\uFF0C\u652F\u6301\u6587\u672C\u3001\u56FE\u7247\u751F\u6210\u3001\u89C6\u9891\u751F\u6210\u7B49\u80FD\u529B\u3002\n\n\u9700\u8981\u5728[\u706B\u5C71\u5F15\u64CE\u63A7\u5236\u53F0](https://console.volcengine.com/ark)\u83B7\u53D6API\u5BC6\u94A5\u3002": "Volcengine Doubao models support text, image and video generation. Obtain an API key from the [Volcengine console](https://console.volcengine.com/ark).",
+      "MiniMax\u5B98\u65B9\u63A5\u53E3\u9002\u914D\uFF0C\u652F\u6301M\u7CFB\u5217\u63A8\u7406\u6587\u672C\u6A21\u578B\u3001\u6587\u751F\u56FE/\u56FE\u751F\u56FE\u3001\u89C6\u9891\u751F\u6210\uFF08\u6587\u751F\u89C6\u9891\u3001\u56FE\u751F\u89C6\u9891\u3001\u9996\u5C3E\u5E27\u751F\u6210\uFF09\u80FD\u529B \n [\u524D\u5F80\u5E73\u53F0](https://minimaxi.com/)": "Official MiniMax integration supporting M-series reasoning, image generation and video generation.\n[Open platform](https://minimaxi.com/)",
+      "\u53EF\u7075AI\u89C6\u9891\u751F\u6210\n\n\u652F\u6301\u53EF\u7075\u5168\u7CFB\u5217\u89C6\u9891\u6A21\u578B\uFF0C\u5305\u62EC kling-video-o1\u3001kling-v3-omni\u3001kling-v3\u3001kling-v2-6\u3001kling-v2-5-turbo\u3001kling-v2-1\u3001kling-v2-master\u3001kling-v1-6\u3001kling-v1-5\u3001kling-v1 \u7B49\u3002\n\n\u9700\u8981\u5728[\u53EF\u7075AI\u5F00\u653E\u5E73\u53F0](https://klingai.com)\n\n\u83B7\u53D6 Access Key \u548C Secret Key\u3002": "Kling AI video generation supports the Kling video model family. Obtain an Access Key and Secret Key from the [Kling AI platform](https://klingai.com).",
+      "Vidu \u5B98\u65B9\u89C6\u9891\u751F\u6210\u5E73\u53F0\u3002 [\u524D\u5F80\u5E73\u53F0](https://platform.vidu.cn/login/)": "Official Vidu video generation platform. [Open platform](https://platform.vidu.cn/login/)",
+      "Grsai AI\u5E73\u53F0\u9002\u914D\uFF0C\u652F\u6301\u6587\u751F\u56FE\u3001\u56FE\u751F\u56FE\u3001\u6587\u751F\u89C6\u9891\u3001Gemini\u517C\u5BB9\u6587\u672C\u6A21\u578B \n [\u524D\u5F80\u4E2D\u8F6C\u5E73\u53F0](https://tf.grsai.ai/zh)": "Grsai integration supporting image, video and Gemini-compatible text models. [Open platform](https://tf.grsai.ai/zh)",
+      "## \u5F00\u53D1\u6A21\u677F\uFF0C\u60A8\u53EF\u4EE5\u4F7F\u7528\u6B64\u6A21\u677F\u8FDB\u884CVibe Coding": "## Development template for creating a custom provider",
+      "\u5267\u672CAgent:\u51B3\u7B56\u5C42": "Script Agent: Coordinator",
+      "\u5267\u672CAgent:\u76D1\u7763\u5C42": "Script Agent: Supervisor",
+      "\u5267\u672CAgent:\u6545\u4E8B\u9AA8\u67B6": "Script Agent: Story Outline",
+      "\u5267\u672CAgent:\u6539\u7F16\u7B56\u7565": "Script Agent: Adaptation Strategy",
+      "\u5267\u672CAgent:\u5267\u672C\u751F\u6210": "Script Agent: Script Generation",
+      "\u751F\u4EA7Agent:\u51B3\u7B56\u5C42": "Production Agent: Coordinator",
+      "\u751F\u4EA7Agent:\u76D1\u7763\u5C42": "Production Agent: Supervisor",
+      "\u751F\u4EA7Agent:\u884D\u751F\u8D44\u4EA7": "Production Agent: Asset Variants",
+      "\u751F\u4EA7Agent:\u751F\u6210\u8D44\u4EA7": "Production Agent: Asset Generation",
+      "\u751F\u4EA7Agent:\u5BFC\u6F14\u89C4\u5212": "Production Agent: Director Planning",
+      "\u751F\u4EA7Agent:\u5206\u955C\u751F\u6210": "Production Agent: Storyboard Generation",
+      "\u751F\u4EA7Agent:\u5206\u955C\u9762\u677F": "Production Agent: Storyboard Panels",
+      "\u751F\u4EA7Agent:\u5206\u955C\u8868\u683C": "Production Agent: Storyboard Table",
+      "\u51B3\u7B56\u5C42": "Coordinator",
+      "\u76D1\u7763\u5C42": "Supervisor",
+      "\u6545\u4E8B\u9AA8\u67B6\u751F\u6210": "Generate story outline",
+      "\u6539\u7F16\u7B56\u7565\u751F\u6210": "Generate adaptation strategy",
+      "\u5267\u672C\u751F\u6210": "Generate script",
+      "\u884D\u751F\u8D44\u4EA7": "Asset variants",
+      "\u751F\u6210\u8D44\u4EA7": "Generate assets",
+      "\u5BFC\u6F14\u89C4\u5212": "Director planning",
+      "\u5206\u955C\u751F\u6210": "Generate storyboards",
+      "\u5206\u955C\u9762\u677F\u751F\u6210": "Generate storyboard panels",
+      "\u5206\u955C\u8868\u683C\u751F\u6210": "Generate storyboard table",
+      "\u7528\u4E8E\u8BFB\u53D6\u539F\u6587\u751F\u6210\u6545\u4E8B\u9AA8\u67B6\u3001\u6539\u7F16\u7B56\u7565\uFF0C\u5EFA\u8BAE\u4F7F\u7528\u5177\u5907\u5F3A\u5927\u6587\u672C\u7406\u89E3\u548C\u751F\u6210\u80FD\u529B\u7684\u6A21\u578B": "Generates story outlines and adaptation strategies from source text. Use a model with strong reading and writing capabilities.",
+      "\u5BF9\u5DE5\u4F5C\u6D41\u8FDB\u884C\u8C03\u5EA6\u548C\u7BA1\u7406\uFF0C\u5EFA\u8BAE\u4F7F\u7528\u5177\u5907\u8F83\u5F3A\u7684\u903B\u8F91\u63A8\u7406\u548C\u4EFB\u52A1\u7BA1\u7406\u80FD\u529B\u7684\u6A21\u578B": "Coordinates production workflows. Use a model with strong reasoning and task management capabilities.",
+      "\u7528\u4E8E\u5C0F\u8BF4\u4E8B\u4EF6\u63D0\u53D6\u3001\u8D44\u4EA7\u63D0\u793A\u8BCD\u751F\u6210\u3001\u53F0\u8BCD\u63D0\u53D6\u7B49\u8FB9\u7F18\u529F\u80FD\uFF0C\u5EFA\u8BAE\u4F7F\u7528\u5177\u5907\u8F83\u5F3A\u6587\u672C\u5904\u7406\u80FD\u529B\u7684\u6A21\u578B": "Extracts story events and dialogue and generates asset prompts. Use a model with strong text processing capabilities.",
+      "\u6839\u636E\u5267\u672C\u5185\u5BB9\u751F\u6210\u89D2\u8272\u914D\u97F3\uFF0C\u652F\u6301\u591A\u79CD\u58F0\u97F3\u98CE\u683C\u548C\u60C5\u7EEA": "Generates character voices from scripts, with multiple voice styles and emotions."
+    };
+  }
+});
+
 // src/routes/setting/agentDeploy/getAgentDeploy.ts
-var import_express123, router123, getAgentDeploy_default;
+var import_express124, router124, getAgentDeploy_default;
 var init_getAgentDeploy = __esm({
   "src/routes/setting/agentDeploy/getAgentDeploy.ts"() {
     "use strict";
-    import_express123 = __toESM(require_express2());
+    import_express124 = __toESM(require_express2());
     init_responseFormat();
     init_utils3();
-    router123 = import_express123.default.Router();
-    getAgentDeploy_default = router123.post("/", async (req, res) => {
+    init_englishLabels();
+    router124 = import_express124.default.Router();
+    getAgentDeploy_default = router124.post("/", async (req, res) => {
       const allData = await utils_default.userSettings.getAgentDeployRows();
-      const qrdinaryData = allData.filter((item) => !item.key?.includes(":"));
-      const advancedData = allData.filter((item) => item.key?.includes(":") || item.key == "universalAi");
+      const displayData = allData.map((item) => ({
+        ...item,
+        name: englishBuiltinLabel(item.name),
+        desc: englishBuiltinLabel(item.desc)
+      }));
+      const qrdinaryData = displayData.filter((item) => !item.key?.includes(":"));
+      const advancedData = displayData.filter((item) => item.key?.includes(":") || item.key == "universalAi");
       res.status(200).send(success3({ qrdinaryData, advancedData }));
     });
   }
 });
 
 // src/routes/setting/agentDeploy/getAgentUseMode.ts
-var import_express124, router124, getAgentUseMode_default;
+var import_express125, router125, getAgentUseMode_default;
 var init_getAgentUseMode = __esm({
   "src/routes/setting/agentDeploy/getAgentUseMode.ts"() {
     "use strict";
-    import_express124 = __toESM(require_express2());
+    import_express125 = __toESM(require_express2());
     init_responseFormat();
     init_utils3();
-    router124 = import_express124.default.Router();
-    getAgentUseMode_default = router124.get("/", async (req, res) => {
+    router125 = import_express125.default.Router();
+    getAgentUseMode_default = router125.get("/", async (req, res) => {
       const useMode = await utils_default.userSettings.getSetting("agentUseMode");
       console.log("%c Line:9 \u{1F353} useMode", "background:#33a5ff", useMode);
       res.status(200).send(success3(useMode?.value || "0"));
@@ -255529,17 +254977,17 @@ var init_getAgentUseMode = __esm({
 });
 
 // src/routes/setting/agentDeploy/updateAgentModel.ts
-var import_express125, router125, updateAgentModel_default;
+var import_express126, router126, updateAgentModel_default;
 var init_updateAgentModel = __esm({
   "src/routes/setting/agentDeploy/updateAgentModel.ts"() {
     "use strict";
-    import_express125 = __toESM(require_express2());
+    import_express126 = __toESM(require_express2());
     init_responseFormat();
     init_utils3();
     init_zod();
     init_middleware();
-    router125 = import_express125.default.Router();
-    updateAgentModel_default = router125.post(
+    router126 = import_express126.default.Router();
+    updateAgentModel_default = router126.post(
       "/",
       validateFields({
         id: external_exports.number(),
@@ -255554,24 +255002,24 @@ var init_updateAgentModel = __esm({
       async (req, res) => {
         const { id, name: name28, model, modelName, vendorId, desc, temperature, maxOutputTokens } = req.body;
         await utils_default.userSettings.updateAgentDeploy(id, { name: name28, model, modelName, vendorId, desc, temperature, maxOutputTokens });
-        res.status(200).send(success3("\u914D\u7F6E\u6210\u529F"));
+        res.status(200).send(success3("Configuration successful"));
       }
     );
   }
 });
 
 // src/routes/setting/agentDeploy/updateUseMode.ts
-var import_express126, router126, updateUseMode_default;
+var import_express127, router127, updateUseMode_default;
 var init_updateUseMode = __esm({
   "src/routes/setting/agentDeploy/updateUseMode.ts"() {
     "use strict";
-    import_express126 = __toESM(require_express2());
+    import_express127 = __toESM(require_express2());
     init_utils3();
     init_zod();
     init_responseFormat();
     init_middleware();
-    router126 = import_express126.default.Router();
-    updateUseMode_default = router126.post(
+    router127 = import_express127.default.Router();
+    updateUseMode_default = router127.post(
       "/",
       validateFields({
         agentUseMode: external_exports.string()
@@ -255579,23 +255027,23 @@ var init_updateUseMode = __esm({
       async (req, res) => {
         const { agentUseMode } = req.body;
         await utils_default.userSettings.setSetting("agentUseMode", agentUseMode);
-        res.status(200).send(success3("\u4FDD\u5B58\u8BBE\u7F6E\u6210\u529F"));
+        res.status(200).send(success3("Settings saved successfully"));
       }
     );
   }
 });
 
 // src/routes/setting/dbConfig/clearData.ts
-var import_express127, router127, clearData_default;
+var import_express128, router128, clearData_default;
 var init_clearData = __esm({
   "src/routes/setting/dbConfig/clearData.ts"() {
     "use strict";
-    import_express127 = __toESM(require_express2());
+    import_express128 = __toESM(require_express2());
     init_responseFormat();
     init_db();
     init_initDB();
-    router127 = import_express127.default.Router();
-    clearData_default = router127.get("/", async (req, res) => {
+    router128 = import_express128.default.Router();
+    clearData_default = router128.get("/", async (req, res) => {
       try {
         const tables = await db.raw(
           `SELECT name FROM sqlite_master WHERE type='table' AND name NOT LIKE 'sqlite_%' AND name NOT LIKE 'knex_%'`
@@ -255606,55 +255054,55 @@ var init_clearData = __esm({
         }
         await db.raw("PRAGMA foreign_keys = ON");
         await initDB_default(db);
-        res.status(200).send(success3("\u6570\u636E\u5E93\u5DF2\u6E05\u7A7A\u5E76\u91CD\u65B0\u521D\u59CB\u5316"));
+        res.status(200).send(success3("The database has been cleared and reinitialized"));
       } catch (err) {
-        res.status(500).send(error50(err?.message || "\u6E05\u9664\u5931\u8D25"));
+        res.status(500).send(error50(err?.message || "Clear failed"));
       }
     });
   }
 });
 
 // src/routes/setting/dbConfig/clearTable.ts
-var import_express128, router128, clearTable_default;
+var import_express129, router129, clearTable_default;
 var init_clearTable = __esm({
   "src/routes/setting/dbConfig/clearTable.ts"() {
     "use strict";
-    import_express128 = __toESM(require_express2());
+    import_express129 = __toESM(require_express2());
     init_responseFormat();
     init_db();
-    router128 = import_express128.default.Router();
-    clearTable_default = router128.post("/", async (req, res) => {
+    router129 = import_express129.default.Router();
+    clearTable_default = router129.post("/", async (req, res) => {
       try {
         const { tableName } = req.body;
         if (!tableName || typeof tableName !== "string") {
-          return res.status(400).send(error50("\u8BF7\u63D0\u4F9B\u6709\u6548\u7684\u8868\u540D"));
+          return res.status(400).send(error50("Please provide a valid table name"));
         }
         const tableExists = await db.raw(
           `SELECT name FROM sqlite_master WHERE type='table' AND name=?`,
           [tableName]
         );
         if (tableExists.length === 0) {
-          return res.status(400).send(error50("\u8868\u4E0D\u5B58\u5728"));
+          return res.status(400).send(error50("Table does not exist"));
         }
         await db.raw(`DELETE FROM "${tableName}"`);
-        res.status(200).send(success3(`\u8868 ${tableName} \u5DF2\u6E05\u7A7A`));
+        res.status(200).send(success3(`Table${tableName}Cleared`));
       } catch (err) {
-        res.status(500).send(error50(err?.message || "\u6E05\u7A7A\u8868\u5931\u8D25"));
+        res.status(500).send(error50(err?.message || "Failed to clear the table"));
       }
     });
   }
 });
 
 // src/routes/setting/dbConfig/dbInfo.ts
-var import_express129, router129, dbInfo_default;
+var import_express130, router130, dbInfo_default;
 var init_dbInfo = __esm({
   "src/routes/setting/dbConfig/dbInfo.ts"() {
     "use strict";
-    import_express129 = __toESM(require_express2());
+    import_express130 = __toESM(require_express2());
     init_responseFormat();
     init_db();
-    router129 = import_express129.default.Router();
-    dbInfo_default = router129.get("/", async (req, res) => {
+    router130 = import_express130.default.Router();
+    dbInfo_default = router130.get("/", async (req, res) => {
       try {
         const tables = await db.raw(
           `SELECT name FROM sqlite_master WHERE type='table' AND name NOT LIKE 'sqlite_%' AND name NOT LIKE 'knex_%'`
@@ -255669,22 +255117,22 @@ var init_dbInfo = __esm({
         }
         res.status(200).send(success3(tableInfo));
       } catch (err) {
-        res.status(500).send(error50(err?.message || "\u83B7\u53D6\u6570\u636E\u5E93\u4FE1\u606F\u5931\u8D25"));
+        res.status(500).send(error50(err?.message || "Failed to retrieve database information"));
       }
     });
   }
 });
 
 // src/routes/setting/dbConfig/exportData.ts
-var import_express130, router130, exportData_default;
+var import_express131, router131, exportData_default;
 var init_exportData = __esm({
   "src/routes/setting/dbConfig/exportData.ts"() {
     "use strict";
-    import_express130 = __toESM(require_express2());
+    import_express131 = __toESM(require_express2());
     init_responseFormat();
     init_db();
-    router130 = import_express130.default.Router();
-    exportData_default = router130.get("/", async (req, res) => {
+    router131 = import_express131.default.Router();
+    exportData_default = router131.get("/", async (req, res) => {
       try {
         const tables = await db.raw(
           `SELECT name FROM sqlite_master WHERE type='table' AND name NOT LIKE 'sqlite_%' AND name NOT LIKE 'knex_%'`
@@ -255701,27 +255149,27 @@ var init_exportData = __esm({
         res.setHeader("Content-Disposition", `attachment; filename=sanddrama-backup-${Date.now()}.json`);
         res.status(200).send(JSON.stringify(exportData, null, 2));
       } catch (err) {
-        res.status(500).send(error50(err?.message || "\u5BFC\u51FA\u5931\u8D25"));
+        res.status(500).send(error50(err?.message || "Export failed"));
       }
     });
   }
 });
 
 // src/routes/setting/dbConfig/importData.ts
-var import_express131, router131, importData_default;
+var import_express132, router132, importData_default;
 var init_importData = __esm({
   "src/routes/setting/dbConfig/importData.ts"() {
     "use strict";
-    import_express131 = __toESM(require_express2());
+    import_express132 = __toESM(require_express2());
     init_responseFormat();
     init_db();
     init_initDB();
-    router131 = import_express131.default.Router();
-    importData_default = router131.post("/", async (req, res) => {
+    router132 = import_express132.default.Router();
+    importData_default = router132.post("/", async (req, res) => {
       try {
         const { tables: importTables } = req.body;
         if (!importTables || typeof importTables !== "object") {
-          return res.status(400).send(error50("\u65E0\u6548\u7684\u5BFC\u5165\u6570\u636E\u683C\u5F0F"));
+          return res.status(400).send(error50("Invalid import data format"));
         }
         const existingTables = await db.raw(
           `SELECT name FROM sqlite_master WHERE type='table' AND name NOT LIKE 'sqlite_%' AND name NOT LIKE 'knex_%'`
@@ -255747,24 +255195,24 @@ var init_importData = __esm({
           }
         }
         await db.raw("PRAGMA foreign_keys = ON");
-        res.status(200).send(success3("\u6570\u636E\u5E93\u5BFC\u5165\u6210\u529F"));
+        res.status(200).send(success3("Database import successful"));
       } catch (err) {
-        res.status(500).send(error50(err?.message || "\u5BFC\u5165\u5931\u8D25"));
+        res.status(500).send(error50(err?.message || "Import failed"));
       }
     });
   }
 });
 
 // src/routes/setting/dev/getSwitchAiDevTool.ts
-var import_express132, router132, getSwitchAiDevTool_default;
+var import_express133, router133, getSwitchAiDevTool_default;
 var init_getSwitchAiDevTool = __esm({
   "src/routes/setting/dev/getSwitchAiDevTool.ts"() {
     "use strict";
-    import_express132 = __toESM(require_express2());
+    import_express133 = __toESM(require_express2());
     init_responseFormat();
     init_utils3();
-    router132 = import_express132.default.Router();
-    getSwitchAiDevTool_default = router132.get("/", async (req, res) => {
+    router133 = import_express133.default.Router();
+    getSwitchAiDevTool_default = router133.get("/", async (req, res) => {
       const switchAiDevTool = await utils_default.userSettings.getSetting("switchAiDevTool");
       res.status(200).send(success3(switchAiDevTool?.value || "0"));
     });
@@ -255772,17 +255220,17 @@ var init_getSwitchAiDevTool = __esm({
 });
 
 // src/routes/setting/dev/updateSwitchAiDevTool.ts
-var import_express133, router133, updateSwitchAiDevTool_default;
+var import_express134, router134, updateSwitchAiDevTool_default;
 var init_updateSwitchAiDevTool = __esm({
   "src/routes/setting/dev/updateSwitchAiDevTool.ts"() {
     "use strict";
-    import_express133 = __toESM(require_express2());
+    import_express134 = __toESM(require_express2());
     init_utils3();
     init_zod();
     init_responseFormat();
     init_middleware();
-    router133 = import_express133.default.Router();
-    updateSwitchAiDevTool_default = router133.post(
+    router134 = import_express134.default.Router();
+    updateSwitchAiDevTool_default = router134.post(
       "/",
       validateFields({
         switchAiDevTool: external_exports.string()
@@ -255790,33 +255238,33 @@ var init_updateSwitchAiDevTool = __esm({
       async (req, res) => {
         const { switchAiDevTool } = req.body;
         await utils_default.userSettings.setSetting("switchAiDevTool", switchAiDevTool);
-        res.status(200).send(success3("\u4FDD\u5B58\u8BBE\u7F6E\u6210\u529F"));
+        res.status(200).send(success3("Settings saved successfully"));
       }
     );
   }
 });
 
 // src/routes/setting/fileManagement/openFolder.ts
-var import_express134, import_child_process, router134, openFolder_default;
+var import_express135, import_child_process, router135, openFolder_default;
 var init_openFolder = __esm({
   "src/routes/setting/fileManagement/openFolder.ts"() {
     "use strict";
-    import_express134 = __toESM(require_express2());
+    import_express135 = __toESM(require_express2());
     init_zod();
     import_child_process = require("child_process");
     init_responseFormat();
     init_middleware();
     init_getPath();
     init_utils3();
-    router134 = import_express134.default.Router();
-    openFolder_default = router134.post(
+    router135 = import_express135.default.Router();
+    openFolder_default = router135.post(
       "/",
       validateFields({
         path: external_exports.string()
       }),
       async (req, res) => {
         if (!isEletron()) {
-          return res.status(400).send(error50("\u4EC5\u652F\u6301\u5BA2\u6237\u7AEF\u6253\u5F00\u6587\u4EF6\u5939"));
+          return res.status(400).send(error50("Only supports opening folders on the client"));
         }
         const { path: folderPath } = req.body;
         const platform = process.platform;
@@ -255826,7 +255274,7 @@ var init_openFolder = __esm({
           if (err) {
             return res.status(200).send(error50(err.message));
           }
-          res.status(200).send(success3("\u6253\u5F00\u6587\u4EF6\u5939\u6210\u529F"));
+          res.status(200).send(success3("The folder was opened successfully"));
         });
       }
     );
@@ -255834,14 +255282,14 @@ var init_openFolder = __esm({
 });
 
 // src/routes/setting/getTextModel.ts
-var import_express135, router135, getTextModel_default;
+var import_express136, router136, getTextModel_default;
 var init_getTextModel = __esm({
   "src/routes/setting/getTextModel.ts"() {
     "use strict";
-    import_express135 = __toESM(require_express2());
+    import_express136 = __toESM(require_express2());
     init_responseFormat();
-    router135 = import_express135.default.Router();
-    getTextModel_default = router135.post(
+    router136 = import_express136.default.Router();
+    getTextModel_default = router136.post(
       "/",
       async (req, res) => {
         res.status(200).send(success3("123"));
@@ -255851,70 +255299,125 @@ var init_getTextModel = __esm({
 });
 
 // src/routes/setting/loginConfig/getUser.ts
-var import_express136, router136, getUser_default;
+var import_express137, router137, getUser_default;
 var init_getUser = __esm({
   "src/routes/setting/loginConfig/getUser.ts"() {
     "use strict";
-    import_express136 = __toESM(require_express2());
+    import_express137 = __toESM(require_express2());
     init_utils3();
     init_responseFormat();
     init_auth2();
-    router136 = import_express136.default.Router();
-    getUser_default = router136.get("/", async (req, res) => {
+    router137 = import_express137.default.Router();
+    getUser_default = router137.get("/", async (req, res) => {
       const userId = currentUser(req)?.id;
-      const data = userId ? await utils_default.db("o_user").where("id", userId).select("id", "name", "role", "disabled", "createdAt", "lastLoginAt").first() : null;
-      res.status(200).send(success3(data));
+      if (!userId) return res.status(200).send(success3(null));
+      const data = await utils_default.db("o_user").where("id", userId).select("id", "name", "role", "disabled", "createdAt", "lastLoginAt").first();
+      if (!data) return res.status(200).send(success3(null));
+      const projectRow = await utils_default.db("o_project").where("userId", userId).count("id as total").first();
+      res.status(200).send(
+        success3({
+          ...data,
+          projectCount: Number(projectRow?.total ?? 0)
+        })
+      );
     });
   }
 });
 
 // src/routes/setting/loginConfig/updateUserPwd.ts
-var import_express137, router137, updateUserPwd_default;
+var import_express138, router138, updateUserPwd_default;
 var init_updateUserPwd = __esm({
   "src/routes/setting/loginConfig/updateUserPwd.ts"() {
     "use strict";
-    import_express137 = __toESM(require_express2());
+    import_express138 = __toESM(require_express2());
     init_utils3();
+    init_db();
     init_zod();
     init_responseFormat();
     init_middleware();
     init_auth2();
     init_auth();
-    router137 = import_express137.default.Router();
-    updateUserPwd_default = router137.post(
+    init_login();
+    router138 = import_express138.default.Router();
+    updateUserPwd_default = router138.post(
       "/",
       validateFields({
-        name: external_exports.string().trim().min(1).max(64),
-        password: external_exports.string().min(8).max(128),
-        id: external_exports.number().int().positive()
+        name: external_exports.string().trim().min(2).max(64),
+        password: external_exports.string().max(128).optional().or(external_exports.literal("")),
+        id: external_exports.number().int().positive().optional()
       }),
       async (req, res) => {
         const user = currentUser(req);
-        if (!user || Number(req.body.id) !== user.id) return res.status(403).send(error50("\u53EA\u80FD\u4FEE\u6539\u5F53\u524D\u8D26\u53F7"));
-        const duplicate = await utils_default.db("o_user").where("name", req.body.name.trim()).whereNot("id", user.id).first();
-        if (duplicate) return res.status(409).send(error50("\u7528\u6237\u540D\u5DF2\u5B58\u5728"));
-        await utils_default.db("o_user").where("id", user.id).update({
-          name: req.body.name.trim(),
-          password: await hashPassword(req.body.password),
-          tokenVersion: user.tokenVersion + 1,
-          updatedAt: Date.now()
+        if (!user || req.body.id !== void 0 && Number(req.body.id) !== user.id) {
+          return res.status(403).send(error50("You can only modify your own account"));
+        }
+        const nextName = req.body.name.trim();
+        const rawPassword = typeof req.body.password === "string" ? req.body.password : "";
+        if (rawPassword && rawPassword.length < 6) {
+          return res.status(400).send(error50("Password must be at least 6 characters"));
+        }
+        const passwordHash = rawPassword ? await hashPassword(rawPassword) : void 0;
+        const nextTokenVersion = await db.transaction(async (trx) => {
+          const duplicate = await trx("o_user").whereRaw("lower(name) = lower(?)", [nextName]).whereNot("id", user.id).first();
+          if (duplicate) return null;
+          const latest = await trx("o_user").where("id", user.id).first();
+          const version3 = Number(latest?.tokenVersion ?? 0) + (rawPassword ? 1 : 0);
+          const updates = {
+            name: nextName,
+            tokenVersion: version3,
+            updatedAt: Date.now()
+          };
+          if (passwordHash) updates.password = passwordHash;
+          await trx("o_user").where("id", user.id).update(updates);
+          return version3;
         });
-        res.status(200).send(success3("\u4FDD\u5B58\u8BBE\u7F6E\u6210\u529F\uFF0C\u8BF7\u91CD\u65B0\u767B\u5F55"));
+        if (nextTokenVersion === null) return res.status(409).send(error50("Username already exists"));
+        const tokenData = await utils_default.db("o_setting").where("key", "tokenKey").first();
+        let token;
+        if (tokenData?.value) {
+          token = setToken(
+            {
+              id: user.id,
+              name: nextName,
+              role: user.role,
+              tokenVersion: nextTokenVersion
+            },
+            "12h",
+            String(tokenData.value)
+          );
+          res.cookie("sd_token", token, {
+            httpOnly: true,
+            sameSite: "lax",
+            secure: process.env.NODE_ENV === "prod" && process.env.HTTPS === "1",
+            maxAge: 12 * 60 * 60 * 1e3
+          });
+        }
+        res.status(200).send(
+          success3(
+            {
+              id: user.id,
+              name: nextName,
+              role: user.role,
+              token: token ? "Bearer " + token : void 0
+            },
+            "Account updated successfully"
+          )
+        );
       }
     );
   }
 });
 
 // src/routes/setting/memoryConfig/delAllMemory.ts
-var import_express138, router138, delAllMemory_default;
+var import_express139, router139, delAllMemory_default;
 var init_delAllMemory = __esm({
   "src/routes/setting/memoryConfig/delAllMemory.ts"() {
     "use strict";
-    import_express138 = __toESM(require_express2());
+    import_express139 = __toESM(require_express2());
     init_responseFormat();
     init_utils3();
-    router138 = import_express138.default.Router();
-    delAllMemory_default = router138.post("/", async (req, res) => {
+    router139 = import_express139.default.Router();
+    delAllMemory_default = router139.post("/", async (req, res) => {
       await utils_default.db("memories").del();
       res.status(200).send(success3(true));
     });
@@ -255922,15 +255425,15 @@ var init_delAllMemory = __esm({
 });
 
 // src/routes/setting/memoryConfig/getMemory.ts
-var import_express139, router139, getMemory_default2;
+var import_express140, router140, getMemory_default2;
 var init_getMemory2 = __esm({
   "src/routes/setting/memoryConfig/getMemory.ts"() {
     "use strict";
-    import_express139 = __toESM(require_express2());
+    import_express140 = __toESM(require_express2());
     init_responseFormat();
     init_utils3();
-    router139 = import_express139.default.Router();
-    getMemory_default2 = router139.get("/", async (req, res) => {
+    router140 = import_express140.default.Router();
+    getMemory_default2 = router140.get("/", async (req, res) => {
       const settingData = await utils_default.userSettings.getSettings([
         "messagesPerSummary",
         "shortTermLimit",
@@ -255941,7 +255444,7 @@ var init_getMemory2 = __esm({
         "modelOnnxFile",
         "modelDtype"
       ]);
-      if (!settingData) return res.status(400).send(error50(`\u83B7\u53D6\u8BB0\u5FC6\u914D\u7F6E\u5931\u8D25`));
+      if (!settingData) return res.status(400).send(error50(`Failed to retrieve memory configuration`));
       const memoryObj = {};
       settingData.forEach((i) => {
         if (i.key && i.value) {
@@ -255960,17 +255463,17 @@ var init_getMemory2 = __esm({
 });
 
 // src/routes/setting/memoryConfig/sureMemory.ts
-var import_express140, router140, sureMemory_default;
+var import_express141, router141, sureMemory_default;
 var init_sureMemory = __esm({
   "src/routes/setting/memoryConfig/sureMemory.ts"() {
     "use strict";
-    import_express140 = __toESM(require_express2());
+    import_express141 = __toESM(require_express2());
     init_utils3();
     init_zod();
     init_responseFormat();
     init_middleware();
-    router140 = import_express140.default.Router();
-    sureMemory_default = router140.post(
+    router141 = import_express141.default.Router();
+    sureMemory_default = router141.post(
       "/",
       validateFields({
         messagesPerSummary: external_exports.number(),
@@ -255995,24 +255498,24 @@ var init_sureMemory = __esm({
         await upsert("deepRetrieveSummaryLimit", deepRetrieveSummaryLimit);
         await upsert("modelOnnxFile", JSON.stringify(modelOnnxFile));
         await upsert("modelDtype", modelDtype);
-        res.status(200).send(success3("\u4FDD\u5B58\u8BBE\u7F6E\u6210\u529F"));
+        res.status(200).send(success3("Settings saved successfully"));
       }
     );
   }
 });
 
 // src/routes/setting/modelMap/bindingPrompt.ts
-var import_express141, router141, bindingPrompt_default;
+var import_express142, router142, bindingPrompt_default;
 var init_bindingPrompt = __esm({
   "src/routes/setting/modelMap/bindingPrompt.ts"() {
     "use strict";
-    import_express141 = __toESM(require_express2());
+    import_express142 = __toESM(require_express2());
     init_responseFormat();
     init_utils3();
     init_zod();
     init_middleware();
-    router141 = import_express141.default.Router();
-    bindingPrompt_default = router141.post(
+    router142 = import_express142.default.Router();
+    bindingPrompt_default = router142.post(
       "/",
       validateFields({
         vendorId: external_exports.string(),
@@ -256023,25 +255526,25 @@ var init_bindingPrompt = __esm({
       async (req, res) => {
         const { vendorId, model, path: path33, fileName } = req.body;
         await utils_default.userSettings.saveModelPrompt({ vendorId, model, path: path33, fileName });
-        res.status(200).send(success3("\u7ED1\u5B9A\u6210\u529F"));
+        res.status(200).send(success3("Binding successful"));
       }
     );
   }
 });
 
 // src/routes/setting/modelMap/deletePrompt.ts
-var import_express142, import_path22, router142, deletePrompt_default;
+var import_express143, import_path22, router143, deletePrompt_default;
 var init_deletePrompt = __esm({
   "src/routes/setting/modelMap/deletePrompt.ts"() {
     "use strict";
-    import_express142 = __toESM(require_express2());
+    import_express143 = __toESM(require_express2());
     init_responseFormat();
     init_utils3();
     init_zod();
     init_middleware();
     import_path22 = __toESM(require("path"));
-    router142 = import_express142.default.Router();
-    deletePrompt_default = router142.post(
+    router143 = import_express143.default.Router();
+    deletePrompt_default = router143.post(
       "/",
       validateFields({
         path: external_exports.string()
@@ -256052,28 +255555,28 @@ var init_deletePrompt = __esm({
         const resolvedRoot = import_path22.default.resolve(modelPromptRoot);
         const resolvedFile = import_path22.default.resolve(modelPromptRoot, filePath);
         if (!resolvedFile.startsWith(resolvedRoot + import_path22.default.sep)) {
-          return res.status(400).send(error50("\u975E\u6CD5\u8DEF\u5F84"));
+          return res.status(400).send(error50("Invalid path"));
         }
         await utils_default.userSettings.deleteModelPromptFile(filePath);
-        res.status(200).send(success3("\u5220\u9664\u6210\u529F"));
+        res.status(200).send(success3("Deletion successful"));
       }
     );
   }
 });
 
 // src/routes/setting/modelMap/getImageAndVideoModel.ts
-var import_express143, router143, getImageAndVideoModel_default;
+var import_express144, router144, getImageAndVideoModel_default;
 var init_getImageAndVideoModel = __esm({
   "src/routes/setting/modelMap/getImageAndVideoModel.ts"() {
     "use strict";
-    import_express143 = __toESM(require_express2());
+    import_express144 = __toESM(require_express2());
     init_utils3();
     init_responseFormat();
-    router143 = import_express143.default.Router();
-    getImageAndVideoModel_default = router143.post("/", async (req, res) => {
+    router144 = import_express144.default.Router();
+    getImageAndVideoModel_default = router144.post("/", async (req, res) => {
       const dataList = (await utils_default.userSettings.getVendorConfigRows()).filter((item) => Number(item.enable) === 1);
       if (!dataList || dataList.length === 0) {
-        return res.status(404).send({ error: "\u6A21\u578B\u672A\u627E\u5230" });
+        return res.status(404).send({ error: "Model not found" });
       }
       const data = await Promise.all(
         dataList.map(async (item) => {
@@ -256100,18 +255603,18 @@ var init_getImageAndVideoModel = __esm({
 });
 
 // src/routes/setting/modelMap/getPromptList.ts
-var import_express144, import_fast_glob3, import_promises9, import_path23, router144, getPromptList_default;
+var import_express145, import_fast_glob3, import_promises9, import_path23, router145, getPromptList_default;
 var init_getPromptList = __esm({
   "src/routes/setting/modelMap/getPromptList.ts"() {
     "use strict";
-    import_express144 = __toESM(require_express2());
+    import_express145 = __toESM(require_express2());
     init_responseFormat();
     init_utils3();
     import_fast_glob3 = __toESM(require_out4());
     import_promises9 = __toESM(require("fs/promises"));
     import_path23 = __toESM(require("path"));
-    router144 = import_express144.default.Router();
-    getPromptList_default = router144.get("/", async (req, res) => {
+    router145 = import_express145.default.Router();
+    getPromptList_default = router145.get("/", async (req, res) => {
       const modelPromptRoot = utils_default.getPath(["modelPrompt"]);
       const entries = [
         .../* @__PURE__ */ new Set([
@@ -256138,18 +255641,18 @@ var init_getPromptList = __esm({
 });
 
 // src/routes/setting/modelMap/savePrompt.ts
-var import_express145, import_path24, router145, savePrompt_default;
+var import_express146, import_path24, router146, savePrompt_default;
 var init_savePrompt = __esm({
   "src/routes/setting/modelMap/savePrompt.ts"() {
     "use strict";
-    import_express145 = __toESM(require_express2());
+    import_express146 = __toESM(require_express2());
     init_responseFormat();
     init_utils3();
     init_zod();
     init_middleware();
     import_path24 = __toESM(require("path"));
-    router145 = import_express145.default.Router();
-    savePrompt_default = router145.post(
+    router146 = import_express146.default.Router();
+    savePrompt_default = router146.post(
       "/",
       validateFields({
         name: external_exports.string().min(1),
@@ -256164,29 +255667,29 @@ var init_savePrompt = __esm({
         const resolvedRoot = import_path24.default.resolve(modelPromptRoot);
         const resolvedFile = import_path24.default.resolve(filePath);
         if (!resolvedFile.startsWith(resolvedRoot + import_path24.default.sep)) {
-          return res.status(400).send(error50("\u975E\u6CD5\u8DEF\u5F84"));
+          return res.status(400).send(error50("Invalid path"));
         }
         const relativePath = import_path24.default.relative(modelPromptRoot, resolvedFile).replace(/\\/g, "/");
         await utils_default.userSettings.setModelPromptFile(relativePath, data);
-        res.status(200).send(success3("\u4FDD\u5B58\u6210\u529F"));
+        res.status(200).send(success3("Saved successfully"));
       }
     );
   }
 });
 
 // src/routes/setting/modelMap/updatePrompt.ts
-var import_express146, import_path25, router146, updatePrompt_default;
+var import_express147, import_path25, router147, updatePrompt_default;
 var init_updatePrompt = __esm({
   "src/routes/setting/modelMap/updatePrompt.ts"() {
     "use strict";
-    import_express146 = __toESM(require_express2());
+    import_express147 = __toESM(require_express2());
     init_responseFormat();
     init_utils3();
     init_zod();
     init_middleware();
     import_path25 = __toESM(require("path"));
-    router146 = import_express146.default.Router();
-    updatePrompt_default = router146.post(
+    router147 = import_express147.default.Router();
+    updatePrompt_default = router147.post(
       "/",
       validateFields({
         name: external_exports.string().min(1),
@@ -256200,31 +255703,33 @@ var init_updatePrompt = __esm({
         const resolvedRoot = import_path25.default.resolve(modelPromptRoot);
         const resolvedFile = import_path25.default.resolve(filePath);
         if (!resolvedFile.startsWith(resolvedRoot + import_path25.default.sep)) {
-          return res.status(400).send(error50("\u975E\u6CD5\u8DEF\u5F84"));
+          return res.status(400).send(error50("Invalid path"));
         }
         const relativePath = import_path25.default.relative(modelPromptRoot, resolvedFile).replace(/\\/g, "/");
         await utils_default.userSettings.setModelPromptFile(relativePath, data);
-        res.status(200).send(success3("\u66F4\u65B0\u6210\u529F"));
+        res.status(200).send(success3("Update successful"));
       }
     );
   }
 });
 
 // src/routes/setting/promptManage/getPrompt.ts
-var import_express147, router147, getPrompt_default;
+var import_express148, router148, getPrompt_default;
 var init_getPrompt = __esm({
   "src/routes/setting/promptManage/getPrompt.ts"() {
     "use strict";
-    import_express147 = __toESM(require_express2());
+    import_express148 = __toESM(require_express2());
     init_utils3();
     init_responseFormat();
-    router147 = import_express147.default.Router();
-    getPrompt_default = router147.post("/", async (req, res) => {
+    init_englishLabels();
+    router148 = import_express148.default.Router();
+    getPrompt_default = router148.post("/", async (req, res) => {
       const list2 = await utils_default.userSettings.getPromptRows();
       const data = await Promise.all(
         list2.map(async (item) => {
           return {
             ...item,
+            name: englishBuiltinLabel(item.name),
             data: item.useData ? item.useData : item.data
           };
         })
@@ -256235,17 +255740,17 @@ var init_getPrompt = __esm({
 });
 
 // src/routes/setting/promptManage/updatePrompt.ts
-var import_express148, router148, updatePrompt_default2;
+var import_express149, router149, updatePrompt_default2;
 var init_updatePrompt2 = __esm({
   "src/routes/setting/promptManage/updatePrompt.ts"() {
     "use strict";
-    import_express148 = __toESM(require_express2());
+    import_express149 = __toESM(require_express2());
     init_utils3();
     init_zod();
     init_responseFormat();
     init_middleware();
-    router148 = import_express148.default.Router();
-    updatePrompt_default2 = router148.post(
+    router149 = import_express149.default.Router();
+    updatePrompt_default2 = router149.post(
       "/",
       validateFields({
         id: external_exports.number()
@@ -256260,11 +255765,11 @@ var init_updatePrompt2 = __esm({
 });
 
 // src/routes/setting/skillManagement/getSkillContent.ts
-var import_express149, import_path26, fs28, router149, getSkillContent_default;
+var import_express150, import_path26, fs28, router150, getSkillContent_default;
 var init_getSkillContent = __esm({
   "src/routes/setting/skillManagement/getSkillContent.ts"() {
     "use strict";
-    import_express149 = __toESM(require_express2());
+    import_express150 = __toESM(require_express2());
     init_responseFormat();
     init_middleware();
     init_zod();
@@ -256272,8 +255777,8 @@ var init_getSkillContent = __esm({
     init_utils3();
     import_path26 = __toESM(require("path"));
     fs28 = __toESM(require("fs"));
-    router149 = import_express149.default.Router();
-    getSkillContent_default = router149.post(
+    router150 = import_express150.default.Router();
+    getSkillContent_default = router150.post(
       "/",
       validateFields({
         path: external_exports.string()
@@ -256283,7 +255788,7 @@ var init_getSkillContent = __esm({
         const skillsRoot = utils_default.getPath(["skills"]);
         const filePath = import_path26.default.join(skillsRoot, path33);
         if (!isPathInside(filePath, skillsRoot)) {
-          return res.status(400).send(error50("\u65E0\u6548\u7684\u8DEF\u5F84"));
+          return res.status(400).send(error50("Invalid path"));
         }
         const raw = await fs28.promises.readFile(filePath, "utf-8");
         res.status(200).send(success3(raw));
@@ -256293,16 +255798,16 @@ var init_getSkillContent = __esm({
 });
 
 // src/routes/setting/skillManagement/getSkillList.ts
-var import_express150, import_fast_glob4, router150, getSkillList_default;
+var import_express151, import_fast_glob4, router151, getSkillList_default;
 var init_getSkillList = __esm({
   "src/routes/setting/skillManagement/getSkillList.ts"() {
     "use strict";
-    import_express150 = __toESM(require_express2());
+    import_express151 = __toESM(require_express2());
     init_responseFormat();
     import_fast_glob4 = __toESM(require_out4());
     init_utils3();
-    router150 = import_express150.default.Router();
-    getSkillList_default = router150.post("/", async (req, res) => {
+    router151 = import_express151.default.Router();
+    getSkillList_default = router151.post("/", async (req, res) => {
       const skillsRoot = utils_default.getPath(["skills"]);
       const entries = await (0, import_fast_glob4.default)("**/*.md", {
         cwd: skillsRoot.replace(/\\/g, "/"),
@@ -256314,11 +255819,11 @@ var init_getSkillList = __esm({
 });
 
 // src/routes/setting/skillManagement/saveSkillContent.ts
-var import_express151, import_path27, fs29, router151, saveSkillContent_default;
+var import_express152, import_path27, fs29, router152, saveSkillContent_default;
 var init_saveSkillContent = __esm({
   "src/routes/setting/skillManagement/saveSkillContent.ts"() {
     "use strict";
-    import_express151 = __toESM(require_express2());
+    import_express152 = __toESM(require_express2());
     init_responseFormat();
     init_middleware();
     init_zod();
@@ -256326,8 +255831,8 @@ var init_saveSkillContent = __esm({
     init_utils3();
     import_path27 = __toESM(require("path"));
     fs29 = __toESM(require("fs"));
-    router151 = import_express151.default.Router();
-    saveSkillContent_default = router151.post(
+    router152 = import_express152.default.Router();
+    saveSkillContent_default = router152.post(
       "/",
       validateFields({
         path: external_exports.string(),
@@ -256338,10 +255843,10 @@ var init_saveSkillContent = __esm({
         const skillsRoot = utils_default.getPath(["skills"]);
         const filePath = import_path27.default.join(skillsRoot, path33);
         if (!isPathInside(filePath, skillsRoot)) {
-          return res.status(400).send(error50("\u65E0\u6548\u7684\u8DEF\u5F84"));
+          return res.status(400).send(error50("Invalid path"));
         }
         if (!fs29.existsSync(filePath)) {
-          return res.status(400).send(error50("\u6587\u4EF6\u4E0D\u5B58\u5728"));
+          return res.status(400).send(error50("File does not exist"));
         }
         const raw = await fs29.promises.writeFile(filePath, content, "utf-8");
         res.status(200).send(success3(raw));
@@ -256351,167 +255856,220 @@ var init_saveSkillContent = __esm({
 });
 
 // src/routes/setting/userManagement/createUser.ts
-var import_express152, router152, createUser_default;
+var import_express153, router153, createUser_default;
 var init_createUser = __esm({
   "src/routes/setting/userManagement/createUser.ts"() {
     "use strict";
-    import_express152 = __toESM(require_express2());
-    init_utils3();
+    import_express153 = __toESM(require_express2());
+    init_db();
     init_zod();
     init_responseFormat();
     init_middleware();
     init_auth2();
     init_auth();
-    router152 = import_express152.default.Router();
-    createUser_default = router152.post(
+    init_userId();
+    router153 = import_express153.default.Router();
+    createUser_default = router153.post(
       "/",
       requireAdmin,
       validateFields({
-        name: external_exports.string().trim().min(1).max(64),
-        password: external_exports.string().min(8).max(128),
+        name: external_exports.string().trim().min(2).max(64),
+        password: external_exports.string().min(6).max(128),
         role: external_exports.enum(["admin", "user"]).optional()
       }),
       async (req, res) => {
         const name28 = String(req.body.name).trim();
-        const exists = await utils_default.db("o_user").where("name", name28).first();
-        if (exists) return res.status(409).send(error50("\u7528\u6237\u540D\u5DF2\u5B58\u5728"));
-        const max = await utils_default.db("o_user").max("id as maxId").first();
-        const id = Math.max(Number(max?.maxId ?? 0) + 1, Date.now());
-        const now2 = Date.now();
-        await utils_default.db("o_user").insert({
-          id,
-          name: name28,
-          password: await hashPassword(req.body.password),
-          role: req.body.role === "admin" ? "admin" : "user",
-          disabled: false,
-          tokenVersion: 0,
-          createdAt: now2,
-          updatedAt: now2
+        const password = await hashPassword(req.body.password);
+        const id = await db.transaction(async (trx) => {
+          const exists = await trx("o_user").whereRaw("lower(name) = lower(?)", [name28]).first();
+          if (exists) return null;
+          const id2 = await allocateUserId(trx);
+          const now2 = Date.now();
+          await trx("o_user").insert({
+            id: id2,
+            name: name28,
+            password,
+            role: req.body.role === "admin" ? "admin" : "user",
+            disabled: false,
+            tokenVersion: 0,
+            createdAt: now2,
+            updatedAt: now2
+          });
+          return id2;
         });
-        res.status(201).send(success3({ id, name: name28, role: req.body.role === "admin" ? "admin" : "user" }, "\u521B\u5EFA\u7528\u6237\u6210\u529F"));
+        if (id === null) return res.status(409).send(error50("Username already exists"));
+        res.status(201).send(success3({ id, name: name28, role: req.body.role === "admin" ? "admin" : "user" }, "User created successfully"));
       }
     );
   }
 });
 
 // src/routes/setting/userManagement/deleteUser.ts
-var import_express153, router153, deleteUser_default;
+var import_express154, router154, deleteUser_default;
 var init_deleteUser = __esm({
   "src/routes/setting/userManagement/deleteUser.ts"() {
     "use strict";
-    import_express153 = __toESM(require_express2());
-    init_utils3();
+    import_express154 = __toESM(require_express2());
+    init_db();
     init_zod();
     init_responseFormat();
     init_middleware();
     init_auth2();
-    router153 = import_express153.default.Router();
-    deleteUser_default = router153.post(
-      "/",
-      requireAdmin,
-      validateFields({ id: external_exports.number().int().positive() }),
-      async (req, res) => {
-        const { id } = req.body;
-        if (Number(id) === Number(currentUser(req)?.id)) return res.status(400).send(error50("\u4E0D\u80FD\u5220\u9664\u5F53\u524D\u767B\u5F55\u8D26\u53F7"));
-        const target = await utils_default.db("o_user").where("id", id).first();
-        if (!target) return res.status(404).send(error50("\u7528\u6237\u4E0D\u5B58\u5728"));
+    router154 = import_express154.default.Router();
+    deleteUser_default = router154.post("/", requireAdmin, validateFields({ id: external_exports.number().int().positive() }), async (req, res) => {
+      const { id } = req.body;
+      if (Number(id) === Number(currentUser(req)?.id)) return res.status(400).send(error50("Cannot delete the currently logged-in account"));
+      await db.transaction(async (trx) => {
+        const target = await trx("o_user").where("id", id).first();
+        if (!target) return res.status(404).send(error50("User not found"));
         if (target.role === "admin") {
-          const admins = await utils_default.db("o_user").where("role", "admin").where("disabled", false).whereNot("id", id).count("id as total").first();
-          if (Number(admins?.total ?? 0) < 1) return res.status(400).send(error50("\u7CFB\u7EDF\u81F3\u5C11\u9700\u8981\u4FDD\u7559\u4E00\u4E2A\u542F\u7528\u7684\u7BA1\u7406\u5458"));
+          const admins = await trx("o_user").where("role", "admin").where("disabled", false).whereNot("id", id).count("id as total").first();
+          if (Number(admins?.total ?? 0) < 1) return res.status(400).send(error50("At least one active administrator must remain in the system"));
         }
-        await utils_default.db("o_user").where("id", id).delete();
         const adminId = currentUser(req)?.id;
-        if (adminId) await utils_default.db("o_project").where("userId", id).update({ userId: adminId });
-        res.status(200).send(success3("\u5220\u9664\u7528\u6237\u6210\u529F"));
-      }
-    );
+        if (adminId) await trx("o_project").where("userId", id).update({ userId: adminId });
+        await trx("o_user").where("id", id).delete();
+      });
+      if (!res.headersSent) res.status(200).send(success3("User deleted successfully"));
+    });
   }
 });
 
 // src/routes/setting/userManagement/listUsers.ts
-var import_express154, router154, listUsers_default;
+var import_express155, router155, listUsers_default;
 var init_listUsers = __esm({
   "src/routes/setting/userManagement/listUsers.ts"() {
     "use strict";
-    import_express154 = __toESM(require_express2());
+    import_express155 = __toESM(require_express2());
     init_utils3();
     init_responseFormat();
     init_auth2();
-    router154 = import_express154.default.Router();
-    listUsers_default = router154.get("/", requireAdmin, async (_req, res) => {
-      const users = await utils_default.db("o_user").select("id", "name", "role", "disabled", "createdAt", "updatedAt", "lastLoginAt").orderBy("id", "asc");
-      res.status(200).send(success3(users));
+    router155 = import_express155.default.Router();
+    listUsers_default = router155.get("/", requireAdmin, async (_req, res) => {
+      const [users, projectCounts] = await Promise.all([
+        utils_default.db("o_user").select("id", "name", "role", "disabled", "createdAt", "updatedAt", "lastLoginAt").orderBy("id", "asc"),
+        utils_default.db("o_project").select("userId").count("id as projectCount").groupBy("userId")
+      ]);
+      const countMap = /* @__PURE__ */ new Map();
+      for (const row of projectCounts) {
+        if (row.userId !== void 0 && row.userId !== null) {
+          countMap.set(Number(row.userId), Number(row.projectCount ?? 0));
+        }
+      }
+      const enriched = users.map((user) => ({
+        ...user,
+        projectCount: countMap.get(Number(user.id)) ?? 0
+      }));
+      res.status(200).send(success3(enriched));
     });
   }
 });
 
 // src/routes/setting/userManagement/updateUser.ts
-var import_express155, router155, updateUser_default;
+var import_express156, router156, updateUser_default;
 var init_updateUser = __esm({
   "src/routes/setting/userManagement/updateUser.ts"() {
     "use strict";
-    import_express155 = __toESM(require_express2());
+    import_express156 = __toESM(require_express2());
     init_utils3();
+    init_db();
     init_zod();
     init_responseFormat();
     init_middleware();
     init_auth2();
     init_auth();
-    router155 = import_express155.default.Router();
-    updateUser_default = router155.post(
+    init_login();
+    router156 = import_express156.default.Router();
+    updateUser_default = router156.post(
       "/",
       requireAdmin,
       validateFields({
         id: external_exports.number().int().positive(),
-        name: external_exports.string().trim().min(1).max(64).optional(),
-        password: external_exports.string().min(8).max(128).optional(),
+        name: external_exports.string().trim().min(2).max(64).optional(),
+        password: external_exports.string().min(6).max(128).optional(),
         role: external_exports.enum(["admin", "user"]).optional(),
         disabled: external_exports.boolean().optional()
       }),
       async (req, res) => {
         const { id } = req.body;
-        const target = await utils_default.db("o_user").where("id", id).first();
-        if (!target) return res.status(404).send(error50("\u7528\u6237\u4E0D\u5B58\u5728"));
-        if (Number(id) === Number(currentUser(req)?.id) && req.body.disabled === true) {
-          return res.status(400).send(error50("\u4E0D\u80FD\u7981\u7528\u5F53\u524D\u767B\u5F55\u8D26\u53F7"));
+        const passwordHash = req.body.password === void 0 ? void 0 : await hashPassword(req.body.password);
+        const result = await db.transaction(async (trx) => {
+          const target = await trx("o_user").where("id", id).first();
+          if (!target) return res.status(404).send(error50("User not found"));
+          if (Number(id) === Number(currentUser(req)?.id) && req.body.disabled === true) {
+            return res.status(400).send(error50("Cannot disable the currently signed-in account"));
+          }
+          const updates = { updatedAt: Date.now() };
+          if (req.body.name !== void 0) {
+            const name28 = String(req.body.name).trim();
+            const duplicate = await trx("o_user").whereRaw("lower(name) = lower(?)", [name28]).whereNot("id", id).first();
+            if (duplicate) return res.status(409).send(error50("Username already exists"));
+            updates.name = name28;
+          }
+          if (req.body.role !== void 0) updates.role = req.body.role;
+          if (req.body.disabled !== void 0) updates.disabled = req.body.disabled;
+          if (passwordHash !== void 0) updates.password = passwordHash;
+          if (req.body.password !== void 0 || req.body.role !== void 0 && req.body.role !== target.role || req.body.disabled !== void 0 && req.body.disabled !== Boolean(target.disabled)) {
+            updates.tokenVersion = Number(target.tokenVersion ?? 0) + 1;
+          }
+          const becomesInactiveAdmin = target.role === "admin" && (updates.role === "user" || updates.disabled === true);
+          if (becomesInactiveAdmin) {
+            const activeAdmins = await trx("o_user").where("role", "admin").where("disabled", false).whereNot("id", id).count("id as total").first();
+            if (Number(activeAdmins?.total ?? 0) < 1)
+              return res.status(400).send(error50("At least one active administrator must remain in the system"));
+          }
+          await trx("o_user").where("id", id).update(updates);
+          return { ...target, ...updates };
+        });
+        if (res.headersSent || !result || !("name" in result)) return;
+        let token;
+        if (Number(id) === Number(currentUser(req)?.id)) {
+          const key = await utils_default.db("o_setting").where("key", "tokenKey").first();
+          token = setToken(
+            {
+              id,
+              name: result.name,
+              role: result.role,
+              tokenVersion: result.tokenVersion
+            },
+            "12h",
+            String(key?.value)
+          );
+          res.cookie("sd_token", token, {
+            httpOnly: true,
+            sameSite: "lax",
+            secure: process.env.NODE_ENV === "prod" && process.env.HTTPS === "1",
+            maxAge: 12 * 60 * 60 * 1e3
+          });
         }
-        const updates = { updatedAt: Date.now() };
-        if (req.body.name !== void 0) {
-          const name28 = String(req.body.name).trim();
-          const duplicate = await utils_default.db("o_user").where("name", name28).whereNot("id", id).first();
-          if (duplicate) return res.status(409).send(error50("\u7528\u6237\u540D\u5DF2\u5B58\u5728"));
-          updates.name = name28;
-        }
-        if (req.body.role !== void 0) updates.role = req.body.role;
-        if (req.body.disabled !== void 0) updates.disabled = req.body.disabled;
-        if (req.body.password !== void 0) updates.password = await hashPassword(req.body.password);
-        if (req.body.password !== void 0 || req.body.role !== void 0 || req.body.disabled !== void 0) {
-          updates.tokenVersion = Number(target.tokenVersion ?? 0) + 1;
-        }
-        const becomesInactiveAdmin = target.role === "admin" && (updates.role === "user" || updates.disabled === true);
-        if (becomesInactiveAdmin) {
-          const activeAdmins = await utils_default.db("o_user").where("role", "admin").where("disabled", false).whereNot("id", id).count("id as total").first();
-          if (Number(activeAdmins?.total ?? 0) < 1) return res.status(400).send(error50("\u7CFB\u7EDF\u81F3\u5C11\u9700\u8981\u4FDD\u7559\u4E00\u4E2A\u542F\u7528\u7684\u7BA1\u7406\u5458"));
-        }
-        await utils_default.db("o_user").where("id", id).update(updates);
-        res.status(200).send(success3("\u66F4\u65B0\u7528\u6237\u6210\u529F"));
+        res.status(200).send(
+          success3(
+            {
+              id,
+              name: result.name,
+              role: result.role,
+              token: token ? "Bearer " + token : void 0
+            },
+            "User updated successfully"
+          )
+        );
       }
     );
   }
 });
 
 // src/routes/setting/vendorConfig/addVendor.ts
-var import_express156, import_sucrase4, router156, vendorConfigSchema, addVendor_default;
+var import_express157, import_sucrase4, router157, vendorConfigSchema, addVendor_default;
 var init_addVendor = __esm({
   "src/routes/setting/vendorConfig/addVendor.ts"() {
     "use strict";
-    import_express156 = __toESM(require_express2());
+    import_express157 = __toESM(require_express2());
     init_responseFormat();
     init_middleware();
     init_utils3();
     init_zod();
     import_sucrase4 = __toESM(require_dist5());
-    router156 = import_express156.default.Router();
+    router157 = import_express157.default.Router();
     vendorConfigSchema = external_exports.object({
       id: external_exports.string(),
       author: external_exports.string(),
@@ -256563,7 +256121,7 @@ var init_addVendor = __esm({
         ])
       )
     });
-    addVendor_default = router156.post(
+    addVendor_default = router157.post(
       "/",
       validateFields({
         tsCode: external_exports.string()
@@ -256572,11 +256130,11 @@ var init_addVendor = __esm({
         const { tsCode } = req.body;
         const jsCode = (0, import_sucrase4.transform)(tsCode, { transforms: ["typescript"] }).code;
         const exports2 = utils_default.vm(jsCode);
-        if (!exports2) return res.status(400).send(success3("\u811A\u672C\u6587\u4EF6\u5FC5\u987B\u5BFC\u51FA\u5BF9\u8C61"));
-        if (!exports2.textRequest) return res.status(400).send(success3("\u811A\u672C\u6587\u4EF6\u5FC5\u987B\u5BFC\u51FA\u6587\u672C\u8BF7\u6C42\u5BF9\u8C61"));
-        if (!exports2.imageRequest) return res.status(400).send(success3("\u811A\u672C\u6587\u4EF6\u5FC5\u987B\u5BFC\u51FA\u56FE\u50CF\u8BF7\u6C42\u5BF9\u8C61"));
-        if (!exports2.videoRequest) return res.status(400).send(success3("\u811A\u672C\u6587\u4EF6\u5FC5\u987B\u5BFC\u51FA\u89C6\u9891\u8BF7\u6C42\u5BF9\u8C61"));
-        if (!exports2.vendor) return res.status(400).send(success3("\u811A\u672C\u6587\u4EF6\u5FC5\u987B\u5BFC\u51FAvendor\u5BF9\u8C61"));
+        if (!exports2) return res.status(400).send(success3("The script file must export an object"));
+        if (!exports2.textRequest) return res.status(400).send(success3("The script file must export a text request object"));
+        if (!exports2.imageRequest) return res.status(400).send(success3("The script file must export the image request object"));
+        if (!exports2.videoRequest) return res.status(400).send(success3("The script file must export the video request object"));
+        if (!exports2.vendor) return res.status(400).send(success3("The script file must export the vendor object"));
         const vendor = exports2.vendor;
         const result = vendorConfigSchema.safeParse(vendor);
         if (!result.success) {
@@ -256595,12 +256153,12 @@ var init_addVendor = __esm({
             }
             return `${index + 1}. ${path33}: ${detail}`;
           });
-          return res.status(400).send(error50(`vendor\u914D\u7F6E\u6821\u9A8C\u5931\u8D25\uFF0C\u5171 ${issueLines.length} \u5904:
+          return res.status(400).send(error50(`Vendor configuration validation failed (${issueLines.length} issue(s)):
 ${issueLines.join("\n")}`));
         }
-        if (vendor.id.includes(":")) return res.status(400).send(error50("id\u4E0D\u80FD\u5305\u542B\u82F1\u6587\u5192\u53F7"));
+        if (vendor.id.includes(":")) return res.status(400).send(error50("The id cannot contain English colons"));
         const data = await utils_default.userSettings.getVendorConfig(vendor.id);
-        if (data) return res.status(500).send(error50("\u4F9B\u5E94\u5546id\u5DF2\u5B58\u5728"));
+        if (data) return res.status(500).send(error50("Supplier ID already exists"));
         await utils_default.userSettings.insertVendorConfig({
           id: vendor.id,
           inputValues: JSON.stringify(vendor.inputValues ?? {}),
@@ -256616,17 +256174,17 @@ ${issueLines.join("\n")}`));
 });
 
 // src/routes/setting/vendorConfig/addVendorModel.ts
-var import_express157, router157, addVendorModel_default;
+var import_express158, router158, addVendorModel_default;
 var init_addVendorModel = __esm({
   "src/routes/setting/vendorConfig/addVendorModel.ts"() {
     "use strict";
-    import_express157 = __toESM(require_express2());
+    import_express158 = __toESM(require_express2());
     init_responseFormat();
     init_middleware();
     init_utils3();
     init_zod();
-    router157 = import_express157.default.Router();
-    addVendorModel_default = router157.post(
+    router158 = import_express158.default.Router();
+    addVendorModel_default = router158.post(
       "/",
       validateFields({
         id: external_exports.string(),
@@ -256671,41 +256229,16 @@ var init_addVendorModel = __esm({
           existingModels.push(model);
           await utils_default.userSettings.updateVendorConfig(id, { models: JSON.stringify(existingModels) });
         }
-        res.status(200).send(success3("\u66F4\u65B0\u6210\u529F"));
+        res.status(200).send(success3("Update successful"));
       }
     );
   }
 });
 
 // src/routes/setting/vendorConfig/deleteVendor.ts
-var import_express158, router158, deleteVendor_default;
+var import_express159, router159, deleteVendor_default;
 var init_deleteVendor = __esm({
   "src/routes/setting/vendorConfig/deleteVendor.ts"() {
-    "use strict";
-    import_express158 = __toESM(require_express2());
-    init_responseFormat();
-    init_middleware();
-    init_utils3();
-    init_zod();
-    router158 = import_express158.default.Router();
-    deleteVendor_default = router158.post(
-      "/",
-      validateFields({
-        id: external_exports.string()
-      }),
-      async (req, res) => {
-        const { id } = req.body;
-        await utils_default.userSettings.deleteVendorConfig(id);
-        res.status(200).send(success3("\u5220\u9664\u6210\u529F"));
-      }
-    );
-  }
-});
-
-// src/routes/setting/vendorConfig/delVendorModel.ts
-var import_express159, router159, delVendorModel_default;
-var init_delVendorModel = __esm({
-  "src/routes/setting/vendorConfig/delVendorModel.ts"() {
     "use strict";
     import_express159 = __toESM(require_express2());
     init_responseFormat();
@@ -256713,7 +256246,32 @@ var init_delVendorModel = __esm({
     init_utils3();
     init_zod();
     router159 = import_express159.default.Router();
-    delVendorModel_default = router159.post(
+    deleteVendor_default = router159.post(
+      "/",
+      validateFields({
+        id: external_exports.string()
+      }),
+      async (req, res) => {
+        const { id } = req.body;
+        await utils_default.userSettings.deleteVendorConfig(id);
+        res.status(200).send(success3("Deletion successful"));
+      }
+    );
+  }
+});
+
+// src/routes/setting/vendorConfig/delVendorModel.ts
+var import_express160, router160, delVendorModel_default;
+var init_delVendorModel = __esm({
+  "src/routes/setting/vendorConfig/delVendorModel.ts"() {
+    "use strict";
+    import_express160 = __toESM(require_express2());
+    init_responseFormat();
+    init_middleware();
+    init_utils3();
+    init_zod();
+    router160 = import_express160.default.Router();
+    delVendorModel_default = router160.post(
       "/",
       validateFields({
         id: external_exports.string(),
@@ -256725,29 +256283,29 @@ var init_delVendorModel = __esm({
         if (models?.models) {
           const existingModels = JSON.parse(models.models);
           if (!existingModels.some((model) => model.modelName === modelName)) {
-            return res.status(400).send(error50("\u57FA\u672C\u6A21\u578B\u4E0D\u5141\u8BB8\u5220\u9664"));
+            return res.status(400).send(error50("The base model cannot be deleted"));
           }
           const updatedModels = existingModels.filter((model) => model.modelName !== modelName);
           await utils_default.userSettings.updateVendorConfig(id, { models: JSON.stringify(updatedModels) });
         }
-        res.status(200).send(success3("\u66F4\u65B0\u6210\u529F"));
+        res.status(200).send(success3("Update successful"));
       }
     );
   }
 });
 
 // src/routes/setting/vendorConfig/enableVendor.ts
-var import_express160, router160, enableVendor_default;
+var import_express161, router161, enableVendor_default;
 var init_enableVendor = __esm({
   "src/routes/setting/vendorConfig/enableVendor.ts"() {
     "use strict";
-    import_express160 = __toESM(require_express2());
+    import_express161 = __toESM(require_express2());
     init_responseFormat();
     init_middleware();
     init_utils3();
     init_zod();
-    router160 = import_express160.default.Router();
-    enableVendor_default = router160.post(
+    router161 = import_express161.default.Router();
+    enableVendor_default = router161.post(
       "/",
       validateFields({
         id: external_exports.string(),
@@ -256756,23 +256314,23 @@ var init_enableVendor = __esm({
       async (req, res) => {
         const { id, enable } = req.body;
         await utils_default.userSettings.updateVendorConfig(id, { enable });
-        res.status(200).send(success3("\u66F4\u65B0\u6210\u529F"));
+        res.status(200).send(success3("Update successful"));
       }
     );
   }
 });
 
 // src/routes/setting/vendorConfig/getCodeByLink.ts
-var import_express161, router161, getCodeByLink_default;
+var import_express162, router162, getCodeByLink_default;
 var init_getCodeByLink = __esm({
   "src/routes/setting/vendorConfig/getCodeByLink.ts"() {
     "use strict";
-    import_express161 = __toESM(require_express2());
+    import_express162 = __toESM(require_express2());
     init_responseFormat();
     init_middleware();
     init_zod();
-    router161 = import_express161.default.Router();
-    getCodeByLink_default = router161.post(
+    router162 = import_express162.default.Router();
+    getCodeByLink_default = router162.post(
       "/",
       validateFields({
         link: external_exports.string()
@@ -256787,15 +256345,16 @@ var init_getCodeByLink = __esm({
 });
 
 // src/routes/setting/vendorConfig/getVendorList.ts
-var import_express162, router162, getVendorList_default;
+var import_express163, router163, getVendorList_default;
 var init_getVendorList = __esm({
   "src/routes/setting/vendorConfig/getVendorList.ts"() {
     "use strict";
-    import_express162 = __toESM(require_express2());
+    import_express163 = __toESM(require_express2());
     init_responseFormat();
     init_utils3();
-    router162 = import_express162.default.Router();
-    getVendorList_default = router162.post("/", async (req, res) => {
+    init_englishLabels();
+    router163 = import_express163.default.Router();
+    getVendorList_default = router163.post("/", async (req, res) => {
       const data = await utils_default.userSettings.getVendorConfigRows();
       const list2 = (await Promise.all(
         data.map(async (item) => {
@@ -256811,10 +256370,14 @@ var init_getVendorList = __esm({
             inputValues: JSON.parse(item.inputValues ?? "{}"),
             models: await utils_default.vendor.getModelList(item.id),
             code: utils_default.vendor.getCode(item.id),
-            description: vendor.description ?? "",
-            inputs: vendor.inputs,
+            description: englishBuiltinLabel(vendor.description ?? ""),
+            inputs: vendor.inputs?.map((input) => ({
+              ...input,
+              label: englishBuiltinLabel(input.label),
+              placeholder: englishBuiltinLabel(input.placeholder)
+            })),
             author: vendor.author,
-            name: vendor.name,
+            name: englishBuiltinLabel(vendor.name),
             version: vendor.version ?? "1.0"
           };
         })
@@ -256829,18 +256392,18 @@ var init_getVendorList = __esm({
 });
 
 // src/routes/setting/vendorConfig/modelTest.ts
-var import_express163, router163, modelTest_default;
+var import_express164, router164, modelTest_default;
 var init_modelTest = __esm({
   "src/routes/setting/vendorConfig/modelTest.ts"() {
     "use strict";
-    import_express163 = __toESM(require_express2());
+    import_express164 = __toESM(require_express2());
     init_responseFormat();
     init_middleware();
     init_utils3();
     init_zod();
     init_dist22();
-    router163 = import_express163.default.Router();
-    modelTest_default = router163.post(
+    router164 = import_express164.default.Router();
+    modelTest_default = router164.post(
       "/",
       validateFields({
         modelName: external_exports.string(),
@@ -256855,20 +256418,20 @@ var init_modelTest = __esm({
             image: {
               fnName: "imageRequest",
               modelData: {
-                prompt: "\u4E00\u5F2016:9\u6BD4\u4F8B\u7684\u56FE\u7247\uFF0C\u5B8C\u7F8E\u7B49\u5206\u4E3A2x2\u56DB\u5BAB\u683C\u5E03\u5C40\uFF0C\u5404\u533A\u57DF\u65E0\u7F1D\u8854\u63A5\uFF1A\n\u5DE6\u4E0A\u5BAB\u683C\uFF1A\u4E00\u53EA\u53EF\u7231\u7684\u732B\uFF0C\u6BDB\u53D1\u84EC\u677E\uFF0C\u773C\u775B\u660E\u4EAE\uFF0C\u59FF\u6001\u4FCF\u76AE\n\u53F3\u4E0A\u5BAB\u683C\uFF1A\u4E00\u53EA\u53CB\u5584\u7684\u72D7\uFF0C\u91D1\u6BDB\u72AC\uFF0C\u8868\u60C5\u6109\u60A6\uFF0C\u6447\u7740\u5C3E\u5DF4\n\u5DE6\u4E0B\u5BAB\u683C\uFF1A\u4E00\u5934\u5065\u58EE\u7684\u725B\uFF0C\u7530\u56ED\u80CC\u666F\uFF0C\u76EE\u5149\u6E29\u548C\uFF0C\u76AE\u6BDB\u5149\u6CFD\n\u53F3\u4E0B\u5BAB\u683C\uFF1A\u4E00\u5339\u9A8F\u9A6C\uFF0C\u59FF\u6001\u4F18\u96C5\uFF0C\u9B03\u6BDB\u98D8\u9038\uFF0C\u808C\u8089\u5065\u7F8E\n\u98CE\u683C\u8981\u6C42\uFF1A\u56DB\u4E2A\u5BAB\u683C\u98CE\u683C\u7EDF\u4E00\uFF0C\u8272\u5F69\u9C9C\u8273\u9971\u548C\uFF0C\u9AD8\u6E05\u753B\u8D28\uFF0C\u7EC6\u8282\u6E05\u6670\u9510\u5229\uFF0C\u4E13\u4E1A\u63D2\u753B\u98CE\u683C\uFF0C\u7EBF\u6761\u5E72\u51C0\uFF0C\u7EDF\u4E00\u7684\u5DE6\u4E0A\u65B9\u5149\u6E90\uFF0C\u67D4\u548C\u9634\u5F71\uFF0C\u548C\u8C10\u914D\u8272\uFF0C\u5361\u901A/\u534A\u5199\u5B9E\u98CE\u683C\uFF0C\u5BAB\u683C\u95F4\u7528\u767D\u8272\u6216\u6D45\u7070\u7EC6\u7EBF\u5206\u9694",
-                //图片提示词
+                prompt: "One16:9Proportional images\uFF0CPerfectly divided into2x2Four-Grid Layout\uFF0CSeamless integration across all regions\uFF1A Top-left grid\uFF1AA cute cat\uFF0CFluffy hair\uFF0CBright eyes\uFF0CPlayful Pose Top-right grid\uFF1AA friendly dog\uFF0CGolden Retriever\uFF0CHappy Expression\uFF0CWagging its tail Bottom-left grid\uFF1AA sturdy bull\uFF0CPastoral Background\uFF0CGentle gaze\uFF0CFur Gloss Bottom-right grid\uFF1AA Steed\uFF0CElegant Posture\uFF0CFlowing Mane\uFF0CMuscle Fitness Style Requirements\uFF1AFour grid cells with a unified style\uFF0CVivid, saturated colors\uFF0CHD Quality\uFF0CSharp, clear details\uFF0CProfessional Illustration Style\uFF0CClean lines\uFF0CUnified light source in the upper left\uFF0CSoft Shadow\uFF0CHarmonious Color Scheme\uFF0CCartoon/Semi-realistic style\uFF0CSeparate grid cells with thin white or light gray lines",
+                // Image prompt
                 referenceList: [],
-                //输入的图片提示词
+                // The input image prompt
                 size: "1K",
-                // 图片尺寸
+                // Image size
                 aspectRatio: "16:9"
               }
             },
             video: { fnName: "videoRequest", modelData: {} }
           };
           const vendorConfigData = await utils_default.userSettings.getVendorConfig(id);
-          if (!vendorConfigData) return res.status(500).send(error50("\u672A\u627E\u5230\u8BE5\u4F9B\u5E94\u5546\u914D\u7F6E"));
-          if (!vendorConfigData.models) return res.status(500).send(error50("\u672A\u627E\u5230\u6A21\u578B\u5217\u8868"));
+          if (!vendorConfigData) return res.status(500).send(error50("Supplier configuration not found"));
+          if (!vendorConfigData.models) return res.status(500).send(error50("Model list not found"));
           const modelList = await utils_default.vendor.getModelList(vendorConfigData.id);
           const selectedModel = modelList.find((i) => i.modelName == modelName);
           if (type == "video") {
@@ -256900,14 +256463,14 @@ var init_modelTest = __esm({
           });
           if (type == "text") {
             const { textStream } = await utils_default.Ai.Text(`${id}:${modelName}`).stream({
-              prompt: "\u8BF7\u8C03\u7528\u5DE5\u5177\u83B7\u53D6\u706B\u661F\u7684\u5929\u6C14\uFF0C\u5E76\u56DE\u7B54\u6211\u591A\u5C11\u6C14\u6E29",
+              prompt: "Please call the tool to get the weather on Mars\uFF0CAnd answer me what the temperature is",
               tools: { getWeatherTool }
             });
             let fullResponse = "";
             for await (const chunk of textStream) {
               fullResponse += chunk;
             }
-            if (!fullResponse) return res.status(500).send(error50("\u6A21\u578B\u672A\u8FD4\u56DE\u7ED3\u679C"));
+            if (!fullResponse) return res.status(500).send(error50("The model did not return a result"));
             res.status(200).send(success3(fullResponse));
           } else {
             const aiTypeFn = {
@@ -256933,17 +256496,17 @@ var init_modelTest = __esm({
 });
 
 // src/routes/setting/vendorConfig/modelTest/imageTest.ts
-var import_express164, router164, imageTest_default;
+var import_express165, router165, imageTest_default;
 var init_imageTest = __esm({
   "src/routes/setting/vendorConfig/modelTest/imageTest.ts"() {
     "use strict";
-    import_express164 = __toESM(require_express2());
+    import_express165 = __toESM(require_express2());
     init_responseFormat();
     init_middleware();
     init_utils3();
     init_zod();
-    router164 = import_express164.default.Router();
-    imageTest_default = router164.post(
+    router165 = import_express165.default.Router();
+    imageTest_default = router165.post(
       "/",
       validateFields({
         modelName: external_exports.string(),
@@ -256955,14 +256518,14 @@ var init_imageTest = __esm({
         const { modelName, imageBase64, id, prompt } = req.body;
         try {
           const vendorConfigData = await utils_default.userSettings.getVendorConfig(id);
-          if (!vendorConfigData) return res.status(500).send(error50("\u672A\u627E\u5230\u8BE5\u4F9B\u5E94\u5546\u914D\u7F6E"));
-          if (!vendorConfigData.models) return res.status(500).send(error50("\u672A\u627E\u5230\u6A21\u578B\u5217\u8868"));
+          if (!vendorConfigData) return res.status(500).send(error50("Supplier configuration not found"));
+          if (!vendorConfigData.models) return res.status(500).send(error50("Model list not found"));
           const reqFn = await utils_default.Ai.Image(`${id}:${modelName}`).run({
             prompt,
             referenceList: imageBase64 ? [{ type: "image", base64: imageBase64 }] : [],
-            //输入的图片提示词
+            // The input image prompt
             size: "1K",
-            // 图片尺寸
+            // Image size
             aspectRatio: "16:9"
           });
           await reqFn.save("testImage.jpg");
@@ -256980,18 +256543,18 @@ var init_imageTest = __esm({
 });
 
 // src/routes/setting/vendorConfig/modelTest/textTest.ts
-var import_express165, router165, textTest_default;
+var import_express166, router166, textTest_default;
 var init_textTest = __esm({
   "src/routes/setting/vendorConfig/modelTest/textTest.ts"() {
     "use strict";
-    import_express165 = __toESM(require_express2());
+    import_express166 = __toESM(require_express2());
     init_responseFormat();
     init_middleware();
     init_utils3();
     init_zod();
     init_dist22();
-    router165 = import_express165.default.Router();
-    textTest_default = router165.post(
+    router166 = import_express166.default.Router();
+    textTest_default = router166.post(
       "/",
       validateFields({
         modelName: external_exports.string(),
@@ -257004,11 +256567,11 @@ var init_textTest = __esm({
         )
       }),
       async (req, res) => {
-        const { modelName, messages, id } = req.body;
+        const { modelName, messages: messages2, id } = req.body;
         try {
           const vendorConfigData = await utils_default.userSettings.getVendorConfig(id);
-          if (!vendorConfigData) return res.status(500).send(error50("\u672A\u627E\u5230\u8BE5\u4F9B\u5E94\u5546\u914D\u7F6E"));
-          if (!vendorConfigData.models) return res.status(500).send(error50("\u672A\u627E\u5230\u6A21\u578B\u5217\u8868"));
+          if (!vendorConfigData) return res.status(500).send(error50("Supplier configuration not found"));
+          if (!vendorConfigData.models) return res.status(500).send(error50("Model list not found"));
           const modelList = await utils_default.vendor.getModelList(vendorConfigData.id);
           const getWeatherTool = tool({
             description: "Get the weather in a location",
@@ -257025,11 +256588,11 @@ var init_textTest = __esm({
             }
           });
           const data = await utils_default.Ai.Text(`${id}:${modelName}`).invoke({
-            messages,
+            messages: messages2,
             tools: { getWeatherTool }
           });
           console.log("%c Line:46 \u{1F350} data", "background:#6ec1c2", data);
-          if (!data) return res.status(500).send(error50("\u6A21\u578B\u672A\u8FD4\u56DE\u7ED3\u679C"));
+          if (!data) return res.status(500).send(error50("The model did not return a result"));
           res.status(200).send(success3({ thinking: data.reasoningText, content: data.text }));
         } catch (err) {
           console.error(err);
@@ -257043,17 +256606,17 @@ var init_textTest = __esm({
 });
 
 // src/routes/setting/vendorConfig/modelTest/videoTest.ts
-var import_express166, router166, videoTest_default;
+var import_express167, router167, videoTest_default;
 var init_videoTest = __esm({
   "src/routes/setting/vendorConfig/modelTest/videoTest.ts"() {
     "use strict";
-    import_express166 = __toESM(require_express2());
+    import_express167 = __toESM(require_express2());
     init_responseFormat();
     init_middleware();
     init_utils3();
     init_zod();
-    router166 = import_express166.default.Router();
-    videoTest_default = router166.post(
+    router167 = import_express167.default.Router();
+    videoTest_default = router167.post(
       "/",
       validateFields({
         modelName: external_exports.string(),
@@ -257083,8 +256646,8 @@ var init_videoTest = __esm({
         const { modelName, id, mode, prompt, images, videos, audios } = req.body;
         try {
           const vendorConfigData = await utils_default.userSettings.getVendorConfig(id);
-          if (!vendorConfigData) return res.status(500).send(error50("\u672A\u627E\u5230\u8BE5\u4F9B\u5E94\u5546\u914D\u7F6E"));
-          if (!vendorConfigData.models) return res.status(500).send(error50("\u672A\u627E\u5230\u6A21\u578B\u5217\u8868"));
+          if (!vendorConfigData) return res.status(500).send(error50("Supplier configuration not found"));
+          if (!vendorConfigData.models) return res.status(500).send(error50("Model list not found"));
           const modelList = await utils_default.vendor.getModelList(vendorConfigData.id);
           const selectedModel = modelList.find((i) => i.modelName == modelName);
           let modeData = [];
@@ -257121,18 +256684,18 @@ var init_videoTest = __esm({
 });
 
 // src/routes/setting/vendorConfig/updateCode.ts
-var import_express167, import_sucrase5, router167, vendorConfigSchema2, updateCode_default;
+var import_express168, import_sucrase5, router168, vendorConfigSchema2, updateCode_default;
 var init_updateCode = __esm({
   "src/routes/setting/vendorConfig/updateCode.ts"() {
     "use strict";
-    import_express167 = __toESM(require_express2());
+    import_express168 = __toESM(require_express2());
     init_serialize_error();
     init_responseFormat();
     init_middleware();
     init_utils3();
     init_zod();
     import_sucrase5 = __toESM(require_dist5());
-    router167 = import_express167.default.Router();
+    router168 = import_express168.default.Router();
     vendorConfigSchema2 = external_exports.object({
       id: external_exports.string(),
       author: external_exports.string(),
@@ -257184,7 +256747,7 @@ var init_updateCode = __esm({
         ])
       )
     });
-    updateCode_default = router167.post(
+    updateCode_default = router168.post(
       "/",
       validateFields({
         id: external_exports.string(),
@@ -257195,16 +256758,16 @@ var init_updateCode = __esm({
           const { tsCode, id } = req.body;
           const jsCode = (0, import_sucrase5.transform)(tsCode, { transforms: ["typescript"] }).code;
           const exports2 = utils_default.vm(jsCode);
-          if (!exports2) return res.status(400).send(success3("\u811A\u672C\u6587\u4EF6\u5FC5\u987B\u5BFC\u51FA\u5BF9\u8C61"));
-          if (!exports2.textRequest) return res.status(400).send(success3("\u811A\u672C\u6587\u4EF6\u5FC5\u987B\u5BFC\u51FA\u6587\u672C\u8BF7\u6C42\u5BF9\u8C61"));
-          if (!exports2.imageRequest) return res.status(400).send(success3("\u811A\u672C\u6587\u4EF6\u5FC5\u987B\u5BFC\u51FA\u56FE\u50CF\u8BF7\u6C42\u5BF9\u8C61"));
-          if (!exports2.videoRequest) return res.status(400).send(success3("\u811A\u672C\u6587\u4EF6\u5FC5\u987B\u5BFC\u51FA\u89C6\u9891\u8BF7\u6C42\u5BF9\u8C61"));
-          if (!exports2.vendor) return res.status(400).send(success3("\u811A\u672C\u6587\u4EF6\u5FC5\u987B\u5BFC\u51FAvendor\u5BF9\u8C61"));
+          if (!exports2) return res.status(400).send(success3("The script file must export an object"));
+          if (!exports2.textRequest) return res.status(400).send(success3("The script file must export a text request object"));
+          if (!exports2.imageRequest) return res.status(400).send(success3("The script file must export the image request object"));
+          if (!exports2.videoRequest) return res.status(400).send(success3("The script file must export the video request object"));
+          if (!exports2.vendor) return res.status(400).send(success3("The script file must export the vendor object"));
           const vendor = exports2.vendor;
           const result = vendorConfigSchema2.safeParse(vendor);
           if (!result.success) {
             const errorMsg = result.error.issues.map((e) => `${e.path.join(".")}: ${e.message}`).join("; ");
-            return res.status(400).send(error50(`vendor\u914D\u7F6E\u6821\u9A8C\u5931\u8D25: ${errorMsg}`));
+            return res.status(400).send(error50(`Vendor configuration validation failed:${errorMsg}`));
           }
           await utils_default.userSettings.updateVendorConfig(id, { models: JSON.stringify(vendor.models ?? []) });
           utils_default.vendor.writeCode(id, tsCode);
@@ -257212,7 +256775,7 @@ var init_updateCode = __esm({
           res.status(200).send(success3(result.data));
         } catch (err) {
           console.log(err);
-          res.status(400).send(error50(serializeError(err).message || "\u672A\u77E5\u9519\u8BEF"));
+          res.status(400).send(error50(serializeError(err).message || "Unknown error"));
         }
       }
     );
@@ -257220,17 +256783,17 @@ var init_updateCode = __esm({
 });
 
 // src/routes/setting/vendorConfig/updateVendorInputs.ts
-var import_express168, router168, updateVendorInputs_default;
+var import_express169, router169, updateVendorInputs_default;
 var init_updateVendorInputs = __esm({
   "src/routes/setting/vendorConfig/updateVendorInputs.ts"() {
     "use strict";
-    import_express168 = __toESM(require_express2());
+    import_express169 = __toESM(require_express2());
     init_responseFormat();
     init_middleware();
     init_utils3();
     init_zod();
-    router168 = import_express168.default.Router();
-    updateVendorInputs_default = router168.post(
+    router169 = import_express169.default.Router();
+    updateVendorInputs_default = router169.post(
       "/",
       validateFields({
         id: external_exports.string(),
@@ -257240,24 +256803,24 @@ var init_updateVendorInputs = __esm({
         const { id, inputValues } = req.body;
         await utils_default.userSettings.updateVendorConfig(id, { inputValues: JSON.stringify(inputValues) });
         utils_default.vendor.clearModelDiscoveryCache(id);
-        res.status(200).send(success3("\u66F4\u65B0\u6210\u529F"));
+        res.status(200).send(success3("Update successful"));
       }
     );
   }
 });
 
 // src/routes/setting/vendorConfig/upVendorModel.ts
-var import_express169, router169, upVendorModel_default;
+var import_express170, router170, upVendorModel_default;
 var init_upVendorModel = __esm({
   "src/routes/setting/vendorConfig/upVendorModel.ts"() {
     "use strict";
-    import_express169 = __toESM(require_express2());
+    import_express170 = __toESM(require_express2());
     init_responseFormat();
     init_middleware();
     init_utils3();
     init_zod();
-    router169 = import_express169.default.Router();
-    upVendorModel_default = router169.post(
+    router170 = import_express170.default.Router();
+    upVendorModel_default = router170.post(
       "/",
       validateFields({
         id: external_exports.string(),
@@ -257308,22 +256871,22 @@ var init_upVendorModel = __esm({
           }
           await utils_default.userSettings.updateVendorConfig(id, { models: JSON.stringify(existingModels) });
         }
-        res.status(200).send(success3("\u66F4\u65B0\u6210\u529F"));
+        res.status(200).send(success3("Update successful"));
       }
     );
   }
 });
 
 // src/routes/task/getProject.ts
-var import_express170, router170, getProject_default2;
+var import_express171, router171, getProject_default2;
 var init_getProject2 = __esm({
   "src/routes/task/getProject.ts"() {
     "use strict";
-    import_express170 = __toESM(require_express2());
+    import_express171 = __toESM(require_express2());
     init_utils3();
     init_responseFormat();
-    router170 = import_express170.default.Router();
-    getProject_default2 = router170.post("/", async (req, res) => {
+    router171 = import_express171.default.Router();
+    getProject_default2 = router171.post("/", async (req, res) => {
       const list2 = await utils_default.db("o_project").select("id", "name").groupBy("name");
       const data = list2.filter((item) => item.name);
       res.status(200).send(success3(data));
@@ -257332,17 +256895,17 @@ var init_getProject2 = __esm({
 });
 
 // src/routes/task/getTaskApi.ts
-var import_express171, router171, getTaskApi_default;
+var import_express172, router172, getTaskApi_default;
 var init_getTaskApi = __esm({
   "src/routes/task/getTaskApi.ts"() {
     "use strict";
-    import_express171 = __toESM(require_express2());
+    import_express172 = __toESM(require_express2());
     init_utils3();
     init_responseFormat();
     init_middleware();
     init_zod();
-    router171 = import_express171.default.Router();
-    getTaskApi_default = router171.post(
+    router172 = import_express172.default.Router();
+    getTaskApi_default = router172.post(
       "/",
       validateFields({
         state: external_exports.string().optional().nullable(),
@@ -257383,15 +256946,15 @@ var init_getTaskApi = __esm({
 });
 
 // src/routes/task/getTaskCategories.ts
-var import_express172, router172, getTaskCategories_default;
+var import_express173, router173, getTaskCategories_default;
 var init_getTaskCategories = __esm({
   "src/routes/task/getTaskCategories.ts"() {
     "use strict";
-    import_express172 = __toESM(require_express2());
+    import_express173 = __toESM(require_express2());
     init_utils3();
     init_responseFormat();
-    router172 = import_express172.default.Router();
-    getTaskCategories_default = router172.post("/", async (req, res) => {
+    router173 = import_express173.default.Router();
+    getTaskCategories_default = router173.post("/", async (req, res) => {
       const list2 = await utils_default.db("o_tasks").select("taskClass").groupBy("taskClass");
       const data = list2.filter((item) => item.taskClass);
       res.status(200).send(success3(data));
@@ -257400,17 +256963,17 @@ var init_getTaskCategories = __esm({
 });
 
 // src/routes/task/taskDetails.ts
-var import_express173, router173, taskDetails_default;
+var import_express174, router174, taskDetails_default;
 var init_taskDetails = __esm({
   "src/routes/task/taskDetails.ts"() {
     "use strict";
-    import_express173 = __toESM(require_express2());
+    import_express174 = __toESM(require_express2());
     init_utils3();
     init_responseFormat();
     init_middleware();
     init_zod();
-    router173 = import_express173.default.Router();
-    taskDetails_default = router173.post(
+    router174 = import_express174.default.Router();
+    taskDetails_default = router174.post(
       "/",
       validateFields({
         taskId: external_exports.number()
@@ -257425,15 +256988,15 @@ var init_taskDetails = __esm({
 });
 
 // src/routes/test/test.ts
-var import_express174, import_fs17, router174, test_default;
+var import_express175, import_fs17, router175, test_default;
 var init_test = __esm({
   "src/routes/test/test.ts"() {
     "use strict";
-    import_express174 = __toESM(require_express2());
+    import_express175 = __toESM(require_express2());
     init_utils3();
     import_fs17 = __toESM(require("fs"));
-    router174 = import_express174.default.Router();
-    test_default = router174.get("/", async (req, res) => {
+    router175 = import_express175.default.Router();
+    test_default = router175.get("/", async (req, res) => {
       return res.send("ok");
       const test2 = await utils_default.db("o_vendorConfig").select("*");
       import_fs17.default.writeFileSync("test.json", JSON.stringify(test2, null, 2));
@@ -257487,6 +257050,7 @@ var init_router = __esm({
     init_updateProject();
     init_login();
     init_logout();
+    init_register();
     init_getModelDetail();
     init_getModelList();
     init_addNovel();
@@ -257662,6 +257226,7 @@ var init_router = __esm({
       app2.use("/api/general/updateProject", updateProject_default);
       app2.use("/api/login/login", login_default);
       app2.use("/api/login/logout", logout_default);
+      app2.use("/api/login/register", register_default);
       app2.use("/api/modelSelect/getModelDetail", getModelDetail_default);
       app2.use("/api/modelSelect/getModelList", getModelList_default);
       app2.use("/api/novel/addNovel", addNovel_default);
@@ -257815,29 +257380,29 @@ module.exports = __toCommonJS(app_exports);
 // src/err.ts
 init_serialize_error();
 process.on("unhandledRejection", (reason, promise3) => {
-  console.error("[\u672A\u5904\u7406\u7684 Promise \u62D2\u7EDD]");
+  console.error("[Unhandled Promise rejection]");
   if (reason instanceof Error) {
-    console.error("\u9519\u8BEF\u540D\u79F0:", reason.name);
-    console.error("\u9519\u8BEF\u6D88\u606F:", reason.message);
-    console.error("\u5806\u6808\u4FE1\u606F:", reason.stack);
-    console.error("\u5E8F\u5217\u5316\u8BE6\u60C5:", JSON.stringify(serializeError(reason), null, 2));
+    console.error("Error name:", reason.name);
+    console.error("Error message:", reason.message);
+    console.error("Stack information:", reason.stack);
+    console.error("Serialization details:", JSON.stringify(serializeError(reason), null, 2));
   } else {
-    console.error("\u539F\u56E0:", reason);
-    console.error("\u7C7B\u578B:", typeof reason);
+    console.error("Cause:", reason);
+    console.error("Type:", typeof reason);
     try {
       console.error("JSON:", JSON.stringify(reason, null, 2));
     } catch {
-      console.error("(\u65E0\u6CD5\u5E8F\u5217\u5316)");
+      console.error("(Unable to serialize)");
     }
   }
   console.error("Promise:", promise3);
 });
 process.on("uncaughtException", (error71) => {
-  console.error("[\u672A\u6355\u83B7\u7684\u5F02\u5E38]");
-  console.error("\u9519\u8BEF\u540D\u79F0:", error71.name);
-  console.error("\u9519\u8BEF\u6D88\u606F:", error71.message);
-  console.error("\u5806\u6808\u4FE1\u606F:", error71.stack);
-  console.error("\u5E8F\u5217\u5316\u8BE6\u60C5:", JSON.stringify(serializeError(error71), null, 2));
+  console.error("[Uncaught Exception]");
+  console.error("Error name:", error71.name);
+  console.error("Error message:", error71.message);
+  console.error("Stack information:", error71.stack);
+  console.error("Serialization details:", JSON.stringify(serializeError(error71), null, 2));
 });
 
 // src/env.ts
@@ -257851,11 +257416,11 @@ var env = process.env.NODE_ENV;
 if (!env) {
   if (isElectron) process.env.NODE_ENV = "prod";
   else process.env.NODE_ENV = "dev";
-  console.log(`[\u73AF\u5883\u53D8\u91CF\uFF1A${process.env.NODE_ENV}]`);
+  console.log(`[Environment variables:${process.env.NODE_ENV}]`);
 }
 
 // src/app.ts
-var import_express175 = __toESM(require_express2());
+var import_express176 = __toESM(require_express2());
 
 // node_modules/socket.io/wrapper.mjs
 var import_dist = __toESM(require_dist3(), 1);
@@ -257954,17 +257519,17 @@ init_dist22();
 init_zod();
 var DEFAULTS = {
   messagesPerSummary: 3,
-  // 每累积多少条message触发一次summary生成
+  // How many messages accumulate before a summary is generated?
   summaryMaxLength: 500,
-  // summary最大字符长度
+  // Maximum character length of summary
   shortTermLimit: 5,
-  // get()返回的近期未总结message条数
+  // The number of recent unsummarized messages returned by get()
   summaryLimit: 10,
-  // get()返回的summary条数
+  // The number of summary entries returned by get()
   ragLimit: 3,
-  // get()向量相似搜索返回的message条数
+  // The number of message entries returned by the get() vector similarity search
   deepRetrieveSummaryLimit: 5
-  // deepRetrieve()向量召回summary的条数
+  // The number of summary entries recalled by deepRetrieve() vector search
 };
 function vectorSearch(rows, queryEmbedding, limit) {
   return rows.map((row) => {
@@ -257982,7 +257547,7 @@ var Memory = class {
   async generateSummary(contents) {
     const { summaryMaxLength } = await this.getConfigData({ summaryMaxLength: DEFAULTS.summaryMaxLength });
     const { text: text2 } = await utils_default.Ai.Text(this.agentType).invoke({
-      system: `\u4F60\u662F\u4E00\u4E2A\u8BB0\u5FC6\u538B\u7F29\u52A9\u624B\u3002\u8BF7\u5C06\u4EE5\u4E0B\u591A\u6761\u8BB0\u5FC6\u5185\u5BB9\u538B\u7F29\u4E3A\u4E00\u6BB5\u7B80\u6D01\u7684\u6458\u8981\uFF0C\u4E0D\u8D85\u8FC7${summaryMaxLength}\u4E2A\u5B57\u7B26\u3002\u53EA\u8F93\u51FA\u6458\u8981\u5185\u5BB9\uFF0C\u4E0D\u8981\u52A0\u4EFB\u4F55\u524D\u7F00\u6216\u89E3\u91CA\u3002`,
+      system: `You are a memory compression assistant. Please compress the following multiple memory entries into a concise summary, no more${summaryMaxLength}characters. Output only the summary content, without any prefix or explanation.`,
       messages: [{ role: "user", content: contents.map((c, i) => `${i + 1}. ${c}`).join("\n") }]
     });
     return text2.slice(0, Number(summaryMaxLength));
@@ -257990,11 +257555,8 @@ var Memory = class {
   async judgeSummaryRelevance(keyword, summaries) {
     const list2 = summaries.map((s) => `[${s.id}] ${s.content}`).join("\n");
     const { text: text2 } = await utils_default.Ai.Text(this.agentType).invoke({
-      system: '\u4F60\u662F\u4E00\u4E2A\u4FE1\u606F\u68C0\u7D22\u52A9\u624B\u3002\u7528\u6237\u4F1A\u7ED9\u4F60\u4E00\u4E2A\u5173\u952E\u8BCD\u548C\u4E00\u7EC4\u6458\u8981\uFF0C\u8BF7\u5224\u65AD\u54EA\u4E9B\u6458\u8981\u53EF\u80FD\u5305\u542B\u4E0E\u5173\u952E\u8BCD\u76F8\u5173\u7684\u8BE6\u7EC6\u4FE1\u606F\u3002\u53EA\u8FD4\u56DE\u76F8\u5173\u6458\u8981\u7684id\u5217\u8868\uFF0C\u7528JSON\u6570\u7EC4\u683C\u5F0F\uFF0C\u4F8B\u5982 ["id1","id2"]\u3002\u4E0D\u8981\u89E3\u91CA\u3002',
-      messages: [{ role: "user", content: `\u5173\u952E\u8BCD: ${keyword}
-
-\u6458\u8981\u5217\u8868:
-${list2}` }]
+      system: 'You are an information retrieval assistant. The user will give you a keyword and a set of summaries. Determine which summaries may contain detailed information related to the keyword. Return only the list of IDs of relevant summaries in JSON array format, for example ["id1","id2"]. Do not explain.',
+      messages: [{ role: "user", content: `Keywords:${keyword}Summary list:{list}` }]
     });
     try {
       const ids = JSON.parse(text2);
@@ -258097,21 +257659,21 @@ ${list2}` }]
     const relevantSummaries = topSummaries.filter((s) => relevantIds.includes(s.id));
     const messageIds = relevantSummaries.flatMap((s) => JSON.parse(s.relatedMessageIds || "[]"));
     if (messageIds.length === 0) return [];
-    const messages = await utils_default.db("memories").whereIn("id", messageIds).orderBy("createTime", "asc");
-    return messages.map((m) => ({ id: m.id, content: m.content, createTime: m.createTime }));
+    const messages2 = await utils_default.db("memories").whereIn("id", messageIds).orderBy("createTime", "asc");
+    return messages2.map((m) => ({ id: m.id, content: m.content, createTime: m.createTime }));
   }
   getTools() {
     return {
       deepRetrieve: tool({
-        description: "\u6DF1\u5EA6\u68C0\u7D22\u8BB0\u5FC6\uFF1A\u5F53\u4F60\u9700\u8981\u56DE\u5FC6\u4E0E\u67D0\u4E2A\u5173\u952E\u8BCD\u76F8\u5173\u7684\u8BE6\u7EC6\u5386\u53F2\u4FE1\u606F\u65F6\u4F7F\u7528\u6B64\u5DE5\u5177",
+        description: "Deep memory retrieval: Use this tool when you need to recall detailed historical information related to a specific keyword",
         inputSchema: jsonSchema(
           external_exports.object({
-            keyword: external_exports.string().describe("\u8981\u68C0\u7D22\u7684\u5173\u952E\u8BCD")
+            keyword: external_exports.string().describe("Keywords to search")
           }).toJSONSchema()
         ),
         execute: async ({ keyword }) => {
           const results = await this.deepRetrieve(keyword);
-          if (results.length === 0) return { found: false, message: "\u672A\u627E\u5230\u76F8\u5173\u8BB0\u5FC6" };
+          if (results.length === 0) return { found: false, message: "No relevant memories found" };
           return { found: true, memories: results.map((r) => r.content) };
         }
       })
@@ -258138,7 +257700,7 @@ function ensureNonEmptyBody(body, fallback) {
 function parseFrontmatter(content) {
   const match = content.match(/^\uFEFF?---[ \t]*\r?\n([\s\S]*?)\r?\n---[ \t]*(?:\r?\n|$)/);
   if (!match?.[1]) {
-    throw new Error(`\u6280\u80FD\u6587\u4EF6\u7F3A\u5C11\u6709\u6548\u7684 frontmatter\uFF0C\u786E\u4FDD\u4EE5 --- \u5305\u88F9\u5E76\u5305\u542B name \u548C description \u5B57\u6BB5\u3002${content}`);
+    throw new Error(`The skill file is missing valid frontmatter. Ensure it is wrapped in --- and includes the name and description fields.${content}`);
   }
   const result = {};
   const lines = match[1].split(/\r?\n/);
@@ -258185,7 +257747,7 @@ function parseFrontmatter(content) {
     result[key] = unquoted;
   }
   if (!result.name || !result.description) {
-    throw new Error(`\u6280\u80FD\u6587\u4EF6\u7F3A\u5C11\u5FC5\u8981\u5B57\u6BB5: name \u6216 description\uFF0C\u786E\u4FDD frontmatter \u5305\u542B\u8FD9\u4E24\u4E2A\u5B57\u6BB5\u3002${content}`);
+    throw new Error(`The skill file is missing required fields: name or description. Ensure the frontmatter includes both fields.${content}`);
   }
   return { name: result.name, description: result.description };
 }
@@ -258196,34 +257758,34 @@ function createSkillTools(skills, skillPaths, rootDir = getPath_default("skills"
   const skillMap = new Map(skillPaths.mainSkill.map((s) => [s.name, s]));
   return {
     activate_skill: tool({
-      description: `\u6FC0\u6D3B\u4E00\u4E2A\u6280\u80FD\uFF0C\u52A0\u8F7D\u5176\u5B8C\u6574\u6307\u4EE4\u548C\u6346\u7ED1\u8D44\u6E90\u5217\u8868\u5230\u4E0A\u4E0B\u6587\u3002\u53EF\u7528\u6280\u80FD\uFF1A${skillNames.join(", ")}`,
+      description: `Activate a skill, loading its full instructions and bundled resource list into the context. Available skills:${skillNames.join(", ")}`,
       inputSchema: jsonSchema(
         external_exports.object({
-          name: external_exports.enum(skillNames).describe("\u8981\u6FC0\u6D3B\u7684\u6280\u80FD\u540D\u79F0")
+          name: external_exports.enum(skillNames).describe("Name of the skill to be activated")
         }).toJSONSchema()
       ),
       execute: async ({ name: name28 }) => {
         if (activated.has(name28)) {
-          console.log(`\u26A1[\u4E3B\u6280\u80FD] \u2139\uFE0F \u6280\u80FD "${name28}" \u5DF2\u6FC0\u6D3B\uFF0C\u8DF3\u8FC7\u91CD\u590D\u6CE8\u5165`);
-          return { alreadyActive: true, message: `\u6280\u80FD "${name28}" \u5DF2\u6FC0\u6D3B\uFF0C\u65E0\u9700\u91CD\u590D\u52A0\u8F7D` };
+          console.log(`\u26A1[Main Skill] \u2139\uFE0F Skill "${name28}Activated, skipping duplicate injection`);
+          return { alreadyActive: true, message: `Skill${name28}Activated, no need to reload` };
         }
         const matched = skillMap.get(name28);
-        if (!matched) return { error: `\u672A\u627E\u5230\u6280\u80FD "${name28}"` };
+        if (!matched) return { error: `Skill " not found${name28}"` };
         let raw = "";
         try {
           raw = await fs10.promises.readFile(matched.path, "utf-8");
-          console.log(`\u26A1[\u4E3B\u6280\u80FD] \u2713 \u5DF2\u8BFB\u53D6\u4E3B\u6280\u80FD\u6587\u4EF6\uFF1A ${matched.path}\uFF08${raw.length} \u5B57\u7B26\uFF09`);
+          console.log(`\u26A1[Main Skill] \u2713 Main skill file has been read:${matched.path}\uFF08${raw.length}character)`);
         } catch (error71) {
-          console.log(`\u26A1[\u4E3B\u6280\u80FD] \u2717 \u8BFB\u53D6\u5931\u8D25\uFF1A\u672A\u627E\u5230\u6587\u4EF6 "${matched.path}"`);
+          console.log(`\u26A1[Main Skill] \u2717 Read failed: File " not found${matched.path}"`);
         }
         activated.add(name28);
-        console.log(`\u26A1[\u4E3B\u6280\u80FD] \u2713 \u6280\u80FD "${name28}" \u5DF2\u6FC0\u6D3B`);
-        const body = ensureNonEmptyBody(raw.replace(/^---\r?\n[\s\S]*?\r?\n---\r?\n?/, ""), "\u8BE5\u6280\u80FD\u6587\u4EF6\u65E0\u6B63\u6587\u5185\u5BB9\u3002");
+        console.log(`\u26A1[Main Skill] \u2713 Skill "${name28}"Activated`);
+        const body = ensureNonEmptyBody(raw.replace(/^---\r?\n[\s\S]*?\r?\n---\r?\n?/, ""), "This skill file has no body content.");
         let content = "";
         content = `<skill_content name="${name28}">
 `;
         content += body + "\n\n";
-        content += "\u4F7F\u7528 read_skill_file \u5DE5\u5177\u8BFB\u53D6\u8D44\u6E90\u6587\u4EF6\u3002\n";
+        content += "Use the read_skill_file tool to read the resource file.";
         if (skillPaths.secondarySkills.length > 0) {
           content += "\n<skill_resources>\n";
           for (const path33 of skillPaths.secondarySkills) {
@@ -258237,37 +257799,37 @@ function createSkillTools(skills, skillPaths, rootDir = getPath_default("skills"
       }
     }),
     read_skill_file: tool({
-      description: "\u8BFB\u53D6\u5DF2\u6FC0\u6D3B\u6280\u80FD\u76EE\u5F55\u4E0B\u7684\u8D44\u6E90\u6587\u4EF6\u3002\u4F20\u5165 activate_skill \u8FD4\u56DE\u7684 skill_resources \u4E2D\u7684\u6587\u4EF6\u8DEF\u5F84\u3002",
+      description: "Read the resource files under the directory of the activated skill. Pass in the file paths from the skill_resources returned by activate_skill.",
       inputSchema: jsonSchema(
         external_exports.object({
-          filePath: external_exports.string().describe("\u8D44\u6E90\u6587\u4EF6\u7684\u76F8\u5BF9\u8DEF\u5F84\uFF0C\u6765\u81EA activate_skill \u8FD4\u56DE\u7684 skill_resources")
+          filePath: external_exports.string().describe("The relative path of the resource file, from the skill_resources returned by activate_skill")
         }).toJSONSchema()
       ),
       execute: async ({ filePath }) => {
         const normalizedInputPath = toUnixPath(filePath).trim();
         if (!normalizedInputPath) {
-          console.log(`\u{1F4D6}[\u6280\u6CD5\u6587\u4EF6] \u2717 filePath \u4E0D\u80FD\u4E3A\u7A7A`);
-          return { error: "filePath \u4E0D\u80FD\u4E3A\u7A7A" };
+          console.log(`\u{1F4D6}[Technique File] \u2717 filePath cannot be empty`);
+          return { error: "filePath cannot be empty" };
         }
         const fullPath = import_path9.default.resolve(import_path9.default.join(skillsRootDir, normalizedInputPath));
         if (!(fullPath === skillsRootDir || isPathInside(fullPath, skillsRootDir))) {
-          console.log(`\u{1F4D6}[\u6280\u6CD5\u6587\u4EF6] \u2717 \u8DEF\u5F84\u8D8A\u754C\u5DF2\u62E6\u622A\uFF1A"${filePath}" \u8D85\u51FA\u6280\u80FD\u76EE\u5F55\u8303\u56F4`);
+          console.log(`\u{1F4D6}[Technique File] \u2717 Path out of bounds has been blocked:${filePath}Exceeds the skill directory scope`);
           return { error: "Access denied: path is outside skill directory" };
         }
         let body = "";
         try {
           body = await fs10.promises.readFile(fullPath, "utf-8");
-          console.log(`\u{1F4D6}[\u6280\u6CD5\u6587\u4EF6] \u2713 \u5DF2\u8BFB\u53D6\u6587\u4EF6\uFF1A ${filePath}\uFF08${body.length} \u5B57\u7B26\uFF09`);
+          console.log(`\u{1F4D6}[Technique File] \u2713 File read:${filePath}\uFF08${body.length}character)`);
         } catch {
-          console.log(`\u{1F4D6}[\u6280\u6CD5\u6587\u4EF6] \u2717 \u8BFB\u53D6\u5931\u8D25\uFF1A\u672A\u627E\u5230\u6587\u4EF6 "${filePath}"`);
+          console.log(`\u{1F4D6}[Technique File] \u2717 Read failed: File not found "${filePath}"`);
           return { error: `File not found: ${filePath}` };
         }
-        const safeBody = ensureNonEmptyBody(body, "\u8BE5\u8D44\u6E90\u6587\u4EF6\u4E3A\u7A7A\u3002");
+        const safeBody = ensureNonEmptyBody(body, "This resource file is empty.");
         let content = "";
         content = `<skill_content>
 `;
         content += safeBody + "\n\n";
-        content += "\u53EF\u4EE5\u4F7F\u7528 read_skill_file \u5DE5\u5177\u8BFB\u53D6\u8D44\u6E90\u6587\u4EF6\u3002\n";
+        content += "You can use the read_skill_file tool to read resource files.";
         if (skillPaths.tertiarySkills.length > 0) {
           content += "\n<skill_resources>\n";
           for (const path33 of skillPaths.tertiarySkills) {
@@ -258297,49 +257859,49 @@ init_zod();
 init_utils3();
 init_derivativeAssetImageGeneration();
 var deriveAssetSchema = external_exports.object({
-  id: external_exports.number().describe("\u884D\u751F\u8D44\u4EA7ID,\u5982\u679C\u65B0\u589E\u5219\u4E3A\u7A7A"),
-  assetsId: external_exports.number().describe("\u5173\u8054\u7684\u8D44\u4EA7ID"),
-  prompt: external_exports.string().describe("\u751F\u6210\u63D0\u793A\u8BCD"),
-  name: external_exports.string().describe("\u884D\u751F\u8D44\u4EA7\u540D\u79F0"),
-  desc: external_exports.string().describe("\u884D\u751F\u8D44\u4EA7\u63CF\u8FF0"),
-  src: external_exports.string().nullable().describe("\u884D\u751F\u8D44\u4EA7\u8D44\u6E90\u8DEF\u5F84"),
-  state: external_exports.enum(["\u672A\u751F\u6210", "\u751F\u6210\u4E2D", "\u5DF2\u5B8C\u6210", "\u751F\u6210\u5931\u8D25"]).describe("\u884D\u751F\u8D44\u4EA7\u751F\u6210\u72B6\u6001"),
-  type: external_exports.enum(["role", "tool", "scene", "clip"]).describe("\u884D\u751F\u8D44\u4EA7\u7C7B\u578B")
+  id: external_exports.number().describe("Derived Asset ID, empty if newly added"),
+  assetsId: external_exports.number().describe("Associated asset ID"),
+  prompt: external_exports.string().describe("Generate a prompt"),
+  name: external_exports.string().describe("Derivative Asset Name"),
+  desc: external_exports.string().describe("Derivative Asset Description"),
+  src: external_exports.string().nullable().describe("Derived asset resource path"),
+  state: external_exports.enum(["Not generated", "Generating", "Completed", "Generation failed"]).describe("Derived asset generation status"),
+  type: external_exports.enum(["role", "tool", "scene", "clip"]).describe("Derivative asset type")
 });
 var assetItemSchema = external_exports.object({
-  id: external_exports.number().describe("\u8D44\u4EA7\u552F\u4E00\u6807\u8BC6"),
-  name: external_exports.string().describe("\u8D44\u4EA7\u540D\u79F0"),
-  type: external_exports.enum(["role", "tool", "scene", "clip"]).describe("\u8D44\u4EA7\u7C7B\u578B"),
-  prompt: external_exports.string().describe("\u751F\u6210\u63D0\u793A\u8BCD"),
-  desc: external_exports.string().describe("\u8D44\u4EA7\u63CF\u8FF0"),
-  derive: external_exports.array(deriveAssetSchema).describe("\u884D\u751F\u8D44\u4EA7\u5217\u8868")
+  id: external_exports.number().describe("Asset Unique Identifier"),
+  name: external_exports.string().describe("Asset Name"),
+  type: external_exports.enum(["role", "tool", "scene", "clip"]).describe("Asset Type"),
+  prompt: external_exports.string().describe("Generate a prompt"),
+  desc: external_exports.string().describe("Asset Description"),
+  derive: external_exports.array(deriveAssetSchema).describe("List of derivative assets")
 });
 var storyboardSchema = external_exports.object({
-  id: external_exports.number().describe("\u5206\u955CID\uFF0C\u5FC5\u987B\u4E3A\u771F\u5B9Eid"),
-  duration: external_exports.number().describe("\u6301\u7EED\u65F6\u957F(\u79D2)"),
-  prompt: external_exports.string().describe("\u751F\u6210\u63D0\u793A\u8BCD"),
-  associateAssetsIds: external_exports.array(external_exports.number()).describe("\u5173\u8054\u8D44\u4EA7ID\u5217\u8868"),
-  src: external_exports.string().nullable().describe("\u5206\u955C\u8D44\u6E90\u8DEF\u5F84"),
-  index: external_exports.number().nullable().optional().describe("\u5206\u955C\u6392\u5E8F\u5B57\u6BB5")
+  id: external_exports.number().describe("Storyboard ID, must be a real ID"),
+  duration: external_exports.number().describe("Duration (seconds)"),
+  prompt: external_exports.string().describe("Generate a prompt"),
+  associateAssetsIds: external_exports.array(external_exports.number()).describe("List of associated asset IDs"),
+  src: external_exports.string().nullable().describe("Storyboard resource path"),
+  index: external_exports.number().nullable().optional().describe("Storyboard sorting field")
 });
 var workbenchDataSchema = external_exports.object({
-  name: external_exports.string().describe("\u9879\u76EE\u540D\u79F0"),
-  duration: external_exports.string().describe("\u89C6\u9891\u65F6\u957F"),
-  resolution: external_exports.string().describe("\u5206\u8FA8\u7387"),
-  fps: external_exports.string().describe("\u5E27\u7387"),
-  cover: external_exports.string().optional().describe("\u5C01\u9762\u56FE\u7247\u8DEF\u5F84"),
-  gradient: external_exports.string().optional().describe("\u6E10\u53D8\u8272\u914D\u7F6E")
+  name: external_exports.string().describe("Project Name"),
+  duration: external_exports.string().describe("Video duration"),
+  resolution: external_exports.string().describe("Resolution"),
+  fps: external_exports.string().describe("Frame rate"),
+  cover: external_exports.string().optional().describe("Cover image path"),
+  gradient: external_exports.string().optional().describe("Gradient color configuration")
 });
 var posterItemSchema = external_exports.object({
-  id: external_exports.number().describe("\u6D77\u62A5ID"),
-  image: external_exports.string().describe("\u6D77\u62A5\u56FE\u7247\u8DEF\u5F84")
+  id: external_exports.number().describe("Poster ID"),
+  image: external_exports.string().describe("Poster image path")
 });
 var flowDataSchema = external_exports.object({
-  script: external_exports.string().describe("\u5267\u672C\u5185\u5BB9"),
-  scriptPlan: external_exports.string().describe("\u62CD\u6444\u8BA1\u5212"),
-  assets: external_exports.array(assetItemSchema).describe("\u884D\u751F\u8D44\u4EA7"),
-  storyboardTable: external_exports.string().describe("\u5206\u955C\u8868"),
-  storyboard: external_exports.array(storyboardSchema).describe("\u5206\u955C\u9762\u677F")
+  script: external_exports.string().describe("Script content"),
+  scriptPlan: external_exports.string().describe("Shooting Plan"),
+  assets: external_exports.array(assetItemSchema).describe("Derivative assets"),
+  storyboardTable: external_exports.string().describe("Storyboard"),
+  storyboard: external_exports.array(storyboardSchema).describe("Storyboard Panel")
 });
 var keySchema = external_exports.enum(Object.keys(flowDataSchema.shape));
 var flowDataKeyLabels = Object.fromEntries(
@@ -258363,46 +257925,46 @@ var tools_default = (toolCpnfig) => {
   const workMap = {};
   const tools = {
     get_flowData: tool({
-      description: "\u83B7\u53D6\u5DE5\u4F5C\u533A\u6570\u636E",
+      description: "Get workspace data",
       inputSchema: jsonSchema(
         external_exports.object({
-          key: keySchema.describe("\u6570\u636Ekey")
+          key: keySchema.describe("Data key")
         }).toJSONSchema()
       ),
       execute: async ({ key }) => {
-        const thinking = msg.thinking(`\u6B63\u5728\u83B7\u53D6${flowDataKeyLabels[key]}\u5DE5\u4F5C\u533A\u6570\u636E...`);
+        const thinking = msg.thinking(`Fetching${flowDataKeyLabels[key]}Workspace data...`);
         const flowData = await new Promise((resolve3) => socket.emit("getFlowData", { key }, (res) => resolve3(res)));
-        thinking.appendText(`\u83B7\u53D6\u5230${flowDataKeyLabels[key]}:
+        thinking.appendText(`Obtained${flowDataKeyLabels[key]}:
 ` + JSON.stringify(flowData[key], null, 2));
-        thinking.updateTitle(`\u83B7\u53D6${flowDataKeyLabels[key]}\u5B8C\u6210`);
+        thinking.updateTitle(`Get${flowDataKeyLabels[key]}Done`);
         thinking.complete();
         if (workMap[key] && JSON.stringify(workMap[key]) === JSON.stringify(flowData[key])) {
-          console.info(`[tools] get_flowData: ${flowDataKeyLabels[key]}\u6570\u636E\u672A\u53D8\u5316\uFF0C\u65E0\u9700\u66F4\u65B0`);
-          return `${flowDataKeyLabels[key]}\u6570\u636E\u672A\u53D8\u5316\uFF0C\u65E0\u9700\u66F4\u65B0`;
+          console.info(`[tools] get_flowData: ${flowDataKeyLabels[key]}The data has not changed, so no update is needed.`);
+          return `${flowDataKeyLabels[key]}The data has not changed, so no update is needed.`;
         }
         workMap[key] = flowData[key];
         return flowData[key];
       }
     }),
     add_deriveAsset: tool({
-      description: "\u65B0\u589E\u6216\u66F4\u65B0\u884D\u751F\u8D44\u4EA7",
+      description: "Add or update derivative assets",
       inputSchema: jsonSchema(
         external_exports.object({
-          assetsId: external_exports.number().describe("\u5173\u8054\u7684\u8D44\u4EA7ID"),
-          id: external_exports.number().nullable().describe("\u884D\u751F\u8D44\u4EA7ID,\u5982\u679C\u65B0\u589E\u5219\u4E3A\u7A7A"),
-          name: external_exports.string().describe("\u884D\u751F\u8D44\u4EA7\u540D\u79F0"),
-          desc: external_exports.string().describe("\u884D\u751F\u8D44\u4EA7\u63CF\u8FF0")
+          assetsId: external_exports.number().describe("Associated asset ID"),
+          id: external_exports.number().nullable().describe("Derived Asset ID, empty if newly added"),
+          name: external_exports.string().describe("Derivative Asset Name"),
+          desc: external_exports.string().describe("Derivative Asset Description")
         }).toJSONSchema()
       ),
       execute: async (raw) => {
         const idRaw = raw.id;
         const normalizedId = idRaw === "null" || idRaw === "" || idRaw === void 0 ? null : idRaw;
         const deriveAsset = { ...raw, id: normalizedId };
-        const thinking = msg.thinking("\u6B63\u5728\u64CD\u4F5C\u8D44\u4EA7...");
+        const thinking = msg.thinking("Operating assets...");
         const { projectId, scriptId } = resTool.data;
         const startTime = Date.now();
         const parentAssets = await utils_default.db("o_assets").where("id", deriveAsset.assetsId).select("id", "type").first();
-        if (!parentAssets) return "\u5173\u8054\u7684\u8D44\u4EA7\u4E0D\u5B58\u5728";
+        if (!parentAssets) return "The associated asset does not exist";
         const data = {
           id: deriveAsset.id ?? void 0,
           assetsId: deriveAsset.assetsId,
@@ -258414,85 +257976,84 @@ var tools_default = (toolCpnfig) => {
         };
         if (deriveAsset.id) {
           await utils_default.db("o_assets").where("id", deriveAsset.id).update(data);
-          thinking.appendText(`\u5DF2\u66F4\u65B0\u884D\u751F\u8D44\u4EA7\uFF0CID: ${deriveAsset.id}
+          thinking.appendText(`Updated derivative asset, ID:${deriveAsset.id}
 `);
         } else {
           const [insertedId] = await utils_default.db("o_assets").insert(data);
           data.id = insertedId;
           await utils_default.db("o_scriptAssets").insert({ scriptId, assetId: insertedId });
-          thinking.appendText(`\u5DF2\u65B0\u589E\u884D\u751F\u8D44\u4EA7\uFF0CID: ${insertedId}
+          thinking.appendText(`A derivative asset has been added, ID:${insertedId}
 `);
         }
         const res = await new Promise((resolve3) => socket.emit("addDeriveAsset", data, (res2) => resolve3(res2)));
-        thinking.updateTitle("\u8D44\u4EA7\u64CD\u4F5C\u5B8C\u6210");
+        thinking.updateTitle("Asset operation completed");
         thinking.complete();
-        return res ?? "\u64CD\u4F5C\u6210\u529F";
+        return res ?? "Operation successful";
       }
     }),
     del_deriveAsset: tool({
-      description: "\u5220\u9664\u884D\u751F\u8D44\u4EA7",
+      description: "Delete derivative assets",
       inputSchema: jsonSchema(
         external_exports.object({
-          assetsId: external_exports.number().describe("\u5173\u8054\u7684\u8D44\u4EA7ID"),
-          id: external_exports.number().describe("\u884D\u751F\u8D44\u4EA7ID")
+          assetsId: external_exports.number().describe("Associated asset ID"),
+          id: external_exports.number().describe("Derived Asset ID")
         }).toJSONSchema()
       ),
       execute: async ({ assetsId, id }) => {
-        const thinking = msg.thinking("\u6B63\u5728\u64CD\u4F5C\u8D44\u4EA7...");
+        const thinking = msg.thinking("Operating assets...");
         const { scriptId } = resTool.data;
         await utils_default.db("o_assets").where("id", id).del();
         await utils_default.db("o_scriptAssets").where({ scriptId, assetId: id }).del();
-        thinking.appendText(`\u5DF2\u5220\u9664\u884D\u751F\u8D44\u4EA7\uFF0CID: ${id}
+        thinking.appendText(`Deleted derivative asset, ID:${id}
 `);
         const res = await new Promise((resolve3) => socket.emit("delDeriveAsset", { assetsId, id }, (res2) => resolve3(res2)));
-        thinking.updateTitle("\u8D44\u4EA7\u64CD\u4F5C\u5B8C\u6210");
+        thinking.updateTitle("Asset operation completed");
         thinking.complete();
-        return res ?? "\u5220\u9664\u6210\u529F";
+        return res ?? "Deletion successful";
       }
     }),
     generate_deriveAsset: tool({
-      description: "\u751F\u6210\u884D\u751F\u8D44\u4EA7\u56FE\u7247",
+      description: "Generate derivative asset images",
       inputSchema: jsonSchema(
         external_exports.object({
-          ids: external_exports.array(external_exports.number()).describe("\u9700\u8981\u751F\u6210\u7684 \u884D\u751F\u8D44\u4EA7ID")
+          ids: external_exports.array(external_exports.number()).describe("Derived asset ID to be generated")
         }).toJSONSchema()
       ),
       execute: async ({ ids }) => {
-        const thinking = msg.thinking("\u6B63\u5728\u751F\u6210\u884D\u751F\u8D44\u4EA7...");
+        const thinking = msg.thinking("Generating derivative assets...");
         try {
           const { projectId, scriptId } = resTool.data;
           if (typeof projectId !== "number" || typeof scriptId !== "number") {
-            throw new Error("\u5F53\u524D\u751F\u4EA7\u4E0A\u4E0B\u6587\u7F3A\u5C11\u9879\u76EE\u6216\u5267\u672C\u4FE1\u606F");
+            throw new Error("The current production context is missing project or script information");
           }
           const result = await startDerivativeAssetImageGeneration({
             assetIds: ids,
             projectId,
             scriptId
           });
-          thinking.appendText(`\u5DF2\u63D0\u4EA4\u884D\u751F\u8D44\u4EA7\u56FE\u7247\u751F\u6210\u4EFB\u52A1:
-${JSON.stringify(result, null, 2)}
+          thinking.appendText(`Derivative asset image generation task submitted:${JSON.stringify(result, null, 2)}
 `);
-          thinking.updateTitle("\u884D\u751F\u8D44\u4EA7\u751F\u6210\u4EFB\u52A1\u5DF2\u542F\u52A8");
+          thinking.updateTitle("The derivative asset generation task has been initiated");
           thinking.complete();
-          return `\u5DF2\u542F\u52A8 ${result.length} \u4E2A\u884D\u751F\u8D44\u4EA7\u56FE\u7247\u751F\u6210\u4EFB\u52A1\uFF0C\u6700\u7EC8\u7ED3\u679C\u8BF7\u4EE5\u5DE5\u4F5C\u53F0\u72B6\u6001\u4E3A\u51C6\u3002`;
+          return `Started${result.length}For a derivative asset image generation task, the final result should be based on the workbench status.`;
         } catch (error71) {
           const message = utils_default.error(error71).message;
-          thinking.appendText("\u884D\u751F\u8D44\u4EA7\u751F\u6210\u5931\u8D25:\n" + message);
-          thinking.updateTitle("\u884D\u751F\u8D44\u4EA7\u751F\u6210\u5931\u8D25");
+          thinking.appendText("Failed to generate derivative asset:" + message);
+          thinking.updateTitle("Failed to generate derivative assets");
           thinking.complete();
-          return `\u884D\u751F\u8D44\u4EA7\u751F\u6210\u5931\u8D25\uFF1A${message}`;
+          return `Derived asset generation failed:${message}`;
         }
       }
     }),
     generate_storyboard: tool({
-      description: "\u751F\u6210\u5206\u955C\u56FE\u7247",
+      description: "Generate storyboard images",
       inputSchema: jsonSchema(
         external_exports.object({
-          ids: external_exports.array(external_exports.number()).describe("\u5FC5\u987B\u83B7\u53D6\u771F\u5B9E\u7684\u5206\u955CID\uFF0C\u652F\u6301\u6279\u91CF\u751F\u6210")
+          ids: external_exports.array(external_exports.number()).describe("You must obtain the actual storyboard ID, and batch generation is supported.")
         }).toJSONSchema()
       ),
       execute: async ({ ids }) => {
-        const thinking = msg.thinking("\u6B63\u5728\u751F\u6210\u5206\u955C...");
+        const thinking = msg.thinking("Generating storyboards...");
         socketQueue(
           () => new Promise(
             (resolve3, reject) => socket.emit("generateStoryboard", { ids }, (res) => {
@@ -258501,31 +258062,31 @@ ${JSON.stringify(result, null, 2)}
             })
           )
         ).then((res) => {
-          thinking.appendText("\u751F\u6210\u7684\u5206\u955C\u6570\u636E:\n" + JSON.stringify(res, null, 2));
-          thinking.updateTitle("\u5206\u955C\u751F\u6210\u5B8C\u6210");
+          thinking.appendText("Generated storyboard data:" + JSON.stringify(res, null, 2));
+          thinking.updateTitle("Storyboard generation complete");
           thinking.complete();
         }).catch((e) => {
-          thinking.appendText("\u5206\u955C\u751F\u6210\u5931\u8D25:\n" + utils_default.error(e).message);
-          thinking.updateTitle("\u5206\u955C\u751F\u6210\u5931\u8D25");
+          thinking.appendText("Storyboard generation failed:" + utils_default.error(e).message);
+          thinking.updateTitle("Storyboard generation failed");
           thinking.complete();
         });
-        return "\u5F00\u59CB\u751F\u6210\u5206\u955C";
+        return "Start generating storyboards";
       }
     }),
     add_flowData_storyboard: tool({
-      description: "\u65B0\u589E\u5206\u955C\u9762\u677F\u5230\u5DE5\u4F5C\u533A",
+      description: "Add a storyboard panel to the workspace",
       inputSchema: jsonSchema(
         external_exports.object({
-          videoDesc: external_exports.string().describe("\u753B\u9762\u63CF\u8FF0\u3001\u573A\u666F\u3001\u5173\u8054\u8D44\u4EA7\u540D\u79F0\u3001\u65F6\u957F\u3001\u666F\u522B\u3001\u8FD0\u955C\u3001\u89D2\u8272\u52A8\u4F5C\u3001\u60C5\u7EEA\u3001\u5149\u5F71\u6C1B\u56F4\u3001\u53F0\u8BCD\u3001\u97F3\u6548\u3001\u5173\u8054\u8D44\u4EA7ID"),
-          prompt: external_exports.string().nullable().describe("\u5206\u955C\u56FE\u7247\u63D0\u793A\u8BCD"),
-          track: external_exports.string().describe("\u5206\u7EC4"),
-          duration: external_exports.number().describe("\u89C6\u9891\u63A8\u8350\u65F6\u95F4"),
-          associateAssetsIds: external_exports.array(external_exports.number()).nullable().describe("\u8BE5\u5206\u955C\u6240\u9700\u7684\u8D44\u4EA7ID\u5217\u8868"),
-          shouldGenerateImage: external_exports.enum(["true", "false"]).describe("\u662F\u5426\u9700\u8981\u751F\u6210\u5206\u955C\u56FE\u7247")
+          videoDesc: external_exports.string().describe("Visual description, scene, related asset name, duration, shot size, camera movement, character action, emotion, lighting and atmosphere, dialogue, sound effects, related asset ID"),
+          prompt: external_exports.string().nullable().describe("Storyboard image prompt"),
+          track: external_exports.string().describe("Group"),
+          duration: external_exports.number().describe("Video recommendation time"),
+          associateAssetsIds: external_exports.array(external_exports.number()).nullable().describe("List of asset IDs required for this storyboard"),
+          shouldGenerateImage: external_exports.enum(["true", "false"]).describe("Do you need to generate storyboard images?")
         }).toJSONSchema()
       ),
       execute: async (raw) => {
-        const thinking = msg.thinking("\u6B63\u5728\u65B0\u589E \u5206\u955C\u9762\u677F \u6570\u636E...");
+        const thinking = msg.thinking("Adding storyboard panel data...");
         const data = {
           videoDesc: raw.videoDesc,
           prompt: raw.prompt,
@@ -258542,12 +258103,12 @@ ${JSON.stringify(result, null, 2)}
             })
           )
         ).then((res) => {
-          thinking.appendText("\u65B0\u589E\u7684\u5206\u955C\u6570\u636E:\n" + JSON.stringify(data, null, 2));
-          thinking.updateTitle("\u65B0\u589E\u5206\u955C\u6210\u529F");
+          thinking.appendText("Newly added storyboard data:" + JSON.stringify(data, null, 2));
+          thinking.updateTitle("Storyboard added successfully");
           thinking.complete();
         }).catch((e) => {
-          thinking.appendText("\u65B0\u589E\u7684\u5206\u955C\u6570\u636E:\n" + JSON.stringify(data, null, 2));
-          thinking.updateTitle("\u65B0\u589E\u5206\u955C\u5931\u8D25");
+          thinking.appendText("Newly added storyboard data:" + JSON.stringify(data, null, 2));
+          thinking.updateTitle("Failed to add storyboard");
           thinking.complete();
         });
         return true;
@@ -258563,21 +258124,21 @@ var import_path10 = __toESM(require("path"));
 function buildMemPrompt(mem) {
   let memoryContext = "";
   if (mem.rag.length) {
-    memoryContext += `[\u76F8\u5173\u8BB0\u5FC6]
+    memoryContext += `[Related memories]
 ${mem.rag.map((r) => r.content).join("\n")}`;
   }
   if (mem.summaries.length) {
     if (memoryContext) memoryContext += "\n\n";
-    memoryContext += `[\u5386\u53F2\u6458\u8981]
+    memoryContext += `[Historical Summary]
 ${mem.summaries.map((s, i) => `${i + 1}. ${s.content}`).join("\n")}`;
   }
   if (mem.shortTerm.length) {
     if (memoryContext) memoryContext += "\n\n";
-    memoryContext += `[\u8FD1\u671F\u5BF9\u8BDD]
+    memoryContext += `[Recent conversations]
 ${mem.shortTerm.map((m) => `${m.role}: ${m.content}`).join("\n")}`;
   }
   return `## Memory
-\u4EE5\u4E0B\u662F\u4F60\u5BF9\u7528\u6237\u7684\u8BB0\u5FC6\uFF0C\u53EF\u4F5C\u4E3A\u53C2\u8003\u4F46\u4E0D\u8981\u4E3B\u52A8\u63D0\u53CA\uFF1A
+The following is your memory of the user\uFF0CIt can be used as a reference, but do not mention it proactively.\uFF1A
 ${memoryContext}`;
 }
 async function runDecisionAI(ctx) {
@@ -258587,11 +258148,11 @@ async function runDecisionAI(ctx) {
   const skill = import_path10.default.join(utils_default.getPath("skills"), "production_agent_decision.md");
   const prompt = await fs11.promises.readFile(skill, "utf-8");
   const projectInfo = await utils_default.db("o_project").where("id", ctx.resTool.data.projectId).first();
-  if (!projectInfo) throw new Error(`\u9879\u76EE\u4E0D\u5B58\u5728\uFF0CID: ${ctx.resTool.data.projectId}`);
+  if (!projectInfo) throw new Error(`The project does not exist\uFF0CID: ${ctx.resTool.data.projectId}`);
   const [_, imageModelName] = projectInfo.imageModel.split(/:(.+)/);
   const [id, videoModelName] = projectInfo.videoModel.split(/:(.+)/);
   const models = await utils_default.vendor.getModelList(id);
-  if (!models.length) throw new Error(`\u9879\u76EE\u4F7F\u7528\u7684\u6A21\u578B\u4E0D\u5B58\u5728\uFF0CID: ${projectInfo.videoModel}`);
+  if (!models.length) throw new Error(`The model used by the project does not exist\uFF0CID: ${projectInfo.videoModel}`);
   let videoMode = "";
   try {
     videoMode = JSON.parse(projectInfo.mode ?? "");
@@ -258599,10 +258160,10 @@ async function runDecisionAI(ctx) {
     videoMode = projectInfo.mode ?? "";
   }
   const isRef = Array.isArray(videoMode) ? true : false;
-  const modelInfo = `\u9879\u76EE\u4F7F\u7528\u7684\u6A21\u578B\u5982\u4E0B\uFF1A
-\u56FE\u50CF\u6A21\u578B\uFF1A${imageModelName}
-\u89C6\u9891\u6A21\u578B\uFF1A${videoModelName}
-\u591A\u53C2\uFF1A${isRef ? "\u662F" : "\u5426"}`;
+  const modelInfo = `The models used in the project are as follows\uFF1A
+Image model\uFF1A${imageModelName}
+Video model\uFF1A{videoModelName}
+Multi-parameter\uFF1A{isRef ? "Yes" : "No"}`;
   const mem = buildMemPrompt(await memory.get(text2));
   const { fullStream } = await utils_default.Ai.Text("productionAgent:decisionAgent", ctx.thinkConfig.think, ctx.thinkConfig.thinlLevel).stream({
     messages: [
@@ -258638,13 +258199,13 @@ async function createSubAgent(parentCtx) {
     name: name28,
     memoryKey,
     tools: extraTools,
-    messages
+    messages: messages2
   }) {
     parentCtx.msg.complete();
     const subMsg = resTool.newMessage("assistant", name28);
     const { fullStream } = await utils_default.Ai.Text(key, parentCtx.thinkConfig.think, parentCtx.thinkConfig.thinlLevel).stream({
       system,
-      messages: messages ?? [{ role: "user", content: prompt }],
+      messages: messages2 ?? [{ role: "user", content: prompt }],
       abortSignal,
       tools: { ...extraTools, ...tools_default({ resTool, msg: subMsg }) }
     });
@@ -258655,19 +258216,19 @@ async function createSubAgent(parentCtx) {
         createTime: new Date(subMsg.datetime).getTime()
       });
     }
-    parentCtx.msg = resTool.newMessage("assistant", "\u89C6\u9891\u7B56\u5212");
+    parentCtx.msg = resTool.newMessage("assistant", "Video Planning");
     return fullResponse;
   }
   const promptInput = external_exports.object({
-    prompt: external_exports.string().describe("\u4EA4\u7ED9\u5B50Agent\u7684\u4EFB\u52A1\u7B80\u7EA6\u63CF\u8FF0\uFF0C100\u5B57\u4EE5\u5185")
+    prompt: external_exports.string().describe("Delegate to childAgentTask brief\uFF0C100within characters")
   }).toJSONSchema();
   const projectInfo = await utils_default.db("o_project").where("id", resTool.data.projectId).first();
-  if (!projectInfo) throw new Error(`\u9879\u76EE\u4E0D\u5B58\u5728\uFF0CID: ${resTool.data.projectId}`);
+  if (!projectInfo) throw new Error(`The project does not exist\uFF0CID: ${resTool.data.projectId}`);
   const artSkills = await createArtSkills(projectInfo?.artStyle, projectInfo?.directorManual);
   const [_, imageModelName] = projectInfo.imageModel.split(/:(.+)/);
   const [id, videoModelName] = projectInfo.videoModel.split(/:(.+)/);
   const models = await utils_default.vendor.getModelList(id);
-  if (!models.length) throw new Error(`\u9879\u76EE\u4F7F\u7528\u7684\u6A21\u578B\u4E0D\u5B58\u5728\uFF0CID: ${projectInfo.videoModel}`);
+  if (!models.length) throw new Error(`The model used by the project does not exist\uFF0CID: ${projectInfo.videoModel}`);
   let videoMode = "";
   try {
     videoMode = JSON.parse(projectInfo.mode ?? "");
@@ -258675,12 +258236,12 @@ async function createSubAgent(parentCtx) {
     videoMode = projectInfo.mode ?? "";
   }
   const isRef = Array.isArray(videoMode) ? true : false;
-  const modelInfo = `\u9879\u76EE\u4F7F\u7528\u7684\u6A21\u578B\u5982\u4E0B\uFF1A
-\u56FE\u50CF\u6A21\u578B\uFF1A${imageModelName}
-\u89C6\u9891\u6A21\u578B\uFF1A${videoModelName}
-\u591A\u53C2\uFF1A${isRef ? "\u662F" : "\u5426"}`;
+  const modelInfo = `The models used in the project are as follows\uFF1A
+Image model\uFF1A${imageModelName}
+Video model\uFF1A{videoModelName}
+Multi-parameter\uFF1A{isRef ? "Yes" : "No"}`;
   const run_sub_agent_derive_assets = tool({
-    description: "\u8FD0\u884C\u6267\u884CsubAgent\u6765\u5B8C\u6210\u884D\u751F\u8D44\u4EA7\u5206\u6790\u4E0E\u4FE1\u606F\u5199\u5165\u76F8\u5173\u4EFB\u52A1",
+    description: "RunsubAgentto complete tasks related to derivative asset analysis and information writing",
     inputSchema: jsonSchema(promptInput),
     execute: async ({ prompt }) => {
       const skill = import_path10.default.join(utils_default.getPath("skills"), "production_execution_derive_assets.md");
@@ -258689,7 +258250,7 @@ async function createSubAgent(parentCtx) {
         key: "productionAgent:deriveAssetsAgent",
         prompt,
         system: systemPrompt,
-        name: "\u6267\u884C\u5BFC\u6F14",
+        name: "Executive Director",
         memoryKey: "assistant:execution",
         messages: [
           { role: "assistant", content: artSkills.prompt + `
@@ -258701,7 +258262,7 @@ ${modelInfo}` },
     }
   });
   const run_sub_agent_generate_assets = tool({
-    description: "\u8FD0\u884C\u6267\u884CsubAgent\u6765\u5B8C\u6210\u884D\u751F\u8D44\u4EA7\u56FE\u7247\u751F\u6210\u76F8\u5173\u4EFB\u52A1",
+    description: "RunsubAgentto complete tasks related to derivative asset image generation",
     inputSchema: jsonSchema(promptInput),
     execute: async ({ prompt }) => {
       const skill = import_path10.default.join(utils_default.getPath("skills"), "production_execution_generate_assets.md");
@@ -258710,7 +258271,7 @@ ${modelInfo}` },
         key: "productionAgent:generateAssetsAgent",
         prompt,
         system: systemPrompt,
-        name: "\u6267\u884C\u5BFC\u6F14",
+        name: "Executive Director",
         memoryKey: "assistant:execution",
         messages: [
           { role: "assistant", content: artSkills.prompt + `
@@ -258722,17 +258283,17 @@ ${modelInfo}` },
     }
   });
   const run_sub_agent_director_plan = tool({
-    description: "\u8FD0\u884C\u6267\u884CsubAgent\u6765\u5B8C\u6210\u5BFC\u6F14\u89C4\u5212\u76F8\u5173\u4EFB\u52A1",
+    description: "RunsubAgentto complete tasks related to director planning",
     inputSchema: jsonSchema(promptInput),
     execute: async ({ prompt }) => {
       const skill = import_path10.default.join(utils_default.getPath("skills"), "production_execution_director_plan.md");
       const systemPrompt = await fs11.promises.readFile(skill, "utf-8");
-      const addPrompt = "\n\u4F60\u5FC5\u987B\u4F7F\u7528\u5982\u4E0BXML\u683C\u5F0F\u5199\u5165\u5DE5\u4F5C\u533A\uFF1A\n```\n<scriptPlan>\u5185\u5BB9</scriptPlan>\n```";
+      const addPrompt = " You must use the followingXMLFormat and write to workspace\uFF1A ``` <scriptPlan>Content</scriptPlan> ```";
       return runAgent({
         key: "productionAgent:directorPlanAgent",
         prompt,
         system: systemPrompt + addPrompt,
-        name: "\u6267\u884C\u5BFC\u6F14",
+        name: "Executive Director",
         memoryKey: "assistant:execution",
         messages: [
           { role: "assistant", content: artSkills.prompt + `
@@ -258744,7 +258305,7 @@ ${modelInfo}` },
     }
   });
   const run_sub_agent_storyboard_gen = tool({
-    description: "\u8FD0\u884C\u6267\u884CsubAgent\u6765\u5B8C\u6210\u5206\u955C\u56FE\u751F\u6210\u76F8\u5173\u4EFB\u52A1",
+    description: "RunsubAgentto complete tasks related to storyboard image generation",
     inputSchema: jsonSchema(promptInput),
     execute: async ({ prompt }) => {
       const skill = import_path10.default.join(utils_default.getPath("skills"), "production_execution_storyboard_gen.md");
@@ -258753,7 +258314,7 @@ ${modelInfo}` },
         key: "productionAgent:storyboardGenAgent",
         prompt,
         system: systemPrompt,
-        name: "\u6267\u884C\u5BFC\u6F14",
+        name: "Executive Director",
         memoryKey: "assistant:execution",
         messages: [
           { role: "assistant", content: artSkills.prompt + `
@@ -258766,17 +258327,17 @@ ${modelInfo}` },
   });
   const productionSkills = await useProductionSkills(projectInfo?.artStyle, projectInfo?.directorManual);
   const run_sub_agent_storyboard_panel = tool({
-    description: "\u8FD0\u884C\u6267\u884CsubAgent\u6765\u5B8C\u6210\u5206\u955C\u9762\u677F\u5199\u5165\u76F8\u5173\u4EFB\u52A1",
+    description: "RunsubAgentTo complete the storyboard panel writing-related tasks",
     inputSchema: jsonSchema(promptInput),
     execute: async ({ prompt }) => {
       const skill = import_path10.default.join(utils_default.getPath("skills"), "production_execution_storyboard_panel.md");
       const systemPrompt = await fs11.promises.readFile(skill, "utf-8");
-      const addPrompt = "\n\u4F60\u5FC5\u987B\u4F7F\u7528\u5982\u4E0BXML\u683C\u5F0F\u5199\u5165\u5DE5\u4F5C\u533A\uFF1A\n```\n<storyboardItem videoDesc='\u89C6\u9891\u63CF\u8FF0' prompt=\u63D0\u793A\u8BCD\u5185\u5BB9 track='\u5206\u7EC4' shouldGenerateImage='true/false' duration='\u89C6\u9891\u63A8\u8350\u65F6\u95F4' associateAssetsIds='[\u8BE5\u5206\u955C\u6240\u9700\u7684\u8D44\u4EA7ID\u5217\u8868]'></storyboardItem>\n```";
+      const addPrompt = " You must use the followingXMLFormat and write to workspace\uFF1A ``` <storyboardItem videoDesc='Video Description' prompt=Prompt Content track='Group' shouldGenerateImage='true/false' duration='Video Recommendation Time' associateAssetsIds='[Assets required for this storyboardIDList]'></storyboardItem> ```";
       return runAgent({
         key: "productionAgent:storyboardPanelAgent",
         prompt,
         system: systemPrompt + addPrompt,
-        name: "\u6267\u884C\u5BFC\u6F14",
+        name: "Executive Director",
         memoryKey: "assistant:execution",
         messages: [
           { role: "assistant", content: productionSkills.prompt + `
@@ -258788,17 +258349,17 @@ ${modelInfo}` },
     }
   });
   const run_sub_agent_storyboard_table = tool({
-    description: "\u8FD0\u884C\u6267\u884CsubAgent\u6765\u5B8C\u6210\u5206\u955C\u8868\u6784\u5EFA\u76F8\u5173\u4EFB\u52A1",
+    description: "RunsubAgentto complete tasks related to building the storyboard",
     inputSchema: jsonSchema(promptInput),
     execute: async ({ prompt }) => {
       const skill = import_path10.default.join(utils_default.getPath("skills"), "production_execution_storyboard_table.md");
       const systemPrompt = await fs11.promises.readFile(skill, "utf-8");
-      const addPrompt = "\n\u4F60\u5FC5\u987B\u4F7F\u7528\u5982\u4E0BXML\u683C\u5F0F\u5199\u5165\u5DE5\u4F5C\u533A\uFF1A\n```\n<storyboardTable>\u5185\u5BB9</storyboardTable>\n```";
+      const addPrompt = " You must use the followingXMLFormat and write to workspace\uFF1A ``` <storyboardTable>Content</storyboardTable> ```";
       return runAgent({
         key: "productionAgent:storyboardTableAgent",
         prompt,
         system: systemPrompt + addPrompt,
-        name: "\u6267\u884C\u5BFC\u6F14",
+        name: "Executive Director",
         memoryKey: "assistant:execution",
         messages: [
           { role: "assistant", content: productionSkills.prompt + `
@@ -258810,19 +258371,19 @@ ${modelInfo}` },
     }
   });
   const run_sub_agent_supervision = tool({
-    description: "\u8FD0\u884C\u76D1\u7763\u5C42subAgent\u6267\u884C\u72EC\u7ACB\u4EFB\u52A1\uFF0C\u5B8C\u6210\u540E\u8FD4\u56DE\u7ED3\u679C",
+    description: "Run the supervision layersubAgentExecute independent tasks\uFF0CReturn the result after completion",
     inputSchema: jsonSchema(promptInput),
     execute: async ({ prompt }) => {
       const skill = import_path10.default.join(utils_default.getPath("skills"), "production_agent_supervision.md");
       const systemPrompt = await fs11.promises.readFile(skill, "utf-8");
-      const supervisionPrompt = `\u5BA1\u6838\u5BF9\u8C61\uFF1A\u5206\u955C\u8868\uFF08storyboard table\uFF09\u3002
-\u8BF7\u4E25\u683C\u6309\u7167\u5206\u955C\u8868\u5BA1\u6838\u6D41\u7A0B\u6267\u884C\uFF0C\u4E0D\u8981\u91CD\u65B0\u731C\u6D4B\u5BA1\u6838\u5BF9\u8C61\u3002
+      const supervisionPrompt = `Audit Object\uFF1AStoryboard\uFF08storyboard table\uFF09\u3002
+Please strictly follow the storyboard review process\uFF0CDo not re-guess the review object\u3002
 ${prompt}`;
       return runAgent({
         key: "productionAgent:supervisionAgent",
         prompt: supervisionPrompt,
         system: systemPrompt,
-        name: "\u76D1\u5236",
+        name: "Supervised",
         memoryKey: "assistant:supervision"
       });
     }
@@ -258843,15 +258404,15 @@ async function createArtSkills(artName, storyName) {
   const skillList = [...await scanSkills(artWorkerPath + "/*.md"), ...await scanSkills(storyWorkerPath + "/*.md")];
   const mainSkills = [];
   for (const skillPath of skillList) {
-    if (!fs11.existsSync(skillPath)) throw new Error(`\u4E3B\u6280\u80FD\u6587\u4EF6\u4E0D\u5B58\u5728: ${skillPath}`);
+    if (!fs11.existsSync(skillPath)) throw new Error(`The main skill file does not exist: ${skillPath}`);
     const content = await fs11.promises.readFile(skillPath, "utf-8");
     const parsed = parseFrontmatter(content);
     mainSkills.push({ path: skillPath, ...parsed });
   }
   const res = {
     prompt: `## Skills
-\u4EE5\u4E0B\u6280\u80FD\u63D0\u4F9B\u4E86\u4E13\u4E1A\u4EFB\u52A1\u7684\u4E13\u7528\u6307\u4EE4\u3002
-\u5F53\u4EFB\u52A1\u4E0E\u67D0\u4E2A\u6280\u80FD\u7684\u63CF\u8FF0\u5339\u914D\u65F6\uFF0C\u8C03\u7528 activate_skill \u5DE5\u5177\u5E76\u4F20\u5165\u6280\u80FD\u540D\u79F0\u6765\u52A0\u8F7D\u5B8C\u6574\u6307\u4EE4\u3002
+The following skills provide dedicated instructions for professional tasks\u3002
+When the task matches the description of a certain skill\uFF0CCall activate_skill tool and pass the skill name to load the full instructions\u3002
 ${buildSkillPrompt(mainSkills)}`,
     tools: createSkillTools(mainSkills, { mainSkill: mainSkills, secondarySkills: [], tertiarySkills: [] })
   };
@@ -258874,12 +258435,12 @@ async function consumeFullStream(fullStream, initialMsg, syncMsg) {
       }
       if (chunk.type === "reasoning-start") {
         thinkTime = Date.now();
-        thinking = msg.thinking("\u601D\u8003\u4E2D...");
+        thinking = msg.thinking("Thinking...");
       } else if (chunk.type === "reasoning-delta") {
         thinking?.append(chunk.text);
       } else if (chunk.type === "reasoning-end") {
         thinkTime = Date.now() - thinkTime;
-        thinking?.updateTitle(`\u601D\u8003\u5B8C\u6BD5\uFF08${(thinkTime / 1e3).toFixed(1)} \u79D2\uFF09`);
+        thinking?.updateTitle(`Thinking complete\uFF08${(thinkTime / 1e3).toFixed(1)} second\uFF09`);
         thinking?.complete();
         thinking = null;
       } else if (chunk.type === "text-delta") {
@@ -258930,15 +258491,15 @@ async function useProductionSkills(artName, storyName) {
   ];
   const mainSkills = [];
   for (const skillPath of skillList) {
-    if (!fs11.existsSync(skillPath)) throw new Error(`\u4E3B\u6280\u80FD\u6587\u4EF6\u4E0D\u5B58\u5728: ${skillPath}`);
+    if (!fs11.existsSync(skillPath)) throw new Error(`The main skill file does not exist: ${skillPath}`);
     const content = await fs11.promises.readFile(skillPath, "utf-8");
     const parsed = parseFrontmatter(content);
     mainSkills.push({ path: skillPath, ...parsed });
   }
   const res = {
     prompt: `## Skills
-\u4EE5\u4E0B\u6280\u80FD\u63D0\u4F9B\u4E86\u4E13\u4E1A\u4EFB\u52A1\u7684\u4E13\u7528\u6307\u4EE4\u3002
-\u5F53\u4EFB\u52A1\u4E0E\u67D0\u4E2A\u6280\u80FD\u7684\u63CF\u8FF0\u5339\u914D\u65F6\uFF0C\u8C03\u7528 activate_skill \u5DE5\u5177\u5E76\u4F20\u5165\u6280\u80FD\u540D\u79F0\u6765\u52A0\u8F7D\u5B8C\u6574\u6307\u4EE4\u3002
+The following skills provide dedicated instructions for professional tasks\u3002
+When the task matches the description of a certain skill\uFF0CCall activate_skill tool and pass the skill name to load the full instructions\u3002
 ${buildSkillPrompt(mainSkills)}`,
     tools: createSkillTools(mainSkills, { mainSkill: mainSkills, secondarySkills: [], tertiarySkills: [] })
   };
@@ -258954,7 +258515,7 @@ var ResTool = class {
     this.socket = socket;
     this.data = data;
   }
-  // 创建新消息
+  // Create a new message
   newMessage(role = "assistant", name28) {
     const messageId = utils_default.uuid();
     const datetime4 = (/* @__PURE__ */ new Date()).toISOString();
@@ -258968,7 +258529,7 @@ var ResTool = class {
     });
     return new MessageBuilder(this.socket, messageId, role, name28, datetime4);
   }
-  // 发送错误消息
+  // Send an error message
   sendError(messageId, error71) {
     this.socket.emit("message:update", {
       id: messageId,
@@ -258976,7 +258537,7 @@ var ResTool = class {
       ext: { error: error71 }
     });
   }
-  // 发送完成状态
+  // Send completion status
   sendComplete(messageId) {
     this.socket.emit("message:update", {
       id: messageId,
@@ -259009,7 +258570,7 @@ var MessageBuilder = class {
   get datetime() {
     return this.messageDatetime;
   }
-  // 更新消息状态
+  // Update message status
   updateStatus(status) {
     this.socket.emit("message:update", {
       id: this.messageId,
@@ -259017,7 +258578,7 @@ var MessageBuilder = class {
     });
     return this;
   }
-  // 添加文本内容
+  // Add text content
   text(initialText = "") {
     const contentId = utils_default.uuid();
     const content = {
@@ -259036,7 +258597,7 @@ var MessageBuilder = class {
     }
     return stream4;
   }
-  // 添加 Markdown 内容
+  // Add Markdown content
   markdown(initialText = "") {
     const contentId = utils_default.uuid();
     const content = {
@@ -259051,8 +258612,8 @@ var MessageBuilder = class {
     });
     return new ContentStream(this.socket, this.messageId, contentId, "markdown");
   }
-  // 添加思考内容
-  thinking(title = "\u601D\u8003\u4E2D...") {
+  // Add thinking content
+  thinking(title = "Thinking...") {
     const contentId = utils_default.uuid();
     const content = {
       type: "thinking",
@@ -259066,8 +258627,8 @@ var MessageBuilder = class {
     });
     return new ThinkingStream(this.socket, this.messageId, contentId);
   }
-  // 添加搜索内容
-  search(title = "\u641C\u7D22\u4E2D...") {
+  // Add search content
+  search(title = "Searching...") {
     const contentId = utils_default.uuid();
     const content = {
       type: "search",
@@ -259081,7 +258642,7 @@ var MessageBuilder = class {
     });
     return new SearchStream(this.socket, this.messageId, contentId);
   }
-  // 添加图片内容
+  // Add image content
   image(data) {
     const contentId = utils_default.uuid();
     const content = {
@@ -259096,7 +258657,7 @@ var MessageBuilder = class {
     });
     return this;
   }
-  // 添加建议内容
+  // Add suggested content
   suggestion(suggestions) {
     const contentId = utils_default.uuid();
     const content = {
@@ -259111,7 +258672,7 @@ var MessageBuilder = class {
     });
     return this;
   }
-  // 添加工具调用内容
+  // Add tool call content
   toolCall(data) {
     const contentId = utils_default.uuid();
     const content = {
@@ -259126,7 +258687,7 @@ var MessageBuilder = class {
     });
     return new ToolCallStream(this.socket, this.messageId, contentId, data.toolCallId);
   }
-  // 添加活动内容
+  // Add activity content
   activity(activityType, content) {
     const contentId = utils_default.uuid();
     const activityContent = {
@@ -259145,7 +258706,7 @@ var MessageBuilder = class {
     });
     return this;
   }
-  // 添加推理内容
+  // Add reasoning content
   reasoning() {
     const contentId = utils_default.uuid();
     const content = {
@@ -259160,21 +258721,21 @@ var MessageBuilder = class {
     });
     return new ReasoningBuilder(this.socket, this.messageId, contentId);
   }
-  // 完成消息
+  // Complete the message
   complete() {
     this.socket.emit("message:update", {
       id: this.messageId,
       status: "complete"
     });
   }
-  // 停止消息
+  // Stop message
   stop() {
     this.socket.emit("message:update", {
       id: this.messageId,
       status: "stop"
     });
   }
-  // 错误
+  // Error
   error(errorMsg) {
     this.socket.emit("message:update", {
       id: this.messageId,
@@ -259197,7 +258758,7 @@ var ContentStream = class {
   get id() {
     return this.contentId;
   }
-  // 流式追加数据
+  // Stream append data
   append(chunk) {
     this.socket.emit("content:update", {
       messageId: this.messageId,
@@ -259209,7 +258770,7 @@ var ContentStream = class {
     });
     return this;
   }
-  // 合并/替换数据
+  // Merge/Replace Data
   merge(data) {
     this.socket.emit("content:update", {
       messageId: this.messageId,
@@ -259221,7 +258782,7 @@ var ContentStream = class {
     });
     return this;
   }
-  // 完成内容
+  // Complete the content
   complete(finalData) {
     this.socket.emit("content:update", {
       messageId: this.messageId,
@@ -259232,7 +258793,7 @@ var ContentStream = class {
     });
     return this;
   }
-  // 错误
+  // Error
   error() {
     this.socket.emit("content:update", {
       messageId: this.messageId,
@@ -259246,7 +258807,7 @@ var ThinkingStream = class extends ContentStream {
   constructor(socket, messageId, contentId) {
     super(socket, messageId, contentId, "thinking");
   }
-  // 追加思考文本
+  // Append thinking text
   appendText(chunk) {
     this.socket.emit("content:update", {
       messageId: this.messageId,
@@ -259258,7 +258819,7 @@ var ThinkingStream = class extends ContentStream {
     });
     return this;
   }
-  // 更新标题
+  // Update the title
   updateTitle(title) {
     this.socket.emit("content:update", {
       messageId: this.messageId,
@@ -259285,8 +258846,8 @@ var AutoThinkingTextStream = class _AutoThinkingTextStream extends ContentStream
     this.messageBuilder = messageBuilder;
   }
   /**
-   * 检查 str 的尾部是否是 tag 的某个非空真前缀。
-   * 返回需要保留的尾部字符数（0 表示不需要缓冲）。
+   * Check whether the tail of str is a non-empty proper prefix of tag.
+   * Returns the number of trailing characters to retain (0 indicates no buffering is needed).
    */
   static tailPrefixLen(str, tag) {
     const maxCheck = Math.min(str.length, tag.length - 1);
@@ -259367,29 +258928,29 @@ var AutoThinkingTextStream = class _AutoThinkingTextStream extends ContentStream
     this.inThinking = false;
     return super.error();
   }
-  /** 输出普通文本 */
+  /** Output plain text*/
   flushText(text2) {
     if (!text2) return;
     super.append(text2);
   }
-  /** 输出思考文本：累积完整内容，用 merge 策略发送，避免前端 append 丢失 */
+  /** Output thinking text: accumulate the complete content, send it using the merge strategy, and avoid losing content due to frontend append*/
   flushThinking(text2) {
     if (!text2) return;
     this.thinkingBuffer += text2;
-    this.ensureThinkingStream().merge({ title: "\u601D\u8003\u4E2D...", text: this.thinkingBuffer });
+    this.ensureThinkingStream().merge({ title: "Thinking...", text: this.thinkingBuffer });
   }
   ensureThinkingStream() {
     if (!this.thinkingStream) {
       this.thinkingStartTime = Date.now();
-      this.thinkingStream = this.messageBuilder.thinking("\u601D\u8003\u4E2D...");
+      this.thinkingStream = this.messageBuilder.thinking("Thinking...");
     }
     return this.thinkingStream;
   }
   finishThinking() {
     if (this.thinkingStream) {
       const elapsed = ((Date.now() - this.thinkingStartTime) / 1e3).toFixed(1);
-      this.thinkingStream.updateTitle(`\u601D\u8003\u5B8C\u6BD5\uFF08${elapsed}\u79D2\uFF09`);
-      this.thinkingStream.complete({ title: `\u601D\u8003\u5B8C\u6BD5\uFF08${elapsed}\u79D2\uFF09`, text: this.thinkingBuffer });
+      this.thinkingStream.updateTitle(`Thinking complete (${elapsed}seconds)`);
+      this.thinkingStream.complete({ title: `Thinking complete (${elapsed}seconds)`, text: this.thinkingBuffer });
       this.thinkingStream = null;
       this.thinkingBuffer = "";
     }
@@ -259400,7 +258961,7 @@ var SearchStream = class extends ContentStream {
   constructor(socket, messageId, contentId) {
     super(socket, messageId, contentId, "search");
   }
-  // 添加引用
+  // Add a citation
   addReference(ref) {
     this.socket.emit("content:update", {
       messageId: this.messageId,
@@ -259412,7 +258973,7 @@ var SearchStream = class extends ContentStream {
     });
     return this;
   }
-  // 批量添加引用
+  // Batch add references
   addReferences(refs) {
     this.socket.emit("content:update", {
       messageId: this.messageId,
@@ -259424,7 +258985,7 @@ var SearchStream = class extends ContentStream {
     });
     return this;
   }
-  // 更新标题
+  // Update the title
   updateTitle(title) {
     this.socket.emit("content:update", {
       messageId: this.messageId,
@@ -259443,7 +259004,7 @@ var ToolCallStream = class extends ContentStream {
     super(socket, messageId, contentId, "toolcall");
     this.toolCallId = toolCallId;
   }
-  // 追加参数块
+  // Append parameter block
   appendArgs(chunk) {
     this.socket.emit("content:update", {
       messageId: this.messageId,
@@ -259455,7 +259016,7 @@ var ToolCallStream = class extends ContentStream {
     });
     return this;
   }
-  // 追加结果块
+  // Append result block
   appendResult(chunk) {
     this.socket.emit("content:update", {
       messageId: this.messageId,
@@ -259467,7 +259028,7 @@ var ToolCallStream = class extends ContentStream {
     });
     return this;
   }
-  // 设置完整结果
+  // Set complete results
   setResult(result) {
     this.socket.emit("content:update", {
       messageId: this.messageId,
@@ -259479,7 +259040,7 @@ var ToolCallStream = class extends ContentStream {
     });
     return this;
   }
-  // 更新事件类型
+  // Update event type
   updateEventType(eventType) {
     this.socket.emit("content:update", {
       messageId: this.messageId,
@@ -259501,7 +259062,7 @@ var ReasoningBuilder = class {
     this.messageId = messageId;
     this.contentId = contentId;
   }
-  // 添加子内容
+  // Add sub-content
   addContent(content) {
     this.socket.emit("content:update", {
       messageId: this.messageId,
@@ -259513,7 +259074,7 @@ var ReasoningBuilder = class {
     });
     return this;
   }
-  // 完成推理
+  // Complete the reasoning
   complete() {
     this.socket.emit("content:update", {
       messageId: this.messageId,
@@ -259547,17 +259108,17 @@ var productionAgent_default = (nsp) => {
   nsp.on("connection", async (socket) => {
     const token = socket.handshake.auth.token;
     if (!token || !await verifyToken(token)) {
-      console.log("[productionAgent] \u8FDE\u63A5\u5931\u8D25\uFF0Ctoken\u65E0\u6548");
+      console.log("[productionAgent] Connection failed, invalid token");
       socket.disconnect();
       return;
     }
     let isolationKey = socket.handshake.auth.isolationKey;
     if (!isolationKey) {
-      console.log("[productionAgent] \u8FDE\u63A5\u5931\u8D25\uFF0C\u7F3A\u5C11 isolationKey");
+      console.log("[productionAgent] Connection failed, missing isolationKey");
       socket.disconnect();
       return;
     }
-    console.log("[productionAgent] \u5DF2\u8FDE\u63A5:", socket.id);
+    console.log("[productionAgent] Connected:", socket.id);
     let resTool = new resTool_default(socket, {
       projectId: socket.handshake.auth.projectId,
       scriptId: socket.handshake.auth.scriptId
@@ -259572,7 +259133,7 @@ var productionAgent_default = (nsp) => {
       const user = socket.data.user;
       const project = await db_default("o_project").where("id", Number(data.projectId)).select("userId").first();
       if (!project || !isAdmin(user) && Number(project.userId ?? 1) !== Number(user?.id)) {
-        callback?.({ success: false, message: "\u65E0\u6743\u8BBF\u95EE\u8BE5\u9879\u76EE" });
+        callback?.({ success: false, message: "You do not have permission to access this project" });
         return;
       }
       isolationKey = data.isolationKey;
@@ -259580,7 +259141,7 @@ var productionAgent_default = (nsp) => {
         projectId: data.projectId,
         scriptId: data.scriptId
       });
-      console.log("[productionAgent] \u4E0A\u4E0B\u6587\u5DF2\u66F4\u65B0:", isolationKey);
+      console.log("[productionAgent] Context updated:", isolationKey);
       callback?.({ success: true });
     });
     onUserEvent("chat", async (data) => {
@@ -259588,7 +259149,7 @@ var productionAgent_default = (nsp) => {
       abortController?.abort();
       abortController = new AbortController();
       const currentController = abortController;
-      const msg = resTool.newMessage("assistant", "\u89C6\u9891\u7B56\u5212");
+      const msg = resTool.newMessage("assistant", "Video Planning");
       const ctx = {
         socket,
         isolationKey,
@@ -259614,7 +259175,7 @@ var productionAgent_default = (nsp) => {
     socket.on("updateThinkConfig", (data) => {
       thinkConfig.think = data.think;
       thinkConfig.thinlLevel = data.thinlLevel;
-      console.log("[productionAgent] \u66F4\u65B0\u601D\u8003\u914D\u7F6E:", thinkConfig);
+      console.log("[productionAgent] Update thinking configuration:", thinkConfig);
     });
     socket.on("stop", () => {
       abortController?.abort();
@@ -259622,7 +259183,7 @@ var productionAgent_default = (nsp) => {
     });
   });
   nsp.on("disconnect", (socket) => {
-    console.log("[productionAgent] \u5DF2\u65AD\u5F00\u8FDE\u63A5:", socket.id);
+    console.log("[productionAgent] Disconnected:", socket.id);
   });
 };
 
@@ -259640,13 +259201,13 @@ init_dist22();
 init_utils3();
 init_zod();
 var ScriptSchema = external_exports.object({
-  name: external_exports.string().describe("\u5267\u672C\u540D\u79F0"),
-  content: external_exports.string().describe("\u5267\u672C\u5185\u5BB9")
+  name: external_exports.string().describe("Script Name"),
+  content: external_exports.string().describe("Script content")
 });
 var planData = external_exports.object({
-  storySkeleton: external_exports.string().describe("\u6545\u4E8B\u9AA8\u67B6"),
-  adaptationStrategy: external_exports.string().describe("\u6539\u7F16\u7B56\u7565"),
-  script: external_exports.string().describe("\u5267\u672C\u5185\u5BB9")
+  storySkeleton: external_exports.string().describe("Story skeleton"),
+  adaptationStrategy: external_exports.string().describe("Adaptation Strategy"),
+  script: external_exports.string().describe("Script content")
 });
 var keySchema2 = external_exports.enum(Object.keys(planData.shape));
 var planDataKeyLabels = Object.fromEntries(
@@ -259657,85 +259218,83 @@ var tools_default2 = (toolCpnfig) => {
   const { socket } = resTool;
   const tools = {
     get_novel_events: tool({
-      description: "\u83B7\u53D6\u7AE0\u8282\u4E8B\u4EF6",
+      description: "Get chapter events",
       inputSchema: jsonSchema(
         external_exports.object({
-          chapterIndexs: external_exports.array(external_exports.number()).describe("\u7AE0\u8282\u7684\u7F16\u53F7")
+          chapterIndexs: external_exports.array(external_exports.number()).describe("Chapter numbering")
         }).toJSONSchema()
       ),
       execute: async ({ chapterIndexs }) => {
         console.log("[tools] get_novel_events", chapterIndexs);
-        const thinking = msg.thinking("\u6B63\u5728\u67E5\u8BE2\u7AE0\u8282\u4E8B\u4EF6...");
+        const thinking = msg.thinking("Querying chapter events...");
         const requestedIndexes = [...new Set(chapterIndexs)].filter((index) => Number.isInteger(index) && index > 0);
         const allNovels = await utils_default.db("o_novel").where("projectId", resTool.data.projectId).select("id", "chapterIndex as index", "reel", "chapter", "chapterData", "event", "eventState").orderBy("chapterIndex", "asc").orderBy("id", "asc");
         const byStoredIndex = new Map(allNovels.map((novel) => [Number(novel.index), novel]));
         const data = requestedIndexes.map((index) => byStoredIndex.get(index) ?? allNovels[index - 1]).filter((novel, position, rows) => novel && rows.findIndex((item) => item?.id === novel.id) === position);
-        thinking.appendText("\u6B63\u5728\u67E5\u8BE2\u7AE0\u8282\u7F16\u53F7: " + chapterIndexs.join(","));
-        const eventString = data.map((i) => [`\u7B2C${i.index}\u7AE0\uFF0C\u6807\u9898:${i.chapter}\uFF0C\u4E8B\u4EF6:${i.event}`].join("\n")).join("\n");
-        thinking.appendText("\u67E5\u8BE2\u7ED3\u679C:\n" + eventString);
-        thinking.updateTitle("\u67E5\u8BE2\u7AE0\u8282\u4E8B\u4EF6\u5B8C\u6210");
+        thinking.appendText("Querying chapter number:" + chapterIndexs.join(","));
+        const eventString = data.map((i) => [`Chapter${i.index}Chapter, Title:{i.chapter}, Event:{i.event}`].join("\n")).join("\n");
+        thinking.appendText("Query result:" + eventString);
+        thinking.updateTitle("Query chapter event completed");
         thinking.complete();
-        return eventString ?? "\u65E0\u6570\u636E";
+        return eventString ?? "No data";
       }
     }),
     get_planData: tool({
-      description: "\u83B7\u53D6\u5DE5\u4F5C\u533A\u6570\u636E",
+      description: "Get workspace data",
       inputSchema: jsonSchema(
         external_exports.object({
-          key: keySchema2.describe("\u6570\u636Ekey")
+          key: keySchema2.describe("Data key")
         }).toJSONSchema()
       ),
       execute: async ({ key }) => {
         console.log("[tools] get_planData", key);
-        const thinking = msg.thinking(`\u6B63\u5728\u83B7\u53D6${planDataKeyLabels[key]}\u5DE5\u4F5C\u533A\u6570\u636E...`);
+        const thinking = msg.thinking(`Fetching${planDataKeyLabels[key]}Workspace data...`);
         const planData2 = await new Promise((resolve3) => socket.emit("getPlanData", { key }, (res) => resolve3(res)));
-        thinking.appendText(`\u83B7\u53D6\u5230${planDataKeyLabels[key]}:
+        thinking.appendText(`Obtained${planDataKeyLabels[key]}:
 ` + planData2[key]);
-        thinking.updateTitle(`\u83B7\u53D6${planDataKeyLabels[key]}\u5B8C\u6210`);
+        thinking.updateTitle(`Get${planDataKeyLabels[key]}Done`);
         thinking.complete();
-        return planData2[key] ?? "\u65E0\u6570\u636E";
+        return planData2[key] ?? "No data";
       }
     }),
     get_novel_text: tool({
-      description: "\u83B7\u53D6\u5C0F\u8BF4\u7AE0\u8282\u539F\u59CB\u6587\u672C\u5185\u5BB9",
+      description: "Get the original text content of the novel chapter",
       inputSchema: jsonSchema(
         external_exports.object({
-          chapterIndex: external_exports.string().describe("\u7AE0\u8282\u7F16\u53F7")
+          chapterIndex: external_exports.string().describe("Chapter Number")
         }).toJSONSchema()
       ),
       execute: async ({ chapterIndex }) => {
         console.log("[tools] get_novel_text", "[tools] get_novel_text", chapterIndex);
-        const thinking = msg.thinking(`\u6B63\u5728\u83B7\u53D6\u5C0F\u8BF4\u7AE0\u8282\u539F\u6587...`);
+        const thinking = msg.thinking(`Fetching the original text of the novel chapter...`);
         const requestedIndex = Number(String(chapterIndex).match(/\d+/)?.[0]);
         let data = Number.isInteger(requestedIndex) && requestedIndex > 0 ? await utils_default.db("o_novel").where("projectId", resTool.data.projectId).where("chapterIndex", requestedIndex).select("chapterData").first() : void 0;
         if (!data && Number.isInteger(requestedIndex) && requestedIndex > 0) {
           data = await utils_default.db("o_novel").where("projectId", resTool.data.projectId).select("chapterData").orderBy("chapterIndex", "asc").orderBy("id", "asc").offset(requestedIndex - 1).first();
         }
         const text2 = data && data?.chapterData ? data.chapterData : "";
-        thinking.appendText(`\u83B7\u53D6\u5230\u539F\u6587:
-` + text2);
-        thinking.updateTitle(`\u83B7\u53D6\u5C0F\u8BF4\u7AE0\u8282\u539F\u6587\u5B8C\u6210`);
+        thinking.appendText(`Obtained the original text:` + text2);
+        thinking.updateTitle(`Novel chapter original text retrieval completed`);
         thinking.complete();
-        return text2 ?? "\u65E0\u6570\u636E";
+        return text2 ?? "No data";
       }
     }),
     get_script_content: tool({
-      description: "\u83B7\u53D6\u5267\u672C\u672C\u5185\u5BB9",
+      description: "Get the script content",
       inputSchema: jsonSchema(
         external_exports.object({
-          ids: external_exports.array(external_exports.string()).describe("\u811A\u672Cid")
+          ids: external_exports.array(external_exports.string()).describe("Script ID")
         }).toJSONSchema()
       ),
       execute: async ({ ids }) => {
         console.log("[tools] get_script_content", "[tools] get_script_content", ids);
-        const thinking = msg.thinking(`\u6B63\u5728\u83B7\u53D6\u811A\u672C\u5185\u5BB9...`);
+        const thinking = msg.thinking(`Fetching script content...`);
         const data = await utils_default.db("o_script").whereIn("id", ids).select("content", "name");
         const text2 = data && data.length ? data.map((d) => `<scriptItem name="${d.name}">${d.content}</scriptItem>`).join("\n") : "";
-        thinking.appendText(`\u83B7\u53D6\u5230\u811A\u672C\u5185\u5BB9:
-` + JSON.stringify(data, null, 2));
-        thinking.updateTitle(`\u83B7\u53D6\u811A\u672C\u5185\u5BB9\u5B8C\u6210`);
+        thinking.appendText(`Retrieved script content:` + JSON.stringify(data, null, 2));
+        thinking.updateTitle(`Script content retrieval completed`);
         thinking.complete();
-        return text2 ?? "\u65E0\u6570\u636E";
+        return text2 ?? "No data";
       }
     })
   };
@@ -259748,21 +259307,21 @@ var import_path11 = __toESM(require("path"));
 function buildMemPrompt2(mem) {
   let memoryContext = "";
   if (mem.rag.length) {
-    memoryContext += `[\u76F8\u5173\u8BB0\u5FC6]
+    memoryContext += `[Related memories]
 ${mem.rag.map((r) => r.content).join("\n")}`;
   }
   if (mem.summaries.length) {
     if (memoryContext) memoryContext += "\n\n";
-    memoryContext += `[\u5386\u53F2\u6458\u8981]
+    memoryContext += `[Historical Summary]
 ${mem.summaries.map((s, i) => `${i + 1}. ${s.content}`).join("\n")}`;
   }
   if (mem.shortTerm.length) {
     if (memoryContext) memoryContext += "\n\n";
-    memoryContext += `[\u8FD1\u671F\u5BF9\u8BDD]
+    memoryContext += `[Recent conversations]
 ${mem.shortTerm.map((m) => `${m.role}: ${m.content}`).join("\n")}`;
   }
   return `## Memory
-\u4EE5\u4E0B\u662F\u4F60\u5BF9\u7528\u6237\u7684\u8BB0\u5FC6\uFF0C\u53EF\u4F5C\u4E3A\u53C2\u8003\u4F46\u4E0D\u8981\u4E3B\u52A8\u63D0\u53CA\uFF1A
+The following is your memory of the user\uFF0CIt can be used as a reference, but do not mention it proactively.\uFF1A
 ${memoryContext}`;
 }
 async function runDecisionAI2(ctx) {
@@ -259775,13 +259334,13 @@ async function runDecisionAI2(ctx) {
   const projectData = await utils_default.db("o_project").where("id", resTool.data.projectId).first();
   const novelData = await utils_default.db("o_novel").where("projectId", resTool.data.projectId).select("chapterIndex");
   const projectInfo = [
-    "## \u9879\u76EE\u4FE1\u606F",
-    `\u5C0F\u8BF4\u540D\u79F0\uFF1A${projectData?.name ?? "\u672A\u77E5"}`,
-    `\u5C0F\u8BF4\u7C7B\u578B\uFF1A${projectData?.type ?? "\u672A\u77E5"}`,
-    `\u5C0F\u8BF4\u7B80\u4ECB\uFF1A${projectData?.intro ?? "\u65E0"}`,
-    `\u76EE\u6807\u6539\u7F16\u5F71\u89C6\u89C6\u89C9\u624B\u518C|\u753B\u98CE\uFF1A${projectData?.artStyle ?? "\u65E0"}`,
-    `\u76EE\u6807\u6539\u7F16\u89C6\u9891\u753B\u5E45\uFF1A${projectData?.videoRatio ?? "16:9"}`,
-    `\u7AE0\u8282\u6570\u91CF\uFF1A${novelData.length}\u7AE0`
+    "## Project Information",
+    `Novel Title\uFF1A${projectData?.name ?? "Unknown"}`,
+    `Novel type\uFF1A${projectData?.type ?? "Unknown"}`,
+    `Novel Synopsis\uFF1A${projectData?.intro ?? "None"}`,
+    `Target: Adapted Film and Television Visual Handbook|Art style\uFF1A${projectData?.artStyle ?? "None"}`,
+    `Target adapted video aspect ratio\uFF1A${projectData?.videoRatio ?? "16:9"}`,
+    `Number of chapters\uFF1A${novelData.length}Chapter`
   ].join("\n");
   const { fullStream } = await utils_default.Ai.Text("scriptAgent:decisionAgent", ctx.thinkConfig.think, ctx.thinkConfig.thinlLevel).stream({
     messages: [
@@ -259817,13 +259376,13 @@ function createSubAgent2(parentCtx) {
     name: name28,
     memoryKey,
     tools: extraTools,
-    messages
+    messages: messages2
   }) {
     parentCtx.msg.complete();
     const subMsg = resTool.newMessage("assistant", name28);
     const { fullStream } = await utils_default.Ai.Text(key, parentCtx.thinkConfig.think, parentCtx.thinkConfig.thinlLevel).stream({
       system,
-      messages: messages ?? [{ role: "user", content: prompt }],
+      messages: messages2 ?? [{ role: "user", content: prompt }],
       abortSignal,
       tools: { ...extraTools, ...tools_default2({ resTool, msg: subMsg }) }
     });
@@ -259834,76 +259393,76 @@ function createSubAgent2(parentCtx) {
         createTime: new Date(subMsg.datetime).getTime()
       });
     }
-    parentCtx.msg = resTool.newMessage("assistant", "\u89C6\u9891\u7B56\u5212");
+    parentCtx.msg = resTool.newMessage("assistant", "Video Planning");
     return fullResponse;
   }
   const promptInput = external_exports.object({
-    prompt: external_exports.string().describe("\u4EA4\u7ED9\u5B50Agent\u7684\u4EFB\u52A1\u7B80\u7EA6\u63CF\u8FF0\uFF0C100\u5B57\u4EE5\u5185")
+    prompt: external_exports.string().describe("Delegate to childAgentTask brief\uFF0C100within characters")
   }).toJSONSchema();
   const run_sub_agent_storySkeleton = tool({
-    description: "\u8FD0\u884C\u6267\u884CsubAgent\u6765\u5B8C\u6210\u6545\u4E8B\u9AA8\u67B6\u76F8\u5173\u4EFB\u52A1",
+    description: "RunsubAgentTo complete the story skeleton-related tasks",
     inputSchema: jsonSchema(promptInput),
     execute: async ({ prompt }) => {
       const skill = import_path11.default.join(utils_default.getPath("skills"), "script_execution_skeleton.md");
       const systemPrompt = await fs12.promises.readFile(skill, "utf-8");
-      const formatPrompt = "\n\u4F60\u5FC5\u987B\u4F7F\u7528\u5982\u4E0BXML\u683C\u5F0F\u5199\u5165\u5DE5\u4F5C\u533A\uFF1A\n<storySkeleton>\u6545\u4E8B\u9AA8\u67B6\u5185\u5BB9</storySkeleton>";
+      const formatPrompt = " You must use the followingXMLFormat and write to workspace\uFF1A <storySkeleton>Story Skeleton Content</storySkeleton>";
       return runAgent({
         key: "scriptAgent:storySkeletonAgent",
         prompt,
         system: systemPrompt + formatPrompt,
-        name: "\u7F16\u5267",
+        name: "Screenwriter",
         memoryKey: "assistant:execution:storySkeleton",
         messages: [{ role: "user", content: prompt + formatPrompt }]
       });
     }
   });
   const run_sub_agent_adaptationStrategy = tool({
-    description: "\u8FD0\u884C\u6267\u884CsubAgent\u6765\u5B8C\u6210\u6539\u7F16\u7B56\u7565\u76F8\u5173\u4EFB\u52A1",
+    description: "RunsubAgentto complete tasks related to the adaptation strategy",
     inputSchema: jsonSchema(promptInput),
     execute: async ({ prompt }) => {
       const skill = import_path11.default.join(utils_default.getPath("skills"), "script_execution_adaptation.md");
       const systemPrompt = await fs12.promises.readFile(skill, "utf-8");
-      const formatPrompt = "\n\u4F60\u5FC5\u987B\u4F7F\u7528\u5982\u4E0BXML\u683C\u5F0F\u5199\u5165\u5DE5\u4F5C\u533A\uFF1A\n<adaptationStrategy>\u6539\u7F16\u7B56\u7565\u5185\u5BB9</adaptationStrategy>";
+      const formatPrompt = " You must use the followingXMLFormat and write to workspace\uFF1A <adaptationStrategy>Adaptation Strategy Content</adaptationStrategy>";
       return runAgent({
         key: "scriptAgent:adaptationStrategyAgent",
         prompt,
         system: systemPrompt + formatPrompt,
-        name: "\u7F16\u5267",
+        name: "Screenwriter",
         memoryKey: "assistant:execution:adaptationStrategy",
         messages: [{ role: "user", content: prompt + formatPrompt }]
       });
     }
   });
   const run_sub_agent_script = tool({
-    description: "\u8FD0\u884C\u6267\u884CsubAgent\u6765\u5B8C\u6210\u5267\u672C\u76F8\u5173\u4EFB\u52A1",
+    description: "RunsubAgentto complete script-related tasks",
     inputSchema: jsonSchema(promptInput),
     execute: async ({ prompt }) => {
       const skill = import_path11.default.join(utils_default.getPath("skills"), "script_execution_script.md");
       const systemPrompt = await fs12.promises.readFile(skill, "utf-8");
       const scriptList = await utils_default.db("o_script").where("projectId", resTool.data.projectId).select("id", "name");
-      const scriptPrompt = ["## \u53EF\u7528\u5267\u672C(ID:\u540D\u79F0)", scriptList.map((s) => `${s.id}:${(s.name || "").replace(/[,:]/g, "")}`).join(","), ""].join(
+      const scriptPrompt = ["## Available scripts(ID:Name)", scriptList.map((s) => `${s.id}:${(s.name || "").replace(/[,:]/g, "")}`).join(","), ""].join(
         "\n"
       );
       const novelData = await utils_default.db("o_novel").where("projectId", resTool.data.projectId).select("chapterIndex");
       const formatPrompt = `
-\u4F60\u5FC5\u987B\u4F7F\u7528\u5982\u4E0BXML\u683C\u5F0F\u8F93\u51FA\u5267\u672C\uFF1A
-XML\u4E0D\u5F97\u6DFB\u52A0\u4EFB\u4F55\u989D\u5916\u6807\u7B7E<scriptItem name="\u5267\u672C\u540D\u79F0">\u5267\u672C\u5185\u5BB9</scriptItem><scriptItem name="\u5267\u672C\u540D\u79F0">\u5267\u672C\u5185\u5BB9</scriptItem><scriptItem name="\u5267\u672C\u540D\u79F0">\u5267\u672C\u5185\u5BB9</scriptItem>
-\u4F60\u8FD8\u5FC5\u987B\u8C03\u7528 save_script \u5DE5\u5177\u628A\u5B8C\u6574\u5267\u672C\u4FDD\u5B58\u5230\u5DE5\u4F5C\u53F0\uFF1B\u5DE5\u5177\u8C03\u7528\u6210\u529F\u540E\u624D\u53EF\u4EE5\u8FD4\u56DE\u786E\u8BA4\u3002\u7981\u6B62\u53EA\u56DE\u590D\u201C\u5DF2\u5199\u5165\u201D\u800C\u4E0D\u8F93\u51FA\u6B63\u6587\u6216\u8C03\u7528\u5DE5\u5177\u3002`;
+You must useXMLOutput the script in the specified format\uFF1A
+XMLNo additional tags shall be added<scriptItem name="Script Name">Script content</scriptItem><scriptItem name="Script Name">Script content</scriptItem><scriptItem name="Script Name">Script content</scriptItem>
+You must also call save_script The tool saves the complete script to the workspace\uFF1BReturn confirmation only after the tool call succeeds\u3002Prohibited from replying only\u201CWritten\u201Dwithout outputting the main text or calling tools\u3002`;
       const savedScripts = [];
       const saveScriptTool = tool({
-        description: "\u4FDD\u5B58\u4E00\u96C6\u5B8C\u6574\u5267\u672C\u5230\u5DE5\u4F5C\u53F0\u3002\u5FC5\u987B\u5728\u751F\u6210\u5B8C\u6574\u5267\u672C\u540E\u8C03\u7528\uFF0C\u4E0D\u80FD\u7528\u786E\u8BA4\u6587\u5B57\u4EE3\u66FF\u3002",
+        description: "Save a complete episode script to the workspace\u3002Must be called after the complete script is generated\uFF0CConfirmation text cannot be used as a substitute\u3002",
         inputSchema: jsonSchema(
           external_exports.object({
-            name: external_exports.string().min(1).describe("\u5267\u672C\u540D\u79F0\uFF0C\u4F8B\u5982\u4F5C\u54C1\u540D EP08\uFF1A\u96C6\u6807\u9898"),
-            content: external_exports.string().min(1).describe("\u5B8C\u6574\u5267\u672C\u6B63\u6587\uFF0C\u4E0D\u80FD\u662F\u786E\u8BA4\u8BED\u53E5")
+            name: external_exports.string().min(1).describe("Script Name\uFF0CFor example, the title of the work EP08\uFF1ACollection Title"),
+            content: external_exports.string().min(1).describe("Full script\uFF0CIt cannot be a confirmation statement")
           }).toJSONSchema()
         ),
         execute: async ({ name: name28, content }) => {
           const script = { name: name28.trim(), content: content.trim() };
-          if (!script.name || !script.content) throw new Error("\u5267\u672C\u540D\u79F0\u548C\u6B63\u6587\u4E0D\u80FD\u4E3A\u7A7A");
+          if (!script.name || !script.content) throw new Error("The script name and body cannot be empty");
           await persistScriptItems(resTool.data.projectId, [script]);
           savedScripts.push(script);
-          return `\u4FDD\u5B58\u6210\u529F\uFF1A${script.name}`;
+          return `Saved successfully\uFF1A${script.name}`;
         }
       });
       const fullResponse = await runAgent({
@@ -259911,26 +259470,26 @@ XML\u4E0D\u5F97\u6DFB\u52A0\u4EFB\u4F55\u989D\u5916\u6807\u7B7E<scriptItem name=
         prompt,
         system: systemPrompt + formatPrompt,
         messages: [
-          { role: "assistant", content: scriptPrompt + `\u7AE0\u8282\u6570\u91CF\uFF1A${novelData.length}\u7AE0` },
+          { role: "assistant", content: scriptPrompt + `Number of chapters\uFF1A${novelData.length}Chapter` },
           { role: "user", content: prompt + formatPrompt }
         ],
-        name: "\u7F16\u5267",
+        name: "Screenwriter",
         memoryKey: "assistant:execution:script",
         tools: { save_script: saveScriptTool }
       });
       const scripts = extractScriptItems(fullResponse);
       const persistedScripts = scripts.length ? scripts : savedScripts;
       if (!persistedScripts.length) {
-        throw new Error("\u5267\u672C\u751F\u6210\u5931\u8D25\uFF1A\u6A21\u578B\u672A\u8FD4\u56DE\u6709\u6548\u7684 scriptItem \u5185\u5BB9\uFF0C\u672A\u5199\u5165\u5DE5\u4F5C\u53F0");
+        throw new Error("Script generation failed\uFF1AThe model did not return a valid scriptItem Content\uFF0CNot written to the workbench");
       }
       if (scripts.length && !savedScripts.length) {
         await persistScriptItems(resTool.data.projectId, scripts);
       }
-      return `\u5DF2\u5199\u5165${persistedScripts.length}\u96C6\u5267\u672C\uFF0C\u8BF7\u5728\u5DE5\u4F5C\u53F0\u67E5\u770B\u3002`;
+      return `Written${persistedScripts.length}Collected scripts\uFF0CPlease check on the workbench\u3002`;
     }
   });
   const run_supervision_agent = tool({
-    description: "\u8FD0\u884C\u76D1\u7763\u5C42subAgent\u6267\u884C\u72EC\u7ACB\u4EFB\u52A1\uFF0C\u5B8C\u6210\u540E\u8FD4\u56DE\u7ED3\u679C",
+    description: "Run the supervision layersubAgentExecute independent tasks\uFF0CReturn the result after completion",
     inputSchema: jsonSchema(promptInput),
     execute: async ({ prompt }) => {
       const skill = import_path11.default.join(utils_default.getPath("skills"), "script_agent_supervision.md");
@@ -259939,7 +259498,7 @@ XML\u4E0D\u5F97\u6DFB\u52A0\u4EFB\u4F55\u989D\u5916\u6807\u7B7E<scriptItem name=
         key: "scriptAgent:supervisionAgent",
         prompt,
         system: systemPrompt,
-        name: "\u7F16\u8F91",
+        name: "Edit",
         memoryKey: "assistant:supervision"
       });
     }
@@ -259968,12 +259527,12 @@ async function consumeFullStream2(fullStream, initialMsg, syncMsg) {
       }
       if (chunk.type === "reasoning-start") {
         thinkTime = Date.now();
-        thinking = msg.thinking("\u601D\u8003\u4E2D...");
+        thinking = msg.thinking("Thinking...");
       } else if (chunk.type === "reasoning-delta") {
         thinking?.append(chunk.text);
       } else if (chunk.type === "reasoning-end") {
         thinkTime = Date.now() - thinkTime;
-        thinking?.updateTitle(`\u601D\u8003\u5B8C\u6BD5\uFF08${(thinkTime / 1e3).toFixed(1)} \u79D2\uFF09`);
+        thinking?.updateTitle(`Thinking complete\uFF08${(thinkTime / 1e3).toFixed(1)} second\uFF09`);
         thinking?.complete();
         thinking = null;
       } else if (chunk.type === "text-delta") {
@@ -260042,17 +259601,17 @@ var scriptAgent_default = (nsp) => {
   nsp.on("connection", async (socket) => {
     const token = socket.handshake.auth.token;
     if (!token || !await verifyToken2(token)) {
-      console.log("[scriptAgent] \u8FDE\u63A5\u5931\u8D25\uFF0Ctoken\u65E0\u6548");
+      console.log("[scriptAgent] Connection failed, invalid token");
       socket.disconnect();
       return;
     }
     const isolationKey = socket.handshake.auth.isolationKey;
     if (!isolationKey) {
-      console.log("[scriptAgent] \u8FDE\u63A5\u5931\u8D25\uFF0C\u7F3A\u5C11 isolationKey");
+      console.log("[scriptAgent] Connection failed, missing isolationKey");
       socket.disconnect();
       return;
     }
-    console.log("[scriptAgent] \u5DF2\u8FDE\u63A5:", socket.id);
+    console.log("[scriptAgent] Connected:", socket.id);
     const resTool = new resTool_default(socket, {
       projectId: socket.handshake.auth.projectId
     });
@@ -260067,7 +259626,7 @@ var scriptAgent_default = (nsp) => {
       abortController?.abort();
       abortController = new AbortController();
       const currentController = abortController;
-      const msg = resTool.newMessage("assistant", "\u7EDF\u7B79");
+      const msg = resTool.newMessage("assistant", "Coordinate");
       const ctx = {
         socket,
         isolationKey,
@@ -260094,7 +259653,7 @@ var scriptAgent_default = (nsp) => {
     socket.on("updateThinkConfig", (data) => {
       thinkConfig.think = data.think;
       thinkConfig.thinlLevel = data.thinlLevel;
-      console.log("[scriptAgent] \u66F4\u65B0\u601D\u8003\u914D\u7F6E:", thinkConfig);
+      console.log("[scriptAgent] Update thinking configuration:", thinkConfig);
     });
     socket.on("stop", () => {
       abortController?.abort();
@@ -260102,7 +259661,7 @@ var scriptAgent_default = (nsp) => {
     });
   });
   nsp.on("disconnect", (socket) => {
-    console.log("[scriptAgent] \u5DF2\u65AD\u5F00\u8FDE\u63A5:", socket.id);
+    console.log("[scriptAgent] Disconnected:", socket.id);
   });
 };
 
@@ -260119,24 +259678,24 @@ var socket_default = (io2) => {
         const setting = await db_default("o_setting").where("key", "tokenKey").select("value").first();
         const rawToken = String(socket.handshake.auth?.token ?? "").replace(/^Bearer\s+/i, "");
         const decoded = setting?.value ? import_jsonwebtoken4.default.verify(rawToken, String(setting.value)) : null;
-        if (!decoded?.id) return next(new Error("\u672A\u6388\u6743"));
+        if (!decoded?.id) return next(new Error("Unauthorized"));
         const user = await db_default("o_user").where("id", decoded.id).select("id", "role", "disabled", "tokenVersion").first();
         if (!user || Number(user.disabled) === 1 || decoded.tokenVersion !== void 0 && Number(decoded.tokenVersion) !== Number(user.tokenVersion ?? 0)) {
-          return next(new Error("\u767B\u5F55\u72B6\u6001\u5DF2\u5931\u6548"));
+          return next(new Error("Login status has expired"));
         }
         const projectId = Number(socket.handshake.auth?.projectId);
         if (Number.isFinite(projectId) && !isAdmin(user)) {
           const project = await db_default("o_project").where("id", projectId).select("userId").first();
-          if (!project || Number(project.userId ?? 1) !== Number(user.id)) return next(new Error("\u65E0\u6743\u8BBF\u95EE\u8BE5\u9879\u76EE"));
+          if (!project || Number(project.userId ?? 1) !== Number(user.id)) return next(new Error("You do not have permission to access this project"));
         }
         socket.data.user = user;
         return next();
       } catch {
-        return next(new Error("\u672A\u6388\u6743"));
+        return next(new Error("Unauthorized"));
       }
     });
     handler(nsp);
-    console.log(`[Socket] \u6CE8\u518C\u547D\u540D\u7A7A\u95F4: /api/socket/${name28}`);
+    console.log(`[Socket] Registering namespace: /api/socket/${name28}`);
   }
 };
 
@@ -260172,7 +259731,7 @@ async function ensureThumbnail(originalPath, thumbnailPath, size) {
     if (size?.type === "percentage") {
       const meta4 = await (0, import_sharp2.default)(originalPath).metadata();
       if (!meta4.width || !meta4.height) {
-        console.warn("[image] \u65E0\u6CD5\u83B7\u53D6\u539F\u56FE\u5C3A\u5BF8:", originalPath);
+        console.warn("[image] Unable to retrieve the original image dimensions:", originalPath);
         return null;
       }
       const pct = size.value / 100;
@@ -260187,16 +259746,16 @@ async function ensureThumbnail(originalPath, thumbnailPath, size) {
     } else {
       await resizeImage(originalPath, thumbnailPath);
     }
-    console.info(`[${thumbnailPath}] \u5C0F\u56FE\u751F\u6210\u6210\u529F`);
+    console.info(`[${thumbnailPath}] Small image generated successfully`);
     return thumbnailPath;
   } catch (e) {
-    console.warn("[image] \u751F\u6210\u7F29\u7565\u56FE\u5931\u8D25:", e);
+    console.warn("[image] Failed to generate thumbnail:", e);
     return null;
   }
 }
 
 // src/app.ts
-var app = (0, import_express175.default)();
+var app = (0, import_express176.default)();
 var server = import_node_http.default.createServer(app);
 async function checkPermissions() {
   if (!isEletron()) return true;
@@ -260210,13 +259769,10 @@ async function checkPermissions() {
     const { dialog, app: app2 } = require("electron");
     const { response } = await dialog.showMessageBox({
       type: "warning",
-      title: "\u6743\u9650\u4E0D\u8DB3",
-      message: "\u5E94\u7528\u65E0\u6CD5\u8BBF\u95EE\u6570\u636E\u76EE\u5F55",
-      detail: `\u65E0\u6CD5\u8BFB\u5199\u4EE5\u4E0B\u76EE\u5F55\uFF1A
-${userDataPath}
-
-\u8BF7\u8054\u7CFB\u7BA1\u7406\u5458\u6388\u4E88\u6743\u9650\uFF0C\u6216\u4EE5\u7BA1\u7406\u5458\u8EAB\u4EFD\u8FD0\u884C\u672C\u7A0B\u5E8F\u3002`,
-      buttons: ["\u786E\u8BA4\u9000\u51FA"],
+      title: "Insufficient permissions",
+      message: "The app cannot access the data directory",
+      detail: `Cannot read or write the following directory:${userDataPath}Please contact the administrator to grant permissions, or run this program as an administrator.`,
+      buttons: ["Confirm exit"],
       defaultId: 0
     });
     if (response === 0) {
@@ -260234,13 +259790,13 @@ async function startServe(randomPort = false) {
   (0, import_express_ws.default)(app);
   app.use((0, import_morgan.default)("dev"));
   app.use((0, import_cors.default)({ origin: "*" }));
-  app.use(import_express175.default.json({ limit: "100mb" }));
-  app.use(import_express175.default.urlencoded({ extended: true, limit: "100mb" }));
+  app.use(import_express176.default.json({ limit: "100mb" }));
+  app.use(import_express176.default.urlencoded({ extended: true, limit: "100mb" }));
   const ossDir = utils_default.getPath("oss");
   if (!import_fs18.default.existsSync(ossDir)) {
     import_fs18.default.mkdirSync(ossDir, { recursive: true });
   }
-  console.log("\u6587\u4EF6\u76EE\u5F55:", ossDir);
+  console.log("File directory:", ossDir);
   app.use(
     "/oss",
     authenticateStaticRequest,
@@ -260264,7 +259820,7 @@ async function startServe(randomPort = false) {
           sizeSubDir = `${percentMatch[1]}p`;
           sizeOpts = { type: "percentage", value: pct };
         } else {
-          import_express175.default.static(ossDir, { acceptRanges: false })(req, res, next);
+          import_express176.default.static(ossDir, { acceptRanges: false })(req, res, next);
           return;
         }
         const ext = import_path28.default.extname(req.path);
@@ -260275,43 +259831,43 @@ async function startServe(randomPort = false) {
           if (thumbnailPath) {
             res.sendFile(thumbnailPath);
           } else {
-            import_express175.default.static(ossDir, { acceptRanges: false })(req, res, next);
+            import_express176.default.static(ossDir, { acceptRanges: false })(req, res, next);
           }
         });
         return;
       }
       next();
     },
-    import_express175.default.static(ossDir, { acceptRanges: false })
+    import_express176.default.static(ossDir, { acceptRanges: false })
   );
   const skillsDir = utils_default.getPath("skills");
   if (!import_fs18.default.existsSync(skillsDir)) {
     import_fs18.default.mkdirSync(skillsDir, { recursive: true });
   }
-  console.log("\u6587\u4EF6\u76EE\u5F55:", skillsDir);
+  console.log("File directory:", skillsDir);
   app.use(
     "/skills",
     (req, res, next) => {
       /\.(jpe?g|png|gif|webp|svg|ico|bmp)$/i.test(req.path) ? next() : res.status(403).end();
     },
-    import_express175.default.static(skillsDir, { acceptRanges: false })
+    import_express176.default.static(skillsDir, { acceptRanges: false })
   );
   const assetsDir = utils_default.getPath("assets");
   if (!import_fs18.default.existsSync(assetsDir)) {
     import_fs18.default.mkdirSync(assetsDir, { recursive: true });
   }
-  console.log("\u6587\u4EF6\u76EE\u5F55:", assetsDir);
-  app.use("/assets", authenticateStaticRequest, enforceStaticProjectAccess, import_express175.default.static(assetsDir, { acceptRanges: false }));
+  console.log("File directory:", assetsDir);
+  app.use("/assets", authenticateStaticRequest, enforceStaticProjectAccess, import_express176.default.static(assetsDir, { acceptRanges: false }));
   const webDir = utils_default.getPath("web");
   if (import_fs18.default.existsSync(webDir)) {
-    console.log("\u9759\u6001\u7F51\u7AD9\u76EE\u5F55:", webDir);
-    app.use(import_express175.default.static(webDir, { acceptRanges: false }));
+    console.log("Static website directory:", webDir);
+    app.use(import_express176.default.static(webDir, { acceptRanges: false }));
   } else {
-    console.warn("\u9759\u6001\u7F51\u7AD9\u76EE\u5F55\u4E0D\u5B58\u5728:", webDir);
+    console.warn("Static website directory does not exist:", webDir);
   }
   app.use("/api", authenticateRequest, enforceProjectAccess);
-  const router175 = await Promise.resolve().then(() => (init_router(), router_exports));
-  await router175.default(app);
+  const router176 = await Promise.resolve().then(() => (init_router(), router_exports));
+  await router176.default(app);
   app.use((_, res, next) => {
     return res.status(404).send({ message: "API 404 Not Found" });
   });
@@ -260321,12 +259877,13 @@ async function startServe(randomPort = false) {
     console.error(err);
     res.status(err.status || 500).send(err);
   });
-  const port = randomPort ? 0 : 10588;
+  const envPort = Number(process.env.PORT);
+  const port = randomPort ? 0 : Number.isFinite(envPort) && envPort > 0 ? envPort : 10588;
   return await new Promise((resolve3) => {
     server.listen(port, async () => {
       const address = server.address();
       const realPort = typeof address === "string" ? address : address?.port;
-      console.log(`[\u670D\u52A1\u542F\u52A8\u6210\u529F]: http://localhost:${realPort}`);
+      console.log(`[Service started successfully]: http://localhost:${realPort}`);
       resolve3(realPort);
     });
   });
@@ -260336,7 +259893,7 @@ function closeServe() {
     if (server) {
       server.close((err) => {
         if (err) return reject(err);
-        console.log("[\u670D\u52A1\u5DF2\u5173\u95ED]");
+        console.log("[Service Closed]");
         resolve3();
       });
     } else {

@@ -1,114 +1,114 @@
 ---
 name: director_planning_narrative
-description: 叙事手法技法 · 悬疑推理 — 定义悬疑推理类型在主题立意、信息操控、悬念节奏、场景氛围设计与声音方向上的叙事规划方法。适用于任何视觉风格。
+description: Narrative techniques and techniques · Suspense reasoning - defines the narrative planning method of suspense reasoning type in terms of theme conception, information manipulation, suspense rhythm, scene atmosphere design and sound direction. Works with any visual style.
 metaData: director_skills
 ---
 
-# 叙事手法 · 悬疑推理 · 技法参考
+# Narrative techniques · Suspense reasoning · Technical reference
 
 ---
 
-## 一、主题立意与悬念内核
+## 1. Theme concept and suspense core
 
-### 悬疑推理叙事要点
+### Key points of suspense reasoning narrative
 
-- **信息差是悬念的本质** — 悬疑叙事的核心是操控观众与角色之间的信息差。导演必须清楚每个时刻观众"知道什么""不知道什么""以为自己知道什么"
-- **不可靠叙事** — 镜头可以"说谎"：选择性展示局部真相、用景别遮蔽关键信息、用转场暗示错误因果关系。观众信任镜头，利用这种信任制造反转
-- **真相分层设计** — 不要一次揭露全部真相。将真相拆成 3-5 层，每层揭示都让观众以为"这次是真的"，直到最终反转颠覆一切
-- **离场感受建议方向** — 细思恐极 / 恍然大悟 / 脊背发凉 / 意犹未尽。避免"轻松愉快""温馨治愈"等与悬疑气质不匹配的方向
-- **日常中的裂缝** — 最好的悬疑不是从异常开始，而是从"一切正常"开始，然后让观众渐渐发现——某些东西不对
-
----
-
-## 二、叙事结构与悬念节奏
-
-### 悬疑推理叙事要点
-
-- **钩子先行** — 开篇必须在 30 秒内抛出悬念钩子（一个反常现象、一句不该出现的话、一个不合理的画面），让观众产生"为什么？"的疑问
-- **信息释放节奏** — 遵循"给一藏三"原则：每释放一个信息，同时制造至少一个新疑问。信息量递增，但未解之谜也在递增，直到高潮段落集中清算
-- **红鲱鱼策略** — 有意识地设计 1-2 条误导线索，让观众建立错误推理。误导线索必须足够合理，揭穿时观众应感到"被骗了但心服口服"
-- **转折点用视觉而非对白** — 关键反转的处理方式应优先考虑视觉手段（镜头突然揭示被遮挡的全貌、闪回画面与当下画面的矛盾、道具位置的变化），而非角色口头解释
-- **节奏模型：收紧→释放→更紧** — 悬疑的节奏像拧发条：逐渐收紧→短暂释放假象→更猛烈地收紧。每次释放都是下一次收紧的起点
-- **时间线操控** — 悬疑推理可以打乱时间线叙事：倒叙开篇（先给结果再追因）、插叙补充（关键时刻插入过去线索）、平行时间线（同一时间不同视角）。但每次时间跳转必须有视觉标记
+- **Information gap is the essence of suspense** — The core of suspense narrative is to manipulate the information gap between the audience and the characters. The director must know what the audience "knows", "what they don't know" and "what they think they know" at each moment.
+- **Unreliable Narrative** — The camera can "lie": selectively showing partial truths, using different scenes to obscure key information, and using transitions to imply wrong causal relationships. The audience trusts the lens and uses this trust to create a reversal
+- **Truth Layered Design** — Don’t reveal the whole truth at once. Divide the truth into 3-5 layers, and each layer of revelation makes the audience think "this time it's true" until the final twist subverts everything.
+- **Suggested directions for leaving the scene** — It’s scary to think about it/suddenly enlightened/chills down the spine/still unfinished thoughts. Avoid "relaxing and happy", "warm and healing" and other directions that do not match the suspenseful temperament.
+- **Cracks in Everyday Life** — The best suspense doesn't start with anomalies, but starts with "everything is normal", and then allows the audience to gradually discover that something is not right.
 
 ---
 
-## 三、分场景氛围设计
+## 2. Narrative structure and suspense rhythm
 
-### 悬疑推理叙事要点
+### Key points of suspense reasoning narrative
 
-- **氛围用具象词** — 不说"紧张"，说"走廊尽头的灯突然灭了一盏"。具象的氛围描述能更好地指导置景和声效设计
-- **典型悬疑段落与设计** —
+- **Hook first** — The opening must throw a suspense hook (an anomaly, a sentence that should not appear, an unreasonable picture) within 30 seconds, causing the audience to question "Why?"
+- **Information Release Rhythm** — Follow the "give one, hide three" principle: every time a piece of information is released, at least one new question will be created at the same time. The amount of information increases, but the unsolved mysteries also increase, until the climax passage is focused on clearing up
+- **Red Herring Strategy** — Consciously craft 1-2 misleading clues that lead the audience to build false inferences. The misleading clues must be reasonable enough, and the audience should feel "cheated but convinced" when revealed.
+- **Turning points are visual rather than dialogue** — Key reversals should be handled with priority given to visual means (the camera suddenly reveals the blocked whole picture, the contradiction between the flashback scene and the current scene, the change of prop position) rather than the character's verbal explanation
+- **Rhythm Model: Tighten → Release → Tighter** — The suspenseful rhythm is like twisting a clockwork: gradually tighten → briefly release the illusion → tighten more violently. Each release is the starting point for the next tightening
+- **Timeline Manipulation** — Suspense reasoning can disrupt the timeline narrative: flashback opening (give the result first and then trace the cause), narrative supplement (insert clues from the past at key moments), parallel timeline (different perspectives at the same time). But each time jump must be visually marked
 
-| 段落类型 | 情绪方向 | 叙事手法 | 音乐建议 |
+---
+
+## 3. Scene atmosphere design
+
+### Key points of suspense reasoning narrative
+
+- **Use concrete words for atmosphere** — Instead of saying "nervous", say "the light at the end of the corridor suddenly went out." A concrete description of the atmosphere can better guide the setting and sound design
+- **Typical suspense passages and designs** —
+
+| Paragraph Types | Emotional Direction | Narrative Techniques | Music Suggestions |
 |---|---|---|---|
-| 日常/假象 | 平静 + 暗流 | 一切正常但有一个"不对"的细节 | 轻松日常配乐中混入一个不协和音 |
-| 发现异常 | 困惑 + 好奇 | 主角注意到某个不合理之处 | 配乐抽离，只剩环境音和一个低频嗡鸣 |
-| 调查/追踪 | 专注 + 不安 | 逐步接近真相但环境越来越压迫 | 节奏性底噪，渐强 |
-| 误导/红鲱鱼 | 笃定 + 放松 | 看似找到答案，观众以为结束了 | 短暂舒缓旋律（制造虚假安全感） |
-| 反转/揭示 | 震惊 + 细思恐极 | 一个镜头颠覆之前所有认知 | 突然静默，或刺耳单音 |
-| 真相大白 | 释然 + 余悸 | 全部线索回溯串联，真相拼图完成 | 从压迫感渐入宽广器乐，但保留不安余韵 |
+| Everyday / Illusion | Calm + Undercurrent | Everything is normal but there is one "wrong" detail | A dissonance mixed into the relaxing daily soundtrack |
+| Discover anomalies | Confusion + Curiosity | The protagonist notices something unreasonable | The soundtrack is withdrawn, leaving only ambient sounds and a low-frequency hum |
+| Investigation/Tracking | Focus + Uneasiness | Gradually getting closer to the truth but the environment is becoming more and more oppressive | Rhythmic background noise, crescendo |
+| Misleading/Red Herring | Determination + Relaxation | Seemingly finding the answer, the audience thinks it’s over | Briefly soothing melody (creating a false sense of security) |
+| Reversal/Revelation | Shock + Terrification upon reflection | One shot subverts all previous perceptions | Sudden silence, or a harsh single tone |
+| The truth is revealed | Relief + lingering fear | All the clues are traced back and connected, and the truth puzzle is completed | Gradually from the sense of oppression to the broad instrumental music, but retaining the uneasy aftertaste |
 
-- **空间压迫是叙事工具** — 用空间的封闭程度映射悬念的紧迫感：
-  - **初期**：开阔空间，正常生活，安全感充足
-  - **中期**：空间收窄（走廊、密室、巷子），物理压迫感上升
-  - **高潮**：极度封闭（困兽之斗）或极度开阔（真相揭示后的空旷感）
-- **视觉线索必须"明放暗藏"** — 线索应在镜头中出现但不被强调：放在画面边缘、被前景部分遮挡、角色看了一眼但没反应。第一遍看忽略，回看时发现
-- **镜头意图写"隐藏什么"而非"展示什么"** — "用近景是为了不让观众看到桌上的第二只杯子"优于"用近景拍角色表情"。悬疑分镜的核心是设计"画框之外"
+- **Space oppression is a narrative tool** — Use the degree of spatial closure to reflect the urgency of suspense:
+  - **Initial stage**: open space, normal life, sufficient sense of security
+  - **Mid Stage**: The space narrows (corridors, secret rooms, alleys), and the sense of physical oppression increases.
+  - **Climax**: Extreme closure (the fight between trapped beasts) or extreme openness (the feeling of emptiness after the truth is revealed)
+- **Visual clues must be "overt and hidden"** - clues should appear in the shot but not be emphasized: placed on the edge of the frame, partially obscured by the foreground, the character glances but does not react. I ignored it the first time I watched it, but realized it when I watched it again
+- **The intention of the shot is "to hide something" rather than "to show something"** - "Using a close shot is to prevent the audience from seeing the second cup on the table" is better than "using a close shot to capture the character's expression". The core of suspense storyboarding is to design "outside the frame"
 
 ---
 
-## 四、声音与音乐方向
+## 4. Sound and Music Direction
 
-### 悬疑推理叙事要点
+### Key points of suspense reasoning narrative
 
-- **寂静比惊吓更恐怖** — 关键悬念时刻（发现异常、即将揭示真相）优先去掉所有声音，制造真空感。人在完全安静时本能地紧张
-- **底噪制造不安** — 低频嗡鸣、远处不明声响、若有若无的心跳声——持续的底噪让观众始终处于轻度不安状态，即使画面看起来正常
-- **音效误导** — 声音可以和镜头一样"说谎"：让观众听到门外的脚步声以为是凶手，实际是无关人物。声音的误导比视觉误导更难察觉
-- **环境音的反常** — 每场戏标注核心环境音时，考虑加入一个"不该出现"的声音元素（安静夜晚的远处金属碰撞、正常教室的异常回声），用声音暗示"有什么不对"
-- **音乐情绪模型** —
+- **Silence is more terrifying than fright** — At key suspense moments (anomalies are discovered and the truth is about to be revealed), priority is given to removing all sounds to create a sense of vacuum. People are naturally nervous when in complete silence
+- **Noise creates uneasiness** — Low-frequency buzzing, unknown sounds in the distance, faint heartbeats — the continuous background noise keeps the audience in a state of mild uneasiness, even if the picture looks normal
+- **Sound Effect Misleading** — Sound can "lie" just like the camera: making the audience hear the footsteps outside the door and think it is the murderer, but it is actually an unrelated person. Sound misdirection is more difficult to detect than visual misdirection
+- **Abnormalities in environmental sounds** — When marking the core environmental sounds of each scene, consider adding a sound element that "shouldn't be there" (distant metal collisions in a quiet night, abnormal echoes in a normal classroom), and use sounds to hint that "something is wrong"
+- **Music Emotion Model** —
 
-| 悬念阶段 | 音乐策略 | 覆盖率 |
+| Suspense Stage | Music Strategy | Coverage |
 |---|---|---|
-| 日常/假象 | 正常配乐中暗藏不协和音 | 中 |
-| 疑点浮现 | 配乐减退，底噪渐起 | 低 |
-| 调查深入 | 节奏性底噪，逐渐压迫 | 中高 |
-| 反转前夕 | 完全静默（真空感） | 无 |
-| 反转瞬间 | 单一刺耳音/强打击或持续静默 | 极端 |
-| 真相回溯 | 宽广器乐，带忧伤或不安尾音 | 中 |
+| Everyday / Illusion | Hidden dissonance in the normal soundtrack | Medium |
+| Doubts emerge | The soundtrack fades and the noise level gradually rises | Low |
+| In-depth investigation | Rhythmic background noise, gradually oppressive | Medium to high |
+| Eve of reversal | Complete silence (sense of vacuum) | None |
+| Reversal moment | Single harsh sound/hard blow or continuous silence | Extreme |
+| Retrospection of the truth | Broad instrumental music with a sad or uneasy ending | Medium |
 
-- **"倒计时"听觉** — 接近真相的段落可用逐渐加速的节奏元素（钟摆、滴水、心跳渐快）暗示时间紧迫感，比配乐更能制造生理性紧张
-
----
-
-## 五、构图与景别叙事
-
-### 悬疑推理叙事要点
-
-- **三大核心构图的叙事功能** —
-  - **倾斜构图（荷兰角）** — 世界失序/不稳定/角色心理扭曲，用于关键反转或角色精神状态异常的段落
-  - **遮挡式构图** — 前景大面积遮挡主体，制造"偷窥""隐藏""不完整信息"的暗示
-  - **深焦构图** — 前景与背景同时清晰，让观众自行选择关注点——线索可能藏在不被注意的景深处
-- **中心构图的限定使用** — 中心构图在悬疑中暗示"审视/对峙/无处可逃"，留给审讯、对峙、真相揭示等高压场景
-- **画框边缘即线索区** — 悬疑构图中，画面边缘和角落是藏线索的黄金区域。观众注意力集中在中心，线索放边缘，回看时才被发现
-- **对称构图的不安感** — 过度完美的对称构图在悬疑中制造"人工感/不自然感"，暗示表面秩序下隐藏着混乱
-- **景别即信息操控** — 景别选择的核心逻辑不是"美不美"而是"让观众看到多少"：
-  - **特写** — 强制观众看到某个细节（可能是线索，也可能是误导）
-  - **中景** — 提供足够信息但遮蔽关键局部
-  - **全景** — 揭示全貌，常用于反转瞬间（原来房间里还有第三个人）
-- **大特写在悬疑中的功能** — 不是情感核弹而是"证据放大镜"：一把沾血的钥匙、一张照片上被划掉的脸、一双微微颤抖的手。每次大特写都应传递一个信息量
-- **远景的孤立感** — 远景在悬疑中强调角色的"渺小与无助"：茫茫雪原中独行的人、空旷仓库中的孤灯、迷宫般城市中的微小身影
+- **"Countdown" auditory** - passages that are close to the truth can use gradually accelerating rhythm elements (pendulum, dripping water, heartbeat gradually increasing) to imply a sense of time urgency, which can create physiological tension better than a soundtrack
 
 ---
 
-## 六、镜头运动与节奏
+## 5. Composition and scenery narrative
 
-### 悬疑推理叙事要点
+### Key points of suspense reasoning narrative
 
-- **窥视运镜** — 缓推 + 前景遮挡，模拟"有人在暗处注视"的视角。观众不知道"谁"在看，但能感受到被窥视的不安
-- **不安手持** — 轻微手持晃动打破稳定感，用于角色发现异常后的主观段落。晃动幅度要克制——不是纪录片抖动，而是"手不自觉微颤"的感觉
-- **突然静止** — 正在运动的镜头突然停下，制造"冻结"感。用于重大发现瞬间（角色/观众突然注意到某个不对的东西）
-- **快切与悬疑不完全兼容** — 快速剪辑适合追逐/逃亡段落，但在悬念建构段落应避免。悬念需要时间发酵，碎切会打断思考
-- **360° 环绕** — 适用于审讯/对峙场景，摄像机缓慢环绕角色，制造"被包围/无处可逃"的心理压迫
-- **运镜即信息** — 镜头运动的核心逻辑是"引导观众看什么"：缓推 = 引导关注细节；缓拉 = 揭示被遮蔽的全貌；横移 = 发现新信息；突然停止 = 信息冲击
-- **时间操控运镜** — 升格（慢动作）用于关键发现瞬间，放大角色的微反应；降格（加速）用于时间流逝的焦虑感。但悬疑中升格使用应极其克制（全片 1-2 次）
+- **Narrative function of three core compositions** —
+  - **Oblique composition (Dutch angle)** — World disorder/instability/character psychological distortion, used for passages with key reversals or abnormal mental state of the character
+  - **Occluded composition** — The foreground blocks the subject over a large area, creating hints of "peeping", "hiding" and "incomplete information"
+  - **Deep Focus Composition** — The foreground and background are both clear at the same time, allowing the viewer to choose their own focus — clues may be hidden deep in the field unnoticed
+- **Limited use of central composition** — The central composition implies "examination/confrontation/no escape" in suspense, leaving it for high-pressure scenes such as interrogation, confrontation, and truth revelation.
+- **The edge of the frame is the clue area** — In a suspenseful composition, the edges and corners of the frame are prime areas for hiding clues. The audience's attention is focused on the center, and clues are placed on the edges, only to be discovered when looking back.
+- **Uneasy feeling of symmetrical composition** — Overly perfect symmetrical composition creates an "artificial/unnatural feeling" in suspense, implying that there is chaos hidden under the surface order.
+- **Scenery means information control** — The core logic of scene selection is not "beautiful or not" but "how much the audience can see":
+  - **Close-up** — Force the audience to see a certain detail (may be a clue, or may be misleading)
+  - **Medium Shot** — Provides enough information but obscures key areas
+  - **Panorama** — reveals the whole picture, often used for reversal moments (it turns out there is a third person in the room)
+- **The function of close-up in suspense** — not an emotional nuclear bomb but an "evidence magnifying glass": a bloody key, a crossed-out face on a photo, a pair of slightly trembling hands. Every close-up should convey a certain amount of information
+- **Yuanjing's sense of isolation** — Yuanjing emphasizes the "smallness and helplessness" of the characters in the suspense: a person walking alone in the vast snowfield, a lonely lamp in an empty warehouse, a tiny figure in a maze-like city
+
+---
+
+## 6. Camera movement and rhythm
+
+### Key points of suspense reasoning narrative
+
+- **Peeping Mirror** — Slow push + foreground occlusion, simulating the perspective of "someone watching in the dark". The audience doesn't know "who" is watching, but they can feel the uneasiness of being spied on
+- **Uneasy hand holding** — Slight hand shaking breaks the sense of stability and is used in the subjective paragraph after the character discovers an abnormality. The amplitude of shaking should be restrained - it is not a documentary shake, but the feeling of "unconscious hand trembling"
+- **Sudden Stillness** — A moving camera suddenly stops, creating a "frozen" feeling. Used for big moments of discovery (characters/audience suddenly notice something isn't right)
+- **Fast cuts are not fully compatible with suspense** — Fast cuts are suitable for chase/escape passages, but should be avoided in suspense-building passages. Suspense needs time to ferment, and cutting it into pieces will interrupt thinking.
+- **360° Surround** — suitable for interrogation/confrontation scenes, the camera slowly surrounds the character, creating the psychological oppression of "surrounded/no escape"
+- **Mirror movement is information** — The core logic of camera movement is to "guide the audience to see what": Slow push = guide attention to details; Slow pull = reveal the obscured whole picture; Lateral movement = discover new information; Sudden stop = information impact
+- **Time Manipulated Camera Movement** — Upgrade (slow motion) is used for key discovery moments to amplify the character's micro-reactions; downgrade (acceleration) is used for the anxiety of the passage of time. However, the use of promotion in suspense should be extremely restrained (1-2 times in the whole film)

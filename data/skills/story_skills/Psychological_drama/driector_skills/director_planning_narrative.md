@@ -1,109 +1,109 @@
 ---
 name: director_planning_narrative
-description: 叙事手法技法 · 心理博弈 — 定义心理博弈类型在主题立意、情感节奏、场景情绪设计与声音方向上的叙事规划方法。适用于任何视觉风格。
+description: Narrative techniques and techniques · Psychological game - defines the narrative planning method of psychological game type in terms of theme conception, emotional rhythm, scene mood design and sound direction. Works with any visual style.
 metaData: director_skills
 ---
 
-# 叙事手法 · 心理博弈 · 技法参考
+# Narrative Technique · Psychological Game · Technical Reference
 
 ---
 
-## 一、主题立意与情感内核
+## 1. Theme conception and emotional core
 
-### 心理博弈叙事要点
+### Key points of psychological game narrative
 
-- **表面平静暗流涌动** — 心理博弈的核心魅力在于"表里不一"。每句看似平常的对话都有弦外之音，每个微笑都可能是精心计算的策略。主题立意应围绕"人与人之间隐形的攻防战"
-- **信息就是武器** — 心理博弈叙事的底层引擎是"信息不对称"。谁知道什么、谁不知道什么、谁假装不知道——信息的隐瞒、揣测与揭露构成叙事张力的核心
-- **多层认知博弈** — 最高级的心理博弈不是简单的欺骗，而是"认知套娃"：A以为自己在骗B → B其实早知道 → A知道B知道但假装不知道。层数越多，观众的智力快感越强
-- **离场感受建议方向** — 烧脑 / 后背发凉 / 恍然大悟 / 不寒而栗。避免"血腥""暴力"等纯感官方向
-- **人性的灰度** — 心理博弈叙事中没有绝对的好人和坏人。每个角色都有自己的逻辑、苦衷和底线。最好的博弈是"观众理解每一方的动机，但不知道该站哪一边"
-
----
-
-## 二、叙事结构与节奏规划
-
-### 心理博弈叙事要点
-
-- **信息操控是基本功** — 心理博弈叙事的核心任务是操控信息流。叙事规划阶段需明确：每个段落中观众知道什么、角色A知道什么、角色B知道什么。三者之间的信息差就是张力来源
-- **视角切换制造认知翻转** — 同一事件从不同角色视角呈现，每切换一次视角，观众对事件的理解就翻转一次。规划中应标注"视角切换点"和每次切换带来的认知更新
-- **反转需要铺垫** — 每一次反转都必须在前面埋下足够的线索。观众在反转时应感受到"早该想到的！"而非"这也太突然了"。铺垫与反转的比例建议 3:1（三份铺垫换一次反转）
-- **张力累积→短暂释放→更大的张力** — 心理博弈的节奏是螺旋上升的：每次博弈回合结束后有短暂的松弛，但下一回合的赌注更大、风险更高
-- **"暴露"节奏模型** — 心理博弈的核心节奏是角色"底牌"的逐步暴露：伪装 → 裂缝出现 → 对方察觉 → 反将一军 → 更深的伪装 → 更大的暴露。每一轮都比上一轮更接近真相
-- **观众的位置设计** — 明确每个段落中观众是"上帝视角"（知道双方底牌）还是"跟随视角"（只知道一方的信息）。两种位置制造完全不同的紧张感：上帝视角 = 看着角色走进陷阱的焦虑；跟随视角 = 与角色一起被骗的震惊
+- **Calm on the surface but undercurrent** - The core charm of psychological games lies in the "difference of appearance and appearance". Every seemingly normal conversation has an undertone, and every smile could be a carefully calculated strategy. The theme should revolve around "the invisible offensive and defensive battle between people"
+- **Information is a weapon** — The underlying engine of psychological game narrative is "information asymmetry". Who knows what, who doesn’t know what, and who pretends not to know—the concealment, speculation, and revelation of information form the core of narrative tension.
+- **Multi-layered cognitive game** — The most advanced psychological game is not simple deception, but "cognitive matryoshka dolls": A thinks he is deceiving B → B actually knows it already → A knows that B knows but pretends not to know. The more layers there are, the greater the intellectual pleasure for the audience.
+- **Suggested directions for leaving the scene** — brain-burning/cold on the back/sudden realization/shuddering. Avoid purely sensual directions such as "bloody" and "violent"
+- **The Grayscale of Human Nature** — There are no absolute good guys and bad guys in psychological game narratives. Each character has his own logic, difficulties and bottom line. The best game is "where the audience understands each side's motivations, but doesn't know which side to side with."
 
 ---
 
-## 三、分场景情绪设计
+## 2. Narrative structure and rhythm planning
 
-### 心理博弈叙事要点
+### Key points of psychological game narrative
 
-- **情绪目标用博弈性词汇** — 不说"紧张"，说"笑着说话但掌心全是汗"。不说"害怕"，说"发现对方知道了但不知道对方知道多少"。博弈的情绪永远是多层的、矛盾的
-- **典型情绪段落与设计** —
+- **Information manipulation is a basic skill** — The core task of psychological game narrative is to control the flow of information. In the narrative planning stage, it is necessary to clarify: what the audience knows, what character A knows, and what character B knows in each paragraph. The information gap between the three is the source of tension
+- **Perspective switching creates cognitive flipping** — The same event is presented from different character perspectives. Every time the perspective is switched, the audience's understanding of the event is flipped. The "perspective switching point" and the cognitive update brought about by each switch should be marked in the plan.
+- **Reversal requires paving the way** — Every reversal must have enough clues buried in front of it. The audience should feel "I should have thought of this!" when the reversal occurs, rather than "This is too sudden." The ratio of bedding to reversal is recommended to be 3:1 (three beddings for one reversal)
+- **Tension accumulation→short release→greater tension** — The rhythm of psychological games is spiraling: there is a short period of relaxation after each game round, but the stakes in the next round are bigger and the risks are higher
+- **"Exposure" Rhythm Model** — The core rhythm of the psychological game is the gradual exposure of the character's "trump card": disguise → cracks appear → the opponent detects → counterattack → deeper disguise → greater exposure. Each round is closer to the truth than the last
+- **Audience position design** — Make it clear in each paragraph whether the audience is from a "God's perspective" (knowing both sides' trump cards) or a "following perspective" (only knowing information about one side). The two positions create completely different tensions: God's point of view = anxiety of watching the character walk into the trap; Follower's point of view = shock of being deceived along with the character
 
-| 段落类型 | 情绪方向 | 叙事手法 | 音乐建议 |
+---
+
+## 3. Scene emotional design
+
+### Key points of psychological game narrative
+
+- **Use gaming vocabulary for emotional goals** — Don’t say “nervous”, say “smile and talk but your palms are all sweaty”. Don't say "fear", say "find out that the other party knows but don't know how much the other party knows". The emotions of gaming are always multi-layered and contradictory.
+- **Typical emotional passages and designs** —
+
+| Paragraph Types | Emotional Direction | Narrative Techniques | Music Suggestions |
 |---|---|---|---|
-| 表面和平 | 客套 + 暗流 | 正常对话但每句话都有弦外之音 | 极轻衬底或无配乐，让对话张力自己运作 |
-| 试探交锋 | 紧张 + 智力快感 | 一来一回的对话中暗藏攻防，话中有话 | 低频暗流，节奏微妙加速 |
-| 裂缝出现 | 不安 + 警觉 | 某个细节暴露了，对方的表情一闪而过的变化 | 不协和音程一闪，随即恢复平静 |
-| 摊牌/反转 | 震惊 + 恍然 | 底牌翻开，之前所有的线索突然串联 | 突然静默，或单一低音持续 |
-| 僵持对峙 | 窒息 + 平衡 | 双方都知道对方知道了，但谁都不先动 | 完全无声，只有环境音和呼吸 |
-| 终局揭底 | 颠覆 + 唏嘘 | 最终真相比所有人以为的都更深一层 | 极简器乐或余音袅袅 |
+| Peace on the surface | Politeness + undercurrent | Normal dialogue but every sentence has an undertone | Very light background or no soundtrack, let the dialogue tension work on its own |
+| Test confrontation | Tension + intellectual pleasure | Hidden offense and defense in the back-and-forth dialogue, there is something in the words | Low-frequency undercurrent, subtle acceleration of rhythm |
+| Cracks appear | Uneasiness + alertness | A certain detail is exposed, and the other party's expression changes in a flash | A dissonant interval flashes, and then calmness returns |
+| Showdown/Reversal | Shock + Sudden realization | The trump card is revealed, and all the previous clues are suddenly connected in series | Sudden silence, or a single bass continues |
+| Stalemate | Suffocation + Balance | Both sides know that the other knows, but neither one moves first | Completely silent, only ambient sounds and breathing |
+| The final reveal | Subversion + Lamentation | The final truth is deeper than everyone thought | Minimalist instrumental music or lingering sounds |
 
-- **"对话即战场"是叙事核心工具** — 心理博弈中对话不是信息传递，而是攻防武器：
-  - **主动问话** = 试探/进攻（想套出信息）
-  - **回避/转移话题** = 防御（不想暴露信息）
-  - **反问** = 反击（把压力推回给对方）
-  - **沉默** = 最强的牌（让对方自己焦虑暴露）
-- **空间即权力场** — 心理博弈场景中，谁占据空间的主动位置，谁就在博弈中占上风：坐在桌子另一端 = 对等博弈；站起来走动 = 施压；背对对方 = 自信/蔑视；被困在角落 = 劣势
-- **微表情是真话** — 心理博弈叙事的高级手法是"嘴在说谎但身体在说真话"。叙事规划中每个博弈段落应标注角色的"真实反应"（微表情、无意识小动作），这些是给观众的线索
+- **"Dialogue is the battlefield" is the core tool of narrative** — In psychological games, dialogue is not the transmission of information, but an offensive and defensive weapon:
+  - **Active Questioning** = Testing/Offensive (wanting to extract information)
+  - **Avoid/Change the topic** = Defensive (don’t want to reveal information)
+  - **Rhetorical Question** = Counterattack (put the pressure back on the opponent)
+  - **Silence** = the strongest card (exposing the opponent's anxiety)
+- **Space is a power field** — In a psychological game scenario, whoever occupies the active position in the space will have the upper hand in the game: Sitting at the other end of the table = peer-to-peer game; standing up and walking = applying pressure; turning your back to the other party = confidence/contempt; being trapped in a corner = disadvantage
+- **Microexpressions are the truth** — The advanced technique of psychological game narrative is "the mouth is lying but the body is telling the truth". Each game paragraph in the narrative planning should be marked with the character's "real reaction" (micro-expressions, unconscious small movements). These are clues to the audience.
 
 ---
 
-## 四、声音与音乐方向
+## 4. Sound and Music Direction
 
-### 心理博弈叙事要点
+### Key points of psychological game narrative
 
-- **沉默是最强的武器** — 心理博弈的关键对峙段落应优先去掉配乐，只留环境音和人物的呼吸/心跳。沉默中的对话比任何配乐都更紧张
-- **配乐制造认知暗示** — 心理博弈的配乐不是烘托气氛，而是引导观众的认知判断。某个角色出场时的配乐暗示"这个人有问题"；一段平静的对话配上不安的低音暗示"有陷阱"
-- **声音的欺骗性** — 配乐可以配合叙事"骗"观众：用温暖的配乐让观众以为某个角色是好人，在反转时配乐的变调本身就是"啊，原来如此"的叙事工具
-- **环境音即心理空间** — 密闭空间的回声 = 被困/无处可逃；嘈杂环境中的对话 = 隐秘/不方便说真话；空旷安静的空间 = 无处藏身/一切都被听到
-- **音乐情绪递进模型** —
+- **Silence is the strongest weapon** — For key confrontation passages in psychological games, the soundtrack should be removed first, leaving only environmental sounds and the characters’ breathing/heartbeat. Conversations in silence are more tense than any soundtrack
+- **Soundtrack creates cognitive cues** — The soundtrack of psychological games does not enhance the atmosphere, but guides the audience's cognitive judgment. A soundtrack when a character appears suggests "there's something wrong with this guy"; a calm dialogue paired with an uneasy bass suggests "there's a trap"
+- **The deception of sound** — The soundtrack can "deceive" the audience in conjunction with the narrative: use a warm soundtrack to make the audience think that a certain character is a good person, and the change of tone of the soundtrack during the reversal is itself a narrative tool of "Ah, that's it"
+- **Environmental sound is psychological space** — Echo in a confined space = trapped/nowhere to escape; conversation in a noisy environment = secret/inconvenient to tell the truth; empty and quiet space = nowhere to hide/everything is heard
+- **Music Emotion Progressive Model** —
 
-| 情绪阶段 | 音乐策略 | 覆盖率 |
+| Emotional Stages | Music Strategy | Coverage |
 |---|---|---|
-| 表面和平 | 极轻衬底或无配乐 | 极低 |
-| 暗流涌动 | 低频不协和音，音量渐增 | 中低 |
-| 交锋升级 | 节奏感暗示，紧张加码 | 中 |
-| 摊牌/反转 | 突然静默或一个强音后寂静 | 极端 |
-| 终局 | 极简器乐，留余韵 | 低 |
+| Peaceful surface | Very light backing or no soundtrack | Very low |
+| Undercurrent | Low-frequency dissonance, increasing volume | Mid-low |
+| Confrontation escalates | Rhythm hints, tension increases | Medium |
+| Showdown/Reversal | Sudden silence or silence after a strong sound | Extreme |
+| Ending | Minimalist instrumental music, leaving a lingering linger | Low |
 
-- **"心跳暴露"** — 在关键博弈段落，用角色的心跳声作为音效。心跳加速暗示角色在撒谎/紧张/即将被拆穿。但要克制使用，成为角色"说谎探测器"会降低悬念
-
----
-
-## 五、构图与景别叙事
-
-### 心理博弈叙事要点
-
-- **三大核心构图的叙事功能** —
-  - **对称构图** — 两人对坐/对立，传递"势均力敌/对峙/博弈平衡"
-  - **三角构图** — 三人博弈中的第三方（观察者/变数/裁判），打破二元对立增加复杂度
-  - **失衡构图** — 主体偏向一侧，另一侧留白或有威胁性元素，暗示"平衡被打破/有人在暗处"
-- **景别即信息权力** — 特写 = 观众被允许看到微表情（读心）；中景 = 观众只能看到肢体语言（猜测）；远景 = 观众只能看到位置关系（判断格局）。用景别控制观众的"读心权限"
-- **对话景别的攻防** — 对话中正反打的景别应随博弈态势变化：占上风的一方给近景（自信/从容）；劣势方给特写（紧张/微表情暴露）；势均力敌时双人中景
-- **空间纵深即博弈格局** — 利用空间纵深传递博弈关系：前景 = 当前说话者（明面）；中景 = 倾听者（观察/计算）；背景 = 第三方或隐藏的信息
-- **大特写的读心功能** — 大特写（瞳孔/嘴角/指尖）用于捕捉角色"说谎时的破绽"或"发现被骗时的一闪而过的变化"。这是给观众的线索，必须精准
-- **"不该看到的东西"** — 博弈叙事的高级构图技巧：让观众通过构图"不经意间"看到角色试图隐藏的东西（背后的手在发抖、桌下的拳头攥紧、眼神一瞬间的飘移）
+- **"Heartbeat Exposed"** — Use the character's heartbeat as a sound effect in key game segments. A racing heart implies that the character is lying/nervous/about to be exposed. But use it with restraint. Becoming a character's "lying detector" will reduce suspense.
 
 ---
 
-## 六、镜头运动与节奏
+## 5. Composition and scenery narrative
 
-### 心理博弈叙事要点
+### Key points of psychological game narrative
 
-- **对峙段落绝对静止** — 心理博弈的核心对峙段落，镜头应当像"屏住呼吸"一样完全静止。60% 以上镜头为静止机位。任何运镜都会分散观众对微表情和对话潜台词的注意力
-- **缓推 = 逼近真相/施压** — 极缓的推近暗示"观众/角色正在靠近真相"或"一方在对另一方施加压力"。速度越慢，压迫感越强
-- **缓拉 = 揭示全局/发现** — 从局部缓慢拉远揭示角色没有注意到的全貌（有人在暗处听、证据就在身后），是"观众知道但角色不知道"的经典手法
-- **微妙偏移** — 静止画面中镜头极缓地偏向一侧，暗示"博弈的天平在倾斜"。偏向谁，谁就在失去优势
-- **快切用于反转瞬间** — 心理博弈中唯一允许快切的时刻是"底牌翻开"的反转瞬间：快速的景别跳切（全景→特写→大特写）模拟"恍然大悟"的心理冲击
-- **运镜即心理态势** — 静止 = 对峙/平衡；缓推 = 逼近/施压；缓拉 = 揭示/退让；偏移 = 天平倾斜；快切 = 真相揭露
+- **Narrative function of three core compositions** —
+  - **Symmetrical composition** — two people sitting opposite/confronting each other, conveying "evenly matched/confronted/balanced game"
+  - **Triangular composition** — The third party in the three-person game (observer/variable/referee) breaks the binary opposition and increases complexity
+  - **Unbalanced composition** - The subject is tilted to one side, and the other side is blank or has threatening elements, implying that "the balance is broken/someone is in the dark"
+- **Scenery is the power of information** — Close-up = the audience is allowed to see micro-expressions (reading the mind); medium shot = the audience can only see body language (guessing); long shot = the audience can only see positional relationships (judging the pattern). Control the audience's "mind-reading authority" by scene type
+- **Attack and Defense of Dialogue Scenes** — The scenes of forward and reverse fights in the dialogue should change according to the game situation: the party with the upper hand should be given a close-up shot (confident/calm); the disadvantaged party should be given a close-up (nervous/micro-expression exposure); when the two are evenly matched, a mid-shot
+- **Spatial depth is the game pattern** — Use spatial depth to convey game relationships: foreground = current speaker (clear side); middle ground = listener (observation/calculation); background = third party or hidden information
+- **Mind-reading function of large close-up** — Large close-ups (pupils/corners of mouth/fingertips) are used to capture the character's "flaws in lying" or "flash changes when he discovers he has been deceived." This is a clue to the audience, it must be accurate
+- **"Things that shouldn't be seen"** - Advanced composition techniques for game narratives: allow the audience to "inadvertently" see what the character is trying to hide through the composition (the hands behind the back are shaking, the fists under the table are clenched, and the eyes are drifting for a moment)
+
+---
+
+## 6. Camera movement and rhythm
+
+### Key points of psychological game narrative
+
+- **Absolute stillness in the confrontation sequence** — In the core confrontation sequence of the psychological game, the camera should be completely still like "holding your breath". More than 60% of the shots are static. Any camera movement will distract the audience from micro-expressions and dialogue subtext.
+- **Slow push = approaching the truth/pressure** — A very slow push implies that "the audience/character is getting closer to the truth" or "one party is putting pressure on the other." The slower the speed, the stronger the sense of oppression
+- **Slow zoom = reveal the overall situation/discovery** — Slowly zoom out from a part to reveal the whole picture that the character did not notice (someone is listening in the dark, the evidence is behind you), which is a classic technique of "the audience knows but the character does not know"
+- **Subtle shift** — In the still picture, the camera tilts very slowly to one side, suggesting that "the balance of the game is tilting." Whoever you favor will lose your advantage.
+- **Quick cuts are used for reversal moments** — The only moment allowed for quick cuts in psychological games is the reversal moment of "turning the trump card": a quick scene jump cut (panorama → close-up → large close-up) simulates the psychological impact of "sudden realization"
+- **Mirror movement is the psychological posture** — still = confrontation/balance; slow push = approach/pressure; slow pull = reveal/retreat; offset = tilt of the scale; fast cut = revelation of the truth

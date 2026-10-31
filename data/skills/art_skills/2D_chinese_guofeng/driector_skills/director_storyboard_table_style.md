@@ -1,68 +1,68 @@
 ---
 name: director_storyboard_table_style
-description: 分镜表国风二次元约束 — 定义国风二次元新国潮在分镜表中的赛璐璐光影规范、色调绑定、动作节奏、环境动态、运镜禁忌与转场禁忌。适用于任何叙事类型。
+description: Chinese-style 2D constraints for the storyboard table — Defines the cel-shading light and shadow standards, color palette binding, action rhythm, environmental dynamics, camera movement prohibitions, and transition prohibitions for the Chinese-style 2D New Guochao aesthetic in the storyboard table. Applicable to any narrative type.
 metaData: director_skills
 ---
 
-# 分镜表国风二次元约束 · 国风二次元新国潮 · 技法参考
+# Storyboard Table Chinese-Style 2D Constraints · Chinese-Style 2D New Guochao · Technique Reference
 
 ---
 
-## 一、分镜表定位
+## I. Storyboard Table Positioning
 
-分镜表是导演将剧本转化为镜头语言的核心工具。以下仅提供国风二次元新国潮风格在分镜表层面的约束规范。
-
----
-
-## 二、光影与氛围
-
-- **赛璐璐光影统一** — 一场戏内光影方案必须保持赛璐璐平涂一致性，阴影使用同色系加深（禁止黑色硬阴影），除非有明确的叙事转折（如烛光熄灭→月光冷辉）
-- **情绪色盘绑定** — 每场戏至少绑定 1 个情绪场景（如仙侠飘逸/宫廷华贵/武侠肃杀/少女日常/月夜诗意/节日庆典），并在镜头组内保持主色+辅色连续性，色彩取自核心色盘（月白 #E8EAF5 / 青绿 #4A9B8A / 朱红 #C93752 / 靛蓝 #2B4C7E / 金黄 #D4AF37 / 墨黑 #1A1A2E / 胭脂 #A94A5F / 赭石 #965E3E / 藤黄 #F5E375 / 灰紫 #7B6C85）
-- **光源角度规范** — 正给镜头光源默认 38.5° 斜射柔光（赛璐璐平涂质感），侧给镜头根据画面需要调整。描述光影时须区分正给/侧给的角度差异，光影渲染始终保持日式动画质感
-- **冷暖色调与叙事阶段匹配** — 武侠肃杀/忧伤哀婉段落使用冷色调（靛蓝 + 墨黑 + 青绿），禁用暖橙/朱红暖光；仙侠飘逸/少女日常段落使用柔和暖调（月白 + 胭脂 + 藤黄）；宫廷华贵段落使用朱红 + 金黄高光
-- **光影转场是高级手段** — 从窗纱透光渐变到烛光暖影 = 日转夜的时间流逝。在分镜表中标注光影变化点，转场过程中赛璐璐色块必须平滑渐变，禁止色块断层/色彩溢出
-- **日式渲染光效** — 允许合理使用体积光（volumetric light）、景深虚化、轮廓光等现代渲染技法，但必须保持国风二次元赛璐璐平涂的美学基调，禁止 3D 写实/CG 动画光效
+The storyboard table is the core tool for the director to translate the script into camera language. The following provides only the constraint specifications for the Chinese-style 2D New Guochao style at the storyboard table level.
 
 ---
 
-## 三、环境动态
+## II. Light, Shadow, and Atmosphere
 
-- **环境动态增加画面呼吸感** — 花瓣飘落、云雾缭绕、水波荡漾、纱帘飘动、衣袂飘逸。每 3-4 个镜头至少安排一个有环境动态的镜头，避免画面"死"掉
-- **国风二次元环境元素优先** — 环境动态应选用国风世界观内的元素：落花、飞絮、轻烟、流水、风过竹林、烛火摇曳、云雾流动、萤火虫光点、雪花飘落，禁止出现现代元素
-- **赛璐璐动态质感** — 环境动态元素（花瓣/烟雾/水波等）必须保持赛璐璐平涂质感与细腻线条，禁止出现 3D 粒子特效或写实流体效果
-
----
-
-## 四、国风二次元动作节奏
-
-- **动作优雅且带动画感** — 人物动作默认缓慢优雅，但可在关键帧上做二次元夸张处理（如武侠对决中的凌厉线条、少女回眸时的发丝飘动），起身、转身、抬手应标注"缓慢/优雅"
-- **服饰动态是核心画面资产** — 国风二次元服饰（宽袖、裙摆、披帛、飘带）的飘动是天然的动态资产，可在画面描述中加入衣袂/裙摆/飘带的动态，赛璐璐渲染下的服饰飘动应线条清晰、层次分明
-- **仪态约束** — 国风人物的举止应符合古典气质：行走稳缓、举手投足含蓄内敛、不出现现代化的肢体语言（如耸肩、摊手）。二次元角色可在微表情上略有夸张（眼睛弯月、脸颊泛红），但肢体动作仍需古典克制
-- **头身比一致** — 动作设计中角色必须保持 6-7 头身的二次元古典比例，禁止因动态姿势而破坏头身比
+- **Unified Cel-Shading** — The lighting scheme within a scene must maintain cel-shading flat-color consistency. Shadows must use a darker shade of the same color family (black hard shadows are prohibited), unless there is a clear narrative turn (e.g., candlelight extinguishing → cold moonlight glow)
+- **Emotional Palette Binding** — Each scene must bind to at least one emotional context (e.g., Xianxia ethereal / Imperial opulence / Wuxia grimness / Girl's daily life / Moonlit poetry / Festival celebration), and maintain primary + secondary color continuity within the shot group. Colors must be drawn from the core palette (Moon White #E8EAF5 / Cyan-Green #4A9B8A / Vermilion #C93752 / Indigo #2B4C7E / Gold #D4AF37 / Ink Black #1A1A2E / Rouge #A94A5F / Ochre #965E3E / Gamboge #F5E375 / Grey-Purple #7B6C85)
+- **Light Source Angle Standards** — For frontal shots, the default light source is 38.5° oblique soft light (cel-shading flat-color texture). For side shots, adjust according to the visual needs. When describing light and shadow, distinguish the angle differences between frontal and side shots; light and shadow rendering must always maintain a Japanese animation aesthetic
+- **Warm/Cool Tones Match Narrative Stages** — Wuxia grimness / Melancholy and sorrow segments use cool tones (Indigo + Ink Black + Cyan-Green); warm orange/vermilion warm light is prohibited. Xianxia ethereal / Girl's daily life segments use soft warm tones (Moon White + Rouge + Gamboge). Imperial opulence segments use Vermilion + Gold highlights
+- **Light and Shadow Transitions are Advanced Techniques** — Gradating from window gauze light transmission to candlelight warm shadows = time passage from day to night. Mark light and shadow change points in the storyboard table. During transitions, cel-shading color blocks must gradient smoothly; color block breaks/color overflow are prohibited
+- **Japanese Rendering Light Effects** — Reasonable use of volumetric light, depth-of-field blur, rim light, and other modern rendering techniques is allowed, but the aesthetic baseline of Chinese-style 2D cel-shading flat-color must be maintained. 3D realistic/CG animation light effects are prohibited
 
 ---
 
-## 五、材质与质感约束
+## III. Environmental Dynamics
 
-- **赛璐璞平涂为锚** — 所有镜头中人物/服饰/道具/场景的渲染必须保持赛璐璞平涂质感，线条细腻清晰，色块平滑，禁止 3D 写实/CG 动画/照片级渲染
-- **服饰材质** — 丝绸 + 刺绣 + 珠光面料的质感用赛璐璞平涂表现，纹理必须超清晰，衣服质感清晰
-- **道具材质** — 金属冷光泽、玉质通透、木纹清晰、瓷质温润，均以赛璐璞平涂 + 细腻笔触呈现，禁止写实材质渲染
-- **场景材质** — 木面有使用痕迹、石面有风化纹、布料有自然褶皱，材质带有岁月感但以国风二次元笔触呈现，禁止"塑料感"的全新无瑕材质
-
----
-
-## 六、色彩约束
-
-- **核心色盘锁定** — 分镜表中所有镜头的色彩必须取自核心色盘（C1-C10），色相偏移容差 ±8°，饱和度偏移 ±10%，明度偏移 ±12%
-- **禁止荧光色** — 严禁高饱和荧光色/霓虹色/数码感强的色彩出现
-- **线条颜色** — 墨黑或深棕，禁止纯黑粗线条
-- **阴影色** — 同色系加深，禁止黑色硬阴影
-- **整体色温** — 偏中性 5000-5600K 自然光基调，对比度 45-65%，饱和度 55-70%（新国潮色盘饱满）
+- **Environmental Dynamics Add Visual Breath** — Falling petals, swirling clouds and mist, rippling water, fluttering gauze curtains, flowing sleeves. Arrange at least one shot with environmental dynamics every 3-4 shots to avoid the visuals becoming "dead"
+- **Chinese-Style 2D Environmental Elements Priority** — Environmental dynamics should use elements within the Chinese-style worldview: falling flowers, flying fluff, light smoke, flowing water, wind through bamboo groves, flickering candle flames, moving clouds and mist, firefly light points, falling snow. Modern elements are prohibited
+- **Cel-Shading Dynamic Texture** — Environmental dynamic elements (petals/smoke/water ripples, etc.) must maintain cel-shading flat-color texture and delicate lines. 3D particle effects or realistic fluid effects are prohibited
 
 ---
 
-## 七、运镜禁忌
+## IV. Chinese-Style 2D Action Rhythm
 
-- **禁用快速运镜** — 甩镜、急推、手持晃动与国风二次元新国潮的优雅气质冲突，武侠对决场景可适度加快运镜节奏但仍需保持画面清晰
-- **禁用花式转场** — 划屏、旋转、百叶窗等与本风格不兼容
-- **禁用写实镜头语言** — 手持摇晃/纪录片式跟拍/鱼眼镜头等与二次元美学冲突，破坏赛璐璞平涂的画面纯净感
+- **Actions Elegant with Animation Feel** — Character actions are default slow and elegant, but 2D exaggerated treatment is allowed on key frames (e.g., sharp lines in Wuxia duels, hair fluttering when a girl turns her head). Rising, turning, and raising hands should be marked as "slow/elegant"
+- **Costume Dynamics are Core Visual Assets** — The fluttering of Chinese-style 2D costumes (wide sleeves, skirt hems, shawls, floating ribbons) is a natural dynamic asset. Dynamics of sleeves/skirt hems/floating ribbons can be added to the visual description. Costume fluttering under cel-shading rendering should have clear lines and distinct layers
+- **Posture Constraints** — The demeanor of Chinese-style characters should conform to classical temperament: steady and slow walking, restrained and introverted gestures, no modern body language (e.g., shrugging, spreading hands). 2D characters can have slight exaggeration in micro-expressions (crescent eyes, blushing cheeks), but body movements must remain classically restrained
+- **Head-to-Body Ratio Consistency** — In action design, characters must maintain a 6-7 head-height 2D classical proportion. It is prohibited to break the head-to-body ratio due to dynamic poses
+
+---
+
+## V. Material and Texture Constraints
+
+- **Cel-Shading Flat-Color as Anchor** — The rendering of characters/costumes/props/scenes in all shots must maintain cel-shading flat-color texture, with delicate and clear lines and smooth color blocks. 3D realistic/CG animation/photorealistic rendering is prohibited
+- **Costume Materials** — The texture of silk + embroidery + pearlescent fabric is expressed via cel-shading flat-color. Textures must be ultra-clear, and the fabric texture must be distinct
+- **Prop Materials** — Metal cold gloss, jade transparency, clear wood grain, and warm porcelain texture are all presented with cel-shading flat-color + delicate brushstrokes. Realistic material rendering is prohibited
+- **Scene Materials** — Wood surfaces have usage marks, stone surfaces have weathering patterns, fabrics have natural wrinkles. Materials carry a sense of age but are presented with Chinese-style 2D brushstrokes. "Plastic-looking" brand-new flawless materials are prohibited
+
+---
+
+## VI. Color Constraints
+
+- **Core Palette Lock** — The colors of all shots in the storyboard table must be drawn from the core palette (C1-C10). Hue shift tolerance ±8°, saturation shift ±10%, lightness shift ±12%
+- **Fluorescent Colors Prohibited** — High-saturation fluorescent colors/neon colors/colors with strong digital feel are strictly prohibited
+- **Line Color** — Ink black or dark brown. Pure black thick lines are prohibited
+- **Shadow Color** — Darkened shade of the same color family. Black hard shadows are prohibited
+- **Overall Color Temperature** — Neutral 5000-5600K natural light baseline, contrast 45-65%, saturation 55-70% (New Guochao palette is full)
+
+---
+
+## VII. Camera Movement Prohibitions
+
+- **Fast Camera Movement Prohibited** — Whip pans, rapid pushes, and handheld shake conflict with the elegant temperament of Chinese-style 2D New Guochao. Wuxia duel scenes may moderately increase camera movement rhythm but must still maintain visual clarity
+- **Fancy Transitions Prohibited** — Wipes, rotations, venetian blinds, etc., are incompatible with this style
+- **Realistic Camera Language Prohibited** — Handheld shake/documentary-style follow shots/fisheye lenses, etc., conflict with 2D aesthetics and destroy the visual purity of cel-shading flat-color

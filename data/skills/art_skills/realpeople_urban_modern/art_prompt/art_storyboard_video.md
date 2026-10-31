@@ -1,11 +1,11 @@
-# 视频提示词 · 视觉风格约束
+# Video Prompt · Visual Style Constraints
 
-生成视频提示词时，必须注入以下视觉风格标签：
+When generating video prompts, the following visual style tags must be injected:
 
-| 模式 | 风格标签 |
+| Mode | Style Tags |
 |------|----------|
-| **通用多参模式（英文）** | `modern urban drama, photorealistic, cinematic, natural lighting, ultra-fine detail` |
-| **通用首尾帧模式（英文）** | `modern urban drama, photorealistic, cinematic, natural lighting, ultra-fine detail, shallow depth of field` |
-| **Seedance 2.0（中文）** | `都市写实摄影，电影风格，自然光照，极致细节` |
+| **General Multi-Parameter Mode (English)** | `modern urban drama, photorealistic, cinematic, natural lighting, ultra-fine detail` |
+| **General First-Last Frame Mode (English)** | `modern urban drama, photorealistic, cinematic, natural lighting, ultra-fine detail, shallow depth of field` |
+| **Seedance 2.0 (Chinese)** | `Urban realistic photography, cinematic style, natural lighting, extreme detail` |
 
 

@@ -1,50 +1,50 @@
-# 家庭温情 · 导演叙事手法技能包
+# Family Warmth · Directorial Narrative Techniques Skill Pack
 
-## 简介
+## Overview
 
-本技能包为 **家庭温情** 类型故事提供一套完整的导演叙事手法参考，涵盖从宏观叙事规划到微观分镜执行的全流程指导。适用于任何视觉风格。
+This skill pack provides a complete reference for directorial narrative techniques for **Family Warmth** type stories, covering the full process from macro-level narrative planning to micro-level storyboard execution. It is applicable to any visual style.
 
-## 核心理念
+## Core Concepts
 
-- **平凡即伟大** — 家庭叙事的力量不在戏剧性事件，而在日复一日的陪伴、妥协与无条件的爱
-- **爱在嘴边却说不出** — 中国式家庭情感表达的核心矛盾：最深的爱用最笨拙的方式表达——一碗汤、一件外套、一句"路上小心"
-- **代际回响** — 当孩子做了父母同样的动作、说了同样的话，代际间的情感传递才真正完成
-- **日常的神圣** — 一家人吃饭、一起看电视、接孩子放学——这些日常场景在家庭叙事中拥有仪式般的神圣感
+- **The Ordinary is Great** — The power of family narratives lies not in dramatic events, but in the day-to-day companionship, compromise, and unconditional love
+- **Love on the Tip of the Tongue but Unsaid** — The core contradiction in Chinese family emotional expression: the deepest love is expressed in the most clumsy ways—a bowl of soup, a coat, a "be careful on the road"
+- **Intergenerational Echo** — The emotional transmission between generations is truly completed when a child performs the same actions or says the same words as their parents
+- **The Sacred in the Everyday** — A family eating together, watching TV together, picking up a child from school—these everyday scenes possess a ritual-like sense of sacredness in family narratives
 
-## 文件结构
+## File Structure
 
 ```
 Family_warmth/
-├── README.md                                          ← 本文件
+├── README.md                                          ← This file
 └── driector_skills/
-    ├── director_planning_narrative.md                 ← 叙事规划手法
-    └── director_storyboard_table_narrative.md         ← 分镜表叙事手法
+    ├── director_planning_narrative.md                 ← Narrative planning techniques
+    └── director_storyboard_table_narrative.md         ← Storyboard table narrative techniques
 ```
 
-## 技能文件说明
+## Skill File Description
 
-### 1. 叙事规划手法 (`director_planning_narrative.md`)
+### 1. Narrative Planning Techniques (`director_planning_narrative.md`)
 
-导演在 **叙事规划阶段** 使用的技法参考，定义家庭温情在主题立意、情感节奏、场景情绪设计与声音方向上的整体规划方法。
+Technique reference used by the director during the **narrative planning stage**, defining the overall planning methods for family warmth in thematic intent, emotional rhythm, scene mood design, and sound direction.
 
-| 章节 | 内容概要 |
+| Chapter | Content Overview |
 |---|---|
-| 主题立意与情感内核 | 平凡即伟大、笨拙的爱、代际回响、日常神圣 |
-| 叙事结构与节奏规划 | 日常流叙事、情感暗线、代际对照、危机与回归 |
-| 分场景情绪设计 | 六大典型家庭段落设计、空间归属叙事、物件传情 |
-| 声音与音乐方向 | 家的音景、沉默的亲情、音乐克制、生活声即配乐 |
-| 构图与景别叙事 | 家庭空间关系、餐桌构图、距离即关系、门框叙事 |
-| 镜头运动与节奏 | 安稳缓移、旁观者凝视、日常跟随、静止的温度 |
+| Thematic Intent and Emotional Core | The ordinary is great, clumsy love, intergenerational echoes, the sacredness of the everyday |
+| Narrative Structure and Rhythm Planning | Stream-of-life narrative, emotional subplots, intergenerational contrast, crisis and return |
+| Scene-by-Scene Mood Design | Design of six typical family segments, spatial belonging narrative, objects conveying emotion |
+| Sound and Music Direction | The sonic landscape of home, silent affection, restrained music, ambient life sounds as score |
+| Composition and Shot Scale Narrative | Family spatial relationships, dining table composition, distance as relationship, doorframe narrative |
+| Camera Movement and Rhythm | Steady slow movement, observer's gaze, everyday following, the warmth of stillness |
 
-### 2. 分镜表叙事手法 (`director_storyboard_table_narrative.md`)
+### 2. Storyboard Table Narrative Techniques (`director_storyboard_table_narrative.md`)
 
-导演在 **分镜表制作阶段** 使用的技法参考，定义家庭温情在分镜表中的景别温度控制、运镜安稳感、时长把控、镜头合并与转场逻辑。
+Technique reference used by the director during the **storyboard table production stage**, defining family warmth in the storyboard table through shot scale temperature control, camera movement stability, duration control, shot merging, and transition logic.
 
-| 章节 | 内容概要 |
+| Chapter | Content Overview |
 |---|---|
-| 分镜表定位 | 分镜表作为家庭情感温度控制核心工具的定位说明 |
-| 景别选择 | 日常景别、细节特写的温度、远景的守望 |
-| 运镜节奏 | 安稳缓移、旁观者视角、日常跟随、静止凝视 |
-| 时长把控 | 日常镜头时长、沉默时长、细节停留、呼吸节奏 |
-| 镜头合并策略 | 日常流连续、餐桌一镜、生活动线整合 |
-| 一镜到底 | 家庭空间穿行、日常动线、等待与归来 |
+| Storyboard Table Positioning | Explanation of the storyboard table's role as the core tool for controlling family emotional temperature |
+| Shot Scale Selection | Everyday shot scales, the warmth of detail close-ups, the watchfulness of wide shots |
+| Camera Movement Rhythm | Steady slow movement, observer's perspective, everyday following, static gaze |
+| Duration Control | Duration of everyday shots, duration of silence, lingering on details, breathing rhythm |
+| Shot Merging Strategy | Continuous stream of life, single-shot dining table, integration of daily life action lines |
+| One-Take | Traversing family spaces, daily action lines, waiting and return |
